@@ -27,7 +27,9 @@ def get_single_season_game_headers(season):
     else:
         months = normal_months
     for month in months:
-        season_games.append(get_single_month_game_headers(season, month))
+        games_list = get_single_month_game_headers(season, month)
+        for game in games_list:
+            season_games.append(game)
 
     return season_games
 
@@ -54,7 +56,10 @@ def get_single_month_game_headers(season, month):
         away_str_short = str(table_away_strs[i])[s_index:s_index+3]
         home_str_short = str(table_home_strs[i])[s_index:s_index+3]
 
-        month_games.append([game_str[s_index:s_index+12], home_str_full, away_str_full, home_str_short, away_str_short])
+        game_short = game_str[s_index:s_index+12]
+        game_long = 'https://www.basketball-reference.com/boxscores/pbp/' + game_short + '.html'
+
+        month_games.append([game_short, game_long, home_str_full, away_str_full, home_str_short, away_str_short])
 
     return month_games
 
@@ -118,12 +123,6 @@ def sleep_checker(sleep_counter, iterations=3, base_time=2, random_multiplier=3)
     return sleep_counter
 
 
-# def get_team_season_pair(tag):
-#     string = re.search(r'(?<=\"/teams/)(.*?)(?=\.)', str(tag.contents)).group(0)
-#     team, season = string.split('/')
-#     return [team, season]
-
-
 def get_player_team_in_season(player_link, season):
     # assumes good data
     player_link = player_link[11:]
@@ -134,35 +133,6 @@ def get_player_team_in_season(player_link, season):
             return seasons[str(season)][player_link]
         except:
             return player_link
-
-
-
-    # # https://www.basketball-reference.com/players/g/georgpa01.html
-    # url = 'https://www.basketball-reference.com/{}'.format(player_link)
-    # page = requests.get(url)
-    # soup = BeautifulSoup(page.content, 'html.parser')
-    # all_team_matches_in_table = soup.select('td[data-stat="team_id"]')
-    # possible_teams = set()
-    #
-    # for line in all_team_matches_in_table:
-    #     if re.search(r'a-stat="team_id"><a href="/teams/', str(line)) is not None:
-    #         index = str(line).index('a-stat="team_id"><a href="/teams/') + 33
-    #         if str(line)[(index + 4):(index + 8)] == str(season):
-    #             possible_teams.add(str(line)[index:(index + 3)])
-    #
-    # return possible_teams
-
-    # sleep_counter = 0
-    # team_season_pairs = list()
-    # print(all_team_matches_in_table)
-    # for tag in all_team_matches_in_table[:-1]:
-    #     sleep_counter = sleep_checker(sleep_counter, iterations=5)
-    #     team_season_pairs.append(get_team_season_pair(tag))
-    #
-    # for pair in team_season_pairs:
-    #     if pair[1] == str(season):
-    #         return pair[0]
-    # return None
 
 
 def get_tipoff_winner_and_first_score(game_link, season, home_team, away_team):
@@ -186,6 +156,7 @@ def get_tipoff_winner_and_first_score(game_link, season, home_team, away_team):
     first_scoring_player_link = re.search(r'(?<=")(.*?)(?=")', str(first_score_line[0])).group(0)
     try:
         possession_gaining_player_link = re.search(r'(?<=")(.*?)(?=")', str(possession_win_line[5])).group(0)
+        possession_gaining_player = str(possession_win_line[5].contents[0])
 
         home_tipper = possession_win_line[3].contents[0]
         # home_tipper_link = re.search(r'(?<=")(.*?)(?=")', str(possession_win_line[1])).group(0)
@@ -203,16 +174,10 @@ def get_tipoff_winner_and_first_score(game_link, season, home_team, away_team):
             first_scoring_team = home_team
         else:
             first_scoring_team = away_team
-        #
-        # home_wins_possession = False
-        # if possession_gaining_team == home_team:
-        #     home_wins_possession = True
-        # elif possession_gaining_team != away_team:
-        #     raise ValueError("player didn't match either team", possession_gaining_player)
 
-        return [home_tipper, away_tipper, first_scoring_player, possession_gaining_team, first_scoring_team]
+        return [home_tipper, away_tipper, first_scoring_player, possession_gaining_team, possession_gaining_player, possession_gaining_player_link, first_scoring_team]
     except:
-        return [None, None, None, None, None]
+        return [None, None, None, None, None, None]
 
 
 def save_active_players_teams(start_season):
@@ -257,3 +222,47 @@ def save_active_players_teams(start_season):
         json.dump(seasons, json_file)
 
     print('saved seasons data')
+
+
+
+
+# def get_team_season_pair(tag):
+#     string = re.search(r'(?<=\"/teams/)(.*?)(?=\.)', str(tag.contents)).group(0)
+#     team, season = string.split('/')
+#     return [team, season]
+
+
+#
+# home_wins_possession = False
+# if possession_gaining_team == home_team:
+#     home_wins_possession = True
+# elif possession_gaining_team != away_team:
+#     raise ValueError("player didn't match either team", possession_gaining_player)
+
+
+    # # https://www.basketball-reference.com/players/g/georgpa01.html
+    # url = 'https://www.basketball-reference.com/{}'.format(player_link)
+    # page = requests.get(url)
+    # soup = BeautifulSoup(page.content, 'html.parser')
+    # all_team_matches_in_table = soup.select('td[data-stat="team_id"]')
+    # possible_teams = set()
+    #
+    # for line in all_team_matches_in_table:
+    #     if re.search(r'a-stat="team_id"><a href="/teams/', str(line)) is not None:
+    #         index = str(line).index('a-stat="team_id"><a href="/teams/') + 33
+    #         if str(line)[(index + 4):(index + 8)] == str(season):
+    #             possible_teams.add(str(line)[index:(index + 3)])
+    #
+    # return possible_teams
+
+    # sleep_counter = 0
+    # team_season_pairs = list()
+    # print(all_team_matches_in_table)
+    # for tag in all_team_matches_in_table[:-1]:
+    #     sleep_counter = sleep_checker(sleep_counter, iterations=5)
+    #     team_season_pairs.append(get_team_season_pair(tag))
+    #
+    # for pair in team_season_pairs:
+    #     if pair[1] == str(season):
+    #         return pair[0]
+    # return None
