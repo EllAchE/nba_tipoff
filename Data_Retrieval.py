@@ -1,4 +1,5 @@
 import json
+import math
 
 from bs4 import BeautifulSoup
 import requests
@@ -64,9 +65,9 @@ def get_single_month_game_headers(season, month):
     return month_games
 
 
-def sleep_checker(sleep_counter, iterations=3, base_time=2, random_multiplier=3):
+def sleep_checker(sleep_counter, iterations=3, base_time=2, random_multiplier=3, iteration_randomizer=0):
     sleep_counter += 1
-    if sleep_counter % (iterations + 1) == 0:
+    if sleep_counter % iterations == 0:
         print("sleeping for", str(base_time), "+ random seconds")
         time.sleep(base_time + random.random() * random_multiplier)
         sleep_counter = 0
@@ -105,26 +106,32 @@ def get_tipoff_winner_and_first_score(game_link, season, home_team, away_team):
         possession_gaining_player_link = re.search(r'(?<=")(.*?)(?=")', str(possession_win_line[5])).group(0)
         possession_gaining_player = str(possession_win_line[5].contents[0])
 
-        home_tipper = possession_win_line[3].contents[0]
-        away_tipper = possession_win_line[1].contents[0]
+        tipper1 = possession_win_line[1].contents[0]
+        tipper1_link = re.search(r'(?<=")(.*?)(?=")', str(possession_win_line[1])).group(0)
+        tipper2 = possession_win_line[3].contents[0]
 
-        possible_teams = get_player_team_in_season(possession_gaining_player_link, season)
-        if home_team in possible_teams:
+        if home_team in get_player_team_in_season(tipper1_link, season):
+            home_tipper = tipper1
+            away_tipper = tipper2
+        else:
+            home_tipper = tipper2
+            away_tipper = tipper1
+
+        if home_team in get_player_team_in_season(possession_gaining_player_link, season):
             possession_gaining_team = home_team
             possession_losing_team = away_team
-        else:
-            possession_gaining_team = away_team # todo no error checks here
-            possession_losing_team = home_team
-
-        possible_teams = get_player_team_in_season(first_scoring_player_link, season)
-        if home_team in possible_teams:
-            first_scoring_team = home_team
             tipoff_winner = home_tipper
             tipoff_loser = away_tipper
         else:
-            first_scoring_team = away_team
+            possession_gaining_team = away_team # todo no error checks here
+            possession_losing_team = home_team
             tipoff_winner = away_tipper
             tipoff_loser = home_tipper
+
+        if home_team in get_player_team_in_season(first_scoring_player_link, season):
+            first_scoring_team = home_team
+        else:
+            first_scoring_team = away_team
 
         if possession_gaining_team == first_scoring_team:
             tip_win_score = 1
