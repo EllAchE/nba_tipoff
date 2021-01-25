@@ -29,12 +29,12 @@ Guy who compiled the tip off stats https://twitter.com/FattMemrite
 https://sportsbook.draftkings.com/leagues/basketball/103?category=game-props&subcategory=first-team-to-score
 '''
 
-# URL for game https://www.basketball-reference.com/boxscores/pbp/201901220OKC.html
-# Where YYYYMMDD0### (# = home team code)
+URL for game https://www.basketball-reference.com/boxscores/pbp/201901220OKC.html
+Where YYYYMMDD0### (# = home team code)
 
-# game schedule in order for seasons https://www.basketball-reference.com/leagues/NBA_2019_games.html
-# Creating json/dictonary would probably be best
+game schedule in order for seasons https://www.basketball-reference.com/leagues/NBA_2019_games.html
+Creating json/dictonary would probably be best
 
-# Games played https://www.basketball-reference.com/leagues/NBA_2019_games-october.html
-# Year is ending year (i.e. 2018-2019 is 2019)
-# All relevant are October-June except 2019-2020 and 2020-21 (first bc covid, second is in progress)
+Games played https://www.basketball-reference.com/leagues/NBA_2019_games-october.html
+Year is ending year (i.e. 2018-2019 is 2019)
+All relevant are October-June except 2019-2020 and 2020-21 (first bc covid, second is in progress)

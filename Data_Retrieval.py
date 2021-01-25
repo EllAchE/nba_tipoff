@@ -130,8 +130,10 @@ def get_tipoff_winner_and_first_score(game_link, season, home_team, away_team):
 
         if home_team in get_player_team_in_season(first_scoring_player_link, season):
             first_scoring_team = home_team
+            scored_upon_team = away_team
         else:
             first_scoring_team = away_team
+            scored_upon_team = home_team
 
         if possession_gaining_team == first_scoring_team:
             tip_win_score = 1
@@ -139,10 +141,10 @@ def get_tipoff_winner_and_first_score(game_link, season, home_team, away_team):
             tip_win_score = 0
 
         return [home_tipper, away_tipper, first_scoring_player, possession_gaining_team, possession_losing_team,
-                possession_gaining_player, possession_gaining_player_link, first_scoring_team,
+                possession_gaining_player, possession_gaining_player_link, first_scoring_team, scored_upon_team,
                 tipoff_winner, tipoff_loser, tip_win_score]
     except:
-        return [None, None, None, None, None, None, None, None, None]
+        return [None, None, None, None, None, None, None, None, None, None]
 
 
 # def get_game_headers(start_season=2014, start_date=None):

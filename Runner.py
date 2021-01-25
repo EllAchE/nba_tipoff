@@ -6,6 +6,11 @@ import pandas as pd
 import csv
 
 
+# todo apply elo ratings starting from 1997 or something to all tippers
+# those with very low appearances can be assigned a lower rating, though I think they should matter less
+# todo add first scored upon team
+
+
 def one_season(season, path):
     temp = pd.DataFrame()
     temp.to_csv(path)
@@ -14,9 +19,9 @@ def one_season(season, path):
     with data_file:
         csv_writer = csv.writer(data_file)
         csv_writer.writerow(
-            ['Game Code', 'Full Hyperlink', 'Home Team', 'Away Team', 'Home Team Short', 'Away Team Short',
-             'Home Tipper', 'Away Tipper', 'First Scorer', 'Tipoff Winning Team', 'Tipoff Losing Team', 'Possession Gaining Player',
-             'Possession Gaining Player Link', 'First Scoring Team', 'Tipoff Winner', 'Tipoff Loser', 'Tipoff Winner Scores'])
+            ['Game Code', 'Full Hyperlink', 'Home', 'Away', 'Home Short', 'Away Short', 'Home Tipper', 'Away Tipper',
+             'First Scorer', 'Tipoff Winning Team', 'Tipoff Losing Team', 'Possession Gaining Player', 'Possession Gaining Player Link',
+             'First Scoring Team', 'Scored Upon Team' 'Tipoff Winner', 'Tipoff Loser', 'Tipoff Winner Scores'])
         game_headers = bball.get_single_season_game_headers(season)
 
         sleep_counter = 0
@@ -26,12 +31,16 @@ def one_season(season, path):
             print(row)
             csv_writer.writerow(row)
 
-start_season = 2016
+# start_season = 2015
 
-all_at_once_path = "tipoff_and_first_score_details_starting_" + str(start_season) + "_season.csv"
-single_season_path = "tipoff_and_first_score_details_" + str(start_season) + "_season.csv"
+sss = [2018, 2019, 2020, 2021]
 
-one_season(start_season, single_season_path)
+for start_season in sss:
+
+    all_at_once_path = "tipoff_and_first_score_details_starting_" + str(start_season) + "_season.csv"
+    single_season_path = "tipoff_and_first_score_details_" + str(start_season) + "_season.csv"
+
+    one_season(start_season, single_season_path)
 
 
 # todo add possession gaining player to csv columns
