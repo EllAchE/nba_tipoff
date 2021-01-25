@@ -111,8 +111,10 @@ def get_tipoff_winner_and_first_score(game_link, season, home_team, away_team):
         possible_teams = get_player_team_in_season(possession_gaining_player_link, season)
         if home_team in possible_teams:
             possession_gaining_team = home_team
+            possession_losing_team = away_team
         else:
             possession_gaining_team = away_team # todo no error checks here
+            possession_losing_team = home_team
 
         possible_teams = get_player_team_in_season(first_scoring_player_link, season)
         if home_team in possible_teams:
@@ -129,7 +131,7 @@ def get_tipoff_winner_and_first_score(game_link, season, home_team, away_team):
         else:
             tip_win_score = 0
 
-        return [home_tipper, away_tipper, first_scoring_player, possession_gaining_team,
+        return [home_tipper, away_tipper, first_scoring_player, possession_gaining_team, possession_losing_team,
                 possession_gaining_player, possession_gaining_player_link, first_scoring_team,
                 tipoff_winner, tipoff_loser, tip_win_score]
     except:
