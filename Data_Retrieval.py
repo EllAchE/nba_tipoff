@@ -1,40 +1,3 @@
-'''
-Retrieves raw data from pages as csv
-
-Steps to NBA check:
-
-Base requirements:
--	Find the starters for each team/who does the tipoff:
--	Player W/L %
-
-Additional variables
--	Ref
--	Is starter out
--	Home/away
--	Who they tip it to
--	Matchup
--	Height
--	Offensive effectiveness
--	Back-to-back games/overtime etc.
--	Age decline
--	Recent history weighting
-
-Format is https://www.basketball-reference.com/boxscores/pbp/201901220OKC.html
-Home team 3 letter symbol is used after a 0, i.e. YYYYMMDD0###.html
-https://fansided.com/stats/jump-ball-statistics-1998-present/
-Guy who compiled the tip off stats https://twitter.com/FattMemrite
-https://sportsbook.draftkings.com/leagues/basketball/103?category=game-props&subcategory=first-team-to-score
-'''
-
-# URL for game https://www.basketball-reference.com/boxscores/pbp/201901220OKC.html
-# Where YYYYMMDD0### (# = home team code)
-
-# game schedule in order for seasons https://www.basketball-reference.com/leagues/NBA_2019_games.html
-# Creating json/dictonary would probably be best
-
-# Games played https://www.basketball-reference.com/leagues/NBA_2019_games-october.html
-# Year is ending year (i.e. 2018-2019 is 2019)
-# All relevant are October-June except 2019-2020 and 2020-21 (first bc covid, second is in progress)
 import json
 
 from bs4 import BeautifulSoup
@@ -146,11 +109,11 @@ def get_game_headers(start_season=2014, start_date=None):
     return game_list
 
 
-def sleep_checker(sleep_counter, iterations=3, base_time=2):
+def sleep_checker(sleep_counter, iterations=3, base_time=2, random_multiplier=3):
     sleep_counter += 1
     if sleep_counter % (iterations + 1) == 0:
         print("sleeping for", str(base_time), "+ random seconds")
-        time.sleep(base_time + random.random() * 3)
+        time.sleep(base_time + random.random() * random_multiplier)
         sleep_counter = 0
     return sleep_counter
 
@@ -210,6 +173,8 @@ def get_tipoff_winner_and_first_score(game_link, season, home_team, away_team):
 
     soup = BeautifulSoup(page.content, 'html.parser')
     possession_win_line = soup.select('td[colspan="5"]')[0].contents
+    if str(possession_win_line[0]) == "Start of 1st quarter":
+        possession_win_line = soup.select('td[colspan="5"]')[1].contents
     first_score_line_options = soup.find_all('td', class_='bbr-play-score', limit=2)[:2]  # todo fix this to choose right side
     if re.search(r'makes', str(first_score_line_options[0])) is not None:
         first_score_line = first_score_line_options[0].contents
@@ -222,9 +187,9 @@ def get_tipoff_winner_and_first_score(game_link, season, home_team, away_team):
     try:
         possession_gaining_player_link = re.search(r'(?<=")(.*?)(?=")', str(possession_win_line[5])).group(0)
 
-        home_tipper = possession_win_line[1].contents[0]
+        home_tipper = possession_win_line[3].contents[0]
         # home_tipper_link = re.search(r'(?<=")(.*?)(?=")', str(possession_win_line[1])).group(0)
-        away_tipper = possession_win_line[3].contents[0]
+        away_tipper = possession_win_line[1].contents[0]
         # away_tipper_link = re.search(r'(?<=")(.*?)(?=")', str(possession_win_line[3])).group(0)
 
         possible_teams = get_player_team_in_season(possession_gaining_player_link, season)
