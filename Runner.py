@@ -14,8 +14,9 @@ def one_season(season, path):
     with data_file:
         csv_writer = csv.writer(data_file)
         csv_writer.writerow(
-            ['Game Code', 'Full Hyperlink', 'Home Team', 'Away Team', 'Home Team Short', 'Away Team Short', 'Home Tipper', 'Away Tipper',
-             'First Scorer', 'Tipoff Winning Team', 'Possession Gaining Player', 'Possesion Gaining Player Link', 'First Scoring Team'])
+            ['Game Code', 'Full Hyperlink', 'Home Team', 'Away Team', 'Home Team Short', 'Away Team Short',
+             'Home Tipper', 'Away Tipper', 'First Scorer', 'Tipoff Winning Team', 'Possession Gaining Player',
+             'Possession Gaining Player Link', 'First Scoring Team', 'Tipoff Winner', 'Tipoff Loser', 'Tipoff Winner Scores'])
         game_headers = bball.get_single_season_game_headers(season)
 
         sleep_counter = 0
@@ -25,7 +26,7 @@ def one_season(season, path):
             print(row)
             csv_writer.writerow(row)
 
-start_season = 2016
+start_season = 2017
 
 all_at_once_path = "tipoff_and_first_score_details_starting_" + str(start_season) + "_season.csv"
 single_season_path = "tipoff_and_first_score_details_" + str(start_season) + "_season.csv"
@@ -34,6 +35,7 @@ one_season(start_season, single_season_path)
 
 
 # todo add possession gaining player to csv columns
+# todo one edge case is not solved, i.e. a player is traded to a team and then plays against them, having both on their record for the season
 
 
 # def all_in_one(start_season, path):

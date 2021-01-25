@@ -4,10 +4,6 @@ reads processed data
 
 import pandas as pd
 
-# create set of all tipping players, in win or lose column
-# create a dictionary with their names with values of wins and losses
-# go through the two columns of the game list and add or subtract for each time a name is found
-
 path = 'tipoff_and_first_score_details_2016_season_test.csv'
 
 
