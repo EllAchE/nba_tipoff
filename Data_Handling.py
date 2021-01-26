@@ -1,14 +1,13 @@
 '''
 reads processed data
 '''
+import json
 
 import pandas as pd
 
-path = 'tipoff_and_first_score_details_2016_season_test.csv'
 
-
-def get_tipoff_records():
-    df = pd.read_csv(path)
+def get_player_tipoff_records(save_path, data_path):
+    df = pd.read_csv(data_path)
     all_players = set()
 
     player_dict = {}
@@ -32,26 +31,32 @@ def get_tipoff_records():
         except:
             pass
 
-    llen = len(df['Tipoff Loser'])
-    wlen = len(df['Tipoff Winner'])
-    print(llen)
-    print(wlen)
-
-    total_loss = 0
-    total_win = 0
-
     for winner in df['Tipoff Winner']:
         try:
             player_dict[winner]['wins'] += 1
-            total_win += 1
         except:
             pass
     for loser in df['Tipoff Loser']:
         try:
             player_dict[loser]['losses'] += 1
-            total_loss += 1
         except:
             pass
-    print()
 
-get_tipoff_records()
+
+def team_tipoff_scoring_records(save_path, data_path):
+    df = pd.read_csv(data_path)
+    team_dict = {}
+
+    all_teams = set()
+    for team in df['Home Short']: #todo this may be the wrong name
+        all_teams.add(team)
+
+
+    json_file = open(save_path, 'w')
+
+    with json_file:
+        json.dump(data, json_file)
+
+
+p_path = 'tipoff_and_first_score_details_2016_season_test.csv'
+get_player_tipoff_records(p_path)

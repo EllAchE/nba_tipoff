@@ -48,6 +48,8 @@ def save_active_players_teams(start_season):
 
     print('saved seasons data')
 
+save_active_players_teams(1997)
+
     # def get_team_season_pair(tag):
     #     string = re.search(r'(?<=\"/teams/)(.*?)(?=\.)', str(tag.contents)).group(0)
     #     team, season = string.split('/')

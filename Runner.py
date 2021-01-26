@@ -1,14 +1,16 @@
 '''
 Runner calls methods from Data_Retrieval.py
 '''
+
 import Data_Retrieval as bball
 import pandas as pd
 import csv
 
 
-# todo apply elo ratings starting from 1997 or something to all tippers
+# todo apply glicko or true ratings starting from 1997 or something to all tippers
 # those with very low appearances can be assigned a lower rating, though I think they should matter less
 # todo add first scored upon team
+# todo deal with players who play but aren't catalogued for a team (perhaps bad data, i.e. satorto
 
 
 def one_season(season, path):
@@ -31,16 +33,16 @@ def one_season(season, path):
             print(row)
             csv_writer.writerow(row)
 
-# start_season = 2015
+start_season = 2004
 
-sss = [2018, 2019, 2020, 2021]
+# sss = [2018, 2019, 2020, 2021]
 
-for start_season in sss:
+# for start_season in sss:
 
-    all_at_once_path = "tipoff_and_first_score_details_starting_" + str(start_season) + "_season.csv"
-    single_season_path = "tipoff_and_first_score_details_" + str(start_season) + "_season.csv"
+all_at_once_path = "tipoff_and_first_score_details_starting_" + str(start_season) + "_season.csv"
+single_season_path = "tipoff_and_first_score_details_" + str(start_season) + "_season.csv"
 
-    one_season(start_season, single_season_path)
+one_season(start_season, single_season_path)
 
 
 # todo add possession gaining player to csv columns

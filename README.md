@@ -1,7 +1,8 @@
 # nba-tipoff-scraper
-That's what it does
 
-'''
+Player tipoff skill ranking is done using glicko2 algorithm. Elo and trueskill from Microsoft were also considered but
+Elo doesn't account for uncertainty and true skill doesn't have a time drift
+
 Retrieves raw data from pages as csv
 
 Steps to NBA check:
