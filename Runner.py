@@ -29,15 +29,16 @@ def one_season(season, path):
 
         sleep_counter = 0
         for line in game_headers:
-            sleep_counter = bball.sleep_checker(sleep_counter, iterations=6, base_time=1, random_multiplier=1)
+            sleep_counter = bball.sleep_checker(sleep_counter, iterations=6, base_time=1, random_multiplier=2) #todo add iteration randomizer
             row = line + bball.get_tipoff_winner_and_first_score(line[0], season, line[4], line[5])
             print(row)
             csv_writer.writerow(row)
 
-start_season = 2009
+# Currently good from 08-09
+start_season = 2011
 
-# sss = [2018, 2019, 2020, 2021]
-
+# sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
+#
 # for start_season in sss:
 
 all_at_once_path = "tipoff_and_first_score_details_starting_" + str(start_season) + "_season.csv"

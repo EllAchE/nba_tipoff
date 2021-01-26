@@ -70,8 +70,6 @@ def create_player_skill_dictionary():
         json.dump(player_skill_dict, psd)
         print()
 
-create_player_skill_dictionary()
-
     # def get_team_season_pair(tag):
     #     string = re.search(r'(?<=\"/teams/)(.*?)(?=\.)', str(tag.contents)).group(0)
     #     team, season = string.split('/')

@@ -1,5 +1,10 @@
 # nba-tipoff-scraper
 
+Links:
+https://fansided.com/stats/jump-ball-statistics-1998-present/
+Guy who compiled the tip off stats https://twitter.com/FattMemrite
+https://sportsbook.draftkings.com/leagues/basketball/103?category=game-props&subcategory=first-team-to-score
+
 Player tipoff skill ranking is done using glicko2 algorithm. Elo and trueskill from Microsoft were also considered but
 Elo doesn't account for uncertainty and true skill doesn't have a time driftw
 
@@ -25,10 +30,6 @@ Additional variables
 
 Format is https://www.basketball-reference.com/boxscores/pbp/201901220OKC.html
 Home team 3 letter symbol is used after a 0, i.e. YYYYMMDD0###.html
-https://fansided.com/stats/jump-ball-statistics-1998-present/
-Guy who compiled the tip off stats https://twitter.com/FattMemrite
-https://sportsbook.draftkings.com/leagues/basketball/103?category=game-props&subcategory=first-team-to-score
-'''
 
 URL for game https://www.basketball-reference.com/boxscores/pbp/201901220OKC.html
 Where YYYYMMDD0### (# = home team code)
