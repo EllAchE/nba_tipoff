@@ -64,7 +64,7 @@ def create_player_skill_dictionary():
                 player_codes.add(player)
 
         for code in player_codes:
-            player_skill_dict[code] = {'mu': 25, 'sigma': sigma}
+            player_skill_dict[code] = {'mu': 25, 'sigma': sigma, 'appearances': 0, 'wins': 0, 'losses': 0}
 
     with open('player_skill_dictionary.json', 'w') as psd:
         json.dump(player_skill_dict, psd)

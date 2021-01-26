@@ -23,7 +23,8 @@ def one_season(season, path):
         csv_writer.writerow(
             ['Game Code', 'Full Hyperlink', 'Home', 'Away', 'Home Short', 'Away Short', 'Home Tipper', 'Away Tipper',
              'First Scorer', 'Tipoff Winning Team', 'Tipoff Losing Team', 'Possession Gaining Player', 'Possession Gaining Player Link',
-             'First Scoring Team', 'Scored Upon Team' 'Tipoff Winner', 'Tipoff Loser', 'Tipoff Winner Scores'])
+             'First Scoring Team', 'Scored Upon Team', 'Tipoff Winner', 'Tipoff Winner Link', 'Tipoff Loser',
+             'Tipoff Loser Link', 'Tipoff Winner Scores'])
         game_headers = bball.get_single_season_game_headers(season)
 
         sleep_counter = 0
@@ -33,7 +34,7 @@ def one_season(season, path):
             print(row)
             csv_writer.writerow(row)
 
-start_season = 2008
+start_season = 2009
 
 # sss = [2018, 2019, 2020, 2021]
 
