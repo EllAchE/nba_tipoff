@@ -48,7 +48,29 @@ def save_active_players_teams(start_season):
 
     print('saved seasons data')
 
-save_active_players_teams(1997)
+# save_active_players_teams(1997)
+
+
+def create_player_skill_dictionary():
+    sigma = 25/3
+    with open('player_team_pairs.json') as player_team_pairs_json:
+        ptp = json.load(player_team_pairs_json)
+
+        player_codes = set()
+        player_skill_dict = {}
+
+        for season in ptp.keys():
+            for player in ptp[season].keys():
+                player_codes.add(player)
+
+        for code in player_codes:
+            player_skill_dict[code] = {'mu': 25, 'sigma': sigma}
+
+    with open('player_skill_dictionary.json', 'w') as psd:
+        json.dump(player_skill_dict, psd)
+        print()
+
+create_player_skill_dictionary()
 
     # def get_team_season_pair(tag):
     #     string = re.search(r'(?<=\"/teams/)(.*?)(?=\.)', str(tag.contents)).group(0)

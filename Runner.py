@@ -28,12 +28,12 @@ def one_season(season, path):
 
         sleep_counter = 0
         for line in game_headers:
-            sleep_counter = bball.sleep_checker(sleep_counter, iterations=6, base_time=1, random_multiplier=1, iteration_randomizer=4)
+            sleep_counter = bball.sleep_checker(sleep_counter, iterations=6, base_time=1, random_multiplier=1)
             row = line + bball.get_tipoff_winner_and_first_score(line[0], season, line[4], line[5])
             print(row)
             csv_writer.writerow(row)
 
-start_season = 2004
+start_season = 2008
 
 # sss = [2018, 2019, 2020, 2021]
 
@@ -47,6 +47,7 @@ one_season(start_season, single_season_path)
 
 # todo add possession gaining player to csv columns
 # todo one edge case is not solved, i.e. a player is traded to a team and then plays against them, having both on their record for the season
+# todo bundle together all of the low appearance players as a single entity
 
 
 # def all_in_one(start_season, path):

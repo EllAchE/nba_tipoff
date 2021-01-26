@@ -15,7 +15,7 @@ import re
 
 
 def get_single_season_game_headers(season):
-    normal_months = ["october", "november", "december", "january", "february", "march", "april", "may", "june"]
+    normal_months = ["june"]#["october", "november", "december", "january", "february", "march", "april", "may", "june"]
     months_2020 = ["october-2019", "november", "december", "january", "february", "march", "july", "august",
                    "september", "october-2020"]
     months_2021 = ["december", "january", "february", "march"]  # may be a shortened season
@@ -65,7 +65,7 @@ def get_single_month_game_headers(season, month):
     return month_games
 
 
-def sleep_checker(sleep_counter, iterations=3, base_time=2, random_multiplier=3, iteration_randomizer=0):
+def sleep_checker(sleep_counter, iterations=3, base_time=2, random_multiplier=3):
     sleep_counter += 1
     if sleep_counter % iterations == 0:
         print("sleeping for", str(base_time), "+ random seconds")
@@ -109,24 +109,33 @@ def get_tipoff_winner_and_first_score(game_link, season, home_team, away_team):
         tipper1 = possession_win_line[1].contents[0]
         tipper1_link = re.search(r'(?<=")(.*?)(?=")', str(possession_win_line[1])).group(0)
         tipper2 = possession_win_line[3].contents[0]
+        tipper2_link = re.search(r'(?<=")(.*?)(?=")', str(possession_win_line[3])).group(0)
 
         if home_team in get_player_team_in_season(tipper1_link, season):
             home_tipper = tipper1
             away_tipper = tipper2
+            home_tipper_link = tipper1_link
+            away_tipper_link = tipper2_link
         else:
             home_tipper = tipper2
             away_tipper = tipper1
+            home_tipper_link = tipper2_link
+            away_tipper_link = tipper1_link
 
         if home_team in get_player_team_in_season(possession_gaining_player_link, season):
             possession_gaining_team = home_team
             possession_losing_team = away_team
             tipoff_winner = home_tipper
             tipoff_loser = away_tipper
+            tipoff_winner_link = home_tipper_link
+            tipoff_loser_link = away_tipper_link
         else:
             possession_gaining_team = away_team # todo no error checks here
             possession_losing_team = home_team
             tipoff_winner = away_tipper
             tipoff_loser = home_tipper
+            tipoff_winner_link = away_tipper_link
+            tipoff_loser_link = home_tipper_link
 
         if home_team in get_player_team_in_season(first_scoring_player_link, season):
             first_scoring_team = home_team
@@ -142,9 +151,9 @@ def get_tipoff_winner_and_first_score(game_link, season, home_team, away_team):
 
         return [home_tipper, away_tipper, first_scoring_player, possession_gaining_team, possession_losing_team,
                 possession_gaining_player, possession_gaining_player_link, first_scoring_team, scored_upon_team,
-                tipoff_winner, tipoff_loser, tip_win_score]
+                tipoff_winner, tipoff_winner_link, tipoff_loser, tipoff_loser_link, tip_win_score]
     except:
-        return [None, None, None, None, None, None, None, None, None, None]
+        return [None, None, None, None, None, None, None, None, None, None, None, None]
 
 
 # def get_game_headers(start_season=2014, start_date=None):
