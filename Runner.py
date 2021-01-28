@@ -12,15 +12,35 @@ import csv
 # todo read on kelly criterion
 # todo find other betting sites with tipoff/score first. Prejudice
 
-# todo scrape nba.com instead of bball reference https://www.nba.com/game/phx-vs-nyk-0021000598/play-by-play
-# todo apply glicko or true ratings starting from 1997 or something to all tippers
-# those with very low appearances can be assigned a lower rating, though I think they should matter less
-# todo add first scored upon team
-# todo deal with players who play but aren't catalogued for a team (perhaps bad data, i.e. satorto
+# TECHNICAL TODOS IN ORDER OF IMPT
+# todo fetch the odds for the day from draftkings or other site
+# todo refactor/improve/standardize code base
+# todo kelly criterion for betting assuming a specified pot size
+# todo add time decay to glicko/true skill RD
+# todo player lineup checker
+# todo incorporate other stats in (see below)
+# i.e. store player codes consistently
+
+# todo betting calendar
+# todo have scheduler
+# todo deal with players who play but aren't catalogued for a team (perhaps bad data, i.e. satorto)
 # todo account for injuries
 # todo get first shooting player
-# todo kelly criterion for betting assming a specified pot size
-# todo fetch the odds for the day from draftkings or other site
+# todo add first scored upon team
+# todo scrape nba.com instead of bball reference https://www.nba.com/game/phx-vs-nyk-0021000598/play-by-play
+
+### POTENTIAL ADDITIONAL VARIABLES FOR ODDS MODEL
+# Offensive Efficiency
+# Defensive Efficiency
+# Home advantage
+# new center record (for low data on tipper)
+
+# Likely first shooter percentages
+# Likely other shooter percentages
+# Height matchup
+# combine vertical
+# Injury
+# Back to back/overtime
 
 
 def one_season(season, path):
