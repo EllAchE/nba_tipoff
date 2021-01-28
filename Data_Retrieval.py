@@ -74,8 +74,9 @@ def sleep_checker(sleep_counter, iterations=3, base_time=2, random_multiplier=3)
     return sleep_counter
 
 
-def get_player_team_in_season(player_link, season):
-    player_link = player_link[11:]
+def get_player_team_in_season(player_link, season, long_code=True):
+    if long_code:
+        player_link = player_link[11:]
     with open('player_team_pairs.json') as team_pairs:
         seasons = json.load(team_pairs)
         try:

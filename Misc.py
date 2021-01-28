@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 def save_active_players_teams(start_season):
     # https://www.basketball-reference.com/leagues/NBA_2021_per_game.html
     seasons_list = list()
-    while start_season < 2022:
+    while start_season < 2023:
         seasons_list.append(str(start_season))
         start_season += 1
 
@@ -75,18 +75,16 @@ def reset_prediction_summaries(j='prediction_summaries.json'):
     with open(j) as json_file:
         d = json.load(json_file)
 
-    d.winningBets = 0
-    d.losingBets = 0
-    d.correctTipoffPredictions = 0
-    d.incorrectTipoffPredictions = 0
+    d['winningBets'] = 0
+    d['losingBets'] = 0
+    d['correctTipoffPredictions'] = 0
+    d['incorrectTipoffPredictions'] = 0
 
     with open(j, 'w') as json_w_file:
         json.dump(d, json_w_file)
 
     print('reset prediction summaries')
 
-
-save_active_players_teams(1990)
 
     # def get_team_season_pair(tag):
     #     string = re.search(r'(?<=\"/teams/)(.*?)(?=\.)', str(tag.contents)).group(0)

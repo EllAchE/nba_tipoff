@@ -34,53 +34,75 @@ def run_ts_for_season(season, season_csv, json_path, winning_bet_threshold=0.6):
         dsd = json.load(json_file)
 
     while i < col_len:
-        before_match_predictions(season, psd, dsd, df['Home Tipper'].iloc[i], df['Away Tipper'].iloc[i], df['First Scoring Team'].iloc[i], winning_bet_threshold)
-        update_fields_for_single_tipoff(psd, df['Tipoff Winner Link'].iloc[i], df['Tipoff Loser Link'].iloc[i], df['Full Hyperlink'].iloc[i])
+        h_tip = df['Home Tipper'].iloc[i]
+        t_winner = df['Tipoff Winner'].iloc[i]
+        a_tip = df['Away Tipper'].iloc[i]
+        t_win_link = df['Tipoff Winner Link'].iloc[i]
+        t_lose_link = df['Tipoff Loser Link'].iloc[i]
+        if t_winner == h_tip:
+            h_tip_code = t_win_link[11:]
+            a_tip_code = t_lose_link[11:]
+        elif t_winner == a_tip:
+            h_tip_code = t_lose_link[11:]
+            a_tip_code = t_win_link[11:]
+        else:
+            raise ValueError('no match for winner')
+
+        before_match_predictions(season, psd, dsd, h_tip_code, a_tip_code, t_win_link, df['First Scoring Team'].iloc[i], winning_bet_threshold)
+        update_fields_for_single_tipoff(psd, t_win_link, t_lose_link, df['Full Hyperlink'].iloc[i])
         i += 1
 
     with open(json_path, 'w') as write_file:
         json.dump(psd, write_file)
 
-    with open(json_path, 'w') as write_file:
+    with open('prediction_summaries.json', 'w') as write_file:
         json.dump(dsd, write_file)
 
     return winning_bets, losing_bets
 
 
 def before_match_predictions(season, psd, dsd, home_p_code, away_p_code, tip_winner_code, scoring_team, winning_bet_threshold=0.6):
-    home_rating_obj = trueskill.Rating(psd[home_p_code].mu, psd[home_p_code].si) #todo need to make this work
-    away_rating_obj = trueskill.Rating(psd[away_p_code].mu, psd[away_p_code].si)
-    home_odds = trueskill.rate_1vs1(home_rating_obj, away_rating_obj)
+    # home_rating_obj = trueskill.Rating(psd[home_p_code]['mu'], psd[home_p_code]['sigma']) #todo need to make this work
+    # away_rating_obj = trueskill.Rating(psd[away_p_code]['mu'], psd[away_p_code]['sigma'])
+    home_odds = win_probability(home_p_code, away_p_code, psd=psd)
+    home_p_team = bball.get_player_team_in_season(home_p_code, season, long_code=False)[0]
+    away_p_team = bball.get_player_team_in_season(away_p_code, season, long_code=False)[0]
 
-    if psd[home_p_code].appearances > 30 and psd[away_p_code].appearances > 30: # todo make these params toggleable
+    if psd[home_p_code]['appearances'] > 30 and psd[away_p_code]['appearances'] > 30: # todo make these params toggleable
         if home_odds > winning_bet_threshold:
-            if tip_winner_code == home_p_code:
+            if tip_winner_code[11:] == home_p_code:
                 dsd['correctTipoffPredictions'] += 1
+                print('good prediction on home tip winner')
             else:
                 dsd['incorrectTipoffPredictions'] += 1
-            if bball.get_player_team_in_season(season, home_p_code) == scoring_team:
+                print('bad prediction on home tip winner')
+            if home_p_team == scoring_team:
                 dsd["winningBets"] += 1
+                print('good prediction on home scorer')
             else:
                 dsd["losingBets"] += 1
+                print('bad prediction on home tip scorer')
             pass
         elif (1 - home_odds) > winning_bet_threshold:
-            if tip_winner_code == away_p_code:
+            if tip_winner_code[11:] == away_p_code:
                 dsd['correctTipoffPredictions'] += 1
+                print('good prediction on away tip winner')
             else:
                 dsd['incorrectTipoffPredictions'] += 1
-            if bball.get_player_team_in_season(season, away_p_code) == scoring_team:
+                print('bad prediction on away tip winner')
+            if away_p_team == scoring_team:
                 dsd["winningBets"] += 1
+                print('good prediction on away scorer')
             else:
                 dsd['losingBets'] += 1
+                print('bad prediction on away scorer')
         else:
             print('no bet, odds were not good enough')
     else:
         print('no bet, not enough data on participants')
 
-        return None
 
-
-def win_probability(player1_code, player2_code, json_path, psd=None): #win prob for first player
+def win_probability(player1_code, player2_code, json_path=None, psd=None): #win prob for first player
     if psd is None:
         with open(json_path) as json_file:
             psd = json.load(json_file)
@@ -101,14 +123,8 @@ def win_probability(player1_code, player2_code, json_path, psd=None): #win prob 
 
 
 def run_for_all_seasons(seasons, winning_bet_threshold=0.6):
-    winning_bets = 0
-    losing_bets = 0
     for season in seasons:
         run_ts_for_season(season, 'CSV/tipoff_and_first_score_details_{}_season.csv'.format(season), 'player_skill_dictionary.json', winning_bet_threshold)
-
-    print('winning bets', winning_bets)
-    print('losing bets', losing_bets)
-    print('wining bet percentage')
 
 
 def update_fields_for_single_tipoff(psd, winner_code, loser_code, game_code=None):
@@ -116,23 +132,24 @@ def update_fields_for_single_tipoff(psd, winner_code, loser_code, game_code=None
         print(game_code)
     winner_code = winner_code[11:]
     loser_code = loser_code[11:]
+
     w_og = psd[winner_code]["mu"]
     l_og = psd[loser_code]["mu"]
     w_mu, w_si, l_mu, l_si = _match_with_raw_nums(psd[winner_code]["mu"], psd[winner_code]["sigma"], psd[loser_code]['mu'], psd[loser_code]["sigma"])
-
     w_wins = psd[winner_code]["wins"] + 1
     w_appearances = psd[winner_code]["appearances"] + 1
     l_losses = psd[loser_code]["losses"] + 1
     l_appearances = psd[loser_code]["appearances"] + 1
+
     psd[winner_code]["wins"] = w_wins
     psd[winner_code]["appearances"] = w_appearances
     psd[loser_code]["losses"] = l_losses
     psd[loser_code]["appearances"] = l_appearances
-
     psd[winner_code]["mu"] = w_mu
     psd[winner_code]["sigma"] = w_si
     psd[loser_code]["mu"] = l_mu
     psd[loser_code]["sigma"] = l_si
+
     print('Winner:', winner_code, 'rating increased', w_mu - w_og, 'to', w_mu, '. Sigma is now', w_si, '. W:', w_wins, 'L', w_appearances - w_wins)
     print('Loser:', loser_code, 'rating decreased', l_mu - l_og, 'to', l_mu, '. Sigma is now', l_si, '. W:', l_appearances - l_losses, 'L', l_losses)
 
@@ -145,22 +162,12 @@ def _match_with_raw_nums(winner_mu, winner_sigma, loser_mu, loser_sigma):
 
 
 
-
+misc.reset_prediction_summaries() # reset sums
 misc.create_player_skill_dictionary() # clears the stored values,
 
-sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
-       2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
-run_for_all_seasons(sss, 0.5)
+sss =  [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021] # sss =  [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021] #
 
-
-
-p = win_probability('lopezbr01.html', 'onealsh01.html', 'player_skill_dictionary.json')
-print(p)
-# p = win_probability('gasolpa01.html', 'duncati01.html', 'player_skill_dictionary.json')
-# print(p)
-# dunc mu": 26.480945325976894, "sigma": 0.9477003313108733,
-# gas "gasolpa01.html": {"mu": 26.899836967663248, "sigma": 0.9777350089151755,
-
+run_for_all_seasons(sss, 0.6)
 
 
 # env = trueskill.TrueSkill(draw_probability=0, backend='scipy')
