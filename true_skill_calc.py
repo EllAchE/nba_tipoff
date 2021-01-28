@@ -2,6 +2,7 @@ import itertools
 import json
 import math
 import Misc as misc
+import Data_Retrieval as bball
 
 import trueskill
 import pandas as pd
@@ -14,9 +15,12 @@ BASE_DEVIATION = 25*25/3/3
 # todo use glicko2
 
 
-def run_ts_for_season(season_csv, json_path):
+def run_ts_for_season(season, season_csv, json_path, winning_bet_threshold=0.6):
     df = pd.read_csv(season_csv)
     df = df[df['Home Tipper'].notnull()] # filter invalid rows
+    winning_bets = 0
+    losing_bets = 0
+
     print('running for season doc', season_csv)
     print()
     print()
@@ -26,14 +30,54 @@ def run_ts_for_season(season_csv, json_path):
     with open(json_path) as json_file:
         psd = json.load(json_file)
 
+    with open('prediction_summaries.json') as json_file:
+        dsd = json.load(json_file)
+
     while i < col_len:
+        before_match_predictions(season, psd, dsd, df['Home Tipper'].iloc[i], df['Away Tipper'].iloc[i], df['First Scoring Team'].iloc[i], winning_bet_threshold)
         update_fields_for_single_tipoff(psd, df['Tipoff Winner Link'].iloc[i], df['Tipoff Loser Link'].iloc[i], df['Full Hyperlink'].iloc[i])
         i += 1
 
     with open(json_path, 'w') as write_file:
         json.dump(psd, write_file)
 
-    print()
+    with open(json_path, 'w') as write_file:
+        json.dump(dsd, write_file)
+
+    return winning_bets, losing_bets
+
+
+def before_match_predictions(season, psd, dsd, home_p_code, away_p_code, tip_winner_code, scoring_team, winning_bet_threshold=0.6):
+    home_rating_obj = trueskill.Rating(psd[home_p_code].mu, psd[home_p_code].si) #todo need to make this work
+    away_rating_obj = trueskill.Rating(psd[away_p_code].mu, psd[away_p_code].si)
+    home_odds = trueskill.rate_1vs1(home_rating_obj, away_rating_obj)
+
+    if psd[home_p_code].appearances > 30 and psd[away_p_code].appearances > 30: # todo make these params toggleable
+        if home_odds > winning_bet_threshold:
+            if tip_winner_code == home_p_code:
+                dsd['correctTipoffPredictions'] += 1
+            else:
+                dsd['incorrectTipoffPredictions'] += 1
+            if bball.get_player_team_in_season(season, home_p_code) == scoring_team:
+                dsd["winningBets"] += 1
+            else:
+                dsd["losingBets"] += 1
+            pass
+        elif (1 - home_odds) > winning_bet_threshold:
+            if tip_winner_code == away_p_code:
+                dsd['correctTipoffPredictions'] += 1
+            else:
+                dsd['incorrectTipoffPredictions'] += 1
+            if bball.get_player_team_in_season(season, away_p_code) == scoring_team:
+                dsd["winningBets"] += 1
+            else:
+                dsd['losingBets'] += 1
+        else:
+            print('no bet, odds were not good enough')
+    else:
+        print('no bet, not enough data on participants')
+
+        return None
 
 
 def win_probability(player1_code, player2_code, json_path, psd=None): #win prob for first player
@@ -51,7 +95,20 @@ def win_probability(player1_code, player2_code, json_path, psd=None): #win prob 
     size = len(team1) + len(team2)
     denom = math.sqrt(size * (BETA * BETA) + sum_sigma)
     ts = trueskill.global_env()
-    return ts.cdf(delta_mu / denom)
+    res = ts.cdf(delta_mu / denom)
+    print('odds', player1_code, 'beats', player2_code, 'are', res)
+    return res
+
+
+def run_for_all_seasons(seasons, winning_bet_threshold=0.6):
+    winning_bets = 0
+    losing_bets = 0
+    for season in seasons:
+        run_ts_for_season(season, 'CSV/tipoff_and_first_score_details_{}_season.csv'.format(season), 'player_skill_dictionary.json', winning_bet_threshold)
+
+    print('winning bets', winning_bets)
+    print('losing bets', losing_bets)
+    print('wining bet percentage')
 
 
 def update_fields_for_single_tipoff(psd, winner_code, loser_code, game_code=None):
@@ -86,20 +143,28 @@ def _match_with_raw_nums(winner_mu, winner_sigma, loser_mu, loser_sigma):
         winner_rating_obj, loser_rating_obj = trueskill.rate_1vs1(winner_rating_obj, loser_rating_obj)
         return winner_rating_obj.mu, winner_rating_obj.sigma, loser_rating_obj.mu, loser_rating_obj.sigma
 
-# env = trueskill.TrueSkill(draw_probability=0, backend='scipy')
-# env.make_as_global()
 
-# misc.create_player_skill_dictionary() # clears the stored values,
-# run_ts_for_season('tipoff_and_first_score_details_2008_season.csv', 'player_skill_dictionary.json')
 
-print()
 
-# p = win_probability('duncati01.html', 'gasolpa01.html', 'player_skill_dictionary.json')
-# print(p)
+misc.create_player_skill_dictionary() # clears the stored values,
+
+sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
+       2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
+run_for_all_seasons(sss, 0.5)
+
+
+
+p = win_probability('lopezbr01.html', 'onealsh01.html', 'player_skill_dictionary.json')
+print(p)
 # p = win_probability('gasolpa01.html', 'duncati01.html', 'player_skill_dictionary.json')
 # print(p)
 # dunc mu": 26.480945325976894, "sigma": 0.9477003313108733,
 # gas "gasolpa01.html": {"mu": 26.899836967663248, "sigma": 0.9777350089151755,
+
+
+
+# env = trueskill.TrueSkill(draw_probability=0, backend='scipy')
+# env.make_as_global()
 
 
 # glicko properly implemented would be better to account for time drift/between seasons

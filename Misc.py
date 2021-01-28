@@ -64,11 +64,29 @@ def create_player_skill_dictionary():
                 player_codes.add(player)
 
         for code in player_codes:
-            player_skill_dict[code] = {'mu': 25, 'sigma': sigma, 'appearances': 0, 'wins': 0, 'losses': 0}
+            player_skill_dict[code] = {'mu': 25, 'sigma': sigma, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
 
     with open('player_skill_dictionary.json', 'w') as psd:
         json.dump(player_skill_dict, psd)
         print()
+
+
+def reset_prediction_summaries(j='prediction_summaries.json'):
+    with open(j) as json_file:
+        d = json.load(json_file)
+
+    d.winningBets = 0
+    d.losingBets = 0
+    d.correctTipoffPredictions = 0
+    d.incorrectTipoffPredictions = 0
+
+    with open(j, 'w') as json_w_file:
+        json.dump(d, json_w_file)
+
+    print('reset prediction summaries')
+
+
+save_active_players_teams(1990)
 
     # def get_team_season_pair(tag):
     #     string = re.search(r'(?<=\"/teams/)(.*?)(?=\.)', str(tag.contents)).group(0)

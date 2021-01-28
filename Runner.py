@@ -7,10 +7,14 @@ import pandas as pd
 import csv
 
 
+# todo scrape nba.com instead of bball reference https://www.nba.com/game/phx-vs-nyk-0021000598/play-by-play
 # todo apply glicko or true ratings starting from 1997 or something to all tippers
 # those with very low appearances can be assigned a lower rating, though I think they should matter less
 # todo add first scored upon team
 # todo deal with players who play but aren't catalogued for a team (perhaps bad data, i.e. satorto
+# todo account for injuries
+# todo get first shooting player
+# todo kelly criterion for betting assming a specified pot size
 
 
 def one_season(season, path):
@@ -34,8 +38,8 @@ def one_season(season, path):
             print(row)
             csv_writer.writerow(row)
 
-# Currently good from 08-09
-start_season = 2011
+# Currently good from 02-20
+start_season = 2021
 
 # sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
 #
