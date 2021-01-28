@@ -10,6 +10,8 @@ Elo doesn't account for uncertainty and true skill doesn't have a time driftw
 
 Retrieves raw data from pages as csv
 
+Preliminary results give me a 55.64 prediction rate. Without tuning any extra parameters
+
 Steps to NBA check:
 
 Base requirements:

@@ -1,6 +1,8 @@
 import itertools
 import json
 import math
+
+import ENVIRONMENT
 import Misc as misc
 import Data_Retrieval as bball
 
@@ -68,7 +70,7 @@ def before_match_predictions(season, psd, dsd, home_p_code, away_p_code, tip_win
     home_p_team = bball.get_player_team_in_season(home_p_code, season, long_code=False)[0]
     away_p_team = bball.get_player_team_in_season(away_p_code, season, long_code=False)[0]
 
-    if psd[home_p_code]['appearances'] > 30 and psd[away_p_code]['appearances'] > 30: # todo make these params toggleable
+    if psd[home_p_code]['appearances'] > ENVIRONMENT.MIN_APPEARANCES and psd[away_p_code]['appearances'] > ENVIRONMENT.MIN_APPEARANCES:
         if home_odds > winning_bet_threshold:
             if tip_winner_code[11:] == home_p_code:
                 dsd['correctTipoffPredictions'] += 1
@@ -122,9 +124,19 @@ def win_probability(player1_code, player2_code, json_path=None, psd=None): #win 
     return res
 
 
-def run_for_all_seasons(seasons, winning_bet_threshold=0.6):
+def run_for_all_seasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD):
+    season_key = ''
     for season in seasons:
         run_ts_for_season(season, 'CSV/tipoff_and_first_score_details_{}_season.csv'.format(season), 'player_skill_dictionary.json', winning_bet_threshold)
+        season_key += str(season) + '-'
+
+    with open('prediction_summaries.json') as pred_sum:
+        dsd = json.load(pred_sum)
+
+    dsd['seasons'] = season_key + 'with-odds-' + str(winning_bet_threshold)
+
+    with open('prediction_summaries.json', 'w') as pred_sum:
+        json.dump(dsd, pred_sum)
 
 
 def update_fields_for_single_tipoff(psd, winner_code, loser_code, game_code=None):
@@ -167,7 +179,7 @@ misc.create_player_skill_dictionary() # clears the stored values,
 
 sss =  [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021] # sss =  [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021] #
 
-run_for_all_seasons(sss, 0.6)
+run_for_all_seasons(sss, 0.85)
 
 
 # env = trueskill.TrueSkill(draw_probability=0, backend='scipy')

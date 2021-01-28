@@ -7,6 +7,11 @@ import pandas as pd
 import csv
 
 
+# NON TECHNICAL TODOS
+# todo find data source of historical efficiency
+# todo read on kelly criterion
+# todo find other betting sites with tipoff/score first. Prejudice
+
 # todo scrape nba.com instead of bball reference https://www.nba.com/game/phx-vs-nyk-0021000598/play-by-play
 # todo apply glicko or true ratings starting from 1997 or something to all tippers
 # those with very low appearances can be assigned a lower rating, though I think they should matter less
@@ -15,6 +20,7 @@ import csv
 # todo account for injuries
 # todo get first shooting player
 # todo kelly criterion for betting assming a specified pot size
+# todo fetch the odds for the day from draftkings or other site
 
 
 def one_season(season, path):

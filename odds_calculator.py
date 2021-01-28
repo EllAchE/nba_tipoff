@@ -65,7 +65,7 @@ def buy_all_players_or_one_side(player_lines, team_line): # based on preliminary
     if t_cost > total_num:
         return ["All Players, which was", total, "vs team line of", t_cost]
     else:
-        return '$' + str(t_cost) + " for TEAM is a better deal than $" + str(total[0]) + ' for its players.'
+        print('$' + str(t_cost) + " for TEAM is a better deal than $" + str(total[0]) + ' for its players.')
 
 p_lines = [['Gobert', 6], ['O\'Neale', 10], ['Bogdonavic', 10], ['Mitchell', 12], ['Conley', 12]]
 t_line = '-107'
