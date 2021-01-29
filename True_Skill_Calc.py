@@ -3,7 +3,7 @@ import json
 import math
 
 import ENVIRONMENT
-import Misc as misc
+import Data_Handling as misc
 import Data_Retrieval as bball
 
 import trueskill
@@ -64,7 +64,7 @@ def run_ts_for_season(season, season_csv, json_path, winning_bet_threshold=0.6):
 
 
 def before_match_predictions(season, psd, dsd, home_p_code, away_p_code, tip_winner_code, scoring_team, winning_bet_threshold=0.6):
-    # home_rating_obj = trueskill.Rating(psd[home_p_code]['mu'], psd[home_p_code]['sigma']) #todo need to make this work
+    # home_rating_obj = trueskill.Rating(psd[home_p_code]['mu'], psd[home_p_code]['sigma'])
     # away_rating_obj = trueskill.Rating(psd[away_p_code]['mu'], psd[away_p_code]['sigma'])
     home_odds = win_probability(home_p_code, away_p_code, psd=psd)
     home_p_team = bball.get_player_team_in_season(home_p_code, season, long_code=False)[0]

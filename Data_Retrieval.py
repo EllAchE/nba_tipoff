@@ -7,12 +7,6 @@ import time
 import random
 import re
 
-# todo get scraper retrieving proper data from arbitrary file
-# todo get list of all nba games played, regular season & playoff
-# todo get means of generating request urls to hit
-# todo get means of storing data
-# todo get means of aggregating data
-
 
 def get_single_season_game_headers(season):
     normal_months = ["october", "november", "december", "january", "february", "march", "april", "may", "june"]
@@ -150,7 +144,7 @@ def in_progress_unbroken(game_link, season, home_team, away_team):
             tipoff_winner_link = home_tipper_link
             tipoff_loser_link = away_tipper_link
         else:
-            possession_gaining_team = away_team # todo no error checks here
+            possession_gaining_team = away_team
             possession_losing_team = home_team
             tipoff_winner = away_tipper
             tipoff_loser = home_tipper
@@ -176,51 +170,13 @@ def in_progress_unbroken(game_link, season, home_team, away_team):
         return [None, None, None, None, None, None, None, None, None, None, None, None]
 
 
-# def get_game_headers(start_season=2014, start_date=None):
-#     normal_months = ["october", "november", "december", "january", "february", "march", "april", "may", "june"]
-#     months_2020 = ["october-2019", "november", "december", "january", "february", "march", "july", "august", "september", "october-2020"]
-#     months_2021 = ["december", "january", "february", "march"] # may be a shortened season
-#
-#     seasons_list = list()
-#     while start_season < 2022:
-#         seasons_list.append(start_season)
-#         start_season += 1
-#
-#     sleep_counter = 0
-#     game_list = list()
-#
-#     for season in seasons_list:
-#         if season == 2020:
-#             months = months_2020
-#         elif season == 2021:
-#             months = months_2021
-#         else:
-#             months = normal_months
-#         for month in months:
-#             url = 'https://www.basketball-reference.com/leagues/NBA_{}_games-{}.html'.format(season, month)
-#             page = requests.get(url)
-#             print("GET request for season", season, "month", month, "returned status", page.status_code)
-#             soup = BeautifulSoup(page.content, 'html.parser')
-#             sleep_counter = sleep_checker(sleep_counter)
-#             table_game_strs = soup.find_all('th', class_="left")
-#             table_away_strs = soup.select('td[data-stat="visitor_team_name"]')
-#             table_home_strs = soup.select('td[data-stat="home_team_name"]')
-#             list_len = len(table_game_strs)
-#             i = 0
-#
-#             while i < list_len - 1:
-#                 i += 1
-#                 game_str = str(table_game_strs[i])
-#                 away_str_full = str(table_away_strs[i].a.contents[0])
-#                 home_str_full = str(table_home_strs[i].a.contents[0])
-#
-#                 s_index = game_str.index('csk="') + 5
-#                 away_str_short = str(table_away_strs[i])[s_index:s_index+3]
-#                 home_str_short = str(table_home_strs[i])[s_index:s_index+3]
-#
-#                 single_list = [game_str[s_index:s_index+12], home_str_full, away_str_full, home_str_short, away_str_short]
-#                 game_list.append(single_list)
-#     return game_list
+def get_current_starters(team_code): #todo need a scraper for one of these
+    # https://www.rotowire.com/basketball/nba-lineups.php
+    # https://www.nba.com/players/todays-lineups
+    # stats api here - https://stats.nba.com/js/data/leaders/00_active_starters_20210128.json
+    # https://rotogrinders.com/lineups/nba
+    # https://dailynbalineups.com/
+    pass
 
 
 def get_tipoff_winner_and_first_score(game_link, season, home_team, away_team):
@@ -270,7 +226,7 @@ def get_tipoff_winner_and_first_score(game_link, season, home_team, away_team):
             tipoff_winner_link = home_tipper_link
             tipoff_loser_link = away_tipper_link
         else:
-            possession_gaining_team = away_team # todo no error checks here
+            possession_gaining_team = away_team
             possession_losing_team = home_team
             tipoff_winner = away_tipper
             tipoff_loser = home_tipper
@@ -294,3 +250,51 @@ def get_tipoff_winner_and_first_score(game_link, season, home_team, away_team):
                 tipoff_winner, tipoff_winner_link, tipoff_loser, tipoff_loser_link, tip_win_score]
     except:
         return [None, None, None, None, None, None, None, None, None, None, None, None]
+
+
+
+# def get_game_headers(start_season=2014, start_date=None):
+#     normal_months = ["october", "november", "december", "january", "february", "march", "april", "may", "june"]
+#     months_2020 = ["october-2019", "november", "december", "january", "february", "march", "july", "august", "september", "october-2020"]
+#     months_2021 = ["december", "january", "february", "march"] # may be a shortened season
+#
+#     seasons_list = list()
+#     while start_season < 2022:
+#         seasons_list.append(start_season)
+#         start_season += 1
+#
+#     sleep_counter = 0
+#     game_list = list()
+#
+#     for season in seasons_list:
+#         if season == 2020:
+#             months = months_2020
+#         elif season == 2021:
+#             months = months_2021
+#         else:
+#             months = normal_months
+#         for month in months:
+#             url = 'https://www.basketball-reference.com/leagues/NBA_{}_games-{}.html'.format(season, month)
+#             page = requests.get(url)
+#             print("GET request for season", season, "month", month, "returned status", page.status_code)
+#             soup = BeautifulSoup(page.content, 'html.parser')
+#             sleep_counter = sleep_checker(sleep_counter)
+#             table_game_strs = soup.find_all('th', class_="left")
+#             table_away_strs = soup.select('td[data-stat="visitor_team_name"]')
+#             table_home_strs = soup.select('td[data-stat="home_team_name"]')
+#             list_len = len(table_game_strs)
+#             i = 0
+#
+#             while i < list_len - 1:
+#                 i += 1
+#                 game_str = str(table_game_strs[i])
+#                 away_str_full = str(table_away_strs[i].a.contents[0])
+#                 home_str_full = str(table_home_strs[i].a.contents[0])
+#
+#                 s_index = game_str.index('csk="') + 5
+#                 away_str_short = str(table_away_strs[i])[s_index:s_index+3]
+#                 home_str_short = str(table_home_strs[i])[s_index:s_index+3]
+#
+#                 single_list = [game_str[s_index:s_index+12], home_str_full, away_str_full, home_str_short, away_str_short]
+#                 game_list.append(single_list)
+#     return game_list

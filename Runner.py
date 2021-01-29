@@ -1,70 +1,5 @@
-'''
-Runner calls methods from Data_Retrieval.py
-'''
+from Data_Handling import one_season
 
-import Data_Retrieval as bball
-import pandas as pd
-import csv
-
-
-# NON TECHNICAL TODOS
-# todo find data source of historical efficiency
-# todo read on kelly criterion
-# todo find other betting sites with tipoff/score first. Prejudice
-
-# TECHNICAL TODOS IN ORDER OF IMPT
-# todo fetch the odds for the day from draftkings or other site
-# todo refactor/improve/standardize code base
-# todo kelly criterion for betting assuming a specified pot size
-# todo add time decay to glicko/true skill RD
-# todo player lineup checker
-# todo incorporate other stats in (see below)
-# i.e. store player codes consistently
-
-# todo betting calendar
-# todo have scheduler
-# todo deal with players who play but aren't catalogued for a team (perhaps bad data, i.e. satorto)
-# todo account for injuries
-# todo get first shooting player
-# todo add first scored upon team
-# todo scrape nba.com instead of bball reference https://www.nba.com/game/phx-vs-nyk-0021000598/play-by-play
-
-### POTENTIAL ADDITIONAL VARIABLES FOR ODDS MODEL
-# Offensive Efficiency
-# Defensive Efficiency
-# Home advantage
-# new center record (for low data on tipper)
-
-# Likely first shooter percentages
-# Likely other shooter percentages
-# Height matchup
-# combine vertical
-# Injury
-# Back to back/overtime
-
-
-def one_season(season, path):
-    temp = pd.DataFrame()
-    temp.to_csv(path)
-    data_file = open(path, 'w')
-
-    with data_file:
-        csv_writer = csv.writer(data_file)
-        csv_writer.writerow(
-            ['Game Code', 'Full Hyperlink', 'Home', 'Away', 'Home Short', 'Away Short', 'Home Tipper', 'Away Tipper',
-             'First Scorer', 'Tipoff Winning Team', 'Tipoff Losing Team', 'Possession Gaining Player', 'Possession Gaining Player Link',
-             'First Scoring Team', 'Scored Upon Team', 'Tipoff Winner', 'Tipoff Winner Link', 'Tipoff Loser',
-             'Tipoff Loser Link', 'Tipoff Winner Scores'])
-        game_headers = bball.get_single_season_game_headers(season)
-
-        sleep_counter = 0
-        for line in game_headers:
-            sleep_counter = bball.sleep_checker(sleep_counter, iterations=6, base_time=1, random_multiplier=2) #todo add iteration randomizer
-            row = line + bball.get_tipoff_winner_and_first_score(line[0], season, line[4], line[5])
-            print(row)
-            csv_writer.writerow(row)
-
-# Currently good from 02-20
 start_season = 2021
 
 # sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
@@ -81,6 +16,44 @@ one_season(start_season, single_season_path)
 # todo one edge case is not solved, i.e. a player is traded to a team and then plays against them, having both on their record for the season
 # todo bundle together all of the low appearance players as a single entity
 
+
+# NON TECHNICAL TODOS
+# todo find data source of historical efficiency
+# todo find other betting sites with tipoff/score first. Prejudice
+
+# TECHNICAL TODOS IN ORDER OF IMPT
+# todo player to fullname to player code relationship
+# todo fetch the odds for the day from draftkings or other site
+# todo refactor/improve/standardize code base
+# todo change true skill calc to add rows to csv
+# todo add time decay to glicko/true skill RD
+# todo player lineup checker
+# todo incorporate other stats in (see below)
+# i.e. store player codes consistently
+
+# todo betting calendar
+# todo have scheduler
+# todo deal with players who play but aren't catalogued for a team (perhaps bad data, i.e. satorto)
+# todo account for injuries
+# todo get first shooting player
+# todo add first scored upon team
+# todo scrape/use api from nba.com instead of bball reference https://www.nba.com/game/phx-vs-nyk-0021000598/play-by-play
+
+### POTENTIAL ADDITIONAL VARIABLES FOR ODDS MODEL
+# Offensive Efficiency
+# Defensive Efficiency
+# Home advantage
+# new center record (for low data on tipper)
+
+# Recency bias in ranking
+# Season leaders
+# Likely first shooter percentages
+# Likely other shooter percentages
+# Height matchup
+# combine vertical
+# Injury
+# Back to back/overtime
+# Return from long absence
 
 # def all_in_one(start_season, path):
 #     temp = pd.DataFrame()

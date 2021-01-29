@@ -16,8 +16,16 @@ def solve_system_eqns_dim_5(a, b, c, d, e, amount_to_win=100):
 
     B = np.array([[amount_to_win], [amount_to_win], [amount_to_win], [amount_to_win], [amount_to_win]])
 
-    X = np.linalg.inv(A).dot(B)
-    return X
+    return np.linalg.inv(A).dot(B)
+
+
+def kelly_bet(win_amt, loss_amt, win_odds, pot_size=None): # assumes binary outcome
+    kelly_ratio = win_odds/loss_amt - (1-win_odds)/win_amt
+
+    if pot_size is None:
+        return kelly_ratio
+    else:
+        return kelly_ratio * pot_size
 
 
 def win_rate_for_positive_ev(odds):
@@ -30,6 +38,10 @@ def win_rate_for_positive_ev(odds):
     print('with odds', odds_str, 'you must win', "{:.2f}".format(req_win_per) + '%')
 
     return req_win_per
+
+
+def validate_ev():
+    pass
 
 
 def cost_for_100(odds):
@@ -67,11 +79,13 @@ def buy_all_players_or_one_side(player_lines, team_line): # based on preliminary
     else:
         print('$' + str(t_cost) + " for TEAM is a better deal than $" + str(total[0]) + ' for its players.')
 
-p_lines = [['Gobert', 6], ['O\'Neale', 10], ['Bogdonavic', 10], ['Mitchell', 12], ['Conley', 12]]
-t_line = '-107'
-print(buy_all_players_or_one_side(p_lines, t_line))
-print()
-print(win_rate_for_positive_ev('+115'))
+# p_lines = [['Gobert', 6], ['O\'Neale', 10], ['Bogdonavic', 10], ['Mitchell', 12], ['Conley', 12]]
+# t_line = '-107'
+# print(buy_all_players_or_one_side(p_lines, t_line))
+# print()
+# print(win_rate_for_positive_ev('+115'))
+#
+#
+# solve_system_eqns_dim_5(650, 800, 1100, 1200, 1600)
 
-
-solve_system_eqns_dim_5(650, 800, 1100, 1200, 1600)
+print(kelly_bet(0.8, 1, 0.6))

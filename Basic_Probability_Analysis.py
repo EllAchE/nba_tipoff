@@ -11,7 +11,7 @@ def team_tipoff_scoring_records(save_path, data_path):
     team_dict = {}
 
     all_teams = set()
-    for team in df['Home Short']: #todo this may be the wrong name
+    for team in df['Home Short']:
         all_teams.add(team)
 
     json_file = open(save_path, 'w')

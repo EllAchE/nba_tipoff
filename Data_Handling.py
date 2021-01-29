@@ -1,8 +1,40 @@
+import glob
 import json
 import re
+import pandas as pd
+import csv
+import Data_Retrieval as bball
 
 import requests
 from bs4 import BeautifulSoup
+
+
+def concat_csv():
+    f_names = [i for i in glob.glob('CSV/*.csv')]
+    concatted_csv = pd.concat([pd.read_csv(f) for f in f_names])
+    concatted_csv.to_csv('test.csv', index=False, encoding='utf-8-sig')
+
+
+def one_season(season, path):
+    temp = pd.DataFrame()
+    temp.to_csv(path)
+    data_file = open(path, 'w')
+
+    with data_file:
+        csv_writer = csv.writer(data_file)
+        csv_writer.writerow(
+            ['Game Code', 'Full Hyperlink', 'Home', 'Away', 'Home Short', 'Away Short', 'Home Tipper', 'Away Tipper',
+             'First Scorer', 'Tipoff Winning Team', 'Tipoff Losing Team', 'Possession Gaining Player', 'Possession Gaining Player Link',
+             'First Scoring Team', 'Scored Upon Team', 'Tipoff Winner', 'Tipoff Winner Link', 'Tipoff Loser',
+             'Tipoff Loser Link', 'Tipoff Winner Scores'])
+        game_headers = bball.get_single_season_game_headers(season)
+
+        sleep_counter = 0
+        for line in game_headers:
+            sleep_counter = bball.sleep_checker(sleep_counter, iterations=6, base_time=1, random_multiplier=2)
+            row = line + bball.get_tipoff_winner_and_first_score(line[0], season, line[4], line[5])
+            print(row)
+            csv_writer.writerow(row)
 
 
 def save_active_players_teams(start_season):
@@ -86,6 +118,7 @@ def reset_prediction_summaries(j='prediction_summaries.json'):
     print('reset prediction summaries')
 
 
+concat_csv()
     # def get_team_season_pair(tag):
     #     string = re.search(r'(?<=\"/teams/)(.*?)(?=\.)', str(tag.contents)).group(0)
     #     team, season = string.split('/')
