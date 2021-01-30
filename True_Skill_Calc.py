@@ -4,7 +4,7 @@ import math
 
 import ENVIRONMENT
 import Data_Handling as misc
-import Data_Retrieval as bball
+import Historical_Data_Retrieval as bball
 
 import trueskill
 import pandas as pd
@@ -173,14 +173,16 @@ def _match_with_raw_nums(winner_mu, winner_sigma, loser_mu, loser_sigma):
         return winner_rating_obj.mu, winner_rating_obj.sigma, loser_rating_obj.mu, loser_rating_obj.sigma
 
 
+print(win_probability('drumman01.html', 'robinmi01.html', json_path='player_skill_dictionary.json'))
 
-misc.reset_prediction_summaries() # reset sums
-misc.create_player_skill_dictionary() # clears the stored values,
-
-sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
-       2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
-
-run_for_all_seasons(sss)
+#
+# misc.reset_prediction_summaries() # reset sums
+# misc.create_player_skill_dictionary() # clears the stored values,
+#
+# sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
+#        2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
+#
+# run_for_all_seasons(sss)
 
 
 # env = trueskill.TrueSkill(draw_probability=0, backend='scipy')

@@ -55,6 +55,13 @@ def cost_for_100(odds):
         raise ValueError('Odds line is improperly formatted, include the + or -.')
 
 
+def decimal_to_american(dec_odds): # http://www.betsmart.co/odds-conversion-formulas/#americantodecimal
+    if (dec_odds - 1) > 1:
+        return '+' + str(100 * (dec_odds - 1))
+    else:
+        return '-' + str(100/(dec_odds - 1))
+
+
 # should be [[name, line], [name, line]]
 def buy_all_players_or_one_side(player_lines, team_line): # based on preliminary numbers it's almost certainly
     total = 0
@@ -75,17 +82,18 @@ def buy_all_players_or_one_side(player_lines, team_line): # based on preliminary
     print()
 
     if t_cost > total_num:
-        return ["All Players, which was", total, "vs team line of", t_cost]
+        print("All Players, which was", total, "vs team line of", t_cost)
     else:
-        print('$' + str(t_cost) + " for TEAM is a better deal than $" + str(total[0]) + ' for its players.')
+        print('$' + str(t_cost) + " for TEAM is a better deal than $" + str(total) + ' for its players.')
 
-# p_lines = [['Gobert', 6], ['O\'Neale', 10], ['Bogdonavic', 10], ['Mitchell', 12], ['Conley', 12]]
+# p_lines = [['Gobert', 5.5], ['O\'Neale', 7.5], ['Bogdonavic', 7.5], ['Mitchell', 10], ['Conley', 14]]
 # t_line = '-107'
-# print(buy_all_players_or_one_side(p_lines, t_line))
+# buy_all_players_or_one_side(p_lines, t_line)
+
+win_rate_for_positive_ev('-110')
+
 # print()
 # print(win_rate_for_positive_ev('+115'))
 #
 #
 # solve_system_eqns_dim_5(650, 800, 1100, 1200, 1600)
-
-print(kelly_bet(0.8, 1, 0.6))

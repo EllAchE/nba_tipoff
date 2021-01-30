@@ -11,10 +11,11 @@ single_season_path = "tipoff_and_first_score_details_" + str(start_season) + "_s
 
 one_season(start_season, single_season_path)
 
-
 # todo add possession gaining player to csv columns
 # todo one edge case is not solved, i.e. a player is traded to a team and then plays against them, having both on their record for the season
 # todo bundle together all of the low appearance players as a single entity
+# todo ask brad to find some bookies
+# todo offensive reboudning/defensive rebounding
 
 
 # NON TECHNICAL TODOS
