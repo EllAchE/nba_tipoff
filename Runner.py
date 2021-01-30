@@ -1,26 +1,14 @@
-from Data_Handling import one_season
 
-start_season = 2021
 
-# sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
-#
-# for start_season in sss:
 
-all_at_once_path = "tipoff_and_first_score_details_starting_" + str(start_season) + "_season.csv"
-single_season_path = "tipoff_and_first_score_details_" + str(start_season) + "_season.csv"
 
-one_season(start_season, single_season_path)
-
-# todo add possession gaining player to csv columns
 # todo one edge case is not solved, i.e. a player is traded to a team and then plays against them, having both on their record for the season
 # todo bundle together all of the low appearance players as a single entity
-# todo ask brad to find some bookies
 # todo offensive reboudning/defensive rebounding
 
 
 # NON TECHNICAL TODOS
 # todo find data source of historical efficiency
-# todo find other betting sites with tipoff/score first. Prejudice
 
 # TECHNICAL TODOS IN ORDER OF IMPT
 # todo player to fullname to player code relationship
@@ -43,7 +31,6 @@ one_season(start_season, single_season_path)
 ### POTENTIAL ADDITIONAL VARIABLES FOR ODDS MODEL
 # Offensive Efficiency
 # Defensive Efficiency
-# Home advantage
 # new center record (for low data on tipper)
 
 # Recency bias in ranking

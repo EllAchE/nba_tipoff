@@ -86,11 +86,20 @@ def buy_all_players_or_one_side(player_lines, team_line): # based on preliminary
     else:
         print('$' + str(t_cost) + " for TEAM is a better deal than $" + str(total) + ' for its players.')
 
+
+def independent_var_odds(*args):
+    total_odds = args[0]/(1-args[0])
+    for odds in args[1:]:
+        total_odds = total_odds * odds/(1-odds)
+
+    return total_odds/(1 + total_odds)
+
+
 # p_lines = [['Gobert', 5.5], ['O\'Neale', 7.5], ['Bogdonavic', 7.5], ['Mitchell', 10], ['Conley', 14]]
 # t_line = '-107'
 # buy_all_players_or_one_side(p_lines, t_line)
 
-win_rate_for_positive_ev('-110')
+# win_rate_for_positive_ev('-110')
 
 # print()
 # print(win_rate_for_positive_ev('+115'))
