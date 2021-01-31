@@ -24,6 +24,16 @@ Live Bet:
 2. Set up a virtual environment at the project root (python 3.8 or later preferred)
 3. Ask Logan if scraped data is not loaded into the repo already
 
+# Development Process
+
+- Never commit directly to the main branch
+- Create a branch with your name or a feature title
+- Maintain a clear commit history (err on the side of being verbose)
+- Use the #todos as a sort of backlog
+- Currently variable naming conventions etc. are a bit of a free for all, but try to:
+  - Capitalize when naming files
+  - Lowercase and snakecase variables and methods
+
 # Repo contents
 
 
