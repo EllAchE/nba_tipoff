@@ -2,12 +2,9 @@ import glob
 import json
 import re
 import pandas as pd
-import csv
 
 import requests
 from bs4 import BeautifulSoup
-
-from Historical_Data_Retrieval import get_tipoff_winner_and_first_score, sleep_checker, get_single_season_game_headers
 
 
 def concat_csv():
@@ -54,17 +51,17 @@ def save_active_players_teams(start_season):
                 continue # skip the trade_players who break the regex
             player_team = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
             seasons[season][player_code] = [player_team]
-    with open('player_team_pairs.json', 'w') as json_file:
+    with open('Data/player_team_pairs.json', 'w') as json_file:
         json.dump(seasons, json_file)
 
-    print('saved seasons data')
+    print('saved seasons Data')
 
 # save_active_players_teams(1997)
 
 
 def create_player_skill_dictionary():
     sigma = 25/3
-    with open('player_team_pairs.json') as player_team_pairs_json:
+    with open('Data/player_team_pairs.json') as player_team_pairs_json:
         ptp = json.load(player_team_pairs_json)
 
         player_codes = set()
@@ -77,7 +74,7 @@ def create_player_skill_dictionary():
         for code in player_codes:
             player_skill_dict[code] = {'mu': 25, 'sigma': sigma, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
 
-    with open('player_skill_dictionary.json', 'w') as psd:
+    with open('Data/player_skill_dictionary.json', 'w') as psd:
         json.dump(player_skill_dict, psd)
         print()
 
@@ -114,7 +111,7 @@ concat_csv()
     # url = 'https://www.basketball-reference.com/{}'.format(player_link)
     # page = requests.get(url)
     # soup = BeautifulSoup(page.content, 'html.parser')
-    # all_team_matches_in_table = soup.select('td[data-stat="team_id"]')
+    # all_team_matches_in_table = soup.select('td[Data-stat="team_id"]')
     # possible_teams = set()
     #
     # for line in all_team_matches_in_table:

@@ -1,23 +1,8 @@
-# I need to - provide team name
-# get starting centers
-# get if they are home or away
-# get odds for the bets of the day
-# get positive EV threshold
-# get the center ratings
-# calculate expected odds of tip win
-# multiply expected tip win by tip winner scoring ratio to get expected score prob (include tip loss score case)
-# OPTIONAL - Adjust for home court etc.
-# see if expected score prob is higher than EV threshold (or below 1 - EV thresh)
-# if bet should be done
-# calculate kelly bet size
-# reduce to kelly consumable size
-
-
 # todo set up a database
 from Live_Odds_Retrieval import get_center
-from Odds_Calculator import win_rate_for_positive_ev, kelly_bet, cost_for_100, cost_for_1
-from True_Skill_Calc import tip_win_probability
-from Utils import tip_score_prob
+from Functions.Odds_Calculator import win_rate_for_positive_ev, kelly_bet, cost_for_1
+from Functions.True_Skill_Calc import tip_win_probability
+from Functions.Utils import tip_score_prob
 
 
 def check_for_edge(home_team, away_team, home_odds, away_odds, bankroll):
@@ -50,7 +35,52 @@ def check_ev_positive_and_get_score_prob(team_odds, team_center_code, opponent_c
 
 
 
+# I need to - provide team name
+# get starting centers
+# get if they are home or away
+# get odds for the bets of the day
+# get positive EV threshold
+# get the center ratings
+# calculate expected odds of tip win
+# multiply expected tip win by tip winner scoring ratio to get expected score prob (include tip loss score case)
+# OPTIONAL - Adjust for home court etc.
+# see if expected score prob is higher than EV threshold (or below 1 - EV thresh)
+# if bet should be done
+# calculate kelly bet size
+# reduce to kelly consumable size
 
+# i
+# Format is https://www.basketball-reference.com/boxscores/pbp/201901220OKC.html
+# Home team 3 letter symbol is used after a 0, i.e. YYYYMMDD0###.html
+#
+# URL for game https://www.basketball-reference.com/boxscores/pbp/201901220OKC.html
+# Where YYYYMMDD0### (# = home team code)
+#
+# game schedule in order for seasons https://www.basketball-reference.com/leagues/NBA_2019_games.html
+# Creating json/dictonary would probably be best
+#
+# Games played https://www.basketball-reference.com/leagues/NBA_2019_games-october.html
+# Year is ending year (i.e. 2018-2019 is 2019)
+# All relevant are October-June except 2019-2020 and 2020-21 (first bc covid, second is in progress)
+
+
+# Steps to NBA check:
+#
+# Base requirements:
+# -	Find the starters for each team/who does the tipoff:
+# -	Player W/L %
+#
+# Additional variables
+# -	Ref
+# -	Is starter out
+# -	Home/away
+# -	Who they tip it to
+# -	Matchup
+# -	Height
+# -	Offensive effectiveness
+# -	Back-to-back games/overtime etc.
+# -	Age decline
+# -	Recent history weighting
 
 
 
@@ -73,7 +103,7 @@ def check_ev_positive_and_get_score_prob(team_odds, team_center_code, opponent_c
 
 # todo betting calendar
 # todo have scheduler
-# todo deal with players who play but aren't catalogued for a team (perhaps bad data, i.e. satorto)
+# todo deal with players who play but aren't catalogued for a team (perhaps bad Data, i.e. satorto)
 # todo account for injuries
 # todo get first shooting player
 # todo add first scored upon team
@@ -82,7 +112,7 @@ def check_ev_positive_and_get_score_prob(team_odds, team_center_code, opponent_c
 ### POTENTIAL ADDITIONAL VARIABLES FOR ODDS MODEL
 # Offensive Efficiency
 # Defensive Efficiency
-# new center record (for low data on tipper)
+# new center record (for low Data on tipper)
 
 # Recency bias in ranking
 # Season leaders
