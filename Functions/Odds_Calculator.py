@@ -5,7 +5,7 @@ Methods to look at betting lines and see if they are worth it
 import numpy as np
 
 
-def solve_system_eqns_dim_5(a, b, c, d, e, amount_to_win=100):
+def solve_system_eqns_dim_5(a, b, c, d, e, amt_to_win=100):
     A = np.array(
         [[a, -1, -1, -1, -1],
          [-1, b, -1, -1, -1],
@@ -14,22 +14,22 @@ def solve_system_eqns_dim_5(a, b, c, d, e, amount_to_win=100):
          [-1, -1, -1, -1, e]]
     )
 
-    B = np.array([[amount_to_win], [amount_to_win], [amount_to_win], [amount_to_win], [amount_to_win]])
+    B = np.array([[amt_to_win], [amt_to_win], [amt_to_win], [amt_to_win], [amt_to_win]])
 
     return np.linalg.inv(A).dot(B)
 
 
-def kelly_bet(loss_amt, win_odds, win_amt=1, pot_size=None): # assumes binary outcome, requires dollar value
+# todo add kelly_processor to format input properly
+def kelly_bet(loss_amt, win_odds, win_amt=1, bankroll=None): # assumes binary outcome, requires dollar value
     kelly_ratio = win_odds/loss_amt - (1-win_odds)/win_amt
-    # todo refactor this to work with only loss_amt, win amt set to 1.0
 
-    if pot_size is None:
+    if bankroll is None:
         return kelly_ratio
     else:
-        return kelly_ratio * pot_size
+        return kelly_ratio * bankroll
 
 
-def win_rate_for_positive_ev(odds):
+def american_to_probability(odds):
     odds_str = str(odds)
     odds_num = float(odds_str[1:])
     if odds_str[0] == '+':
@@ -39,10 +39,6 @@ def win_rate_for_positive_ev(odds):
     print('with odds', odds_str, 'you must win', "{:.2f}".format(req_win_per) + '%')
 
     return req_win_per
-
-
-def validate_ev():
-    pass
 
 
 def cost_for_100(odds):
@@ -67,7 +63,6 @@ def cost_for_1(odds):
         raise ValueError('Odds line is improperly formatted, include the + or -.')
 
 
-
 def decimal_to_american(dec_odds): # http://www.betsmart.co/odds-conversion-formulas/#americantodecimal
     if (dec_odds - 1) > 1:
         return '+' + str(100 * (dec_odds - 1))
@@ -76,7 +71,8 @@ def decimal_to_american(dec_odds): # http://www.betsmart.co/odds-conversion-form
 
 
 def american_to_decimal(american_odds):
-    pass
+    odds = american_to_probability(american_odds)
+    return 1/odds
 
 
 # should be [[name, line], [name, line]]
@@ -111,17 +107,11 @@ def independent_var_odds(*args):
 
     return total_odds/(1 + total_odds)
 
-print(kelly_bet(1, 1.18, 0.62))
-
-
 # p_lines = [['Gobert', 5.5], ['O\'Neale', 7.5], ['Bogdonavic', 7.5], ['Mitchell', 10], ['Conley', 14]]
 # t_line = '-107'
 # buy_all_players_or_one_side(p_lines, t_line)
 
-# win_rate_for_positive_ev('-110')
-
-# print()
+# print(win_rate_for_positive_ev('-110'))
 # print(win_rate_for_positive_ev('+115'))
-#
-#
-# solve_system_eqns_dim_5(650, 800, 1100, 1200, 1600)
+
+# print(kelly_bet(1, 1.18, 0.62))

@@ -1,9 +1,10 @@
 # sites with game props
 # https://www.bovada.lv/sports/basketball/nba
 # https://sportsbook.fanduel.com/sports/event/958472.3
-# draftkings
+# https://sportsbook.draftkings.com/leagues/basketball/103?category=game-props&subcategory=odd/even
 # https://www.betnow.eu/nba/ says it has props bets
 
+# Places to retrieve live lineups
 # https://www.rotowire.com/basketball/nba-lineups.php
 # https://www.nba.com/players/todays-lineups
 # stats api here - https://stats.nba.com/js/data/leaders/00_active_starters_20210128.json

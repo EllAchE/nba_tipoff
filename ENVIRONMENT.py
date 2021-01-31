@@ -1,9 +1,19 @@
 # This is where parameters can be tuned
-TIPOFF_ODDS_THRESHOLD = 0.73
+
+# Tipoff Threshold Variables
+TIPOFF_ODDS_THRESHOLD = 0.73 # This will be deprecated
 MIN_APPEARANCES = 20
 MAX_APPEARANCES = 900
-HOME_SCORE_ODDS = 0.52111318
-HOME_TIP_WIN_ODDS = 0.51615348 # todo these are slightly deflated due to 0.5 approximation of empty row
-TIP_WINNER_SCORE_ODDS = 0.65495626
+
+# Observed Values
+HOME_SCORE_ODDS = 0.52111318 # todo these are slightly deflated due to 0.5 approximation of empty rows
+HOME_TIP_WIN_ODDS = 0.51615348 # todo these are slightly deflated due to 0.5 approximation of empty rows
+TIP_WINNER_SCORE_ODDS = 0.65495626 # todo these are slightly deflated due to 0.5 approximation of empty rows
 BANKROLL = 5000
+
+# Trueskill Base values
+BASE_SIGMA = 25 / 6
+BASE_RATING = 25
+BASE_DEVIATION = 25 * 25 / 3 / 3
+
 # todo check if home odds applies with COVID

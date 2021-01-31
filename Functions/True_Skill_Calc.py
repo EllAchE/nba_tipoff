@@ -10,17 +10,13 @@ import pandas as pd
 
 from Odds_Calculator import independent_var_odds
 
-BETA = 25/6
-BASE_RATING = 25
-BASE_DEVIATION = 25*25/3/3
-
 # https://trueskill.org/
 # todo use glicko2
 
 
 def run_ts_for_season(season, season_csv, json_path, winning_bet_threshold=0.6):
     df = pd.read_csv(season_csv)
-    df = df[df['Home Tipper'].notnull()] # filter invalid rows
+    df = df[df['Home Tipper'].notnull()] # filters invalid rows
 
     write_df = pd.read_csv(season_csv)
     write_df['Home Mu'] = None
@@ -31,9 +27,7 @@ def run_ts_for_season(season, season_csv, json_path, winning_bet_threshold=0.6):
     winning_bets = 0
     losing_bets = 0
 
-    print('running for season doc', season_csv)
-    print()
-    print()
+    print('running for season doc', season_csv, '\n', '\n')
     col_len = len(df['Game Code'])
     i = 0
 
@@ -134,7 +128,7 @@ def tip_win_probability(player1_code, player2_code, json_path='player_skill_dict
     delta_mu = sum(r.mu for r in team1) - sum(r.mu for r in team2)
     sum_sigma = sum(r.sigma ** 2 for r in itertools.chain(team1, team2))
     size = len(team1) + len(team2)
-    denom = math.sqrt(size * (BETA * BETA) + sum_sigma)
+    denom = math.sqrt(size * (ENVIRONMENT.BASE_SIGMA * ENVIRONMENT.BASE_SIGMA) + sum_sigma)
     ts = trueskill.global_env()
     res = ts.cdf(delta_mu / denom)
     print('odds', player1_code, 'beats', player2_code, 'are', res)
@@ -154,7 +148,7 @@ def score_first_probability(player1_code, player2_code, player1_is_home, json_pa
     delta_mu = sum(r.mu for r in team1) - sum(r.mu for r in team2)
     sum_sigma = sum(r.sigma ** 2 for r in itertools.chain(team1, team2))
     size = len(team1) + len(team2)
-    denom = math.sqrt(size * (BETA * BETA) + sum_sigma)
+    denom = math.sqrt(size * (ENVIRONMENT.BASE_SIGMA * ENVIRONMENT.BASE_SIGMA) + sum_sigma)
     ts = trueskill.global_env()
     res = ts.cdf(delta_mu / denom)
 
@@ -258,12 +252,3 @@ tip_win_probability('reidna01.html', 'drumman01.html', '../Data/player_skill_dic
 # trueskill.backends.choose_backnd = scipy
 # make_as_global() on env object sets global
 # setup() pass the args of Trueskill env to make work
-
-
-# def win_probability_1on1(player1, player2):
-#     delta_mu = player1.mu - player2.mu
-#     sum_sigma = sum(r.sigma ** 2 for r in itertools.chain(player1, player2))
-#     size = len(player1) + len(player2)
-#     denom = math.sqrt(size * (BETA * BETA) + sum_sigma)
-#     ts = trueskill.global_env()
-#     return ts.cdf(delta_mu / denom)
