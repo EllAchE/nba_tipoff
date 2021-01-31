@@ -1,3 +1,55 @@
+# I need to - provide team name
+# get starting centers
+# get if they are home or away
+# get odds for the bets of the day
+# get positive EV threshold
+# get the center ratings
+# calculate expected odds of tip win
+# multiply expected tip win by tip winner scoring ratio to get expected score prob (include tip loss score case)
+# OPTIONAL - Adjust for home court etc.
+# see if expected score prob is higher than EV threshold (or below 1 - EV thresh)
+# if bet should be done
+# calculate kelly bet size
+# reduce to kelly consumable size
+
+
+# todo set up a database
+from Live_Odds_Retrieval import get_center
+from Odds_Calculator import win_rate_for_positive_ev, kelly_bet, cost_for_100, cost_for_1
+from True_Skill_Calc import tip_win_probability
+from Utils import tip_score_prob
+
+
+def check_for_edge(home_team, away_team, home_odds, away_odds, bankroll):
+    home_c = get_center(home_team)
+    away_c = get_center(away_team)
+    pass
+
+
+def get_bet_size(score_prob, american_odds, bankroll):
+    loss_amt = cost_for_1(american_odds)
+    return kelly_bet(loss_amt, score_prob, bankroll)
+
+
+def check_ev_positive_and_get_score_prob(team_odds, team_center_code, opponent_center_code):
+    min_win_rate = win_rate_for_positive_ev(team_odds)
+    min_loss_rate = 1 - min_win_rate
+    tip_win_odds = tip_win_probability(team_center_code, opponent_center_code)
+    score_prob = tip_score_prob(tip_win_odds)
+
+    if score_prob > min_win_rate:
+        print('bet on them')
+        return score_prob
+    elif (1-score_prob) > min_loss_rate:
+        print('bet against them')
+        return (1-score_prob)
+    else:
+        print('don\'t bet either side')
+        return None
+
+
+
+
 
 
 
@@ -5,10 +57,9 @@
 # todo one edge case is not solved, i.e. a player is traded to a team and then plays against them, having both on their record for the season
 # todo bundle together all of the low appearance players as a single entity
 # todo offensive reboudning/defensive rebounding
-
-
-# NON TECHNICAL TODOS
-# todo find data source of historical efficiency
+# todo track stats on first appearance vs an experienced tipper
+# todo track stats on appearance first time midseason
+# todo use fuzzywuzzy to match teamnames
 
 # TECHNICAL TODOS IN ORDER OF IMPT
 # todo player to fullname to player code relationship

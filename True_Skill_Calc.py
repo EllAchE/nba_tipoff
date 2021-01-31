@@ -122,7 +122,7 @@ def before_match_predictions(season, psd, dsd, home_p_code, away_p_code, tip_win
         print('no bet, not enough data on participants')
 
 
-def tip_win_probability(player1_code, player2_code, json_path=None, psd=None): #win prob for first player
+def tip_win_probability(player1_code, player2_code, json_path='player_skill_dictionary.json', psd=None): #win prob for first player
     if psd is None:
         with open(json_path) as json_file:
             psd = json.load(json_file)
@@ -165,7 +165,6 @@ def score_first_probability(player1_code, player2_code, player1_is_home, json_pa
 
     print('odds', player1_code, 'beats', player2_code, 'are', odds)
     return odds
-
 
 
 def run_for_all_seasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD):
@@ -231,15 +230,17 @@ def _match_with_raw_nums(winner_mu, winner_sigma, loser_mu, loser_sigma):
         winner_rating_obj, loser_rating_obj = trueskill.rate_1vs1(winner_rating_obj, loser_rating_obj)
         return winner_rating_obj.mu, winner_rating_obj.sigma, loser_rating_obj.mu, loser_rating_obj.sigma
 
+tip_win_probability('reidna01.html', 'drumman01.html', 'player_skill_dictionary.json')
 
-dhndl.reset_prediction_summaries() # reset sums
-dhndl.create_player_skill_dictionary() # clears the stored values,
 
-sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
-       2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
-
-b_odds = independent_var_odds(ENVIRONMENT.TIP_WINNER_SCORE_ODDS, ENVIRONMENT.HOME_SCORE_ODDS)
-run_for_all_seasons(sss, winning_bet_threshold=b_odds)
+# dhndl.reset_prediction_summaries() # reset sums
+# dhndl.create_player_skill_dictionary() # clears the stored values,
+#
+# sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
+#        2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
+#
+# b_odds = independent_var_odds(ENVIRONMENT.TIP_WINNER_SCORE_ODDS, ENVIRONMENT.HOME_SCORE_ODDS)
+# run_for_all_seasons(sss, winning_bet_threshold=b_odds)
 
 
 # env = trueskill.TrueSkill(draw_probability=0, backend='scipy')

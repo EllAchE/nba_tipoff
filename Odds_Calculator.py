@@ -19,8 +19,9 @@ def solve_system_eqns_dim_5(a, b, c, d, e, amount_to_win=100):
     return np.linalg.inv(A).dot(B)
 
 
-def kelly_bet(win_amt, loss_amt, win_odds, pot_size=None): # assumes binary outcome
+def kelly_bet(loss_amt, win_odds, win_amt=1, pot_size=None): # assumes binary outcome, requires dollar value
     kelly_ratio = win_odds/loss_amt - (1-win_odds)/win_amt
+    # todo refactor this to work with only loss_amt, win amt set to 1.0
 
     if pot_size is None:
         return kelly_ratio
@@ -55,11 +56,27 @@ def cost_for_100(odds):
         raise ValueError('Odds line is improperly formatted, include the + or -.')
 
 
+def cost_for_1(odds):
+    odds_str = str(odds)
+    odds_num = float(odds_str[1:])
+    if odds_str[0] == '+':
+        return 100/odds_num
+    elif odds_str[0] == '-':
+        return odds_num/100
+    else:
+        raise ValueError('Odds line is improperly formatted, include the + or -.')
+
+
+
 def decimal_to_american(dec_odds): # http://www.betsmart.co/odds-conversion-formulas/#americantodecimal
     if (dec_odds - 1) > 1:
         return '+' + str(100 * (dec_odds - 1))
     else:
         return '-' + str(100/(dec_odds - 1))
+
+
+def american_to_decimal(american_odds):
+    pass
 
 
 # should be [[name, line], [name, line]]
@@ -93,6 +110,8 @@ def independent_var_odds(*args):
         total_odds = total_odds * odds/(1-odds)
 
     return total_odds/(1 + total_odds)
+
+print(kelly_bet(1, 1.18, 0.62))
 
 
 # p_lines = [['Gobert', 5.5], ['O\'Neale', 7.5], ['Bogdonavic', 7.5], ['Mitchell', 10], ['Conley', 14]]

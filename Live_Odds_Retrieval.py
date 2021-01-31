@@ -13,13 +13,16 @@
 
 import requests
 
+import ENVIRONMENT
+from Runner import check_for_edge
+
 
 def team_code_to_full_name(team_code):
     full_name = 'Indiana-Pacers'
     return full_name
 
 
-def get_current_starters(team_code):
+def get_starters(team_code):
     full_name = team_code_to_full_name(team_code)
 
     url = 'https://api.lineups.com/nba/fetch/lineups/current/{}'.format(full_name)
@@ -30,6 +33,34 @@ def get_current_starters(team_code):
     for player in starters:
         starters_list.append(player.name)
     return starters_list
+
+
+def get_center(team_code):
+    return team_code
+
+
+def fetch_live_lines():
+    pass
+
+
+def get_game_info():
+    # return time, home team, away team, starting centers
+    pass
+
+
+def get_all_odds_line(bankroll=ENVIRONMENT.BANKROLL):
+    all_lines = fetch_live_lines()
+    game_odds_list = list()
+
+    for game in all_lines:
+        gi = get_game_info(game)
+        home = gi['home']
+        away = gi['away']
+
+        bet_size, win_odds, required_ev = check_for_edge(gi['home'], gi['away'], gi['h_odds'], gi['a_odds'], bankroll)
+        game_odds_list.append([gi['datetime'], gi['homeCenter'], home, gi['awayCenter'], away, win_odds, required_ev, bet_size])
+
+    return game_odds_list
 
 
 def fanduel_odds():

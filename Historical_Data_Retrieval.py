@@ -1,19 +1,18 @@
 import json
-import math
+import csv
+import pandas as pd
 
 from bs4 import BeautifulSoup
 import requests
 import time
 import random
 import re
-import pandas as pd
 
 # todo offensive/defensive efficiency
 # http://www.espn.com/nba/hollinger/teamstats/_/year/2003
 
 # todo historical betting lines
 # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
-from Data_Handling import one_season
 
 
 def get_single_season_game_headers(season):
@@ -160,9 +159,63 @@ def get_tipoff_winner_and_first_score(game_link, season, home_team, away_team):
         return [None, None, None, None, None, None, None, None, None, None, None, None]
 
 
+def get_off_def_ratings(season=None, save_path=None):
+    if season is not None:
+        url = 'http://www.espn.com/nba/hollinger/teamstats/_/year/'.format(season)
+    else:
+        url = 'http://www.espn.com/nba/hollinger/teamstats'
+        season = 2021
+    # http://www.espn.com/nba/hollinger/teamstats/_/year/2020
+    response = requests.get(url)
+    print('GET to', url, 'returned status', response.status_code)
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    season_dict = {}
+    season_dict['season'] = season
+    rows = soup.select('tr[class*="row team-"]')
+
+    for row in rows:
+        def_rate = row.contents[-1].contents[0]
+        off_rate = row.contents[-2].contents[0]
+        team_name = row.contents[1].contents[0].contents[0]
+        orr = row.contents[5].contents[0]
+        drr = row.contents[6].contents[0]
+        rebr = row.contents[7].contents[0]
+        eff_fg = row.contents[8].contents[0]
+
+        season_dict[team_name] = {"team": team_name, "orr": orr, "drr": drr, "rebr": rebr, "eff_fg": eff_fg, "off_rate": off_rate, "def_rate": def_rate, "season": season}
+
+    if save_path is not None:
+        with open(save_path, 'w') as json_sfile:
+            json.dump(season_dict, json_sfile)
+
+    return season_dict
+
+
 def correct_blanks_in_table(): #todo fix this
     pass
 
+
+def one_season(season, path):
+    temp = pd.DataFrame()
+    temp.to_csv(path)
+    data_file = open(path, 'w')
+
+    with data_file:
+        csv_writer = csv.writer(data_file)
+        csv_writer.writerow(
+            ['Game Code', 'Full Hyperlink', 'Home', 'Away', 'Home Short', 'Away Short', 'Home Tipper', 'Away Tipper',
+             'First Scorer', 'Tipoff Winning Team', 'Tipoff Losing Team', 'Possession Gaining Player', 'Possession Gaining Player Link',
+             'First Scoring Team', 'Scored Upon Team', 'Tipoff Winner', 'Tipoff Winner Link', 'Tipoff Loser',
+             'Tipoff Loser Link', 'Tipoff Winner Scores'])
+        game_headers = get_single_season_game_headers(season)
+
+        sleep_counter = 0
+        for line in game_headers:
+            sleep_counter = sleep_checker(sleep_counter, iterations=6, base_time=1, random_multiplier=2)
+            row = line + get_tipoff_winner_and_first_score(line[0], season, line[4], line[5])
+            print(row)
+            csv_writer.writerow(row)
 
 def get_historical_data_runner_extraction():
     start_season = 2021
