@@ -5,16 +5,20 @@ Methods to look at betting lines and see if they are worth it
 import numpy as np
 
 
-def solve_system_eqns_dim_5(a, b, c, d, e, amt_to_win=100):
-    A = np.array(
-        [[a, -1, -1, -1, -1],
-         [-1, b, -1, -1, -1],
-         [-1, -1, c, -1, -1],
-         [-1, -1, -1, d, -1],
-         [-1, -1, -1, -1, e]]
-    )
+def syse_n1_main_diagonal(*args, amt_to_win=1):
+    arg_len = len(args)
+    twod_arr = [[]] * arg_len
+    i = 0
 
-    B = np.array([[amt_to_win], [amt_to_win], [amt_to_win], [amt_to_win], [amt_to_win]])
+    for var in args:
+        arr = [-1] * arg_len
+        arr[i] = var
+        twod_arr[i] = arr
+        i += 1
+
+    A = np.array(twod_arr)
+
+    B = np.array([amt_to_win] * arg_len)
 
     return np.linalg.inv(A).dot(B)
 
@@ -33,9 +37,9 @@ def american_to_probability(odds):
     odds_str = str(odds)
     odds_num = float(odds_str[1:])
     if odds_str[0] == '+':
-        req_win_per = 100 / (100 + odds_num) * 100
+        req_win_per = 100 / (100 + odds_num)
     else:
-        req_win_per = odds_num / (100 + odds_num) * 100
+        req_win_per = odds_num / (100 + odds_num)
     print('with odds', odds_str, 'you must win', "{:.2f}".format(req_win_per) + '%')
 
     return req_win_per
@@ -79,7 +83,7 @@ def american_to_decimal(american_odds):
 def buy_all_players_or_one_side(player_lines, team_line): # based on preliminary numbers it's almost certainly
     total = 0
     i = 0
-    costs = solve_system_eqns_dim_5(player_lines[0][1], player_lines[1][1], player_lines[2][1], player_lines[3][1], player_lines[4][1])
+    costs = syse_n1_main_diagonal(player_lines[0][1], player_lines[1][1], player_lines[2][1], player_lines[3][1], player_lines[4][1])
 
     for cost in costs:
         total += cost
@@ -107,7 +111,9 @@ def independent_var_odds(*args):
 
     return total_odds/(1 + total_odds)
 
-# p_lines = [['Gobert', 5.5], ['O\'Neale', 7.5], ['Bogdonavic', 7.5], ['Mitchell', 10], ['Conley', 14]]
+print(syse_n1_main_diagonal(8, 7, 12, 10, 8) * 100)
+
+# p_lines = [['Gobert', 5.5], ['O\'Neale', 8], ['Bogdonavic', 9], ['Mitchell', 12], ['Conley', 14]]
 # t_line = '-107'
 # buy_all_players_or_one_side(p_lines, t_line)
 

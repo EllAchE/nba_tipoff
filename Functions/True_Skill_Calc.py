@@ -8,10 +8,11 @@ from Historical_Data import Historical_Data_Retrieval as bball
 import trueskill
 import pandas as pd
 
-from Odds_Calculator import independent_var_odds
+from Functions.Odds_Calculator import independent_var_odds
 
 # https://trueskill.org/
 # todo use glicko2
+# https://github.com/sublee/glicko2/blob/master/glicko2.py
 
 
 def run_ts_for_season(season, season_csv, json_path, winning_bet_threshold=0.6):
@@ -115,7 +116,7 @@ def before_match_predictions(season, psd, dsd, home_p_code, away_p_code, tip_win
         print('no bet, not enough Data on participants')
 
 
-def tip_win_probability(player1_code, player2_code, json_path='player_skill_dictionary.json', psd=None): #win prob for first player
+def tip_win_probability(player1_code, player2_code, json_path='Data/player_skill_dictionary.json', psd=None): #win prob for first player
     if psd is None:
         with open(json_path) as json_file:
             psd = json.load(json_file)
@@ -223,9 +224,6 @@ def _match_with_raw_nums(winner_mu, winner_sigma, loser_mu, loser_sigma):
         loser_rating_obj = trueskill.Rating(loser_mu, loser_sigma)
         winner_rating_obj, loser_rating_obj = trueskill.rate_1vs1(winner_rating_obj, loser_rating_obj)
         return winner_rating_obj.mu, winner_rating_obj.sigma, loser_rating_obj.mu, loser_rating_obj.sigma
-
-tip_win_probability('reidna01.html', 'drumman01.html', '../Data/player_skill_dictionary.json')
-
 
 # dhndl.reset_prediction_summaries() # reset sums
 # dhndl.create_player_skill_dictionary() # clears the stored values,

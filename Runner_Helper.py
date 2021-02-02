@@ -1,18 +1,16 @@
-from Live_Odds_Retrieval import get_center
+import ENVIRONMENT
 from Functions.Odds_Calculator import american_to_probability, kelly_bet, cost_for_1
 from Functions.True_Skill_Calc import tip_win_probability
 from Functions.Utils import tip_score_prob
 
 
-def check_for_edge(home_team, away_team, home_odds, away_odds, bankroll):
-    home_c = get_center(home_team)
-    away_c = get_center(away_team)
+def check_for_edge(home_team, away_team, home_c, away_c, home_odds, away_odds, bankroll):
     pass
 
 
-def get_bet_size(score_prob, american_odds, bankroll):
+def get_bet_size(score_prob, american_odds, bankroll=ENVIRONMENT.BANKROLL):
     loss_amt = cost_for_1(american_odds)
-    return kelly_bet(loss_amt, score_prob, bankroll)
+    return kelly_bet(loss_amt, score_prob, bankroll=bankroll)
 
 
 def check_ev_positive_and_get_score_prob(team_odds, team_center_code, opponent_center_code):
@@ -31,6 +29,13 @@ def check_ev_positive_and_get_score_prob(team_odds, team_center_code, opponent_c
         print('don\'t bet either side')
         return None
 
+# a_odds = '-130' # -142
+# p1 = 'adebaba01.html'
+# p2 = 'zelleco01.html'
+# a = check_ev_positive_and_get_score_prob(a_odds, p1, p2)
+# b = check_ev_positive_and_get_score_prob(a_odds, p2, p1)
+# print(get_bet_size(a, a_odds, bankroll=1000))
+# print(get_bet_size(b, a_odds, bankroll=1000))
 
 # I need to - provide team name
 # get starting centers

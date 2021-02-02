@@ -6,10 +6,11 @@
 # todo if not proper relational database at least proxy it with json/dictionaries
 # todo use glicko2/compare it to trueskill
 # todo add time decay to glicko/true skill RD
-# todo player lineup checker
 # todo incorporate other stats in (see below)
 # todo add possible ranges of prediction accuracy based on RD to prediction prints (don't use in calcs yet)
 # i.e. store player codes consistently
+# todo set up backtester with assumed odds lines
+# todo set up bankroll tracker (with stored values on each site)
 
 # MISC
 # todo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season

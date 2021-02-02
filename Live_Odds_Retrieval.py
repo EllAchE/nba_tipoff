@@ -11,29 +11,12 @@
 # https://rotogrinders.com/lineups/nba
 # https://dailynbalineups.com/
 # https://www.lineups.com/nba/lineups
+import json
 
 import requests
 
 import ENVIRONMENT
-from Runner import check_for_edge
-
-
-def team_code_to_full_name(team_code):
-    full_name = 'Indiana-Pacers'
-    return full_name
-
-
-def get_starters(team_code):
-    full_name = team_code_to_full_name(team_code)
-
-    url = 'https://api.lineups.com/nba/fetch/lineups/current/{}'.format(full_name)
-    response = requests.get(url).json()
-    starters = response.starters
-
-    starters_list = list()
-    for player in starters:
-        starters_list.append(player.name)
-    return starters_list
+from Runner_Helper import check_for_edge
 
 
 def get_center(team_code):
@@ -47,6 +30,21 @@ def fetch_live_lines():
 def get_game_info():
     # return time, home team, away team, starting centers
     pass
+
+
+def team_code_to_slug_name(team_code, team_dict=None, json_path=None):
+    if json_path is not None:
+        with open(json_path) as j_file:
+            team_dict = json.load(j_file)
+    elif team_dict is None:
+        with open('Data/Public_NBA_API/teams.json') as j_file:
+            team_dict = json.load(j_file)
+
+    for team in team_dict:
+        if team['abbreviation'] == team_code:
+            return team['slug']
+
+    raise ValueError('no matching team for abbreviation')
 
 
 def get_all_odds_line(bankroll=ENVIRONMENT.BANKROLL):
@@ -77,3 +75,23 @@ def bovada_odds():
 def draftkings_odds():
     # https://sportsbook.draftkings.com/leagues/basketball/103?category=game-props&subcategory=odd/even
     pass
+
+
+def get_starters(team_code, team_dict=None):
+    full_name = team_code_to_slug_name(team_code, team_dict)
+
+    url = 'https://api.lineups.com/nba/fetch/lineups/current/{}'.format(full_name)
+    response = requests.get(url).json()
+    starters = response['starters']
+
+    def sort_fn(e):
+        return e[1]
+
+    starters_list = list()
+    for player in starters:
+        starters_list.append([player['name'], player['position']])
+
+    starters_list.sort(key=sort_fn)
+    return starters_list
+
+print(get_starters('OKC'))
