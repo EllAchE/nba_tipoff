@@ -67,4 +67,6 @@ def create_suffix(name):
     else:
         second += names[:5].lower()
 
-    return second+first
+    return second+first + '01.html' #todo this doesn't account for if the name appears more than once
+
+print(create_suffix('Deandre Jordan'))

@@ -14,13 +14,28 @@
 import json
 
 import requests
+import pandas as pd
 
 import ENVIRONMENT
+from Functions.Utils import get_player_suffix
 from Runner_Helper import check_for_edge
 
 
-def get_center(team_code):
-    return team_code
+def get_last_tipper(team_code, season_csv='CSV/tipoff_and_first_score_details_2021_season.csv'):
+    df = pd.read_csv(season_csv)
+    i = len(df['Game Code']) - 1
+    while i >= 0:
+        if df['Home Short'].iloc[i] == team_code:
+            name = df['Home Tipper'].iloc[i]
+            print('last tipper for', team_code, 'was', name)
+            return name  # , get_player_suffix(name)
+        elif df['Away Short'].iloc[i] == team_code:
+            name = df['Away Tipper'].iloc[i]
+            print('last tipper for', team_code, 'was', name)
+            return name  # , get_player_suffix(name)
+        i += 1
+
+    raise ValueError('No match found for team code this season')
 
 
 def fetch_live_lines():
@@ -92,4 +107,7 @@ def get_starters(team_code, team_dict=None):
         starters_list.append([player['name'], player['position']])
 
     starters_list.sort(key=sort_fn)
+    print('starters for', team_code, 'are', starters_list)
     return starters_list
+
+get_starters('LAC')
