@@ -1,3 +1,14 @@
+'''
+Existing apis etc.:
+
+nba.com:
+https://github.com/bttmly/nba-client-template/blob/master/nba.json
+https://github.com/bttmly/nba
+
+basketball reference:
+https://github.com/vishaalagartha/basketball_reference_scraper/blob/master/API.md
+'''
+
 # TECHNICAL TODOS IN ORDER OF IMPT
 # todo fetch odds lines for the day from all sites offering props bets
 # todo player to fullname to player code relationship
@@ -20,7 +31,6 @@
 # todo track stats on appearance first time midseason
 # todo use fuzzywuzzy to match teamnames
 
-# NONTECHNICAL
 # todo betting calendar (i.e. when do sites post their info)
 # todo have scheduler
 # todo deal with players who play but aren't catalogued for a team (perhaps bad Data, i.e. satorto)
