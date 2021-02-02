@@ -93,5 +93,3 @@ def get_starters(team_code, team_dict=None):
 
     starters_list.sort(key=sort_fn)
     return starters_list
-
-print(get_starters('OKC'))

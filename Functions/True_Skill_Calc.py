@@ -3,7 +3,7 @@ import json
 import math
 
 import ENVIRONMENT
-from Historical_Data import Historical_Data_Retrieval as bball
+from Data_Handling import reset_prediction_summaries, create_player_skill_dictionary
 
 import trueskill
 import pandas as pd
@@ -13,17 +13,16 @@ from Functions.Odds_Calculator import independent_var_odds
 # https://trueskill.org/
 # todo use glicko2
 # https://github.com/sublee/glicko2/blob/master/glicko2.py
+from Historical_Data.Historical_Data_Retrieval import get_player_team_in_season
 
 
 def run_ts_for_season(season, season_csv, json_path, winning_bet_threshold=0.6):
     df = pd.read_csv(season_csv)
-    df = df[df['Home Tipper'].notnull()] # filters invalid rows
-
-    write_df = pd.read_csv(season_csv)
-    write_df['Home Mu'] = None
-    write_df['Home Sigma'] = None
-    write_df['Away Mu'] = None
-    write_df['Away Sigma'] = None
+    # df = df[df['Home Tipper'].notnull()] # filters invalid rows
+    df['Home Mu'] = None
+    df['Home Sigma'] = None
+    df['Away Mu'] = None
+    df['Away Sigma'] = None
 
     winning_bets = 0
     losing_bets = 0
@@ -39,7 +38,9 @@ def run_ts_for_season(season, season_csv, json_path, winning_bet_threshold=0.6):
         dsd = json.load(json_file)
 
     while i < col_len:
-        game_code = df['Game Code']
+        if df['Home Tipper'].iloc[i] != df['Home Tipper'].iloc[i]:
+            i += 1
+            continue
         h_tip = df['Home Tipper'].iloc[i]
         t_winner = df['Tipoff Winner'].iloc[i]
         a_tip = df['Away Tipper'].iloc[i]
@@ -56,11 +57,10 @@ def run_ts_for_season(season, season_csv, json_path, winning_bet_threshold=0.6):
 
         before_match_predictions(season, psd, dsd, h_tip_code, a_tip_code, t_win_link, df['First Scoring Team'].iloc[i], winning_bet_threshold)
         home_mu, home_sigma, away_mu, away_sigma = update_data_single_tipoff(psd, t_win_link, t_lose_link, h_tip_code, df['Full Hyperlink'].iloc[i])
-
-        write_df.loc[df['Game Code'] == game_code]['Home Mu'] = home_mu
-        write_df.loc[df['Game Code'] == game_code]['Home Sigma'] = home_sigma
-        write_df.loc[df['Game Code'] == game_code]['Away Mu'] = away_mu
-        write_df.loc[df['Game Code'] == game_code]['Away Sigma'] = away_sigma
+        df['Home Mu'].iloc[i] = home_mu
+        df['Home Sigma'].iloc[i] = home_sigma
+        df['Away Mu'].iloc[i] = away_mu
+        df['Away Sigma'].iloc[i] = away_sigma
 
         i += 1
 
@@ -70,7 +70,7 @@ def run_ts_for_season(season, season_csv, json_path, winning_bet_threshold=0.6):
     with open('../Data/prediction_summaries.json', 'w') as write_file:
         json.dump(dsd, write_file)
 
-    write_df.to_csv(season_csv[:-4] + '-test.csv')
+    df.to_csv(season_csv[:-4] + '-test.csv')
 
     return winning_bets, losing_bets
 
@@ -79,8 +79,8 @@ def before_match_predictions(season, psd, dsd, home_p_code, away_p_code, tip_win
     # home_rating_obj = trueskill.Rating(psd[home_p_code]['mu'], psd[home_p_code]['sigma'])
     # away_rating_obj = trueskill.Rating(psd[away_p_code]['mu'], psd[away_p_code]['sigma'])
     home_odds = tip_win_probability(home_p_code, away_p_code, psd=psd)
-    home_p_team = bball.get_player_team_in_season(home_p_code, season, long_code=False)[0]
-    away_p_team = bball.get_player_team_in_season(away_p_code, season, long_code=False)[0]
+    home_p_team = get_player_team_in_season(home_p_code, season, long_code=False)[0]
+    away_p_team = get_player_team_in_season(away_p_code, season, long_code=False)[0]
 
     if psd[home_p_code]['appearances'] > ENVIRONMENT.MIN_APPEARANCES and psd[away_p_code]['appearances'] > ENVIRONMENT.MIN_APPEARANCES:
         if home_odds > winning_bet_threshold:
@@ -164,7 +164,7 @@ def score_first_probability(player1_code, player2_code, player1_is_home, json_pa
 def run_for_all_seasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD):
     season_key = ''
     for season in seasons:
-        run_ts_for_season(season, 'CSV/tipoff_and_first_score_details_{}_season.csv'.format(season),
+        run_ts_for_season(season, '../CSV/tipoff_and_first_score_details_{}_season.csv'.format(season),
                           '../Data/player_skill_dictionary.json', winning_bet_threshold)
         season_key += str(season) + '-'
 
@@ -225,28 +225,14 @@ def _match_with_raw_nums(winner_mu, winner_sigma, loser_mu, loser_sigma):
         winner_rating_obj, loser_rating_obj = trueskill.rate_1vs1(winner_rating_obj, loser_rating_obj)
         return winner_rating_obj.mu, winner_rating_obj.sigma, loser_rating_obj.mu, loser_rating_obj.sigma
 
-# dhndl.reset_prediction_summaries() # reset sums
-# dhndl.create_player_skill_dictionary() # clears the stored values,
-#
-# sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
-#        2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
-#
-# b_odds = independent_var_odds(ENVIRONMENT.TIP_WINNER_SCORE_ODDS, ENVIRONMENT.HOME_SCORE_ODDS)
-# run_for_all_seasons(sss, winning_bet_threshold=b_odds)
 
+env = trueskill.TrueSkill(draw_probability=0, backend='scipy')
+env.make_as_global()
 
-# env = trueskill.TrueSkill(draw_probability=0, backend='scipy')
-# env.make_as_global()
+reset_prediction_summaries() # reset sums
+create_player_skill_dictionary() # clears the stored values,
 
+sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
+       2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
 
-# glicko properly implemented would be better to account for time drift/between seasons
-# functions to use:
-# Rating() <- creates rating object
-# rate_1vs1() <- equivalent of a game
-# quality 1vs1 <- probability of draw
-# TrueSkill(draw_probability=0.1, backend=scipy). Can also set beta, sigma, mu, and tau
-# tau is fixation of rating restriction. beta is distance to 76% chance of win
-# ^^ set environment, we need draw prob = 0
-# trueskill.backends.choose_backnd = scipy
-# make_as_global() on env object sets global
-# setup() pass the args of Trueskill env to make work
+run_for_all_seasons(sss, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD)

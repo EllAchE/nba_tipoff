@@ -111,8 +111,6 @@ def independent_var_odds(*args):
 
     return total_odds/(1 + total_odds)
 
-print(syse_n1_main_diagonal(8, 7, 12, 10, 8) * 100)
-
 # p_lines = [['Gobert', 5.5], ['O\'Neale', 8], ['Bogdonavic', 9], ['Mitchell', 12], ['Conley', 14]]
 # t_line = '-107'
 # buy_all_players_or_one_side(p_lines, t_line)

@@ -212,10 +212,13 @@ def one_season(season, path):
 
         sleep_counter = 0
         for line in game_headers:
-            sleep_counter = sleep_checker(sleep_counter, iterations=6, base_time=1, random_multiplier=2)
-            row = line + get_tipoff_winner_and_first_score(line[0], season, line[4], line[5])
-            print(row)
-            csv_writer.writerow(row)
+            sleep_counter = sleep_checker(sleep_counter, iterations=16, base_time=0, random_multiplier=1)
+            try:
+                row = line + get_tipoff_winner_and_first_score(line[0], season, line[4], line[5])
+                print(row)
+                csv_writer.writerow(row)
+            except:
+                break
 
 
 def get_historical_data_runner_extraction():
@@ -230,7 +233,6 @@ def get_historical_data_runner_extraction():
 
     one_season(start_season, single_season_path)
 
-#
 # def in_progress_unbroken(game_link, season, home_team, away_team):
 #     # https://www.basketball-reference.com/boxscores/pbp/201901220OKC.html
 #     url = 'https://www.basketball-reference.com/boxscores/pbp/{}.html'.format(game_link)
