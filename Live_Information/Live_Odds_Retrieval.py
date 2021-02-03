@@ -17,7 +17,6 @@ import requests
 import pandas as pd
 
 import ENVIRONMENT
-from Functions.Utils import get_player_suffix
 from Runner_Helper import check_for_edge
 
 
@@ -92,7 +91,17 @@ def draftkings_odds():
     pass
 
 
-def get_starters(team_code, team_dict=None):
+def mgm_odds():
+    # https://sports.co.betmgm.com/en/sports/events/minnesota-timberwolves-at-san-antonio-spurs-11101908?market=10000
+    pass
+
+def betfair_odds():
+    # https://www.betfair.com/sport/basketball/nba/houston-rockets-oklahoma-city-thunder/30266729
+    # these are not american odds so will need some new methods for these
+    pass
+
+
+def get_starters(team_code, team_dict=None): # todo look for a confirmed tag on this
     full_name = team_code_to_slug_name(team_code, team_dict)
 
     url = 'https://api.lineups.com/nba/fetch/lineups/current/{}'.format(full_name)
@@ -106,8 +115,13 @@ def get_starters(team_code, team_dict=None):
     for player in starters:
         starters_list.append([player['name'], player['position']])
 
+    date = response['nav']['matchup_day']
+    confirmed = 'lineup confirmed for'
+    if not response['nav']['lineup_confirmed']:
+        confirmed = 'LINEUP NOT YET CONFIRMED for'
+
     starters_list.sort(key=sort_fn)
-    print('starters for', team_code, 'are', starters_list)
+    print(confirmed, date + '.', 'Starters for', team_code, 'are', starters_list)
     return starters_list
 
-get_starters('LAC')
+get_starters('IND')

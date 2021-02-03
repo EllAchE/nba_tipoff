@@ -32,7 +32,7 @@ def get_player_suffix(name):
     # copied from this repo https://github.com/vishaalagartha/basketball_reference_scraper/blob/master/basketball_reference_scraper
     normalized_name = unidecode.unidecode(unicodedata.normalize('NFD', name).encode('ascii', 'ignore').decode("utf-8"))
     initial = normalized_name.split(' ')[1][0].lower()
-    suffix = '/players/'+initial+'/'+create_suffix(name)+'01.html'
+    suffix = '/players/' + initial +'/' + createSuffix(name) + '01.html'
     player_r = get(f'https://www.basketball-reference.com{suffix}')
     while player_r.status_code==200:
         player_soup = BeautifulSoup(player_r.content, 'html.parser')
@@ -54,7 +54,7 @@ def get_player_suffix(name):
     return None
 
 
-def create_suffix(name):
+def createSuffix(name):
     # copied from this repo https://github.com/vishaalagartha/basketball_reference_scraper/blob/master/basketball_reference_scraper
     normalized_name = unicodedata.normalize('NFD', name.replace(".","")).encode('ascii', 'ignore').decode("utf-8")
     first = unidecode.unidecode(normalized_name[:2].lower())
@@ -69,4 +69,18 @@ def create_suffix(name):
 
     return second+first + '01.html' #todo this doesn't account for if the name appears more than once
 
-print(create_suffix('Deandre Jordan'))
+
+def getDashDateFromGameCode(game_code):
+    game_code = str(game_code)
+    year = game_code[:4]
+    month = game_code[4:6]
+    day = game_code[6:8]
+    return year + '-' + month + '-' + day
+
+
+def getHomeTeamFromGameCode(game_code):
+    return game_code[-3:]
+
+
+def getDashDateAndHomeCodeFromGameCode(game_code):
+    return getDashDateFromGameCode(game_code), getHomeTeamFromGameCode(game_code)

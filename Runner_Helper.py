@@ -29,13 +29,13 @@ def check_ev_positive_and_get_score_prob(team_odds, team_center_code, opponent_c
         print('don\'t bet either side')
         return None
 
-a_odds = '-128' # -142
+a_odds = '-121' # -142
 p1 = 'baynear01.html'
 p2 = 'vucevni01.html'
 a = check_ev_positive_and_get_score_prob(a_odds, p1, p2)
 b = check_ev_positive_and_get_score_prob(a_odds, p2, p1)
-print(get_bet_size(a, a_odds, bankroll=1000))
-print(get_bet_size(b, a_odds, bankroll=1000))
+print(get_bet_size(a, a_odds, bankroll=5000))
+print(get_bet_size(b, a_odds, bankroll=5000))
 
 # I need to - provide team name
 # get starting centers
