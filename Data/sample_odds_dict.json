@@ -1,0 +1,26 @@
+{
+  "gameCode": "gameIdentifier",
+  "gameDatetime": "Format (just having same day and time only would also be OK. Timezone matters so needs to be included",
+  "home": "Team Identifier",
+  "away": "Opponent Identifier",
+  "exchange": "Bovada (for example)",
+  "marketUrl": "url",
+  "odds": {
+    "homeTeamScoreFirstOdds": "-110",
+    "awayTeamScoreFirstOdds": "-120",
+    "homePlayerOdds": [
+      {"player":"player1Identifier", "odds":"+400"},
+      {"player":"player2Identifier", "odds":"+500"},
+      {"player":"player3Identifier", "odds":"+600"},
+      {"player":"player4Identifier", "odds":"+500"},
+      {"player":"player5Identifier", "odds":"+800"}
+    ],
+    "awayPlayerOdds": [
+      {"player":"player1Identifier", "odds":"+450"},
+      {"player":"player2Identifier", "odds":"+600"},
+      {"player":"player3Identifier", "odds":"+550"},
+      {"player":"player4Identifier", "odds":"+800"},
+      {"player":"player5Identifier", "odds":"+900"}
+    ]
+  }
+}

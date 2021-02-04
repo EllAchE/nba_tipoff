@@ -124,4 +124,4 @@ def get_starters(team_code, team_dict=None): # todo look for a confirmed tag on 
     print(confirmed, date + '.', 'Starters for', team_code, 'are', starters_list)
     return starters_list
 
-get_starters('IND')
+get_starters('LAC')

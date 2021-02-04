@@ -13,6 +13,8 @@ https://github.com/swar/nba_api/
 
 https://www.olbg.com/blogs/basketball-betting-first-basketwinner-market-strategy
 https://www.reddit.com/r/nba/comments/dhandf/oc_elo_system_to_determine_who_are_the_best_at/
+
+Existing jumpball elo:
 https://github.com/mattgalarneau/NBA-Jump-Balls/blob/master/Data/Bball_Ref_Player_List.py
 
 Bet limits https://fanduelsportsbook.zendesk.com/hc/en-us/articles/360001688007-FanDuel-Sportsbook-House-Rules-New-Jersey
@@ -58,6 +60,10 @@ https://punter2pro.com/best-sports-arbing-software/
 # todo scrape/use api from nba.com instead of bball reference https://www.nba.com/game/phx-vs-nyk-0021000598/play-by-play
 # todo incorporate other stats in (see below)
 # todo add other stats and run ludwig/ai checker
+
+'''
+To avoid arbitrage flags if we go that route: Bet round numbers, don't be super esoteric and bet at normal times
+'''
 
 ### POTENTIAL ADDITIONAL VARIABLES FOR ODDS MODEL
 # Offensive Efficiency

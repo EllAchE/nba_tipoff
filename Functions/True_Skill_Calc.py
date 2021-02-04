@@ -8,7 +8,7 @@ from Data_Handling import reset_prediction_summaries, create_player_skill_dictio
 import trueskill
 import pandas as pd
 
-from Functions.Odds_Calculator import independent_var_odds
+from Functions.Odds_Calculator import independentVarOdds
 
 # https://trueskill.org/
 # todo use glicko2
@@ -78,7 +78,7 @@ def run_ts_for_season(season, season_csv, json_path, winning_bet_threshold=0.6):
 def before_match_predictions(season, psd, dsd, home_p_code, away_p_code, tip_winner_code, scoring_team, winning_bet_threshold=0.6):
     # home_rating_obj = trueskill.Rating(psd[home_p_code]['mu'], psd[home_p_code]['sigma'])
     # away_rating_obj = trueskill.Rating(psd[away_p_code]['mu'], psd[away_p_code]['sigma'])
-    home_odds = tip_win_probability(home_p_code, away_p_code, psd=psd)
+    home_odds = tipWinProb(home_p_code, away_p_code, psd=psd)
     home_p_team = getPlayerTeamInSeason(home_p_code, season, long_code=False)[0]
     away_p_team = getPlayerTeamInSeason(away_p_code, season, long_code=False)[0]
 
@@ -116,7 +116,7 @@ def before_match_predictions(season, psd, dsd, home_p_code, away_p_code, tip_win
         print('no bet, not enough Data on participants')
 
 
-def tip_win_probability(player1_code, player2_code, json_path='Data/player_skill_dictionary.json', psd=None): #win prob for first player
+def tipWinProb(player1_code, player2_code, json_path='Data/player_skill_dictionary.json', psd=None): #win prob for first player
     if psd is None:
         with open(json_path) as json_file:
             psd = json.load(json_file)
@@ -155,7 +155,7 @@ def score_first_probability(player1_code, player2_code, player1_is_home, json_pa
 
     odds = res * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1-res) * (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
     if player1_is_home:
-        odds = independent_var_odds(ENVIRONMENT.HOME_SCORE_ODDS, odds)
+        odds = independentVarOdds(ENVIRONMENT.HOME_SCORE_ODDS, odds)
 
     print('odds', player1_code, 'beats', player2_code, 'are', odds)
     return odds
