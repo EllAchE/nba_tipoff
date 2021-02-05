@@ -80,3 +80,8 @@ class GameOdds:
 
     def betEither(self):
         return not (self.betOnHome is None and self.betOnAway is None)
+
+    def getPlayerSpread(self, winAmt=None, riskAmt= None):
+        self.homePlayerOddsList
+        self.awayPlayerOddsList #todo this needs to be auto calculated
+        pass

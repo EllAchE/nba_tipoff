@@ -9,7 +9,6 @@ import numpy as np
 import trueskill
 
 import ENVIRONMENT
-from Classes.GameOdds import GameOdds
 from Functions.True_Skill_Calc import tipWinProb
 
 
@@ -38,7 +37,7 @@ def score_first_probability(player1_code, player2_code, player1_is_home, json_pa
     return odds
 
 
-def sysEMainDiagonalVarsNeg1Fill(*args, amt_to_win=1):
+def sysEMainDiagonalVarsNeg1Fill(*args, amtToWin=1, amtToLose=None): #takes in decimal odds
     arg_len = len(args)
     twod_arr = [[]] * arg_len
     i = 0
@@ -50,9 +49,19 @@ def sysEMainDiagonalVarsNeg1Fill(*args, amt_to_win=1):
         i += 1
 
     A = np.array(twod_arr)
-    B = np.array([amt_to_win] * arg_len)
+    B = np.array([amtToWin] * arg_len)
 
-    return np.linalg.inv(A).dot(B)
+    playerSpread = np.linalg.inv(A).dot(B)
+
+    if amtToLose is None:
+        return playerSpread
+    else:
+        cost = 0
+        for amt in playerSpread:
+            cost += amt
+
+        multiplier = amtToLose/cost
+        return playerSpread * multiplier
 
 
 # todo add kelly_processor to format input properly
