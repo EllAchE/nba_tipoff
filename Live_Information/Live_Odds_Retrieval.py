@@ -17,10 +17,17 @@ import requests
 import pandas as pd
 
 import ENVIRONMENT
-from Runner_Helper import check_for_edge
+from Functions.Odds_Calculator import check_for_edge
 
 
-def get_last_tipper(team_code, season_csv='CSV/tipoff_and_first_score_details_2021_season.csv'):
+def getExpectedTipper():
+    lastTipper = getLastTipper()
+    injuryCheck = checkInjury(lastTipper)
+    starteerCheck = checkStarter(lastTipper) #todo confirmation of expected tipper
+    pass
+
+
+def getLastTipper(team_code, season_csv='CSV/tipoff_and_first_score_details_2021_season.csv'):
     df = pd.read_csv(season_csv)
     i = len(df['Game Code']) - 1
     while i >= 0:
@@ -41,12 +48,12 @@ def fetch_live_lines():
     pass
 
 
-def get_game_info():
+def getGameInfo():
     # return time, home team, away team, starting centers
     pass
 
 
-def team_code_to_slug_name(team_code, team_dict=None, json_path=None):
+def teamCodeToSlugName(team_code, team_dict=None, json_path=None):
     if json_path is not None:
         with open(json_path) as j_file:
             team_dict = json.load(j_file)
@@ -61,12 +68,12 @@ def team_code_to_slug_name(team_code, team_dict=None, json_path=None):
     raise ValueError('no matching team for abbreviation')
 
 
-def get_all_odds_line(bankroll=ENVIRONMENT.BANKROLL):
+def getAllOddsLines(bankroll=ENVIRONMENT.BANKROLL):
     all_lines = fetch_live_lines()
     game_odds_list = list()
 
     for game in all_lines:
-        gi = get_game_info(game)
+        gi = getGameInfo(game)
         home = gi['home']
         away = gi['away']
 
@@ -101,8 +108,8 @@ def betfair_odds():
     pass
 
 
-def get_starters(team_code, team_dict=None): # todo look for a confirmed tag on this
-    full_name = team_code_to_slug_name(team_code, team_dict)
+def getStarters(team_code, team_dict=None): # todo look for a confirmed tag on this
+    full_name = teamCodeToSlugName(team_code, team_dict)
 
     url = 'https://api.lineups.com/nba/fetch/lineups/current/{}'.format(full_name)
     response = requests.get(url).json()
@@ -124,4 +131,3 @@ def get_starters(team_code, team_dict=None): # todo look for a confirmed tag on 
     print(confirmed, date + '.', 'Starters for', team_code, 'are', starters_list)
     return starters_list
 
-get_starters('LAC')

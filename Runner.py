@@ -1,3 +1,27 @@
+from Functions.Odds_Calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb
+from Live_Information.Live_Odds_Retrieval import getStarters
+
+# getStarters('GSW')
+# getStarters('DAL')
+# getStarters('UTA')
+# getStarters('ATL')
+# getStarters('POR')
+# getStarters('PHI')
+# getStarters('HOU')
+# getStarters('MEM')
+# getStarters('DEN')
+# getStarters('LAL')
+
+a_odds = '-110' # -142
+p1 = 'kanteen01.html'
+p2 = 'embiijo01.html'
+a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+
+
+
 '''
 Existing apis etc.:
 
@@ -44,6 +68,7 @@ https://punter2pro.com/best-sports-arbing-software/
 # todo set up backtester with assumed odds lines
 # todo set up bankroll tracker (with stored values on each site)
 # todo player last name, season and team matcher
+# todo deal with circular imports, make more files
 
 # MISC
 # todo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season

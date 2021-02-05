@@ -1,12 +1,41 @@
 '''
 Methods to look at betting lines and see if they are worth it
 '''
+import itertools
+import json
+import math
 
 import numpy as np
+import trueskill
 
 import ENVIRONMENT
 from Classes.GameOdds import GameOdds
 from Functions.True_Skill_Calc import tipWinProb
+
+
+def score_first_probability(player1_code, player2_code, player1_is_home, json_path=None, psd=None): #todo long term this needs to have efficiency checks
+    if psd is None:
+        with open(json_path) as json_file:
+            psd = json.load(json_file)
+
+    player1 = trueskill.Rating(psd[player1_code]["mu"], psd[player1_code]["sigma"])
+    player2 = trueskill.Rating(psd[player2_code]["mu"], psd[player2_code]["sigma"])
+    team1 = [player1]
+    team2 = [player2]
+
+    delta_mu = sum(r.mu for r in team1) - sum(r.mu for r in team2)
+    sum_sigma = sum(r.sigma ** 2 for r in itertools.chain(team1, team2))
+    size = len(team1) + len(team2)
+    denom = math.sqrt(size * (ENVIRONMENT.BASE_SIGMA * ENVIRONMENT.BASE_SIGMA) + sum_sigma)
+    ts = trueskill.global_env()
+    res = ts.cdf(delta_mu / denom)
+
+    odds = res * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1-res) * (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
+    if player1_is_home:
+        odds = independentVarOdds(ENVIRONMENT.HOME_SCORE_ODDS, odds)
+
+    print('odds', player1_code, 'beats', player2_code, 'are', odds)
+    return odds
 
 
 def sysEMainDiagonalVarsNeg1Fill(*args, amt_to_win=1):
@@ -125,6 +154,16 @@ def checkEvPositive(teamOdds, scoreProb):
         return False
 
 
+def checkEvPlayerCodesOddsLine(odds, p1, p2):
+    prob = getScoreProb(p1, p2)
+    bet = checkEvPositive(odds, prob)
+    if bet:
+        print("Bet on", p1, "with odds", odds, "based on score prob", prob)
+    else:
+        print("don't bet")
+    return prob
+
+
 def getScoreProb(team_center_code, opponent_center_code):
     tip_win_odds = tipWinProb(team_center_code, opponent_center_code)
     return tipScoreProb(tip_win_odds)
@@ -170,15 +209,12 @@ def independentVarOdds(*args):
     return total_odds/(1 + total_odds)
 
 
-def assessSingleBet(GameOddsObj):
-    pass
-
-
 def assessAllBets(betDict):
     oddsObjList = list()
     for game in betDict['games']:
         oddsObj = GameOdds(game)
-        oddsObjList.append(assessSingleBet(oddsObj))
+        oddsObjList.append(oddsObj)
+    oddsObjList.sort()
 
 
 # p_lines = [['Gobert', 5.5], ['O\'Neale', 8], ['Bogdonavic', 9], ['Mitchell', 12], ['Conley', 14]]

@@ -1,11 +1,3 @@
-a_odds = '-105' # -142
-p1 = 'drumman01.html'
-p2 = 'ibakase01.html'
-a = check_ev_positive_and_get_score_prob(a_odds, p1, p2)
-b = check_ev_positive_and_get_score_prob(a_odds, p2, p1)
-print(get_bet_size(a, a_odds, bankroll=5000))
-print(get_bet_size(b, a_odds, bankroll=5000))
-
 # I need to - provide team name
 # get starting centers
 # get if they are home or away

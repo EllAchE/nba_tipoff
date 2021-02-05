@@ -1,8 +1,8 @@
 class AnalyzedGameOdds:
     def __init__(self, rawGameOdds, bankroll):
-        self.homeId = rawGameOdds.homeId
-        self.awayId = rawGameOdds.awayId
-        self.datetime = rawGameOdds.datetime
+        self.homeId = rawGameOdds.home
+        self.awayId = rawGameOdds.away
+        self.datetime = rawGameOdds.gameDatetime
         self.homeTeamOdds = rawGameOdds.homeTeamOdds
         self.awayTeamOdds = rawGameOdds.awayTeamOdds
         self.homePlayerOddsList = rawGameOdds.homePlayerOddsList
