@@ -17,6 +17,7 @@ import requests
 import pandas as pd
 
 import ENVIRONMENT
+from Classes.GameOdds import GameOdds
 from Functions.Odds_Calculator import check_for_edge
 
 
@@ -131,3 +132,57 @@ def getStarters(team_code, team_dict=None): # todo look for a confirmed tag on t
     print(confirmed, date + '.', 'Starters for', team_code, 'are', starters_list)
     return starters_list
 
+
+def displayUniqueBetsByEV(betDict):
+    pass
+
+
+def displayUniqueBetsByEV(betDict):
+    pass
+
+
+def displayAllBetsByEV(betDict):
+    oddsList = convertDictToGameOddsObjList(betDict)
+    oddsList.sort(key=lambda x: x.bestEVFactor)
+    pass
+
+
+def displayAllBetsByDatetime(betDict):
+    oddsList = convertDictToGameOddsObjList(betDict)
+    oddsList.sort(key=lambda x: x.bestEVFactor)
+    oddsList.sort(key=lambda x: x.gameDatetime)
+    pass
+
+
+def displayAllBetsByExchange(betDict):
+    oddsList = convertDictToGameOddsObjList(betDict)
+    oddsList.sort(key=lambda x: x.bestEVFactor)
+    oddsList.sort(key=lambda x: x.gameDatetime)
+    oddsList.sort(key=lambda x: x.exchange)
+    pass
+
+
+def convertDictToGameOddsObjList(betDict):
+    gameOddsObjList = list()
+    for game in betDict['games']:
+        oddsObj = GameOdds(game)
+        gameOddsObjList.append(oddsObj)
+    return gameOddsObjList
+
+
+def printOddsObjDetails(oddsList, showAll=False):
+    i = 0
+    for g in oddsList:
+        if not showAll and not g.betEither():
+            continue
+        betOn = g.betOn()
+        fhsp = round(float(g.homeScoreprob), 2)
+        fmbo = round(float(g.minHomeWinPercentage), 2) if g.betOnHome else round(float(g.minAwayWinPercentage), 2)
+        bov = g.bestBetIsTeamOrPlayers()
+
+        print(str(i) + '.', g.gameCode, "|| Bet On:", betOn, "Via:", bov, "|| Kelly Bet:", g.kellyBet, "|| EV Factor:", g.bestEVFactor) # ". Home/Away:", g.home, g.away,
+        print("   Tipoff:", g.gameDatetime, "Tippers-H/A", g.expectedHomeTipper, g.expectedAwayTipper,
+              "Odds Home Wins", fhsp, "Min Odds (HoDef):", fmbo, "Home Line:", g.bestHomeOdds, "Away Line:", g.bestAwayOdds)
+        print('   Exchange:', g.exchange, 'Market URL', g.url, 'Odds as of:', g.fetchedDatetime)
+        print()
+        i += 1

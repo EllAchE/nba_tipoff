@@ -209,14 +209,6 @@ def independentVarOdds(*args):
     return total_odds/(1 + total_odds)
 
 
-def assessAllBets(betDict):
-    oddsObjList = list()
-    for game in betDict['games']:
-        oddsObj = GameOdds(game)
-        oddsObjList.append(oddsObj)
-    oddsObjList.sort()
-
-
 # p_lines = [['Gobert', 5.5], ['O\'Neale', 8], ['Bogdonavic', 9], ['Mitchell', 12], ['Conley', 14]]
 # t_line = '-107'
 # buy_all_players_or_one_side(p_lines, t_line)
