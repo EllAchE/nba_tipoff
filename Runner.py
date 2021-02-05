@@ -69,6 +69,7 @@ https://punter2pro.com/best-sports-arbing-software/
 # todo set up bankroll tracker (with stored values on each site)
 # todo player last name, season and team matcher
 # todo deal with circular imports, make more files
+# todo test if adding in the start of overtime tip performance enhances predictions (may be fatigue facotr/not as good)
 
 # MISC
 # todo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season

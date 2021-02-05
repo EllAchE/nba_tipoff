@@ -186,3 +186,4 @@ def printOddsObjDetails(oddsList, showAll=False):
         print('   Exchange:', g.exchange, 'Market URL', g.url, 'Odds as of:', g.fetchedDatetime)
         print()
         i += 1
+        #todo add the player Spread display here

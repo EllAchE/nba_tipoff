@@ -16,7 +16,7 @@ import pandas as pd
 from Historical_Data.Historical_Data_Retrieval import getPlayerTeamInSeason
 
 
-def run_ts_for_season(season, season_csv, json_path, winning_bet_threshold=0.6):
+def runTSForSeason(season, season_csv, json_path, winning_bet_threshold=0.6):
     df = pd.read_csv(season_csv)
     # df = df[df['Home Tipper'].notnull()] # filters invalid rows
     df['Home Mu'] = None
@@ -55,8 +55,8 @@ def run_ts_for_season(season, season_csv, json_path, winning_bet_threshold=0.6):
         else:
             raise ValueError('no match for winner')
 
-        before_match_predictions(season, psd, dsd, h_tip_code, a_tip_code, t_win_link, df['First Scoring Team'].iloc[i], winning_bet_threshold)
-        home_mu, home_sigma, away_mu, away_sigma = update_data_single_tipoff(psd, t_win_link, t_lose_link, h_tip_code, df['Full Hyperlink'].iloc[i])
+        beforeMatchPredictions(season, psd, dsd, h_tip_code, a_tip_code, t_win_link, df['First Scoring Team'].iloc[i], winning_bet_threshold)
+        home_mu, home_sigma, away_mu, away_sigma = updateDataSingleTipoff(psd, t_win_link, t_lose_link, h_tip_code, df['Full Hyperlink'].iloc[i])
         df['Home Mu'].iloc[i] = home_mu
         df['Home Sigma'].iloc[i] = home_sigma
         df['Away Mu'].iloc[i] = away_mu
@@ -75,7 +75,7 @@ def run_ts_for_season(season, season_csv, json_path, winning_bet_threshold=0.6):
     return winning_bets, losing_bets
 
 
-def before_match_predictions(season, psd, dsd, home_p_code, away_p_code, tip_winner_code, scoring_team, winning_bet_threshold=0.6):
+def beforeMatchPredictions(season, psd, dsd, home_p_code, away_p_code, tip_winner_code, scoring_team, winning_bet_threshold=0.6):
     # home_rating_obj = trueskill.Rating(psd[home_p_code]['mu'], psd[home_p_code]['sigma'])
     # away_rating_obj = trueskill.Rating(psd[away_p_code]['mu'], psd[away_p_code]['sigma'])
     home_odds = tipWinProb(home_p_code, away_p_code, psd=psd)
@@ -161,10 +161,10 @@ def tipWinProb(player1_code, player2_code, json_path='Data/player_skill_dictiona
 #     return odds
 
 
-def run_for_all_seasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD):
+def runForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD):
     season_key = ''
     for season in seasons:
-        run_ts_for_season(season, '../CSV/tipoff_and_first_score_details_{}_season.csv'.format(season),
+        runTSForSeason(season, '../CSV/tipoff_and_first_score_details_{}_season.csv'.format(season),
                           '../Data/player_skill_dictionary.json', winning_bet_threshold)
         season_key += str(season) + '-'
 
@@ -177,7 +177,7 @@ def run_for_all_seasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_T
         json.dump(dsd, pred_sum)
 
 
-def update_data_single_tipoff(psd, winner_code, loser_code, home_player_code, game_code=None):
+def updateDataSingleTipoff(psd, winner_code, loser_code, home_player_code, game_code=None):
     if game_code:
         print(game_code)
     winner_code = winner_code[11:]
@@ -187,7 +187,7 @@ def update_data_single_tipoff(psd, winner_code, loser_code, home_player_code, ga
     w_og_si = psd[winner_code]["sigma"]
     l_og_mu = psd[loser_code]["mu"]
     l_og_si = psd[loser_code]["sigma"]
-    w_mu, w_si, l_mu, l_si = _match_with_raw_nums(psd[winner_code]["mu"], psd[winner_code]["sigma"], psd[loser_code]['mu'], psd[loser_code]["sigma"])
+    w_mu, w_si, l_mu, l_si = _matchWithRawNums(psd[winner_code]["mu"], psd[winner_code]["sigma"], psd[loser_code]['mu'], psd[loser_code]["sigma"])
     w_wins = psd[winner_code]["wins"] + 1
     w_appearances = psd[winner_code]["appearances"] + 1
     l_losses = psd[loser_code]["losses"] + 1
@@ -219,7 +219,7 @@ def update_data_single_tipoff(psd, winner_code, loser_code, home_player_code, ga
     return home_mu, home_sigma, away_mu, away_sigma
 
 
-def _match_with_raw_nums(winner_mu, winner_sigma, loser_mu, loser_sigma):
+def _matchWithRawNums(winner_mu, winner_sigma, loser_mu, loser_sigma):
         winner_rating_obj = trueskill.Rating(winner_mu, winner_sigma)
         loser_rating_obj = trueskill.Rating(loser_mu, loser_sigma)
         winner_rating_obj, loser_rating_obj = trueskill.rate_1vs1(winner_rating_obj, loser_rating_obj)
