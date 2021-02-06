@@ -100,3 +100,5 @@ for item in test_bad_data_games:
     test = getGameIdFromTeamAndDate(date, team_code)
     deb = getTipoffResults(test)
     print(deb)
+
+# todo use this work to fill in the blanks on the missing games in the csv

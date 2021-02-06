@@ -1,18 +1,18 @@
 from Functions.Odds_Calculator import positiveEvThresholdFromAmerican, returnGreaterOdds, \
-    convertPlayerLinesToSingleLine, getScoreProb, kellyBetFromAOddsAndScoreProb, getEvMultiplier
-from Live_Information.Live_Odds_Retrieval import getExpectedTipper
+    convertPlayerLinesToSingleLine, getScoreProb, kellyBetFromAOddsAndScoreProb, getEvMultiplier, getPlayerSpread
 
 
 class GameOdds:
     def __init__(self, gameDict):
         self.home = gameDict['home']
         self.away = gameDict['away']
+        self.oddsDatetime = gameDict['fetchedDatetime']
         self.gameDatetime = gameDict['gameDatetime']
         self.homeTeamOdds = gameDict['odds']['homeTeamScoreFirstOdds']
         self.awayTeamOdds = gameDict['odds']['awayTeamScoreFirstOdds']
         self.homePlayerOddsList = gameDict['odds']['homePlayerOdds']
         self.awayPlayerOddsList = gameDict['odds']['awayPlayerOdds']
-        self.gameCode = gameDict['gameCode']
+        self.gameCode = gameDict['gameCode'] #todo need this to be consistent across exchanges. Can be a teamname/code
         self.exchange = gameDict['exchange']
         self.url = gameDict['marketUrl']
 
@@ -22,11 +22,13 @@ class GameOdds:
         self.awayPlayerFloorOdds = convertPlayerLinesToSingleLine(self.awayPlayerOddsList)
         self.bestHomeOdds = returnGreaterOdds(self.homeTeamOdds, self.homePlayerFloorOdds)
         self.bestAwayOdds = returnGreaterOdds(self.awayTeamOdds, self.awayPlayerFloorOdds)
+        self.playerSpread = getPlayerSpread(self.homePlayerOddsList, self.homeScoreProb, )
 
-        self.expectedHomeCenter = 'onealsh01.html' # getExpectedTipper(self.home) #todo fix this to actually work, hacked for debugging
-        self.expectedAwayCenter = 'turnemy01.html' # getExpectedTipper(self.away)
-        self.homeScoreProb = getScoreProb(self.expectedHomeCenter, self.expectedAwayCenter) # todo populate these with center fetch
-        self.awayScoreProb = getScoreProb(self.expectedAwayCenter, self.expectedHomeCenter)
+
+        self.expectedHomeTipper = 'onealsh01.html' # lo.getExpectedTipper(self.home)
+        self.expectedAwayTipper = 'turnemy01.html'  # lo.getExpectedTipper(self.away) # todo populate these with center fetch
+        self.homeScoreProb = getScoreProb(self.expectedHomeTipper, self.expectedAwayTipper)
+        self.awayScoreProb = getScoreProb(self.expectedAwayTipper, self.expectedHomeTipper)
 
         self.betOnHome = (self.homeScoreProb > self.minHomeWinPercentage)
         self.betOnAway = (self.awayScoreProb > self.minAwayWinPercentage)
@@ -36,13 +38,53 @@ class GameOdds:
         if self.homeKellyBet is not None:
             self.kellyBet = {"bet": self.homeKellyBet, "team": self.home}
         else:
-            self.kellyBet = {"bet": self.awayKellyBet, "team": self.away} # todo assumes no same-market arbitrage ( could be possible with player/team lines varying)
+            self.kellyBet = {"bet": self.awayKellyBet, "team": self.away} # todo assumes no same-market arbitrage (possible with player/team lines varying)
 
-        self.evFactorHome = getEvMultiplier(self.homeScoreProb, self.minHomeWinPercentage)
-        self.evFactorAway = getEvMultiplier(self.awayScoreProb, self.minAwayWinPercentage)
-        if self.evFactorAway < self.evFactorHome:
-            self.bestEVFactor = self.evFactorHome
+        self.homeEVFactor = getEvMultiplier(self.homeScoreProb, self.minHomeWinPercentage)
+        self.awayEVFactor = getEvMultiplier(self.awayScoreProb, self.minAwayWinPercentage)
+        if self.awayEVFactor < self.homeEVFactor:
+            self.bestEVFactor = self.homeEVFactor
+
+    def homeLineIsTeam(self):
+        if self.bestHomeOdds == self.homeTeamOdds:
+            return "TEAM"
+        return "PLAYERS"
+
+    def awayLineIsTeam(self):
+        if self.bestAwayOdds == self.awayTeamOdds:
+            return "TEAM"
+        return "PLAYERS"
+
+    def bestOddsFor(self):
+        if self.bestEVFactor == self.homeEVFactor:
+            return "HOME"
+        return "AWAY"
+
+    def betOn(self):
+        if not self.betEither():
+            return "NEITHER"
+        elif self.betOnHome is not None:
+            return "HOME"
         else:
-            self.bestEVFactor = self.evFactorAway
+            return "AWAY"
 
+    def bestBetIsTeamOrPlayers(self):
+        betOn = self.betOn()
+        if betOn == "NEITHER":
+            return "NA"
+        elif betOn == "HOME":
+            return self.homeLineIsTeam()
+        else:
+            return self.awayLineIsTeam()
+
+    def betEither(self):
+        return not (self.betOnHome is None and self.betOnAway is None)
+
+    def bestPlayerSpread(self, winAmt=None, riskAmt= None):
+        spread = "NA"
+        if self.betOnHome is not None:
+            spread = getPlayerSpread(self.homePlayerOddsList, self.homeScoreProb, self.homePlayerFloorOdds)
+        elif self.betOnAway is not None:
+            spread = getPlayerSpread(self.awayPlayerOddsList, self.awayScoreProb, self.awayPlayerFloorOdds)
+        return spread
 

@@ -13,7 +13,7 @@ Prep:
 
 Live Bet:
 1. Retrieve best odds line across betting sites
-2. Calcuate odds of team scoring first using prep data above
+2. Calculate odds of team scoring first using prep data above
 3. Determine if a bet is EV positive
 4. If a bet is EV positive return the kelly bet size
 5. Rank all possible bets, kelly bet sizes and times to determine optimal strategy
@@ -27,12 +27,21 @@ Live Bet:
 # Development Process
 
 - Never commit directly to the main branch
-- Create a branch with your name or a feature title
+- Create a branch with your name and a feature title
 - Maintain a clear commit history (err on the side of being verbose)
 - Use the #todos as a sort of backlog
 - Currently variable naming conventions etc. are a bit of a free for all, but try to:
   - Capitalize when naming files
   - Lowercase and snakecase variables and methods
+  
+# Useful Links
+- The data source for tipoff results: https://www.basketball-reference.com/
+- Similar analysis on reddit: https://www.reddit.com/r/nba/comments/dhandf/oc_elo_system_to_determine_who_are_the_best_at/ (they didn't do it well)
+- **Existing API (with great docs) to fetch NBA data: https://github.com/swar/nba_api/**
+- Source for live lineups: https://www.lineups.com/nba/lineups
+- Source for injury updates (still choosing best): https://www.espn.com/nba/injuries
+- Bball ref scraper I found (don't think it does what we want): https://github.com/vishaalagartha/basketball_reference_scraper/blob/master/API.md
+- Tableau created with tipoff of some current players https://fansided.com/stats/jump-ball-statistics-1998-present/
 
 # Repo contents
 
