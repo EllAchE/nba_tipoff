@@ -73,7 +73,7 @@ print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
 print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
 print()
 
-a_odds = '-122' # -142
+a_odds = '-125' # -142
 p1 = 'porzikr01.html'
 p2 = 'greendr01.html'
 a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)

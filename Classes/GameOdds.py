@@ -44,6 +44,8 @@ class GameOdds:
         self.awayEVFactor = getEvMultiplier(self.awayScoreProb, self.minAwayWinPercentage)
         if self.awayEVFactor < self.homeEVFactor:
             self.bestEVFactor = self.homeEVFactor
+        else:
+            self.bestEVFactor = self.awayEVFactor
 
     def homeLineIsTeam(self):
         if self.bestHomeOdds == self.homeTeamOdds:

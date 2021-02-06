@@ -3,11 +3,20 @@ import json
 from Classes.GameOdds import GameOdds
 
 
-def displayUniqueBetsByEV(betDict):
+def displayUniqueBetsByEV(betDict, showAll=True):
+    oddsList = convertDictToGameOddsObjList(betDict)
+    filteredOddsList = filterBestByGameCode(oddsList)
+    filteredOddsList.sort(key=lambda x: x.bestEVFactor)
+    printOddsObjDetails(filteredOddsList, showAll)
     pass
 
 
-def displayUniqueBetsByEV(betDict):
+def displayUniqueBetsByDatetime(betDict, showAll=True):
+    oddsList = convertDictToGameOddsObjList(betDict)
+    filteredOddsList = filterBestByGameCode(oddsList)
+    filteredOddsList.sort(key=lambda x: x.bestEVFactor)
+    filteredOddsList.sort(key=lambda x: x.gameDatetime)
+    printOddsObjDetails(filteredOddsList, showAll)
     pass
 
 
@@ -32,6 +41,18 @@ def displayAllBetsByExchange(betDict, showAll=True):
     printOddsObjDetails(oddsList, showAll)
 
 
+def filterBestByGameCode(oddsObjList):
+    gameCodes = set()
+    bestPerGameOnly = list()
+
+    for gameOdds in oddsObjList:
+        gameCodes.append(gameOdds.gameCode)
+    for gameCode in gameCodes:
+        singleGameList = list(filter(lambda x: x.gameCode == gameCode), oddsObjList)
+        bestPerGameOnly.append(max(x.bestEVFactor for x in singleGameList))
+    return bestPerGameOnly
+
+
 def convertDictToGameOddsObjList(betDict):
     gameOddsObjList = list()
     for game in betDict['games']:
@@ -50,19 +71,17 @@ def printOddsObjDetails(oddsList, showAll=False):
         floatMinBetOdds = round(float(g.minHomeWinPercentage), 2) if g.betOnHome else round(float(g.minAwayWinPercentage), 2)
         betOnVia = g.bestBetIsTeamOrPlayers()
         playerSpread = g.bestPlayerSpread()
+        i += 1
 
-        print(str(i) + '.', g.gameCode, "|| Bet On:", betOn, "|| Via:", betOnVia, "|| Kelly Bet:", g.kellyBet, "|| EV Factor:", g.bestEVFactor, "|| Tipoff:", g.gameDatetime) # ". Home/Away:", g.home, g.away,
-        print("   || Tippers-H/A", g.expectedHomeTipper + '/' + g.expectedAwayTipper,
-              "|| Odds Home Wins", floatHomeScoreProb, "|| Min Odds (HoDef):", floatMinBetOdds, "|| Home Line:", g.bestHomeOdds, "|| Away Line:", g.bestAwayOdds)
-        print('   Exchange:', g.exchange, '|| Market URL:', g.marketUrl, '|| Odds as of:', g.fetchedDatetime)
-        print()
+        print(str(i) + '.', g.gameCode, "|| Bet On:", betOn, "|| Via:", betOnVia, "|| Kelly Bet:",
+              g.kellyBet, "|| EV Factor:", g.bestEVFactor, "|| Tipoff:", g.gameDatetime) # ". Home/Away:", g.home, g.away,
+        print("   || Tippers-H/A", g.expectedHomeTipper + '/' + g.expectedAwayTipper, "|| Odds Home Wins", floatHomeScoreProb,
+              "|| Min Odds (HoDef):", floatMinBetOdds, "|| Home Line:", g.bestHomeOdds, "|| Away Line:", g.bestAwayOdds)
+        print('   Exchange:', g.exchange, '|| Market URL:', g.marketUrl, '|| Odds as of:', g.fetchedDatetime, '\n')
         if betOnVia == "PLAYERS":
             print("Player Spread:")
             for player in playerSpread:
-                print(player)
-            print()
-
-        i += 1
+                print(player, '\n')
 
 
 def convertDictToGameOddsObjList(betDict):
