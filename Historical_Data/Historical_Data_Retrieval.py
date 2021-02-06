@@ -4,8 +4,6 @@ import pandas as pd
 
 from bs4 import BeautifulSoup
 import requests
-import time
-import random
 import re
 
 # todo record historical betting lines
@@ -13,6 +11,7 @@ import re
 # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
 
 # todo get first shooting player
+from Functions.Utils import sleepChecker
 
 
 def getSingleSeasonGameHeaders(season):
@@ -68,15 +67,6 @@ def getSingleGameHeaders(table_game_strs, table_home_strs, table_away_strs, i):
     game_long = 'https://www.basketball-reference.com/boxscores/pbp/' + game_short + '.html'
 
     return [game_short, game_long, homeStrFull, awayStrFull, homeStrShort, awayStrShort]
-
-
-def sleep_checker(sleepCounter, iterations=3, baseTime=2, randomMultiplier=3):
-    sleepCounter += 1
-    if sleepCounter % iterations == 0:
-        print("sleeping for", str(baseTime), "+ random seconds")
-        time.sleep(baseTime + random.random() * randomMultiplier)
-        sleepCounter = 0
-    return sleepCounter
 
 
 def getPlayerTeamInSeason(playerLink, season, longCode=True):
@@ -231,7 +221,7 @@ def oneSeason(season, path):
 
         sleepCounter = 0
         for line in gameHeaders:
-            sleepCounter = sleep_checker(sleepCounter, iterations=16, baseTime=0, randomMultiplier=1)
+            sleepCounter = sleepChecker(sleepCounter, iterations=16, baseTime=0, randomMultiplier=1)
             try:
                 row = line + getTipWinnerAndFirstScore(line[0], season, line[4], line[5])
                 print(row)

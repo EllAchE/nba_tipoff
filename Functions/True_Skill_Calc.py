@@ -139,7 +139,7 @@ def tipWinProbRange(player1_code, player2_code, json_path='Data/player_skill_dic
     return res
 
 
-def tipWinProb(player1_code, player2_code, json_path='../Data/JSON/player_skill_dictionary.json', psd=None): #win prob for first player
+def tipWinProb(player1_code, player2_code, json_path='Data/JSON/player_skill_dictionary.json', psd=None): #win prob for first player
     env = trueskill.TrueSkill(draw_probability=0, backend='scipy')
     env.make_as_global()
     if psd is None:
@@ -157,10 +157,10 @@ def tipWinProb(player1_code, player2_code, json_path='../Data/JSON/player_skill_
     denom = math.sqrt(size * (ENVIRONMENT.BASE_SIGMA * ENVIRONMENT.BASE_SIGMA) + sum_sigma)
     ts = trueskill.global_env()
     res = ts.cdf(delta_mu / denom)
-    # print('odds', player1_code, 'beats', player2_code, 'are', res)
+    print('odds', player1_code, 'beats', player2_code, 'are', res)
     return res
 
-tipWinProb('onealsh01.html', 'turnemy01.html')
+# tipWinProb('onealsh01.html', 'turnemy01.html')
 
 # def score_first_probability(player1_code, player2_code, player1_is_home, json_path=None, psd=None): #todo long term this needs to have efficiency checks
 #     if psd is None:
@@ -251,13 +251,13 @@ def _matchWithRawNums(winner_mu, winner_sigma, loser_mu, loser_sigma):
         winner_rating_obj, loser_rating_obj = trueskill.rate_1vs1(winner_rating_obj, loser_rating_obj)
         return winner_rating_obj.mu, winner_rating_obj.sigma, loser_rating_obj.mu, loser_rating_obj.sigma
 
-env = trueskill.TrueSkill(draw_probability=0, backend='scipy')
-env.make_as_global()
-
-resetPredictionSummaries() # reset sums
-createPlayerSkillDictionary() # clears the stored values,
-
-sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
-       2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
-
-runForAllSeasons(sss, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD)
+# env = trueskill.TrueSkill(draw_probability=0, backend='scipy')
+# env.make_as_global()
+#
+# resetPredictionSummaries() # reset sums
+# createPlayerSkillDictionary() # clears the stored values,
+#
+# sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
+#        2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
+#
+# runForAllSeasons(sss, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD)

@@ -57,7 +57,7 @@ def teamCodeToSlugName(team_code, team_dict=None, json_path=None):
         with open(json_path) as j_file:
             team_dict = json.load(j_file)
     elif team_dict is None:
-        with open('Data/Public_NBA_API/teams.json') as j_file:
+        with open('Data/JSON/Public_NBA_API/teams.json') as j_file:
             team_dict = json.load(j_file)
 
     for team in team_dict:
