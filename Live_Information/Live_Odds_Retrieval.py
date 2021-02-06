@@ -1,7 +1,6 @@
-# sites with game props
-# https://www.bovada.lv/sports/basketball/nba
-# https://sportsbook.fanduel.com/sports/event/958472.3
-# https://sportsbook.draftkings.com/leagues/basketball/103?category=game-props&subcategory=odd/even
+# todo fetch odds lines for the day from all sites offering props bets
+
+# sites with game props have stubs created for them
 # https://www.betnow.eu/nba/ says it has props bets
 
 # Places to retrieve live lineups
@@ -17,14 +16,13 @@ import requests
 import pandas as pd
 
 import ENVIRONMENT
-from Classes.GameOdds import GameOdds
 from Functions.Odds_Calculator import check_for_edge
 
 
 def getExpectedTipper():
-    lastTipper = getLastTipper()
-    injuryCheck = checkInjury(lastTipper)
-    starteerCheck = checkStarter(lastTipper) #todo confirmation of expected tipper
+#     lastTipper = getLastTipper()
+#     injuryCheck = checkInjury(lastTipper)
+#     starteerCheck = checkStarter(lastTipper) #todo confirmation of expected tipper
     pass
 
 
@@ -59,7 +57,7 @@ def teamCodeToSlugName(team_code, team_dict=None, json_path=None):
         with open(json_path) as j_file:
             team_dict = json.load(j_file)
     elif team_dict is None:
-        with open('Data/Public_NBA_API/teams.json') as j_file:
+        with open('Data/JSON/Public_NBA_API/teams.json') as j_file:
             team_dict = json.load(j_file)
 
     for team in team_dict:
@@ -132,66 +130,3 @@ def getStarters(team_code, team_dict=None): # todo look for a confirmed tag on t
     starters_list.sort(key=sort_fn)
     print(confirmed, date + '.', 'Starters for', team_code, 'are', starters_list)
     return starters_list
-
-
-def displayUniqueBetsByEV(betDict):
-    pass
-
-
-def displayUniqueBetsByEV(betDict):
-    pass
-
-
-def displayAllBetsByEV(betDict):
-    oddsList = convertDictToGameOddsObjList(betDict)
-    oddsList.sort(key=lambda x: x.bestEVFactor)
-    pass
-
-
-def displayAllBetsByDatetime(betDict):
-    oddsList = convertDictToGameOddsObjList(betDict)
-    oddsList.sort(key=lambda x: x.bestEVFactor)
-    oddsList.sort(key=lambda x: x.gameDatetime)
-    pass
-
-
-def displayAllBetsByExchange(betDict):
-    oddsList = convertDictToGameOddsObjList(betDict)
-    oddsList.sort(key=lambda x: x.bestEVFactor)
-    oddsList.sort(key=lambda x: x.gameDatetime)
-    oddsList.sort(key=lambda x: x.exchange)
-    pass
-
-
-def convertDictToGameOddsObjList(betDict):
-    gameOddsObjList = list()
-    for game in betDict['games']:
-        oddsObj = GameOdds(game)
-        gameOddsObjList.append(oddsObj)
-    return gameOddsObjList
-
-
-def printOddsObjDetails(oddsList, showAll=False):
-    i = 0
-    for g in oddsList:
-        if not showAll and not g.betEither():
-            continue
-        betOn = g.betOn()
-        floatHomeScoreProb = round(float(g.homeScoreprob), 2)
-        floatMinBetOdds = round(float(g.minHomeWinPercentage), 2) if g.betOnHome else round(float(g.minAwayWinPercentage), 2)
-        betOnVia = g.bestBetIsTeamOrPlayers()
-        playerSpread = g.bestPlayerSpread()
-
-        print(str(i) + '.', g.gameCode, "|| Bet On:", betOn, "Via:", betOnVia, "|| Kelly Bet:", g.kellyBet, "|| EV Factor:", g.bestEVFactor) # ". Home/Away:", g.home, g.away,
-        print("   Tipoff:", g.gameDatetime, "Tippers-H/A", g.expectedHomeTipper, g.expectedAwayTipper,
-              "Odds Home Wins", floatHomeScoreProb, "Min Odds (HoDef):", floatMinBetOdds, "Home Line:", g.bestHomeOdds, "Away Line:", g.bestAwayOdds)
-        print('   Exchange:', g.exchange, 'Market URL', g.url, 'Odds as of:', g.fetchedDatetime)
-        print()
-        if betOnVia == "PLAYERS":
-            print("Player Spread:", playerSpread)
-            print()
-            pass
-
-        i += 1
-
-        #todo add the player Spread display here

@@ -1,4 +1,6 @@
 import json
+import random
+import time
 import unicodedata
 
 import unidecode as unidecode
@@ -7,7 +9,7 @@ from requests import get
 
 
 def addSlugToNames():
-    with open('../Data/Public_NBA_API/teams.json') as dat_file:
+    with open('../Data/JSON/Public_NBA_API/teams.json') as dat_file:
         team_dict = json.load(dat_file)
 
     for team in team_dict:
@@ -16,7 +18,7 @@ def addSlugToNames():
         slug = slug.lower()
         team['slug'] = slug
 
-    with open('../Data/Public_NBA_API/teams.json', 'w') as w_file:
+    with open('../Data/JSON/Public_NBA_API/teams.json', 'w') as w_file:
         json.dump(team_dict, w_file)
 
     print('added slugs')
@@ -78,3 +80,13 @@ def getHomeTeamFromGameCode(game_code):
 
 def getDashDateAndHomeCodeFromGameCode(game_code):
     return getDashDateFromGameCode(game_code), getHomeTeamFromGameCode(game_code)
+
+
+def sleepChecker(sleepCounter, iterations=3, baseTime=2, randomMultiplier=3, printStop=True):
+    sleepCounter += 1 #todo refactor this to use env or something so that only one line is needed
+    if sleepCounter % iterations == 0:
+        if printStop:
+            print("sleeping for", str(baseTime), "+ random seconds")
+        time.sleep(baseTime + random.random() * randomMultiplier)
+        sleepCounter = 0
+    return sleepCounter
