@@ -33,7 +33,7 @@ def scoreFirstProb(p1Code, p2Code, p1isHome, jsonPath=None, psd=None): #todo lon
     if p1isHome:
         odds = independentVarOdds(ENVIRONMENT.HOME_SCORE_ODDS, odds)
 
-    print('odds', p1Code, 'beats', p2Code, 'are', odds)
+    # print('odds', p1Code, 'beats', p2Code, 'are', odds)
     return odds
 
 
@@ -41,16 +41,18 @@ def getPlayerSpread(oddsLine, winProb, playerSpreadAsSingleAOdds): #todo figure 
     oddsOnly = list()
     playerSpread = list()
     numPlayers = len(oddsLine)
-    kelly = kellyBet(playerSpreadAsSingleAOdds, winProb, 100)
+    lossAmt = costFor1(playerSpreadAsSingleAOdds)
+    kelly = kellyBet(lossAmt, winProb, bankroll=ENVIRONMENT.BANKROLL)
 
     for player in oddsLine:
-        oddsOnly.append(player['odds'])
+        oddsOnly.append(americanToDecimal(player['odds']))
 
     bettingSpread = sysEMainDiagonalVarsNeg1Fill(oddsOnly, amtToLose=kelly)
 
     i = 0
     while i < numPlayers:
-        playerSpread.append({"player": oddsLine[i]['player'], "odds":bettingSpread[i]})
+        playerSpread.append({"player": oddsLine[i]['player'], "bet":bettingSpread[i]})
+        i += 1
 
     return playerSpread
 
@@ -99,7 +101,7 @@ def positiveEvThresholdFromAmerican(odds):
         reqWinPer = 100 / (100 + oddsNum)
     else:
         reqWinPer = oddsNum / (100 + oddsNum)
-    print('with odds', oddsStr, 'you must win', "{:.2f}".format(reqWinPer) + '%')
+    # print('with odds', oddsStr, 'you must win', "{:.2f}".format(reqWinPer) + '%')
 
     return reqWinPer
 
@@ -115,9 +117,9 @@ def costFor100(odds):
         raise ValueError('Odds line is improperly formatted, include the + or -.')
 
 
-def getEvMultiplier(scoreProb, oddsThreshold):
-    winAmt = 100/oddsThreshold - 100
-    return (scoreProb * winAmt - 100 * (1 - scoreProb)) / 100
+def getEvMultiplier(scoreProb, minWinPercentage):
+    winAmt = 1 / minWinPercentage - 1
+    return (scoreProb * winAmt - (1 - scoreProb)) + 1
 
 
 def costFor1(odds):
@@ -202,11 +204,11 @@ def convertPlayerLinesToSingleLine(playerOddsList):
     i = 0
     costsAsAOdds = [playerOddsList[0]['odds'], playerOddsList[1]['odds'], playerOddsList[2]['odds'], playerOddsList[3]['odds'], playerOddsList[4]['odds']]
     costsAsRatios = map(americanToDecimal, costsAsAOdds)
-    costs = sysEMainDiagonalVarsNeg1Fill(list(costsAsRatios))
+    costs = sysEMainDiagonalVarsNeg1Fill(list(costsAsRatios), amtToWin=100)
 
     for cost in costs:
         total += cost
-        print('to win', 'AMT TODO',  'for player', playerOddsList[i]['player'], 'will cost $' + str(cost))
+    # print('to win', 'AMT TODO',  'for player', playerOddsList[i]['player'], 'will cost $' + str(cost))
         i += 1
     total_num = total
     if total_num < 100:

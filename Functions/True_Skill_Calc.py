@@ -132,7 +132,7 @@ def tipWinProb(player1_code, player2_code, json_path='Data/player_skill_dictiona
     denom = math.sqrt(size * (ENVIRONMENT.BASE_SIGMA * ENVIRONMENT.BASE_SIGMA) + sum_sigma)
     ts = trueskill.global_env()
     res = ts.cdf(delta_mu / denom)
-    print('odds', player1_code, 'beats', player2_code, 'are', res)
+    # print('odds', player1_code, 'beats', player2_code, 'are', res)
     return res
 
 

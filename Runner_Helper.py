@@ -11,25 +11,25 @@ def displayUniqueBetsByEV(betDict):
     pass
 
 
-def displayAllBetsByEV(betDict):
+def displayAllBetsByEV(betDict, showAll=True):
     oddsList = convertDictToGameOddsObjList(betDict)
     oddsList.sort(key=lambda x: x.bestEVFactor)
-    pass
+    printOddsObjDetails(oddsList, showAll)
 
 
-def displayAllBetsByDatetime(betDict):
+def displayAllBetsByDatetime(betDict, showAll=True):
     oddsList = convertDictToGameOddsObjList(betDict)
     oddsList.sort(key=lambda x: x.bestEVFactor)
     oddsList.sort(key=lambda x: x.gameDatetime)
-    pass
+    printOddsObjDetails(oddsList, showAll)
 
 
-def displayAllBetsByExchange(betDict):
+def displayAllBetsByExchange(betDict, showAll=True):
     oddsList = convertDictToGameOddsObjList(betDict)
     oddsList.sort(key=lambda x: x.bestEVFactor)
     oddsList.sort(key=lambda x: x.gameDatetime)
     oddsList.sort(key=lambda x: x.exchange)
-    pass
+    printOddsObjDetails(oddsList, showAll)
 
 
 def convertDictToGameOddsObjList(betDict):
@@ -41,25 +41,26 @@ def convertDictToGameOddsObjList(betDict):
 
 
 def printOddsObjDetails(oddsList, showAll=False):
-    i = 0
+    i = 1
     for g in oddsList:
         if not showAll and not g.betEither():
             continue
         betOn = g.betOn()
-        floatHomeScoreProb = round(float(g.homeScoreprob), 2)
+        floatHomeScoreProb = round(float(g.homeScoreProb), 2)
         floatMinBetOdds = round(float(g.minHomeWinPercentage), 2) if g.betOnHome else round(float(g.minAwayWinPercentage), 2)
         betOnVia = g.bestBetIsTeamOrPlayers()
         playerSpread = g.bestPlayerSpread()
 
-        print(str(i) + '.', g.gameCode, "|| Bet On:", betOn, "Via:", betOnVia, "|| Kelly Bet:", g.kellyBet, "|| EV Factor:", g.bestEVFactor) # ". Home/Away:", g.home, g.away,
-        print("   Tipoff:", g.gameDatetime, "Tippers-H/A", g.expectedHomeTipper, g.expectedAwayTipper,
-              "Odds Home Wins", floatHomeScoreProb, "Min Odds (HoDef):", floatMinBetOdds, "Home Line:", g.bestHomeOdds, "Away Line:", g.bestAwayOdds)
-        print('   Exchange:', g.exchange, 'Market URL', g.url, 'Odds as of:', g.fetchedDatetime)
+        print(str(i) + '.', g.gameCode, "|| Bet On:", betOn, "|| Via:", betOnVia, "|| Kelly Bet:", g.kellyBet, "|| EV Factor:", g.bestEVFactor, "|| Tipoff:", g.gameDatetime) # ". Home/Away:", g.home, g.away,
+        print("   || Tippers-H/A", g.expectedHomeTipper + '/' + g.expectedAwayTipper,
+              "|| Odds Home Wins", floatHomeScoreProb, "|| Min Odds (HoDef):", floatMinBetOdds, "|| Home Line:", g.bestHomeOdds, "|| Away Line:", g.bestAwayOdds)
+        print('   Exchange:', g.exchange, '|| Market URL:', g.marketUrl, '|| Odds as of:', g.fetchedDatetime)
         print()
         if betOnVia == "PLAYERS":
-            print("Player Spread:", playerSpread)
+            print("Player Spread:")
+            for player in playerSpread:
+                print(player)
             print()
-            pass
 
         i += 1
 

@@ -14,30 +14,30 @@ class GameOdds:
         self.awayPlayerOddsList = gameDict['odds']['awayPlayerOdds']
         self.gameCode = gameDict['gameCode'] #todo need this to be consistent across exchanges. Can be a teamname/code
         self.exchange = gameDict['exchange']
-        self.url = gameDict['marketUrl']
+        self.marketUrl = gameDict['marketUrl']
+        self.fetchedDatetime = gameDict['fetchedDatetime']
 
-        self.minHomeWinPercentage = positiveEvThresholdFromAmerican(self.homeTeamOdds)
-        self.minAwayWinPercentage = positiveEvThresholdFromAmerican(self.awayTeamOdds)
         self.homePlayerFloorOdds = convertPlayerLinesToSingleLine(self.homePlayerOddsList)
         self.awayPlayerFloorOdds = convertPlayerLinesToSingleLine(self.awayPlayerOddsList)
         self.bestHomeOdds = returnGreaterOdds(self.homeTeamOdds, self.homePlayerFloorOdds)
         self.bestAwayOdds = returnGreaterOdds(self.awayTeamOdds, self.awayPlayerFloorOdds)
-        self.playerSpread = getPlayerSpread(self.homePlayerOddsList, self.homeScoreProb, )
-
+        self.minHomeWinPercentage = positiveEvThresholdFromAmerican(self.bestHomeOdds)
+        self.minAwayWinPercentage = positiveEvThresholdFromAmerican(self.bestAwayOdds)
 
         self.expectedHomeTipper = 'onealsh01.html' # lo.getExpectedTipper(self.home)
         self.expectedAwayTipper = 'turnemy01.html'  # lo.getExpectedTipper(self.away) # todo populate these with center fetch
         self.homeScoreProb = getScoreProb(self.expectedHomeTipper, self.expectedAwayTipper)
         self.awayScoreProb = getScoreProb(self.expectedAwayTipper, self.expectedHomeTipper)
 
-        self.betOnHome = (self.homeScoreProb > self.minHomeWinPercentage)
-        self.betOnAway = (self.awayScoreProb > self.minAwayWinPercentage)
         self.homeKellyBet = kellyBetFromAOddsAndScoreProb(self.homeScoreProb, self.homeTeamOdds)
         self.awayKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.awayTeamOdds)
+        self.betOnHome = (self.homeScoreProb > self.minHomeWinPercentage)
+        self.betOnAway = (self.awayScoreProb > self.minAwayWinPercentage)
+        self.kellyBet = None
 
-        if self.homeKellyBet is not None:
+        if self.homeKellyBet > 0:
             self.kellyBet = {"bet": self.homeKellyBet, "team": self.home}
-        else:
+        elif self.awayKellyBet > 0:
             self.kellyBet = {"bet": self.awayKellyBet, "team": self.away} # todo assumes no same-market arbitrage (possible with player/team lines varying)
 
         self.homeEVFactor = getEvMultiplier(self.homeScoreProb, self.minHomeWinPercentage)
@@ -78,13 +78,14 @@ class GameOdds:
             return self.awayLineIsTeam()
 
     def betEither(self):
-        return not (self.betOnHome is None and self.betOnAway is None)
+        return self.betOnHome or self.betOnAway
 
-    def bestPlayerSpread(self, winAmt=None, riskAmt= None):
+    def bestPlayerSpread(self, winAmt=None, riskAmt=None):
         spread = "NA"
-        if self.betOnHome is not None:
-            spread = getPlayerSpread(self.homePlayerOddsList, self.homeScoreProb, self.homePlayerFloorOdds)
-        elif self.betOnAway is not None:
-            spread = getPlayerSpread(self.awayPlayerOddsList, self.awayScoreProb, self.awayPlayerFloorOdds)
+        if self.bestBetIsTeamOrPlayers() == "PLAYERS":
+            if self.betOnHome is not None:
+                spread = getPlayerSpread(self.homePlayerOddsList, self.homeScoreProb, self.homePlayerFloorOdds)
+            elif self.betOnAway is not None:
+                spread = getPlayerSpread(self.awayPlayerOddsList, self.awayScoreProb, self.awayPlayerFloorOdds)
         return spread
 
