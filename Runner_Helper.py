@@ -1,3 +1,83 @@
+import json
+
+from Classes.GameOdds import GameOdds
+
+
+def displayUniqueBetsByEV(betDict):
+    pass
+
+
+def displayUniqueBetsByEV(betDict):
+    pass
+
+
+def displayAllBetsByEV(betDict):
+    oddsList = convertDictToGameOddsObjList(betDict)
+    oddsList.sort(key=lambda x: x.bestEVFactor)
+    pass
+
+
+def displayAllBetsByDatetime(betDict):
+    oddsList = convertDictToGameOddsObjList(betDict)
+    oddsList.sort(key=lambda x: x.bestEVFactor)
+    oddsList.sort(key=lambda x: x.gameDatetime)
+    pass
+
+
+def displayAllBetsByExchange(betDict):
+    oddsList = convertDictToGameOddsObjList(betDict)
+    oddsList.sort(key=lambda x: x.bestEVFactor)
+    oddsList.sort(key=lambda x: x.gameDatetime)
+    oddsList.sort(key=lambda x: x.exchange)
+    pass
+
+
+def convertDictToGameOddsObjList(betDict):
+    gameOddsObjList = list()
+    for game in betDict['games']:
+        oddsObj = GameOdds(game)
+        gameOddsObjList.append(oddsObj)
+    return gameOddsObjList
+
+
+def printOddsObjDetails(oddsList, showAll=False):
+    i = 0
+    for g in oddsList:
+        if not showAll and not g.betEither():
+            continue
+        betOn = g.betOn()
+        floatHomeScoreProb = round(float(g.homeScoreprob), 2)
+        floatMinBetOdds = round(float(g.minHomeWinPercentage), 2) if g.betOnHome else round(float(g.minAwayWinPercentage), 2)
+        betOnVia = g.bestBetIsTeamOrPlayers()
+        playerSpread = g.bestPlayerSpread()
+
+        print(str(i) + '.', g.gameCode, "|| Bet On:", betOn, "Via:", betOnVia, "|| Kelly Bet:", g.kellyBet, "|| EV Factor:", g.bestEVFactor) # ". Home/Away:", g.home, g.away,
+        print("   Tipoff:", g.gameDatetime, "Tippers-H/A", g.expectedHomeTipper, g.expectedAwayTipper,
+              "Odds Home Wins", floatHomeScoreProb, "Min Odds (HoDef):", floatMinBetOdds, "Home Line:", g.bestHomeOdds, "Away Line:", g.bestAwayOdds)
+        print('   Exchange:', g.exchange, 'Market URL', g.url, 'Odds as of:', g.fetchedDatetime)
+        print()
+        if betOnVia == "PLAYERS":
+            print("Player Spread:", playerSpread)
+            print()
+            pass
+
+        i += 1
+
+        #todo add the player Spread display here
+
+
+def convertDictToGameOddsObjList(betDict):
+    gameOddsObjList = list()
+    for game in betDict['games']:
+        oddsObj = GameOdds(game)
+        gameOddsObjList.append(oddsObj)
+    return gameOddsObjList
+
+
+with open("Data/sample_odds_dict.json") as j:
+    dict = json.load(j)
+    displayAllBetsByExchange(dict)
+
 # I need to - provide team name
 # get starting centers
 # get if they are home or away

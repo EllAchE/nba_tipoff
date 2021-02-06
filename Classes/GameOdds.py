@@ -14,7 +14,7 @@ class GameOdds:
         self.awayPlayerOddsList = gameDict['odds']['awayPlayerOdds']
         self.gameCode = gameDict['gameCode']
         self.exchange = gameDict['exchange']
-        self.url = gameDict['url']
+        self.url = gameDict['marketUrl']
 
         self.minHomeWinPercentage = positiveEvThresholdFromAmerican(self.homeTeamOdds)
         self.minAwayWinPercentage = positiveEvThresholdFromAmerican(self.awayTeamOdds)
@@ -23,8 +23,8 @@ class GameOdds:
         self.bestHomeOdds = returnGreaterOdds(self.homeTeamOdds, self.homePlayerFloorOdds)
         self.bestAwayOdds = returnGreaterOdds(self.awayTeamOdds, self.awayPlayerFloorOdds)
 
-        self.expectedHomeCenter = getExpectedTipper(self.home)
-        self.expectedAwayCenter = getExpectedTipper(self.away)
+        self.expectedHomeCenter = 'onealsh01.html' # getExpectedTipper(self.home) #todo fix this to actually work, hacked for debugging
+        self.expectedAwayCenter = 'turnemy01.html' # getExpectedTipper(self.away)
         self.homeScoreProb = getScoreProb(self.expectedHomeCenter, self.expectedAwayCenter) # todo populate these with center fetch
         self.awayScoreProb = getScoreProb(self.expectedAwayCenter, self.expectedHomeCenter)
 
@@ -38,8 +38,8 @@ class GameOdds:
         else:
             self.kellyBet = {"bet": self.awayKellyBet, "team": self.away} # todo assumes no same-market arbitrage ( could be possible with player/team lines varying)
 
-        self.evFactorHome = getEvMultiplier(self.bestHomeOdds, self.minHomeWinPercentage)
-        self.evFactorAway = getEvMultiplier(self.bestAwayOdds, self.minAwayWinPercentage)
+        self.evFactorHome = getEvMultiplier(self.homeScoreProb, self.minHomeWinPercentage)
+        self.evFactorAway = getEvMultiplier(self.awayScoreProb, self.minAwayWinPercentage)
         if self.evFactorAway < self.evFactorHome:
             self.bestEVFactor = self.evFactorHome
         else:

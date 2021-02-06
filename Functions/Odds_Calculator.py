@@ -9,7 +9,6 @@ import numpy as np
 import trueskill
 
 import ENVIRONMENT
-from Classes.GameOdds import GameOdds
 from Functions.True_Skill_Calc import tipWinProb
 
 
@@ -38,12 +37,13 @@ def score_first_probability(player1_code, player2_code, player1_is_home, json_pa
     return odds
 
 
-def sysEMainDiagonalVarsNeg1Fill(*args, amt_to_win=1):
-    arg_len = len(args)
+def sysEMainDiagonalVarsNeg1Fill(argsList, amt_to_win=1):
+    #todo need standardized form of args
+    arg_len = len(argsList)
     twod_arr = [[]] * arg_len
     i = 0
 
-    for var in args:
+    for var in argsList:
         arr = [-1] * arg_len
         arr[i] = var
         twod_arr[i] = arr
@@ -173,13 +173,15 @@ def getScoreProb(team_center_code, opponent_center_code):
 def convertPlayerLinesToSingleLine(playerOddsList):
     total = 0
     i = 0
-    costs = sysEMainDiagonalVarsNeg1Fill(playerOddsList[0][1], playerOddsList[1][1], playerOddsList[2][1], playerOddsList[3][1], playerOddsList[4][1])
+    costsAsAOdds = [playerOddsList[0]['odds'], playerOddsList[1]['odds'], playerOddsList[2]['odds'], playerOddsList[3]['odds'], playerOddsList[4]['odds']]
+    costsAsRatios = map(americanToDecimal, costsAsAOdds)
+    costs = sysEMainDiagonalVarsNeg1Fill(list(costsAsRatios))
 
     for cost in costs:
         total += cost
-        print('to win $100 for player', playerOddsList[i][0], 'will cost $' + str(cost[0]))
+        print('to win', 'AMT TODO',  'for player', playerOddsList[i]['player'], 'will cost $' + str(cost))
         i += 1
-    total_num = total[0]
+    total_num = total
     if total_num < 100:
         total_num = 10000/total_num
         total = str('+' + str(total_num))
@@ -209,12 +211,12 @@ def independentVarOdds(*args):
     return total_odds/(1 + total_odds)
 
 
-def assessAllBets(betDict):
-    oddsObjList = list()
-    for game in betDict['games']:
-        oddsObj = GameOdds(game)
-        oddsObjList.append(oddsObj)
-    oddsObjList.sort()
+# def assessAllBets(betDict):
+#     oddsObjList = list()
+#     for game in betDict['games']:
+#         oddsObj = GameOdds(game)
+#         oddsObjList.append(oddsObj)
+#     oddsObjList.sort()
 
 
 # p_lines = [['Gobert', 5.5], ['O\'Neale', 8], ['Bogdonavic', 9], ['Mitchell', 12], ['Conley', 14]]

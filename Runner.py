@@ -1,5 +1,4 @@
 from Functions.Odds_Calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb
-from Live_Information.Live_Odds_Retrieval import getStarters
 
 # getStarters('GSW')
 # getStarters('DAL')

@@ -21,9 +21,9 @@ from Functions.Odds_Calculator import check_for_edge
 
 
 def getExpectedTipper():
-    lastTipper = getLastTipper()
-    injuryCheck = checkInjury(lastTipper)
-    starteerCheck = checkStarter(lastTipper) #todo confirmation of expected tipper
+#     lastTipper = getLastTipper()
+#     injuryCheck = checkInjury(lastTipper)
+#     starteerCheck = checkStarter(lastTipper) #todo confirmation of expected tipper
     pass
 
 
@@ -130,4 +130,3 @@ def getStarters(team_code, team_dict=None): # todo look for a confirmed tag on t
     starters_list.sort(key=sort_fn)
     print(confirmed, date + '.', 'Starters for', team_code, 'are', starters_list)
     return starters_list
-
