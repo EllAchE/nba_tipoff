@@ -52,14 +52,14 @@ def save_active_players_teams(start_season):
             player_team = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
             seasons[season][player_code] = [player_team]
 
-    with open('Data/player_team_pairs.json', 'w') as json_file:
+    with open('../Data/JSON/player_team_pairs.json', 'w') as json_file:
         json.dump(seasons, json_file)
 
     print('saved seasons Data')
 
 
-def create_player_skill_dictionary():
-    with open('../Data/player_team_pairs.json') as player_team_pairs_json:
+def createPlayerSkillDictionary():
+    with open('../Data/JSON/player_team_pairs.json') as player_team_pairs_json:
         ptp = json.load(player_team_pairs_json)
 
         player_codes = set()
@@ -72,12 +72,12 @@ def create_player_skill_dictionary():
         for code in player_codes:
             player_skill_dict[code] = {'mu': 25, 'sigma': 25/3, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
 
-    with open('../Data/player_skill_dictionary.json', 'w') as psd:
+    with open('../Data/JSON/player_skill_dictionary.json', 'w') as psd:
         json.dump(player_skill_dict, psd)
         print()
 
 
-def reset_prediction_summaries(j='../Data/prediction_summaries.json'):
+def resetPredictionSummaries(j='../Data/JSON/prediction_summaries.json'):
     with open(j) as json_file:
         d = json.load(json_file)
 

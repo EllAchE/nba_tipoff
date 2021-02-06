@@ -25,7 +25,7 @@ class GameOdds:
         self.minAwayWinPercentage = positiveEvThresholdFromAmerican(self.bestAwayOdds)
 
         self.expectedHomeTipper = 'onealsh01.html' # lo.getExpectedTipper(self.home)
-        self.expectedAwayTipper = 'turnemy01.html'  # lo.getExpectedTipper(self.away) # todo populate these with center fetch
+        self.expectedAwayTipper = 'turnemy01.html'  # lo.getExpectedTipper(self.away) # todo populate these with tipper fetch
         self.homeScoreProb = getScoreProb(self.expectedHomeTipper, self.expectedAwayTipper)
         self.awayScoreProb = getScoreProb(self.expectedAwayTipper, self.expectedHomeTipper)
 

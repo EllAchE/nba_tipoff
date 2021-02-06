@@ -79,7 +79,7 @@ def sleep_checker(sleepCounter, iterations=3, baseTime=2, randomMultiplier=3):
 def getPlayerTeamInSeason(playerLink, season, longCode=True):
     if longCode:
         playerLink = playerLink[11:]
-    with open('../Data/player_team_pairs.json') as teamPairs:
+    with open('../Data/JSON/player_team_pairs.json') as teamPairs:
         seasons = json.load(teamPairs)
         try:
             return seasons[str(season)][playerLink]

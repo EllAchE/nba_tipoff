@@ -7,7 +7,7 @@ from requests import get
 
 
 def addSlugToNames():
-    with open('../Data/Public_NBA_API/teams.json') as dat_file:
+    with open('../Data/JSON/Public_NBA_API/teams.json') as dat_file:
         team_dict = json.load(dat_file)
 
     for team in team_dict:
@@ -16,7 +16,7 @@ def addSlugToNames():
         slug = slug.lower()
         team['slug'] = slug
 
-    with open('../Data/Public_NBA_API/teams.json', 'w') as w_file:
+    with open('../Data/JSON/Public_NBA_API/teams.json', 'w') as w_file:
         json.dump(team_dict, w_file)
 
     print('added slugs')

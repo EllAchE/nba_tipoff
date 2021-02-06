@@ -96,8 +96,6 @@ b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
 print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
 print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
 
-
-
 '''
 Existing apis etc.:
 
@@ -125,8 +123,6 @@ arbitrage offers:
 https://www.betfair.com/sport/basketball/nba/houston-rockets-oklahoma-city-thunder/30266729
 https://www.betburger.com/?sure_bets=1160
 https://punter2pro.com/best-sports-arbing-software/
-
-
 '''
 
 # TECHNICAL TODOS (NOT IN ORDER OF IMPT)
@@ -136,15 +132,9 @@ https://punter2pro.com/best-sports-arbing-software/
 # todo player to fullname to player code relationship
 # todo convert to object oriented (nba_api may solve this)
 # todo create dictionary of active players (use nba_api for this)
-# todo set up a database
-# todo if not proper relational database at least proxy it with json/dictionaries
-# todo use glicko2/compare it to trueskill
-# todo add time decay to glicko/true skill RD
-# todo add possible ranges of prediction accuracy based on RD to prediction prints (don't use in calcs yet)
-# todo set up backtester with assumed odds lines
+# todo set up backtester with assumed odds lines (i.e. -110)
 # todo set up bankroll tracker (with stored values on each site)
 # todo player last name, season and team matcher
-# todo deal with circular imports, make more files
 # todo test if adding in the start of overtime tip performance enhances predictions (may be fatigue facotr/not as good)
 
 # MISC
@@ -153,9 +143,11 @@ https://punter2pro.com/best-sports-arbing-software/
 # todo offensive rebounding/defensive rebounding influence
 # todo track stats on first appearance vs an experienced tipper
 # todo track stats on appearance first time midseason, first tip ever etc.
+# todo track results of game and update bankroll appropriately
 
 # todo betting calendar (i.e. when do sites post their info)
-# todo have scheduler
+# todo record historical betting lines
+# todo have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
 # todo deal with players who play but aren't catalogued for a team (perhaps bad Data, i.e. satorto)
 # todo account for injuries
 # todo get first shooting player
@@ -164,20 +156,6 @@ https://punter2pro.com/best-sports-arbing-software/
 # todo add other stats and run ludwig/ai checker
 
 '''
-To avoid arbitrage flags if we go that route: Bet round numbers, don't be super esoteric and bet at normal times
+To avoid arbitrage flags if we go that route: Bet round numbers, don't be super esoteric and bet at normal times.
+Also consider parlays as throwaways to placate the monitors
 '''
-
-### POTENTIAL ADDITIONAL VARIABLES FOR ODDS MODEL
-# Offensive Efficiency
-# Defensive Efficiency
-# new center record (for low Data on tipper)
-
-# Recency bias in ranking (ARIMA model or similar)
-# Season leaders
-# Likely first shooter percentages
-# Likely other shooter percentages
-# Height matchup
-# combine vertical
-# Injury
-# Back to back/overtime
-# Return from long absence
