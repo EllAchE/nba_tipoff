@@ -1,5 +1,5 @@
 from Functions.Odds_Calculator import positiveEvThresholdFromAmerican, returnGreaterOdds, \
-    convertPlayerLinesToSingleLine, getScoreProb, kellyBetFromAOddsAndScoreProb, getEvMultiplier
+    convertPlayerLinesToSingleLine, getScoreProb, kellyBetFromAOddsAndScoreProb, getEvMultiplier, getPlayerSpread
 import Live_Information.Live_Odds_Retrieval as lo
 
 
@@ -23,6 +23,7 @@ class GameOdds:
         self.awayPlayerFloorOdds = convertPlayerLinesToSingleLine(self.awayPlayerOddsList)
         self.bestHomeOdds = returnGreaterOdds(self.homeTeamOdds, self.homePlayerFloorOdds)
         self.bestAwayOdds = returnGreaterOdds(self.awayTeamOdds, self.awayPlayerFloorOdds)
+        self.playerSpread = getPlayerSpread(self.homePlayerOddsList, self.homeScoreProb, )
 
         self.expectedHomeTipper = lo.getExpectedTipper(self.home)
         self.expectedAwayTipper = lo.getExpectedTipper(self.away) # todo populate these with center fetch
@@ -81,7 +82,11 @@ class GameOdds:
     def betEither(self):
         return not (self.betOnHome is None and self.betOnAway is None)
 
-    def getPlayerSpread(self, winAmt=None, riskAmt= None):
-        self.homePlayerOddsList
-        self.awayPlayerOddsList #todo this needs to be auto calculated
-        pass
+    def bestPlayerSpread(self, winAmt=None, riskAmt= None):
+        spread = "NA"
+        if self.betOnHome is not None:
+            spread = getPlayerSpread(self.homePlayerOddsList, self.homeScoreProb, self.homePlayerFloorOdds)
+        elif self.betOnAway is not None:
+            spread = getPlayerSpread(self.awayPlayerOddsList, self.awayScoreProb, self.awayPlayerFloorOdds)
+        return spread
+

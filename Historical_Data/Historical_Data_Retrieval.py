@@ -8,9 +8,6 @@ import time
 import random
 import re
 
-# todo offensive/defensive efficiency
-# http://www.espn.com/nba/hollinger/teamstats/_/year/2003
-
 # todo historical betting lines
 # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
 
@@ -211,7 +208,7 @@ def getOffDefRatings(season=None, save_path=None):
     return season_dict
 
 
-def correctBlanksInTabel(): #todo fix this
+def correctBlanksInTable(): #todo fix this
     pass
 
 

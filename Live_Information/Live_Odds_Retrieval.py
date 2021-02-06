@@ -177,14 +177,21 @@ def printOddsObjDetails(oddsList, showAll=False):
         if not showAll and not g.betEither():
             continue
         betOn = g.betOn()
-        fhsp = round(float(g.homeScoreprob), 2)
-        fmbo = round(float(g.minHomeWinPercentage), 2) if g.betOnHome else round(float(g.minAwayWinPercentage), 2)
-        bov = g.bestBetIsTeamOrPlayers()
+        floatHomeScoreProb = round(float(g.homeScoreprob), 2)
+        floatMinBetOdds = round(float(g.minHomeWinPercentage), 2) if g.betOnHome else round(float(g.minAwayWinPercentage), 2)
+        betOnVia = g.bestBetIsTeamOrPlayers()
+        playerSpread = g.bestPlayerSpread()
 
-        print(str(i) + '.', g.gameCode, "|| Bet On:", betOn, "Via:", bov, "|| Kelly Bet:", g.kellyBet, "|| EV Factor:", g.bestEVFactor) # ". Home/Away:", g.home, g.away,
+        print(str(i) + '.', g.gameCode, "|| Bet On:", betOn, "Via:", betOnVia, "|| Kelly Bet:", g.kellyBet, "|| EV Factor:", g.bestEVFactor) # ". Home/Away:", g.home, g.away,
         print("   Tipoff:", g.gameDatetime, "Tippers-H/A", g.expectedHomeTipper, g.expectedAwayTipper,
-              "Odds Home Wins", fhsp, "Min Odds (HoDef):", fmbo, "Home Line:", g.bestHomeOdds, "Away Line:", g.bestAwayOdds)
+              "Odds Home Wins", floatHomeScoreProb, "Min Odds (HoDef):", floatMinBetOdds, "Home Line:", g.bestHomeOdds, "Away Line:", g.bestAwayOdds)
         print('   Exchange:', g.exchange, 'Market URL', g.url, 'Odds as of:', g.fetchedDatetime)
         print()
+        if betOnVia == "PLAYERS":
+            print("Player Spread:", playerSpread)
+            print()
+            pass
+
         i += 1
+
         #todo add the player Spread display here

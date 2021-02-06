@@ -37,6 +37,24 @@ def scoreFirstProb(p1Code, p2Code, p1isHome, jsonPath=None, psd=None): #todo lon
     return odds
 
 
+def getPlayerSpread(oddsLine, winProb, playerSpreadAsSingleAOdds): #todo figure out what the input format for this is. Currently assumes objects with keys
+    oddsOnly = list()
+    playerSpread = list()
+    numPlayers = len(oddsLine)
+    kelly = kellyBet(playerSpreadAsSingleAOdds, winProb, 100)
+
+    for player in oddsLine:
+        oddsOnly.append(player['odds'])
+
+    bettingSpread = sysEMainDiagonalVarsNeg1Fill(oddsOnly, amtToLose=kelly)
+
+    i = 0
+    while i < numPlayers:
+        playerSpread.append({"player": oddsLine[i]['player'], "odds":bettingSpread[i]})
+
+    return playerSpread
+
+
 def sysEMainDiagonalVarsNeg1Fill(*args, amtToWin=1, amtToLose=None): #takes in decimal odds
     argLen = len(args)
     twoDArr = [[]] * argLen
