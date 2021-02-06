@@ -8,14 +8,11 @@ import time
 import random
 import re
 
-# todo offensive/defensive efficiency
-# http://www.espn.com/nba/hollinger/teamstats/_/year/2003
-
 # todo historical betting lines
 # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
 
 
-def get_single_season_game_headers(season):
+def getSingleSeasonGameHeaders(season):
     normal_months = ["october", "november", "december", "january", "february", "march", "april", "may", "june"]
     months_2020 = ["october-2019", "november", "december", "january", "february", "march", "july", "august",
                    "september", "october-2020"]
@@ -173,7 +170,7 @@ def getTipWinnerAndFirstScore(game_link, season, home_team, away_team):
         return [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
 
 
-def get_single_team_off_def_data(row, season):
+def getSingleTeamOffDefData(row, season):
     def_rate = row.contents[-1].contents[0]
     off_rate = row.contents[-2].contents[0]
     orr = row.contents[5].contents[0]
@@ -185,7 +182,7 @@ def get_single_team_off_def_data(row, season):
     return team_name, {"team": team_name, "orr": orr, "drr": drr, "rebr": rebr, "eff_fg": eff_fg, "off_rate": off_rate, "def_rate": def_rate, "season": season}
 
 
-def get_off_def_ratings(season=None, save_path=None):
+def getOffDefRatings(season=None, save_path=None):
     if season is not None:
         url = 'http://www.espn.com/nba/hollinger/teamstats/_/year/'.format(season)
     else:
@@ -201,7 +198,7 @@ def get_off_def_ratings(season=None, save_path=None):
     rows = soup.select('tr[class*="row team-"]')
 
     for row in rows:
-        team_name, team_stats = get_single_team_off_def_data(row, season)
+        team_name, team_stats = getSingleTeamOffDefData(row, season)
         season_dict[team_name] = team_stats
 
     if save_path is not None:
@@ -211,11 +208,11 @@ def get_off_def_ratings(season=None, save_path=None):
     return season_dict
 
 
-def correct_blanks_in_table(): #todo fix this
+def correctBlanksInTable(): #todo fix this
     pass
 
 
-def one_season(season, path):
+def oneSeason(season, path):
     temp = pd.DataFrame()
     temp.to_csv(path)
     data_file = open(path, 'w')
@@ -227,7 +224,7 @@ def one_season(season, path):
              'First Scorer', 'Tip Winning Team', 'Tip Losing Team', 'Possession Gaining Player', 'Possession Gaining Player Link',
              'First Scoring Team', 'Scored Upon Team', 'Tip Winner', 'Tip Winner Link', 'Tip Loser',
              'Tip Loser Link', 'Tip Winner Scores'])
-        game_headers = get_single_season_game_headers(season)
+        game_headers = getSingleSeasonGameHeaders(season)
 
         sleep_counter = 0
         for line in game_headers:
@@ -240,7 +237,7 @@ def one_season(season, path):
                 break
 
 
-def get_historical_data_runner_extraction():
+def getHistoricalDataRunnerExtraction():
     start_season = 2021
 
     # sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
@@ -250,7 +247,7 @@ def get_historical_data_runner_extraction():
     all_at_once_path = "tip_and_first_score_details_starting_" + str(start_season) + "_season.csv"
     single_season_path = "tip_and_first_score_details_" + str(start_season) + "_season.csv"
 
-    one_season(start_season, single_season_path)
+    oneSeason(start_season, single_season_path)
 
 test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
                        ['199711160SEA', 'SEA', 'MIL'],

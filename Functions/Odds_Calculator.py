@@ -9,81 +9,108 @@ import numpy as np
 import trueskill
 
 import ENVIRONMENT
-from Classes.GameOdds import GameOdds
 from Functions.True_Skill_Calc import tipWinProb
 
 
-def score_first_probability(player1_code, player2_code, player1_is_home, json_path=None, psd=None): #todo long term this needs to have efficiency checks
+def scoreFirstProb(p1Code, p2Code, p1isHome, jsonPath=None, psd=None): #todo long term this needs to have efficiency checks
     if psd is None:
-        with open(json_path) as json_file:
-            psd = json.load(json_file)
+        with open(jsonPath) as jsonFile:
+            psd = json.load(jsonFile)
 
-    player1 = trueskill.Rating(psd[player1_code]["mu"], psd[player1_code]["sigma"])
-    player2 = trueskill.Rating(psd[player2_code]["mu"], psd[player2_code]["sigma"])
+    player1 = trueskill.Rating(psd[p1Code]["mu"], psd[p1Code]["sigma"])
+    player2 = trueskill.Rating(psd[p2Code]["mu"], psd[p2Code]["sigma"])
     team1 = [player1]
     team2 = [player2]
 
-    delta_mu = sum(r.mu for r in team1) - sum(r.mu for r in team2)
-    sum_sigma = sum(r.sigma ** 2 for r in itertools.chain(team1, team2))
+    deltaMu = sum(r.mu for r in team1) - sum(r.mu for r in team2)
+    sumSigma = sum(r.sigma ** 2 for r in itertools.chain(team1, team2))
     size = len(team1) + len(team2)
-    denom = math.sqrt(size * (ENVIRONMENT.BASE_SIGMA * ENVIRONMENT.BASE_SIGMA) + sum_sigma)
+    denom = math.sqrt(size * (ENVIRONMENT.BASE_SIGMA * ENVIRONMENT.BASE_SIGMA) + sumSigma)
     ts = trueskill.global_env()
-    res = ts.cdf(delta_mu / denom)
+    res = ts.cdf(deltaMu / denom)
 
     odds = res * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1-res) * (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
-    if player1_is_home:
+    if p1isHome:
         odds = independentVarOdds(ENVIRONMENT.HOME_SCORE_ODDS, odds)
 
-    print('odds', player1_code, 'beats', player2_code, 'are', odds)
+    print('odds', p1Code, 'beats', p2Code, 'are', odds)
     return odds
 
 
-def sysEMainDiagonalVarsNeg1Fill(*args, amt_to_win=1):
-    arg_len = len(args)
-    twod_arr = [[]] * arg_len
+def getPlayerSpread(oddsLine, winProb, playerSpreadAsSingleAOdds): #todo figure out what the input format for this is. Currently assumes objects with keys
+    oddsOnly = list()
+    playerSpread = list()
+    numPlayers = len(oddsLine)
+    kelly = kellyBet(playerSpreadAsSingleAOdds, winProb, 100)
+
+    for player in oddsLine:
+        oddsOnly.append(player['odds'])
+
+    bettingSpread = sysEMainDiagonalVarsNeg1Fill(oddsOnly, amtToLose=kelly)
+
+    i = 0
+    while i < numPlayers:
+        playerSpread.append({"player": oddsLine[i]['player'], "odds":bettingSpread[i]})
+
+    return playerSpread
+
+
+def sysEMainDiagonalVarsNeg1Fill(*args, amtToWin=1, amtToLose=None): #takes in decimal odds
+    argLen = len(args)
+    twoDArr = [[]] * argLen
     i = 0
 
     for var in args:
-        arr = [-1] * arg_len
+        arr = [-1] * argLen
         arr[i] = var
-        twod_arr[i] = arr
+        twoDArr[i] = arr
         i += 1
 
-    A = np.array(twod_arr)
-    B = np.array([amt_to_win] * arg_len)
+    A = np.array(twoDArr)
+    B = np.array([amtToWin] * argLen)
 
-    return np.linalg.inv(A).dot(B)
+    playerSpread = np.linalg.inv(A).dot(B)
+
+    if amtToLose is None:
+        return playerSpread
+    else:
+        cost = 0
+        for amt in playerSpread:
+            cost += amt
+
+        multiplier = amtToLose/cost
+        return playerSpread * multiplier
 
 
 # todo add kelly_processor to format input properly
-def kellyBet(loss_amt, win_odds, win_amt=1, bankroll=None): # assumes binary outcome, requires dollar value
-    kelly_ratio = win_odds/loss_amt - (1-win_odds)/win_amt
+def kellyBet(lossAmt, winOdds, winAmt=1, bankroll=None): # assumes binary outcome, requires dollar value
+    kellyRatio = winOdds / lossAmt - (1 - winOdds) / winAmt
 
     if bankroll is None:
-        return kelly_ratio
+        return kellyRatio
     else:
-        return kelly_ratio * bankroll
+        return kellyRatio * bankroll
 
 
 def positiveEvThresholdFromAmerican(odds):
-    odds_str = str(odds)
-    odds_num = float(odds_str[1:])
-    if odds_str[0] == '+':
-        req_win_per = 100 / (100 + odds_num)
+    oddsStr = str(odds)
+    oddsNum = float(oddsStr[1:])
+    if oddsStr[0] == '+':
+        reqWinPer = 100 / (100 + oddsNum)
     else:
-        req_win_per = odds_num / (100 + odds_num)
-    print('with odds', odds_str, 'you must win', "{:.2f}".format(req_win_per) + '%')
+        reqWinPer = oddsNum / (100 + oddsNum)
+    print('with odds', oddsStr, 'you must win', "{:.2f}".format(reqWinPer) + '%')
 
-    return req_win_per
+    return reqWinPer
 
 
 def costFor100(odds):
-    odds_str = str(odds)
-    odds_num = float(odds_str[1:])
-    if odds_str[0] == '+':
-        return 10000/odds_num
-    elif odds_str[0] == '-':
-        return odds_num
+    oddsStr = str(odds)
+    oddsNum = float(oddsStr[1:])
+    if oddsStr[0] == '+':
+        return 10000/oddsNum
+    elif oddsStr[0] == '-':
+        return oddsNum
     else:
         raise ValueError('Odds line is improperly formatted, include the + or -.')
 
@@ -94,25 +121,25 @@ def getEvMultiplier(scoreProb, oddsThreshold):
 
 
 def costFor1(odds):
-    odds_str = str(odds)
-    odds_num = float(odds_str[1:])
-    if odds_str[0] == '+':
-        return 100/odds_num
-    elif odds_str[0] == '-':
-        return odds_num/100
+    oddsStr = str(odds)
+    oddsNum = float(oddsStr[1:])
+    if oddsStr[0] == '+':
+        return 100/oddsNum
+    elif oddsStr[0] == '-':
+        return oddsNum/100
     else:
         raise ValueError('Odds line is improperly formatted, include the + or -.')
 
 
-def decimalToAmerican(dec_odds): # http://www.betsmart.co/odds-conversion-formulas/#americantodecimal
-    if (dec_odds - 1) > 1:
-        return '+' + str(100 * (dec_odds - 1))
+def decimalToAmerican(decOdds): # http://www.betsmart.co/odds-conversion-formulas/#americantodecimal
+    if (decOdds - 1) > 1:
+        return '+' + str(100 * (decOdds - 1))
     else:
-        return '-' + str(100/(dec_odds - 1))
+        return '-' + str(100 / (decOdds - 1))
 
 
-def americanToDecimal(american_odds):
-    odds = positiveEvThresholdFromAmerican(american_odds)
+def americanToDecimal(americanOdds):
+    odds = positiveEvThresholdFromAmerican(americanOdds)
     return 1/odds
 
 
@@ -120,27 +147,27 @@ def check_for_edge(home_team, away_team, home_c, away_c, home_odds, away_odds, b
     pass
 
 
-def tipScoreProb(tip_win_odds, tip_winner_score_odds=ENVIRONMENT.TIP_WINNER_SCORE_ODDS):
-    return tip_win_odds * tip_winner_score_odds + (1-tip_win_odds) * (1-tip_winner_score_odds)
+def tipScoreProb(tipWinOdds, tipWinnerScoresOdds=ENVIRONMENT.TIP_WINNER_SCORE_ODDS):
+    return tipWinOdds * tipWinnerScoresOdds + (1 - tipWinOdds) * (1 - tipWinnerScoresOdds)
 
 
-def kellyBetFromAOddsAndScoreProb(score_prob, american_odds, bankroll=ENVIRONMENT.BANKROLL):
-    loss_amt = costFor1(american_odds)
-    return kellyBet(loss_amt, score_prob, bankroll=bankroll)
+def kellyBetFromAOddsAndScoreProb(scoreProb, americanOdds, bankroll=ENVIRONMENT.BANKROLL):
+    loss_amt = costFor1(americanOdds)
+    return kellyBet(loss_amt, scoreProb, bankroll=bankroll)
 
 
-def checkEvPositiveBackLayAndGetScoreProb(team_odds, team_center_code, opponent_center_code):
-    min_win_rate = positiveEvThresholdFromAmerican(team_odds)
-    min_loss_rate = 1 - min_win_rate
-    tip_win_odds = tipWinProb(team_center_code, opponent_center_code)
-    score_prob = tipScoreProb(tip_win_odds)
+def checkEvPositiveBackLayAndGetScoreProb(teamOdds, teamTipperCode, opponentTipperCode):
+    minWinRate = positiveEvThresholdFromAmerican(teamOdds)
+    minLossRate = 1 - minWinRate
+    tipWinOdds = tipWinProb(teamTipperCode, opponentTipperCode)
+    scoreProb = tipScoreProb(tipWinOdds)
 
-    if score_prob > min_win_rate:
+    if scoreProb > minWinRate:
         print('bet on them')
-        return score_prob
-    elif (1-score_prob) > min_loss_rate:
+        return scoreProb
+    elif (1-scoreProb) > minLossRate:
         print('bet against them')
-        return (1-score_prob)
+        return (1-scoreProb)
     else:
         print('don\'t bet either side')
         return None
@@ -164,8 +191,8 @@ def checkEvPlayerCodesOddsLine(odds, p1, p2):
     return prob
 
 
-def getScoreProb(team_center_code, opponent_center_code):
-    tip_win_odds = tipWinProb(team_center_code, opponent_center_code)
+def getScoreProb(teamTipperCode, opponentTipperCode):
+    tip_win_odds = tipWinProb(teamTipperCode, opponentTipperCode)
     return tipScoreProb(tip_win_odds)
 
 
@@ -179,12 +206,12 @@ def convertPlayerLinesToSingleLine(playerOddsList):
         total += cost
         print('to win $100 for player', playerOddsList[i][0], 'will cost $' + str(cost[0]))
         i += 1
-    total_num = total[0]
-    if total_num < 100:
-        total_num = 10000/total_num
-        total = str('+' + str(total_num))
+    totalNum = total[0]
+    if totalNum < 100:
+        totalNum = 10000/totalNum
+        total = str('+' + str(totalNum))
     else:
-        total = str('-' + str(total_num))
+        total = str('-' + str(totalNum))
     return total
     # def buyPlayersOrTeam(player_lines, team_line): # based on preliminary numbers it's almost certainly
     #     if t_cost > total_num:
@@ -202,19 +229,11 @@ def returnGreaterOdds(odds1, odds2):
 
 
 def independentVarOdds(*args):
-    total_odds = args[0]/(1-args[0])
+    totalOdds = args[0]/(1-args[0])
     for odds in args[1:]:
-        total_odds = total_odds * odds/(1-odds)
+        totalOdds = totalOdds * odds/(1-odds)
 
-    return total_odds/(1 + total_odds)
-
-
-def assessAllBets(betDict):
-    oddsObjList = list()
-    for game in betDict['games']:
-        oddsObj = GameOdds(game)
-        oddsObjList.append(oddsObj)
-    oddsObjList.sort()
+    return totalOdds/(1 + totalOdds)
 
 
 # p_lines = [['Gobert', 5.5], ['O\'Neale', 8], ['Bogdonavic', 9], ['Mitchell', 12], ['Conley', 14]]

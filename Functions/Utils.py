@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from requests import get
 
 
-def add_slug_to_names():
+def addSlugToNames():
     with open('../Data/Public_NBA_API/teams.json') as dat_file:
         team_dict = json.load(dat_file)
 
@@ -22,7 +22,7 @@ def add_slug_to_names():
     print('added slugs')
 
 
-def get_player_suffix(name):
+def getPlayerSuffix(name):
     # copied from this repo https://github.com/vishaalagartha/basketball_reference_scraper/blob/master/basketball_reference_scraper
     normalized_name = unidecode.unidecode(unicodedata.normalize('NFD', name).encode('ascii', 'ignore').decode("utf-8"))
     initial = normalized_name.split(' ')[1][0].lower()
@@ -50,9 +50,9 @@ def get_player_suffix(name):
 
 def createSuffix(name):
     # copied from this repo https://github.com/vishaalagartha/basketball_reference_scraper/blob/master/basketball_reference_scraper
-    normalized_name = unicodedata.normalize('NFD', name.replace(".","")).encode('ascii', 'ignore').decode("utf-8")
-    first = unidecode.unidecode(normalized_name[:2].lower())
-    lasts = normalized_name.split(' ')[1:]
+    normalizedName = unicodedata.normalize('NFD', name.replace(".","")).encode('ascii', 'ignore').decode("utf-8")
+    first = unidecode.unidecode(normalizedName[:2].lower())
+    lasts = normalizedName.split(' ')[1:]
     names = ''.join(lasts)
     second = ""
     if len(names) <= 5:
@@ -64,11 +64,11 @@ def createSuffix(name):
     return second+first + '01.html' #todo this doesn't account for if the name appears more than once
 
 
-def getDashDateFromGameCode(game_code):
-    game_code = str(game_code)
-    year = game_code[:4]
-    month = game_code[4:6]
-    day = game_code[6:8]
+def getDashDateFromGameCode(gameCode):
+    gameCode = str(gameCode)
+    year = gameCode[:4]
+    month = gameCode[4:6]
+    day = gameCode[6:8]
     return year + '-' + month + '-' + day
 
 
