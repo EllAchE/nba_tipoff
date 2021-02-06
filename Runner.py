@@ -126,7 +126,6 @@ https://punter2pro.com/best-sports-arbing-software/
 '''
 
 # TECHNICAL TODOS (NOT IN ORDER OF IMPT)
-# todo fetch odds lines for the day from all sites offering props bets
 # todo make data overwriting transactional
 # todo setup odds prediction to use Ev or win prob rather than bet threshold
 # todo player to fullname to player code relationship
@@ -138,22 +137,12 @@ https://punter2pro.com/best-sports-arbing-software/
 # todo test if adding in the start of overtime tip performance enhances predictions (may be fatigue facotr/not as good)
 
 # MISC
-# todo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # todo bundle together all of the low appearance players as a single entity
-# todo offensive rebounding/defensive rebounding influence
-# todo track stats on first appearance vs an experienced tipper
-# todo track stats on appearance first time midseason, first tip ever etc.
-# todo track results of game and update bankroll appropriately
 
 # todo betting calendar (i.e. when do sites post their info)
-# todo record historical betting lines
 # todo have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
 # todo deal with players who play but aren't catalogued for a team (perhaps bad Data, i.e. satorto)
-# todo account for injuries
-# todo get first shooting player
 # todo scrape/use api from nba.com instead of bball reference https://www.nba.com/game/phx-vs-nyk-0021000598/play-by-play
-# todo incorporate other stats in (see below)
-# todo add other stats and run ludwig/ai checker
 
 '''
 To avoid arbitrage flags if we go that route: Bet round numbers, don't be super esoteric and bet at normal times.

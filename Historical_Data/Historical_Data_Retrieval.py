@@ -8,8 +8,11 @@ import time
 import random
 import re
 
-# todo historical betting lines
+# todo record historical betting lines
+# todo try to find data source for historical betting lines
 # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
+
+# todo get first shooting player
 
 
 def getSingleSeasonGameHeaders(season):
@@ -138,10 +141,10 @@ def getTipWinnerAndFirstScore(gameLink, season, homeTeam, awayTeam):
 
     soup = BeautifulSoup(page.content, 'html.parser')
     # table = soup.select('table[id="pbp"]')
-    possession_win_line = soup.select('td[colspan="5"]')[0].contents
+    possessionWinLine = soup.select('td[colspan="5"]')[0].contents
 
-    if str(possession_win_line[0]) == "Start of 1st quarter":
-        possession_win_line = soup.select('td[colspan="5"]')[1].contents
+    if str(possessionWinLine[0]) == "Start of 1st quarter":
+        possessionWinLine = soup.select('td[colspan="5"]')[1].contents
 
     firstScoreLineOptions = soup.find_all('td', class_='bbr-play-score', limit=2)[:2]
     if re.search(r'makes', str(firstScoreLineOptions[0])) is not None:
@@ -154,9 +157,9 @@ def getTipWinnerAndFirstScore(gameLink, season, homeTeam, awayTeam):
 
     firstScoringPlayer, firstScoringPlayerLink = pNameAndCode(firstScoreLine[0])
     try:
-        tipper1, tipper1Link = pNameAndCode(possession_win_line[1])
-        tipper2, tipper2Link = pNameAndCode(possession_win_line[3])
-        possessing_player, possessing_player_link = pNameAndCode(possession_win_line[5])
+        tipper1, tipper1Link = pNameAndCode(possessionWinLine[1])
+        tipper2, tipper2Link = pNameAndCode(possessionWinLine[3])
+        possessing_player, possessing_player_link = pNameAndCode(possessionWinLine[5])
 
         homeTipper, awayTipper, homeTipperLink, awayTipperLink,  tipWinTeam, tipLosingTeam, tipWinner, tipLoser,\
         tipWinnerLink, tipLoserLink, firstScoringTeam, scoredUponTeam, tipWinScore = conditionalDataChecks(

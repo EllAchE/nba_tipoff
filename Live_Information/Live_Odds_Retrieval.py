@@ -1,7 +1,6 @@
-# sites with game props
-# https://www.bovada.lv/sports/basketball/nba
-# https://sportsbook.fanduel.com/sports/event/958472.3
-# https://sportsbook.draftkings.com/leagues/basketball/103?category=game-props&subcategory=odd/even
+# todo fetch odds lines for the day from all sites offering props bets
+
+# sites with game props have stubs created for them
 # https://www.betnow.eu/nba/ says it has props bets
 
 # Places to retrieve live lineups
@@ -17,7 +16,6 @@ import requests
 import pandas as pd
 
 import ENVIRONMENT
-from Classes.GameOdds import GameOdds
 from Functions.Odds_Calculator import check_for_edge
 
 

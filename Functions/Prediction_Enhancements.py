@@ -1,3 +1,7 @@
+# todo offensive rebounding/defensive rebounding influence
+# todo incorporate other stats in (see below)
+# todo add other stats and run ludwig/ai checker
+
 # Additional variables
 # -	Ref
 # -	Is starter out

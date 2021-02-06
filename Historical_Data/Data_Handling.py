@@ -31,23 +31,23 @@ def save_active_players_teams(start_season):
         print("GET request for season", season, "players list returned status", page.status_code)
         soup = BeautifulSoup(page.content, 'html.parser')
 
-        no_trade_player_tags = soup.find_all('tr', class_="full_table")
-        trade_player_tags = soup.find_all('tr', class_="italic_text partial_table")
-        no_trade_set = set()
+        noTradePlayerTags = soup.find_all('tr', class_="full_table")
+        tradePlayerTags = soup.find_all('tr', class_="italic_text partial_table")
+        noTradeSet = set() # todo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 
-        for tag in trade_player_tags:
+        for tag in tradePlayerTags:
             tag = str(tag)
             player_code = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
             player_team = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
-            if player_code in no_trade_set:
+            if player_code in noTradeSet:
                 seasons[season][player_code] += [player_team]
             else:
                 seasons[season][player_code] = [player_team]
-            no_trade_set.add(player_code)
-        for tag in no_trade_player_tags:
+            noTradeSet.add(player_code)
+        for tag in noTradePlayerTags:
             tag = str(tag)
             player_code = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
-            if player_code in no_trade_set:
+            if player_code in noTradeSet:
                 continue # skip the trade_players who break the regex
             player_team = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
             seasons[season][player_code] = [player_team]
