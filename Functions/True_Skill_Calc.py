@@ -79,8 +79,8 @@ def beforeMatchPredictions(season, psd, dsd, home_p_code, away_p_code, tip_winne
     # home_rating_obj = trueskill.Rating(psd[home_p_code]['mu'], psd[home_p_code]['sigma'])
     # away_rating_obj = trueskill.Rating(psd[away_p_code]['mu'], psd[away_p_code]['sigma'])
     home_odds = tipWinProb(home_p_code, away_p_code, psd=psd)
-    home_p_team = getPlayerTeamInSeason(home_p_code, season, long_code=False)[0]
-    away_p_team = getPlayerTeamInSeason(away_p_code, season, long_code=False)[0]
+    home_p_team = getPlayerTeamInSeason(home_p_code, season, longCode=False)[0]
+    away_p_team = getPlayerTeamInSeason(away_p_code, season, longCode=False)[0]
 
     if psd[home_p_code]['appearances'] > ENVIRONMENT.MIN_APPEARANCES and psd[away_p_code]['appearances'] > ENVIRONMENT.MIN_APPEARANCES:
         if home_odds > winning_bet_threshold:
