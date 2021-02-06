@@ -1,6 +1,23 @@
 from Functions.Odds_Calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb
 from Live_Information.Live_Odds_Retrieval import getStarters
 
+# getStarters('NOP')
+# getStarters('IND')
+# getStarters('CHI')
+# getStarters('ORL')
+# getStarters('TOR')
+# getStarters('BKN')
+# getStarters('MIL')
+# getStarters('CLE')
+# getStarters('CHA')
+# getStarters('WAS')
+# getStarters('MIA')
+# getStarters('OKC')
+# getStarters('MIN')
+# getStarters('DET')
+# getStarters('PHX')
+# getStarters('BOS')
+# getStarters('LAC')
 # getStarters('GSW')
 # getStarters('DAL')
 # getStarters('UTA')
@@ -13,8 +30,68 @@ from Live_Information.Live_Odds_Retrieval import getStarters
 # getStarters('LAL')
 
 a_odds = '-110' # -142
-p1 = 'kanteen01.html'
-p2 = 'embiijo01.html'
+p1 = 'horfoal01.html'
+p2 = 'reidna01.html'
+a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+print()
+
+a_odds = '-110' # -142
+p1 = 'gaffoda01.html'
+p2 = 'vucevni01.html'
+a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+print()
+a_odds = '-110' # -142
+p1 = 'baynear01.html'
+p2 = 'greenje02.html'
+a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+print()
+a_odds = '+108' # -142
+p1 = 'drumman01.html'
+p2 = 'lopezbr01.html'
+a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+print()
+
+a_odds = '-110' # -142
+p1 = 'goberru01.html'
+p2 = 'zelleco01.html'
+a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+print()
+
+a_odds = '-110' # -142
+p1 = 'ibakase01.html'
+p2 = 'thomptr01.html'
+a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+print()
+
+a_odds = '-110' # -142
+p1 = 'aytonde01.html'
+p2 = 'plumlma01.html'
+a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+
+a_odds = '-110' # -142
+p1 = 'adamsst01.html'
+p2 = 'turnemy01.html'
 a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
 b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
 print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))

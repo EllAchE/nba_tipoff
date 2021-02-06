@@ -1,6 +1,6 @@
 from Functions.Odds_Calculator import positiveEvThresholdFromAmerican, returnGreaterOdds, \
     convertPlayerLinesToSingleLine, getScoreProb, kellyBetFromAOddsAndScoreProb, getEvMultiplier
-from Live_Information.Live_Odds_Retrieval import getExpectedTipper
+import Live_Information.Live_Odds_Retrieval as lo
 
 
 class GameOdds:
@@ -24,8 +24,8 @@ class GameOdds:
         self.bestHomeOdds = returnGreaterOdds(self.homeTeamOdds, self.homePlayerFloorOdds)
         self.bestAwayOdds = returnGreaterOdds(self.awayTeamOdds, self.awayPlayerFloorOdds)
 
-        self.expectedHomeTipper = getExpectedTipper(self.home)
-        self.expectedAwayTipper = getExpectedTipper(self.away) # todo populate these with center fetch
+        self.expectedHomeTipper = lo.getExpectedTipper(self.home)
+        self.expectedAwayTipper = lo.getExpectedTipper(self.away) # todo populate these with center fetch
         self.homeScoreProb = getScoreProb(self.expectedHomeTipper, self.expectedAwayTipper)
         self.awayScoreProb = getScoreProb(self.expectedAwayTipper, self.expectedHomeTipper)
 

@@ -103,10 +103,11 @@ def mgm_odds():
     # https://sports.co.betmgm.com/en/sports/events/minnesota-timberwolves-at-san-antonio-spurs-11101908?market=10000
     pass
 
-def betfair_odds():
-    # https://www.betfair.com/sport/basketball/nba/houston-rockets-oklahoma-city-thunder/30266729
-    # these are not american odds so will need some new methods for these
-    pass
+
+# def betfair_odds():
+#     # https://www.betfair.com/sport/basketball/nba/houston-rockets-oklahoma-city-thunder/30266729
+#     # these are not american odds so will need some new methods for these
+#     pass
 
 
 def getStarters(team_code, team_dict=None): # todo look for a confirmed tag on this
