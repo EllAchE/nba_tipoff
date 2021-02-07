@@ -2,8 +2,6 @@ import json
 import csv
 import pandas as pd
 
-from bs4 import BeautifulSoup
-import requests
 import re
 
 # todo record historical betting lines
@@ -11,7 +9,7 @@ import re
 # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
 
 # todo get first shooting player
-from Functions.Utils import sleepChecker
+from Functions.Utils import sleepChecker, getSoupFromUrl
 
 
 def getSingleSeasonGameHeaders(season):
@@ -37,8 +35,7 @@ def getSingleSeasonGameHeaders(season):
 
 def getSingleMonthGameHeaders(season, month):
     url = 'https://www.basketball-reference.com/leagues/NBA_{}_games-{}.html'.format(season, month)
-    page = requests.get(url)
-    soup = BeautifulSoup(page.content, 'html.parser')
+    soup = getSoupFromUrl(url)
 
     tableGameStrs = soup.find_all('th', class_="left")
     tableAwayStrs = soup.select('td[Data-stat="visitor_team_name"]')
@@ -126,10 +123,9 @@ def conditionalDataChecks(homeTeam, awayTeam, tipper1, tipper2, tipper1Link, tip
 def getTipWinnerAndFirstScore(gameLink, season, homeTeam, awayTeam):
     # https://www.basketball-reference.com/boxscores/pbp/201901220OKC.html
     url = 'https://www.basketball-reference.com/boxscores/pbp/{}.html'.format(gameLink)
-    page = requests.get(url)
-    print("GET request for game", gameLink, "returned status", page.status_code)
+    soup, statusCode = getSoupFromUrl(url, returnStatus=True)
+    print("GET request for game", gameLink, "returned status", statusCode)
 
-    soup = BeautifulSoup(page.content, 'html.parser')
     # table = soup.select('table[id="pbp"]')
     possessionWinLine = soup.select('td[colspan="5"]')[0].contents
 
@@ -182,9 +178,8 @@ def getOffDefRatings(season=None, savePath=None):
         url = 'http://www.espn.com/nba/hollinger/teamstats'
         season = 2021
     # http://www.espn.com/nba/hollinger/teamstats/_/year/2020
-    response = requests.get(url)
-    print('GET to', url, 'returned status', response.status_code)
-    soup = BeautifulSoup(response.content, 'html.parser')
+    soup, statusCode = getSoupFromUrl(url, returnStatus=True)
+    print('GET to', url, 'returned status', statusCode)
 
     seasonDict = {}
     seasonDict['season'] = season

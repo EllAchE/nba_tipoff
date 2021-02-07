@@ -137,6 +137,7 @@ https://www.betburger.com/?sure_bets=1160
 https://punter2pro.com/best-sports-arbing-software/
 '''
 
+# Bookmakers https://the-odds-api.com/sports-odds-data/bookmaker-apis.html
 # TECHNICAL TODOS (NOT IN ORDER OF IMPT)
 # todo make data overwriting transactional
 # todo setup odds prediction to use Ev or win prob rather than bet threshold
@@ -155,6 +156,8 @@ https://punter2pro.com/best-sports-arbing-software/
 # todo have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
 # todo deal with players who play but aren't catalogued for a team (perhaps bad Data, i.e. satorto)
 # todo scrape/use api from nba.com instead of bball reference https://www.nba.com/game/phx-vs-nyk-0021000598/play-by-play
+# todo get playbyplay from NCAA for rookie projections
+# https://www.ncaa.com/game/5763659/play-by-play
 
 '''
 To avoid arbitrage flags if we go that route: Bet round numbers, don't be super esoteric and bet at normal times.

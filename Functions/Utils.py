@@ -3,6 +3,7 @@ import random
 import time
 import unicodedata
 
+import requests
 import unidecode as unidecode
 from bs4 import BeautifulSoup
 from requests import get
@@ -76,6 +77,13 @@ def getDashDateFromGameCode(gameCode):
 
 def getHomeTeamFromGameCode(game_code):
     return game_code[-3:]
+
+
+def getSoupFromUrl(url, returnStatus=False):
+    page = requests.get(url)
+    if returnStatus:
+        return BeautifulSoup(page.content, 'html.parser'), page.status_code
+    return BeautifulSoup(page.content, 'html.parser')
 
 
 def getDashDateAndHomeCodeFromGameCode(game_code):

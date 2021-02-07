@@ -1,115 +1,118 @@
 {
-  "games": [{
-    "gameCode": "OKCDAL20201019",
-    "gameDatetime": "2020-03-17 22:00:00 ET",
-    "home": "OKC",
-    "away": "DAL",
-    "exchange": "Draftkings",
-    "marketUrl": "abc.xyz",
-    "fetchedDatetime": "2020-03-17 18:43:05 ET",
-    "odds": {
-      "homeTeamScoreFirstOdds": "-173",
-      "awayTeamScoreFirstOdds": "+106",
-      "homePlayerOdds": [
-        {
-          "player": "Mr. Good",
-          "odds": "+500"
-        },
-        {
-          "player": "Mr. 2nd Option",
-          "odds": "+800"
-        },
-        {
-          "player": "Mr. Overpaid",
-          "odds": "+800"
-        },
-        {
-          "player": "Mr. Defender",
-          "odds": "+1000"
-        },
-        {
-          "player": "Mr. Sux",
-          "odds": "+1200"
-        }
-      ],
-      "awayPlayerOdds": [
-        {
-          "player": "Mr. Stud",
-          "odds": "+450"
-        },
-        {
-          "player": "Mr. Also Good",
-          "odds": "+600"
-        },
-        {
-          "player": "Mr. Lucky",
-          "odds": "+950"
-        },
-        {
-          "player": "Big Shaq",
-          "odds": "+1000"
-        },
-        {
-          "player": "Garbage",
-          "odds": "+1900"
-        }
-      ]
+  "games": [
+    {
+      "gameCode": "OKCDAL20201019",
+      "gameDatetime": "2020-03-17 22:00:00 ET",
+      "home": "OKC",
+      "away": "DAL",
+      "exchange": "Draftkings",
+      "marketUrl": "abc.xyz",
+      "fetchedDatetime": "2020-03-17 18:43:05 ET",
+      "odds": {
+        "homeTeamScoreFirstOdds": "-173",
+        "awayTeamScoreFirstOdds": "+106",
+        "homePlayerOdds": [
+          {
+            "player": "Mr. Good",
+            "odds": "+500"
+          },
+          {
+            "player": "Mr. 2nd Option",
+            "odds": "+800"
+          },
+          {
+            "player": "Mr. Overpaid",
+            "odds": "+800"
+          },
+          {
+            "player": "Mr. Defender",
+            "odds": "+1000"
+          },
+          {
+            "player": "Mr. Sux",
+            "odds": "+1200"
+          }
+        ],
+        "awayPlayerOdds": [
+          {
+            "player": "Mr. Stud",
+            "odds": "+450"
+          },
+          {
+            "player": "Mr. Also Good",
+            "odds": "+600"
+          },
+          {
+            "player": "Mr. Lucky",
+            "odds": "+950"
+          },
+          {
+            "player": "Big Shaq",
+            "odds": "+1000"
+          },
+          {
+            "player": "Garbage",
+            "odds": "+1900"
+          }
+        ]
+      }
+    },
+    {
+      "gameCode": "gameIdentifier",
+      "gameDatetime": "Format (just having same day and time only would also be OK. Timezone matters so needs to be included)",
+      "home": "Team Identifier",
+      "away": "Opponent Identifier",
+      "exchange": "Bovada (for example)",
+      "marketUrl": "url",
+      "fetchedDatetime": "now",
+      "odds": {
+        "homeTeamScoreFirstOdds": "-190",
+        "awayTeamScoreFirstOdds": "-190",
+        "homePlayerOdds": [
+          {
+            "player": "player1Identifier",
+            "odds": "+400"
+          },
+          {
+            "player": "player2Identifier",
+            "odds": "+500"
+          },
+          {
+            "player": "player3Identifier",
+            "odds": "+600"
+          },
+          {
+            "player": "player4Identifier",
+            "odds": "+500"
+          },
+          {
+            "player": "player5Identifier",
+            "odds": "+800"
+          }
+        ],
+        "awayPlayerOdds": [
+          {
+            "player": "player1Identifier",
+            "odds": "+450"
+          },
+          {
+            "player": "player2Identifier",
+            "odds": "+600"
+          },
+          {
+            "player": "player3Identifier",
+            "odds": "+550"
+          },
+          {
+            "player": "player4Identifier",
+            "odds": "+800"
+          },
+          {
+            "player": "player5Identifier",
+            "odds": "+900"
+          }
+        ]
+      }
     }
-  },{
-    "gameCode": "gameIdentifier",
-    "gameDatetime": "Format (just having same day and time only would also be OK. Timezone matters so needs to be included)",
-    "home": "Team Identifier",
-    "away": "Opponent Identifier",
-    "exchange": "Bovada (for example)",
-    "marketUrl": "url",
-    "fetchedDatetime": "now",
-    "odds": {
-      "homeTeamScoreFirstOdds": "-190",
-      "awayTeamScoreFirstOdds": "-190",
-      "homePlayerOdds": [
-        {
-          "player": "player1Identifier",
-          "odds": "+400"
-        },
-        {
-          "player": "player2Identifier",
-          "odds": "+500"
-        },
-        {
-          "player": "player3Identifier",
-          "odds": "+600"
-        },
-        {
-          "player": "player4Identifier",
-          "odds": "+500"
-        },
-        {
-          "player": "player5Identifier",
-          "odds": "+800"
-        }
-      ],
-      "awayPlayerOdds": [
-        {
-          "player": "player1Identifier",
-          "odds": "+450"
-        },
-        {
-          "player": "player2Identifier",
-          "odds": "+600"
-        },
-        {
-          "player": "player3Identifier",
-          "odds": "+550"
-        },
-        {
-          "player": "player4Identifier",
-          "odds": "+800"
-        },
-        {
-          "player": "player5Identifier",
-          "odds": "+900"
-        }
-      ]
-    }
-  }]
+  ]
 }

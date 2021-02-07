@@ -3,17 +3,16 @@ import json
 import re
 import pandas as pd
 
-import requests
-from bs4 import BeautifulSoup
+from Functions.Utils import getSoupFromUrl
 
 
-def concat_csv(save_path):
-    f_names = [i for i in glob.glob('CSV/*.csv')]
-    concatted_csv = pd.concat([pd.read_csv(f) for f in f_names])
-    concatted_csv.to_csv(save_path, index=False, encoding='utf-8-sig')
+def concatCsv(save_path):
+    fNames = [i for i in glob.glob('CSV/*.csv')]
+    concattedCsv = pd.concat([pd.read_csv(f) for f in fNames])
+    concattedCsv.to_csv(save_path, index=False, encoding='utf-8-sig')
 
 
-def save_active_players_teams(start_season):
+def saveActivePlayersTeams(start_season):
     # https://www.basketball-reference.com/leagues/NBA_2021_per_game.html
     seasons_list = list()
     seasons = {}
@@ -27,9 +26,9 @@ def save_active_players_teams(start_season):
         seasons[season] = {}
         url = 'https://www.basketball-reference.com/leagues/NBA_{}_per_game.html'.format(season)
 
-        page = requests.get(url)
-        print("GET request for season", season, "players list returned status", page.status_code)
-        soup = BeautifulSoup(page.content, 'html.parser')
+        soup, statusCode = getSoupFromUrl(url, returnStatus=True)
+        print("GET request for season", season, "players list returned status", statusCode)
+
 
         noTradePlayerTags = soup.find_all('tr', class_="full_table")
         tradePlayerTags = soup.find_all('tr', class_="italic_text partial_table")

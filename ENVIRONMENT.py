@@ -16,4 +16,6 @@ BASE_SIGMA = 25 / 6
 BASE_RATING = 25
 BASE_DEVIATION = 25 * 25 / 3 / 3
 
+LIVE_ODDS_API_1 = '5f92a0468c6f365be7db417f13d52742'
+
 # todo check if home odds applies with COVID
