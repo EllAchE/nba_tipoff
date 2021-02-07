@@ -38,7 +38,7 @@ class GameOdds:
         if self.homeKellyBet > 0:
             self.kellyBet = {"bet": self.homeKellyBet, "team": self.home}
         elif self.awayKellyBet > 0:
-            self.kellyBet = {"bet": self.awayKellyBet, "team": self.away} # todo assumes no same-market arbitrage (possible with player/team lines varying)
+            self.kellyBet = {"bet": self.awayKellyBet, "team": self.away}
 
         self.homeEVFactor = getEvMultiplier(self.homeScoreProb, self.minHomeWinPercentage)
         self.awayEVFactor = getEvMultiplier(self.awayScoreProb, self.minAwayWinPercentage)

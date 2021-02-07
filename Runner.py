@@ -93,7 +93,7 @@ print()
 
 a_odds = '-110' # -142
 p1 = 'plumlma01.html'
-p2 = 'davisan01.html' #todo check
+p2 = 'davisan01.html'
 a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
 b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
 print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
@@ -146,17 +146,15 @@ https://punter2pro.com/best-sports-arbing-software/
 # todo create dictionary of active players (use nba_api for this)
 # todo set up backtester with assumed odds lines (i.e. -110)
 # todo set up bankroll tracker (with stored values on each site)
-# todo player last name, season and team matcher
 # todo test if adding in the start of overtime tip performance enhances predictions (may be fatigue facotr/not as good)
 
 # MISC
 # todo bundle together all of the low appearance players as a single entity
 
 # todo betting calendar (i.e. when do sites post their info)
-# todo have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
+# todo (OVERKILL) have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
 # todo deal with players who play but aren't catalogued for a team (perhaps bad Data, i.e. satorto)
 # todo scrape/use api from nba.com instead of bball reference https://www.nba.com/game/phx-vs-nyk-0021000598/play-by-play
-# todo get playbyplay from NCAA for rookie projections
 # https://www.ncaa.com/game/5763659/play-by-play
 
 '''

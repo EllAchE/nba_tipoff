@@ -7,6 +7,8 @@ import re
 # todo record historical betting lines
 # todo try to find data source for historical betting lines
 # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
+# todo get playbyplay from NCAA for rookie projections
+
 
 # todo get first shooting player
 from Functions.Utils import sleepChecker, getSoupFromUrl
@@ -194,10 +196,6 @@ def getOffDefRatings(season=None, savePath=None):
             json.dump(seasonDict, jsonF)
 
     return seasonDict
-
-
-def correctBlanksInTable(): #todo fix this
-    pass
 
 
 def oneSeason(season, path):
