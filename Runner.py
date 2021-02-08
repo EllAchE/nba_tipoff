@@ -3,6 +3,14 @@ from Functions.Utils import sleepChecker
 from Live_Information.Live_Odds_Retrieval import getStarters
 
 
+# resetPredictionSummaries() # reset sums
+# createPlayerSkillDictionary() # clears the stored values,
+#
+# sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
+#        2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
+#
+# runForAllSeasons(sss, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD)
+
 # teamList = ['NOP','IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX', 'BOS',\
 #            'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
 # teamList.sort()
@@ -11,8 +19,8 @@ from Live_Information.Live_Odds_Retrieval import getStarters
 #     getStarters(team)
 #     sleepCounter = sleepChecker(sleepCounter, printStop=False)
 
-a_odds = '-115' # -142
-p1 = 'lopezro01.html'
+a_odds = '-120'
+p1 = 'couside01.html'
 p2 = 'zelleco01.html'
 a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
 b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
@@ -20,9 +28,9 @@ print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
 print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
 print()
 
-a_odds = '-125' # -142
-p1 = 'goberru01.html'
-p2 = 'turnemy01.html'
+a_odds = '-111' # -142
+p1 = 'lenal01.html'
+p2 = 'gaffoda01.html'
 a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
 b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
 print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
@@ -30,8 +38,17 @@ print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
 print()
 
 a_odds = '-110' # -142
-p1 = 'adebaba01.html'
-p2 = 'robinmi01.html'
+p1 = 'baynear01.html'
+p2 = 'tillmxa01.html'
+a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+print()
+
+a_odds = '-130' # -142
+p1 = 'reidna01.html'
+p2 = 'porzikr01.html'
 a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
 b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
 print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
@@ -39,7 +56,16 @@ print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
 print()
 
 a_odds = '-110' # -142
-p1 = 'thomptr01.html'
+p1 = 'greendr01.html'
+p2 = 'poeltja01.html'
+a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+print()
+
+a_odds = '-105' # -108, -118
+p1 = 'drumman01.html'
 p2 = 'aytonde01.html'
 a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
 b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
@@ -47,67 +73,23 @@ print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
 print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
 print()
 
-a_odds = '-110' # -142
-p1 = 'holmeri01.html'
-p2 = 'ibakase01.html'
+a_odds = '-120'# 2
+p1 = 'jokicni01.html'
+p2 = 'lopezbr01.html'
 a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
 b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
 print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
 print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
 print()
 
-# a_odds = '-110' # -108, -118
-# p1 = 'greenje02.html'
-# p2 = 'embiijo01.html'
-# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-# print()
-#
-# a_odds = '-110' # -142
-# p1 = 'horfoal01.html'
-# p2 = 'reidna01.html'
-# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-# print()
-#
-# a_odds = '-125' # -142
-# p1 = 'porzikr01.html'
-# p2 = 'greendr01.html'
-# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-# print()
-#
-# a_odds = '-110' # -142
-# p1 = 'valanjo01.html'
-# p2 = 'adamsst01.html'
-# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-# print()
-#
-# a_odds = '-110' # -142
-# p1 = 'plumlma01.html'
-# p2 = 'davisan01.html'
-# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-# print()
-#
-# a_odds = '-110' # -142
-# p1 = 'poeltja01.html'
-# p2 = 'couside01.html'
-# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+a_odds = '-110' # -142
+p1 = 'horfoal01.html'
+p2 = 'gasolma01.html'
+a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+print()
 
 '''
 Existing apis etc.:
@@ -138,8 +120,6 @@ https://www.betburger.com/?sure_bets=1160
 https://punter2pro.com/best-sports-arbing-software/
 '''
 
-# Bookmakers https://the-odds-api.com/sports-odds-data/bookmaker-apis.html
-# TECHNICAL TODOS (NOT IN ORDER OF IMPT)
 # todo make data overwriting transactional, i.e. locally saved csv should have all or no rows updated, no partial
 # todo player to fullname to player code relationship
 # todo convert to object oriented, i.e. where players are represented have them be a player object (nba_api may solve this, it has objects for many data types we care about already)

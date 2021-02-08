@@ -83,24 +83,26 @@ def getAllOddsLines(bankroll=ENVIRONMENT.BANKROLL):
     return game_odds_list
 
 
-def fanduel_odds():
+def fanduelOdds():
     # https://sportsbook.fanduel.com/cache/psevent/UK/1/false/958472.3.json
     pass
 
 
-def bovada_odds():
+def bovadaOdds():
     # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
     pass
 
 
-def draftkings_odds():
+def draftkingsOdds():
     # https://sportsbook.draftkings.com/leagues/basketball/103?category=game-props&subcategory=odd/even
     pass
 
 
-def mgm_odds():
+def mgmOdds():
     # https://sports.co.betmgm.com/en/sports/events/minnesota-timberwolves-at-san-antonio-spurs-11101908?market=10000
     pass
+
+# Other bookmakers https://the-odds-api.com/sports-odds-data/bookmaker-apis.html
 
 
 # def betfair_odds():

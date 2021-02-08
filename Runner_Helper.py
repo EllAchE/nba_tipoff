@@ -67,8 +67,8 @@ def printOddsObjDetails(oddsList, showAll=False):
         if not showAll and not g.betEither():
             continue
         betOn = g.betOn()
-        floatHomeScoreProb = round(float(g.homeScoreProb), 2)
-        floatMinBetOdds = round(float(g.minHomeWinPercentage), 2) if g.betOnHome else round(float(g.minAwayWinPercentage), 2)
+        floatHomeScoreProb = round(float(g.homeScoreProb), 3)
+        floatMinBetOdds = round(float(g.minHomeWinPercentage), 3) if g.betOnHome else round(float(g.minAwayWinPercentage), 3)
         betOnVia = g.bestBetIsTeamOrPlayers()
         playerSpread = g.bestPlayerSpread()
         i += 1

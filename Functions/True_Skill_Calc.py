@@ -1,6 +1,7 @@
 import itertools
 import json
 import math
+import os
 
 import ENVIRONMENT
 
@@ -138,15 +139,15 @@ def tipWinProbRange(player1_code, player2_code, json_path='Data/player_skill_dic
     return res
 
 
-def tipWinProb(player1_code, player2_code, json_path='Data/JSON/player_skill_dictionary.json', psd=None): #win prob for first player
-    env = trueskill.TrueSkill(draw_probability=0, backend='scipy')
+def tipWinProb(player1Code, player2Code, jsonPath=os.path.abspath('Data/JSON/player_skill_dictionary.json'), psd=None): #win prob for first player
+    env = trueskill.TrueSkill(draw_probability=0, backend='scipy') # todo fix path management
     env.make_as_global()
     if psd is None:
-        with open(json_path) as json_file:
+        with open(jsonPath) as json_file:
             psd = json.load(json_file)
 
-    player1 = trueskill.Rating(psd[player1_code]["mu"], psd[player1_code]["sigma"])
-    player2 = trueskill.Rating(psd[player2_code]["mu"], psd[player2_code]["sigma"])
+    player1 = trueskill.Rating(psd[player1Code]["mu"], psd[player1Code]["sigma"])
+    player2 = trueskill.Rating(psd[player2Code]["mu"], psd[player2Code]["sigma"])
     team1 = [player1]
     team2 = [player2]
 
@@ -156,7 +157,7 @@ def tipWinProb(player1_code, player2_code, json_path='Data/JSON/player_skill_dic
     denom = math.sqrt(size * (ENVIRONMENT.BASE_SIGMA * ENVIRONMENT.BASE_SIGMA) + sum_sigma)
     ts = trueskill.global_env()
     res = ts.cdf(delta_mu / denom)
-    print('odds', player1_code, 'beats', player2_code, 'are', res)
+    print('odds', player1Code, 'beats', player2Code, 'are', res)
     return res
 
 
@@ -223,17 +224,3 @@ def _matchWithRawNums(winner_mu, winner_sigma, loser_mu, loser_sigma):
         loser_rating_obj = trueskill.Rating(loser_mu, loser_sigma)
         winner_rating_obj, loser_rating_obj = trueskill.rate_1vs1(winner_rating_obj, loser_rating_obj)
         return winner_rating_obj.mu, winner_rating_obj.sigma, loser_rating_obj.mu, loser_rating_obj.sigma
-
-
-# tipWinProb('onealsh01.html', 'turnemy01.html')
-
-# env = trueskill.TrueSkill(draw_probability=0, backend='scipy')
-# env.make_as_global()
-#
-# resetPredictionSummaries() # reset sums
-# createPlayerSkillDictionary() # clears the stored values,
-#
-# sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
-#        2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
-#
-# runForAllSeasons(sss, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD)

@@ -235,6 +235,8 @@ def getHistoricalDataRunnerExtraction():
 
     oneSeason(startSeason, single_season_path)
 
+# getHistoricalDataRunnerExtraction()
+
 test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
                        ['199711160SEA', 'SEA', 'MIL'],
                         ['199711190LAL', 'LAL', 'MIN'],

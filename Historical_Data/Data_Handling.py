@@ -1,5 +1,6 @@
 import glob
 import json
+import os
 import re
 import pandas as pd
 
@@ -58,8 +59,8 @@ def saveActivePlayersTeams(start_season):
 
 
 def createPlayerSkillDictionary():
-    with open('../Data/JSON/player_team_pairs.json') as player_team_pairs_json:
-        ptp = json.load(player_team_pairs_json)
+    with open(os.path.abspath('../Data/JSON/player_team_pairs.json')) as playerTeamPairsJson:
+        ptp = json.load(playerTeamPairsJson)
 
         player_codes = set()
         player_skill_dict = {}
@@ -71,12 +72,12 @@ def createPlayerSkillDictionary():
         for code in player_codes:
             player_skill_dict[code] = {'mu': 25, 'sigma': 25/3, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
 
-    with open('../Data/JSON/player_skill_dictionary.json', 'w') as psd:
+    with open(os.path.abspath('../Data/JSON/player_skill_dictionary.json'), 'w') as psd:
         json.dump(player_skill_dict, psd)
         print()
 
 
-def resetPredictionSummaries(j='../Data/JSON/prediction_summaries.json'):
+def resetPredictionSummaries(j=os.path.abspath('../Data/JSON/prediction_summaries.json')):
     with open(j) as json_file:
         d = json.load(json_file)
 
