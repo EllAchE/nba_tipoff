@@ -140,23 +140,21 @@ https://punter2pro.com/best-sports-arbing-software/
 
 # Bookmakers https://the-odds-api.com/sports-odds-data/bookmaker-apis.html
 # TECHNICAL TODOS (NOT IN ORDER OF IMPT)
-# todo make data overwriting transactional
-# todo setup odds prediction to use Ev or win prob rather than bet threshold
+# todo make data overwriting transactional, i.e. locally saved csv should have all or no rows updated, no partial
 # todo player to fullname to player code relationship
-# todo convert to object oriented (nba_api may solve this)
-# todo create dictionary of active players (use nba_api for this)
-# todo set up backtester with assumed odds lines (i.e. -110)
-# todo set up bankroll tracker (with stored values on each site)
+# todo convert to object oriented, i.e. where players are represented have them be a player object (nba_api may solve this, it has objects for many data types we care about already)
+# todo create dictionary of active players (you can possibly use nba_api for this, and then enhance for bball ref compatibility)
+# todo set up backtester with assumed odds lines, i.e. assuming we are always offered odds on a team of -110, how would the strat perform? (the default should -110)
+# todo OVERKILL set up bankroll tracker (with stored values on each site and overall).
 # todo test if adding in the start of overtime tip performance enhances predictions (may be fatigue facotr/not as good)
 
 # MISC
-# todo bundle together all of the low appearance players as a single entity
+# todo investigate adjsuted starting rankings for low appearance playersy, i.e. if we can assume certain/lower mu values for a class of player we can improve our predictions
 
 # todo betting calendar (i.e. when do sites post their info)
 # todo (OVERKILL) have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
 # todo deal with players who play but aren't catalogued for a team (perhaps bad Data, i.e. satorto)
 # todo scrape/use api from nba.com instead of bball reference https://www.nba.com/game/phx-vs-nyk-0021000598/play-by-play
-# https://www.ncaa.com/game/5763659/play-by-play
 
 '''
 To avoid arbitrage flags if we go that route: Bet round numbers, don't be super esoteric and bet at normal times.

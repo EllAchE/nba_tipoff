@@ -10,7 +10,7 @@ import pandas as pd
 # from Functions.Odds_Calculator import independentVarOdds
 
 # https://trueskill.org/
-# todo use glicko2
+# todo compare performance with elo, glicko2 and others
 # https://github.com/sublee/glicko2/blob/master/glicko2.py
 from Historical_Data.Data_Handling import resetPredictionSummaries, createPlayerSkillDictionary
 from Historical_Data.Historical_Data_Retrieval import getPlayerTeamInSeason
@@ -75,36 +75,35 @@ def runTSForSeason(season, season_csv, json_path, winning_bet_threshold=0.6):
     return winning_bets, losing_bets
 
 
-def beforeMatchPredictions(season, psd, dsd, home_p_code, away_p_code, tip_winner_code, scoring_team, winning_bet_threshold=0.6):
-    # home_rating_obj = trueskill.Rating(psd[home_p_code]['mu'], psd[home_p_code]['sigma'])
-    # away_rating_obj = trueskill.Rating(psd[away_p_code]['mu'], psd[away_p_code]['sigma'])
-    home_odds = tipWinProb(home_p_code, away_p_code, psd=psd)
-    home_p_team = getPlayerTeamInSeason(home_p_code, season, longCode=False)[0]
-    away_p_team = getPlayerTeamInSeason(away_p_code, season, longCode=False)[0]
+# todo setup odds prediction to use Ev or win prob rather than bet threshold
+def beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=0.6):
+    homeOdds = tipWinProb(homePlayerCode, awayPlayerCode, psd=psd)
+    homePlayerTeam = getPlayerTeamInSeason(homePlayerCode, season, longCode=False)[0]
+    awayPlayerTeam = getPlayerTeamInSeason(awayPlayerCode, season, longCode=False)[0]
 
-    if psd[home_p_code]['appearances'] > ENVIRONMENT.MIN_APPEARANCES and psd[away_p_code]['appearances'] > ENVIRONMENT.MIN_APPEARANCES:
-        if home_odds > winning_bet_threshold:
-            if tip_winner_code[11:] == home_p_code:
+    if psd[homePlayerCode]['appearances'] > ENVIRONMENT.MIN_APPEARANCES and psd[awayPlayerCode]['appearances'] > ENVIRONMENT.MIN_APPEARANCES:
+        if homeOdds > winningBetThreshold:
+            if tipWinnerCode[11:] == homePlayerCode:
                 dsd['correctTipoffPredictions'] += 1
                 print('good prediction on home tip winner')
             else:
                 dsd['incorrectTipoffPredictions'] += 1
                 print('bad prediction on home tip winner')
-            if home_p_team == scoring_team:
+            if homePlayerTeam == scoringTeam:
                 dsd["winningBets"] += 1
                 print('good prediction on home scorer')
             else:
                 dsd["losingBets"] += 1
                 print('bad prediction on home tip scorer')
             pass
-        elif (1 - home_odds) > winning_bet_threshold:
-            if tip_winner_code[11:] == away_p_code:
+        elif (1 - homeOdds) > winningBetThreshold:
+            if tipWinnerCode[11:] == awayPlayerCode:
                 dsd['correctTipoffPredictions'] += 1
                 print('good prediction on away tip winner')
             else:
                 dsd['incorrectTipoffPredictions'] += 1
                 print('bad prediction on away tip winner')
-            if away_p_team == scoring_team:
+            if awayPlayerTeam == scoringTeam:
                 dsd["winningBets"] += 1
                 print('good prediction on away scorer')
             else:
@@ -159,32 +158,6 @@ def tipWinProb(player1_code, player2_code, json_path='Data/JSON/player_skill_dic
     res = ts.cdf(delta_mu / denom)
     print('odds', player1_code, 'beats', player2_code, 'are', res)
     return res
-
-# tipWinProb('onealsh01.html', 'turnemy01.html')
-
-# def score_first_probability(player1_code, player2_code, player1_is_home, json_path=None, psd=None): #todo long term this needs to have efficiency checks
-#     if psd is None:
-#         with open(json_path) as json_file:
-#             psd = json.load(json_file)
-#
-#     player1 = trueskill.Rating(psd[player1_code]["mu"], psd[player1_code]["sigma"])
-#     player2 = trueskill.Rating(psd[player2_code]["mu"], psd[player2_code]["sigma"])
-#     team1 = [player1]
-#     team2 = [player2]
-#
-#     delta_mu = sum(r.mu for r in team1) - sum(r.mu for r in team2)
-#     sum_sigma = sum(r.sigma ** 2 for r in itertools.chain(team1, team2))
-#     size = len(team1) + len(team2)
-#     denom = math.sqrt(size * (ENVIRONMENT.BASE_SIGMA * ENVIRONMENT.BASE_SIGMA) + sum_sigma)
-#     ts = trueskill.global_env()
-#     res = ts.cdf(delta_mu / denom)
-#
-#     odds = res * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1-res) * (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
-#     if player1_is_home:
-#         odds = independentVarOdds(ENVIRONMENT.HOME_SCORE_ODDS, odds)
-#
-#     print('odds', player1_code, 'beats', player2_code, 'are', odds)
-#     return odds
 
 
 def runForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD):
@@ -250,6 +223,9 @@ def _matchWithRawNums(winner_mu, winner_sigma, loser_mu, loser_sigma):
         loser_rating_obj = trueskill.Rating(loser_mu, loser_sigma)
         winner_rating_obj, loser_rating_obj = trueskill.rate_1vs1(winner_rating_obj, loser_rating_obj)
         return winner_rating_obj.mu, winner_rating_obj.sigma, loser_rating_obj.mu, loser_rating_obj.sigma
+
+
+# tipWinProb('onealsh01.html', 'turnemy01.html')
 
 # env = trueskill.TrueSkill(draw_probability=0, backend='scipy')
 # env.make_as_global()

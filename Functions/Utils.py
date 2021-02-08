@@ -91,7 +91,7 @@ def getDashDateAndHomeCodeFromGameCode(game_code):
 
 
 def sleepChecker(sleepCounter, iterations=3, baseTime=2, randomMultiplier=3, printStop=True):
-    sleepCounter += 1 #todo refactor this to use env or something so that only one line is needed
+    sleepCounter += 1 #todo refactor this to use env or something so that only one line is needed when time delay needs to be added to a func
     if sleepCounter % iterations == 0:
         if printStop:
             print("sleeping for", str(baseTime), "+ random seconds")

@@ -8,9 +8,9 @@ import re
 # todo try to find data source for historical betting lines
 # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
 # todo get playbyplay from NCAA for rookie projections
+# https://www.ncaa.com/game/5763659/play-by-play
 
 
-# todo get first shooting player
 from Functions.Utils import sleepChecker, getSoupFromUrl
 
 

@@ -35,7 +35,7 @@ from nba_api.stats.endpoints import gamerotation, playbyplayv2, playbyplay
 from Functions.Utils import getDashDateAndHomeCodeFromGameCode
 
 
-def convertBballRefShortToNBA(short_code): #todo have a more robust converter here
+def convertBballRefTeamShortCodeToNBA(short_code):
     if short_code == 'PHO':
         return 'PHX'
     if short_code == 'BRK':
@@ -44,7 +44,7 @@ def convertBballRefShortToNBA(short_code): #todo have a more robust converter he
 
 
 def getTeamDictionaryFromShortCode(short_code):
-    short_code = convertBballRefShortToNBA(short_code)
+    short_code = convertBballRefTeamShortCodeToNBA(short_code)
     nba_teams = teams.get_teams()
     team_dict = [team for team in nba_teams if team['abbreviation'] == short_code][0]
     return team_dict['id']
@@ -107,7 +107,7 @@ def getFirstShotStatistics(shotsBeforeFirstScore):
     while shotIndex < dfLen:
         row = shotsBeforeFirstScore.iloc[shotIndex]
         description = row.HOMEDESCRIPTION if row.HOMEDESCRIPTION is not None else row.VISITORDESCRIPTION
-        team = awayTeam if row.HOMEDESCRIPTION is None else homeTeam #todo tie this to team code not home/away
+        team = awayTeam if row.HOMEDESCRIPTION is None else homeTeam
         player = getPlayerFromShotDescription(description)
         shotType = getShotTypeFromEventDescription(description)
         dataList.append({"shotIndex": shotIndex, "team": team, "player": player, "shotType": shotType})      # free throws should be considered a collective shot, not individual
@@ -116,12 +116,11 @@ def getFirstShotStatistics(shotsBeforeFirstScore):
 
 
 def _getAllShotsBeforeFirstScore(playsBeforeFirstFgDf):
-    shootingPlays = playsBeforeFirstFgDf[playsBeforeFirstFgDf['EVENTMSGTYPE'].isin([1, 2, 3])] #todo check key for FT. May need resetIndex here
+    shootingPlays = playsBeforeFirstFgDf[playsBeforeFirstFgDf['EVENTMSGTYPE'].isin([1, 2, 3])]
     return shootingPlays
 
 
 def getAllEventsBeforeFirstScore(pbpDf):
-    # firstScore = pbpDf.loc[pbpDf.SCORE != None]
     i = 0
     for item in pbpDf.SCORE:
         if item is not None:
@@ -161,29 +160,22 @@ def getTipoffLine(pbpDf, returnIndex=False):
 
     if tipoffContent.HOMEDESCRIPTION is not None:
         content = tipoffContent.HOMEDESCRIPTION
+        isHome = True
     elif tipoffContent.VISITORDESCRIPTION is not None:
         content = tipoffContent.VISITORDESCRIPTION
+        isHome = False
     else:
-        print('nothing for home or away, neutral said', tipoffContent.NEUTRALDESCRIPTION)
-
-    if type == 10:
-        pass
-    if type == 7:
-        pass
-    pass
-
-    tipoffContentList = content.split(' ') # todo use a regex and not a split here ,i.e. violation
-    # todo look at home vs. visitor for next action following index of first
+        raise ValueError('nothing for home or away, neutral said', tipoffContent.NEUTRALDESCRIPTION)
 
     if returnIndex:
-        return tipoffContentList, tipoffSeries.index
-    return tipoffContentList
+        return content, type, isHome, tipoffContent.index
+    return content, type, isHome
 
 
 def getTipoffLineFromGameId(gameId):
     pbpDf = getGamePlayByPlay(gameId)
     tipoffContent = getTipoffLine(pbpDf)
-    return tipoffContent #todo this method needs updating
+    return tipoffContent
 
 
 test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
@@ -225,4 +217,4 @@ print()
 # for item in test_bad_data_games:
 #     getNbaComResultsFromBballReferenceCode(item[0])
 
-# todo use this work to fill in the blanks on the missing games in the csv
+# todo use this work (specifically the getTipoffLine) to fill in the blanks on the missing games in the csv

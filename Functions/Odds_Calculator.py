@@ -12,7 +12,7 @@ import ENVIRONMENT
 from Functions.True_Skill_Calc import tipWinProb
 
 
-def scoreFirstProb(p1Code, p2Code, p1isHome, jsonPath=None, psd=None): #todo long term this needs to have efficiency checks
+def scoreFirstProb(p1Code, p2Code, p1isHome, jsonPath=None, psd=None):
     if psd is None:
         with open(jsonPath) as jsonFile:
             psd = json.load(jsonFile)
@@ -37,7 +37,7 @@ def scoreFirstProb(p1Code, p2Code, p1isHome, jsonPath=None, psd=None): #todo lon
     return odds
 
 
-def getPlayerSpread(oddsLine, winProb, playerSpreadAsSingleAOdds): #todo figure out what the input format for this is. Currently assumes objects with keys
+def getPlayerSpread(oddsLine, winProb, playerSpreadAsSingleAOdds): #todo figure out what the input format should be (currently comes from GameOdds Class). Assumes objects with keys
     oddsOnly = list()
     playerSpread = list()
     numPlayers = len(oddsLine)
@@ -84,7 +84,7 @@ def sysEMainDiagonalVarsNeg1Fill(argsList, amtToWin=1, amtToLose=None): #takes i
         return playerSpread * multiplier
 
 
-# todo add kelly_processor to format input properly
+# todo add "kelly processors" to format input properly, input must be in ratio form (i.e. loss & win amount relate to dollar)
 def kellyBet(lossAmt, winOdds, winAmt=1, bankroll=None): # assumes binary outcome, requires dollar value
     kellyRatio = winOdds / lossAmt - (1 - winOdds) / winAmt
 
@@ -208,7 +208,7 @@ def convertPlayerLinesToSingleLine(playerOddsList):
 
     for cost in costs:
         total += cost
-    # print('to win', 'AMT TODO',  'for player', playerOddsList[i]['player'], 'will cost $' + str(cost))
+    # print('to win $100',  'for player', playerOddsList[i]['player'], 'will cost $' + str(cost))
         i += 1
     total_num = total
     if total_num < 100:

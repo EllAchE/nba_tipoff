@@ -12,7 +12,7 @@ class GameOdds:
         self.awayTeamOdds = gameDict['odds']['awayTeamScoreFirstOdds']
         self.homePlayerOddsList = gameDict['odds']['homePlayerOdds']
         self.awayPlayerOddsList = gameDict['odds']['awayPlayerOdds']
-        self.gameCode = gameDict['gameCode'] #todo need this to be consistent across exchanges. Can be a teamname/code
+        self.gameCode = gameDict['gameCode']
         self.exchange = gameDict['exchange']
         self.marketUrl = gameDict['marketUrl']
         self.fetchedDatetime = gameDict['fetchedDatetime']
