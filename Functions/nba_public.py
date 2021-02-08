@@ -30,7 +30,7 @@ Percentage of first shots taken by particular player
 
 from nba_api.stats.static import teams
 from nba_api.stats.endpoints import leaguegamefinder
-from nba_api.stats.endpoints import playbyplay
+from nba_api.stats.endpoints import gamerotation, playbyplayv2, playbyplay
 
 from Functions.Utils import getDashDateAndHomeCodeFromGameCode
 
@@ -63,23 +63,88 @@ def getAllGamesInSeason(season, short_code):
 
 
 # game date format is YYYY-MM-DD
-def getGameOnDate(date_str, short_code):
+def _getGameObjFromDateAndTeam(date_str, short_code):
     team_id = getTeamDictionaryFromShortCode(short_code)
     all_games = getAllGamesForTeam(team_id)
     return all_games[all_games.GAME_DATE == str(date_str)]
 
 
 def getGameIdFromTeamAndDate(date_str, short_code):
-    game_obj = getGameOnDate(date_str, short_code)
+    game_obj = _getGameObjFromDateAndTeam(date_str, short_code)
     return game_obj.GAME_ID.iloc[0]
 
 
 def getGamePlayByPlay(game_id):
-    return playbyplay.PlayByPlay(game_id).get_data_frames()[0]
+    return playbyplayv2.PlayByPlayV2(game_id).get_data_frames()[0]
 
 
-def getAllShotsBeforeScore():
-    pass
+def getPlayerFromShotDescription(description): # if this need to be fully generic then fetch the playerlast names and do a match on that
+    isMiss = "MISS" in description
+    splitDescription = description.split(' ')
+    if isMiss:
+        return splitDescription[1]
+    else:
+        return splitDescription[0]
+
+
+def getShotTypeFromEventDescription(description):
+    isMiss = "MISS" if "MISS" in description or "BLOCK" in description else "MAKE"
+    if "3PT" in description:
+        return "3PT " + isMiss
+    if "Free Throw" in description:
+        return "FREE THROW " + isMiss
+    return "2PT " + isMiss
+
+
+def getFirstShotStatistics(shotsBeforeFirstScore):
+    shotIndex = 0
+    dataList = list()
+    teamDict = getParticipatingTeamsFromId(shotsBeforeFirstScore.iloc[0].GAME_ID)
+    homeTeam = teamDict['home']
+    awayTeam = teamDict['away']
+
+    dfLen = len(shotsBeforeFirstScore.index)
+    while shotIndex < dfLen:
+        row = shotsBeforeFirstScore.iloc[shotIndex]
+        description = row.HOMEDESCRIPTION if row.HOMEDESCRIPTION is not None else row.VISITORDESCRIPTION
+        team = awayTeam if row.HOMEDESCRIPTION is None else homeTeam #todo tie this to team code not home/away
+        player = getPlayerFromShotDescription(description)
+        shotType = getShotTypeFromEventDescription(description)
+        dataList.append({"shotIndex": shotIndex, "team": team, "player": player, "shotType": shotType})      # free throws should be considered a collective shot, not individual
+        shotIndex += 1
+    return dataList
+
+
+def _getAllShotsBeforeFirstScore(playsBeforeFirstFgDf):
+    shootingPlays = playsBeforeFirstFgDf[playsBeforeFirstFgDf['EVENTMSGTYPE'].isin([1, 2, 3])] #todo check key for FT. May need resetIndex here
+    return shootingPlays
+
+
+def getAllEventsBeforeFirstScore(pbpDf):
+    # firstScore = pbpDf.loc[pbpDf.SCORE != None]
+    i = 0
+    for item in pbpDf.SCORE:
+        if item is not None:
+            return pbpDf[:(i + 1)]
+        i += 1
+
+
+def gameIdToFirstShotList(id):
+    pbpDf = playbyplayv2.PlayByPlayV2(game_id=id).get_data_frames()[0]
+    plays = getAllEventsBeforeFirstScore(pbpDf)
+    shots = _getAllShotsBeforeFirstScore(plays)
+    return shots
+
+
+def getParticipatingTeamsFromId(id):
+    response = gamerotation.GameRotation(game_id=id)
+    awayTeamCity = response.away_team.get_dict()['data'][0][2]
+    awayTeamName = response.away_team.get_dict()['data'][0][3]
+    awayTeamId = response.away_team.get_dict()['data'][0][4]
+    homeTeamCity = response.home_team.get_dict()['data'][0][2]
+    homeTeamName = response.home_team.get_dict()['data'][0][3]
+    homeTeamId = response.home_team.get_dict()['data'][0][4]
+    return {"home": homeTeamCity + ' ' + homeTeamName, "homeId": homeTeamId, "away": awayTeamCity + ' ' + awayTeamName, "awayId": awayTeamId}
 
 
 def getTipoffLine(pbpDf, returnIndex=False):
@@ -115,7 +180,7 @@ def getTipoffLine(pbpDf, returnIndex=False):
     return tipoffContentList
 
 
-def updateMissingTipoffResults(gameId):
+def getTipoffLineFromGameId(gameId):
     pbpDf = getGamePlayByPlay(gameId)
     tipoffContent = getTipoffLine(pbpDf)
     return tipoffContent #todo this method needs updating
@@ -128,9 +193,15 @@ test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
                         ['199711240TOR'], ['199711270IND'], ['201911040PHO']]
 
 
+a, b = getDashDateAndHomeCodeFromGameCode('199711190LAL')
+id = getGameIdFromTeamAndDate(a, b)
+
+x = gameIdToFirstShotList(id)
+y = getFirstShotStatistics(x)
+print()
 
 # class EventMsgType(Enum):
-#     FIELD_GOAL_MADE = 1
+#     FIELD_GOAL_MADE = 1 #todo replace above uses of numbers with ENUM values for readability
 #     FIELD_GOAL_MISSED = 2
 #     FREE_THROWfree_throw_attempt = 3
 #     REBOUND = 4
