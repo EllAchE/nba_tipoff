@@ -3,6 +3,7 @@ import random
 import time
 import unicodedata
 
+import requests
 import unidecode as unidecode
 from bs4 import BeautifulSoup
 from requests import get
@@ -78,12 +79,19 @@ def getHomeTeamFromGameCode(game_code):
     return game_code[-3:]
 
 
+def getSoupFromUrl(url, returnStatus=False):
+    page = requests.get(url)
+    if returnStatus:
+        return BeautifulSoup(page.content, 'html.parser'), page.status_code
+    return BeautifulSoup(page.content, 'html.parser')
+
+
 def getDashDateAndHomeCodeFromGameCode(game_code):
     return getDashDateFromGameCode(game_code), getHomeTeamFromGameCode(game_code)
 
 
 def sleepChecker(sleepCounter, iterations=3, baseTime=2, randomMultiplier=3, printStop=True):
-    sleepCounter += 1 #todo refactor this to use env or something so that only one line is needed
+    sleepCounter += 1 #todo refactor this to use env or something so that only one line is needed when time delay needs to be added to a func
     if sleepCounter % iterations == 0:
         if printStop:
             print("sleeping for", str(baseTime), "+ random seconds")

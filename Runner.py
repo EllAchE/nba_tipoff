@@ -11,62 +11,9 @@ from Live_Information.Live_Odds_Retrieval import getStarters
 #     getStarters(team)
 #     sleepCounter = sleepChecker(sleepCounter, printStop=False)
 
-a_odds = '-110' # -142
-p1 = 'vucevni01.html'
-p2 = 'gaffoda01.html'
-a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-print()
-
-a_odds = '-110' # -142
-p1 = 'kanteen01.html'
-p2 = 'robinmi01.html'
-a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-print()
-a_odds = '-110' # -142
-p1 = 'jokicni01.html'
-p2 = 'holmeri01.html'
-a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-print()
-
-a_odds = '+106' # -142
-p1 = 'drumman01.html'
-p2 = 'lopezbr01.html'
-a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-print()
-
-a_odds = '-110' # -142
-p1 = 'baynear01.html'
-p2 = 'capelca01.html'
-a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-print()
-
-a_odds = '-110' # -108, -118
-p1 = 'greenje02.html'
-p2 = 'embiijo01.html'
-a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-print()
-
-a_odds = '-110' # -142
-p1 = 'horfoal01.html'
-p2 = 'reidna01.html'
+a_odds = '-115' # -142
+p1 = 'lopezro01.html'
+p2 = 'zelleco01.html'
 a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
 b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
 print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
@@ -74,8 +21,8 @@ print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
 print()
 
 a_odds = '-125' # -142
-p1 = 'porzikr01.html'
-p2 = 'greendr01.html'
+p1 = 'goberru01.html'
+p2 = 'turnemy01.html'
 a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
 b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
 print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
@@ -83,8 +30,8 @@ print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
 print()
 
 a_odds = '-110' # -142
-p1 = 'valanjo01.html'
-p2 = 'adamsst01.html'
+p1 = 'adebaba01.html'
+p2 = 'robinmi01.html'
 a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
 b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
 print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
@@ -92,8 +39,8 @@ print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
 print()
 
 a_odds = '-110' # -142
-p1 = 'plumlma01.html'
-p2 = 'davisan01.html' #todo check
+p1 = 'thomptr01.html'
+p2 = 'aytonde01.html'
 a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
 b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
 print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
@@ -101,12 +48,66 @@ print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
 print()
 
 a_odds = '-110' # -142
-p1 = 'poeltja01.html'
-p2 = 'couside01.html'
+p1 = 'holmeri01.html'
+p2 = 'ibakase01.html'
 a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
 b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
 print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
 print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+print()
+
+# a_odds = '-110' # -108, -118
+# p1 = 'greenje02.html'
+# p2 = 'embiijo01.html'
+# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+# print()
+#
+# a_odds = '-110' # -142
+# p1 = 'horfoal01.html'
+# p2 = 'reidna01.html'
+# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+# print()
+#
+# a_odds = '-125' # -142
+# p1 = 'porzikr01.html'
+# p2 = 'greendr01.html'
+# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+# print()
+#
+# a_odds = '-110' # -142
+# p1 = 'valanjo01.html'
+# p2 = 'adamsst01.html'
+# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+# print()
+#
+# a_odds = '-110' # -142
+# p1 = 'plumlma01.html'
+# p2 = 'davisan01.html'
+# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+# print()
+#
+# a_odds = '-110' # -142
+# p1 = 'poeltja01.html'
+# p2 = 'couside01.html'
+# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
 
 '''
 Existing apis etc.:
@@ -137,22 +138,21 @@ https://www.betburger.com/?sure_bets=1160
 https://punter2pro.com/best-sports-arbing-software/
 '''
 
+# Bookmakers https://the-odds-api.com/sports-odds-data/bookmaker-apis.html
 # TECHNICAL TODOS (NOT IN ORDER OF IMPT)
-# todo make data overwriting transactional
-# todo setup odds prediction to use Ev or win prob rather than bet threshold
+# todo make data overwriting transactional, i.e. locally saved csv should have all or no rows updated, no partial
 # todo player to fullname to player code relationship
-# todo convert to object oriented (nba_api may solve this)
-# todo create dictionary of active players (use nba_api for this)
-# todo set up backtester with assumed odds lines (i.e. -110)
-# todo set up bankroll tracker (with stored values on each site)
-# todo player last name, season and team matcher
+# todo convert to object oriented, i.e. where players are represented have them be a player object (nba_api may solve this, it has objects for many data types we care about already)
+# todo create dictionary of active players (you can possibly use nba_api for this, and then enhance for bball ref compatibility)
+# todo set up backtester with assumed odds lines, i.e. assuming we are always offered odds on a team of -110, how would the strat perform? (the default should -110)
+# todo OVERKILL set up bankroll tracker (with stored values on each site and overall).
 # todo test if adding in the start of overtime tip performance enhances predictions (may be fatigue facotr/not as good)
 
 # MISC
-# todo bundle together all of the low appearance players as a single entity
+# todo investigate adjsuted starting rankings for low appearance playersy, i.e. if we can assume certain/lower mu values for a class of player we can improve our predictions
 
 # todo betting calendar (i.e. when do sites post their info)
-# todo have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
+# todo (OVERKILL) have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
 # todo deal with players who play but aren't catalogued for a team (perhaps bad Data, i.e. satorto)
 # todo scrape/use api from nba.com instead of bball reference https://www.nba.com/game/phx-vs-nyk-0021000598/play-by-play
 

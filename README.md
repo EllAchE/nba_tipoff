@@ -4,6 +4,15 @@ Player tipoff skill ranking is done using Microsoft's trueskill algorithm https:
 Elo and glicko/glicko2 were also considered; elo doesn't account for uncertainty and glicko didn't have any ready-made packages.
 Ultimately we'll want to either recreate or adapt a glicko2 algorithm for skill ranking.
 
+# Sportsbook Regulations
+- Sportsbooks have regional restrictions, they vary from country to country and region/state
+- Sportsbooks can/will kick you off for violating their terms of service
+- Arbitrage betting is a reason to kick you off
+- Violating the "one account, one user" policy is another reason to kick you off
+**- Coordinating with a cabal/syndicate to get around bet sizing limits is against the terms of service, even if the bets are made independently**
+- There are payout limits on props bets. For drafkings that is set at $20,000, but it likely varies based on exchange
+
+# Code
 The process is: 
 Prep:
 1. Fetch NBA historical data since 1997

@@ -22,7 +22,8 @@ from Functions.Odds_Calculator import check_for_edge
 def getExpectedTipper():
 #     lastTipper = getLastTipper()
 #     injuryCheck = checkInjury(lastTipper)
-#     starteerCheck = checkStarter(lastTipper) #todo confirmation of expected tipper
+#     starteerCheck = checkStarter(lastTipper) #todo find a way to get and confirm expected tipper; i.e. you have to look at injuries, changes to starting lineup & t4eam history if it's a nonstandard lineup
+# todo in cases where a starter who tips is out we probably want an alert as these are good opportunties for mispricing
     pass
 
 
@@ -108,15 +109,12 @@ def mgm_odds():
 #     pass
 
 
-def getStarters(team_code, team_dict=None): # todo look for a confirmed tag on this
+def getStarters(team_code, team_dict=None):
     full_name = teamCodeToSlugName(team_code, team_dict)
 
     url = 'https://api.lineups.com/nba/fetch/lineups/current/{}'.format(full_name)
     response = requests.get(url).json()
     starters = response['starters']
-
-    def sort_fn(e):
-        return e[1]
 
     starters_list = list()
     for player in starters:
@@ -127,6 +125,9 @@ def getStarters(team_code, team_dict=None): # todo look for a confirmed tag on t
     if not response['nav']['lineup_confirmed']:
         confirmed = 'LINEUP NOT YET CONFIRMED for'
 
-    starters_list.sort(key=sort_fn)
+    def sortFn(e):
+        return e[1]
+
+    starters_list.sort(key=sortFn)
     print(confirmed, date + '.', 'Starters for', team_code, 'are', starters_list)
     return starters_list
