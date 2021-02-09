@@ -3,14 +3,12 @@ import json
 import re
 import pandas as pd
 
-from Functions.Utils import getSoupFromUrl
+from ..functions.utils import getSoupFromUrl
 
-
-def concatCsv(save_path):
+def concatCsv(save_path: str):
     fNames = [i for i in glob.glob('CSV/*.csv')]
     concattedCsv = pd.concat([pd.read_csv(f) for f in fNames])
     concattedCsv.to_csv(save_path, index=False, encoding='utf-8-sig')
-
 
 def saveActivePlayersTeams(start_season):
     # https://www.basketball-reference.com/leagues/NBA_2021_per_game.html

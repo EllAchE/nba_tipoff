@@ -1,6 +1,7 @@
 import itertools
 import json
 import math
+from typing import Any
 
 import ENVIRONMENT
 
@@ -12,9 +13,7 @@ import pandas as pd
 # https://trueskill.org/
 # todo compare performance with elo, glicko2 and others
 # https://github.com/sublee/glicko2/blob/master/glicko2.py
-from Historical_Data.Data_Handling import resetPredictionSummaries, createPlayerSkillDictionary
-from Historical_Data.Historical_Data_Retrieval import getPlayerTeamInSeason
-
+from historical_data.Historical_Data_Retrieval import getPlayerTeamInSeason
 
 def runTSForSeason(season, season_csv, json_path, winning_bet_threshold=0.6):
     df = pd.read_csv(season_csv)
@@ -138,15 +137,17 @@ def tipWinProbRange(player1_code, player2_code, json_path='Data/player_skill_dic
     return res
 
 
-def tipWinProb(player1_code, player2_code, json_path='Data/JSON/player_skill_dictionary.json', psd=None): #win prob for first player
+def tipWinProb(player1_code: str, player2_code: str, json_path: str = 'Data/JSON/player_skill_dictionary.json', psd: Any = None): #win prob for first player
     env = trueskill.TrueSkill(draw_probability=0, backend='scipy')
     env.make_as_global()
+    
     if psd is None:
         with open(json_path) as json_file:
             psd = json.load(json_file)
 
     player1 = trueskill.Rating(psd[player1_code]["mu"], psd[player1_code]["sigma"])
     player2 = trueskill.Rating(psd[player2_code]["mu"], psd[player2_code]["sigma"])
+    
     team1 = [player1]
     team2 = [player2]
 
