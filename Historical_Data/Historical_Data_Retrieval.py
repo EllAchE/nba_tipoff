@@ -226,8 +226,6 @@ def oneSeason(season, path):
 def getHistoricalDataRunnerExtraction():
     startSeason = 2021
 
-    # sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
-    #
     # for start_season in sss:
 
     all_at_once_path = "tip_and_first_score_details_starting_" + str(startSeason) + "_season.csv"

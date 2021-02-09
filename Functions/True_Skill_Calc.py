@@ -162,16 +162,16 @@ def tipWinProb(player1Code, player2Code, jsonPath=os.path.abspath('Data/JSON/pla
 
 
 def runForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD):
-    season_key = ''
+    seasonKey = ''
     for season in seasons:
         runTSForSeason(season, '../Data/CSV/tipoff_and_first_score_details_{}_season.csv'.format(season),
                        '../Data/JSON/player_skill_dictionary.json', winning_bet_threshold)
-        season_key += str(season) + '-'
+        seasonKey += str(season) + '-'
 
     with open('../Data/JSON/prediction_summaries.json') as pred_sum:
         dsd = json.load(pred_sum)
 
-    dsd['seasons'] = season_key + 'with-odds-' + str(winning_bet_threshold)
+    dsd['seasons'] = seasonKey + 'with-odds-' + str(winning_bet_threshold)
 
     with open('../Data/JSON/prediction_summaries.json', 'w') as pred_sum:
         json.dump(dsd, pred_sum)

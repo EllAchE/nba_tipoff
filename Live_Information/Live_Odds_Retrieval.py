@@ -1,8 +1,3 @@
-# todo fetch odds lines for the day from all sites offering props bets
-
-# sites with game props have stubs created for them
-# https://www.betnow.eu/nba/ says it has props bets
-
 # Places to retrieve live lineups
 # https://www.rotowire.com/basketball/nba-lineups.php
 # https://www.nba.com/players/todays-lineups
@@ -10,6 +5,7 @@
 # https://rotogrinders.com/lineups/nba
 # https://dailynbalineups.com/
 # https://www.lineups.com/nba/lineups
+
 import json
 
 import requests
@@ -95,6 +91,17 @@ def bovadaOdds():
 
 def draftkingsOdds():
     # https://sportsbook.draftkings.com/leagues/basketball/103?category=game-props&subcategory=odd/even
+    pass
+
+
+def otherBookieOdds():
+    # todo need to fully exhaust potential bookies/exchanges wit hthis bet
+    pass
+
+
+def betNowOdds():
+    # https://www.betnow.eu/nba/ says it has props bets
+    # this needs to be verified
     pass
 
 
