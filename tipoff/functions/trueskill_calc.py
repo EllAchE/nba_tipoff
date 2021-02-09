@@ -13,7 +13,7 @@ import pandas as pd
 # https://trueskill.org/
 # todo compare performance with elo, glicko2 and others
 # https://github.com/sublee/glicko2/blob/master/glicko2.py
-from historical_data.Historical_Data_Retrieval import getPlayerTeamInSeason
+from tipoff.historical_data.historical_data_retrieval import getPlayerTeamInSeason
 
 def runTSForSeason(season, season_csv, json_path, winning_bet_threshold=0.6):
     df = pd.read_csv(season_csv)

@@ -11,7 +11,7 @@ import re
 # https://www.ncaa.com/game/5763659/play-by-play
 
 
-from functions.Utils import sleepChecker, getSoupFromUrl
+from tipoff.functions.utils import sleepChecker, getSoupFromUrl
 
 
 def getSingleSeasonGameHeaders(season):
