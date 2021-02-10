@@ -13,6 +13,7 @@ import pandas as pd
 
 import ENVIRONMENT
 from Functions.Odds_Calculator import check_for_edge
+from Functions.Utils import sleepChecker
 
 
 def getExpectedTipper():
@@ -140,3 +141,46 @@ def getStarters(team_code, team_dict=None):
     starters_list.sort(key=sortFn)
     print(confirmed, date + '.', 'Starters for', team_code, 'are', starters_list)
     return starters_list
+
+
+def tipperFromTeam(teamShort):
+    with open('Data/JSON/team_tipper_pairs.json') as file:
+        dict = json.load(file)
+    for row in dict["pairs"]:
+        if teamShort == row["team"]:
+            return row["playerCode"]
+
+
+def createTeamTipperDict():
+    teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX',
+                'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
+    teamList.sort()
+    sleepCounter = 0
+    startersList = list()
+    tipperList = list()
+    fullJson = {}
+
+    for teamLine in teamList:
+        startersList.append({"starters": getStarters(teamLine), "team": teamLine})
+        sleepCounter = sleepChecker(sleepCounter, printStop=False)
+
+    for teamLine in startersList:
+        player = teamLine["starters"][0]
+        nameList = player[0].split(' ')
+        lcode = ''
+        i = 0
+        while i < 5:
+            try:
+                lcode += nameList[1][i]
+                i += 1
+            except:
+                break
+        code = lcode + nameList[0][:2] + '01.html'
+        code = code.lower()
+
+        tipperList.append({"playerCode":code, "team": teamLine["team"]})
+    fullJson["pairs"] = tipperList
+
+    with open ('Data/JSON/team_tipper_pairs.json', 'w') as file:
+        json.dump(fullJson, file)
+

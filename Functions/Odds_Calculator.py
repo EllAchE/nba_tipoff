@@ -167,17 +167,17 @@ def checkEvPositiveBackLayAndGetScoreProb(teamOdds, teamTipperCode, opponentTipp
     if scoreProb > minWinRate:
         print('bet on them')
         return scoreProb
-    elif (1-scoreProb) > minLossRate:
+    elif 1 - scoreProb > minLossRate:
         print('bet against them')
-        return (1-scoreProb)
+        return 1 - scoreProb
     else:
         print('don\'t bet either side')
         return None
 
 
 def checkEvPositive(teamOdds, scoreProb):
-    min_win_rate = positiveEvThresholdFromAmerican(teamOdds)
-    if scoreProb > min_win_rate:
+    minWinRate = positiveEvThresholdFromAmerican(teamOdds)
+    if scoreProb > minWinRate:
         return True
     else:
         return False

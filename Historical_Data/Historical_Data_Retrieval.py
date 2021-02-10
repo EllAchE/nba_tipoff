@@ -232,13 +232,3 @@ def getHistoricalDataRunnerExtraction():
     single_season_path = "tip_and_first_score_details_" + str(startSeason) + "_season.csv"
 
     oneSeason(startSeason, single_season_path)
-
-# getHistoricalDataRunnerExtraction()
-
-test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
-                       ['199711160SEA', 'SEA', 'MIL'],
-                        ['199711190LAL', 'LAL', 'MIN'],
-                        ['201911200TOR', 'TOR', 'ORL'],
-                        ['201911260DAL', 'DAL', 'LAC']] # Last one is a violation, others are misformatted
-# '199711210SEA', '199711240TOR', '199711270IND', '201911040PHO',
-#

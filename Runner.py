@@ -1,92 +1,99 @@
 from Functions.Odds_Calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb
 from Functions.Utils import sleepChecker
-from Live_Information.Live_Odds_Retrieval import getStarters
-
+from Live_Information.Live_Odds_Retrieval import getStarters, createTeamTipperDict, tipperFromTeam
 
 # resetPredictionSummaries() # reset sums
 # createPlayerSkillDictionary() # clears the stored values,
 #
 # runForAllSeasons(ENVIRONMENT., winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD)
 
-# teamList = ['NOP','IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX', 'BOS',\
-#            'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
-# teamList.sort()
-# sleepCounter = 0
-# for team in teamList:
-#     getStarters(team)
-#     sleepCounter = sleepChecker(sleepCounter, printStop=False)
+# a_odds = '-125'
+# t1 = 'BKN'
+# t2 = 'DET'
+# p1 = tipperFromTeam(t1)
+# p2 = tipperFromTeam(t2)
+# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+# print()
 
-a_odds = '-120'
-p1 = 'couside01.html'
-p2 = 'zelleco01.html'
+a_odds = '-125'
+t1 = 'HOU'
+t2 = 'NOP'
+p1 = tipperFromTeam(t1)
+p2 = tipperFromTeam(t2)
 a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
 b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
 print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
 print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
 print()
 
-a_odds = '-111' # -142
-p1 = 'lenal01.html'
-p2 = 'gaffoda01.html'
-a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-print()
+# a_odds = '-105'
+# t1 = 'NYK'
+# t2 = 'MIA'
+# p1 = tipperFromTeam(t1)
+# p2 = tipperFromTeam(t2)
+# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+# print()
 
-a_odds = '-110' # -142
-p1 = 'baynear01.html'
-p2 = 'tillmxa01.html'
-a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-print()
-
-a_odds = '-130' # -142
+a_odds = '-113'
+t1 = 'GSW'
+t2 = 'SAS'
+p1 = tipperFromTeam(t1)
+p2 = tipperFromTeam(t2)
 p1 = 'reidna01.html'
-p2 = 'porzikr01.html'
 a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
 b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
 print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
 print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
 print()
 
-a_odds = '-110' # -142
-p1 = 'greendr01.html'
-p2 = 'poeltja01.html'
+a_odds = '-125'
+t1 = 'BOS'
+t2 = 'UTA'
+p1 = tipperFromTeam(t1)
+p2 = tipperFromTeam(t2)
 a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
 b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
 print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
 print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
 print()
 
-a_odds = '-105' # -108, -118
-p1 = 'drumman01.html'
-p2 = 'aytonde01.html'
-a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-print()
+# a_odds = '-125'
+# t1 = 'ORL'
+# t2 = 'POR'
+# p1 = tipperFromTeam(t1)
+# p2 = tipperFromTeam(t2)
+# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+# print()
 
-a_odds = '-120'# 2
-p1 = 'jokicni01.html'
-p2 = 'lopezbr01.html'
-a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-print()
+# a_odds = '-125'
+# t1 = 'PHI'
+# t2 = 'SAC'
+# p1 = tipperFromTeam(t1)
+# p2 = tipperFromTeam(t2)
+# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
+# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+# print()
 
-a_odds = '-110' # -142
-p1 = 'horfoal01.html'
-p2 = 'gasolma01.html'
-a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-print()
+# getHistoricalDataRunnerExtraction()
+
+# test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
+#                        ['199711160SEA', 'SEA', 'MIL'],
+#                         ['199711190LAL', 'LAL', 'MIN'],
+#                         ['201911200TOR', 'TOR', 'ORL'],
+#                         ['201911260DAL', 'DAL', 'LAC']] # Last one is a violation, others are misformatted
+# '199711210SEA', '199711240TOR', '199711270IND', '201911040PHO',
+#
 
 '''
 Existing apis etc.:
@@ -132,6 +139,8 @@ https://punter2pro.com/best-sports-arbing-software/
 # todo (OVERKILL) have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
 # todo deal with players who play but aren't catalogued for a team (perhaps bad Data, i.e. satorto)
 # todo scrape/use api from nba.com instead of bball reference https://www.nba.com/game/phx-vs-nyk-0021000598/play-by-play
+
+# todo see if back to back against same team matters
 
 '''
 To avoid arbitrage flags if we go that route: Bet round numbers, don't be super esoteric and bet at normal times.
