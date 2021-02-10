@@ -9,8 +9,7 @@ import re
 # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
 # todo get playbyplay from NCAA for rookie projections
 # https://www.ncaa.com/game/5763659/play-by-play
-
-
+import ENVIRONMENT
 from Functions.Utils import sleepChecker, getSoupFromUrl
 
 
@@ -71,7 +70,7 @@ def getSingleGameHeaders(table_game_strs, table_home_strs, table_away_strs, i):
 def getPlayerTeamInSeason(playerLink, season, longCode=True):
     if longCode:
         playerLink = playerLink[11:]
-    with open('../Data/JSON/player_team_pairs.json') as teamPairs:
+    with open(ENVIRONMENT.PLAYER_TEAM_PAIR_DICT_PATH) as teamPairs:
         seasons = json.load(teamPairs)
         try:
             return seasons[str(season)][playerLink]
@@ -223,7 +222,7 @@ def oneSeason(season, path):
                 break
 
 
-def getHistoricalDataRunnerExtraction():
+def update2021Data():
     startSeason = 2021
 
     # for start_season in sss:

@@ -12,14 +12,15 @@ import requests
 import pandas as pd
 
 import ENVIRONMENT
-from Functions.Odds_Calculator import check_for_edge
+from Functions.Odds_Calculator import check_for_edge, checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb
 from Functions.Utils import sleepChecker
 
 
 def getExpectedTipper():
 #     lastTipper = getLastTipper()
 #     injuryCheck = checkInjury(lastTipper)
-#     starteerCheck = checkStarter(lastTipper) #todo find a way to get and confirm expected tipper; i.e. you have to look at injuries, changes to starting lineup & t4eam history if it's a nonstandard lineup
+#     starteerCheck = checkStarter(lastTipper)
+# todo find a way to get and confirm expected tipper; i.e. you have to look at injuries, changes to starting lineup & team history if it's a nonstandard lineup
 # todo in cases where a starter who tips is out we probably want an alert as these are good opportunties for mispricing
     pass
 
@@ -96,7 +97,7 @@ def draftkingsOdds():
 
 
 def otherBookieOdds():
-    # todo need to fully exhaust potential bookies/exchanges wit hthis bet
+    # todo need to fully exhaust potential bookies/exchanges with player props bet
     pass
 
 
@@ -151,6 +152,15 @@ def tipperFromTeam(teamShort):
             return row["playerCode"]
 
 
+def getAllExpectedStarters():
+    teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX',
+                'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
+    sleepCounter = 0
+    for team in teamList:
+        sleepChecker(sleepCounter, 5, baseTime=0, randomMultiplier=1)
+        getStarters(team)
+
+
 def createTeamTipperDict():
     teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX',
                 'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
@@ -184,3 +194,11 @@ def createTeamTipperDict():
     with open ('Data/JSON/team_tipper_pairs.json', 'w') as file:
         json.dump(fullJson, file)
 
+def getDailyOdds(t1, t2, a_odds=-110):
+    p1 = tipperFromTeam(t1)
+    p2 = tipperFromTeam(t2)
+    a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+    b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+    print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=ENVIRONMENT.BANKROLL))
+    print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=ENVIRONMENT.BANKROLL))
+    print()

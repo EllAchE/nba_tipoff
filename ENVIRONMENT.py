@@ -1,6 +1,8 @@
 # This is where parameters can be tuned
 
 # Tipoff Threshold Variables
+import os
+
 TIPOFF_ODDS_THRESHOLD = 0.73 # This will be deprecated
 MIN_APPEARANCES = 20
 MAX_APPEARANCES = 900
@@ -16,6 +18,8 @@ BANKROLL = 6500
 BASE_SIGMA = 25 / 6
 BASE_RATING = 25
 BASE_DEVIATION = 25 * 25 / 3 / 3
+PLAYER_SKILL_DICT_PATH = os.path.abspath('Data/JSON/player_skill_dictionary.json')
+PLAYER_TEAM_PAIR_DICT_PATH = os.path.abspath('Data/JSON/player_team_pairs.json')
 
 # Misc
 LIVE_ODDS_API_1 = '5f92a0468c6f365be7db417f13d52742'

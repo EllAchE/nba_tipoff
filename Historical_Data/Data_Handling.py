@@ -4,6 +4,7 @@ import os
 import re
 import pandas as pd
 
+import ENVIRONMENT
 from Functions.Utils import getSoupFromUrl
 
 
@@ -59,7 +60,7 @@ def saveActivePlayersTeams(start_season):
 
 
 def createPlayerSkillDictionary():
-    with open(os.path.abspath('../Data/JSON/player_team_pairs.json')) as playerTeamPairsJson:
+    with open(ENVIRONMENT.PLAYER_SKILL_DICT_PATH) as playerTeamPairsJson:
         ptp = json.load(playerTeamPairsJson)
 
         player_codes = set()
@@ -72,7 +73,7 @@ def createPlayerSkillDictionary():
         for code in player_codes:
             player_skill_dict[code] = {'mu': 25, 'sigma': 25/3, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
 
-    with open(os.path.abspath('../Data/JSON/player_skill_dictionary.json'), 'w') as psd:
+    with open(ENVIRONMENT.PLAYER_SKILL_DICT_PATH, 'w') as psd:
         json.dump(player_skill_dict, psd)
         print()
 

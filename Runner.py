@@ -1,91 +1,21 @@
+import ENVIRONMENT
 from Functions.Odds_Calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb
+from Functions.True_Skill_Calc import runForAllSeasons, updateSkillDictionary
 from Functions.Utils import sleepChecker
-from Live_Information.Live_Odds_Retrieval import getStarters, createTeamTipperDict, tipperFromTeam
+from Historical_Data.Data_Handling import resetPredictionSummaries, createPlayerSkillDictionary
+from Historical_Data.Historical_Data_Retrieval import update2021Data
+from Live_Information.Live_Odds_Retrieval import getStarters, createTeamTipperDict, tipperFromTeam, \
+    getAllExpectedStarters, getDailyOdds
 
-# resetPredictionSummaries() # reset sums
-# createPlayerSkillDictionary() # clears the stored values,
-#
-# runForAllSeasons(ENVIRONMENT., winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD)
+# todo find out when the best time for placing bets on various sites is (i.e. when do odds move)
+# todo next prop - who scores last nba
 
-# a_odds = '-125'
-# t1 = 'BKN'
-# t2 = 'DET'
-# p1 = tipperFromTeam(t1)
-# p2 = tipperFromTeam(t2)
-# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-# print()
+# getAllExpectedStarters()
 
-a_odds = '-125'
-t1 = 'HOU'
-t2 = 'NOP'
-p1 = tipperFromTeam(t1)
-p2 = tipperFromTeam(t2)
-a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-print()
+update2021Data()
+# updateSkillDictionary()
 
-# a_odds = '-105'
-# t1 = 'NYK'
-# t2 = 'MIA'
-# p1 = tipperFromTeam(t1)
-# p2 = tipperFromTeam(t2)
-# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-# print()
-
-a_odds = '-113'
-t1 = 'GSW'
-t2 = 'SAS'
-p1 = tipperFromTeam(t1)
-p2 = tipperFromTeam(t2)
-p1 = 'reidna01.html'
-a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-print()
-
-a_odds = '-125'
-t1 = 'BOS'
-t2 = 'UTA'
-p1 = tipperFromTeam(t1)
-p2 = tipperFromTeam(t2)
-a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-print()
-
-# a_odds = '-125'
-# t1 = 'ORL'
-# t2 = 'POR'
-# p1 = tipperFromTeam(t1)
-# p2 = tipperFromTeam(t2)
-# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-# print()
-
-# a_odds = '-125'
-# t1 = 'PHI'
-# t2 = 'SAC'
-# p1 = tipperFromTeam(t1)
-# p2 = tipperFromTeam(t2)
-# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-# print()
-
-# getHistoricalDataRunnerExtraction()
+# getDailyOdds('TOR', 'WAS')
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
 #                        ['199711160SEA', 'SEA', 'MIL'],
@@ -124,6 +54,7 @@ https://www.betburger.com/?sure_bets=1160
 https://punter2pro.com/best-sports-arbing-software/
 '''
 
+# todo read into glicko math and try to do estimation of rnage
 # todo make data overwriting transactional, i.e. locally saved csv should have all or no rows updated, no partial
 # todo player to fullname to player code relationship
 # todo convert to object oriented, i.e. where players are represented have them be a player object (nba_api may solve this, it has objects for many data types we care about already)
@@ -137,9 +68,6 @@ https://punter2pro.com/best-sports-arbing-software/
 
 # todo betting calendar (i.e. when do sites post their info)
 # todo (OVERKILL) have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
-# todo deal with players who play but aren't catalogued for a team (perhaps bad Data, i.e. satorto)
-# todo scrape/use api from nba.com instead of bball reference https://www.nba.com/game/phx-vs-nyk-0021000598/play-by-play
-
 # todo see if back to back against same team matters
 
 '''

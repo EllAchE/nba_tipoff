@@ -116,31 +116,8 @@ def beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tip
         print('no bet, not enough Data on participants')
 
 
-# todo add possible ranges of prediction accuracy based on RD to prediction prints (don't use in calcs yet)
-def tipWinProbRange(player1_code, player2_code, json_path='Data/player_skill_dictionary.json', psd=None): #win prob for first player
+def tipWinProb(player1Code, player2Code, jsonPath=ENVIRONMENT.PLAYER_SKILL_DICT_PATH, psd=None): #win prob for first player
     env = trueskill.TrueSkill(draw_probability=0, backend='scipy')
-    env.make_as_global()
-    if psd is None:
-        with open(json_path) as json_file:
-            psd = json.load(json_file)
-
-    player1 = trueskill.Rating(psd[player1_code]["mu"], psd[player1_code]["sigma"])
-    player2 = trueskill.Rating(psd[player2_code]["mu"], psd[player2_code]["sigma"])
-    team1 = [player1]
-    team2 = [player2]
-
-    delta_mu = sum(r.mu for r in team1) - sum(r.mu for r in team2)
-    sum_sigma = sum(r.sigma ** 2 for r in itertools.chain(team1, team2))
-    size = len(team1) + len(team2)
-    denom = math.sqrt(size * (ENVIRONMENT.BASE_SIGMA * ENVIRONMENT.BASE_SIGMA) + sum_sigma)
-    ts = trueskill.global_env()
-    res = ts.cdf(delta_mu / denom)
-    # print('odds', player1_code, 'beats', player2_code, 'are', res)
-    return res
-
-
-def tipWinProb(player1Code, player2Code, jsonPath=os.path.abspath('Data/JSON/player_skill_dictionary.json'), psd=None): #win prob for first player
-    env = trueskill.TrueSkill(draw_probability=0, backend='scipy') # todo fix path management
     env.make_as_global()
     if psd is None:
         with open(jsonPath) as json_file:
@@ -165,7 +142,7 @@ def runForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRE
     seasonKey = ''
     for season in seasons:
         runTSForSeason(season, '../Data/CSV/tipoff_and_first_score_details_{}_season.csv'.format(season),
-                       '../Data/JSON/player_skill_dictionary.json', winning_bet_threshold)
+                       ENVIRONMENT.PLAYER_SKILL_DICT_PATH, winning_bet_threshold)
         seasonKey += str(season) + '-'
 
     with open('../Data/JSON/prediction_summaries.json') as pred_sum:
@@ -224,3 +201,10 @@ def _matchWithRawNums(winner_mu, winner_sigma, loser_mu, loser_sigma):
         loser_rating_obj = trueskill.Rating(loser_mu, loser_sigma)
         winner_rating_obj, loser_rating_obj = trueskill.rate_1vs1(winner_rating_obj, loser_rating_obj)
         return winner_rating_obj.mu, winner_rating_obj.sigma, loser_rating_obj.mu, loser_rating_obj.sigma
+
+
+def updateSkillDictionary():
+    resetPredictionSummaries() # reset sums
+    createPlayerSkillDictionary() # clears the stored values,
+    runForAllSeasons(ENVIRONMENT.SEASONS_LIST, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD)
+    print("\n", "skill dictionary updated", "\n")

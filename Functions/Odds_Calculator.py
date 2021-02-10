@@ -4,10 +4,8 @@ Methods to look at betting lines and see if they are worth it
 import itertools
 import json
 import math
-
 import numpy as np
 import trueskill
-
 import ENVIRONMENT
 from Functions.True_Skill_Calc import tipWinProb
 
@@ -37,7 +35,7 @@ def scoreFirstProb(p1Code, p2Code, p1isHome, jsonPath=None, psd=None):
     return odds
 
 
-def getPlayerSpread(oddsLine, winProb, playerSpreadAsSingleAOdds): #todo figure out what the input format should be (currently comes from GameOdds Class). Assumes objects with keys
+def getPlayerSpread(oddsLine, winProb, playerSpreadAsSingleAOdds):
     oddsOnly = list()
     playerSpread = list()
     numPlayers = len(oddsLine)
@@ -84,7 +82,6 @@ def sysEMainDiagonalVarsNeg1Fill(argsList, amtToWin=1, amtToLose=None): #takes i
         return playerSpread * multiplier
 
 
-# todo add "kelly processors" to format input properly, input must be in ratio form (i.e. loss & win amount relate to dollar)
 def kellyBet(lossAmt, winOdds, winAmt=1, bankroll=None): # assumes binary outcome, requires dollar value
     kellyRatio = winOdds / lossAmt - (1 - winOdds) / winAmt
 
@@ -154,8 +151,8 @@ def tipScoreProb(tipWinOdds, tipWinnerScoresOdds=ENVIRONMENT.TIP_WINNER_SCORE_OD
 
 
 def kellyBetFromAOddsAndScoreProb(scoreProb, americanOdds, bankroll=ENVIRONMENT.BANKROLL):
-    loss_amt = costFor1(americanOdds)
-    return kellyBet(loss_amt, scoreProb, bankroll=bankroll)
+    lossAmt = costFor1(americanOdds)
+    return kellyBet(lossAmt, scoreProb, bankroll=bankroll)
 
 
 def checkEvPositiveBackLayAndGetScoreProb(teamOdds, teamTipperCode, opponentTipperCode):
