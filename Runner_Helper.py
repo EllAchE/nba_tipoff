@@ -1,68 +1,64 @@
 import json
 
 from Classes.GameOdds import GameOdds
+from typing import Any
 
-
-def displayUniqueBetsByEV(betDict, showAll=True):
+def displayUniqueBetsByEV(betDict: dict[str, Any], showAll: bool = True):
     oddsList = convertDictToGameOddsObjList(betDict)
     filteredOddsList = filterBestByGameCode(oddsList)
     filteredOddsList.sort(key=lambda x: x.bestEVFactor)
     printOddsObjDetails(filteredOddsList, showAll)
-    pass
 
-
-def displayUniqueBetsByDatetime(betDict, showAll=True):
+def displayUniqueBetsByDatetime(betDict: dict[str, Any], showAll: bool = True):
     oddsList = convertDictToGameOddsObjList(betDict)
     filteredOddsList = filterBestByGameCode(oddsList)
     filteredOddsList.sort(key=lambda x: x.bestEVFactor)
     filteredOddsList.sort(key=lambda x: x.gameDatetime)
     printOddsObjDetails(filteredOddsList, showAll)
-    pass
 
-
-def displayAllBetsByEV(betDict, showAll=True):
+def displayAllBetsByEV(betDict: dict[str, Any], showAll: bool = True):
     oddsList = convertDictToGameOddsObjList(betDict)
     oddsList.sort(key=lambda x: x.bestEVFactor)
     printOddsObjDetails(oddsList, showAll)
 
-
-def displayAllBetsByDatetime(betDict, showAll=True):
+def displayAllBetsByDatetime(betDict: dict[str, Any], showAll: bool = True):
     oddsList = convertDictToGameOddsObjList(betDict)
     oddsList.sort(key=lambda x: x.bestEVFactor)
     oddsList.sort(key=lambda x: x.gameDatetime)
     printOddsObjDetails(oddsList, showAll)
 
-
-def displayAllBetsByExchange(betDict, showAll=True):
+def displayAllBetsByExchange(betDict: dict[str, Any], showAll: bool = True):
     oddsList = convertDictToGameOddsObjList(betDict)
     oddsList.sort(key=lambda x: x.bestEVFactor)
     oddsList.sort(key=lambda x: x.gameDatetime)
     oddsList.sort(key=lambda x: x.exchange)
     printOddsObjDetails(oddsList, showAll)
 
-
-def filterBestByGameCode(oddsObjList):
+def filterBestByGameCode(oddsObjList: list[Any]) -> list[Any]:
+    bestPerGameOnly = list[Any]()
     gameCodes = set()
-    bestPerGameOnly = list()
 
     for gameOdds in oddsObjList:
-        gameCodes.append(gameOdds.gameCode)
+        gameCodes.add(gameOdds.gameCode)
+    
     for gameCode in gameCodes:
-        singleGameList = list(filter(lambda x: x.gameCode == gameCode), oddsObjList)
-        bestPerGameOnly.append(max(x.bestEVFactor for x in singleGameList))
+        singleGameList = list(filter(lambda x: x.gameCode == gameCode, oddsObjList))
+        bestPerGameOnly.append(max([x.bestEVFactor for x in singleGameList]))
+    
     return bestPerGameOnly
 
-
-def convertDictToGameOddsObjList(betDict):
-    gameOddsObjList = list()
+def convertDictToGameOddsObjList(betDict: dict[str, Any]) -> list[Any]:
+    gameOddsObjList = list[Any]()
+    
     for game in betDict['games']:
         oddsObj = GameOdds(game)
         gameOddsObjList.append(oddsObj)
+    
     return gameOddsObjList
 
-
-def printOddsObjDetails(oddsList, showAll=False):
+def printOddsObjDetails(oddsList: list[Any], showAll: bool = False):
     i = 1
+    
     for g in oddsList:
         if not showAll and not g.betEither():
             continue
@@ -82,15 +78,6 @@ def printOddsObjDetails(oddsList, showAll=False):
             print("Player Spread:")
             for player in playerSpread:
                 print(player, '\n')
-
-
-def convertDictToGameOddsObjList(betDict):
-    gameOddsObjList = list()
-    for game in betDict['games']:
-        oddsObj = GameOdds(game)
-        gameOddsObjList.append(oddsObj)
-    return gameOddsObjList
-
 
 with open("Data/JSON/sample_odds_dict.json") as j:
     dict = json.load(j)
