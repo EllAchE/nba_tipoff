@@ -59,7 +59,7 @@ def saveActivePlayersTeams(start_season):
 
 
 def createPlayerSkillDictionary():
-    with open(ENVIRONMENT.PLAYER_SKILL_DICT_PATH) as playerTeamPairsJson:
+    with open(ENVIRONMENT.PLAYER_TEAM_PAIR_DICT_PATH) as playerTeamPairsJson:
         ptp = json.load(playerTeamPairsJson)
 
         player_codes = set()

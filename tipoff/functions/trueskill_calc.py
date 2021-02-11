@@ -66,7 +66,7 @@ def runTSForSeason(season, season_csv, json_path, winning_bet_threshold=0.6):
     with open(json_path, 'w') as write_file:
         json.dump(psd, write_file)
 
-    with open('../Data/JSON/prediction_summaries.json', 'w') as write_file:
+    with open(ENVIRONMENT.PREDICTION_SUMMARIES_PATH, 'w') as write_file:
         json.dump(dsd, write_file)
 
     df.to_csv(season_csv[:-4] + '-test.csv')
@@ -172,7 +172,7 @@ def runForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRE
 
     dsd['seasons'] = seasonKey + 'with-odds-' + str(winning_bet_threshold)
 
-    with open('../Data/JSON/prediction_summaries.json', 'w') as predSum:
+    with open(ENVIRONMENT.PREDICTION_SUMMARIES_PATH, 'w') as predSum:
         json.dump(dsd, predSum)
 
 
