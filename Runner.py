@@ -12,8 +12,8 @@ from Live_Information.Live_Odds_Retrieval import getStarters, createTeamTipperDi
 
 # getAllExpectedStarters()
 
-update2021Data()
-# updateSkillDictionary()
+# update2021Data()
+updateSkillDictionary()
 
 # getDailyOdds('TOR', 'WAS')
 

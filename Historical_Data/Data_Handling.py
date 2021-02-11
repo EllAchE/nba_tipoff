@@ -78,7 +78,7 @@ def createPlayerSkillDictionary():
         print()
 
 
-def resetPredictionSummaries(j=os.path.abspath('../Data/JSON/prediction_summaries.json')):
+def resetPredictionSummaries(j=ENVIRONMENT.PREDICTION_SUMMARIES_PATH):
     with open(j) as json_file:
         d = json.load(json_file)
 

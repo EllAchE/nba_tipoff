@@ -35,7 +35,7 @@ def runTSForSeason(season, season_csv, json_path, winning_bet_threshold=0.6):
     with open(json_path) as json_file:
         psd = json.load(json_file)
 
-    with open('../Data/JSON/prediction_summaries.json') as json_file:
+    with open(ENVIRONMENT.PREDICTION_SUMMARIES_PATH) as json_file:
         dsd = json.load(json_file)
 
     while i < col_len:
@@ -141,17 +141,17 @@ def tipWinProb(player1Code, player2Code, jsonPath=ENVIRONMENT.PLAYER_SKILL_DICT_
 def runForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD):
     seasonKey = ''
     for season in seasons:
-        runTSForSeason(season, '../Data/CSV/tipoff_and_first_score_details_{}_season.csv'.format(season),
+        runTSForSeason(season, ENVIRONMENT.SEASON_CSV_NEEDING_FORMAT_PATH.format(season),
                        ENVIRONMENT.PLAYER_SKILL_DICT_PATH, winning_bet_threshold)
         seasonKey += str(season) + '-'
 
-    with open('../Data/JSON/prediction_summaries.json') as pred_sum:
-        dsd = json.load(pred_sum)
+    with open(ENVIRONMENT.PREDICTION_SUMMARIES_PATH) as predSum:
+        dsd = json.load(predSum)
 
     dsd['seasons'] = seasonKey + 'with-odds-' + str(winning_bet_threshold)
 
-    with open('../Data/JSON/prediction_summaries.json', 'w') as pred_sum:
-        json.dump(dsd, pred_sum)
+    with open('../Data/JSON/prediction_summaries.json', 'w') as predSum:
+        json.dump(dsd, predSum)
 
 
 def updateDataSingleTipoff(psd, winner_code, loser_code, home_player_code, game_code=None):

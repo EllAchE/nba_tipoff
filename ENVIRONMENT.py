@@ -20,6 +20,8 @@ BASE_RATING = 25
 BASE_DEVIATION = 25 * 25 / 3 / 3
 PLAYER_SKILL_DICT_PATH = os.path.abspath('Data/JSON/player_skill_dictionary.json')
 PLAYER_TEAM_PAIR_DICT_PATH = os.path.abspath('Data/JSON/player_team_pairs.json')
+PREDICTION_SUMMARIES_PATH = os.path.abspath('Data/JSON/prediction_summaries.json')
+SEASON_CSV_NEEDING_FORMAT_PATH = os.path.abspath('Data/CSV/tipoff_and_first_score_details_{}_season.csv')
 
 # Misc
 LIVE_ODDS_API_1 = '5f92a0468c6f365be7db417f13d52742'
