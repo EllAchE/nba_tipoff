@@ -10,7 +10,7 @@ import re
 # todo get playbyplay from NCAA for rookie projections
 # https://www.ncaa.com/game/5763659/play-by-play
 import ENVIRONMENT
-from Functions.Utils import sleepChecker, getSoupFromUrl
+from tipoff.functions.utils import sleepChecker, getSoupFromUrl
 
 
 def getSingleSeasonGameHeaders(season):

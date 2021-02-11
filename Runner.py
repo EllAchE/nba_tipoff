@@ -1,18 +1,11 @@
-import ENVIRONMENT
-from Functions.Odds_Calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb
-from Functions.True_Skill_Calc import runForAllSeasons, updateSkillDictionary
-from Functions.Utils import sleepChecker
-from Historical_Data.Data_Handling import resetPredictionSummaries, createPlayerSkillDictionary
-from Historical_Data.Historical_Data_Retrieval import update2021Data
-from Live_Information.Live_Odds_Retrieval import getStarters, createTeamTipperDict, tipperFromTeam, \
-    getAllExpectedStarters, getDailyOdds
-
 # todo find out when the best time for placing bets on various sites is (i.e. when do odds move)
 # todo next prop - who scores last nba
 
 # getAllExpectedStarters()
 
 # update2021Data()
+from tipoff.functions.trueskill_calc import updateSkillDictionary
+
 updateSkillDictionary()
 
 # getDailyOdds('TOR', 'WAS')
@@ -23,7 +16,6 @@ updateSkillDictionary()
 #                         ['201911200TOR', 'TOR', 'ORL'],
 #                         ['201911260DAL', 'DAL', 'LAC']] # Last one is a violation, others are misformatted
 # '199711210SEA', '199711240TOR', '199711270IND', '201911040PHO',
-#
 
 '''
 Existing apis etc.:

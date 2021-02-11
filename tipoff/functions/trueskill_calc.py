@@ -1,20 +1,18 @@
 import itertools
 import json
 import math
-import os
+from typing import Any
 
 import ENVIRONMENT
 
 import trueskill
 import pandas as pd
 
-# from Functions.Odds_Calculator import independentVarOdds
 
-# https://trueskill.org/
 # todo compare performance with elo, glicko2 and others
 # https://github.com/sublee/glicko2/blob/master/glicko2.py
-from Historical_Data.Data_Handling import resetPredictionSummaries, createPlayerSkillDictionary
-from Historical_Data.Historical_Data_Retrieval import getPlayerTeamInSeason
+from tipoff.historical_data.data_handling import resetPredictionSummaries, createPlayerSkillDictionary
+from tipoff.historical_data.historical_data_retrieval import getPlayerTeamInSeason
 
 
 def runTSForSeason(season, season_csv, json_path, winning_bet_threshold=0.6):
@@ -135,6 +133,30 @@ def tipWinProb(player1Code, player2Code, jsonPath=ENVIRONMENT.PLAYER_SKILL_DICT_
     ts = trueskill.global_env()
     res = ts.cdf(delta_mu / denom)
     print('odds', player1Code, 'beats', player2Code, 'are', res)
+    return res
+
+
+def tipWinProb(player1_code: str, player2_code: str, json_path: str = 'Data/JSON/player_skill_dictionary.json', psd: Any = None): #win prob for first player
+    env = trueskill.TrueSkill(draw_probability=0, backend='scipy')
+    env.make_as_global()
+    
+    if psd is None:
+        with open(json_path) as json_file:
+            psd = json.load(json_file)
+
+    player1 = trueskill.Rating(psd[player1_code]["mu"], psd[player1_code]["sigma"])
+    player2 = trueskill.Rating(psd[player2_code]["mu"], psd[player2_code]["sigma"])
+    
+    team1 = [player1]
+    team2 = [player2]
+
+    delta_mu = sum(r.mu for r in team1) - sum(r.mu for r in team2)
+    sum_sigma = sum(r.sigma ** 2 for r in itertools.chain(team1, team2))
+    size = len(team1) + len(team2)
+    denom = math.sqrt(size * (ENVIRONMENT.BASE_SIGMA * ENVIRONMENT.BASE_SIGMA) + sum_sigma)
+    ts = trueskill.global_env()
+    res = ts.cdf(delta_mu / denom)
+    print('odds', player1_code, 'beats', player2_code, 'are', res)
     return res
 
 

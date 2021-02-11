@@ -1,14 +1,13 @@
 import glob
 import json
-import os
 import re
 import pandas as pd
 
 import ENVIRONMENT
-from Functions.Utils import getSoupFromUrl
+from ..functions.utils import getSoupFromUrl
 
 
-def concatCsv(save_path):
+def concatCsv(save_path: str):
     fNames = [i for i in glob.glob('CSV/*.csv')]
     concattedCsv = pd.concat([pd.read_csv(f) for f in fNames])
     concattedCsv.to_csv(save_path, index=False, encoding='utf-8-sig')
