@@ -205,8 +205,8 @@ def oneSeason(season, path):
     with dFile:
         csvWriter = csv.writer(dFile)
         csvWriter.writerow(
-            ['Game Code', 'Full Hyperlink', 'Home', 'Away', 'Home Short', 'Away Short', 'Home Tipper', 'Away Tipper',
-             'First Scorer', 'Tip Winning Team', 'Tip Losing Team', 'Possession Gaining Player', 'Possession Gaining Player Link',
+            ['Game Code', 'Full Hyperlink', 'Home', 'Away', 'Home Short', 'Away Short', 'Home Tipper', 'Home Tipper Link', 'Away Tipper',
+             'Away Tipper Link', 'First Scorer', 'Tip Winning Team', 'Tip Losing Team', 'Possession Gaining Player', 'Possession Gaining Player Link',
              'First Scoring Team', 'Scored Upon Team', 'Tip Winner', 'Tip Winner Link', 'Tip Loser',
              'Tip Loser Link', 'Tip Winner Scores'])
         gameHeaders = getSingleSeasonGameHeaders(season)
