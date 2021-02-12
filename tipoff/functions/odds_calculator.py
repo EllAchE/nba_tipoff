@@ -11,7 +11,8 @@ import ENVIRONMENT
 from .trueskill_calc import tipWinProb
 from typing import Any, Optional
 
-def scoreFirstProb(p1Code: str, p2Code: str, p1isHome: bool, jsonPath: Optional[str] = None, psd: Optional[dict[str, Any]] = None):
+
+def scoreFirstProb(p1Code: str, p2Code: str, p1isHome: bool, jsonPath: Optional[str] = None, psd=None): # psd: Optional[dict[str, Any]] = None):
     if psd is None and jsonPath:
         with open(jsonPath) as jsonFile:
             psd = json.load(jsonFile)
@@ -41,9 +42,9 @@ def scoreFirstProb(p1Code: str, p2Code: str, p1isHome: bool, jsonPath: Optional[
     return odds
 
 
-def getPlayerSpread(oddsLine: list[Any], winProb: float, playerSpreadAsSingleAOdds: str):
-    oddsOnly = list[Any]()
-    playerSpread = list[Any]()
+def getPlayerSpread(oddsLine, winProb: float, playerSpreadAsSingleAOdds: str):
+    oddsOnly = list()
+    playerSpread = list()
     numPlayers = len(oddsLine)
     lossAmt = costFor1(playerSpreadAsSingleAOdds)
     kelly = kellyBet(lossAmt, winProb, bankroll=ENVIRONMENT.BANKROLL)
@@ -60,7 +61,8 @@ def getPlayerSpread(oddsLine: list[Any], winProb: float, playerSpreadAsSingleAOd
 
     return playerSpread
 
-def sysEMainDiagonalVarsNeg1Fill(argsList: list[Any], amtToWin: float = 1, amtToLose: Optional[float] = None): #takes in decimal odds
+
+def sysEMainDiagonalVarsNeg1Fill(argsList, amtToWin: float = 1, amtToLose: Optional[float] = None): #takes in decimal odds
     argLen = len(argsList)
     twoDArr = [[]] * argLen
     i = 0
@@ -200,7 +202,7 @@ def getScoreProb(teamTipperCode: str, opponentTipperCode: str):
 
 
 # should be [[name, line], [name, line]]
-def convertPlayerLinesToSingleLine(playerOddsList: list[Any]):
+def convertPlayerLinesToSingleLine(playerOddsList):
     total = 0
     i = 0
     costsAsAOdds = [playerOddsList[0]['odds'], playerOddsList[1]['odds'], playerOddsList[2]['odds'], playerOddsList[3]['odds'], playerOddsList[4]['odds']]

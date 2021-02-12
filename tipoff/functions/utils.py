@@ -7,6 +7,9 @@ import unidecode
 
 from bs4 import BeautifulSoup
 
+import ENVIRONMENT
+
+
 def addSlugToNames():
     with open('../Data/JSON/Public_NBA_API/teams.json') as dat_file:
         team_dict = json.load(dat_file)
@@ -70,6 +73,16 @@ def getDashDateFromGameCode(gameCode: str):
     month = gameCode[4:6]
     day = gameCode[6:8]
     return year + '-' + month + '-' + day
+
+
+def getTeamFullFromShort(shortCode):
+    with open(ENVIRONMENT.TEAM_CONVERSION_PATH) as teamsJson:
+        teamDict = json.load(teamsJson)
+    for team in teamDict:
+        if team["abbreviation"] == shortCode:
+            return team["teamName"]
+    raise ValueError('No team match found for code', shortCode)
+
 
 def getHomeTeamFromGameCode(game_code: str):
     return game_code[-3:]

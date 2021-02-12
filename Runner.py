@@ -1,14 +1,26 @@
 # todo find out when the best time for placing bets on various sites is (i.e. when do odds move)
 # todo next prop - who scores last nba
+from tipoff.live_information.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 
-# getAllExpectedStarters()
 
 # update2021Data()
 from tipoff.functions.trueskill_calc import updateSkillDictionary
 
-updateSkillDictionary()
+# updateSkillDictionary()
 
-# getDailyOdds('TOR', 'WAS')
+# getAllExpectedStarters()
+getDailyOdds('MIN', 'CHA', '-110', 'BetMGM') # mgm
+# getDailyOdds('NYK', 'WAS')
+getDailyOdds('NOP', 'DAL', '-111') # fd
+getDailyOdds('SAS', 'ATL')
+getDailyOdds('DET', 'BOS', '+102') #fd
+getDailyOdds('LAC', 'CHI', '-125') #fd
+getDailyOdds('MIL', 'UTA', '-111') #fd
+getDailyOdds('OKC', 'DEN', '+110') #fd
+getDailyOdds('CLE', 'POR', '-108') #fd, 110 mgm
+getDailyOdds('MEM', 'LAL', '-106') #fd
+getDailyOdds('ORL', 'SAC', '-130') #fd
+
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
 #                        ['199711160SEA', 'SEA', 'MIL'],

@@ -12,8 +12,8 @@ import requests
 import pandas as pd
 
 import ENVIRONMENT
-from Functions.Odds_Calculator import check_for_edge, checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb
-from Functions.Utils import sleepChecker
+from tipoff.functions.odds_calculator import check_for_edge, checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb
+from tipoff.functions.utils import sleepChecker, getTeamFullFromShort
 
 
 def getExpectedTipper():
@@ -194,11 +194,14 @@ def createTeamTipperDict():
     with open ('Data/JSON/team_tipper_pairs.json', 'w') as file:
         json.dump(fullJson, file)
 
-def getDailyOdds(t1, t2, a_odds=-110):
+
+def getDailyOdds(t1, t2, aOdds='-110', exchange='Fanduel'):
     p1 = tipperFromTeam(t1)
     p2 = tipperFromTeam(t2)
-    a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-    b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-    print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=ENVIRONMENT.BANKROLL))
-    print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=ENVIRONMENT.BANKROLL))
+    odds1 = checkEvPlayerCodesOddsLine(aOdds, p1, p2)
+    odds2 = checkEvPlayerCodesOddsLine(aOdds, p2, p1)
+    t1FullName = getTeamFullFromShort(t1)
+    t2FullName = getTeamFullFromShort(t2)
+    print('On', exchange, 'bet', kellyBetFromAOddsAndScoreProb(odds1, aOdds, bankroll=ENVIRONMENT.BANKROLL), 'on', t1FullName, 'assuming odds', str(aOdds))
+    print('On', exchange, 'bet', kellyBetFromAOddsAndScoreProb(odds2, aOdds, bankroll=ENVIRONMENT.BANKROLL), 'on', t2FullName, 'assuming odds', str(aOdds))
     print()
