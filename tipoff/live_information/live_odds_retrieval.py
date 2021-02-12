@@ -1,8 +1,3 @@
-# todo fetch odds lines for the day from all sites offering props bets
-
-# sites with game props have stubs created for them
-# https://www.betnow.eu/nba/ says it has props bets
-
 # Places to retrieve live lineups
 # https://www.rotowire.com/basketball/nba-lineups.php
 # https://www.nba.com/players/todays-lineups
@@ -10,19 +5,22 @@
 # https://rotogrinders.com/lineups/nba
 # https://dailynbalineups.com/
 # https://www.lineups.com/nba/lineups
+
 import json
 
 import requests
 import pandas as pd
 
 import ENVIRONMENT
-from Functions.Odds_Calculator import check_for_edge
+from Functions.Odds_Calculator import check_for_edge, checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb
+from Functions.Utils import sleepChecker
 
 
 def getExpectedTipper():
 #     lastTipper = getLastTipper()
 #     injuryCheck = checkInjury(lastTipper)
-#     starteerCheck = checkStarter(lastTipper) #todo find a way to get and confirm expected tipper; i.e. you have to look at injuries, changes to starting lineup & t4eam history if it's a nonstandard lineup
+#     starteerCheck = checkStarter(lastTipper)
+# todo find a way to get and confirm expected tipper; i.e. you have to look at injuries, changes to starting lineup & team history if it's a nonstandard lineup
 # todo in cases where a starter who tips is out we probably want an alert as these are good opportunties for mispricing
     pass
 
@@ -83,24 +81,37 @@ def getAllOddsLines(bankroll=ENVIRONMENT.BANKROLL):
     return game_odds_list
 
 
-def fanduel_odds():
+def fanduelOdds():
     # https://sportsbook.fanduel.com/cache/psevent/UK/1/false/958472.3.json
     pass
 
 
-def bovada_odds():
+def bovadaOdds():
     # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
     pass
 
 
-def draftkings_odds():
+def draftkingsOdds():
     # https://sportsbook.draftkings.com/leagues/basketball/103?category=game-props&subcategory=odd/even
     pass
 
 
-def mgm_odds():
+def otherBookieOdds():
+    # todo need to fully exhaust potential bookies/exchanges with player props bet
+    pass
+
+
+def betNowOdds():
+    # https://www.betnow.eu/nba/ says it has props bets
+    # this needs to be verified
+    pass
+
+
+def mgmOdds():
     # https://sports.co.betmgm.com/en/sports/events/minnesota-timberwolves-at-san-antonio-spurs-11101908?market=10000
     pass
+
+# Other bookmakers https://the-odds-api.com/sports-odds-data/bookmaker-apis.html
 
 
 # def betfair_odds():
@@ -131,3 +142,63 @@ def getStarters(team_code, team_dict=None):
     starters_list.sort(key=sortFn)
     print(confirmed, date + '.', 'Starters for', team_code, 'are', starters_list)
     return starters_list
+
+
+def tipperFromTeam(teamShort):
+    with open('Data/JSON/team_tipper_pairs.json') as file:
+        dict = json.load(file)
+    for row in dict["pairs"]:
+        if teamShort == row["team"]:
+            return row["playerCode"]
+
+
+def getAllExpectedStarters():
+    teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX',
+                'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
+    sleepCounter = 0
+    for team in teamList:
+        sleepChecker(sleepCounter, 5, baseTime=0, randomMultiplier=1)
+        getStarters(team)
+
+
+def createTeamTipperDict():
+    teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX',
+                'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
+    teamList.sort()
+    sleepCounter = 0
+    startersList = list()
+    tipperList = list()
+    fullJson = {}
+
+    for teamLine in teamList:
+        startersList.append({"starters": getStarters(teamLine), "team": teamLine})
+        sleepCounter = sleepChecker(sleepCounter, printStop=False)
+
+    for teamLine in startersList:
+        player = teamLine["starters"][0]
+        nameList = player[0].split(' ')
+        lcode = ''
+        i = 0
+        while i < 5:
+            try:
+                lcode += nameList[1][i]
+                i += 1
+            except:
+                break
+        code = lcode + nameList[0][:2] + '01.html'
+        code = code.lower()
+
+        tipperList.append({"playerCode":code, "team": teamLine["team"]})
+    fullJson["pairs"] = tipperList
+
+    with open ('Data/JSON/team_tipper_pairs.json', 'w') as file:
+        json.dump(fullJson, file)
+
+def getDailyOdds(t1, t2, a_odds=-110):
+    p1 = tipperFromTeam(t1)
+    p2 = tipperFromTeam(t2)
+    a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
+    b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
+    print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=ENVIRONMENT.BANKROLL))
+    print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=ENVIRONMENT.BANKROLL))
+    print()

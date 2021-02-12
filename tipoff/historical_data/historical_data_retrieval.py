@@ -9,8 +9,7 @@ import re
 # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
 # todo get playbyplay from NCAA for rookie projections
 # https://www.ncaa.com/game/5763659/play-by-play
-
-
+import ENVIRONMENT
 from tipoff.functions.utils import sleepChecker, getSoupFromUrl
 
 
@@ -71,7 +70,7 @@ def getSingleGameHeaders(table_game_strs, table_home_strs, table_away_strs, i):
 def getPlayerTeamInSeason(playerLink, season, longCode=True):
     if longCode:
         playerLink = playerLink[11:]
-    with open('../Data/JSON/player_team_pairs.json') as teamPairs:
+    with open(ENVIRONMENT.PLAYER_TEAM_PAIR_DICT_PATH) as teamPairs:
         seasons = json.load(teamPairs)
         try:
             return seasons[str(season)][playerLink]
@@ -206,8 +205,8 @@ def oneSeason(season, path):
     with dFile:
         csvWriter = csv.writer(dFile)
         csvWriter.writerow(
-            ['Game Code', 'Full Hyperlink', 'Home', 'Away', 'Home Short', 'Away Short', 'Home Tipper', 'Away Tipper',
-             'First Scorer', 'Tip Winning Team', 'Tip Losing Team', 'Possession Gaining Player', 'Possession Gaining Player Link',
+            ['Game Code', 'Full Hyperlink', 'Home', 'Away', 'Home Short', 'Away Short', 'Home Tipper', 'Home Tipper Link', 'Away Tipper',
+             'Away Tipper Link', 'First Scorer', 'Tip Winning Team', 'Tip Losing Team', 'Possession Gaining Player', 'Possession Gaining Player Link',
              'First Scoring Team', 'Scored Upon Team', 'Tip Winner', 'Tip Winner Link', 'Tip Loser',
              'Tip Loser Link', 'Tip Winner Scores'])
         gameHeaders = getSingleSeasonGameHeaders(season)
@@ -223,22 +222,12 @@ def oneSeason(season, path):
                 break
 
 
-def getHistoricalDataRunnerExtraction():
+def update2021Data():
     startSeason = 2021
 
-    # sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
-    #
     # for start_season in sss:
 
     all_at_once_path = "tip_and_first_score_details_starting_" + str(startSeason) + "_season.csv"
     single_season_path = "tip_and_first_score_details_" + str(startSeason) + "_season.csv"
 
     oneSeason(startSeason, single_season_path)
-
-test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
-                       ['199711160SEA', 'SEA', 'MIL'],
-                        ['199711190LAL', 'LAL', 'MIN'],
-                        ['201911200TOR', 'TOR', 'ORL'],
-                        ['201911260DAL', 'DAL', 'LAC']] # Last one is a violation, others are misformatted
-# '199711210SEA', '199711240TOR', '199711270IND', '201911040PHO',
-#

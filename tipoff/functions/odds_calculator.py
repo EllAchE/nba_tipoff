@@ -6,7 +6,6 @@ import json
 import math
 import numpy as np
 import trueskill
-
 import ENVIRONMENT
 
 from .trueskill_calc import tipWinProb
@@ -41,7 +40,8 @@ def scoreFirstProb(p1Code: str, p2Code: str, p1isHome: bool, jsonPath: Optional[
     # print('odds', p1Code, 'beats', p2Code, 'are', odds)
     return odds
 
-def getPlayerSpread(oddsLine: list[Any], winProb: float, playerSpreadAsSingleAOdds: str): #todo figure out what the input format should be (currently comes from GameOdds Class). Assumes objects with keys
+
+def getPlayerSpread(oddsLine: list[Any], winProb: float, playerSpreadAsSingleAOdds: str):
     oddsOnly = list[Any]()
     playerSpread = list[Any]()
     numPlayers = len(oddsLine)
@@ -157,6 +157,7 @@ def kellyBetFromAOddsAndScoreProb(scoreProb: float, americanOdds: str, bankroll:
     loss_amt = costFor1(americanOdds)
     return kellyBet(loss_amt, scoreProb, bankroll=bankroll)
 
+
 def checkEvPositiveBackLayAndGetScoreProb(teamOdds: float, teamTipperCode: str, opponentTipperCode: str):
     minWinRate = positiveEvThresholdFromAmerican(teamOdds)
     minLossRate = 1 - minWinRate
@@ -166,12 +167,13 @@ def checkEvPositiveBackLayAndGetScoreProb(teamOdds: float, teamTipperCode: str, 
     if scoreProb > minWinRate:
         print('bet on them')
         return scoreProb
-    elif (1-scoreProb) > minLossRate:
+    elif 1 - scoreProb > minLossRate:
         print('bet against them')
-        return (1-scoreProb)
+        return 1 - scoreProb
     else:
         print('don\'t bet either side')
         return None
+
 
 def checkEvPositive(teamOdds: float, scoreProb: float):
     min_win_rate = positiveEvThresholdFromAmerican(teamOdds)
@@ -191,9 +193,11 @@ def checkEvPlayerCodesOddsLine(odds: float, p1: str, p2: str):
     
     return prob
 
+
 def getScoreProb(teamTipperCode: str, opponentTipperCode: str):
     tip_win_odds = tipWinProb(teamTipperCode, opponentTipperCode)
     return tipScoreProb(tip_win_odds)
+
 
 # should be [[name, line], [name, line]]
 def convertPlayerLinesToSingleLine(playerOddsList: list[Any]):

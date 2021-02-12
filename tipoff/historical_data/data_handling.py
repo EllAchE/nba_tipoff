@@ -3,12 +3,15 @@ import json
 import re
 import pandas as pd
 
+import ENVIRONMENT
 from ..functions.utils import getSoupFromUrl
+
 
 def concatCsv(save_path: str):
     fNames = [i for i in glob.glob('CSV/*.csv')]
     concattedCsv = pd.concat([pd.read_csv(f) for f in fNames])
     concattedCsv.to_csv(save_path, index=False, encoding='utf-8-sig')
+
 
 def saveActivePlayersTeams(start_season):
     # https://www.basketball-reference.com/leagues/NBA_2021_per_game.html
@@ -56,8 +59,8 @@ def saveActivePlayersTeams(start_season):
 
 
 def createPlayerSkillDictionary():
-    with open('../Data/JSON/player_team_pairs.json') as player_team_pairs_json:
-        ptp = json.load(player_team_pairs_json)
+    with open(ENVIRONMENT.PLAYER_TEAM_PAIR_DICT_PATH) as playerTeamPairsJson:
+        ptp = json.load(playerTeamPairsJson)
 
         player_codes = set()
         player_skill_dict = {}
@@ -69,12 +72,12 @@ def createPlayerSkillDictionary():
         for code in player_codes:
             player_skill_dict[code] = {'mu': 25, 'sigma': 25/3, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
 
-    with open('../Data/JSON/player_skill_dictionary.json', 'w') as psd:
+    with open(ENVIRONMENT.PLAYER_SKILL_DICT_PATH, 'w') as psd:
         json.dump(player_skill_dict, psd)
         print()
 
 
-def resetPredictionSummaries(j='../Data/JSON/prediction_summaries.json'):
+def resetPredictionSummaries(j=ENVIRONMENT.PREDICTION_SUMMARIES_PATH):
     with open(j) as json_file:
         d = json.load(json_file)
 

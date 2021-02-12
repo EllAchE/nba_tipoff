@@ -32,11 +32,13 @@ from nba_api.stats.static import teams
 from nba_api.stats.endpoints import leaguegamefinder
 from nba_api.stats.endpoints import gamerotation, playbyplayv2
 from typing import Any
-
-from .utils import getDashDateAndHomeCodeFromGameCode
+import pandas as pd
 
 # TODO: Writing type stubs for pandas' DataFrame is too cumbersome, so we use this instead.
 # Eventually, we should replace that with real type stubs for DataFrame.
+import ENVIRONMENT
+from tipoff.functions.utils import getDashDateAndHomeCodeFromGameCode
+
 DataFrame = Any
 
 def convertBballRefTeamShortCodeToNBA(short_code: str):
@@ -78,7 +80,8 @@ def getGameIdFromTeamAndDate(date_str: str, short_code: str):
 def getGamePlayByPlay(game_id: str):
     return playbyplayv2.PlayByPlayV2(game_id).get_data_frames()[0]
 
-def getPlayerFromShotDescription(description: str): # if this need to be fully generic then fetch the playerlast names and do a match on that
+
+def getPlayerLastNameFromShotDescription(description: str): # if this need to be fully generic then fetch the playerlast names and do a match on that
     isMiss = "MISS" in description
     splitDescription = description.split(' ')
     
@@ -98,10 +101,20 @@ def getShotTypeFromEventDescription(description: str):
     
     return "2PT " + isMiss
 
-def getFirstShotStatistics(shotsBeforeFirstScore: DataFrame):
+
+def findPlayerFullFromLast(playerLastName, playerList): #todo this is a hack/not unique done for summary purposes
+    for player in playerList:
+        if playerLastName == player["lastName"]:
+            return player["fullName"]
+    raise ValueError("Game player couldn't be matched to rotation")
+
+
+def _getFirstShotStatistics(shotsBeforeFirstScore: DataFrame):
     shotIndex = 0
-    dataList = list[Any]()
-    teamDict = getParticipatingTeamsFromId(shotsBeforeFirstScore.iloc[0].GAME_ID)
+    dataList = list()
+    gameId = shotsBeforeFirstScore.iloc[0].GAME_ID
+    teamDict = getParticipatingTeamsFromId(gameId)
+    allGamePlayers = getGamePlayersFromId(gameId)
     homeTeam = teamDict['home']
     awayTeam = teamDict['away']
 
@@ -110,10 +123,12 @@ def getFirstShotStatistics(shotsBeforeFirstScore: DataFrame):
         row = shotsBeforeFirstScore.iloc[shotIndex]
         description = row.HOMEDESCRIPTION if row.HOMEDESCRIPTION is not None else row.VISITORDESCRIPTION
         team = awayTeam if row.HOMEDESCRIPTION is None else homeTeam
-        player = getPlayerFromShotDescription(description)
+        playerLast = getPlayerLastNameFromShotDescription(description)
+        player = findPlayerFullFromLast(playerLast, allGamePlayers)
         shotType = getShotTypeFromEventDescription(description)
         dataList.append({"shotIndex": shotIndex, "team": team, "player": player, "shotType": shotType})      # free throws should be considered a collective shot, not individual
         shotIndex += 1
+        # todo map the player lastName retrieved here to a player index/code
     return dataList
 
 def _getAllShotsBeforeFirstScore(playsBeforeFirstFgDf: DataFrame):
@@ -143,6 +158,22 @@ def getParticipatingTeamsFromId(id: str) -> dict[str, str]:
     homeTeamId = response.home_team.get_dict()['data'][0][4]
     
     return {"home": homeTeamCity + ' ' + homeTeamName, "homeId": homeTeamId, "away": awayTeamCity + ' ' + awayTeamName, "awayId": awayTeamId}
+
+def getGamePlayersFromId(id):
+    playerList = set()
+    response = gamerotation.GameRotation(game_id=id)
+    rotation1, rotation2 = response.get_data_frames()
+    allRotations = pd.concat([rotation1, rotation2])
+    i = 0
+    dfLen = len(allRotations.index)
+    while i < dfLen:
+        last = allRotations.iloc[i].PLAYER_LAST
+        playerFull = allRotations.iloc[i].PLAYER_FIRST + ' ' + last
+        playerList.add({"fullName": playerFull, "lastName": last})
+        i += 1
+
+    return playerList
+
 
 def getTipoffLine(pbpDf: DataFrame, returnIndex: bool = False):
     try:
@@ -183,12 +214,25 @@ test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
                         ['199711240TOR'], ['199711270IND'], ['201911040PHO']]
 
 
-a, b = getDashDateAndHomeCodeFromGameCode('199711190LAL')
-id = getGameIdFromTeamAndDate(a, b)
+getGamePlayersFromId(id)
 
-x = gameIdToFirstShotList(id)
-y = getFirstShotStatistics(x)
-print()
+
+def getGameIdFromBballRef(bballRefId):
+    date, team = getDashDateAndHomeCodeFromGameCode(bballRefId)
+    return getGameIdFromTeamAndDate(date, team)
+
+
+def getAllFirstPossessionStatistics():
+    for season in ENVIRONMENT.SEASONS_LIST:
+        path = '../Data/CSV/tipoff_and_first_score_details_{}_season.csv'.format(season)
+        df = pd.read_csv(path)
+        i = 0
+        dfLen = len(df.index)
+        while i < dfLen:
+            bballRefId = df.iloc[i]["Game Code"]
+            gameId = getGameIdFromBballRef(bballRefId)
+
+
 
 # class EventMsgType(Enum):
 #     FIELD_GOAL_MADE = 1 #todo replace above uses of numbers with ENUM values for readability
