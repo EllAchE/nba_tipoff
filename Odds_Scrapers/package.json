@@ -6,12 +6,13 @@
   "scripts": {
     "build": "tsc",
     "prestart": "npm run build",
-    "start": "dist/fanduel_nba_odds.js",
+    "start": "node dist/fanduel_nba_odds.js",
     "tsc": "tsc"
   },
   "dependencies": {
     "axios": "0.21.1",
-    "moment": "2.29.1"
+    "moment": "2.29.1",
+    "dotenv": "8.2.0"
   },
   "devDependencies": {
     "@types/axios": "0.14.0",
