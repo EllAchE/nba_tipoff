@@ -8,18 +8,18 @@ from tipoff.functions.trueskill_calc import updateSkillDictionary
 
 # updateSkillDictionary()
 
-# getAllExpectedStarters()
-getDailyOdds('MIN', 'CHA', '-110', 'BetMGM') # mgm
-# getDailyOdds('NYK', 'WAS')
-getDailyOdds('NOP', 'DAL', '-111') # fd
-getDailyOdds('SAS', 'ATL')
-getDailyOdds('DET', 'BOS', '+102') #fd
-getDailyOdds('LAC', 'CHI', '-125') #fd
-getDailyOdds('MIL', 'UTA', '-111') #fd
-getDailyOdds('OKC', 'DEN', '+110') #fd
-getDailyOdds('CLE', 'POR', '-108') #fd, 110 mgm
-getDailyOdds('MEM', 'LAL', '-106') #fd
-getDailyOdds('ORL', 'SAC', '-130') #fd
+getAllExpectedStarters()
+# getDailyOdds('MIN', 'CHA', '-115', 'mgm')
+getDailyOdds('PHI', 'PHX', '-113')
+# getDailyOdds('NOP', 'DAL', '-115', 'betmgm') #
+getDailyOdds('IND', 'ATL', '-115')
+# getDailyOdds('DET', 'BOS', '-105', 'betmgm') #fd
+# getDailyOdds('LAC', 'CHI', '-132') #fd
+# getDailyOdds('MIL', 'UTA', '-111') #fd
+# getDailyOdds('OKC', 'DEN', '+105', 'betmgm') #fd
+# getDailyOdds('CLE', 'POR', '-110', 'betmgm') #fd, 110 mgm
+# getDailyOdds('MEM', 'LAL', '-115') #fd
+# getDailyOdds('ORL', 'SAC', '-130') #fd
 
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],

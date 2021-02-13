@@ -98,7 +98,7 @@ def getSoupFromUrl(url: str, returnStatus: bool = False):
 def getDashDateAndHomeCodeFromGameCode(game_code: str):
     return getDashDateFromGameCode(game_code), getHomeTeamFromGameCode(game_code)
 
-def sleepChecker(sleepCounter: int, iterations: int = 3, baseTime: int = 2, randomMultiplier: int = 3, printStop: bool = True):
+def sleepChecker(sleepCounter: int, iterations: int = 3, baseTime: int = 2, randomMultiplier: int = 3, printStop: bool = False):
     sleepCounter += 1 #todo refactor this to use env or something so that only one line is needed when time delay needs to be added to a func
     if sleepCounter % iterations == 0:
         if printStop:
