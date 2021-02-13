@@ -29,7 +29,7 @@ def getPlayerSuffix(name: str):
     # copied from this repo https://github.com/vishaalagartha/basketball_reference_scraper/blob/master/basketball_reference_scraper
     normalized_name = unidecode.unidecode(unicodedata.normalize('NFD', name).encode('ascii', 'ignore').decode("utf-8"))
     initial = normalized_name.split(' ')[1][0].lower()
-    suffix = '/players/' + initial +'/' + createSuffix(name) + '01.html'
+    suffix = '/players/' + initial +'/' + createSuffix(name)
     player_r = requests.get(f'https://www.basketball-reference.com{suffix}')
     
     while player_r.status_code == 200:
@@ -108,10 +108,21 @@ def sleepChecker(sleepCounter: int, iterations: int = 3, baseTime: int = 2, rand
     return sleepCounter
 
 
+def getPlayerTeamFromFullName(name, season):
+    playerLink = getPlayerSuffix(name)
+    return getPlayerTeamInSeasonFromBballRefLink(playerLink, season, longCode=True)
+
+def getPlayerTeamFromNbaApi(name):
+    # https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/commonplayerinfo.md
+    pass
+
+
 def getPlayerTeamInSeasonFromBballRefLink(playerLink, season, longCode=True):
     if longCode:
         playerLink = playerLink[11:]
-    with open(ENVIRONMENT.PLAYER_TEAM_PAIR_DICT_PATH) as teamPairs:
+    if playerLink == 'davisan01.html': #todo fix this to auto increment, or just get the db up
+        playerLink = 'davisan02.html'
+    with open('../../Data/JSON/player_team_pairs.json') as teamPairs:
         seasons = json.load(teamPairs)
         try:
             return seasons[str(season)][playerLink]

@@ -1,5 +1,6 @@
-from Functions.Odds_Calculator import positiveEvThresholdFromAmerican, returnGreaterOdds, \
-    convertPlayerLinesToSingleLine, getScoreProb, kellyBetFromAOddsAndScoreProb, getEvMultiplier, getPlayerSpread
+from tipoff.functions.odds_calculator import convertPlayerLinesToSingleLine, returnGreaterOdds, \
+    positiveEvThresholdFromAmerican, getScoreProb, kellyBetFromAOddsAndScoreProb, getEvMultiplier, getPlayerSpread
+from tipoff.live_information.live_odds_retrieval import getExpectedTipper
 
 
 class GameOdds:
@@ -24,8 +25,8 @@ class GameOdds:
         self.minHomeWinPercentage = positiveEvThresholdFromAmerican(self.bestHomeOdds)
         self.minAwayWinPercentage = positiveEvThresholdFromAmerican(self.bestAwayOdds)
 
-        self.expectedHomeTipper = 'onealsh01.html' # lo.getExpectedTipper(self.home)
-        self.expectedAwayTipper = 'turnemy01.html'  # lo.getExpectedTipper(self.away) # todo populate these with tipper fetch
+        self.expectedHomeTipper = getExpectedTipper(self.home)
+        self.expectedAwayTipper = getExpectedTipper(self.away)
         self.homeScoreProb = getScoreProb(self.expectedHomeTipper, self.expectedAwayTipper)
         self.awayScoreProb = getScoreProb(self.expectedAwayTipper, self.expectedHomeTipper)
 
@@ -82,7 +83,7 @@ class GameOdds:
     def betEither(self):
         return self.betOnHome or self.betOnAway
 
-    def bestPlayerSpread(self, winAmt=None, riskAmt=None):
+    def bestPlayerSpread(self):
         spread = "NA"
         if self.bestBetIsTeamOrPlayers() == "PLAYERS":
             if self.betOnHome is not None:

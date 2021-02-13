@@ -1,5 +1,5 @@
 # todo find out when the best time for placing bets on various sites is (i.e. when do odds move)
-# todo next prop - who scores last nba
+# todo next prop - who scores last nba, race to 5 points
 # todo confirm that first field goal includes or doesn't include free throws
 from tipoff.live_information.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 
@@ -60,7 +60,7 @@ https://punter2pro.com/best-sports-arbing-software/
 '''
 
 # todo read into glicko math and try to do estimation of rnage
-# todo make data overwriting transactional, i.e. locally saved csv should have all or no rows updated, no partial
+# todo make data overwriting transactional, i.e. locally saved csv could have all or no rows updated, no overwrites and partial
 # todo player to fullname to player code relationship
 # todo convert to object oriented, i.e. where players are represented have them be a player object (nba_api may solve this, it has objects for many data types we care about already)
 # todo create dictionary of active players (you can possibly use nba_api for this, and then enhance for bball ref compatibility)

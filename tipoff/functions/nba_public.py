@@ -34,6 +34,7 @@ from nba_api.stats.endpoints import leaguegamefinder
 from nba_api.stats.endpoints import gamerotation, playbyplayv2
 from typing import Any
 import pandas as pd
+from nba_api.stats.static import players
 
 # TODO: Writing type stubs for pandas' DataFrame is too cumbersome, so we use this instead.
 # Eventually, we should replace that with real type stubs for DataFrame.
@@ -272,6 +273,14 @@ def getAllFirstPossessionStatisticsIncrementally(season):
             json.dump(shotsDict, jsonFile)
 
         i += 1
+#
+#
+# def getPlayerIdFromFullName(name):
+#     nba_players = players.get_players()
+#     playerObj = [player for player in nba_players if player['full_name'] == name][0]
+#     id = playerObj.id
+#     return id
+
 
 def getAllFirstPossessionStatisticsAtOnce():
     allShotsList = list()
@@ -299,7 +308,7 @@ def getAllFirstPossessionStatisticsAtOnce():
     with open(ENVIRONMENT.SHOTS_BEFORE_FIRST_SCORE_PATH, 'w') as jsonFile:
         json.dump(allShotsList, jsonFile)
 
-getAllFirstPossessionStatisticsIncrementally(2015)
+getAllFirstPossessionStatisticsIncrementally(2018)
 
 # class EventMsgType(Enum):
 #     FIELD_GOAL_MADE = 1 #todo replace above uses of numbers with ENUM values for readability
