@@ -47,7 +47,7 @@ def getPlayerSpread(oddsLine, winProb: float, playerSpreadAsSingleAOdds: str):
     playerSpread = list()
     numPlayers = len(oddsLine)
     lossAmt = costFor1(playerSpreadAsSingleAOdds)
-    kelly = kellyBet(lossAmt, winProb, bankroll=ENVIRONMENT.BANKROLL)
+    kelly = kellyBetReduced(lossAmt, winProb, bankroll=ENVIRONMENT.BANKROLL)
 
     for player in oddsLine:
         oddsOnly.append(americanToDecimal(player['odds']))
@@ -89,8 +89,8 @@ def sysEMainDiagonalVarsNeg1Fill(argsList, amtToWin: float = 1, amtToLose: Optio
         return playerSpread * multiplier
 
 # todo add "kelly processors" to format input properly, input must be in ratio form (i.e. loss & win amount relate to dollar)
-def kellyBet(lossAmt: float, winOdds: float, winAmt: float = 1, bankroll: Optional[float] = None): # assumes binary outcome, requires dollar value
-    kellyRatio = winOdds / lossAmt - (1 - winOdds) / winAmt
+def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float=0.7, winAmt: float = 1, bankroll: Optional[float] = None): # assumes binary outcome, requires dollar value
+    kellyRatio = (winOdds / lossAmt - (1 - winOdds) / winAmt) * reductionFactor
 
     if bankroll is None:
         return kellyRatio
@@ -111,6 +111,7 @@ def positiveEvThresholdFromAmerican(odds: Any):
 
     return reqWinPer
 
+
 def costFor100(odds: Any):
     # TODO: Why is this conversion being done?
     # If it's unnecessary, we can retype "odds" as str.
@@ -123,6 +124,7 @@ def costFor100(odds: Any):
         return oddsNum
     else:
         raise ValueError('Odds line is improperly formatted, include the + or -.')
+
 
 def getEvMultiplier(scoreProb: float, minWinPercentage: float):
     winAmt = 1 / minWinPercentage - 1
@@ -157,7 +159,7 @@ def tipScoreProb(tipWinOdds: float, tipWinnerScoresOdds: float = ENVIRONMENT.TIP
 
 def kellyBetFromAOddsAndScoreProb(scoreProb: float, americanOdds: str, bankroll: int = ENVIRONMENT.BANKROLL):
     loss_amt = costFor1(americanOdds)
-    return kellyBet(loss_amt, scoreProb, bankroll=bankroll)
+    return kellyBetReduced(loss_amt, scoreProb, bankroll=bankroll)
 
 
 def checkEvPositiveBackLayAndGetScoreProb(teamOdds: float, teamTipperCode: str, opponentTipperCode: str):

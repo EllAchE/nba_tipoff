@@ -12,7 +12,7 @@ import pandas as pd
 # todo compare performance with elo, glicko2 and others
 # https://github.com/sublee/glicko2/blob/master/glicko2.py
 from tipoff.historical_data.data_handling import resetPredictionSummaries, createPlayerSkillDictionary
-from tipoff.historical_data.historical_data_retrieval import getPlayerTeamInSeason
+from tipoff.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
 
 
 def runTSForSeason(season: str, season_csv: str, json_path: str, winning_bet_threshold: float =0.6):
@@ -77,8 +77,8 @@ def runTSForSeason(season: str, season_csv: str, json_path: str, winning_bet_thr
 # todo setup odds prediction to use Ev or win prob rather than bet threshold
 def beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=0.6):
     homeOdds = tipWinProb(homePlayerCode, awayPlayerCode, psd=psd)
-    homePlayerTeam = getPlayerTeamInSeason(homePlayerCode, season, longCode=False)[0]
-    awayPlayerTeam = getPlayerTeamInSeason(awayPlayerCode, season, longCode=False)[0]
+    homePlayerTeam = getPlayerTeamInSeasonFromBballRefLink(homePlayerCode, season, longCode=False)[0]
+    awayPlayerTeam = getPlayerTeamInSeasonFromBballRefLink(awayPlayerCode, season, longCode=False)[0]
 
     if psd[homePlayerCode]['appearances'] > ENVIRONMENT.MIN_APPEARANCES and psd[awayPlayerCode]['appearances'] > ENVIRONMENT.MIN_APPEARANCES:
         if homeOdds > winningBetThreshold:

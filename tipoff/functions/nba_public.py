@@ -43,19 +43,21 @@ from tipoff.functions.utils import getDashDateAndHomeCodeFromGameCode, sleepChec
 DataFrame = Any
 
 
-def convertBballRefTeamShortCodeToNBA(short_code: str):
-    if short_code == 'PHO':
+def convertBballRefTeamShortCodeToNBA(shortCode: str):
+    if shortCode == 'PHO':
         return 'PHX'
-    if short_code == 'BRK':
+    if shortCode == 'BRK':
         return 'BKN'
-    return short_code
+    if shortCode == 'CHO':
+        return 'CHA'
+    return shortCode
 
 
-def getTeamDictionaryFromShortCode(short_code: str):
-    short_code = convertBballRefTeamShortCodeToNBA(short_code)
-    nba_teams = teams.get_teams()
-    team_dict = [team for team in nba_teams if team['abbreviation'] == short_code][0]
-    return team_dict['id']
+def getTeamDictionaryFromShortCode(shortCode: str):
+    shortCode = convertBballRefTeamShortCodeToNBA(shortCode)
+    nbaTeams = teams.get_teams()
+    teamDict = [team for team in nbaTeams if team['abbreviation'] == shortCode][0]
+    return teamDict['id']
 
 
 def getAllGamesForTeam(team_id: str):
@@ -65,26 +67,26 @@ def getAllGamesForTeam(team_id: str):
 
 def getAllGamesInSeason(season: int, short_code: str):
     season -= 1
-    team_id = getTeamDictionaryFromShortCode(short_code)
-    games_df = getAllGamesForTeam(team_id)
+    teamId = getTeamDictionaryFromShortCode(short_code)
+    gamesDf = getAllGamesForTeam(teamId)
     
-    return games_df[games_df.SEASON_ID.str[-4:] == str(season)]
+    return gamesDf[gamesDf.SEASON_ID.str[-4:] == str(season)]
 
 
 # game date format is YYYY-MM-DD
-def _getGameObjFromDateAndTeam(date_str: str, short_code: str):
-    team_id = getTeamDictionaryFromShortCode(short_code)
-    all_games = getAllGamesForTeam(team_id)
-    return all_games[all_games.GAME_DATE == str(date_str)]
+def _getGameObjFromDateAndTeam(dateStr: str, shortCode: str):
+    teamId = getTeamDictionaryFromShortCode(shortCode)
+    allGames = getAllGamesForTeam(teamId)
+    return allGames[allGames.GAME_DATE == str(dateStr)]
 
 
-def getGameIdFromTeamAndDate(date_str: str, short_code: str):
-    game_obj = _getGameObjFromDateAndTeam(date_str, short_code)
-    return game_obj.GAME_ID.iloc[0]
+def getGameIdFromTeamAndDate(dateStr: str, shortCode: str):
+    gameObj = _getGameObjFromDateAndTeam(dateStr, shortCode)
+    return gameObj.GAME_ID.iloc[0]
 
 
-def getGamePlayByPlay(game_id: str):
-    return playbyplayv2.PlayByPlayV2(game_id).get_data_frames()[0]
+def getGamePlayByPlay(gameId: str):
+    return playbyplayv2.PlayByPlayV2(gameId).get_data_frames()[0]
 
 
 def getPlayerLastNameFromShotDescription(description: str): # if this need to be fully generic then fetch the playerlast names and do a match on that
@@ -130,11 +132,16 @@ def _getFirstShotStatistics(shotsBeforeFirstScore: DataFrame, bballRefCode):
     while shotIndex < dfLen:
         row = shotsBeforeFirstScore.iloc[shotIndex]
         description = row.HOMEDESCRIPTION if row.HOMEDESCRIPTION is not None else row.VISITORDESCRIPTION
-        team = awayTeam if row.HOMEDESCRIPTION is None else homeTeam
+        playerTeam = awayTeam if row.HOMEDESCRIPTION is None else homeTeam
         playerLast = getPlayerLastNameFromShotDescription(description)
         player = findPlayerFullFromLast(playerLast, allGamePlayers)
         shotType = getShotTypeFromEventDescription(description)
-        dataList.append({"shotIndex": shotIndex, "team": team, "player": player, "shotType": shotType}) # free throws should be considered a collective shot, not individual
+        if playerTeam == homeTeam:
+            opponentTeam = awayTeam
+        else:
+            opponentTeam = homeTeam
+
+        dataList.append({"shotIndex": shotIndex, "team": playerTeam, "player": player, "opponentTeam": opponentTeam, "shotType": shotType}) # free throws should be considered a collective shot, not individual
         shotIndex += 1
         # todo map the player lastName retrieved here to a player index/code
     return {"gameCode": bballRefCode, "gameData": dataList}
@@ -231,7 +238,42 @@ def getGameIdFromBballRef(bballRefId):
     return getGameIdFromTeamAndDate(date, team)
 
 
-def getAllFirstPossessionStatistics():
+def getAllFirstPossessionStatisticsIncrementally(season):
+    path = '../../Data/CSV/tipoff_and_first_score_details_{}_season.csv'.format(season)
+    df = pd.read_csv(path)
+    i = 0
+    sleepCounter = 0
+    dfLen = len(df.index)
+
+    with open('../../Data/JSON/Public_NBA_API/shots_before_first_score.json') as sbfs:
+        shotsDict = json.load(sbfs)
+    seasonShotList = shotsDict[str(season)]
+
+    if len(seasonShotList) > 0:
+        lastGame = seasonShotList[-1]
+        lastGameCode = lastGame['gameCode']
+        lastGameIndex = df[df['Game Code'] == lastGameCode].index.values[0]
+        i = lastGameIndex + 1
+    while i < dfLen:
+        with open('../../Data/JSON/Public_NBA_API/shots_before_first_score.json') as sbfs:
+            shotsDict = json.load(sbfs)
+        seasonShotList = shotsDict[str(season)]
+
+        bballRefId = df.iloc[i]["Game Code"]
+        print('running for ', bballRefId)
+        gameId = getGameIdFromBballRef(bballRefId)
+        gameShots = gameIdToFirstShotList(gameId)
+        gameStatistics = _getFirstShotStatistics(gameShots, bballRefId)
+        seasonShotList.append(gameStatistics)
+        sleepChecker(sleepCounter, iterations=3, baseTime=0, randomMultiplier=1)
+
+        shotsDict[str(season)] = seasonShotList
+        with open('../../Data/JSON/Public_NBA_API/shots_before_first_score.json', 'w') as jsonFile:
+            json.dump(shotsDict, jsonFile)
+
+        i += 1
+
+def getAllFirstPossessionStatisticsAtOnce():
     allShotsList = list()
     for season in ENVIRONMENT.SEASONS_LIST_SINCE_HORNETS:
         path = '../../Data/CSV/tipoff_and_first_score_details_{}_season.csv'.format(season)
@@ -257,34 +299,7 @@ def getAllFirstPossessionStatistics():
     with open(ENVIRONMENT.SHOTS_BEFORE_FIRST_SCORE_PATH, 'w') as jsonFile:
         json.dump(allShotsList, jsonFile)
 
-
-def getAllFirstPossessionStatisticsInChunks():
-    allShotsList = list()
-    for season in ENVIRONMENT.SEASONS_LIST_SINCE_HORNETS:
-        path = '../../Data/CSV/tipoff_and_first_score_details_{}_season.csv'.format(season)
-        df = pd.read_csv(path)
-        i = 0
-        sleepCounter = 0
-        dfLen = len(df.index)
-        seasonShotList = list()
-
-        while i < dfLen:
-            bballRefId = df.iloc[i]["Game Code"]
-            print('running for ', bballRefId)
-            gameId = getGameIdFromBballRef(bballRefId)
-            gameShots = gameIdToFirstShotList(gameId)
-            gameStatistics = _getFirstShotStatistics(gameShots)
-            seasonShotList.append(gameStatistics)
-            sleepChecker(sleepCounter, iterations=1, baseTime=2, randomMultiplier=2)
-            i += 1
-
-        temp = {"season": season, "games": seasonShotList}
-        allShotsList.append(temp)
-
-    with open(ENVIRONMENT.SHOTS_BEFORE_FIRST_SCORE_PATH, 'w') as jsonFile:
-        json.dump(allShotsList, jsonFile)
-
-getAllFirstPossessionStatistics()
+getAllFirstPossessionStatisticsIncrementally(2015)
 
 # class EventMsgType(Enum):
 #     FIELD_GOAL_MADE = 1 #todo replace above uses of numbers with ENUM values for readability

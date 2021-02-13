@@ -10,7 +10,7 @@ import re
 # todo get playbyplay from NCAA for rookie projections
 # https://www.ncaa.com/game/5763659/play-by-play
 import ENVIRONMENT
-from tipoff.functions.utils import sleepChecker, getSoupFromUrl
+from tipoff.functions.utils import sleepChecker, getSoupFromUrl, getPlayerTeamInSeasonFromBballRefLink
 
 
 def getSingleSeasonGameHeaders(season):
@@ -67,19 +67,8 @@ def getSingleGameHeaders(table_game_strs, table_home_strs, table_away_strs, i):
     return [game_short, game_long, homeStrFull, awayStrFull, homeStrShort, awayStrShort]
 
 
-def getPlayerTeamInSeason(playerLink, season, longCode=True):
-    if longCode:
-        playerLink = playerLink[11:]
-    with open(ENVIRONMENT.PLAYER_TEAM_PAIR_DICT_PATH) as teamPairs:
-        seasons = json.load(teamPairs)
-        try:
-            return seasons[str(season)][playerLink]
-        except:
-            return playerLink
-
-
 def conditionalDataChecks(homeTeam, awayTeam, tipper1, tipper2, tipper1Link, tipper2Link, possessionGainingPlayerLink, firstScoringPlayerLink, season):
-    if homeTeam in getPlayerTeamInSeason(tipper1Link, season):
+    if homeTeam in getPlayerTeamInSeasonFromBballRefLink(tipper1Link, season):
         homeTipper = tipper1
         awayTipper = tipper2
         homeTipperLink = tipper1Link
@@ -90,7 +79,7 @@ def conditionalDataChecks(homeTeam, awayTeam, tipper1, tipper2, tipper1Link, tip
         homeTipperLink = tipper2Link
         awayTipperLink = tipper1Link
 
-    if homeTeam in getPlayerTeamInSeason(possessionGainingPlayerLink, season):
+    if homeTeam in getPlayerTeamInSeasonFromBballRefLink(possessionGainingPlayerLink, season):
         possessionGainingTeam = homeTeam
         possessionLosingTeam = awayTeam
         tipWinner = homeTipper
@@ -105,7 +94,7 @@ def conditionalDataChecks(homeTeam, awayTeam, tipper1, tipper2, tipper1Link, tip
         tipWinnerLink = awayTipperLink
         tipLoserLink = homeTipperLink
 
-    if homeTeam in getPlayerTeamInSeason(firstScoringPlayerLink, season):
+    if homeTeam in getPlayerTeamInSeasonFromBballRefLink(firstScoringPlayerLink, season):
         firstScoringTeam = homeTeam
         scoredUponTeam = awayTeam
     else:

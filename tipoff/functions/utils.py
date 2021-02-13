@@ -106,3 +106,14 @@ def sleepChecker(sleepCounter: int, iterations: int = 3, baseTime: int = 2, rand
         time.sleep(baseTime + random.random() * randomMultiplier)
         sleepCounter = 0
     return sleepCounter
+
+
+def getPlayerTeamInSeasonFromBballRefLink(playerLink, season, longCode=True):
+    if longCode:
+        playerLink = playerLink[11:]
+    with open(ENVIRONMENT.PLAYER_TEAM_PAIR_DICT_PATH) as teamPairs:
+        seasons = json.load(teamPairs)
+        try:
+            return seasons[str(season)][playerLink]
+        except:
+            raise ValueError("no match found for player", playerLink)

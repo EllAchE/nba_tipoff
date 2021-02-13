@@ -1,5 +1,6 @@
 # todo find out when the best time for placing bets on various sites is (i.e. when do odds move)
 # todo next prop - who scores last nba
+# todo confirm that first field goal includes or doesn't include free throws
 from tipoff.live_information.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 
 
@@ -8,14 +9,14 @@ from tipoff.functions.trueskill_calc import updateSkillDictionary
 
 # updateSkillDictionary()
 
-getAllExpectedStarters()
-# getDailyOdds('MIN', 'CHA', '-115', 'mgm')
+# getAllExpectedStarters()
+getDailyOdds('BKN', 'GSW', '-125', 'fanduel'), '-125 mgm'
 getDailyOdds('PHI', 'PHX', '-113')
-# getDailyOdds('NOP', 'DAL', '-115', 'betmgm') #
+getDailyOdds('HOU', 'NYK', '-115', 'fanduel')
 getDailyOdds('IND', 'ATL', '-115')
 # getDailyOdds('DET', 'BOS', '-105', 'betmgm') #fd
 # getDailyOdds('LAC', 'CHI', '-132') #fd
-# getDailyOdds('MIL', 'UTA', '-111') #fd
+getDailyOdds('MIA', 'UTA') #fd
 # getDailyOdds('OKC', 'DEN', '+105', 'betmgm') #fd
 # getDailyOdds('CLE', 'POR', '-110', 'betmgm') #fd, 110 mgm
 # getDailyOdds('MEM', 'LAL', '-115') #fd
