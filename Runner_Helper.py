@@ -70,7 +70,7 @@ def printOddsObjDetails(oddsList: list[Any], showAll: bool = False):
         i += 1
 
         print(str(i) + '.', g.gameCode, "|| Bet On:", betOn, "|| Via:", betOnVia, "|| Kelly Bet:",
-              g.kellyBet, "|| EV Factor:", g.bestEVFactor, "|| Tipoff:", g.gameDatetime) # ". Home/Away:", g.home, g.away,
+              g.kellyBetReduced, "|| EV Factor:", g.bestEVFactor, "|| Tipoff:", g.gameDatetime) # ". Home/Away:", g.home, g.away,
         print("   || Tippers-H/A", g.expectedHomeTipper + '/' + g.expectedAwayTipper, "|| Odds Home Wins", floatHomeScoreProb,
               "|| Min Odds (HoDef):", floatMinBetOdds, "|| Home Line:", g.bestHomeOdds, "|| Away Line:", g.bestAwayOdds)
         print('   Exchange:', g.exchange, '|| Market URL:', g.marketUrl, '|| Odds as of:', g.fetchedDatetime, '\n')

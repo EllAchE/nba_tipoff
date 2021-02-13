@@ -14,6 +14,7 @@ import pandas as pd
 import ENVIRONMENT
 from tipoff.functions.odds_calculator import check_for_edge, checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb
 from tipoff.functions.utils import sleepChecker, getTeamFullFromShort
+from tipoff.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
 
 
 def getExpectedTipper():
@@ -98,19 +99,35 @@ def draftkingsOdds():
     offerCategories = allBets['eventGroup']['offerCategories']
     for category in offerCategories:
         if category['name'] == "Game Props":
-           gameProps = category
+           gameProps = category['offerSubcategoryDescriptors']
         if category['name'] == "Player Props":
-            playerProps = category
-    for category in gameProps:
-        if category['name'] == "First Team To Score":
-            firstTeamToScore = category
+            playerProps = category['offerSubcategoryDescriptors']
+    for subCategory in gameProps:
+        if subCategory['name'] == "First Team to Score":
+            firstTeamToScoreLines = category['offerSubcategory']['offers']
             break
     for category in playerProps:
-        if category['name'] == "First Player To Score":
-            firstPlayerToScore = category
+        if category['name'] == "First Field Goal": #todo an id may work for these
+            firstPlayerToScoreLines = category['offerSubcategory']['offers']
             break
-    # todo when these odds are available figure out what the format is
-    pass
+
+    allTeamLines = list()
+    for teamLine in firstTeamToScoreLines:
+        outcomes = teamLine['outcomes']
+        team1 = outcomes[0]['label']
+        team1Odds = outcomes[0]['oddsAmerican']
+        team2 = outcomes[1]['label']
+        team2Odds = outcomes[1]['oddsAmerican']
+        allTeamLines.append({team1: team1Odds, team2: team2Odds})
+
+    allPlayerLines = list()
+    for playerLine in firstPlayerToScoreLines:
+        name = playerLine['label']
+        aOdds = playerLine['oddsAmerican']
+        playerTeam = getPlayerTeamInSeasonFromBballRefLink(name)
+        allPlayerLines.append({name: aOdds})
+
+    return allTeamLines, allPlayerLines
 
 
 def otherBookieOdds():
