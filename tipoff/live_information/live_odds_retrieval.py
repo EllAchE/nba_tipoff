@@ -12,8 +12,8 @@ import requests
 import pandas as pd
 
 import ENVIRONMENT
-from Functions.Odds_Calculator import check_for_edge, checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb
-from Functions.Utils import sleepChecker
+from tipoff.functions.odds_calculator import check_for_edge, checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb
+from tipoff.functions.utils import sleepChecker, getTeamFullFromShort
 
 
 def getExpectedTipper():
@@ -93,6 +93,23 @@ def bovadaOdds():
 
 def draftkingsOdds():
     # https://sportsbook.draftkings.com/leagues/basketball/103?category=game-props&subcategory=odd/even
+    # API - https://sportsbook.draftkings.com//sites/US-SB/api/v1/eventgroup/103/full?includePromotions=true&format=json
+    allBets = requests.get('https://sportsbook.draftkings.com//sites/US-SB/api/v1/eventgroup/103/full?includePromotions=true&format=json').json()
+    offerCategories = allBets['eventGroup']['offerCategories']
+    for category in offerCategories:
+        if category['name'] == "Game Props":
+           gameProps = category
+        if category['name'] == "Player Props":
+            playerProps = category
+    for category in gameProps:
+        if category['name'] == "First Team To Score":
+            firstTeamToScore = category
+            break
+    for category in playerProps:
+        if category['name'] == "First Player To Score":
+            firstPlayerToScore = category
+            break
+    # todo when these odds are available figure out what the format is
     pass
 
 
@@ -111,6 +128,21 @@ def mgmOdds():
     # https://sports.co.betmgm.com/en/sports/events/minnesota-timberwolves-at-san-antonio-spurs-11101908?market=10000
     pass
 
+
+def pointsBet():
+    # https://nj.pointsbet.com/sports/basketball/NBA/246723
+    pass
+
+
+def sugarHouseOdds():
+    # https://www.playsugarhouse.com/?page=sports#event/1007123701
+    pass
+
+
+def unibetOdds():
+    # https://nj.unibet.com/sports/#event/1007123701
+    pass
+
 # Other bookmakers https://the-odds-api.com/sports-odds-data/bookmaker-apis.html
 
 
@@ -120,7 +152,7 @@ def mgmOdds():
 #     pass
 
 
-def getStarters(team_code, team_dict=None):
+def getStarters(team_code: str, team_dict: dict=None):
     full_name = teamCodeToSlugName(team_code, team_dict)
 
     url = 'https://api.lineups.com/nba/fetch/lineups/current/{}'.format(full_name)
@@ -144,7 +176,7 @@ def getStarters(team_code, team_dict=None):
     return starters_list
 
 
-def tipperFromTeam(teamShort):
+def tipperFromTeam(teamShort: str):
     with open('Data/JSON/team_tipper_pairs.json') as file:
         dict = json.load(file)
     for row in dict["pairs"]:
@@ -194,11 +226,14 @@ def createTeamTipperDict():
     with open ('Data/JSON/team_tipper_pairs.json', 'w') as file:
         json.dump(fullJson, file)
 
-def getDailyOdds(t1, t2, a_odds=-110):
+
+def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='Fanduel'):
     p1 = tipperFromTeam(t1)
     p2 = tipperFromTeam(t2)
-    a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-    b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-    print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=ENVIRONMENT.BANKROLL))
-    print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=ENVIRONMENT.BANKROLL))
+    odds1 = checkEvPlayerCodesOddsLine(aOdds, p1, p2)
+    odds2 = checkEvPlayerCodesOddsLine(aOdds, p2, p1)
+    t1FullName = getTeamFullFromShort(t1)
+    t2FullName = getTeamFullFromShort(t2)
+    print('On', exchange, 'bet', kellyBetFromAOddsAndScoreProb(odds1, aOdds, bankroll=ENVIRONMENT.BANKROLL), 'on', t1FullName, 'assuming odds', str(aOdds))
+    print('On', exchange, 'bet', kellyBetFromAOddsAndScoreProb(odds2, aOdds, bankroll=ENVIRONMENT.BANKROLL), 'on', t2FullName, 'assuming odds', str(aOdds))
     print()

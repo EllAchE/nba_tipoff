@@ -15,7 +15,7 @@ from tipoff.historical_data.data_handling import resetPredictionSummaries, creat
 from tipoff.historical_data.historical_data_retrieval import getPlayerTeamInSeason
 
 
-def runTSForSeason(season, season_csv, json_path, winning_bet_threshold=0.6):
+def runTSForSeason(season: str, season_csv: str, json_path: str, winning_bet_threshold: float =0.6):
     df = pd.read_csv(season_csv)
     # df = df[df['Home Tipper'].notnull()] # filters invalid rows
     df['Home Mu'] = None
