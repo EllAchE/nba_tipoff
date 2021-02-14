@@ -102,7 +102,7 @@ def getShotTypeFromEventDescription(description: str):
     
     return "2PT " + isMiss
 
-def findPlayerFullFromLast(playerLastName, playerList): #todo this is a hack/not unique done for summary purposes
+def findPlayerFullFromLast(playerLastName, playerList):
     for player in playerList:
         if playerLastName == player["lastName"]:
             return player["fullName"]

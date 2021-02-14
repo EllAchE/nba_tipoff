@@ -31,7 +31,6 @@ def getExpectedTipper(team):
     tipper = tipperFromTeam(team)
     return tipper
 
-
 def getLastTipper(team_code, season_csv='CSV/tipoff_and_first_score_details_2021_season.csv'):
     df = pd.read_csv(season_csv)
     i = len(df['Game Code']) - 1
@@ -48,15 +47,12 @@ def getLastTipper(team_code, season_csv='CSV/tipoff_and_first_score_details_2021
 
     raise ValueError('No match found for team code this season')
 
-
 def fetch_live_lines():
     pass
-
 
 def getGameInfo():
     # return time, home team, away team, starting centers
     pass
-
 
 def teamCodeToSlugName(team_code, team_dict=None, json_path=None):
     if json_path is not None:
@@ -72,7 +68,6 @@ def teamCodeToSlugName(team_code, team_dict=None, json_path=None):
 
     raise ValueError('no matching team for abbreviation')
 
-
 def getAllOddsLines(bankroll=ENVIRONMENT.BANKROLL):
     all_lines = fetch_live_lines()
     game_odds_list = list()
@@ -87,16 +82,13 @@ def getAllOddsLines(bankroll=ENVIRONMENT.BANKROLL):
 
     return game_odds_list
 
-
 def fanduelOdds():
     # https://sportsbook.fanduel.com/cache/psevent/UK/1/false/958472.3.json
     pass
 
-
 def bovadaOdds():
     # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
     pass
-
 
 def draftkingsOdds():
     # https://sportsbook.draftkings.com/leagues/basketball/103?category=game-props&subcategory=odd/even
@@ -132,8 +124,8 @@ def draftkingsOdds():
         for playerLine in gamePlayerLines:
             name = playerLine['label']
             aOdds = playerLine['oddsAmerican']
-            playerTeam = getPlayerTeamFromFullName(name)
-            allPlayerLines.append({name: aOdds, "possibleTeams": playerTeam})
+            # playerTeam = getPlayerTeamFromFullName(name)
+            allPlayerLines.append({name: aOdds}) #, "possibleTeams": playerTeam})
 
     return allTeamLines, allPlayerLines
 
@@ -142,12 +134,10 @@ def otherBookieOdds():
     # todo need to fully exhaust potential bookies/exchanges with player props bet
     pass
 
-
 def betNowOdds():
     # https://www.betnow.eu/nba/ says it has props bets
     # this needs to be verified
     pass
-
 
 def mgmOdds():
     # https://sports.co.betmgm.com/en/sports/events/minnesota-timberwolves-at-san-antonio-spurs-11101908?market=10000
@@ -175,19 +165,24 @@ def mgmOdds():
                 print(odds['results'][1]['americanOdds'])
     pass
 
-
 def pointsBet():
     # https://nj.pointsbet.com/sports/basketball/NBA/246723
     pass
-
 
 def sugarHouseOdds():
     # https://www.playsugarhouse.com/?page=sports#event/1007123701
     pass
 
+def betRiversOdds():
+    # find the url
+    pass
 
 def unibetOdds():
     # https://nj.unibet.com/sports/#event/1007123701
+    pass
+
+def barstoolOdds():
+    # https://www.barstoolsportsbook.com/sports/basketball/nba
     pass
 
 # Other bookmakers https://the-odds-api.com/sports-odds-data/bookmaker-apis.html
@@ -197,7 +192,6 @@ def unibetOdds():
 #     # https://www.betfair.com/sport/basketball/nba/houston-rockets-oklahoma-city-thunder/30266729
 #     # these are not american odds so will need some new methods for these
 #     pass
-
 
 def getStarters(team_code: str, team_dict: dict=None):
     full_name = teamCodeToSlugName(team_code, team_dict)
@@ -222,14 +216,12 @@ def getStarters(team_code: str, team_dict: dict=None):
     print(confirmed, date + '.', 'Starters for', team_code, 'are', starters_list)
     return starters_list
 
-
 def tipperFromTeam(teamShort: str):
     with open('Data/JSON/team_tipper_pairs.json') as file:
         dict = json.load(file)
     for row in dict["pairs"]:
         if teamShort == row["team"]:
             return row["playerCode"]
-
 
 def getAllExpectedStarters():
     teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX',
@@ -238,7 +230,6 @@ def getAllExpectedStarters():
     for team in teamList:
         sleepChecker(sleepCounter, 5, baseTime=0, randomMultiplier=1)
         getStarters(team)
-
 
 def createTeamTipperDict():
     teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX',
@@ -273,7 +264,6 @@ def createTeamTipperDict():
     with open ('Data/JSON/team_tipper_pairs.json', 'w') as file:
         json.dump(fullJson, file)
 
-
 def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='Fanduel'):
     p1 = tipperFromTeam(t1)
     p2 = tipperFromTeam(t2)
@@ -284,7 +274,3 @@ def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='Fanduel'
     print('On', exchange, 'bet', kellyBetFromAOddsAndScoreProb(odds1, aOdds, bankroll=ENVIRONMENT.BANKROLL), 'on', t1FullName, 'assuming odds', str(aOdds))
     print('On', exchange, 'bet', kellyBetFromAOddsAndScoreProb(odds2, aOdds, bankroll=ENVIRONMENT.BANKROLL), 'on', t2FullName, 'assuming odds', str(aOdds))
     print()
-
-# test = draftkingsOdds()
-# print(test)
-# print()

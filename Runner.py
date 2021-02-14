@@ -3,24 +3,23 @@
 # todo confirm that first field goal includes or doesn't include free throws
 # todo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # todo a solution to the edge case above: use the nba api team fetching for cases when there is a match
-from tipoff.historical_data.historical_data_retrieval import update2021Data
+from tipoff.historical_data.historical_data_retrieval import updateCurrentSeason
 from tipoff.live_information.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 from tipoff.functions.trueskill_calc import updateSkillDictionary
 
-# update2021Data()
+updateCurrentSeason()
+
 # updateSkillDictionary()
 
 # getAllExpectedStarters()
-getDailyOdds('MIN', 'TOR')
-getDailyOdds('BOS', 'WAS')
-getDailyOdds('SAS', 'CHA')
-getDailyOdds('NOP', 'DET')
-getDailyOdds('POR', 'DAL')
-getDailyOdds('MIL', 'OKC')
-getDailyOdds('ORL', 'PHX')
-getDailyOdds('LAL', 'DEN')
-getDailyOdds('MEM', 'SAC')
-getDailyOdds('CLE', 'LAC')
+# getDailyOdds('MIN', 'TOR', '+102', 'fanduel')
+# getDailyOdds('BOS', 'WAS', exchange='bovada')
+# getDailyOdds('SAS', 'CHA', '-115', 'fanduel')
+# getDailyOdds('POR', 'DAL', '-125', 'betmgm')
+# getDailyOdds('MIL', 'OKC', '+154', 'fanduel') # +150 betfair
+# getDailyOdds('ORL', 'PHX', '+140', 'fanduel') # magic
+# getDailyOdds('LAL', 'DEN', '-108', 'fanduel')
+# getDailyOdds('CLE', 'LAC',  '+105', 'betmgm')
 
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
