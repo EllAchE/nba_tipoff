@@ -31,6 +31,12 @@ def getExpectedTipper(team):
     tipper = tipperFromTeam(team)
     return tipper
 
+    if len(team) != 3:
+        raise ValueError('Need to pass team short code to getExpectedTipper')
+
+    tipper = tipperFromTeam(team)
+    return tipper
+
 def getLastTipper(team_code, season_csv='CSV/tipoff_and_first_score_details_2021_season.csv'):
     df = pd.read_csv(season_csv)
     i = len(df['Game Code']) - 1
@@ -269,3 +275,7 @@ def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='Fanduel'
     print('On', exchange, 'bet', kellyBetFromAOddsAndScoreProb(odds1, aOdds, bankroll=ENVIRONMENT.BANKROLL), 'on', t1FullName, 'assuming odds', str(aOdds))
     print('On', exchange, 'bet', kellyBetFromAOddsAndScoreProb(odds2, aOdds, bankroll=ENVIRONMENT.BANKROLL), 'on', t2FullName, 'assuming odds', str(aOdds))
     print()
+
+test = draftkingsOdds()
+print(test)
+print()

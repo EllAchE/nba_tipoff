@@ -3,7 +3,6 @@
 # todo confirm that first field goal includes or doesn't include free throws
 # todo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # todo a solution to the edge case above: use the nba api team fetching for cases when there is a match
-from tipoff.historical_data.historical_data_retrieval import updateCurrentSeason
 from tipoff.live_information.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 from tipoff.functions.trueskill_calc import updateSkillDictionary
 
