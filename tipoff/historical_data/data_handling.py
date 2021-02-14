@@ -15,14 +15,14 @@ def concatCsv(save_path: str):
 
 def saveActivePlayersTeams(start_season):
     # https://www.basketball-reference.com/leagues/NBA_2021_per_game.html
-    seasons_list = list()
+    seasonsList = list()
     seasons = {}
 
     while start_season < 2023:
-        seasons_list.append(str(start_season))
+        seasonsList.append(str(start_season))
         start_season += 1
 
-    for season in seasons_list:
+    for season in seasonsList:
         season = str(season)
         seasons[season] = {}
         url = 'https://www.basketball-reference.com/leagues/NBA_{}_per_game.html'.format(season)
@@ -30,27 +30,26 @@ def saveActivePlayersTeams(start_season):
         soup, statusCode = getSoupFromUrl(url, returnStatus=True)
         print("GET request for season", season, "players list returned status", statusCode)
 
-
         noTradePlayerTags = soup.find_all('tr', class_="full_table")
         tradePlayerTags = soup.find_all('tr', class_="italic_text partial_table")
-        noTradeSet = set() # todo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
+        noTradeSet = set()
 
         for tag in tradePlayerTags:
             tag = str(tag)
-            player_code = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
-            player_team = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
-            if player_code in noTradeSet:
-                seasons[season][player_code] += [player_team]
+            playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
+            playerTeam = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
+            if playerCode in noTradeSet:
+                seasons[season][playerCode] += [playerTeam]
             else:
-                seasons[season][player_code] = [player_team]
-            noTradeSet.add(player_code)
+                seasons[season][playerCode] = [playerTeam]
+            noTradeSet.add(playerCode)
         for tag in noTradePlayerTags:
             tag = str(tag)
-            player_code = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
-            if player_code in noTradeSet:
+            playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
+            if playerCode in noTradeSet:
                 continue # skip the trade_players who break the regex
-            player_team = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
-            seasons[season][player_code] = [player_team]
+            playerTeam = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
+            seasons[season][playerCode] = [playerTeam]
 
     with open('../Data/JSON/player_team_pairs.json', 'w') as json_file:
         json.dump(seasons, json_file)
@@ -62,18 +61,18 @@ def createPlayerSkillDictionary():
     with open(ENVIRONMENT.PLAYER_TEAM_PAIR_DICT_PATH) as playerTeamPairsJson:
         ptp = json.load(playerTeamPairsJson)
 
-        player_codes = set()
-        player_skill_dict = {}
+        playerCodes = set()
+        playerSkillDict = {}
 
         for season in ptp.keys():
             for player in ptp[season].keys():
-                player_codes.add(player)
+                playerCodes.add(player)
 
-        for code in player_codes:
-            player_skill_dict[code] = {'mu': 25, 'sigma': 25/3, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
+        for code in playerCodes:
+            playerSkillDict[code] = {'mu': 25, 'sigma': 25/3, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
 
     with open(ENVIRONMENT.PLAYER_SKILL_DICT_PATH, 'w') as psd:
-        json.dump(player_skill_dict, psd)
+        json.dump(playerSkillDict, psd)
         print()
 
 
@@ -86,7 +85,7 @@ def resetPredictionSummaries(j=ENVIRONMENT.PREDICTION_SUMMARIES_PATH):
     d['correctTipoffPredictions'] = 0
     d['incorrectTipoffPredictions'] = 0
 
-    with open(j, 'w') as json_w_file:
-        json.dump(d, json_w_file)
+    with open(j, 'w') as jsonWFile:
+        json.dump(d, jsonWFile)
 
     print('reset prediction summaries')

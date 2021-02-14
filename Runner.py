@@ -1,6 +1,8 @@
 # todo find out when the best time for placing bets on various sites is (i.e. when do odds move)
 # todo next prop - who scores last nba, race to 5 points
 # todo confirm that first field goal includes or doesn't include free throws
+# todo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
+# todo a solution to the edge case above: use the nba api team fetching for cases when there is a match
 from tipoff.live_information.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 
 
@@ -59,7 +61,6 @@ https://www.betburger.com/?sure_bets=1160
 https://punter2pro.com/best-sports-arbing-software/
 '''
 
-# todo read into glicko math and try to do estimation of rnage
 # todo make data overwriting transactional, i.e. locally saved csv could have all or no rows updated, no overwrites and partial
 # todo player to fullname to player code relationship
 # todo convert to object oriented, i.e. where players are represented have them be a player object (nba_api may solve this, it has objects for many data types we care about already)
@@ -70,7 +71,6 @@ https://punter2pro.com/best-sports-arbing-software/
 
 # MISC
 # todo investigate adjsuted starting rankings for low appearance playersy, i.e. if we can assume certain/lower mu values for a class of player we can improve our predictions
-
 # todo betting calendar (i.e. when do sites post their info)
 # todo (OVERKILL) have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
 # todo see if back to back against same team matters

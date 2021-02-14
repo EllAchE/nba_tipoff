@@ -88,7 +88,6 @@ def sysEMainDiagonalVarsNeg1Fill(argsList, amtToWin: float = 1, amtToLose: Optio
         multiplier = amtToLose/cost
         return playerSpread * multiplier
 
-# todo add "kelly processors" to format input properly, input must be in ratio form (i.e. loss & win amount relate to dollar)
 def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float=0.7, winAmt: float = 1, bankroll: Optional[float] = None): # assumes binary outcome, requires dollar value
     kellyRatio = (winOdds / lossAmt - (1 - winOdds) / winAmt) * reductionFactor
 
@@ -97,10 +96,7 @@ def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float=0.7, 
     else:
         return kellyRatio * bankroll
 
-def positiveEvThresholdFromAmerican(odds: Any):
-    # TODO: Why is this conversion being done?
-    # If it's unnecessary, we can retype "odds" as str.
-    oddsStr = str(odds)
+def positiveEvThresholdFromAmerican(oddsStr: str):
     oddsNum = float(oddsStr[1:])
     
     if oddsStr[0] == '+':
@@ -112,10 +108,7 @@ def positiveEvThresholdFromAmerican(odds: Any):
     return reqWinPer
 
 
-def costFor100(odds: Any):
-    # TODO: Why is this conversion being done?
-    # If it's unnecessary, we can retype "odds" as str.
-    oddsStr = str(odds)
+def costFor100(oddsStr: str):
     oddsNum = float(oddsStr[1:])
     
     if oddsStr[0] == '+':

@@ -43,7 +43,6 @@ from tipoff.functions.utils import getDashDateAndHomeCodeFromGameCode, sleepChec
 
 DataFrame = Any
 
-
 def convertBballRefTeamShortCodeToNBA(shortCode: str):
     if shortCode == 'PHO':
         return 'PHX'
@@ -53,18 +52,15 @@ def convertBballRefTeamShortCodeToNBA(shortCode: str):
         return 'CHA'
     return shortCode
 
-
 def getTeamDictionaryFromShortCode(shortCode: str):
     shortCode = convertBballRefTeamShortCodeToNBA(shortCode)
     nbaTeams = teams.get_teams()
     teamDict = [team for team in nbaTeams if team['abbreviation'] == shortCode][0]
     return teamDict['id']
 
-
 def getAllGamesForTeam(team_id: str):
     gamefinder = leaguegamefinder.LeagueGameFinder(team_id_nullable=team_id)
     return gamefinder.get_data_frames()[0]
-
 
 def getAllGamesInSeason(season: int, short_code: str):
     season -= 1
@@ -73,18 +69,15 @@ def getAllGamesInSeason(season: int, short_code: str):
     
     return gamesDf[gamesDf.SEASON_ID.str[-4:] == str(season)]
 
-
 # game date format is YYYY-MM-DD
 def _getGameObjFromDateAndTeam(dateStr: str, shortCode: str):
     teamId = getTeamDictionaryFromShortCode(shortCode)
     allGames = getAllGamesForTeam(teamId)
     return allGames[allGames.GAME_DATE == str(dateStr)]
 
-
 def getGameIdFromTeamAndDate(dateStr: str, shortCode: str):
     gameObj = _getGameObjFromDateAndTeam(dateStr, shortCode)
     return gameObj.GAME_ID.iloc[0]
-
 
 def getGamePlayByPlay(gameId: str):
     return playbyplayv2.PlayByPlayV2(gameId).get_data_frames()[0]
@@ -98,7 +91,6 @@ def getPlayerLastNameFromShotDescription(description: str): # if this need to be
         return splitDescription[1]
     else:
         return splitDescription[0]
-
 
 def getShotTypeFromEventDescription(description: str):
     isMiss = "MISS" if "MISS" in description or "BLOCK" in description else "MAKE"
@@ -119,8 +111,7 @@ def findPlayerFullFromLast(playerLastName, playerList): #todo this is a hack/not
     print('couldn\'t match player' + playerLastName)
     return playerLastName
 
-
-def _getFirstShotStatistics(shotsBeforeFirstScore: DataFrame, bballRefCode):
+def _getFirstShotStatistics(shotsBeforeFirstScore: pd.DataFrame, bballRefCode):
     shotIndex = 0
     dataList = list()
     gameId = shotsBeforeFirstScore.iloc[0].GAME_ID
@@ -201,7 +192,6 @@ def getGamePlayersFromId(id):
 
     return playerList
 
-
 def getTipoffLine(pbpDf: DataFrame, returnIndex: bool = False):
     try:
         tipoffSeries = pbpDf[pbpDf.EVENTMSGTYPE == 10]
@@ -227,17 +217,14 @@ def getTipoffLine(pbpDf: DataFrame, returnIndex: bool = False):
         return content, type, isHome, tipoffContent.index
     return content, type, isHome
 
-
 def getTipoffLineFromGameId(gameId: str):
     pbpDf = getGamePlayByPlay(gameId)
     tipoffContent = getTipoffLine(pbpDf)
     return tipoffContent
 
-
 def getGameIdFromBballRef(bballRefId):
     date, team = getDashDateAndHomeCodeFromGameCode(bballRefId)
     return getGameIdFromTeamAndDate(date, team)
-
 
 def getAllFirstPossessionStatisticsIncrementally(season):
     path = '../../Data/CSV/tipoff_and_first_score_details_{}_season.csv'.format(season)
@@ -281,7 +268,6 @@ def getAllFirstPossessionStatisticsIncrementally(season):
 #     id = playerObj.id
 #     return id
 
-
 def getAllFirstPossessionStatisticsAtOnce():
     allShotsList = list()
     for season in ENVIRONMENT.SEASONS_LIST_SINCE_HORNETS:
@@ -308,8 +294,6 @@ def getAllFirstPossessionStatisticsAtOnce():
     with open(ENVIRONMENT.SHOTS_BEFORE_FIRST_SCORE_PATH, 'w') as jsonFile:
         json.dump(allShotsList, jsonFile)
 
-getAllFirstPossessionStatisticsIncrementally(2018)
-
 # class EventMsgType(Enum):
 #     FIELD_GOAL_MADE = 1 #todo replace above uses of numbers with ENUM values for readability
 #     FIELD_GOAL_MISSED = 2
@@ -330,9 +314,5 @@ getAllFirstPossessionStatisticsIncrementally(2018)
 #     test = getGameIdFromTeamAndDate(date, team_code)
 #     deb = getTipoffResults(test)
 #     print(deb)
-
-
-# for item in test_bad_data_games:
-#     getNbaComResultsFromBballReferenceCode(item[0])
 
 # todo use this work (specifically the getTipoffLine) to fill in the blanks on the missing games in the csv

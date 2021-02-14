@@ -132,8 +132,8 @@ def draftkingsOdds():
         for playerLine in gamePlayerLines:
             name = playerLine['label']
             aOdds = playerLine['oddsAmerican']
-            playerTeams = getPlayerTeamFromFullName(name, season=2021)
-            allPlayerLines.append({name: aOdds, "possibleTeams": playerTeams})
+            playerTeam = getPlayerTeamFromFullName(name)
+            allPlayerLines.append({name: aOdds, "possibleTeams": playerTeam})
 
     return allTeamLines, allPlayerLines
 
