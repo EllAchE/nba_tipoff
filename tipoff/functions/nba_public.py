@@ -34,6 +34,7 @@ from nba_api.stats.endpoints import leaguegamefinder
 from nba_api.stats.endpoints import gamerotation, playbyplayv2
 from typing import Any
 import pandas as pd
+from nba_api.stats.static import players
 
 # TODO: Writing type stubs for pandas' DataFrame is too cumbersome, so we use this instead.
 # Eventually, we should replace that with real type stubs for DataFrame.
@@ -41,7 +42,6 @@ import ENVIRONMENT
 from tipoff.functions.utils import getDashDateAndHomeCodeFromGameCode, sleepChecker
 
 DataFrame = Any
-
 
 def convertBballRefTeamShortCodeToNBA(shortCode: str):
     if shortCode == 'PHO':
@@ -52,18 +52,15 @@ def convertBballRefTeamShortCodeToNBA(shortCode: str):
         return 'CHA'
     return shortCode
 
-
 def getTeamDictionaryFromShortCode(shortCode: str):
     shortCode = convertBballRefTeamShortCodeToNBA(shortCode)
     nbaTeams = teams.get_teams()
     teamDict = [team for team in nbaTeams if team['abbreviation'] == shortCode][0]
     return teamDict['id']
 
-
 def getAllGamesForTeam(team_id: str):
     gamefinder = leaguegamefinder.LeagueGameFinder(team_id_nullable=team_id)
     return gamefinder.get_data_frames()[0]
-
 
 def getAllGamesInSeason(season: int, short_code: str):
     season -= 1
@@ -72,22 +69,18 @@ def getAllGamesInSeason(season: int, short_code: str):
     
     return gamesDf[gamesDf.SEASON_ID.str[-4:] == str(season)]
 
-
 # game date format is YYYY-MM-DD
 def _getGameObjFromDateAndTeam(dateStr: str, shortCode: str):
     teamId = getTeamDictionaryFromShortCode(shortCode)
     allGames = getAllGamesForTeam(teamId)
     return allGames[allGames.GAME_DATE == str(dateStr)]
 
-
 def getGameIdFromTeamAndDate(dateStr: str, shortCode: str):
     gameObj = _getGameObjFromDateAndTeam(dateStr, shortCode)
     return gameObj.GAME_ID.iloc[0]
 
-
 def getGamePlayByPlay(gameId: str):
     return playbyplayv2.PlayByPlayV2(gameId).get_data_frames()[0]
-
 
 def getPlayerLastNameFromShotDescription(description: str): # if this need to be fully generic then fetch the playerlast names and do a match on that
     isMiss = "MISS" in description
@@ -97,7 +90,6 @@ def getPlayerLastNameFromShotDescription(description: str): # if this need to be
         return splitDescription[1]
     else:
         return splitDescription[0]
-
 
 def getShotTypeFromEventDescription(description: str):
     isMiss = "MISS" if "MISS" in description or "BLOCK" in description else "MAKE"
@@ -110,16 +102,14 @@ def getShotTypeFromEventDescription(description: str):
     
     return "2PT " + isMiss
 
-
-def findPlayerFullFromLast(playerLastName, playerList): #todo this is a hack/not unique done for summary purposes
+def findPlayerFullFromLast(playerLastName, playerList):
     for player in playerList:
         if playerLastName == player["lastName"]:
             return player["fullName"]
     print('couldn\'t match player' + playerLastName)
     return playerLastName
 
-
-def _getFirstShotStatistics(shotsBeforeFirstScore: DataFrame, bballRefCode):
+def _getFirstShotStatistics(shotsBeforeFirstScore: pd.DataFrame, bballRefCode):
     shotIndex = 0
     dataList = list()
     gameId = shotsBeforeFirstScore.iloc[0].GAME_ID
@@ -146,11 +136,9 @@ def _getFirstShotStatistics(shotsBeforeFirstScore: DataFrame, bballRefCode):
         # todo map the player lastName retrieved here to a player index/code
     return {"gameCode": bballRefCode, "gameData": dataList}
 
-
 def _getAllShotsBeforeFirstScore(playsBeforeFirstFgDf: DataFrame):
     shootingPlays = playsBeforeFirstFgDf[playsBeforeFirstFgDf['EVENTMSGTYPE'].isin([1, 2, 3])]
     return shootingPlays
-
 
 def getAllEventsBeforeFirstScore(pbpDf: DataFrame):
     i = 0
@@ -159,14 +147,12 @@ def getAllEventsBeforeFirstScore(pbpDf: DataFrame):
             return pbpDf[:(i + 1)]
         i += 1
 
-
 def gameIdToFirstShotList(id: str):
     pbpDf = playbyplayv2.PlayByPlayV2(game_id=id).get_data_frames()[0]
     plays = getAllEventsBeforeFirstScore(pbpDf)
     shots = _getAllShotsBeforeFirstScore(plays)
 
     return shots
-
 
 def getParticipatingTeamsFromId(id): # (id: str) -> dict[str, str]:
     response = gamerotation.GameRotation(game_id=id)
@@ -178,7 +164,6 @@ def getParticipatingTeamsFromId(id): # (id: str) -> dict[str, str]:
     homeTeamId = response.home_team.get_dict()['data'][0][4]
     
     return {"home": homeTeamCity + ' ' + homeTeamName, "homeId": homeTeamId, "away": awayTeamCity + ' ' + awayTeamName, "awayId": awayTeamId}
-
 
 def getGamePlayersFromId(id):
     playerSet = set()
@@ -199,7 +184,6 @@ def getGamePlayersFromId(id):
         playerList.append({"fullName": player, "lastName": lastName[1]})
 
     return playerList
-
 
 def getTipoffLine(pbpDf: DataFrame, returnIndex: bool = False):
     try:
@@ -226,17 +210,14 @@ def getTipoffLine(pbpDf: DataFrame, returnIndex: bool = False):
         return content, type, isHome, tipoffContent.index
     return content, type, isHome
 
-
 def getTipoffLineFromGameId(gameId: str):
     pbpDf = getGamePlayByPlay(gameId)
     tipoffContent = getTipoffLine(pbpDf)
     return tipoffContent
 
-
 def getGameIdFromBballRef(bballRefId):
     date, team = getDashDateAndHomeCodeFromGameCode(bballRefId)
     return getGameIdFromTeamAndDate(date, team)
-
 
 def getAllFirstPossessionStatisticsIncrementally(season):
     path = '../../Data/CSV/tipoff_and_first_score_details_{}_season.csv'.format(season)
@@ -249,7 +230,7 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         shotsDict = json.load(sbfs)
     seasonShotList = shotsDict[str(season)]
 
-    if len(seasonShotList) > 0:
+    if len(seasonShotList)  0:
         lastGame = seasonShotList[-1]
         lastGameCode = lastGame['gameCode']
         lastGameIndex = df[df['Game Code'] == lastGameCode].index.values[0]
@@ -272,6 +253,13 @@ def getAllFirstPossessionStatisticsIncrementally(season):
             json.dump(shotsDict, jsonFile)
 
         i += 1
+#
+#
+# def getPlayerIdFromFullName(name):
+#     nba_players = players.get_players()
+#     playerObj = [player for player in nba_players if player['full_name'] == name][0]
+#     id = playerObj.id
+#     return id
 
 def getAllFirstPossessionStatisticsAtOnce():
     allShotsList = list()
@@ -299,8 +287,6 @@ def getAllFirstPossessionStatisticsAtOnce():
     with open(ENVIRONMENT.SHOTS_BEFORE_FIRST_SCORE_PATH, 'w') as jsonFile:
         json.dump(allShotsList, jsonFile)
 
-getAllFirstPossessionStatisticsIncrementally(2015)
-
 # class EventMsgType(Enum):
 #     FIELD_GOAL_MADE = 1 #todo replace above uses of numbers with ENUM values for readability
 #     FIELD_GOAL_MISSED = 2
@@ -321,9 +307,5 @@ getAllFirstPossessionStatisticsIncrementally(2015)
 #     test = getGameIdFromTeamAndDate(date, team_code)
 #     deb = getTipoffResults(test)
 #     print(deb)
-
-
-# for item in test_bad_data_games:
-#     getNbaComResultsFromBballReferenceCode(item[0])
 
 # todo use this work (specifically the getTipoffLine) to fill in the blanks on the missing games in the csv

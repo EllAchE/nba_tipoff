@@ -7,7 +7,7 @@ import re
 # todo record historical betting lines
 # todo try to find data source for historical betting lines
 # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
-# todo get playbyplay from NCAA for rookie projections
+# todo BACKLOG get playbyplay from NCAA for rookie projections
 # https://www.ncaa.com/game/5763659/play-by-play
 import ENVIRONMENT
 from tipoff.functions.utils import sleepChecker, getSoupFromUrl, getPlayerTeamInSeasonFromBballRefLink
@@ -185,8 +185,29 @@ def getOffDefRatings(season=None, savePath=None):
 
     return seasonDict
 
+def updateCurrentSeason(pathToData='Data/CSV/tipoff_and_first_score_details_2021_season.csv', currentSeason=2021):
+    df = pd.read_csv(pathToData)
+    appendFile = open(pathToData, 'a')
+    indexAfterLastGame = len(df)
 
-def oneSeason(season, path):
+    with appendFile:
+        csvWriter = csv.writer(appendFile)
+        gameHeaders = getSingleSeasonGameHeaders(currentSeason)
+        gameHeadersLength = len(gameHeaders)
+
+        sleepCounter = 0
+        while indexAfterLastGame < gameHeadersLength:
+            sleepCounter = sleepChecker(sleepCounter, iterations=16, baseTime=0, randomMultiplier=1)
+            try:
+                line = gameHeaders[indexAfterLastGame]
+                row = line + getTipWinnerAndFirstScore(line[0], currentSeason, line[4], line[5])
+                print(row)
+                csvWriter.writerow(row)
+                indexAfterLastGame += 1
+            except:
+                break
+
+def oneSeasonFromScratch(season, path):
     temp = pd.DataFrame()
     temp.to_csv(path)
     dFile = open(path, 'w')
@@ -209,14 +230,3 @@ def oneSeason(season, path):
                 csvWriter.writerow(row)
             except:
                 break
-
-
-def update2021Data():
-    startSeason = 2021
-
-    # for start_season in sss:
-
-    all_at_once_path = "tip_and_first_score_details_starting_" + str(startSeason) + "_season.csv"
-    single_season_path = "tip_and_first_score_details_" + str(startSeason) + "_season.csv"
-
-    oneSeason(startSeason, single_season_path)

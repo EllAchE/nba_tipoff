@@ -1,7 +1,9 @@
 import json
 
-from Classes.GameOdds import GameOdds
 from typing import Any
+
+from tipoff.classes.GameOdds import GameOdds
+
 
 def displayUniqueBetsByEV(betDict: dict[str, Any], showAll: bool = True):
     oddsList = convertDictToGameOddsObjList(betDict)

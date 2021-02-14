@@ -1,6 +1,7 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from Functions.Utils import getSoupFromUrl
+
+from tipoff.functions.utils import getSoupFromUrl
 
 
 def getPlayerHeightAndAge(playerLink):
