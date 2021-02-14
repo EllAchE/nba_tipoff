@@ -88,7 +88,6 @@ def sysEMainDiagonalVarsNeg1Fill(argsList, amtToWin: float = 1, amtToLose: Optio
         multiplier = amtToLose/cost
         return playerSpread * multiplier
 
-# todo add "kelly processors" to format input properly, input must be in ratio form (i.e. loss & win amount relate to dollar)
 def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float=0.7, winAmt: float = 1, bankroll: Optional[float] = None): # assumes binary outcome, requires dollar value
     kellyRatio = (winOdds / lossAmt - (1 - winOdds) / winAmt) * reductionFactor
 
@@ -97,10 +96,7 @@ def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float=0.7, 
     else:
         return kellyRatio * bankroll
 
-def positiveEvThresholdFromAmerican(odds: Any):
-    # TODO: Why is this conversion being done?
-    # If it's unnecessary, we can retype "odds" as str.
-    oddsStr = str(odds)
+def positiveEvThresholdFromAmerican(oddsStr: str):
     oddsNum = float(oddsStr[1:])
     
     if oddsStr[0] == '+':
@@ -111,11 +107,7 @@ def positiveEvThresholdFromAmerican(odds: Any):
 
     return reqWinPer
 
-
-def costFor100(odds: Any):
-    # TODO: Why is this conversion being done?
-    # If it's unnecessary, we can retype "odds" as str.
-    oddsStr = str(odds)
+def costFor100(oddsStr: str):
     oddsNum = float(oddsStr[1:])
     
     if oddsStr[0] == '+':
@@ -124,7 +116,6 @@ def costFor100(odds: Any):
         return oddsNum
     else:
         raise ValueError('Odds line is improperly formatted, include the + or -.')
-
 
 def getEvMultiplier(scoreProb: float, minWinPercentage: float):
     winAmt = 1 / minWinPercentage - 1
@@ -161,7 +152,6 @@ def kellyBetFromAOddsAndScoreProb(scoreProb: float, americanOdds: str, bankroll:
     loss_amt = costFor1(americanOdds)
     return kellyBetReduced(loss_amt, scoreProb, bankroll=bankroll)
 
-
 def checkEvPositiveBackLayAndGetScoreProb(teamOdds: float, teamTipperCode: str, opponentTipperCode: str):
     minWinRate = positiveEvThresholdFromAmerican(teamOdds)
     minLossRate = 1 - minWinRate
@@ -177,7 +167,6 @@ def checkEvPositiveBackLayAndGetScoreProb(teamOdds: float, teamTipperCode: str, 
     else:
         print('don\'t bet either side')
         return None
-
 
 def checkEvPositive(teamOdds: float, scoreProb: float):
     min_win_rate = positiveEvThresholdFromAmerican(teamOdds)
@@ -197,11 +186,9 @@ def checkEvPlayerCodesOddsLine(odds: float, p1: str, p2: str):
     
     return prob
 
-
 def getScoreProb(teamTipperCode: str, opponentTipperCode: str):
     tip_win_odds = tipWinProb(teamTipperCode, opponentTipperCode)
     return tipScoreProb(tip_win_odds)
-
 
 # should be [[name, line], [name, line]]
 def convertPlayerLinesToSingleLine(playerOddsList):

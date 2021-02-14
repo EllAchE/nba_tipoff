@@ -59,6 +59,8 @@ def createEmptyOddsDict():
       }
     }
 
-def createOddsDict(playerLines, TeamLines):
+def createOddsDict(playerLines, teamLines):
     oddsDict = createEmptyOddsDict()
+    allTeams = set()
+
 
