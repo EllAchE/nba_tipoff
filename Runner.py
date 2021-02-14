@@ -7,9 +7,9 @@ from tipoff.historical_data.historical_data_retrieval import updateCurrentSeason
 from tipoff.live_information.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 from tipoff.functions.trueskill_calc import updateSkillDictionary
 
-updateCurrentSeason()
+# updateCurrentSeason()
 
-# updateSkillDictionary()
+updateSkillDictionary()
 
 # getAllExpectedStarters()
 # getDailyOdds('MIN', 'TOR', '+102', 'fanduel')
@@ -68,7 +68,6 @@ https://punter2pro.com/best-sports-arbing-software/
 
 # MISC
 # todo investigate adjsuted starting rankings for low appearance playersy, i.e. if we can assume certain/lower mu values for a class of player we can improve our predictions
-# todo betting calendar (i.e. when do sites post their info)
 # todo (OVERKILL) have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
 # todo see if back to back against same team matters
 

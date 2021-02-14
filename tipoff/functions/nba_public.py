@@ -230,7 +230,7 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         shotsDict = json.load(sbfs)
     seasonShotList = shotsDict[str(season)]
 
-    if len(seasonShotList) > 0:
+    if len(seasonShotList)  0:
         lastGame = seasonShotList[-1]
         lastGameCode = lastGame['gameCode']
         lastGameIndex = df[df['Game Code'] == lastGameCode].index.values[0]

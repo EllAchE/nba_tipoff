@@ -7,7 +7,7 @@ import re
 # todo record historical betting lines
 # todo try to find data source for historical betting lines
 # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
-# todo get playbyplay from NCAA for rookie projections
+# todo BACKLOG get playbyplay from NCAA for rookie projections
 # https://www.ncaa.com/game/5763659/play-by-play
 import ENVIRONMENT
 from tipoff.functions.utils import sleepChecker, getSoupFromUrl, getPlayerTeamInSeasonFromBballRefLink

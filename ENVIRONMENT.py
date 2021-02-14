@@ -24,7 +24,7 @@ BASE_DEVIATION = 25 * 25 / 3 / 3
 PLAYER_SKILL_DICT_PATH = Path(os.path.abspath('Data/JSON/player_skill_dictionary.json'))
 PLAYER_TEAM_PAIR_DICT_PATH = Path(os.path.abspath('Data/JSON/player_team_pairs.json'))
 PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/prediction_summaries.json'))
-SEASON_CSV_NEEDING_FORMAT_PATH = Path(os.path.abspath('Data/CSV/tipoff_and_first_score_details_{}_season.csv'))
+SEASON_CSV_NEEDING_FORMAT_PATH = os.path.abspath('Data/CSV/tipoff_and_first_score_details_{}_season.csv')
 TEAM_CONVERSION_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/teams.json'))
 SHOTS_BEFORE_FIRST_SCORE_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/shots_before_first_score.json'))
 

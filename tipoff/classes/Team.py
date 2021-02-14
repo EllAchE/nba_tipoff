@@ -1,3 +1,4 @@
 class Team:
-    def __init__(self, team_code):
-        self.team_code = team_code
+    def __init__(self, teamCodel, currentRoster):
+        self.teamCode = teamCode
+        self.currentRoster = currentRoster

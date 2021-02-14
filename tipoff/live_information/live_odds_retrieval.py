@@ -129,11 +129,6 @@ def draftkingsOdds():
 
     return allTeamLines, allPlayerLines
 
-
-def otherBookieOdds():
-    # todo need to fully exhaust potential bookies/exchanges with player props bet
-    pass
-
 def betNowOdds():
     # https://www.betnow.eu/nba/ says it has props bets
     # this needs to be verified

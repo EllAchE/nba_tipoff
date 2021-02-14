@@ -4,24 +4,38 @@ from tipoff.live_information.live_odds_retrieval import getExpectedTipper
 
 
 class GameOdds:
-    def __init__(self, gameDict):
+    def __init__(self, gameDict, teamOnly=False, playersOnly=False):
         self.home = gameDict['home']
         self.away = gameDict['away']
         self.oddsDatetime = gameDict['fetchedDatetime']
         self.gameDatetime = gameDict['gameDatetime']
-        self.homeTeamOdds = gameDict['odds']['homeTeamScoreFirstOdds']
-        self.awayTeamOdds = gameDict['odds']['awayTeamScoreFirstOdds']
-        self.homePlayerOddsList = gameDict['odds']['homePlayerOdds']
-        self.awayPlayerOddsList = gameDict['odds']['awayPlayerOdds']
         self.gameCode = gameDict['gameCode']
         self.exchange = gameDict['exchange']
         self.marketUrl = gameDict['marketUrl']
         self.fetchedDatetime = gameDict['fetchedDatetime']
 
-        self.homePlayerFloorOdds = convertPlayerLinesToSingleLine(self.homePlayerOddsList)
-        self.awayPlayerFloorOdds = convertPlayerLinesToSingleLine(self.awayPlayerOddsList)
-        self.bestHomeOdds = returnGreaterOdds(self.homeTeamOdds, self.homePlayerFloorOdds)
-        self.bestAwayOdds = returnGreaterOdds(self.awayTeamOdds, self.awayPlayerFloorOdds)
+        if not playersOnly:
+            self.homeTeamOdds = gameDict['odds']['homeTeamScoreFirstOdds']
+            self.awayTeamOdds = gameDict['odds']['awayTeamScoreFirstOdds']
+        elif not teamOnly:
+            self.homePlayerOddsList = gameDict['odds']['homePlayerOdds']
+            self.awayPlayerOddsList = gameDict['odds']['awayPlayerOdds']
+        else:
+            raise ValueError("need at least team or player")
+
+        if not teamOnly:
+            self.homePlayerFloorOdds = convertPlayerLinesToSingleLine(self.homePlayerOddsList)
+            self.awayPlayerFloorOdds = convertPlayerLinesToSingleLine(self.awayPlayerOddsList)
+
+        if teamOnly:
+            self.bestHomeOdds = self.homeTeamOdds
+            self.bestAwayOdds = self.awayTeamOdds
+        elif playersOnly:
+            self.bestHomeOdds = self.homePlayerFloorOdds
+            self.bestAwayOdds = self.awayPlayerFloorOdds
+        else:
+            self.bestHomeOdds = returnGreaterOdds(self.homeTeamOdds, self.homePlayerFloorOdds)
+            self.bestAwayOdds = returnGreaterOdds(self.awayTeamOdds, self.awayPlayerFloorOdds)
         self.minHomeWinPercentage = positiveEvThresholdFromAmerican(self.bestHomeOdds)
         self.minAwayWinPercentage = positiveEvThresholdFromAmerican(self.bestAwayOdds)
 
