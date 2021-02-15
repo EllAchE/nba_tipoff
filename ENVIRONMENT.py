@@ -1,12 +1,10 @@
-# This is where parameters can be tuned
-
-# Tipoff Threshold Variables
 import os
 from pathlib import Path
 
 TIPOFF_ODDS_THRESHOLD = 0.73 # This will be deprecated
+# todo replace the above with odds-based predictions
 MIN_APPEARANCES = 20
-MAX_APPEARANCES = 900
+MAX_APPEARANCES = 9900
 
 # Observed Values
 HOME_SCORE_ODDS = 0.52111318 # todo slightly deflated due to 0.5 approximation of empty rows. May not apply w covid

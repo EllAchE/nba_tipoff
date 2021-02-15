@@ -9,14 +9,11 @@ def naiveComparison(): # p1, p2):
 #     return 1 - weaker_player_win_rate * stronger_player_loss_rate
     pass
 
-
 def eloDictionary():
     pass
 
-
 def glickoDictionary():
     pass
-
 
 def machineLearning():
     pass

@@ -1,11 +1,18 @@
 class Player:
-    def __init__(self):
-        self.playerCode = None
+    def __init__(self, playerCode=None):
+        self.playerCode = playerCode
         self.mu = None
         self.sigma = None
         self.firstScores = None
         self.firstShots = None
         self.currentTeam = None
+        self.isTipperForTeam = None
+        self.tipAppearances = None
+        self.tipWins = None
+        self.tipLosses = None
+        self.oddsToTakeFirstShot = None
+        self.shootingPercentageOnFirstShot = None
+        self.oddsToMakeFirstShot = None
         self.additionalInfoDict = {}
 
     def setPlayerCode(self, playerCode):
@@ -28,5 +35,8 @@ class Player:
 
     def addAdditionalInfo(self, additionalInfoName, additionalInfo):
         self.additionalInfoDict[additionalInfoName] = additionalInfo
+
+    def setAsTipperForTeam(self, team):
+        self.isTipperForTeam = team
 
 

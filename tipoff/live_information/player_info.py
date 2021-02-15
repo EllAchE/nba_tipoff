@@ -3,7 +3,6 @@ from dateutil.relativedelta import relativedelta
 
 from tipoff.functions.utils import getSoupFromUrl
 
-
 def getPlayerHeightAndAge(playerLink):
     playerLink = playerLink[0] + '/' + playerLink # assumes playerLink doesn't have first initial
     url = 'https://www.basketball-reference.com/players/{}'.format(playerLink)
@@ -13,7 +12,6 @@ def getPlayerHeightAndAge(playerLink):
     bDateTag = soup.select('span[itemprop="birthDate"]')
     bDate = bDateTag['data-birth'] # in YYYY-MM-DD form
     return height, birthDateToAge(bDate)
-
 
 def birthDateToAge(birthDate): # in YYYY-MM-DD form
     list = [int(x) for x in birthDate.split('-')]
