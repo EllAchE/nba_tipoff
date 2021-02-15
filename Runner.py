@@ -1,6 +1,5 @@
 # todo find out when the best time for placing bets on various sites is (i.e. when do odds move)
 # todo next prop - who scores last nba, race to 5 points
-# todo confirm that first field goal includes or doesn't include free throws
 # todo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # todo a solution to the edge case above: use the nba api team fetching for cases when there is a match
 from tipoff.live_information.live_odds_retrieval import getAllExpectedStarters, getDailyOdds

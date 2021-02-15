@@ -187,8 +187,8 @@ def checkEvPlayerCodesOddsLine(odds: float, p1: str, p2: str):
     return prob
 
 def getScoreProb(teamTipperCode: str, opponentTipperCode: str):
-    tip_win_odds = tipWinProb(teamTipperCode, opponentTipperCode)
-    return tipScoreProb(tip_win_odds)
+    tipWinOdds = tipWinProb(teamTipperCode, opponentTipperCode)
+    return tipScoreProb(tipWinOdds)
 
 # should be [[name, line], [name, line]]
 def convertPlayerLinesToSingleLine(playerOddsList):

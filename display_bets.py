@@ -3,6 +3,7 @@ import json
 from typing import Any
 
 from tipoff.classes.GameOdds import GameOdds
+from tipoff.live_information.live_odds_data_handling import createAllOddsDict
 
 
 def displayUniqueBetsByEV(betDict: dict[str, Any], showAll: bool = True):
@@ -58,6 +59,10 @@ def convertDictToGameOddsObjList(betDict: dict[str, Any]) -> list[Any]:
     
     return gameOddsObjList
 
+def getAllOddsAndDisplayByEv():
+    allOddsObjs = createAllOddsDict()
+    displayAllBetsByEV(allOddsObjs)
+
 def printOddsObjDetails(oddsList: list[Any], showAll: bool = False):
     i = 1
     
@@ -81,9 +86,9 @@ def printOddsObjDetails(oddsList: list[Any], showAll: bool = False):
             for player in playerSpread:
                 print(player, '\n')
 
-with open("Data/JSON/sample_odds_dict.json") as j:
-    dict = json.load(j)
-    displayAllBetsByExchange(dict)
+# with open("Data/JSON/sample_odds_dict.json") as j:
+#     dict = json.load(j)
+#     displayAllBetsByExchange(dict)
 
 # Format is https://www.basketball-reference.com/boxscores/pbp/201901220OKC.html
 # Home team 3 letter symbol is used after a 0, i.e. YYYYMMDD0###.html

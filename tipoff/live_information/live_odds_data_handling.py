@@ -1,25 +1,43 @@
 # assume odds look like - {team1: odds, team2: odds}, {playerName: odds}
+import json
+
+from tipoff.classes.GameOdds import GameOdds
 from tipoff.functions.utils import sleepChecker
-from tipoff.live_information.live_odds_retrieval import getStarters
+from tipoff.live_information.live_odds_retrieval import getStarters, draftKingsOdds, mgmOdds, bovadaOdds
 
 
 def makeTeamPlayerLinePairs(playerLines, teamLines):
   pass
 
-def createSingleOddsDict(allPlayerLines, allTeamLines):
+def createSingleOddsDict(singleTeamLine, exchange):#, allPlayerLines,):
   oddsDict = createEmptyOddsDict()
-  oddsDict['home'] = None
-  oddsDict['away'] = None
-  oddsDict['exchange'] = None
-  oddsDict['marketUrl'] = None
-  pass
+  oddsDict['home'] = singleTeamLine['team1'] #todo this is a hack bc we don;'t care who is home vs. away
+  oddsDict['away'] = singleTeamLine['team2']
+  oddsDict['exchange'] = exchange
+  oddsDict['homeScoreFirstOdds'] = singleTeamLine['team1Odds']
+  oddsDict['awayScoreFirstOdds'] = singleTeamLine['team2Odds']
+  return oddsDict # todo this is bare bones for team
 
-def createAllOddsDict(playerLines, teamLines):
-    teamPlayerPairs = makeTeamPlayerLinePairs(playerLines, teamLines)
+def createAllOddsDictForExchange(teamLines, exchange): # playerLines, exchange):
+    allOddsDicts = list()
+    teamPlayerPairs = makeTeamPlayerLinePairs(teamLines) #, playerLines)
     for pair in teamPlayerPairs:
       createSingleOddsDict(pair['teamLines'], pair['playerLines'])
+    return allOddsDicts
 
-    pass
+def createAllOddsDict():
+    dkOddsDicts = createAllOddsDictForExchange(draftKingsOdds(), 'draftkings')
+    mgmOddsDicts = createAllOddsDictForExchange(mgmOdds(), 'mgm')
+    # bovadaLines = bovadaOdds()
+    allOddsObjList = list()
+
+    for oddsDict in dkOddsDicts:
+        allOddsObjList.append(oddsDict)
+
+    for oddsDict in mgmOddsDicts:
+        allOddsObjList.append(oddsDict)
+
+    return {"games": allOddsObjList} # todo this dict can be saved for reference for backtesting
 
 def createEmptyOddsDict():
     return {
