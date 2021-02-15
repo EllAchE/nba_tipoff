@@ -11,18 +11,20 @@ def makeTeamPlayerLinePairs(playerLines, teamLines):
 
 def createSingleOddsDict(singleTeamLine, exchange):#, allPlayerLines,):
   oddsDict = createEmptyOddsDict()
-  oddsDict['home'] = singleTeamLine['team1'] #todo this is a hack bc we don;'t care who is home vs. away
-  oddsDict['away'] = singleTeamLine['team2']
+  oddsDict['home'] = list(singleTeamLine.keys())[0] #todo this is a hack bc we don;'t care who is home vs. away
+  oddsDict['away'] = list(singleTeamLine.keys())[1]
   oddsDict['exchange'] = exchange
-  oddsDict['homeScoreFirstOdds'] = singleTeamLine['team1Odds']
-  oddsDict['awayScoreFirstOdds'] = singleTeamLine['team2Odds']
+  oddsDict['homeScoreFirstOdds'] = singleTeamLine[oddsDict['home']]
+  oddsDict['awayScoreFirstOdds'] = singleTeamLine[oddsDict['away']]
   return oddsDict # todo this is bare bones for team
 
 def createAllOddsDictForExchange(teamLines, exchange): # playerLines, exchange):
     allOddsDicts = list()
-    teamPlayerPairs = makeTeamPlayerLinePairs(teamLines) #, playerLines)
-    for pair in teamPlayerPairs:
-      createSingleOddsDict(pair['teamLines'], pair['playerLines'])
+    # teamPlayerPairs = makeTeamPlayerLinePairs(teamLines) #, playerLines)
+    # for pair in teamPlayerPairs:
+    #   createSingleOddsDict(pair['teamLines'], pair['playerLines'])
+    for gameLine in teamLines:
+        allOddsDicts.append(createSingleOddsDict(gameLine, exchange))
     return allOddsDicts
 
 def createAllOddsDict():

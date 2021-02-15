@@ -6,39 +6,39 @@ from tipoff.classes.GameOdds import GameOdds
 from tipoff.live_information.live_odds_data_handling import createAllOddsDict
 
 
-def displayUniqueBetsByEV(betDict: dict[str, Any], showAll: bool = True):
+def displayUniqueBetsByEV(betDict: Any, showAll: bool = True):
     oddsList = convertDictToGameOddsObjList(betDict)
     filteredOddsList = filterBestByGameCode(oddsList)
     filteredOddsList.sort(key=lambda x: x.bestEVFactor)
     printOddsObjDetails(filteredOddsList, showAll)
 
-def displayUniqueBetsByDatetime(betDict: dict[str, Any], showAll: bool = True):
+def displayUniqueBetsByDatetime(betDict: Any, showAll: bool = True):
     oddsList = convertDictToGameOddsObjList(betDict)
     filteredOddsList = filterBestByGameCode(oddsList)
     filteredOddsList.sort(key=lambda x: x.bestEVFactor)
     filteredOddsList.sort(key=lambda x: x.gameDatetime)
     printOddsObjDetails(filteredOddsList, showAll)
 
-def displayAllBetsByEV(betDict: dict[str, Any], showAll: bool = True):
+def displayAllBetsByEV(betDict: Any, showAll: bool = True): # todo fix typing errors with betDict to support dict[str, Any]
     oddsList = convertDictToGameOddsObjList(betDict)
     oddsList.sort(key=lambda x: x.bestEVFactor)
     printOddsObjDetails(oddsList, showAll)
 
-def displayAllBetsByDatetime(betDict: dict[str, Any], showAll: bool = True):
+def displayAllBetsByDatetime(betDict: Any, showAll: bool = True):
     oddsList = convertDictToGameOddsObjList(betDict)
     oddsList.sort(key=lambda x: x.bestEVFactor)
     oddsList.sort(key=lambda x: x.gameDatetime)
     printOddsObjDetails(oddsList, showAll)
 
-def displayAllBetsByExchange(betDict: dict[str, Any], showAll: bool = True):
+def displayAllBetsByExchange(betDict: Any, showAll: bool = True):
     oddsList = convertDictToGameOddsObjList(betDict)
     oddsList.sort(key=lambda x: x.bestEVFactor)
     oddsList.sort(key=lambda x: x.gameDatetime)
     oddsList.sort(key=lambda x: x.exchange)
     printOddsObjDetails(oddsList, showAll)
 
-def filterBestByGameCode(oddsObjList: list[Any]) -> list[Any]:
-    bestPerGameOnly = list[Any]()
+def filterBestByGameCode(oddsObjList: Any) -> Any:
+    bestPerGameOnly = Any()
     gameCodes = set()
 
     for gameOdds in oddsObjList:
@@ -50,8 +50,8 @@ def filterBestByGameCode(oddsObjList: list[Any]) -> list[Any]:
     
     return bestPerGameOnly
 
-def convertDictToGameOddsObjList(betDict: dict[str, Any]) -> list[Any]:
-    gameOddsObjList = list[Any]()
+def convertDictToGameOddsObjList(betDict: Any) -> Any:
+    gameOddsObjList = list()
     
     for game in betDict['games']:
         oddsObj = GameOdds(game)
@@ -60,10 +60,11 @@ def convertDictToGameOddsObjList(betDict: dict[str, Any]) -> list[Any]:
     return gameOddsObjList
 
 def getAllOddsAndDisplayByEv():
-    allOddsObjs = createAllOddsDict()
-    displayAllBetsByEV(allOddsObjs)
+    allOddsDict = createAllOddsDict()
+    # todo need to add calculation of tip win prob etc. here and add to the dict
+    displayAllBetsByEV(allOddsDict)
 
-def printOddsObjDetails(oddsList: list[Any], showAll: bool = False):
+def printOddsObjDetails(oddsList: Any, showAll: bool = False):
     i = 1
     
     for g in oddsList:

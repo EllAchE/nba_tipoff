@@ -54,13 +54,6 @@ def getLastTipper(team_code, season_csv='CSV/tipoff_and_first_score_details_2021
 
     raise ValueError('No match found for team code this season')
 
-def fetch_live_lines():
-    pass
-
-def getGameInfo():
-    # return time, home team, away team, starting centers
-    pass
-
 def teamCodeToSlugName(team_code, team_dict=None, json_path=None):
     if json_path is not None:
         with open(json_path) as j_file:
@@ -174,7 +167,7 @@ def mgmOdds():
                   gameIDs[index]
         gameResponse = requests.get(gameURL, headers=headers)
         oddsInfo = json.loads(gameResponse.text)['fixture']['games']
-        sleepChecker(sleepCounter, iterations=1)
+        sleepChecker(sleepCounter, iterations=1, printStop=True)
         for odds in oddsInfo:
             if (odds['name']['value'] == "Which team will score the first points?"):
                 t1Name = odds['results'][0]['name']['value']
@@ -248,7 +241,7 @@ def getAllExpectedStarters():
                 'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
     sleepCounter = 0
     for team in teamList:
-        sleepChecker(sleepCounter, 5, baseTime=0, randomMultiplier=1)
+        sleepChecker(sleepCounter, iterations=5, baseTime=1, randomMultiplier=1)
         getStarters(team)
 
 def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='Fanduel'):
@@ -262,6 +255,6 @@ def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='Fanduel'
     print('On', exchange, 'bet', kellyBetFromAOddsAndScoreProb(odds2, aOdds, bankroll=ENVIRONMENT.BANKROLL), 'on', t2FullName, 'assuming odds', str(aOdds))
     print()
 
-test = bovadaOdds()
-print(test)
-print()
+# test = bovadaOdds()
+# print(test)
+# print()
