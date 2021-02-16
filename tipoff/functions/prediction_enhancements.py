@@ -9,7 +9,10 @@ from collections import OrderedDict
 # todo add team splits
 # todo add tip win conditionals to this
 # todo include nonshooting possessions to help with the above
-def getPlayerFirstShotStats(season):
+from tipoff.functions.utils import lowercaseNoSpace
+
+
+def getFirstShotStats(season):
     with open('../../Data/JSON/Public_NBA_API/shots_before_first_score.json') as data:
         firstShotsDict = json.load(data)
 
@@ -22,37 +25,14 @@ def getPlayerFirstShotStats(season):
 
     for game in lastSeasonData:
         summaryDict, makesOverall = _playerFirstShotStats(game, summaryDict, makesOverall)
+        summaryDict = _teamFirstShotStats(game, summaryDict)
 
-    for player in summaryDict:
-        try:
-            summaryDict[player]['shootingPercentage'] = (summaryDict[player]['2PT MAKE'] + summaryDict[player][
-                '3PT MAKE']) / summaryDict[player]['FG ATTEMPTS']
-        except:
-            summaryDict[player]['shootingPercentage'] = None
-        try:
-            summaryDict[player]['freeThrowPercentage'] = (summaryDict[player]['FREE THROW MAKE']) / \
-                                                         summaryDict[player][
-                                                             'FREE THROW ATTEMPTS']
-        except:
-            summaryDict[player]['freeThrowPercentage'] = None
+    summaryDict = _summaryStats(summaryDict)
 
     summaryDict = OrderedDict(sorted(summaryDict.items(), key=lambda item: list(item)[1]['totalMakes'], reverse=True))
     with open('../../Data/JSON/Public_NBA_API/player_first_shot_summary.json', 'w') as writeFile:
         json.dump(summaryDict, writeFile)
     print('first shot statistics compiled. Total makes was counted as', makesOverall)
-
-def _initializeTeamDict(summaryDict, lastSeasonData):
-    teamSet = set()
-    for game in lastSeasonData:
-        for event in game['gameData']:
-            teamSet.add(event['team'])
-
-    for team in teamSet:
-        summaryDict[team] = {"shots": 0, "2PT MAKE": 0, "3PT MAKE": 0, "FREE THROW MAKE": 0, "FG ATTEMPTS": 0, "shootingStarters": [],
-                             "2PT MISS": 0, "3PT MISS": 0, "FREE THROW MISS": 0, "FREE THROW ATTEMPTS": 0, 'firstShotIndex': 0,
-                             "firstShots": 0, "totalMakes": 0, "opponentShots": 0, "opponent2ptMakes": 0, "opponent2ptMisses": 0,
-                             "opponent3ptMakes": 0, "opponent3ptMisses": 0, "opponentFreeThrowMakes": 0}
-    return summaryDict
 
 def _initializePlayerDict(summaryDict, lastSeasonData):
     playerSet = set()
@@ -67,9 +47,56 @@ def _initializePlayerDict(summaryDict, lastSeasonData):
                                "totalMakes": 0, "teams": []}  # todo get games started as a separate stat
     return summaryDict
 
+def _initializeTeamDict(summaryDict, lastSeasonData):
+    teamSet = set()
+    for game in lastSeasonData:
+        for event in game['gameData']:
+            teamSet.add(event['team'])
+
+    for team in teamSet:
+        summaryDict[team] = {"shots": 0, "2PT MAKE": 0, "3PT MAKE": 0, "FREE THROW MAKE": 0, "FG ATTEMPTS": 0, "shootingStarters": [],
+                             "2PT MISS": 0, "3PT MISS": 0, "FREE THROW MISS": 0, "FREE THROW ATTEMPTS": 0, 'firstShotIndex': 0,
+                             "firstShots": 0, "totalMakes": 0, "opponentFgAttempts": 0, "opponentFtAttempts": 0, "opponent2ptmake": 0, "opponent2ptmiss": 0,
+                             "opponent3ptmake": 0, "opponent3ptmiss": 0, "opponentfreethrowmake": 0, "opponentfreethrowmiss": 0,
+                             'opponentShots': 0, 'opponentTotalMakes': 0}
+    return summaryDict
 
 def _teamFirstShotStats(game, summaryDict):
-    pass
+    for event in game['gameData']:
+        team = event['team']
+        opponent = event['opponentTeam']
+        summaryDict[team]['shots'] += 1
+        summaryDict[opponent]['opponentShots'] += 1
+        summaryDict[team][event['shotType']] += 1
+        summaryDict[opponent][lowercaseNoSpace('opponent' + event['shotType'])] += 1 # todo fix this to use upper
+
+        if "2PT" in event['shotType'] or "3PT" in event['shotType']:
+            summaryDict[team]['FG ATTEMPTS'] += 1
+            summaryDict[opponent]['opponentFgAttempts'] += 1
+        else:
+            summaryDict[team]['FREE THROW ATTEMPTS'] += 1
+            summaryDict[opponent]['opponentFtAttempts'] += 1
+        if "MAKE" in event['shotType']:
+            summaryDict[team]['totalMakes'] += 1
+            summaryDict[opponent]['opponentTotalMakes'] += 1
+
+    return summaryDict
+
+def _summaryStats(summaryDict):
+    for playerOrTeam in summaryDict:
+        try:
+            summaryDict[playerOrTeam]['shootingPercentage'] = (summaryDict[playerOrTeam]['2PT MAKE'] + summaryDict[playerOrTeam]['3PT MAKE'])\
+                                                        / summaryDict[playerOrTeam]['FG ATTEMPTS']
+        except:
+            summaryDict[playerOrTeam]['shootingPercentage'] = None
+        try:
+            summaryDict[playerOrTeam]['freeThrowPercentage'] = (summaryDict[playerOrTeam]['FREE THROW MAKE']) / summaryDict[playerOrTeam]['FREE THROW ATTEMPTS']
+        except:
+            summaryDict[playerOrTeam]['freeThrowPercentage'] = None
+        try
+
+    return summaryDict
+
 
 def _playerFirstShotStats(game, summaryDict, makesOverall):
     playerHasShotInGame = set()
@@ -98,8 +125,7 @@ def _playerFirstShotStats(game, summaryDict, makesOverall):
             makesOverall += 1
     return summaryDict, makesOverall
 
-
-# getPlayerFirstShotStats(2021)
+getFirstShotStats(2020)
 
 
 
