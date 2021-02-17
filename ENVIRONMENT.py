@@ -1,8 +1,7 @@
 import os
 from pathlib import Path
 
-TIPOFF_ODDS_THRESHOLD = 0.73 # This will be deprecated
-# todo replace the above with odds-based predictions
+TIPOFF_ODDS_THRESHOLD = 0.73
 MIN_APPEARANCES = 20
 MAX_APPEARANCES = 9900
 

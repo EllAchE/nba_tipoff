@@ -11,7 +11,6 @@ import pandas as pd
 from tipoff.classes.Player import Player
 from tipoff.historical_data.data_handling import resetPredictionSummaries, createPlayerSkillDictionary
 from tipoff.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
-# todo compare performance with elo, glicko2 and others
 # https://github.com/sublee/glicko2/blob/master/glicko2.py
 
 
@@ -156,10 +155,6 @@ def updateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, game_code
         print(game_code)
     winnerCode = winnerCode[11:]
     loserCode = loserCode[11:]
-
-    # todo refactor to use player objs here
-    # winner = Player(playerCode=winnerCode)
-    # loser = Player(playerCode=loserCode)
 
     winnerOgMu = psd[winnerCode]["mu"]
     winnerOgSigma = psd[winnerCode]["sigma"]

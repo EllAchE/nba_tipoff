@@ -19,7 +19,7 @@ def displayUniqueBetsByDatetime(betDict: Any, showAll: bool = True):
     filteredOddsList.sort(key=lambda x: x.gameDatetime)
     printOddsObjDetails(filteredOddsList, showAll)
 
-def displayAllBetsByEV(betDict: Any, showAll: bool = True): # todo fix typing errors with betDict to support dict[str, Any]
+def displayAllBetsByEV(betDict: Any, showAll: bool = True): # backlogtodo fix typing errors with betDict to support dict[str, Any]
     oddsList = convertDictToGameOddsObjList(betDict)
     oddsList.sort(key=lambda x: x.bestEVFactor)
     printOddsObjDetails(oddsList, showAll)
@@ -60,9 +60,9 @@ def convertDictToGameOddsObjList(betDict: Any) -> Any:
     return gameOddsObjList
 
 def getAllOddsAndDisplayByEv():
-    allOddsDict = createAllOddsDict()
-    # todo need to add calculation of tip win prob etc. here and add to the dict
-    displayAllBetsByEV(allOddsDict)
+    allOddsDictList = createAllOddsDict()
+    gameOddsList = map(allOddsDictList, lambda oddsDict : GameOdds(oddsDict, teamOnly=True))
+    displayAllBetsByEV(gameOddsList)
 
 def printOddsObjDetails(oddsList: Any, showAll: bool = False):
     i = 1

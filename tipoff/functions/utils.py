@@ -8,6 +8,7 @@ import unidecode
 from bs4 import BeautifulSoup
 from nba_api.stats.endpoints import CommonPlayerInfo
 from nba_api.stats.static.players import find_players_by_full_name
+from SLEEP_COUNTER import SLEEP_COUNTER
 
 import ENVIRONMENT
 
@@ -75,7 +76,7 @@ def createSuffix(name: str):
     else:
         second += names[:5].lower()
 
-    return second+first + '01.html' #todo this doesn't account for if the name appears more than once
+    return second + first + '01.html' #todo this doesn't account for if the name appears more than once
 
 def getDashDateFromGameCode(gameCode: str):
     gameCode = str(gameCode)
@@ -84,7 +85,6 @@ def getDashDateFromGameCode(gameCode: str):
     day = gameCode[6:8]
     return year + '-' + month + '-' + day
 
-
 def getTeamFullFromShort(shortCode):
     with open(ENVIRONMENT.TEAM_CONVERSION_PATH) as teamsJson:
         teamDict = json.load(teamsJson)
@@ -92,7 +92,6 @@ def getTeamFullFromShort(shortCode):
         if team["abbreviation"] == shortCode:
             return team["teamName"]
     raise ValueError('No team match found for code', shortCode)
-
 
 def getHomeTeamFromGameCode(game_code: str):
     return game_code[-3:]
@@ -108,8 +107,17 @@ def getSoupFromUrl(url: str, returnStatus: bool = False):
 def getDashDateAndHomeCodeFromGameCode(game_code: str):
     return getDashDateFromGameCode(game_code), getHomeTeamFromGameCode(game_code)
 
+def sleepCheckerOneLine(iterations: int = 3, baseTime: int = 2, randomMultiplier: int = 3, printStop: bool = False):
+    from SLEEP_COUNTER import SLEEP_COUNTER # todo test this
+    SLEEP_COUNTER += 1
+    if SLEEP_COUNTER % iterations == 0:
+        if printStop:
+            print("sleeping for", str(baseTime), "+ random seconds")
+        time.sleep(baseTime + random.random() * randomMultiplier)
+        SLEEP_COUNTER = 0
+
 def sleepChecker(sleepCounter: int, iterations: int = 3, baseTime: int = 2, randomMultiplier: int = 3, printStop: bool = False):
-    sleepCounter += 1 #todo refactor this to use env or something so that only one line is needed when time delay needs to be added to a func
+    sleepCounter += 1
     if sleepCounter % iterations == 0:
         if printStop:
             print("sleeping for", str(baseTime), "+ random seconds")
@@ -142,3 +150,22 @@ def getPlayerTeamInSeasonFromBballRefLink(playerLink, season, longCode=True):
 def lowercaseNoSpace(str):
     modStr = str.replace(' ', '').lower()
     return modStr
+
+def determineBetterOdds(odds1Str, odds2Str):
+    if odds1Str[0] != odds2Str[0]:
+        if odds1Str == '+':
+            return odds1Str
+        else:
+            return odds2Str
+
+    if odds1Str[0] == '+':
+        if odds1Str[1:] >= odds2Str[1:]:
+            return odds1Str
+        else:
+            return odds2Str
+    else:
+        if odds1Str[1:] <= odds2Str[1:]:
+            return odds1Str
+        else:
+            return odds2Str
+    raise ValueError('shouldn\'t reach here, cehck odds formatting')

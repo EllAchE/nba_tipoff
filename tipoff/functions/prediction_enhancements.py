@@ -1,14 +1,10 @@
-# todo offensive rebounding/defensive rebounding influence
-# todo add other stats and run ludwig/ai checker
+# backlogtodo offensive rebounding/defensive rebounding influence
+# backlogtodo add other stats and run ludwig/ai checker
 import json
 from collections import OrderedDict
 
 
-# todo extend this beyond first make to just look at early shooting percentage
-# todo add summary stats to compare first things being ft vs. fg
-# todo add team splits
-# todo add tip win conditionals to this
-# todo include nonshooting possessions to help with the above
+# backlogtodo include nonshooting possessions
 from tipoff.functions.utils import lowercaseNoSpace
 
 
@@ -44,7 +40,7 @@ def _initializePlayerDict(summaryDict, lastSeasonData):
         summaryDict[player] = {"shots": 0, "2PT MAKE": 0, "3PT MAKE": 0, "FREE THROW MAKE": 0, "FG ATTEMPTS": 0,
                                "2PT MISS": 0, "3PT MISS": 0, "FREE THROW MISS": 0, "FREE THROW ATTEMPTS": 0,
                                'firstShotIndex': 0, "firstShots": 0, "averageShotIndex": 0, "gamesStarted": None,
-                               "totalMakes": 0, "teams": []}  # todo get games started as a separate stat
+                               "totalMakes": 0, "teams": []}  # backlogtodo get games started as a separate stat
     return summaryDict
 
 def _initializeTeamDict(summaryDict, lastSeasonData):

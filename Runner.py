@@ -1,7 +1,7 @@
-# todo find out when the best time for placing bets on various sites is (i.e. when do odds move)
+# backlogtodo find out when the best time for placing bets on various sites is (i.e. when do odds move)
 # todo next prop - who scores last nba, race to 5 points
-# todo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
-# todo a solution to the edge case above: use the nba api team fetching for cases when there is a match
+# backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
+# backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
 from display_bets import getAllOddsAndDisplayByEv
 from tipoff.live_information.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 from tipoff.functions.trueskill_calc import updateSkillDictionary
@@ -13,12 +13,16 @@ from tipoff.functions.trueskill_calc import updateSkillDictionary
 
 # getAllExpectedStarters()
 
-getDailyOdds('DEN', 'BOS', '-115') #-125 (-128, +100)
-# getDailyOdds('NOP', 'MEM', '-115') #-115
-# getDailyOdds('TOR', 'MIL', '-142') #-125 bo
-# getDailyOdds('LAL', 'MIN', '-135') #-105
-getDailyOdds('POR', 'OKC', '+111') #-105
-getDailyOdds('BKN', 'PHX', '-110') #-125
+getDailyOdds('NYK', 'ORL')
+getDailyOdds('ATL', 'BOS')
+getDailyOdds('HOU', 'PHI')
+getDailyOdds('DEN', 'WAS')
+getDailyOdds('IND', 'MIN')
+getDailyOdds('DET', 'CHI')
+getDailyOdds('POR', 'NOP')
+getDailyOdds('OKC', 'MEM')
+getDailyOdds('MIA', 'GSW')
+getDailyOdds('UTA', 'LAC')
 
 # getDailyOdds('MIN', 'TOR')
 # getDailyOdds('BOS', 'WAS')
@@ -65,15 +69,15 @@ https://www.betburger.com/?sure_bets=1160
 https://punter2pro.com/best-sports-arbing-software/
 '''
 
-# todo make data overwriting transactional, i.e. locally saved csv could have all or no rows updated, no overwrites and partial
+# backlogtodo make data overwriting transactional, i.e. locally saved csv could have all or no rows updated, no overwrites and partial
 # todo player to fullname to player code relationship
 # todo create dictionary of active players (you can possibly use nba_api for this, and then enhance for bball ref compatibility)
 # todo set up backtester with assumed odds lines, i.e. assuming we are always offered odds on a team of -110, how would the strat perform? (the default should -110)
-# todo OVERKILL set up bankroll tracker (with stored values on each site and overall).
+# backlogtodo OVERKILL set up bankroll tracker (with stored values on each site and overall).
 # todo test if adding in the start of overtime tip performance enhances predictions (may be fatigue facotr/not as good)
-# todo account for overrepresentation of playoff teams
+# backlogtodo account for overrepresentation of playoff teams
 
 # MISC
 # todo investigate adjsuted starting rankings for low appearance playersy, i.e. if we can assume certain/lower mu values for a class of player we can improve our predictions
-# todo (OVERKILL) have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
-# todo see if back to back against same team matters
+# backlogtodo (OVERKILL) have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
+# backlogtodo see if back to back against same team matters

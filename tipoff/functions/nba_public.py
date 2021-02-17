@@ -300,7 +300,7 @@ print()
 # '199711210SEA', '199711240TOR', '199711270IND', '201911040PHO',
 
 # class EventMsgType(Enum):
-#     FIELD_GOAL_MADE = 1 #todo replace above uses of numbers with ENUM values for readability
+#     FIELD_GOAL_MADE = 1 #backlogtodo replace above uses of numbers with ENUM values for readability
 #     FIELD_GOAL_MISSED = 2
 #     FREE_THROWfree_throw_attempt = 3
 #     REBOUND = 4
