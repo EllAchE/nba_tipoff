@@ -93,7 +93,6 @@ def _summaryStats(summaryDict):
             summaryDict[playerOrTeam]['freeThrowPercentage'] = (summaryDict[playerOrTeam]['FREE THROW MAKE']) / summaryDict[playerOrTeam]['FREE THROW ATTEMPTS']
         except:
             summaryDict[playerOrTeam]['freeThrowPercentage'] = None
-        try
 
     return summaryDict
 
@@ -124,8 +123,6 @@ def _playerFirstShotStats(game, summaryDict, makesOverall):
             summaryDict[player]['totalMakes'] += 1
             makesOverall += 1
     return summaryDict, makesOverall
-
-getFirstShotStats(2020)
 
 
 

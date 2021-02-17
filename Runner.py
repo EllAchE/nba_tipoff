@@ -9,16 +9,16 @@ from tipoff.functions.trueskill_calc import updateSkillDictionary
 # updateCurrentSeason()
 # updateSkillDictionary()
 
-getAllOddsAndDisplayByEv()
+# getAllOddsAndDisplayByEv()
 
 # getAllExpectedStarters()
-# getDailyOdds('CHI', 'IND')
-# getDailyOdds('HOU', 'WAS')
-# getDailyOdds('ATL', 'NYK')
-# getDailyOdds('PHI', 'UTA', '+102')
-# getDailyOdds('CLE', 'GSW', '+100', 'mgm')
-# getDailyOdds('MIA', 'LAC')
-# getDailyOdds('BKN', 'SAC', '-122', 'fanduel')
+
+getDailyOdds('DEN', 'BOS', '-115') #-125 (-128, +100)
+# getDailyOdds('NOP', 'MEM', '-115') #-115
+# getDailyOdds('TOR', 'MIL', '-142') #-125 bo
+# getDailyOdds('LAL', 'MIN', '-135') #-105
+getDailyOdds('POR', 'OKC', '+111') #-105
+getDailyOdds('BKN', 'PHX', '-110') #-125
 
 # getDailyOdds('MIN', 'TOR')
 # getDailyOdds('BOS', 'WAS')

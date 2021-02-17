@@ -34,9 +34,11 @@ def createAllOddsDict():
     allOddsObjList = list()
 
     for oddsDict in dkOddsDicts:
+        print(oddsDict, 'dk')
         allOddsObjList.append(oddsDict)
 
     for oddsDict in mgmOddsDicts:
+        print(oddsDict, 'mgm')
         allOddsObjList.append(oddsDict)
 
     return {"games": allOddsObjList} # todo this dict can be saved for reference for backtesting
