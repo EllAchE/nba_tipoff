@@ -13,6 +13,8 @@ class GameOdds:
         self.exchange = gameDict['exchange']
         self.marketUrl = gameDict['marketUrl']
         self.fetchedDatetime = gameDict['fetchedDatetime']
+        self.isTeamOnly = teamOnly
+        self.isPlayersOnly = playersOnly
 
         if not playersOnly:
             self.homeTeamOdds = gameDict['odds']['homeTeamScoreFirstOdds']

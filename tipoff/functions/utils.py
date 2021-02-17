@@ -138,3 +138,7 @@ def getPlayerTeamInSeasonFromBballRefLink(playerLink, season, longCode=True):
             return seasons[str(season)][playerLink]
         except:
             raise ValueError("no match found for player", playerLink)
+
+def lowercaseNoSpace(str):
+    modStr = str.replace(' ', '').lower()
+    return modStr

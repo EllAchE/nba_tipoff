@@ -7,13 +7,14 @@
 # https://www.lineups.com/nba/lineups
 
 import json
+import re
 
 import requests
 import pandas as pd
 
 import ENVIRONMENT
 from tipoff.functions.odds_calculator import check_for_edge, checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb
-from tipoff.functions.utils import sleepChecker, getTeamFullFromShort, getPlayerTeamFromFullName
+from tipoff.functions.utils import sleepChecker, getTeamFullFromShort, getPlayerTeamFromFullName, getSoupFromUrl
 from tipoff.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
 
 
@@ -53,13 +54,6 @@ def getLastTipper(team_code, season_csv='CSV/tipoff_and_first_score_details_2021
 
     raise ValueError('No match found for team code this season')
 
-def fetch_live_lines():
-    pass
-
-def getGameInfo():
-    # return time, home team, away team, starting centers
-    pass
-
 def teamCodeToSlugName(team_code, team_dict=None, json_path=None):
     if json_path is not None:
         with open(json_path) as j_file:
@@ -74,46 +68,59 @@ def teamCodeToSlugName(team_code, team_dict=None, json_path=None):
 
     raise ValueError('no matching team for abbreviation')
 
-def getAllOddsLines(bankroll=ENVIRONMENT.BANKROLL):
-    all_lines = fetch_live_lines()
-    game_odds_list = list()
-
-    for game in all_lines:
-        gi = getGameInfo(game)
-        home = gi['home']
-        away = gi['away']
-
-        bet_size, win_odds, required_ev = check_for_edge(gi['home'], gi['away'], gi['h_odds'], gi['a_odds'], bankroll)
-        game_odds_list.append([gi['datetime'], gi['homeCenter'], home, gi['awayCenter'], away, win_odds, required_ev, bet_size])
-
-    return game_odds_list
-
 def fanduelOdds():
     # https://sportsbook.fanduel.com/cache/psevent/UK/1/false/958472.3.json
     pass
 
 def bovadaOdds():
     # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
-    pass
+    # above requires game ids as input but returns odds
 
-def draftkingsOdds():
+    # https://widgets.digitalsportstech.com/?sb=bovada&language=en&oddsType=american&currency=usd&leagueId=123&preMatchOnly=true
+    # Above gets game ids in a .js
+
+    soup = getSoupFromUrl('https://widgets.digitalsportstech.com/?sb=bovada&language=en&oddsType=american&currency=usd&leagueId=123&preMatchOnly=true')
+    gameIdString = soup.find('script').contents[0]
+
+    uniqueIds = set()
+    allGameIds = re.findall(r'(?<="id":)([0-9]{6}?)(?=,)', gameIdString)
+
+    for id in allGameIds:
+        uniqueIds.add(id)
+
+    url = 'https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in'
+    for id in uniqueIds:
+        url += ',' + str(id)
+
+    allBets = requests.get(url).json()
+    scoreFirstBets = list()
+    for bet in allBets:
+        print(bet['queryTitle'])
+        if bet['queryTitle'].lower() == 'team to score first':
+            scoreFirstBets.append(bet)
+    return scoreFirstBets # todo this only seems to return half of the bets, in decimal odds and needs to be complete to format the bets
+
+def draftKingsOdds():
     # https://sportsbook.draftkings.com/leagues/basketball/103?category=game-props&subcategory=odd/even
     # API - https://sportsbook.draftkings.com//sites/US-SB/api/v1/eventgroup/103/full?includePromotions=true&format=json
     allBets = requests.get('https://sportsbook.draftkings.com//sites/US-SB/api/v1/eventgroup/103/full?includePromotions=true&format=json').json()
     offerCategories = allBets['eventGroup']['offerCategories']
+
     for category in offerCategories:
         if category['name'] == "Game Props":
            gameProps = category['offerSubcategoryDescriptors']
-        if category['name'] == "Player Props":
-            playerProps = category['offerSubcategoryDescriptors']
+        # if category['name'] == "Player Props":
+        #     playerProps = category['offerSubcategoryDescriptors']
+
     for subCategory in gameProps:
         if subCategory['name'] == "First Team to Score":
             firstTeamToScoreLines = subCategory['offerSubcategory']['offers']
             break
-    for subCategory in playerProps:
-        if subCategory['name'] == "First Field Goal": #todo an id may work for these
-            firstPlayerToScoreLines = subCategory['offerSubcategory']['offers']
-            break
+
+    # for subCategory in playerProps:
+    #     if subCategory['name'] == "First Field Goal": #todo an id may work for these
+    #         firstPlayerToScoreLines = subCategory['offerSubcategory']['offers']
+    #         break
 
     allTeamLines = list()
     for teamLine in firstTeamToScoreLines:
@@ -124,16 +131,16 @@ def draftkingsOdds():
         team2Odds = outcomes[1]['oddsAmerican']
         allTeamLines.append({team1: team1Odds, team2: team2Odds})
 
-    allPlayerLines = list()
-    for allPlayerLinesForGame in firstPlayerToScoreLines:
-        gamePlayerLines = allPlayerLinesForGame[0]['outcomes']
-        for playerLine in gamePlayerLines:
-            name = playerLine['label']
-            aOdds = playerLine['oddsAmerican']
-            # playerTeam = getPlayerTeamFromFullName(name)
-            allPlayerLines.append({name: aOdds}) #, "possibleTeams": playerTeam})
+    # allPlayerLines = list()
+    # for allPlayerLinesForGame in firstPlayerToScoreLines:
+    #     gamePlayerLines = allPlayerLinesForGame[0]['outcomes']
+    #     for playerLine in gamePlayerLines:
+    #         name = playerLine['label']
+    #         aOdds = playerLine['oddsAmerican']
+    #         # playerTeam = getPlayerTeamFromFullName(name)
+    #         allPlayerLines.append({name: aOdds}) #, "possibleTeams": playerTeam})
 
-    return allTeamLines, allPlayerLines
+    return allTeamLines #, allPlayerLines
 
 def betNowOdds():
     # https://www.betnow.eu/nba/ says it has props bets
@@ -153,18 +160,23 @@ def mgmOdds():
         if (game['stage'] == "PreMatch"):
             gameIDs.append(game['id'])
 
+    sleepCounter = 0
+    allTeamLines = list()
     for index in range(len(gameIDs)):
         gameURL = "https://cds-api.co.betmgm.com/bettingoffer/fixture-view?x-bwin-accessid=OTU4NDk3MzEtOTAyNS00MjQzLWIxNWEtNTI2MjdhNWM3Zjk3&lang=en-us&country=US&userCountry=US&subdivision=Texas&offerMapping=All&fixtureIds=" + \
                   gameIDs[index]
         gameResponse = requests.get(gameURL, headers=headers)
         oddsInfo = json.loads(gameResponse.text)['fixture']['games']
+        sleepChecker(sleepCounter, iterations=1, printStop=True)
         for odds in oddsInfo:
             if (odds['name']['value'] == "Which team will score the first points?"):
-                print(odds['results'][0]['name']['value'])
-                print(odds['results'][0]['americanOdds'])
-                print(odds['results'][1]['name']['value'])
-                print(odds['results'][1]['americanOdds'])
-    pass
+                t1Name = odds['results'][0]['name']['value']
+                t1Odds = odds['results'][0]['americanOdds']
+                t2Name = odds['results'][1]['name']['value']
+                t2Odds = odds['results'][1]['americanOdds']
+                allTeamLines.append({t1Name: t1Odds, t2Name: t2Odds})
+
+    return allTeamLines
 
 def pointsBet():
     # https://nj.pointsbet.com/sports/basketball/NBA/246723
@@ -229,41 +241,8 @@ def getAllExpectedStarters():
                 'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
     sleepCounter = 0
     for team in teamList:
-        sleepChecker(sleepCounter, 5, baseTime=0, randomMultiplier=1)
+        sleepChecker(sleepCounter, iterations=5, baseTime=1, randomMultiplier=1)
         getStarters(team)
-
-def createTeamTipperDict():
-    teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX',
-                'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
-    teamList.sort()
-    sleepCounter = 0
-    startersList = list()
-    tipperList = list()
-    fullJson = {}
-
-    for teamLine in teamList:
-        startersList.append({"starters": getStarters(teamLine), "team": teamLine})
-        sleepCounter = sleepChecker(sleepCounter, printStop=False)
-
-    for teamLine in startersList:
-        player = teamLine["starters"][0]
-        nameList = player[0].split(' ')
-        lcode = ''
-        i = 0
-        while i < 5:
-            try:
-                lcode += nameList[1][i]
-                i += 1
-            except:
-                break
-        code = lcode + nameList[0][:2] + '01.html'
-        code = code.lower()
-
-        tipperList.append({"playerCode":code, "team": teamLine["team"]})
-    fullJson["pairs"] = tipperList
-
-    with open ('Data/JSON/team_tipper_pairs.json', 'w') as file:
-        json.dump(fullJson, file)
 
 def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='Fanduel'):
     p1 = tipperFromTeam(t1)
@@ -276,6 +255,6 @@ def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='Fanduel'
     print('On', exchange, 'bet', kellyBetFromAOddsAndScoreProb(odds2, aOdds, bankroll=ENVIRONMENT.BANKROLL), 'on', t2FullName, 'assuming odds', str(aOdds))
     print()
 
-test = draftkingsOdds()
-print(test)
-print()
+# test = bovadaOdds()
+# print(test)
+# print()

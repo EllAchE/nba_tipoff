@@ -210,9 +210,10 @@ def getTipoffLine(pbpDf: DataFrame, returnIndex: bool = False):
         return content, type, isHome, tipoffContent.index
     return content, type, isHome
 
-def getTipoffLineFromGameId(gameId: str):
+def getTipoffLineFromBballRefId(bballRef: str):
+    gameId = getGameIdFromBballRef(bballRef)
     pbpDf = getGamePlayByPlay(gameId)
-    tipoffContent = getTipoffLine(pbpDf)
+    tipoffContent, type, isHome = getTipoffLine(pbpDf)
     return tipoffContent
 
 def getGameIdFromBballRef(bballRefId):
@@ -230,7 +231,7 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         shotsDict = json.load(sbfs)
     seasonShotList = shotsDict[str(season)]
 
-    if len(seasonShotList)  0:
+    if len(seasonShotList) > 0:
         lastGame = seasonShotList[-1]
         lastGameCode = lastGame['gameCode']
         lastGameIndex = df[df['Game Code'] == lastGameCode].index.values[0]
@@ -286,6 +287,17 @@ def getAllFirstPossessionStatisticsAtOnce():
 
     with open(ENVIRONMENT.SHOTS_BEFORE_FIRST_SCORE_PATH, 'w') as jsonFile:
         json.dump(allShotsList, jsonFile)
+
+test = getTipoffLineFromBballRefId('201911200TOR')
+print(test)
+print()
+
+# test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
+#                        ['199711160SEA', 'SEA', 'MIL'],
+#                         ['199711190LAL', 'LAL', 'MIN'],
+#                         ['201911200TOR', 'TOR', 'ORL'],
+#                         ['201911260DAL', 'DAL', 'LAC']] # Last one is a violation, others are misformatted
+# '199711210SEA', '199711240TOR', '199711270IND', '201911040PHO',
 
 # class EventMsgType(Enum):
 #     FIELD_GOAL_MADE = 1 #todo replace above uses of numbers with ENUM values for readability

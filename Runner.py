@@ -1,25 +1,33 @@
 # todo find out when the best time for placing bets on various sites is (i.e. when do odds move)
 # todo next prop - who scores last nba, race to 5 points
-# todo confirm that first field goal includes or doesn't include free throws
 # todo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # todo a solution to the edge case above: use the nba api team fetching for cases when there is a match
+from display_bets import getAllOddsAndDisplayByEv
 from tipoff.live_information.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 from tipoff.functions.trueskill_calc import updateSkillDictionary
 
 # updateCurrentSeason()
+# updateSkillDictionary()
 
-updateSkillDictionary()
+# getAllOddsAndDisplayByEv()
 
 # getAllExpectedStarters()
-# getDailyOdds('MIN', 'TOR', '+102', 'fanduel')
-# getDailyOdds('BOS', 'WAS', exchange='bovada')
-# getDailyOdds('SAS', 'CHA', '-115', 'fanduel')
-# getDailyOdds('POR', 'DAL', '-125', 'betmgm')
-# getDailyOdds('MIL', 'OKC', '+154', 'fanduel') # +150 betfair
-# getDailyOdds('ORL', 'PHX', '+140', 'fanduel') # magic
-# getDailyOdds('LAL', 'DEN', '-108', 'fanduel')
-# getDailyOdds('CLE', 'LAC',  '+105', 'betmgm')
 
+getDailyOdds('DEN', 'BOS', '-115') #-125 (-128, +100)
+# getDailyOdds('NOP', 'MEM', '-115') #-115
+# getDailyOdds('TOR', 'MIL', '-142') #-125 bo
+# getDailyOdds('LAL', 'MIN', '-135') #-105
+getDailyOdds('POR', 'OKC', '+111') #-105
+getDailyOdds('BKN', 'PHX', '-110') #-125
+
+# getDailyOdds('MIN', 'TOR')
+# getDailyOdds('BOS', 'WAS')
+# getDailyOdds('SAS', 'CHA')
+# getDailyOdds('POR', 'DAL')
+# getDailyOdds('MIL', 'OKC')
+# getDailyOdds('ORL', 'PHX')
+# getDailyOdds('LAL', 'DEN')
+# getDailyOdds('CLE', 'LAC')
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
 #                        ['199711160SEA', 'SEA', 'MIL'],
@@ -59,18 +67,13 @@ https://punter2pro.com/best-sports-arbing-software/
 
 # todo make data overwriting transactional, i.e. locally saved csv could have all or no rows updated, no overwrites and partial
 # todo player to fullname to player code relationship
-# todo convert to object oriented, i.e. where players are represented have them be a player object (nba_api may solve this, it has objects for many data types we care about already)
 # todo create dictionary of active players (you can possibly use nba_api for this, and then enhance for bball ref compatibility)
 # todo set up backtester with assumed odds lines, i.e. assuming we are always offered odds on a team of -110, how would the strat perform? (the default should -110)
 # todo OVERKILL set up bankroll tracker (with stored values on each site and overall).
 # todo test if adding in the start of overtime tip performance enhances predictions (may be fatigue facotr/not as good)
+# todo account for overrepresentation of playoff teams
 
 # MISC
 # todo investigate adjsuted starting rankings for low appearance playersy, i.e. if we can assume certain/lower mu values for a class of player we can improve our predictions
 # todo (OVERKILL) have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
 # todo see if back to back against same team matters
-
-'''
-To avoid arbitrage flags if we go that route: Bet round numbers, don't be super esoteric and bet at normal times.
-Also consider parlays as throwaways to placate the monitors
-'''

@@ -8,11 +8,11 @@ import ENVIRONMENT
 import trueskill
 import pandas as pd
 
-
-# todo compare performance with elo, glicko2 and others
-# https://github.com/sublee/glicko2/blob/master/glicko2.py
+from tipoff.classes.Player import Player
 from tipoff.historical_data.data_handling import resetPredictionSummaries, createPlayerSkillDictionary
 from tipoff.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
+# todo compare performance with elo, glicko2 and others
+# https://github.com/sublee/glicko2/blob/master/glicko2.py
 
 
 def runTSForSeason(season: str, season_csv: str, json_path: str, winning_bet_threshold: float =0.6):
@@ -113,40 +113,15 @@ def beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tip
     else:
         print('no bet, not enough Data on participants')
 
-
-def tipWinProb(player1Code, player2Code, jsonPath=ENVIRONMENT.PLAYER_SKILL_DICT_PATH, psd=None): #win prob for first player
-    env = trueskill.TrueSkill(draw_probability=0, backend='scipy')
-    env.make_as_global()
-    if psd is None:
-        with open(jsonPath) as json_file:
-            psd = json.load(json_file)
-
-    player1 = trueskill.Rating(psd[player1Code]["mu"], psd[player1Code]["sigma"])
-    player2 = trueskill.Rating(psd[player2Code]["mu"], psd[player2Code]["sigma"])
-    team1 = [player1]
-    team2 = [player2]
-
-    delta_mu = sum(r.mu for r in team1) - sum(r.mu for r in team2)
-    sum_sigma = sum(r.sigma ** 2 for r in itertools.chain(team1, team2))
-    size = len(team1) + len(team2)
-    denom = math.sqrt(size * (ENVIRONMENT.BASE_SIGMA * ENVIRONMENT.BASE_SIGMA) + sum_sigma)
-    ts = trueskill.global_env()
-    res = ts.cdf(delta_mu / denom)
-    print('odds', player1Code, 'beats', player2Code, 'are', res)
-    return res
-
-
 def tipWinProb(player1_code: str, player2_code: str, json_path: str = 'Data/JSON/player_skill_dictionary.json', psd: Any = None): #win prob for first player
     env = trueskill.TrueSkill(draw_probability=0, backend='scipy')
     env.make_as_global()
-    
     if psd is None:
         with open(json_path) as json_file:
             psd = json.load(json_file)
 
     player1 = trueskill.Rating(psd[player1_code]["mu"], psd[player1_code]["sigma"])
     player2 = trueskill.Rating(psd[player2_code]["mu"], psd[player2_code]["sigma"])
-    
     team1 = [player1]
     team2 = [player2]
 
@@ -176,53 +151,57 @@ def runForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRE
         json.dump(dsd, predSum)
 
 
-def updateDataSingleTipoff(psd, winner_code, loser_code, home_player_code, game_code=None):
+def updateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, game_code=None):
     if game_code:
         print(game_code)
-    winner_code = winner_code[11:]
-    loser_code = loser_code[11:]
+    winnerCode = winnerCode[11:]
+    loserCode = loserCode[11:]
 
-    w_og_mu = psd[winner_code]["mu"]
-    w_og_si = psd[winner_code]["sigma"]
-    l_og_mu = psd[loser_code]["mu"]
-    l_og_si = psd[loser_code]["sigma"]
-    w_mu, w_si, l_mu, l_si = _matchWithRawNums(psd[winner_code]["mu"], psd[winner_code]["sigma"], psd[loser_code]['mu'], psd[loser_code]["sigma"])
-    w_wins = psd[winner_code]["wins"] + 1
-    w_appearances = psd[winner_code]["appearances"] + 1
-    l_losses = psd[loser_code]["losses"] + 1
-    l_appearances = psd[loser_code]["appearances"] + 1
+    # todo refactor to use player objs here
+    # winner = Player(playerCode=winnerCode)
+    # loser = Player(playerCode=loserCode)
 
-    psd[winner_code]["wins"] = w_wins
-    psd[winner_code]["appearances"] = w_appearances
-    psd[loser_code]["losses"] = l_losses
-    psd[loser_code]["appearances"] = l_appearances
-    psd[winner_code]["mu"] = w_mu
-    psd[winner_code]["sigma"] = w_si
-    psd[loser_code]["mu"] = l_mu
-    psd[loser_code]["sigma"] = l_si
+    winnerOgMu = psd[winnerCode]["mu"]
+    winnerOgSigma = psd[winnerCode]["sigma"]
+    loserOgMu = psd[loserCode]["mu"]
+    loserOgSigma = psd[loserCode]["sigma"]
+    winnerMu, winnerSigma, loserMu, loserSigma = _matchWithRawNums(psd[winnerCode]["mu"], psd[winnerCode]["sigma"], psd[loserCode]['mu'], psd[loserCode]["sigma"])
+    winnerWinCount = psd[winnerCode]["wins"] + 1
+    winnerAppearances = psd[winnerCode]["appearances"] + 1
+    loserLosses = psd[loserCode]["losses"] + 1
+    loserAppearances = psd[loserCode]["appearances"] + 1
 
-    print('Winner:', winner_code, 'rating increased', w_mu - w_og_mu, 'to', w_mu, '. Sigma is now', w_si, '. W:', w_wins, 'L', w_appearances - w_wins)
-    print('Loser:', loser_code, 'rating decreased', l_mu - l_og_mu, 'to', l_mu, '. Sigma is now', l_si, '. W:', l_appearances - l_losses, 'L', l_losses)
+    psd[winnerCode]["wins"] = winnerWinCount
+    psd[winnerCode]["appearances"] = winnerAppearances
+    psd[loserCode]["losses"] = loserLosses
+    psd[loserCode]["appearances"] = loserAppearances
+    psd[winnerCode]["mu"] = winnerMu
+    psd[winnerCode]["sigma"] = winnerSigma
+    psd[loserCode]["mu"] = loserMu
+    psd[loserCode]["sigma"] = loserSigma
 
-    if home_player_code == winner_code:
-        home_mu = w_og_mu
-        home_sigma = w_og_si
-        away_mu = l_og_mu
-        away_sigma = l_og_si
-    elif home_player_code == loser_code:
-        home_mu = l_og_mu
-        home_sigma = l_og_si
-        away_mu = w_og_mu
-        away_sigma = w_og_si
+    print('Winner:', winnerCode, 'rating increased', winnerMu - winnerOgMu, 'to', winnerMu, '. Sigma is now', winnerSigma, '. W:', winnerWinCount, 'L', winnerAppearances - winnerWinCount)
+    print('Loser:', loserCode, 'rating decreased', loserMu - loserOgMu, 'to', loserMu, '. Sigma is now', loserSigma, '. W:', loserAppearances - loserLosses, 'L', loserLosses)
 
-    return home_mu, home_sigma, away_mu, away_sigma
+    if homePlayerCode == winnerCode:
+        homeMu = winnerOgMu
+        homeSigma = winnerOgSigma
+        awayMu = loserOgMu
+        awaySigma = loserOgSigma
+    elif homePlayerCode == loserCode:
+        homeMu = loserOgMu
+        homeSigma = loserOgSigma
+        awayMu = winnerOgMu
+        awaySigma = winnerOgSigma
+
+    return homeMu, homeSigma, awayMu, awaySigma
 
 
-def _matchWithRawNums(winner_mu, winner_sigma, loser_mu, loser_sigma):
-        winner_rating_obj = trueskill.Rating(winner_mu, winner_sigma)
-        loser_rating_obj = trueskill.Rating(loser_mu, loser_sigma)
-        winner_rating_obj, loser_rating_obj = trueskill.rate_1vs1(winner_rating_obj, loser_rating_obj)
-        return winner_rating_obj.mu, winner_rating_obj.sigma, loser_rating_obj.mu, loser_rating_obj.sigma
+def _matchWithRawNums(winnerMu, winnerSigma, loserMu, loserSigma):
+        winnerRatingObj = trueskill.Rating(winnerMu, winnerSigma)
+        loserRatingObj = trueskill.Rating(loserMu, loserSigma)
+        winnerRatingObj, loserRatingObj = trueskill.rate_1vs1(winnerRatingObj, loserRatingObj)
+        return winnerRatingObj.mu, winnerRatingObj.sigma, loserRatingObj.mu, loserRatingObj.sigma
 
 
 def updateSkillDictionary():
