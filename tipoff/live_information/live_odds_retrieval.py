@@ -14,7 +14,8 @@ import pandas as pd
 
 import ENVIRONMENT
 from tipoff.functions.odds_calculator import check_for_edge, checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb
-from tipoff.functions.utils import sleepChecker, getTeamFullFromShort, getPlayerTeamFromFullName, getSoupFromUrl
+from tipoff.functions.utils import sleepChecker, getTeamFullFromShort, getPlayerTeamFromFullName, getSoupFromUrl, \
+    sleepChecker
 from tipoff.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
 
 
@@ -156,14 +157,13 @@ def mgmOdds():
         if (game['stage'] == "PreMatch"):
             gameIDs.append(game['id'])
 
-    sleepCounter = 0
     allTeamLines = list()
     for index in range(len(gameIDs)):
         gameURL = "https://cds-api.co.betmgm.com/bettingoffer/fixture-view?x-bwin-accessid=OTU4NDk3MzEtOTAyNS00MjQzLWIxNWEtNTI2MjdhNWM3Zjk3&lang=en-us&country=US&userCountry=US&subdivision=Texas&offerMapping=All&fixtureIds=" + \
                   gameIDs[index]
         gameResponse = requests.get(gameURL, headers=headers)
         oddsInfo = json.loads(gameResponse.text)['fixture']['games']
-        sleepChecker(sleepCounter, iterations=1, printStop=True)
+        sleepChecker(iterations=1, printStop=True)
         for odds in oddsInfo:
             if (odds['name']['value'] == "Which team will score the first points?"):
                 t1Name = odds['results'][0]['name']['value']
@@ -248,9 +248,8 @@ def tipperFromTeam(teamShort: str):
 def getAllExpectedStarters():
     teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX',
                 'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
-    sleepCounter = 0
     for team in teamList:
-        sleepChecker(sleepCounter, iterations=5, baseTime=1, randomMultiplier=1)
+        sleepChecker(iterations=5, baseTime=1, randomMultiplier=1)
         getStarters(team)
 
 def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='Fanduel'):
@@ -264,6 +263,6 @@ def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='Fanduel'
     print('On', exchange, 'bet', kellyBetFromAOddsAndScoreProb(odds2, aOdds, bankroll=ENVIRONMENT.BANKROLL), 'on', t2FullName, 'assuming odds', str(aOdds))
     print()
 
-test = bovadaOdds()
-print(test)
-print()
+# test = bovadaOdds()
+# print(test)
+# print()

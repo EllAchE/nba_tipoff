@@ -3,6 +3,7 @@
 # backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
 from display_bets import getAllOddsAndDisplayByEv
+from tipoff.functions.utils import sleepChecker
 from tipoff.live_information.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 from tipoff.functions.trueskill_calc import updateSkillDictionary
 
@@ -24,9 +25,9 @@ from tipoff.functions.trueskill_calc import updateSkillDictionary
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
 #                        ['199711160SEA', 'SEA', 'MIL'],
-#                         ['199711190LAL', 'LAL', 'MIN'],
-#                         ['201911200TOR', 'TOR', 'ORL'],
-#                         ['201911260DAL', 'DAL', 'LAC']] # Last one is a violation, others are misformatted
+#                        ['199711190LAL', 'LAL', 'MIN'],
+#                        ['201911200TOR', 'TOR', 'ORL'],
+#                        ['201911260DAL', 'DAL', 'LAC']] # Last one is a violation, others are misformatted
 # '199711210SEA', '199711240TOR', '199711270IND', '201911040PHO',
 
 '''

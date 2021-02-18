@@ -2,7 +2,7 @@
 import json
 
 from tipoff.classes.GameOdds import GameOdds
-from tipoff.functions.utils import sleepChecker
+from tipoff.functions.utils import sleepChecker, sleepChecker
 from tipoff.live_information.live_odds_retrieval import getStarters, draftKingsOdds, mgmOdds, bovadaOdds
 
 
@@ -107,14 +107,13 @@ def createTeamTipperDict():
     teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX',
                 'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
     teamList.sort()
-    sleepCounter = 0
     startersList = list()
     tipperList = list()
     fullJson = {}
 
     for teamLine in teamList:
         startersList.append({"starters": getStarters(teamLine), "team": teamLine})
-        sleepCounter = sleepChecker(sleepCounter, printStop=False)
+        sleepChecker(printStop=False)
 
     for teamLine in startersList:
         player = teamLine["starters"][0]

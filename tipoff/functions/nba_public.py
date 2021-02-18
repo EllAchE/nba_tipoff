@@ -224,7 +224,6 @@ def getAllFirstPossessionStatisticsIncrementally(season):
     path = '../../Data/CSV/tipoff_and_first_score_details_{}_season.csv'.format(season)
     df = pd.read_csv(path)
     i = 0
-    sleepCounter = 0
     dfLen = len(df.index)
 
     with open('../../Data/JSON/Public_NBA_API/shots_before_first_score.json') as sbfs:
@@ -247,7 +246,7 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         gameShots = gameIdToFirstShotList(gameId)
         gameStatistics = _getFirstShotStatistics(gameShots, bballRefId)
         seasonShotList.append(gameStatistics)
-        sleepChecker(sleepCounter, iterations=3, baseTime=0, randomMultiplier=1)
+        sleepChecker(iterations=3, baseTime=0, randomMultiplier=1)
 
         shotsDict[str(season)] = seasonShotList
         with open('../../Data/JSON/Public_NBA_API/shots_before_first_score.json', 'w') as jsonFile:
@@ -268,7 +267,6 @@ def getAllFirstPossessionStatisticsAtOnce():
         path = '../../Data/CSV/tipoff_and_first_score_details_{}_season.csv'.format(season)
         df = pd.read_csv(path)
         i = 0
-        sleepCounter = 0
         dfLen = len(df.index)
         seasonShotList = list()
 
@@ -279,7 +277,7 @@ def getAllFirstPossessionStatisticsAtOnce():
             gameShots = gameIdToFirstShotList(gameId)
             gameStatistics = _getFirstShotStatistics(gameShots, bballRefId)
             seasonShotList.append(gameStatistics)
-            sleepChecker(sleepCounter, iterations=1, baseTime=2, randomMultiplier=2)
+            sleepChecker(iterations=1, baseTime=2, randomMultiplier=2)
             i += 1
 
         temp = {"season": season, "games": seasonShotList}
