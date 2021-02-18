@@ -1,0 +1,2420 @@
+[
+    {
+        "_id": "602cf94d8f4302332de16f15",
+        "id": 180351,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99abb3373b6282360dded",
+            "order": 0,
+            "value": null,
+            "statement": null,
+            "type": "away",
+            "statistic": {
+                "_id": "5da99abb3373b6282360ddea",
+                "id": 2468,
+                "title": "Team to Score Last",
+                "query": "team-to-score-last",
+                "type": "1v2"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.850000023841858,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Team to score last",
+        "service_id": "602cf93e2af2026c4f9e8aec",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94d8f4302332de16f21",
+        "id": 180353,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99abb3373b6282360ddf3",
+            "order": 0,
+            "value": null,
+            "statement": null,
+            "type": "no",
+            "statistic": {
+                "_id": "5da99abb3373b6282360ddf0",
+                "id": 2468,
+                "title": "Will there be Overtime",
+                "query": "will-there-be-overtime",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.0099999904632568,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Will there be overtime",
+        "service_id": "602cf93e2af2026c4f9e8aee",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94d8f4302332de16f37",
+        "id": 180358,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99abf3373b6282360de05",
+            "order": 1,
+            "value": null,
+            "statement": null,
+            "type": "yes",
+            "statistic": {
+                "_id": "5da99abf3373b6282360de04",
+                "id": 2468,
+                "title": "First shot attempt of game is 3pt FG",
+                "query": "first-shot-attempt-of-game-is-3pt",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 2.6600000858306885,
+        "oddsOverride": 2.5899999141693115,
+        "outcome": "pending",
+        "queryTitle": "First shot attempt of game is 3pt FG",
+        "service_id": "602cf93e2af2026c4f9e8af3",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94d8f4302332de16f48",
+        "id": 180363,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac43373b6282360de1b",
+            "order": 0,
+            "value": null,
+            "statement": null,
+            "type": "no",
+            "statistic": {
+                "_id": "5da99ac33373b6282360de14",
+                "id": 2468,
+                "title": "Away team to make their first shot attempt",
+                "query": "away-team-to-make-their-first-shot-attempt",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.8300000429153442,
+        "oddsOverride": 1.690000057220459,
+        "outcome": "pending",
+        "queryTitle": "POR to make their first shot attempt",
+        "service_id": "602cf93e2af2026c4f9e8af8",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94d8f4302332de16f56",
+        "id": 180366,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac53373b6282360de25",
+            "order": 1,
+            "value": null,
+            "statement": null,
+            "type": "yes",
+            "statistic": {
+                "_id": "5da99ac53373b6282360de24",
+                "id": 2468,
+                "title": "Away team first shot attempt is 3pt FG",
+                "query": "away-team-first-shot-attempt-is-3pt",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 2.7100000381469727,
+        "oddsOverride": 2.1600000858306885,
+        "outcome": "pending",
+        "queryTitle": "POR first shot attempt is 3pt FG",
+        "service_id": "602cf93e2af2026c4f9e8afb",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94d8f4302332de16f63",
+        "id": 180367,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac53373b6282360de27",
+            "order": 0,
+            "value": null,
+            "statement": null,
+            "type": "no",
+            "statistic": {
+                "_id": "5da99ac53373b6282360de24",
+                "id": 2468,
+                "title": "Away team first shot attempt is 3pt FG",
+                "query": "away-team-first-shot-attempt-is-3pt",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.4299999475479126,
+        "oddsOverride": 1.649999976158142,
+        "outcome": "pending",
+        "queryTitle": "POR first shot attempt is 3pt FG",
+        "service_id": "602cf93e2af2026c4f9e8afc",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94d8f4302332de16f72",
+        "id": 180371,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac53373b6282360de2f",
+            "order": 1,
+            "value": 11.5,
+            "statement": null,
+            "type": "over",
+            "statistic": {
+                "_id": "5da99ac53373b6282360de2a",
+                "id": 2468,
+                "title": "Largest lead in game",
+                "query": "largest-lead-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.0700000524520874,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Largest lead in game 11.5",
+        "service_id": "602cf93e2af2026c4f9e8b00",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de16ffb",
+        "id": 180354,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99abb3373b6282360ddf7",
+            "order": 1,
+            "value": null,
+            "statement": null,
+            "type": "yes",
+            "statistic": {
+                "_id": "5da99abb3373b6282360ddf6",
+                "id": 2468,
+                "title": "First shot of the game made",
+                "query": "first-shot-of-the-game-made",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.850000023841858,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "First shot of the game made",
+        "service_id": "602cf93e2af2026c4f9e8aef",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de1700a",
+        "id": 180370,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac53373b6282360de33",
+            "order": 1,
+            "value": 13.5,
+            "statement": null,
+            "type": "over",
+            "statistic": {
+                "_id": "5da99ac53373b6282360de2a",
+                "id": 2468,
+                "title": "Largest lead in game",
+                "query": "largest-lead-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.2000000476837158,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Largest lead in game 13.5",
+        "service_id": "602cf93e2af2026c4f9e8aff",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de17018",
+        "id": 180375,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac63373b6282360de35",
+            "order": 0,
+            "value": 13.5,
+            "statement": null,
+            "type": "under",
+            "statistic": {
+                "_id": "5da99ac53373b6282360de2a",
+                "id": 2468,
+                "title": "Largest lead in game",
+                "query": "largest-lead-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 4.300000190734863,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Largest lead in game 13.5",
+        "service_id": "602cf93e2af2026c4f9e8b04",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de17026",
+        "id": 180379,
+        "__v": 0,
+        "condition": {
+            "_id": "5e68867d59835c99a87cc732",
+            "order": 1,
+            "value": 26.5,
+            "statement": null,
+            "type": "over",
+            "statistic": {
+                "_id": "5da99ac83373b6282360de76",
+                "id": 2468,
+                "title": "Total 3pt FG in game",
+                "query": "total-3pt-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.7100000381469727,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Total 3pt FG in game 26.5",
+        "service_id": "602cf93f2af2026c4f9e8b08",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de17039",
+        "id": 180381,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac93373b6282360de81",
+            "order": 1,
+            "value": 24.5,
+            "statement": null,
+            "type": "over",
+            "statistic": {
+                "_id": "5da99ac83373b6282360de76",
+                "id": 2468,
+                "title": "Total 3pt FG in game",
+                "query": "total-3pt-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.3700000047683716,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Total 3pt FG in game 24.5",
+        "service_id": "602cf93f2af2026c4f9e8b0a",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de17051",
+        "id": 180386,
+        "__v": 0,
+        "condition": {
+            "_id": "5e68864b59835c99a87cc730",
+            "order": 0,
+            "value": 26.5,
+            "statement": null,
+            "type": "under",
+            "statistic": {
+                "_id": "5da99ac83373b6282360de76",
+                "id": 2468,
+                "title": "Total 3pt FG in game",
+                "query": "total-3pt-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 2.0399999618530273,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Total 3pt FG in game 26.5",
+        "service_id": "602cf93f2af2026c4f9e8b0f",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de170ab",
+        "id": 180364,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac43373b6282360de1f",
+            "order": 1,
+            "value": null,
+            "statement": null,
+            "type": "yes",
+            "statistic": {
+                "_id": "5da99ac43373b6282360de1e",
+                "id": 2468,
+                "title": "Home team first shot attempt is 3pt FG",
+                "query": "home-team-first-shot-attempt-is-3pt",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 2.7300000190734863,
+        "oddsOverride": 2.619999885559082,
+        "outcome": "pending",
+        "queryTitle": "NO first shot attempt is 3pt FG",
+        "service_id": "602cf93e2af2026c4f9e8af9",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de170b9",
+        "id": 180374,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac53373b6282360de31",
+            "order": 0,
+            "value": 11.5,
+            "statement": null,
+            "type": "under",
+            "statistic": {
+                "_id": "5da99ac53373b6282360de2a",
+                "id": 2468,
+                "title": "Largest lead in game",
+                "query": "largest-lead-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 7.630000114440918,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Largest lead in game 11.5",
+        "service_id": "602cf93e2af2026c4f9e8b03",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de170c7",
+        "id": 180383,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac93373b6282360de7b",
+            "order": 0,
+            "value": 19.5,
+            "statement": null,
+            "type": "under",
+            "statistic": {
+                "_id": "5da99ac83373b6282360de76",
+                "id": 2468,
+                "title": "Total 3pt FG in game",
+                "query": "total-3pt-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 19.3799991607666,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Total 3pt FG in game 19.5",
+        "service_id": "602cf93f2af2026c4f9e8b0c",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de1713d",
+        "id": 180356,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99abd3373b6282360ddfd",
+            "order": 1,
+            "value": null,
+            "statement": null,
+            "type": "home",
+            "statistic": {
+                "_id": "5da99abc3373b6282360ddfc",
+                "id": 2468,
+                "title": "First 3pt FG made",
+                "query": "first-3pt-made",
+                "type": "1v2"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.8200000524520874,
+        "oddsOverride": 2.2300000190734863,
+        "outcome": "pending",
+        "queryTitle": "First 3pt FG made",
+        "service_id": "602cf93e2af2026c4f9e8af1",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de17159",
+        "id": 180361,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac13373b6282360de0d",
+            "order": 0,
+            "value": null,
+            "statement": null,
+            "type": "no",
+            "statistic": {
+                "_id": "5da99abf3373b6282360de0a",
+                "id": 2468,
+                "title": "Home team to make their first shot attempt",
+                "query": "home-team-to-make-their-first-shot-attempt",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.8799999952316284,
+        "oddsOverride": 1.809999942779541,
+        "outcome": "pending",
+        "queryTitle": "NO to make their first shot attempt",
+        "service_id": "602cf93e2af2026c4f9e8af6",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de17168",
+        "id": 180350,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99abb3373b6282360ddeb",
+            "order": 1,
+            "value": null,
+            "statement": null,
+            "type": "home",
+            "statistic": {
+                "_id": "5da99abb3373b6282360ddea",
+                "id": 2468,
+                "title": "Team to Score Last",
+                "query": "team-to-score-last",
+                "type": "1v2"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.899999976158142,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Team to score last",
+        "service_id": "602cf93e2af2026c4f9e8aeb",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de1716a",
+        "id": 180377,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac83373b6282360de73",
+            "order": 0,
+            "value": 17.5,
+            "statement": null,
+            "type": "under",
+            "statistic": {
+                "_id": "5da99ac53373b6282360de2a",
+                "id": 2468,
+                "title": "Largest lead in game",
+                "query": "largest-lead-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 2.0299999713897705,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Largest lead in game 17.5",
+        "service_id": "602cf93e2af2026c4f9e8b06",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de17181",
+        "id": 180378,
+        "__v": 0,
+        "condition": {
+            "_id": "5e6886a059835c99a87cc734",
+            "order": 1,
+            "value": 27.5,
+            "statement": null,
+            "type": "over",
+            "statistic": {
+                "_id": "5da99ac83373b6282360de76",
+                "id": 2468,
+                "title": "Total 3pt FG in game",
+                "query": "total-3pt-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 2.2300000190734863,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Total 3pt FG in game 27.5",
+        "service_id": "602cf93f2af2026c4f9e8b07",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de1718f",
+        "id": 180355,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99abb3373b6282360ddf9",
+            "order": 0,
+            "value": null,
+            "statement": null,
+            "type": "no",
+            "statistic": {
+                "_id": "5da99abb3373b6282360ddf6",
+                "id": 2468,
+                "title": "First shot of the game made",
+                "query": "first-shot-of-the-game-made",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.8799999952316284,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "First shot of the game made",
+        "service_id": "602cf93e2af2026c4f9e8af0",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de171a1",
+        "id": 180387,
+        "__v": 0,
+        "condition": {
+            "_id": "5e6886ca59835c99a87cc736",
+            "order": 0,
+            "value": 27.5,
+            "statement": null,
+            "type": "under",
+            "statistic": {
+                "_id": "5da99ac83373b6282360de76",
+                "id": 2468,
+                "title": "Total 3pt FG in game",
+                "query": "total-3pt-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.590000033378601,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Total 3pt FG in game 27.5",
+        "service_id": "602cf93f2af2026c4f9e8b10",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de171a4",
+        "id": 180369,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac73373b6282360de37",
+            "order": 1,
+            "value": 15.5,
+            "statement": null,
+            "type": "over",
+            "statistic": {
+                "_id": "5da99ac53373b6282360de2a",
+                "id": 2468,
+                "title": "Largest lead in game",
+                "query": "largest-lead-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.3899999856948853,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Largest lead in game 15.5",
+        "service_id": "602cf93e2af2026c4f9e8afe",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de171b8",
+        "id": 180373,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac53373b6282360de2d",
+            "order": 0,
+            "value": 9.5,
+            "statement": null,
+            "type": "under",
+            "statistic": {
+                "_id": "5da99ac53373b6282360de2a",
+                "id": 2468,
+                "title": "Largest lead in game",
+                "query": "largest-lead-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 15.180000305175781,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Largest lead in game 9.5",
+        "service_id": "602cf93e2af2026c4f9e8b02",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de171c7",
+        "id": 180376,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac83373b6282360de6f",
+            "order": 0,
+            "value": 15.5,
+            "statement": null,
+            "type": "under",
+            "statistic": {
+                "_id": "5da99ac53373b6282360de2a",
+                "id": 2468,
+                "title": "Largest lead in game",
+                "query": "largest-lead-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 2.880000114440918,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Largest lead in game 15.5",
+        "service_id": "602cf93e2af2026c4f9e8b05",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de171d5",
+        "id": 180384,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac93373b6282360de7f",
+            "order": 0,
+            "value": 24.5,
+            "statement": null,
+            "type": "under",
+            "statistic": {
+                "_id": "5da99ac83373b6282360de76",
+                "id": 2468,
+                "title": "Total 3pt FG in game",
+                "query": "total-3pt-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 2.9100000858306885,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Total 3pt FG in game 24.5",
+        "service_id": "602cf93f2af2026c4f9e8b0d",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf94f8f4302332de171e4",
+        "id": 180392,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac93373b6282360de91",
+            "order": 1,
+            "value": null,
+            "statement": null,
+            "type": "yes",
+            "statistic": {
+                "_id": "5da99ac93373b6282360de90",
+                "id": 2468,
+                "title": "Both teams to Score 100+",
+                "query": "both-teams-to-score-100+",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.100000023841858,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Both teams to score 100+",
+        "service_id": "602cf93f2af2026c4f9e8b15",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9508f4302332de17234",
+        "id": 180352,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99abb3373b6282360ddf1",
+            "order": 1,
+            "value": null,
+            "statement": null,
+            "type": "yes",
+            "statistic": {
+                "_id": "5da99abb3373b6282360ddf0",
+                "id": 2468,
+                "title": "Will there be Overtime",
+                "query": "will-there-be-overtime",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 11.869999885559082,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Will there be overtime",
+        "service_id": "602cf93e2af2026c4f9e8aed",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9508f4302332de17242",
+        "id": 180357,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99abf3373b6282360de01",
+            "order": 0,
+            "value": null,
+            "statement": null,
+            "type": "away",
+            "statistic": {
+                "_id": "5da99abc3373b6282360ddfc",
+                "id": 2468,
+                "title": "First 3pt FG made",
+                "query": "first-3pt-made",
+                "type": "1v2"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.9299999475479126,
+        "oddsOverride": 1.6100000143051147,
+        "outcome": "pending",
+        "queryTitle": "First 3pt FG made",
+        "service_id": "602cf93e2af2026c4f9e8af2",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9508f4302332de1724f",
+        "id": 180359,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99abf3373b6282360de07",
+            "order": 0,
+            "value": null,
+            "statement": null,
+            "type": "no",
+            "statistic": {
+                "_id": "5da99abf3373b6282360de04",
+                "id": 2468,
+                "title": "First shot attempt of game is 3pt FG",
+                "query": "first-shot-attempt-of-game-is-3pt",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.440000057220459,
+        "oddsOverride": 1.4600000381469727,
+        "outcome": "pending",
+        "queryTitle": "First shot attempt of game is 3pt FG",
+        "service_id": "602cf93e2af2026c4f9e8af4",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9508f4302332de1725d",
+        "id": 180360,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac03373b6282360de0b",
+            "order": 1,
+            "value": null,
+            "statement": null,
+            "type": "yes",
+            "statistic": {
+                "_id": "5da99abf3373b6282360de0a",
+                "id": 2468,
+                "title": "Home team to make their first shot attempt",
+                "query": "home-team-to-make-their-first-shot-attempt",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.8600000143051147,
+        "oddsOverride": 1.9299999475479126,
+        "outcome": "pending",
+        "queryTitle": "NO to make their first shot attempt",
+        "service_id": "602cf93e2af2026c4f9e8af5",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9508f4302332de17269",
+        "id": 180362,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac43373b6282360de19",
+            "order": 1,
+            "value": null,
+            "statement": null,
+            "type": "yes",
+            "statistic": {
+                "_id": "5da99ac33373b6282360de14",
+                "id": 2468,
+                "title": "Away team to make their first shot attempt",
+                "query": "away-team-to-make-their-first-shot-attempt",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.909999966621399,
+        "oddsOverride": 2.0899999141693115,
+        "outcome": "pending",
+        "queryTitle": "POR to make their first shot attempt",
+        "service_id": "602cf93e2af2026c4f9e8af7",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9508f4302332de1727b",
+        "id": 180365,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac43373b6282360de21",
+            "order": 0,
+            "value": null,
+            "statement": null,
+            "type": "no",
+            "statistic": {
+                "_id": "5da99ac43373b6282360de1e",
+                "id": 2468,
+                "title": "Home team first shot attempt is 3pt FG",
+                "query": "home-team-first-shot-attempt-is-3pt",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.4199999570846558,
+        "oddsOverride": 1.4500000476837158,
+        "outcome": "pending",
+        "queryTitle": "NO first shot attempt is 3pt FG",
+        "service_id": "602cf93e2af2026c4f9e8afa",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9508f4302332de1728f",
+        "id": 180368,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac83373b6282360de71",
+            "order": 1,
+            "value": 17.5,
+            "statement": null,
+            "type": "over",
+            "statistic": {
+                "_id": "5da99ac53373b6282360de2a",
+                "id": 2468,
+                "title": "Largest lead in game",
+                "query": "largest-lead-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.75,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Largest lead in game 17.5",
+        "service_id": "602cf93e2af2026c4f9e8afd",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9508f4302332de1729c",
+        "id": 180372,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac53373b6282360de2b",
+            "order": 1,
+            "value": 9.5,
+            "statement": null,
+            "type": "over",
+            "statistic": {
+                "_id": "5da99ac53373b6282360de2a",
+                "id": 2468,
+                "title": "Largest lead in game",
+                "query": "largest-lead-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Largest lead in game 9.5",
+        "service_id": "602cf93e2af2026c4f9e8b01",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9508f4302332de172a9",
+        "id": 180380,
+        "__v": 0,
+        "condition": {
+            "_id": "5e68807159835c99a87cc72e",
+            "order": 1,
+            "value": 21.5,
+            "statement": null,
+            "type": "over",
+            "statistic": {
+                "_id": "5da99ac83373b6282360de76",
+                "id": 2468,
+                "title": "Total 3pt FG in game",
+                "query": "total-3pt-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.0800000429153442,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Total 3pt FG in game 21.5",
+        "service_id": "602cf93f2af2026c4f9e8b09",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9508f4302332de172b7",
+        "id": 180395,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99aca3373b6282360de99",
+            "order": 0,
+            "value": null,
+            "statement": null,
+            "type": "no",
+            "statistic": {
+                "_id": "5da99aca3373b6282360de96",
+                "id": 2468,
+                "title": "Both teams to Score 110+",
+                "query": "both-teams-to-score-110+",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 2.440000057220459,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Both teams to score 110+",
+        "service_id": "602cf93f2af2026c4f9e8b18",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9508f4302332de172d0",
+        "id": 180404,
+        "__v": 0,
+        "condition": {
+            "_id": "5daf084d6a39475e42fa7766",
+            "order": 1,
+            "value": null,
+            "statement": null,
+            "type": "home",
+            "statistic": {
+                "_id": "5daf084d6a39475e42fa7765",
+                "id": 2468,
+                "title": "Race to 30 Points",
+                "query": "race-to-30-points",
+                "type": "1v2"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.6299999952316284,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Race to 30 points",
+        "service_id": "602cf93f2af2026c4f9e8b1d",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9528f4302332de173ac",
+        "id": 180382,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac93373b6282360de7d",
+            "order": 1,
+            "value": 19.5,
+            "statement": null,
+            "type": "over",
+            "statistic": {
+                "_id": "5da99ac83373b6282360de76",
+                "id": 2468,
+                "title": "Total 3pt FG in game",
+                "query": "total-3pt-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Total 3pt FG in game 19.5",
+        "service_id": "602cf93f2af2026c4f9e8b0b",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9528f4302332de173bb",
+        "id": 180385,
+        "__v": 0,
+        "condition": {
+            "_id": "5e68801f59835c99a87cc72c",
+            "order": 0,
+            "value": 21.5,
+            "statement": null,
+            "type": "under",
+            "statistic": {
+                "_id": "5da99ac83373b6282360de76",
+                "id": 2468,
+                "title": "Total 3pt FG in game",
+                "query": "total-3pt-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 6.78000020980835,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Total 3pt FG in game 21.5",
+        "service_id": "602cf93f2af2026c4f9e8b0e",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9528f4302332de173c9",
+        "id": 180393,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac93373b6282360de93",
+            "order": 0,
+            "value": null,
+            "statement": null,
+            "type": "no",
+            "statistic": {
+                "_id": "5da99ac93373b6282360de90",
+                "id": 2468,
+                "title": "Both teams to Score 100+",
+                "query": "both-teams-to-score-100+",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 6.539999961853027,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Both teams to score 100+",
+        "service_id": "602cf93f2af2026c4f9e8b16",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9528f4302332de173e5",
+        "id": 180408,
+        "__v": 0,
+        "condition": {
+            "_id": "5daf084e6a39475e42fa776c",
+            "order": 1,
+            "value": null,
+            "statement": null,
+            "type": "home",
+            "statistic": {
+                "_id": "5daf084e6a39475e42fa776b",
+                "id": 2468,
+                "title": "Race to 40 Points",
+                "query": "race-to-40-points",
+                "type": "1v2"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.649999976158142,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Race to 40 points",
+        "service_id": "602cf93f2af2026c4f9e8b1f",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9548f4302332de17509",
+        "id": 180388,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac93373b6282360de85",
+            "order": 1,
+            "value": null,
+            "statement": null,
+            "type": "yes",
+            "statistic": {
+                "_id": "5da99ac93373b6282360de84",
+                "id": 2468,
+                "title": "Both teams to Score 80+",
+                "query": "both-teams-to-score-80+",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Both teams to score 80+",
+        "service_id": "602cf93f2af2026c4f9e8b11",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9548f4302332de1751e",
+        "id": 180390,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac93373b6282360de8b",
+            "order": 1,
+            "value": null,
+            "statement": null,
+            "type": "yes",
+            "statistic": {
+                "_id": "5da99ac93373b6282360de8a",
+                "id": 2468,
+                "title": "Both teams to Score 90+",
+                "query": "both-teams-to-score-90+",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Both teams to score 90+",
+        "service_id": "602cf93f2af2026c4f9e8b13",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9548f4302332de17532",
+        "id": 180398,
+        "__v": 0,
+        "condition": {
+            "_id": "5daf084d6a39475e42fa775c",
+            "order": 0,
+            "value": null,
+            "statement": null,
+            "type": "away",
+            "statistic": {
+                "_id": "5daf084d6a39475e42fa7759",
+                "id": 2468,
+                "title": "Race to 10 Points",
+                "query": "race-to-10-points",
+                "type": "1v2"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 2.059999942779541,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Race to 10 points",
+        "service_id": "602cf93f2af2026c4f9e8b1a",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9548f4302332de17573",
+        "id": 180389,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac93373b6282360de87",
+            "order": 0,
+            "value": null,
+            "statement": null,
+            "type": "no",
+            "statistic": {
+                "_id": "5da99ac93373b6282360de84",
+                "id": 2468,
+                "title": "Both teams to Score 80+",
+                "query": "both-teams-to-score-80+",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 28.920000076293945,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Both teams to score 80+",
+        "service_id": "602cf93f2af2026c4f9e8b12",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9548f4302332de17580",
+        "id": 180391,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99ac93373b6282360de8d",
+            "order": 0,
+            "value": null,
+            "statement": null,
+            "type": "no",
+            "statistic": {
+                "_id": "5da99ac93373b6282360de8a",
+                "id": 2468,
+                "title": "Both teams to Score 90+",
+                "query": "both-teams-to-score-90+",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 18.479999542236328,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Both teams to score 90+",
+        "service_id": "602cf93f2af2026c4f9e8b14",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9548f4302332de17590",
+        "id": 180402,
+        "__v": 0,
+        "condition": {
+            "_id": "5daf084d6a39475e42fa7762",
+            "order": 0,
+            "value": null,
+            "statement": null,
+            "type": "away",
+            "statistic": {
+                "_id": "5daf084d6a39475e42fa775f",
+                "id": 2468,
+                "title": "Race to 20 Points",
+                "query": "race-to-20-points",
+                "type": "1v2"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 2.0999999046325684,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Race to 20 points",
+        "service_id": "602cf93f2af2026c4f9e8b1c",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9548f4302332de175a4",
+        "id": 180411,
+        "__v": 0,
+        "condition": {
+            "_id": "5daf084e6a39475e42fa776e",
+            "order": 0,
+            "value": null,
+            "statement": null,
+            "type": "away",
+            "statistic": {
+                "_id": "5daf084e6a39475e42fa776b",
+                "id": 2468,
+                "title": "Race to 40 Points",
+                "query": "race-to-40-points",
+                "type": "1v2"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 2.1500000953674316,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Race to 40 points",
+        "service_id": "602cf93f2af2026c4f9e8b20",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9548f4302332de175b0",
+        "id": 180415,
+        "__v": 0,
+        "condition": {
+            "_id": "5daf084e6a39475e42fa7774",
+            "order": 0,
+            "value": null,
+            "statement": null,
+            "type": "away",
+            "statistic": {
+                "_id": "5daf084e6a39475e42fa7771",
+                "id": 2468,
+                "title": "Team to Score First",
+                "query": "team-to-score-first",
+                "type": "1v2"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 2.259999990463257,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Team to score first",
+        "service_id": "602cf93f2af2026c4f9e8b22",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9548f4302332de17650",
+        "id": 180400,
+        "__v": 0,
+        "condition": {
+            "_id": "5daf084d6a39475e42fa7760",
+            "order": 1,
+            "value": null,
+            "statement": null,
+            "type": "home",
+            "statistic": {
+                "_id": "5daf084d6a39475e42fa775f",
+                "id": 2468,
+                "title": "Race to 20 Points",
+                "query": "race-to-20-points",
+                "type": "1v2"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.6799999475479126,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Race to 20 points",
+        "service_id": "602cf93f2af2026c4f9e8b1b",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9548f4302332de17681",
+        "id": 180394,
+        "__v": 0,
+        "condition": {
+            "_id": "5da99aca3373b6282360de97",
+            "order": 1,
+            "value": null,
+            "statement": null,
+            "type": "yes",
+            "statistic": {
+                "_id": "5da99aca3373b6282360de96",
+                "id": 2468,
+                "title": "Both teams to Score 110+",
+                "query": "both-teams-to-score-110+",
+                "type": "yn"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.5199999809265137,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Both teams to score 110+",
+        "service_id": "602cf93f2af2026c4f9e8b17",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9548f4302332de176a2",
+        "id": 180396,
+        "__v": 0,
+        "condition": {
+            "_id": "5daf084d6a39475e42fa775a",
+            "order": 1,
+            "value": null,
+            "statement": null,
+            "type": "home",
+            "statistic": {
+                "_id": "5daf084d6a39475e42fa7759",
+                "id": 2468,
+                "title": "Race to 10 Points",
+                "query": "race-to-10-points",
+                "type": "1v2"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.7100000381469727,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Race to 10 points",
+        "service_id": "602cf93f2af2026c4f9e8b19",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9558f4302332de1778a",
+        "id": 180406,
+        "__v": 0,
+        "condition": {
+            "_id": "5daf084e6a39475e42fa7768",
+            "order": 0,
+            "value": null,
+            "statement": null,
+            "type": "away",
+            "statistic": {
+                "_id": "5daf084d6a39475e42fa7765",
+                "id": 2468,
+                "title": "Race to 30 Points",
+                "query": "race-to-30-points",
+                "type": "1v2"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 2.190000057220459,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Race to 30 points",
+        "service_id": "602cf93f2af2026c4f9e8b1e",
+        "category": "gp"
+    },
+    {
+        "_id": "602cf9558f4302332de1779d",
+        "id": 180413,
+        "__v": 0,
+        "condition": {
+            "_id": "5daf084e6a39475e42fa7772",
+            "order": 1,
+            "value": null,
+            "statement": null,
+            "type": "home",
+            "statistic": {
+                "_id": "5daf084e6a39475e42fa7771",
+                "id": 2468,
+                "title": "Team to Score First",
+                "query": "team-to-score-first",
+                "type": "1v2"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": true,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.590000033378601,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Team to score first",
+        "service_id": "602cf93f2af2026c4f9e8b21",
+        "category": "gp"
+    },
+    {
+        "_id": "602d45028f4302332d0ba927",
+        "id": 181019,
+        "__v": 0,
+        "condition": {
+            "_id": "602d3d003e2b0853f891ec59",
+            "order": 1,
+            "value": 30.5,
+            "statement": null,
+            "type": "over",
+            "statistic": {
+                "_id": "5da99ac83373b6282360de76",
+                "id": 2468,
+                "title": "Total 3pt FG in game",
+                "query": "total-3pt-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 4.150000095367432,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Total 3pt FG in game 30.5",
+        "service_id": "602d44ff2af2026c4f9ff77e",
+        "category": "gp"
+    },
+    {
+        "_id": "602d45028f4302332d0ba933",
+        "id": 181021,
+        "__v": 0,
+        "condition": {
+            "_id": "602d3cde3e2b0853f891ec57",
+            "order": 0,
+            "value": 29.5,
+            "statement": null,
+            "type": "under",
+            "statistic": {
+                "_id": "5da99ac83373b6282360de76",
+                "id": 2468,
+                "title": "Total 3pt FG in game",
+                "query": "total-3pt-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.25,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Total 3pt FG in game 29.5",
+        "service_id": "602d45002af2026c4f9ff780",
+        "category": "gp"
+    },
+    {
+        "_id": "602d45028f4302332d0ba9fc",
+        "id": 181018,
+        "__v": 0,
+        "condition": {
+            "_id": "602d3d4d3e2b0853f891ec5d",
+            "order": 1,
+            "value": 31.5,
+            "statement": null,
+            "type": "over",
+            "statistic": {
+                "_id": "5da99ac83373b6282360de76",
+                "id": 2468,
+                "title": "Total 3pt FG in game",
+                "query": "total-3pt-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 5.960000038146973,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Total 3pt FG in game 31.5",
+        "service_id": "602d44ff2af2026c4f9ff77d",
+        "category": "gp"
+    },
+    {
+        "_id": "602d45028f4302332d0baa0a",
+        "id": 181022,
+        "__v": 0,
+        "condition": {
+            "_id": "602d3d333e2b0853f891ec5b",
+            "order": 0,
+            "value": 30.5,
+            "statement": null,
+            "type": "under",
+            "statistic": {
+                "_id": "5da99ac83373b6282360de76",
+                "id": 2468,
+                "title": "Total 3pt FG in game",
+                "query": "total-3pt-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.2000000476837158,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Total 3pt FG in game 30.5",
+        "service_id": "602d45002af2026c4f9ff781",
+        "category": "gp"
+    },
+    {
+        "_id": "602d45068f4302332d0badb0",
+        "id": 181020,
+        "__v": 0,
+        "condition": {
+            "_id": "602d3c693e2b0853f891ec55",
+            "order": 1,
+            "value": 29.5,
+            "statement": null,
+            "type": "over",
+            "statistic": {
+                "_id": "5da99ac83373b6282360de76",
+                "id": 2468,
+                "title": "Total 3pt FG in game",
+                "query": "total-3pt-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 3.6600000858306885,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Total 3pt FG in game 29.5",
+        "service_id": "602d44ff2af2026c4f9ff77f",
+        "category": "gp"
+    },
+    {
+        "_id": "602d45078f4302332d0baec0",
+        "id": 181023,
+        "__v": 0,
+        "condition": {
+            "_id": "602d3d7f3e2b0853f891ec5f",
+            "order": 0,
+            "value": 31.5,
+            "statement": null,
+            "type": "under",
+            "statistic": {
+                "_id": "5da99ac83373b6282360de76",
+                "id": 2468,
+                "title": "Total 3pt FG in game",
+                "query": "total-3pt-in-game",
+                "type": "ou"
+            }
+        },
+        "game": {
+            "id": 135688,
+            "date": 1613613600,
+            "leagueId": 123,
+            "shortTitle": "POR @ NO",
+            "sportId": 2,
+            "status": 1,
+            "team1Id": 2115,
+            "team2Id": 2120,
+            "title": "Portland Trail Blazers @ New Orleans Pelicans 2:00 February 18, 2021 National Basketball Assoc."
+        },
+        "isActive": false,
+        "isPublished": true,
+        "isSuspended": false,
+        "odds": 1.100000023841858,
+        "oddsOverride": null,
+        "outcome": "pending",
+        "queryTitle": "Total 3pt FG in game 31.5",
+        "service_id": "602d45002af2026c4f9ff782",
+        "category": "gp"
+    }
+]

@@ -180,10 +180,13 @@ def mgmOdds():
 
 def pointsBet():
     # https://nj.pointsbet.com/sports/basketball/NBA/246723
+    # request for all things that are on the page - https://api-usa.pointsbet.com/api/v2/competitions/105/events/featured?includeLive=false&page=1
+    # single game - https://api-usa.pointsbet.com/api/v2/events/249073
     pass
 
 def sugarHouseOdds():
     # https://www.playsugarhouse.com/?page=sports#event/1007123701
+    # this is a mirror of pointsbets for specific geos, so backlogged
     pass
 
 def betRiversOdds():
@@ -196,6 +199,8 @@ def unibetOdds():
 
 def barstoolOdds():
     # https://www.barstoolsportsbook.com/sports/basketball/nba
+    # all events https://eu-offering.kambicdn.org/offering/v2018/pivuspa/listView/basketball/nba/all/all/matches.json?includeParticipants=true&useCombined=true&lang=en_US&market=US
+    # odds lines single game - https://api.barstoolsportsbook.com/offerings/grouped_event/1007161722/pre_match_event/?lang=en_US&market=US
     pass
 
 # Other bookmakers https://the-odds-api.com/sports-odds-data/bookmaker-apis.html

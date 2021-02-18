@@ -29,7 +29,7 @@ def createAllOddsDictForExchange(teamLines, exchange): # playerLines, exchange):
 
 def createAllOddsDict():
     dkOddsDicts = createAllOddsDictForExchange(draftKingsOdds(), 'draftkings')
-    mgmOddsDicts = createAllOddsDictForExchange(mgmOdds(), 'mgm')
+    # mgmOddsDicts = createAllOddsDictForExchange(mgmOdds(), 'mgm')
     # bovadaLines = bovadaOdds()
     allOddsDictsList = list()
 
@@ -37,9 +37,9 @@ def createAllOddsDict():
         print(oddsDict, 'dk')
         allOddsDictsList.append(oddsDict)
 
-    for oddsDict in mgmOddsDicts:
-        print(oddsDict, 'mgm')
-        allOddsDictsList.append(oddsDict)
+    # for oddsDict in mgmOddsDicts:
+    #     print(oddsDict, 'mgm')
+    #     allOddsDictsList.append(oddsDict)
 
     return {"games": allOddsDictsList} # backlogtodo this dict can be saved for reference for backtesting
 

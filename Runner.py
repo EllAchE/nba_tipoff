@@ -13,17 +13,6 @@ from tipoff.functions.trueskill_calc import updateSkillDictionary
 
 # getAllExpectedStarters()
 
-getDailyOdds('NYK', 'ORL')
-getDailyOdds('ATL', 'BOS')
-getDailyOdds('HOU', 'PHI')
-getDailyOdds('DEN', 'WAS')
-getDailyOdds('IND', 'MIN')
-getDailyOdds('DET', 'CHI')
-getDailyOdds('POR', 'NOP')
-getDailyOdds('OKC', 'MEM')
-getDailyOdds('MIA', 'GSW')
-getDailyOdds('UTA', 'LAC')
-
 # getDailyOdds('MIN', 'TOR')
 # getDailyOdds('BOS', 'WAS')
 # getDailyOdds('SAS', 'CHA')

@@ -1,0 +1,2284 @@
+{
+    "events": [
+        {
+            "event": {
+                "id": 1007123429,
+                "name": "NY Knicks @ ORL Magic",
+                "nameDelimiter": "@",
+                "englishName": "Orlando Magic - New York Knicks",
+                "homeName": "ORL Magic",
+                "awayName": "NY Knicks",
+                "start": "2021-02-18T00:10:52Z",
+                "group": "NBA",
+                "groupId": 1000093652,
+                "path": [
+                    {
+                        "id": 1000093204,
+                        "name": "Basketball",
+                        "englishName": "Basketball",
+                        "termKey": "basketball"
+                    },
+                    {
+                        "id": 1000093652,
+                        "name": "NBA",
+                        "englishName": "NBA",
+                        "termKey": "nba"
+                    }
+                ],
+                "nonLiveBoCount": 84,
+                "liveBoCount": 84,
+                "sport": "BASKETBALL",
+                "tags": [
+                    "OPEN_FOR_LIVE",
+                    "PREMATCH_STATS",
+                    "AMERICAN_DISPLAY_FORMAT",
+                    "AWAY_HOME",
+                    "MATCH"
+                ],
+                "state": "STARTED"
+            },
+            "betOffers": [
+                {
+                    "id": 2249973490,
+                    "criterion": {
+                        "id": 1001159512,
+                        "label": "Point Spread",
+                        "englishLabel": "Handicap - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 1,
+                        "name": "Handicap",
+                        "englishName": "Handicap"
+                    },
+                    "eventId": 1007123429,
+                    "outcomes": [
+                        {
+                            "id": 2870580432,
+                            "label": "ORL Magic",
+                            "englishLabel": "Orlando Magic",
+                            "odds": 1870,
+                            "line": -7000,
+                            "participant": "ORL Magic",
+                            "type": "OT_ONE",
+                            "betOfferId": 2249973490,
+                            "changedDate": "2021-02-18T01:48:53Z",
+                            "participantId": 1000080666,
+                            "oddsFractional": "17/20",
+                            "oddsAmerican": "-115",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870580433,
+                            "label": "NY Knicks",
+                            "englishLabel": "New York Knicks",
+                            "odds": 1910,
+                            "line": 7000,
+                            "participant": "NY Knicks",
+                            "type": "OT_TWO",
+                            "betOfferId": 2249973490,
+                            "changedDate": "2021-02-18T01:48:53Z",
+                            "participantId": 1000067568,
+                            "oddsFractional": "10/11",
+                            "oddsAmerican": "-110",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "OFFERED_LIVE",
+                        "PBA_DISABLED",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 1,
+                    "cashOutStatus": "ENABLED"
+                },
+                {
+                    "id": 2249947137,
+                    "criterion": {
+                        "id": 1001159732,
+                        "label": "Moneyline",
+                        "englishLabel": "Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 2,
+                        "name": "Match",
+                        "englishName": "Match"
+                    },
+                    "eventId": 1007123429,
+                    "outcomes": [
+                        {
+                            "id": 2870512785,
+                            "label": "ORL Magic",
+                            "englishLabel": "Orlando Magic",
+                            "odds": 1170,
+                            "participant": "ORL Magic",
+                            "type": "OT_ONE",
+                            "betOfferId": 2249947137,
+                            "changedDate": "2021-02-18T01:48:53Z",
+                            "participantId": 1000080666,
+                            "oddsFractional": "1/6",
+                            "oddsAmerican": "-590",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870512788,
+                            "label": "NY Knicks",
+                            "englishLabel": "New York Knicks",
+                            "odds": 5000,
+                            "participant": "NY Knicks",
+                            "type": "OT_TWO",
+                            "betOfferId": 2249947137,
+                            "changedDate": "2021-02-18T01:48:53Z",
+                            "participantId": 1000067568,
+                            "oddsFractional": "4/1",
+                            "oddsAmerican": "400",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "OFFERED_LIVE",
+                        "PBA_DISABLED",
+                        "MAIN"
+                    ],
+                    "sortOrder": 2,
+                    "cashOutStatus": "ENABLED"
+                },
+                {
+                    "id": 2249973463,
+                    "criterion": {
+                        "id": 1001159509,
+                        "label": "Total Points",
+                        "englishLabel": "Total Points - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 6,
+                        "name": "Over/Under",
+                        "englishName": "Over/Under"
+                    },
+                    "eventId": 1007123429,
+                    "outcomes": [
+                        {
+                            "id": 2870580377,
+                            "label": "Over",
+                            "englishLabel": "Over",
+                            "odds": 1870,
+                            "line": 197000,
+                            "type": "OT_OVER",
+                            "betOfferId": 2249973463,
+                            "changedDate": "2021-02-18T01:48:53Z",
+                            "oddsFractional": "17/20",
+                            "oddsAmerican": "-115",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870580378,
+                            "label": "Under",
+                            "englishLabel": "Under",
+                            "odds": 1910,
+                            "line": 197000,
+                            "type": "OT_UNDER",
+                            "betOfferId": 2249973463,
+                            "changedDate": "2021-02-18T01:48:53Z",
+                            "oddsFractional": "10/11",
+                            "oddsAmerican": "-110",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "OFFERED_LIVE",
+                        "PBA_DISABLED",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 3,
+                    "cashOutStatus": "ENABLED"
+                }
+            ],
+            "liveData": {
+                "eventId": 1007123429,
+                "matchClock": {
+                    "minute": 38,
+                    "second": 41,
+                    "minutesLeftInPeriod": 9,
+                    "secondsLeftInMinute": 19,
+                    "period": "4th Quarter",
+                    "running": false
+                },
+                "score": {
+                    "home": "83",
+                    "away": "72",
+                    "info": "Q1: 23-32 | Q2: 30-24 | Q3: 30-14 | Q4: 0-2",
+                    "who": "AWAY"
+                },
+                "liveStatistics": [
+                    {
+                        "occurrenceTypeId": "POINTS_HOME",
+                        "count": 83
+                    },
+                    {
+                        "occurrenceTypeId": "POINTS_AWAY",
+                        "count": 72
+                    }
+                ]
+            }
+        },
+        {
+            "event": {
+                "id": 1007123809,
+                "name": "HOU Rockets @ PHI 76ers",
+                "nameDelimiter": "@",
+                "englishName": "Philadelphia 76ers - Houston Rockets",
+                "homeName": "PHI 76ers",
+                "awayName": "HOU Rockets",
+                "start": "2021-02-18T00:40:00Z",
+                "group": "NBA",
+                "groupId": 1000093652,
+                "path": [
+                    {
+                        "id": 1000093204,
+                        "name": "Basketball",
+                        "englishName": "Basketball",
+                        "termKey": "basketball"
+                    },
+                    {
+                        "id": 1000093652,
+                        "name": "NBA",
+                        "englishName": "NBA",
+                        "termKey": "nba"
+                    }
+                ],
+                "nonLiveBoCount": 107,
+                "liveBoCount": 108,
+                "sport": "BASKETBALL",
+                "tags": [
+                    "OPEN_FOR_LIVE",
+                    "PREMATCH_STATS",
+                    "AMERICAN_DISPLAY_FORMAT",
+                    "AWAY_HOME",
+                    "MATCH"
+                ],
+                "state": "STARTED"
+            },
+            "betOffers": [
+                {
+                    "id": 2250108880,
+                    "criterion": {
+                        "id": 1001159512,
+                        "label": "Point Spread",
+                        "englishLabel": "Handicap - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 1,
+                        "name": "Handicap",
+                        "englishName": "Handicap"
+                    },
+                    "eventId": 1007123809,
+                    "outcomes": [
+                        {
+                            "id": 2871035750,
+                            "label": "PHI 76ers",
+                            "englishLabel": "Philadelphia 76ers",
+                            "odds": 1860,
+                            "line": -24500,
+                            "participant": "PHI 76ers",
+                            "type": "OT_ONE",
+                            "betOfferId": 2250108880,
+                            "changedDate": "2021-02-18T01:42:12Z",
+                            "participantId": 1000058061,
+                            "oddsFractional": "17/20",
+                            "oddsAmerican": "-117",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2871035751,
+                            "label": "HOU Rockets",
+                            "englishLabel": "Houston Rockets",
+                            "odds": 1920,
+                            "line": 24500,
+                            "participant": "HOU Rockets",
+                            "type": "OT_TWO",
+                            "betOfferId": 2250108880,
+                            "changedDate": "2021-02-18T01:42:12Z",
+                            "participantId": 1000018005,
+                            "oddsFractional": "10/11",
+                            "oddsAmerican": "-109",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "OFFERED_LIVE",
+                        "PBA_DISABLED",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 1,
+                    "cashOutStatus": "ENABLED"
+                },
+                {
+                    "id": 2249973584,
+                    "criterion": {
+                        "id": 1001159509,
+                        "label": "Total Points",
+                        "englishLabel": "Total Points - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 6,
+                        "name": "Over/Under",
+                        "englishName": "Over/Under"
+                    },
+                    "eventId": 1007123809,
+                    "outcomes": [
+                        {
+                            "id": 2870623227,
+                            "label": "Over",
+                            "englishLabel": "Over",
+                            "odds": 1900,
+                            "line": 222500,
+                            "type": "OT_OVER",
+                            "betOfferId": 2249973584,
+                            "changedDate": "2021-02-18T01:42:12Z",
+                            "oddsFractional": "9/10",
+                            "oddsAmerican": "-112",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870623228,
+                            "label": "Under",
+                            "englishLabel": "Under",
+                            "odds": 1880,
+                            "line": 222500,
+                            "type": "OT_UNDER",
+                            "betOfferId": 2249973584,
+                            "changedDate": "2021-02-18T01:42:12Z",
+                            "oddsFractional": "22/25",
+                            "oddsAmerican": "-114",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "OFFERED_LIVE",
+                        "PBA_DISABLED",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 3,
+                    "cashOutStatus": "ENABLED"
+                }
+            ],
+            "liveData": {
+                "eventId": 1007123809,
+                "matchClock": {
+                    "minute": 24,
+                    "second": 0,
+                    "minutesLeftInPeriod": 12,
+                    "secondsLeftInMinute": 0,
+                    "period": "3rd Quarter",
+                    "running": false
+                },
+                "score": {
+                    "home": "69",
+                    "away": "43",
+                    "info": "Q1: 38-24 | Q2: 31-19 | Q3: 0-0",
+                    "who": "UNKNOWN"
+                },
+                "liveStatistics": [
+                    {
+                        "occurrenceTypeId": "POINTS_AWAY",
+                        "count": 43
+                    },
+                    {
+                        "occurrenceTypeId": "POINTS_HOME",
+                        "count": 69
+                    }
+                ]
+            }
+        },
+        {
+            "event": {
+                "id": 1007123551,
+                "name": "ATL Hawks @ BOS Celtics",
+                "nameDelimiter": "@",
+                "englishName": "Boston Celtics - Atlanta Hawks",
+                "homeName": "BOS Celtics",
+                "awayName": "ATL Hawks",
+                "start": "2021-02-18T00:40:50Z",
+                "group": "NBA",
+                "groupId": 1000093652,
+                "path": [
+                    {
+                        "id": 1000093204,
+                        "name": "Basketball",
+                        "englishName": "Basketball",
+                        "termKey": "basketball"
+                    },
+                    {
+                        "id": 1000093652,
+                        "name": "NBA",
+                        "englishName": "NBA",
+                        "termKey": "nba"
+                    }
+                ],
+                "nonLiveBoCount": 118,
+                "liveBoCount": 118,
+                "sport": "BASKETBALL",
+                "tags": [
+                    "OPEN_FOR_LIVE",
+                    "PREMATCH_STATS",
+                    "AMERICAN_DISPLAY_FORMAT",
+                    "AWAY_HOME",
+                    "MATCH"
+                ],
+                "state": "STARTED"
+            },
+            "betOffers": [
+                {
+                    "id": 2249951629,
+                    "criterion": {
+                        "id": 1001159512,
+                        "label": "Point Spread",
+                        "englishLabel": "Handicap - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 1,
+                        "name": "Handicap",
+                        "englishName": "Handicap"
+                    },
+                    "eventId": 1007123551,
+                    "outcomes": [
+                        {
+                            "id": 2870603579,
+                            "label": "BOS Celtics",
+                            "englishLabel": "Boston Celtics",
+                            "odds": 1920,
+                            "line": 3000,
+                            "participant": "BOS Celtics",
+                            "type": "OT_ONE",
+                            "betOfferId": 2249951629,
+                            "changedDate": "2021-02-18T01:45:19Z",
+                            "participantId": 1000031335,
+                            "oddsFractional": "10/11",
+                            "oddsAmerican": "-109",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870603581,
+                            "label": "ATL Hawks",
+                            "englishLabel": "Atlanta Hawks",
+                            "odds": 1860,
+                            "line": -3000,
+                            "participant": "ATL Hawks",
+                            "type": "OT_TWO",
+                            "betOfferId": 2249951629,
+                            "changedDate": "2021-02-18T01:45:19Z",
+                            "participantId": 1000037508,
+                            "oddsFractional": "17/20",
+                            "oddsAmerican": "-117",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "OFFERED_LIVE",
+                        "PBA_DISABLED",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 1,
+                    "cashOutStatus": "ENABLED"
+                },
+                {
+                    "id": 2249950525,
+                    "criterion": {
+                        "id": 1001159732,
+                        "label": "Moneyline",
+                        "englishLabel": "Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 2,
+                        "name": "Match",
+                        "englishName": "Match"
+                    },
+                    "eventId": 1007123551,
+                    "outcomes": [
+                        {
+                            "id": 2870520123,
+                            "label": "BOS Celtics",
+                            "englishLabel": "Boston Celtics",
+                            "odds": 2300,
+                            "participant": "BOS Celtics",
+                            "type": "OT_ONE",
+                            "betOfferId": 2249950525,
+                            "changedDate": "2021-02-18T01:45:19Z",
+                            "participantId": 1000031335,
+                            "oddsFractional": "13/10",
+                            "oddsAmerican": "130",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870520125,
+                            "label": "ATL Hawks",
+                            "englishLabel": "Atlanta Hawks",
+                            "odds": 1620,
+                            "participant": "ATL Hawks",
+                            "type": "OT_TWO",
+                            "betOfferId": 2249950525,
+                            "changedDate": "2021-02-18T01:45:19Z",
+                            "participantId": 1000037508,
+                            "oddsFractional": "8/13",
+                            "oddsAmerican": "-162",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "OFFERED_LIVE",
+                        "PBA_DISABLED",
+                        "MAIN"
+                    ],
+                    "sortOrder": 2,
+                    "cashOutStatus": "ENABLED"
+                },
+                {
+                    "id": 2249951539,
+                    "criterion": {
+                        "id": 1001159509,
+                        "label": "Total Points",
+                        "englishLabel": "Total Points - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 6,
+                        "name": "Over/Under",
+                        "englishName": "Over/Under"
+                    },
+                    "eventId": 1007123551,
+                    "outcomes": [
+                        {
+                            "id": 2870603396,
+                            "label": "Over",
+                            "englishLabel": "Over",
+                            "odds": 1870,
+                            "line": 227000,
+                            "type": "OT_OVER",
+                            "betOfferId": 2249951539,
+                            "changedDate": "2021-02-18T01:45:19Z",
+                            "oddsFractional": "17/20",
+                            "oddsAmerican": "-115",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870603404,
+                            "label": "Under",
+                            "englishLabel": "Under",
+                            "odds": 1910,
+                            "line": 227000,
+                            "type": "OT_UNDER",
+                            "betOfferId": 2249951539,
+                            "changedDate": "2021-02-18T01:45:19Z",
+                            "oddsFractional": "10/11",
+                            "oddsAmerican": "-110",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "OFFERED_LIVE",
+                        "PBA_DISABLED",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 3,
+                    "cashOutStatus": "ENABLED"
+                }
+            ],
+            "liveData": {
+                "eventId": 1007123551,
+                "matchClock": {
+                    "minute": 24,
+                    "second": 0,
+                    "minutesLeftInPeriod": 12,
+                    "secondsLeftInMinute": 0,
+                    "period": "3rd Quarter",
+                    "running": false
+                },
+                "score": {
+                    "home": "56",
+                    "away": "62",
+                    "info": "Q1: 35-33 | Q2: 21-29 | Q3: 0-0",
+                    "who": "UNKNOWN"
+                },
+                "liveStatistics": [
+                    {
+                        "occurrenceTypeId": "POINTS_HOME",
+                        "count": 56
+                    },
+                    {
+                        "occurrenceTypeId": "POINTS_AWAY",
+                        "count": 62
+                    }
+                ]
+            }
+        },
+        {
+            "event": {
+                "id": 1007353920,
+                "name": "DET Pistons @ CHI Bulls",
+                "nameDelimiter": "@",
+                "englishName": "Chicago Bulls - Detroit Pistons",
+                "homeName": "CHI Bulls",
+                "awayName": "DET Pistons",
+                "start": "2021-02-18T01:10:12Z",
+                "group": "NBA",
+                "groupId": 1000093652,
+                "path": [
+                    {
+                        "id": 1000093204,
+                        "name": "Basketball",
+                        "englishName": "Basketball",
+                        "termKey": "basketball"
+                    },
+                    {
+                        "id": 1000093652,
+                        "name": "NBA",
+                        "englishName": "NBA",
+                        "termKey": "nba"
+                    }
+                ],
+                "nonLiveBoCount": 119,
+                "liveBoCount": 119,
+                "sport": "BASKETBALL",
+                "tags": [
+                    "OPEN_FOR_LIVE",
+                    "AMERICAN_DISPLAY_FORMAT",
+                    "AWAY_HOME",
+                    "MATCH"
+                ],
+                "state": "STARTED"
+            },
+            "betOffers": [
+                {
+                    "id": 2250054564,
+                    "criterion": {
+                        "id": 1001159512,
+                        "label": "Point Spread",
+                        "englishLabel": "Handicap - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 1,
+                        "name": "Handicap",
+                        "englishName": "Handicap"
+                    },
+                    "eventId": 1007353920,
+                    "outcomes": [
+                        {
+                            "id": 2870848414,
+                            "label": "CHI Bulls",
+                            "englishLabel": "Chicago Bulls",
+                            "odds": 1860,
+                            "line": 11500,
+                            "participant": "CHI Bulls",
+                            "type": "OT_ONE",
+                            "betOfferId": 2250054564,
+                            "changedDate": "2021-02-18T01:48:44Z",
+                            "participantId": 1000000215,
+                            "oddsFractional": "17/20",
+                            "oddsAmerican": "-117",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870848415,
+                            "label": "DET Pistons",
+                            "englishLabel": "Detroit Pistons",
+                            "odds": 1910,
+                            "line": -11500,
+                            "participant": "DET Pistons",
+                            "type": "OT_TWO",
+                            "betOfferId": 2250054564,
+                            "changedDate": "2021-02-18T01:48:44Z",
+                            "participantId": 1000000217,
+                            "oddsFractional": "10/11",
+                            "oddsAmerican": "-110",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "OFFERED_LIVE",
+                        "PBA_DISABLED",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 1,
+                    "cashOutStatus": "ENABLED"
+                },
+                {
+                    "id": 2249974123,
+                    "criterion": {
+                        "id": 1001159732,
+                        "label": "Moneyline",
+                        "englishLabel": "Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 2,
+                        "name": "Match",
+                        "englishName": "Match"
+                    },
+                    "eventId": 1007353920,
+                    "outcomes": [
+                        {
+                            "id": 2870624316,
+                            "label": "CHI Bulls",
+                            "englishLabel": "Chicago Bulls",
+                            "odds": 7000,
+                            "participant": "CHI Bulls",
+                            "type": "OT_ONE",
+                            "betOfferId": 2249974123,
+                            "changedDate": "2021-02-18T01:48:45Z",
+                            "participantId": 1000000215,
+                            "oddsFractional": "6/1",
+                            "oddsAmerican": "600",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870624317,
+                            "label": "DET Pistons",
+                            "englishLabel": "Detroit Pistons",
+                            "odds": 1100,
+                            "participant": "DET Pistons",
+                            "type": "OT_TWO",
+                            "betOfferId": 2249974123,
+                            "changedDate": "2021-02-18T01:48:45Z",
+                            "participantId": 1000000217,
+                            "oddsFractional": "1/10",
+                            "oddsAmerican": "-1000",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "OFFERED_LIVE",
+                        "PBA_DISABLED",
+                        "MAIN"
+                    ],
+                    "sortOrder": 2,
+                    "cashOutStatus": "ENABLED"
+                },
+                {
+                    "id": 2249974080,
+                    "criterion": {
+                        "id": 1001159509,
+                        "label": "Total Points",
+                        "englishLabel": "Total Points - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 6,
+                        "name": "Over/Under",
+                        "englishName": "Over/Under"
+                    },
+                    "eventId": 1007353920,
+                    "outcomes": [
+                        {
+                            "id": 2870624228,
+                            "label": "Over",
+                            "englishLabel": "Over",
+                            "odds": 1910,
+                            "line": 215000,
+                            "type": "OT_OVER",
+                            "betOfferId": 2249974080,
+                            "changedDate": "2021-02-18T01:48:44Z",
+                            "oddsFractional": "10/11",
+                            "oddsAmerican": "-110",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870624230,
+                            "label": "Under",
+                            "englishLabel": "Under",
+                            "odds": 1870,
+                            "line": 215000,
+                            "type": "OT_UNDER",
+                            "betOfferId": 2249974080,
+                            "changedDate": "2021-02-18T01:48:44Z",
+                            "oddsFractional": "17/20",
+                            "oddsAmerican": "-115",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "OFFERED_LIVE",
+                        "PBA_DISABLED",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 3,
+                    "cashOutStatus": "ENABLED"
+                }
+            ],
+            "liveData": {
+                "eventId": 1007353920,
+                "matchClock": {
+                    "minute": 17,
+                    "second": 12,
+                    "minutesLeftInPeriod": 6,
+                    "secondsLeftInMinute": 48,
+                    "period": "2nd Quarter",
+                    "running": false
+                },
+                "score": {
+                    "home": "27",
+                    "away": "47",
+                    "info": "Q1: 27-35 | Q2: 0-12",
+                    "who": "UNKNOWN"
+                },
+                "liveStatistics": [
+                    {
+                        "occurrenceTypeId": "POINTS_HOME",
+                        "count": 27
+                    },
+                    {
+                        "occurrenceTypeId": "POINTS_AWAY",
+                        "count": 47
+                    }
+                ]
+            }
+        },
+        {
+            "event": {
+                "id": 1007123710,
+                "name": "IND Pacers @ MIN Timberwolves",
+                "nameDelimiter": "@",
+                "englishName": "Minnesota Timberwolves - Indiana Pacers",
+                "homeName": "MIN Timberwolves",
+                "awayName": "IND Pacers",
+                "start": "2021-02-18T01:10:25Z",
+                "group": "NBA",
+                "groupId": 1000093652,
+                "path": [
+                    {
+                        "id": 1000093204,
+                        "name": "Basketball",
+                        "englishName": "Basketball",
+                        "termKey": "basketball"
+                    },
+                    {
+                        "id": 1000093652,
+                        "name": "NBA",
+                        "englishName": "NBA",
+                        "termKey": "nba"
+                    }
+                ],
+                "nonLiveBoCount": 130,
+                "liveBoCount": 130,
+                "sport": "BASKETBALL",
+                "tags": [
+                    "OPEN_FOR_LIVE",
+                    "PREMATCH_STATS",
+                    "AMERICAN_DISPLAY_FORMAT",
+                    "AWAY_HOME",
+                    "MATCH"
+                ],
+                "state": "STARTED"
+            },
+            "betOffers": [
+                {
+                    "id": 2249973659,
+                    "criterion": {
+                        "id": 1001159512,
+                        "label": "Point Spread",
+                        "englishLabel": "Handicap - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 1,
+                        "name": "Handicap",
+                        "englishName": "Handicap"
+                    },
+                    "eventId": 1007123710,
+                    "outcomes": [
+                        {
+                            "id": 2870623379,
+                            "label": "MIN Timberwolves",
+                            "englishLabel": "Minnesota Timberwolves",
+                            "odds": 1930,
+                            "line": 4500,
+                            "participant": "MIN Timberwolves",
+                            "type": "OT_ONE",
+                            "betOfferId": 2249973659,
+                            "changedDate": "2021-02-18T01:48:46Z",
+                            "participantId": 1000027507,
+                            "oddsFractional": "10/11",
+                            "oddsAmerican": "-108",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870623380,
+                            "label": "IND Pacers",
+                            "englishLabel": "Indiana Pacers",
+                            "odds": 1850,
+                            "line": -4500,
+                            "participant": "IND Pacers",
+                            "type": "OT_TWO",
+                            "betOfferId": 2249973659,
+                            "changedDate": "2021-02-18T01:48:46Z",
+                            "participantId": 1000000218,
+                            "oddsFractional": "17/20",
+                            "oddsAmerican": "-118",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "OFFERED_LIVE",
+                        "PBA_DISABLED",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 1,
+                    "cashOutStatus": "ENABLED"
+                },
+                {
+                    "id": 2249947146,
+                    "criterion": {
+                        "id": 1001159732,
+                        "label": "Moneyline",
+                        "englishLabel": "Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 2,
+                        "name": "Match",
+                        "englishName": "Match"
+                    },
+                    "eventId": 1007123710,
+                    "outcomes": [
+                        {
+                            "id": 2870512804,
+                            "label": "MIN Timberwolves",
+                            "englishLabel": "Minnesota Timberwolves",
+                            "odds": 2800,
+                            "participant": "MIN Timberwolves",
+                            "type": "OT_ONE",
+                            "betOfferId": 2249947146,
+                            "changedDate": "2021-02-18T01:48:45Z",
+                            "participantId": 1000027507,
+                            "oddsFractional": "9/5",
+                            "oddsAmerican": "180",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870512807,
+                            "label": "IND Pacers",
+                            "englishLabel": "Indiana Pacers",
+                            "odds": 1440,
+                            "participant": "IND Pacers",
+                            "type": "OT_TWO",
+                            "betOfferId": 2249947146,
+                            "changedDate": "2021-02-18T01:48:45Z",
+                            "participantId": 1000000218,
+                            "oddsFractional": "11/25",
+                            "oddsAmerican": "-230",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "OFFERED_LIVE",
+                        "PBA_DISABLED",
+                        "MAIN"
+                    ],
+                    "sortOrder": 2,
+                    "cashOutStatus": "ENABLED"
+                },
+                {
+                    "id": 2250109734,
+                    "criterion": {
+                        "id": 1001159509,
+                        "label": "Total Points",
+                        "englishLabel": "Total Points - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 6,
+                        "name": "Over/Under",
+                        "englishName": "Over/Under"
+                    },
+                    "eventId": 1007123710,
+                    "outcomes": [
+                        {
+                            "id": 2871056258,
+                            "label": "Over",
+                            "englishLabel": "Over",
+                            "odds": 1880,
+                            "line": 249000,
+                            "type": "OT_OVER",
+                            "betOfferId": 2250109734,
+                            "changedDate": "2021-02-18T01:48:46Z",
+                            "oddsFractional": "22/25",
+                            "oddsAmerican": "-114",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2871056259,
+                            "label": "Under",
+                            "englishLabel": "Under",
+                            "odds": 1900,
+                            "line": 249000,
+                            "type": "OT_UNDER",
+                            "betOfferId": 2250109734,
+                            "changedDate": "2021-02-18T01:48:46Z",
+                            "oddsFractional": "9/10",
+                            "oddsAmerican": "-112",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "OFFERED_LIVE",
+                        "PBA_DISABLED",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 3,
+                    "cashOutStatus": "ENABLED"
+                }
+            ],
+            "liveData": {
+                "eventId": 1007123710,
+                "matchClock": {
+                    "minute": 16,
+                    "second": 30,
+                    "minutesLeftInPeriod": 7,
+                    "secondsLeftInMinute": 30,
+                    "period": "2nd Quarter",
+                    "running": true
+                },
+                "score": {
+                    "home": "50",
+                    "away": "49",
+                    "info": "Q1: 33-39 | Q2: 17-10",
+                    "who": "AWAY"
+                },
+                "liveStatistics": [
+                    {
+                        "occurrenceTypeId": "POINTS_HOME",
+                        "count": 50
+                    },
+                    {
+                        "occurrenceTypeId": "POINTS_AWAY",
+                        "count": 49
+                    }
+                ]
+            }
+        },
+        {
+            "event": {
+                "id": 1007123506,
+                "name": "DEN Nuggets @ WAS Wizards",
+                "nameDelimiter": "@",
+                "englishName": "Washington Wizards - Denver Nuggets",
+                "homeName": "WAS Wizards",
+                "awayName": "DEN Nuggets",
+                "start": "2021-02-18T01:10:27Z",
+                "group": "NBA",
+                "groupId": 1000093652,
+                "path": [
+                    {
+                        "id": 1000093204,
+                        "name": "Basketball",
+                        "englishName": "Basketball",
+                        "termKey": "basketball"
+                    },
+                    {
+                        "id": 1000093652,
+                        "name": "NBA",
+                        "englishName": "NBA",
+                        "termKey": "nba"
+                    }
+                ],
+                "nonLiveBoCount": 138,
+                "liveBoCount": 138,
+                "sport": "BASKETBALL",
+                "tags": [
+                    "OPEN_FOR_LIVE",
+                    "PREMATCH_STATS",
+                    "AMERICAN_DISPLAY_FORMAT",
+                    "AWAY_HOME",
+                    "MATCH"
+                ],
+                "state": "STARTED"
+            },
+            "betOffers": [
+                {
+                    "id": 2249973820,
+                    "criterion": {
+                        "id": 1001159512,
+                        "label": "Point Spread",
+                        "englishLabel": "Handicap - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 1,
+                        "name": "Handicap",
+                        "englishName": "Handicap"
+                    },
+                    "eventId": 1007123506,
+                    "outcomes": [
+                        {
+                            "id": 2870623703,
+                            "label": "WAS Wizards",
+                            "englishLabel": "Washington Wizards",
+                            "odds": 1910,
+                            "line": 7500,
+                            "participant": "WAS Wizards",
+                            "type": "OT_ONE",
+                            "betOfferId": 2249973820,
+                            "changedDate": "2021-02-18T01:48:47Z",
+                            "participantId": 1000000214,
+                            "oddsFractional": "10/11",
+                            "oddsAmerican": "-110",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870623704,
+                            "label": "DEN Nuggets",
+                            "englishLabel": "Denver Nuggets",
+                            "odds": 1860,
+                            "line": -7500,
+                            "participant": "DEN Nuggets",
+                            "type": "OT_TWO",
+                            "betOfferId": 2249973820,
+                            "changedDate": "2021-02-18T01:48:47Z",
+                            "participantId": 1000000222,
+                            "oddsFractional": "17/20",
+                            "oddsAmerican": "-117",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "OFFERED_LIVE",
+                        "PBA_DISABLED",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 1,
+                    "cashOutStatus": "ENABLED"
+                },
+                {
+                    "id": 2249947145,
+                    "criterion": {
+                        "id": 1001159732,
+                        "label": "Moneyline",
+                        "englishLabel": "Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 2,
+                        "name": "Match",
+                        "englishName": "Match"
+                    },
+                    "eventId": 1007123506,
+                    "outcomes": [
+                        {
+                            "id": 2870512799,
+                            "label": "WAS Wizards",
+                            "englishLabel": "Washington Wizards",
+                            "odds": 3450,
+                            "participant": "WAS Wizards",
+                            "type": "OT_ONE",
+                            "betOfferId": 2249947145,
+                            "changedDate": "2021-02-18T01:48:46Z",
+                            "participantId": 1000000214,
+                            "oddsFractional": "49/20",
+                            "oddsAmerican": "245",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870512802,
+                            "label": "DEN Nuggets",
+                            "englishLabel": "Denver Nuggets",
+                            "odds": 1320,
+                            "participant": "DEN Nuggets",
+                            "type": "OT_TWO",
+                            "betOfferId": 2249947145,
+                            "changedDate": "2021-02-18T01:48:46Z",
+                            "participantId": 1000000222,
+                            "oddsFractional": "8/25",
+                            "oddsAmerican": "-315",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "OFFERED_LIVE",
+                        "PBA_DISABLED",
+                        "MAIN"
+                    ],
+                    "sortOrder": 2,
+                    "cashOutStatus": "ENABLED"
+                },
+                {
+                    "id": 2249973753,
+                    "criterion": {
+                        "id": 1001159509,
+                        "label": "Total Points",
+                        "englishLabel": "Total Points - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 6,
+                        "name": "Over/Under",
+                        "englishName": "Over/Under"
+                    },
+                    "eventId": 1007123506,
+                    "outcomes": [
+                        {
+                            "id": 2870623566,
+                            "label": "Over",
+                            "englishLabel": "Over",
+                            "odds": 1890,
+                            "line": 245500,
+                            "type": "OT_OVER",
+                            "betOfferId": 2249973753,
+                            "changedDate": "2021-02-18T01:48:46Z",
+                            "oddsFractional": "22/25",
+                            "oddsAmerican": "-113",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870623571,
+                            "label": "Under",
+                            "englishLabel": "Under",
+                            "odds": 1880,
+                            "line": 245500,
+                            "type": "OT_UNDER",
+                            "betOfferId": 2249973753,
+                            "changedDate": "2021-02-18T01:48:46Z",
+                            "oddsFractional": "22/25",
+                            "oddsAmerican": "-114",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "OFFERED_LIVE",
+                        "PBA_DISABLED",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 3,
+                    "cashOutStatus": "ENABLED"
+                }
+            ],
+            "liveData": {
+                "eventId": 1007123506,
+                "matchClock": {
+                    "minute": 16,
+                    "second": 7,
+                    "minutesLeftInPeriod": 7,
+                    "secondsLeftInMinute": 53,
+                    "period": "2nd Quarter",
+                    "running": false
+                },
+                "score": {
+                    "home": "42",
+                    "away": "48",
+                    "info": "Q1: 24-41 | Q2: 18-7",
+                    "who": "HOME"
+                },
+                "liveStatistics": [
+                    {
+                        "occurrenceTypeId": "POINTS_AWAY",
+                        "count": 48
+                    },
+                    {
+                        "occurrenceTypeId": "POINTS_HOME",
+                        "count": 42
+                    }
+                ]
+            }
+        },
+        {
+            "event": {
+                "id": 1007123461,
+                "name": "POR Trail Blazers @ NO Pelicans",
+                "nameDelimiter": "@",
+                "englishName": "New Orleans Pelicans - Portland Trail Blazers",
+                "homeName": "NO Pelicans",
+                "awayName": "POR Trail Blazers",
+                "start": "2021-02-18T02:10:00Z",
+                "group": "NBA",
+                "groupId": 1000093652,
+                "path": [
+                    {
+                        "id": 1000093204,
+                        "name": "Basketball",
+                        "englishName": "Basketball",
+                        "termKey": "basketball"
+                    },
+                    {
+                        "id": 1000093652,
+                        "name": "NBA",
+                        "englishName": "NBA",
+                        "termKey": "nba"
+                    }
+                ],
+                "nonLiveBoCount": 227,
+                "sport": "BASKETBALL",
+                "tags": [
+                    "PREMATCH_STATS",
+                    "AMERICAN_DISPLAY_FORMAT",
+                    "AWAY_HOME",
+                    "OFFERED_LIVE",
+                    "BET_BUILDER",
+                    "MATCH"
+                ],
+                "state": "NOT_STARTED"
+            },
+            "betOffers": [
+                {
+                    "id": 2249950592,
+                    "closed": "2021-02-18T02:10:00Z",
+                    "criterion": {
+                        "id": 1001159512,
+                        "label": "Point Spread",
+                        "englishLabel": "Handicap - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 1,
+                        "name": "Handicap",
+                        "englishName": "Handicap"
+                    },
+                    "eventId": 1007123461,
+                    "outcomes": [
+                        {
+                            "id": 2870520258,
+                            "label": "NO Pelicans",
+                            "englishLabel": "New Orleans Pelicans",
+                            "odds": 1900,
+                            "line": -4000,
+                            "participant": "NO Pelicans",
+                            "type": "OT_ONE",
+                            "betOfferId": 2249950592,
+                            "changedDate": "2021-02-18T01:13:09Z",
+                            "participantId": 1000090614,
+                            "oddsFractional": "9/10",
+                            "oddsAmerican": "-112",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870520259,
+                            "label": "POR Trail Blazers",
+                            "englishLabel": "Portland Trail Blazers",
+                            "odds": 1920,
+                            "line": 4000,
+                            "participant": "POR Trail Blazers",
+                            "type": "OT_TWO",
+                            "betOfferId": 2249950592,
+                            "changedDate": "2021-02-18T01:13:09Z",
+                            "participantId": 1000000227,
+                            "oddsFractional": "10/11",
+                            "oddsAmerican": "-109",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 1,
+                    "cashOutStatus": "ENABLED"
+                },
+                {
+                    "id": 2249950614,
+                    "closed": "2021-02-18T02:10:00Z",
+                    "criterion": {
+                        "id": 1001159732,
+                        "label": "Moneyline",
+                        "englishLabel": "Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 2,
+                        "name": "Match",
+                        "englishName": "Match"
+                    },
+                    "eventId": 1007123461,
+                    "outcomes": [
+                        {
+                            "id": 2870520302,
+                            "label": "NO Pelicans",
+                            "englishLabel": "New Orleans Pelicans",
+                            "odds": 1610,
+                            "participant": "NO Pelicans",
+                            "type": "OT_ONE",
+                            "betOfferId": 2249950614,
+                            "changedDate": "2021-02-18T01:13:09Z",
+                            "participantId": 1000090614,
+                            "oddsFractional": "3/5",
+                            "oddsAmerican": "-165",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870520304,
+                            "label": "POR Trail Blazers",
+                            "englishLabel": "Portland Trail Blazers",
+                            "odds": 2380,
+                            "participant": "POR Trail Blazers",
+                            "type": "OT_TWO",
+                            "betOfferId": 2249950614,
+                            "changedDate": "2021-02-18T01:13:09Z",
+                            "participantId": 1000000227,
+                            "oddsFractional": "11/8",
+                            "oddsAmerican": "138",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "MAIN"
+                    ],
+                    "sortOrder": 2,
+                    "cashOutStatus": "ENABLED"
+                },
+                {
+                    "id": 2249950534,
+                    "closed": "2021-02-18T02:10:00Z",
+                    "criterion": {
+                        "id": 1001159509,
+                        "label": "Total Points",
+                        "englishLabel": "Total Points - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 6,
+                        "name": "Over/Under",
+                        "englishName": "Over/Under"
+                    },
+                    "eventId": 1007123461,
+                    "outcomes": [
+                        {
+                            "id": 2870520135,
+                            "label": "Over",
+                            "englishLabel": "Over",
+                            "odds": 1900,
+                            "line": 237000,
+                            "type": "OT_OVER",
+                            "betOfferId": 2249950534,
+                            "changedDate": "2021-02-18T01:13:09Z",
+                            "oddsFractional": "9/10",
+                            "oddsAmerican": "-112",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870520142,
+                            "label": "Under",
+                            "englishLabel": "Under",
+                            "odds": 1920,
+                            "line": 237000,
+                            "type": "OT_UNDER",
+                            "betOfferId": 2249950534,
+                            "changedDate": "2021-02-18T01:13:09Z",
+                            "oddsFractional": "10/11",
+                            "oddsAmerican": "-109",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 3,
+                    "cashOutStatus": "ENABLED"
+                }
+            ]
+        },
+        {
+            "event": {
+                "id": 1007299532,
+                "name": "OKC Thunder @ MEM Grizzlies",
+                "nameDelimiter": "@",
+                "englishName": "Memphis Grizzlies - Oklahoma City Thunder",
+                "homeName": "MEM Grizzlies",
+                "awayName": "OKC Thunder",
+                "start": "2021-02-18T02:10:00Z",
+                "group": "NBA",
+                "groupId": 1000093652,
+                "path": [
+                    {
+                        "id": 1000093204,
+                        "name": "Basketball",
+                        "englishName": "Basketball",
+                        "termKey": "basketball"
+                    },
+                    {
+                        "id": 1000093652,
+                        "name": "NBA",
+                        "englishName": "NBA",
+                        "termKey": "nba"
+                    }
+                ],
+                "nonLiveBoCount": 211,
+                "sport": "BASKETBALL",
+                "tags": [
+                    "PREMATCH_STATS",
+                    "AMERICAN_DISPLAY_FORMAT",
+                    "AWAY_HOME",
+                    "OFFERED_LIVE",
+                    "BET_BUILDER",
+                    "MATCH"
+                ],
+                "state": "NOT_STARTED"
+            },
+            "betOffers": [
+                {
+                    "id": 2249974250,
+                    "closed": "2021-02-18T02:10:00Z",
+                    "criterion": {
+                        "id": 1001159512,
+                        "label": "Point Spread",
+                        "englishLabel": "Handicap - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 1,
+                        "name": "Handicap",
+                        "englishName": "Handicap"
+                    },
+                    "eventId": 1007299532,
+                    "outcomes": [
+                        {
+                            "id": 2870624573,
+                            "label": "MEM Grizzlies",
+                            "englishLabel": "Memphis Grizzlies",
+                            "odds": 1910,
+                            "line": -7000,
+                            "participant": "MEM Grizzlies",
+                            "type": "OT_ONE",
+                            "betOfferId": 2249974250,
+                            "changedDate": "2021-02-18T01:43:37Z",
+                            "participantId": 1000000343,
+                            "oddsFractional": "10/11",
+                            "oddsAmerican": "-110",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870624574,
+                            "label": "OKC Thunder",
+                            "englishLabel": "Oklahoma City Thunder",
+                            "odds": 1910,
+                            "line": 7000,
+                            "participant": "OKC Thunder",
+                            "type": "OT_TWO",
+                            "betOfferId": 2249974250,
+                            "changedDate": "2021-02-18T01:43:37Z",
+                            "participantId": 1000457716,
+                            "oddsFractional": "10/11",
+                            "oddsAmerican": "-110",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 1,
+                    "cashOutStatus": "ENABLED"
+                },
+                {
+                    "id": 2249974233,
+                    "closed": "2021-02-18T02:10:00Z",
+                    "criterion": {
+                        "id": 1001159732,
+                        "label": "Moneyline",
+                        "englishLabel": "Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 2,
+                        "name": "Match",
+                        "englishName": "Match"
+                    },
+                    "eventId": 1007299532,
+                    "outcomes": [
+                        {
+                            "id": 2870624537,
+                            "label": "MEM Grizzlies",
+                            "englishLabel": "Memphis Grizzlies",
+                            "odds": 1370,
+                            "participant": "MEM Grizzlies",
+                            "type": "OT_ONE",
+                            "betOfferId": 2249974233,
+                            "changedDate": "2021-02-18T01:43:37Z",
+                            "participantId": 1000000343,
+                            "oddsFractional": "4/11",
+                            "oddsAmerican": "-275",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870624539,
+                            "label": "OKC Thunder",
+                            "englishLabel": "Oklahoma City Thunder",
+                            "odds": 3200,
+                            "participant": "OKC Thunder",
+                            "type": "OT_TWO",
+                            "betOfferId": 2249974233,
+                            "changedDate": "2021-02-18T01:43:37Z",
+                            "participantId": 1000457716,
+                            "oddsFractional": "11/5",
+                            "oddsAmerican": "220",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "MAIN"
+                    ],
+                    "sortOrder": 2,
+                    "cashOutStatus": "ENABLED"
+                },
+                {
+                    "id": 2249974217,
+                    "closed": "2021-02-18T02:10:00Z",
+                    "criterion": {
+                        "id": 1001159509,
+                        "label": "Total Points",
+                        "englishLabel": "Total Points - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 6,
+                        "name": "Over/Under",
+                        "englishName": "Over/Under"
+                    },
+                    "eventId": 1007299532,
+                    "outcomes": [
+                        {
+                            "id": 2870624505,
+                            "label": "Over",
+                            "englishLabel": "Over",
+                            "odds": 1900,
+                            "line": 227000,
+                            "type": "OT_OVER",
+                            "betOfferId": 2249974217,
+                            "changedDate": "2021-02-18T01:43:37Z",
+                            "oddsFractional": "9/10",
+                            "oddsAmerican": "-112",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870624507,
+                            "label": "Under",
+                            "englishLabel": "Under",
+                            "odds": 1920,
+                            "line": 227000,
+                            "type": "OT_UNDER",
+                            "betOfferId": 2249974217,
+                            "changedDate": "2021-02-18T01:43:37Z",
+                            "oddsFractional": "10/11",
+                            "oddsAmerican": "-109",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 3,
+                    "cashOutStatus": "ENABLED"
+                }
+            ]
+        },
+        {
+            "event": {
+                "id": 1007123785,
+                "name": "MIA Heat @ GS Warriors",
+                "nameDelimiter": "@",
+                "englishName": "Golden State Warriors - Miami Heat",
+                "homeName": "GS Warriors",
+                "awayName": "MIA Heat",
+                "start": "2021-02-18T03:10:00Z",
+                "group": "NBA",
+                "groupId": 1000093652,
+                "path": [
+                    {
+                        "id": 1000093204,
+                        "name": "Basketball",
+                        "englishName": "Basketball",
+                        "termKey": "basketball"
+                    },
+                    {
+                        "id": 1000093652,
+                        "name": "NBA",
+                        "englishName": "NBA",
+                        "termKey": "nba"
+                    }
+                ],
+                "nonLiveBoCount": 242,
+                "sport": "BASKETBALL",
+                "tags": [
+                    "PREMATCH_STATS",
+                    "AMERICAN_DISPLAY_FORMAT",
+                    "AWAY_HOME",
+                    "OFFERED_LIVE",
+                    "BET_BUILDER",
+                    "MATCH"
+                ],
+                "state": "NOT_STARTED"
+            },
+            "betOffers": [
+                {
+                    "id": 2249977494,
+                    "closed": "2021-02-18T03:10:00Z",
+                    "criterion": {
+                        "id": 1001159512,
+                        "label": "Point Spread",
+                        "englishLabel": "Handicap - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 1,
+                        "name": "Handicap",
+                        "englishName": "Handicap"
+                    },
+                    "eventId": 1007123785,
+                    "outcomes": [
+                        {
+                            "id": 2870598140,
+                            "label": "GS Warriors",
+                            "englishLabel": "Golden State Warriors",
+                            "odds": 1920,
+                            "line": -1000,
+                            "participant": "GS Warriors",
+                            "type": "OT_ONE",
+                            "betOfferId": 2249977494,
+                            "changedDate": "2021-02-17T23:01:44Z",
+                            "participantId": 1000000224,
+                            "oddsFractional": "10/11",
+                            "oddsAmerican": "-109",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870598141,
+                            "label": "MIA Heat",
+                            "englishLabel": "Miami Heat",
+                            "odds": 1900,
+                            "line": 1000,
+                            "participant": "MIA Heat",
+                            "type": "OT_TWO",
+                            "betOfferId": 2249977494,
+                            "changedDate": "2021-02-17T23:01:44Z",
+                            "participantId": 1000000212,
+                            "oddsFractional": "9/10",
+                            "oddsAmerican": "-112",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 1,
+                    "cashOutStatus": "ENABLED"
+                },
+                {
+                    "id": 2249931804,
+                    "closed": "2021-02-18T03:10:00Z",
+                    "criterion": {
+                        "id": 1001159732,
+                        "label": "Moneyline",
+                        "englishLabel": "Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 2,
+                        "name": "Match",
+                        "englishName": "Match"
+                    },
+                    "eventId": 1007123785,
+                    "outcomes": [
+                        {
+                            "id": 2870526141,
+                            "label": "GS Warriors",
+                            "englishLabel": "Golden State Warriors",
+                            "odds": 1880,
+                            "participant": "GS Warriors",
+                            "type": "OT_ONE",
+                            "betOfferId": 2249931804,
+                            "changedDate": "2021-02-17T23:01:44Z",
+                            "participantId": 1000000224,
+                            "oddsFractional": "22/25",
+                            "oddsAmerican": "-114",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870526144,
+                            "label": "MIA Heat",
+                            "englishLabel": "Miami Heat",
+                            "odds": 1950,
+                            "participant": "MIA Heat",
+                            "type": "OT_TWO",
+                            "betOfferId": 2249931804,
+                            "changedDate": "2021-02-17T23:01:44Z",
+                            "participantId": 1000000212,
+                            "oddsFractional": "19/20",
+                            "oddsAmerican": "-106",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "MAIN"
+                    ],
+                    "sortOrder": 2,
+                    "cashOutStatus": "ENABLED"
+                },
+                {
+                    "id": 2249977475,
+                    "closed": "2021-02-18T03:10:00Z",
+                    "criterion": {
+                        "id": 1001159509,
+                        "label": "Total Points",
+                        "englishLabel": "Total Points - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 6,
+                        "name": "Over/Under",
+                        "englishName": "Over/Under"
+                    },
+                    "eventId": 1007123785,
+                    "outcomes": [
+                        {
+                            "id": 2870598102,
+                            "label": "Over",
+                            "englishLabel": "Over",
+                            "odds": 1900,
+                            "line": 222500,
+                            "type": "OT_OVER",
+                            "betOfferId": 2249977475,
+                            "changedDate": "2021-02-17T23:01:44Z",
+                            "oddsFractional": "9/10",
+                            "oddsAmerican": "-112",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870598103,
+                            "label": "Under",
+                            "englishLabel": "Under",
+                            "odds": 1920,
+                            "line": 222500,
+                            "type": "OT_UNDER",
+                            "betOfferId": 2249977475,
+                            "changedDate": "2021-02-17T23:01:44Z",
+                            "oddsFractional": "10/11",
+                            "oddsAmerican": "-109",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 3,
+                    "cashOutStatus": "ENABLED"
+                }
+            ]
+        },
+        {
+            "event": {
+                "id": 1007161722,
+                "name": "UTA Jazz @ LA Clippers",
+                "nameDelimiter": "@",
+                "englishName": "Los Angeles Clippers - Utah Jazz",
+                "homeName": "LA Clippers",
+                "awayName": "UTA Jazz",
+                "start": "2021-02-18T03:10:00Z",
+                "group": "NBA",
+                "groupId": 1000093652,
+                "path": [
+                    {
+                        "id": 1000093204,
+                        "name": "Basketball",
+                        "englishName": "Basketball",
+                        "termKey": "basketball"
+                    },
+                    {
+                        "id": 1000093652,
+                        "name": "NBA",
+                        "englishName": "NBA",
+                        "termKey": "nba"
+                    }
+                ],
+                "nonLiveBoCount": 201,
+                "sport": "BASKETBALL",
+                "tags": [
+                    "PREMATCH_STATS",
+                    "AMERICAN_DISPLAY_FORMAT",
+                    "AWAY_HOME",
+                    "OFFERED_LIVE",
+                    "BET_BUILDER",
+                    "MATCH"
+                ],
+                "state": "NOT_STARTED"
+            },
+            "betOffers": [
+                {
+                    "id": 2249973893,
+                    "closed": "2021-02-18T03:10:00Z",
+                    "criterion": {
+                        "id": 1001159512,
+                        "label": "Point Spread",
+                        "englishLabel": "Handicap - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 1,
+                        "name": "Handicap",
+                        "englishName": "Handicap"
+                    },
+                    "eventId": 1007161722,
+                    "outcomes": [
+                        {
+                            "id": 2870623852,
+                            "label": "LA Clippers",
+                            "englishLabel": "Los Angeles Clippers",
+                            "odds": 1910,
+                            "line": 6500,
+                            "participant": "LA Clippers",
+                            "type": "OT_ONE",
+                            "betOfferId": 2249973893,
+                            "changedDate": "2021-02-18T01:26:23Z",
+                            "participantId": 1000000225,
+                            "oddsFractional": "10/11",
+                            "oddsAmerican": "-110",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870623853,
+                            "label": "UTA Jazz",
+                            "englishLabel": "Utah Jazz",
+                            "odds": 1910,
+                            "line": -6500,
+                            "participant": "UTA Jazz",
+                            "type": "OT_TWO",
+                            "betOfferId": 2249973893,
+                            "changedDate": "2021-02-18T01:26:23Z",
+                            "participantId": 1000052893,
+                            "oddsFractional": "10/11",
+                            "oddsAmerican": "-110",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 1,
+                    "cashOutStatus": "ENABLED"
+                },
+                {
+                    "id": 2249947149,
+                    "closed": "2021-02-18T03:10:00Z",
+                    "criterion": {
+                        "id": 1001159732,
+                        "label": "Moneyline",
+                        "englishLabel": "Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 2,
+                        "name": "Match",
+                        "englishName": "Match"
+                    },
+                    "eventId": 1007161722,
+                    "outcomes": [
+                        {
+                            "id": 2870512809,
+                            "label": "LA Clippers",
+                            "englishLabel": "Los Angeles Clippers",
+                            "odds": 3050,
+                            "participant": "LA Clippers",
+                            "type": "OT_ONE",
+                            "betOfferId": 2249947149,
+                            "changedDate": "2021-02-18T01:26:22Z",
+                            "participantId": 1000000225,
+                            "oddsFractional": "41/20",
+                            "oddsAmerican": "205",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870512812,
+                            "label": "UTA Jazz",
+                            "englishLabel": "Utah Jazz",
+                            "odds": 1400,
+                            "participant": "UTA Jazz",
+                            "type": "OT_TWO",
+                            "betOfferId": 2249947149,
+                            "changedDate": "2021-02-18T01:26:22Z",
+                            "participantId": 1000052893,
+                            "oddsFractional": "2/5",
+                            "oddsAmerican": "-250",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "MAIN"
+                    ],
+                    "sortOrder": 2,
+                    "cashOutStatus": "ENABLED"
+                },
+                {
+                    "id": 2249973897,
+                    "closed": "2021-02-18T03:10:00Z",
+                    "criterion": {
+                        "id": 1001159509,
+                        "label": "Total Points",
+                        "englishLabel": "Total Points - Including Overtime",
+                        "order": [],
+                        "occurrenceType": "POINTS",
+                        "lifetime": "FULL_TIME_OVERTIME"
+                    },
+                    "betOfferType": {
+                        "id": 6,
+                        "name": "Over/Under",
+                        "englishName": "Over/Under"
+                    },
+                    "eventId": 1007161722,
+                    "outcomes": [
+                        {
+                            "id": 2870623860,
+                            "label": "Over",
+                            "englishLabel": "Over",
+                            "odds": 1900,
+                            "line": 228000,
+                            "type": "OT_OVER",
+                            "betOfferId": 2249973897,
+                            "changedDate": "2021-02-18T01:26:22Z",
+                            "oddsFractional": "9/10",
+                            "oddsAmerican": "-112",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        },
+                        {
+                            "id": 2870623861,
+                            "label": "Under",
+                            "englishLabel": "Under",
+                            "odds": 1920,
+                            "line": 228000,
+                            "type": "OT_UNDER",
+                            "betOfferId": 2249973897,
+                            "changedDate": "2021-02-18T01:26:22Z",
+                            "oddsFractional": "10/11",
+                            "oddsAmerican": "-109",
+                            "status": "OPEN",
+                            "cashOutStatus": "ENABLED"
+                        }
+                    ],
+                    "tags": [
+                        "OFFERED_PREMATCH",
+                        "MAIN_LINE"
+                    ],
+                    "sortOrder": 3,
+                    "cashOutStatus": "ENABLED"
+                }
+            ]
+        }
+    ],
+    "terms": [
+        {
+            "type": "SPORT",
+            "id": "/basketball",
+            "termKey": "basketball",
+            "localizedName": "Basketball",
+            "parentId": "/",
+            "englishName": "Basketball"
+        },
+        {
+            "type": "REGION",
+            "id": "/basketball/nba",
+            "termKey": "nba",
+            "localizedName": "NBA",
+            "parentId": "/basketball",
+            "englishName": "NBA"
+        }
+    ],
+    "activeTermIds": [
+        "/basketball/nba"
+    ],
+    "soonMode": "HOURLY",
+    "categoryGroups": [
+        {
+            "categoryGroupName": "list_view",
+            "categories": [
+                {
+                    "id": 17425,
+                    "englishName": "Spread - 1st Half",
+                    "localizedName": "Spread - 1st Half"
+                },
+                {
+                    "id": 17426,
+                    "englishName": "Total Points - 1st Half",
+                    "localizedName": "Total Points - 1st Half"
+                },
+                {
+                    "id": 17427,
+                    "englishName": "Moneyline - 1st Half",
+                    "localizedName": "Moneyline - 1st Half"
+                }
+            ]
+        },
+        {
+            "categoryGroupName": "combined_layout",
+            "categories": [
+                {
+                    "id": 17465,
+                    "englishName": "Spread",
+                    "localizedName": "Spread"
+                },
+                {
+                    "id": 17467,
+                    "englishName": "Moneyline",
+                    "localizedName": "Moneyline"
+                },
+                {
+                    "id": 17466,
+                    "englishName": "Total Points",
+                    "localizedName": "Total Points"
+                }
+            ],
+            "localizedName": "Spread, Total & Moneyline"
+        }
+    ],
+    "activeCategories": [
+        "17465",
+        "17466",
+        "17467"
+    ],
+    "activeEventTypes": [
+        "matches"
+    ],
+    "eventTypes": [
+        "competitions",
+        "matches"
+    ],
+    "defaultEventType": "matches"
+}

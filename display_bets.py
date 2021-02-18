@@ -19,8 +19,8 @@ def displayUniqueBetsByDatetime(betDict: Any, showAll: bool = True):
     filteredOddsList.sort(key=lambda x: x.gameDatetime)
     printOddsObjDetails(filteredOddsList, showAll)
 
-def displayAllBetsByEV(betDict: Any, showAll: bool = True): # backlogtodo fix typing errors with betDict to support dict[str, Any]
-    oddsList = convertDictToGameOddsObjList(betDict)
+def displayAllBetsByEV(oddsList: Any, showAll: bool = True): # backlogtodo fix typing errors with betDict to support dict[str, Any]
+    # oddsList = convertDictToGameOddsObjList(betDict)
     oddsList.sort(key=lambda x: x.bestEVFactor)
     printOddsObjDetails(oddsList, showAll)
 
@@ -61,7 +61,7 @@ def convertDictToGameOddsObjList(betDict: Any) -> Any:
 
 def getAllOddsAndDisplayByEv():
     allOddsDictList = createAllOddsDict()
-    gameOddsList = map(allOddsDictList, lambda oddsDict : GameOdds(oddsDict, teamOnly=True))
+    gameOddsList = list(map(lambda oddsDict : GameOdds(oddsDict, teamOnly=True), allOddsDictList))
     displayAllBetsByEV(gameOddsList)
 
 def printOddsObjDetails(oddsList: Any, showAll: bool = False):
