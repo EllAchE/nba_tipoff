@@ -70,6 +70,7 @@ def teamCodeToSlugName(team_code, team_dict=None, json_path=None):
 
 def fanduelOdds():
     # https://sportsbook.fanduel.com/cache/psevent/UK/1/false/958472.3.json
+    # Rohit has this partly in typescript already
     pass
 
 def bovadaOdds():
@@ -173,16 +174,18 @@ def mgmOdds():
 
     return allTeamLines
 
-def pointsBet():
-    # https://nj.pointsbet.com/sports/basketball/NBA/246723
-    # request for all things that are on the page - https://api-usa.pointsbet.com/api/v2/competitions/105/events/featured?includeLive=false&page=1
-    # single game - https://api-usa.pointsbet.com/api/v2/events/249073
-    pass
-
-def sugarHouseOdds():
-    # https://www.playsugarhouse.com/?page=sports#event/1007123701
-    # this is a mirror of pointsbets for specific geos, so backlogged
-    pass
+# def pointsBet():
+#     # https://nj.pointsbet.com/sports/basketball/NBA/246723
+#     # request for all things that are on the page - https://api-usa.pointsbet.com/api/v2/competitions/105/events/featured?includeLive=false&page=1
+#     # single game - https://api-usa.pointsbet.com/api/v2/events/249073
+#
+#     allGamesUrl = 'https://api-usa.pointsbet.com/api/v2/competitions/105/events/featured?includeLive=false&page=1'
+#     allGames = requests.get(allGamesUrl).json()
+#
+#     for eventId in eventIdList:
+#         singleGameUrl = 'https://api-usa.pointsbet.com/api/v2/events/{}'.format(eventId)
+#
+#     pass
 
 def unibetOdds():
     # https://nj.unibet.com/sports/#event/1007123701
@@ -205,6 +208,11 @@ def barstoolOdds():
 #     # betfair single game page https://www.betfair.com/sport/basketball/nba/miami-heat-golden-state-warriors/30289841
 #     # betfair odds retrieval - have a curl request that gets them based on ids from an api endpoint, however doing so is pointless
 # as you need to scrape the page to get the ids anyways (at least as far as I know)
+#     pass
+
+# def sugarHouseOdds():
+#     # https://www.playsugarhouse.com/?page=sports#event/1007123701
+#     # this is a mirror of pointsbets for specific geos, so backlogged
 #     pass
 
 def getStarters(team_code: str, team_dict: dict=None):
@@ -256,6 +264,6 @@ def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='Fanduel'
     print('On', exchange, 'bet', kellyBetFromAOddsAndScoreProb(odds2, aOdds, bankroll=ENVIRONMENT.BANKROLL), 'on', t2FullName, 'assuming odds', str(aOdds))
     print()
 
-# test = bovadaOdds()
-# print(test)
-# print()
+test = bovadaOdds()
+print(test)
+print()
