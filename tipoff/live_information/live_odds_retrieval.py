@@ -142,11 +142,6 @@ def draftKingsOdds():
 
     return allTeamLines #, allPlayerLines
 
-def betNowOdds():
-    # https://www.betnow.eu/nba/ says it has props bets
-    # this needs to be verified
-    pass
-
 def mgmOdds():
     # https://sports.co.betmgm.com/en/sports/events/minnesota-timberwolves-at-san-antonio-spurs-11101908?market=10000
     url = "https://cds-api.co.betmgm.com/bettingoffer/fixtures?x-bwin-accessid=OTU4NDk3MzEtOTAyNS00MjQzLWIxNWEtNTI2MjdhNWM3Zjk3&lang=en-us&country=US&userCountry=US&subdivision=Texas&fixtureTypes=Standard&state=Latest&offerMapping=Filtered&offerCategories=Gridable&fixtureCategories=Gridable,NonGridable,Other&sportIds=7&regionIds=9&competitionIds=6004&skip=0&take=50&sortBy=Tags"
@@ -189,12 +184,10 @@ def sugarHouseOdds():
     # this is a mirror of pointsbets for specific geos, so backlogged
     pass
 
-def betRiversOdds():
-    # find the url
-    pass
-
 def unibetOdds():
     # https://nj.unibet.com/sports/#event/1007123701
+    # single game https://eu-offering.kambicdn.org/offering/v2018/ubusnj/betoffer/event/1007123785.json?lang=en_US&market=US&client_id=2&channel_id=1&ncid=1613612842277&includeParticipants=true
+    # all games https://eu-offering.kambicdn.org/offering/v2018/ubusnj/listView/basketball/nba.json?lang=en_US&market=US&client_id=2&channel_id=1&ncid=1613612828579&useCombined=true
     pass
 
 def barstoolOdds():
@@ -205,10 +198,13 @@ def barstoolOdds():
 
 # Other bookmakers https://the-odds-api.com/sports-odds-data/bookmaker-apis.html
 
-
 # def betfair_odds():
 #     # https://www.betfair.com/sport/basketball/nba/houston-rockets-oklahoma-city-thunder/30266729
 #     # these are not american odds so will need some new methods for these
+#     # betfair homepage https://www.betfair.com/sport/basketball
+#     # betfair single game page https://www.betfair.com/sport/basketball/nba/miami-heat-golden-state-warriors/30289841
+#     # betfair odds retrieval - have a curl request that gets them based on ids from an api endpoint, however doing so is pointless
+# as you need to scrape the page to get the ids anyways (at least as far as I know)
 #     pass
 
 def getStarters(team_code: str, team_dict: dict=None):
