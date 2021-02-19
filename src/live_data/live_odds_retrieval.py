@@ -13,15 +13,28 @@ import requests
 import pandas as pd
 
 import ENVIRONMENT
-from src.functions.database_proxy import getUniversalShortCode
-from src.functions.odds_calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb
-from src.functions.utils import sleepChecker, getTeamFullFromShort, getSoupFromUrl, \
-    sleepChecker
-
-
+from src.functions.database_proxy import getUniversalShortCode, getCurrentPlayerTeam
+from src.functions.odds_calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb, decimalToAmerican
+from src.functions.utils import getTeamFullFromShort, getSoupFromUrl, sleepChecker
 # todo add a threshold of ev factor to only take safer bets
-from src.live_data.live_odds_data_handling import formatUnknownTeamPlayerLines
 
+
+def formatUnknownTeamPlayerLines(rawPlayerLines, homeShortCode=None, awayShortCode=None):
+    if len(rawPlayerLines) != 10:
+        raise ValueError("Must have exactly ten players right now")
+
+    home = []
+    away = []
+    for player in rawPlayerLines:
+        teamShortCode = getCurrentPlayerTeam(player['name'])
+        if teamShortCode == homeShortCode:
+            home.append({"name": player['name'], "odds": player["odds"], "team": homeShortCode})
+        elif teamShortCode == awayShortCode:
+            away.append({"name": player['name'], "odds": player["odds"], "team": homeShortCode})
+        else:
+            raise ValueError("No match for either team", homeShortCode, awayShortCode, "for player", player)
+
+    return home, away
 
 def getExpectedTipper(team):
 #     lastTipper = getLastTipper()
@@ -114,18 +127,29 @@ def bovadaOdds():
             for potentialPair in scoreFirstBetsSingleTeam:
                 if potentialPair['shortTitle'] == bet['shortTitle']:
                     matchedBets.add(potentialPair['shortTitle'])
-                    shortTitle = bet['game']['shortTitle']
-                    team1Id = bet['game']['team1Id']
-                    team2Id = bet['game']['team2Id']
+                    shortTitle = bet['shortTitle']
+                    team1Id = bet['team1Id']
+                    team2Id = bet['team2Id']
+                    # todo bovada has player spreads as well, seemingly for games lacking team props
 
                     scoreFirstBetsBothTeams.append({
                         "shortTitle": shortTitle,
-                        "team1id": team1Id,
-                        "team2id": team2Id,
-                        "team1odds": bet['decimalOdds'],
-                        "team2odds": potentialPair['decimalOdds'],
+                        "team1Id": team1Id,
+                        "team2Id": team2Id,
+                        "team1Odds": bet['decimalOdds'],
+                        "team2Odds": potentialPair['decimalOdds'],
                     })
                     break
+
+    scoreFirstBetsBothTeamsFormatted = list()
+    for item in scoreFirstBetsBothTeams:
+        scoreFirstBetsBothTeamsFormatted.append({
+            'exchange': 'bovada',
+            "home": getUniversalShortCode(item['team1Id']),
+            "away": getUniversalShortCode(item['team2Id']),
+            "homeTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds']),
+            "awayTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds'])
+        })
 
     return scoreFirstBetsBothTeamsFormatted # todo LEFTOFF
             #todo this is just taking a guess at which odds belong to which team assuming second odds for team2
@@ -249,7 +273,7 @@ def unibetOdds():
 
     singleEventUrlStub = 'https://eu-offering.kambicdn.org/offering/v2018/ubusnj/betoffer/event/{}.json?lang=en_US&market=US&client_id=2&channel_id=1&ncid=1613612842277&includeParticipants=true'
 
-    gameDetails = list()
+    gameDetailsList = list()
     for event in eventsList:
         sleepChecker(baseTime=0.5, randomMultiplier=2)
         singleGameResponse = requests.get(singleEventUrlStub.format(str(event[0]))).json()
@@ -271,8 +295,20 @@ def unibetOdds():
             pName = playerLine['label']
             playerId = playerLine['participantId']
             playerLinesList.append({'name': pName, 'odds': aOdds, 'playerId': playerId})
-        gameDetails.append({'game': event[2] + " vs " + event[3], 'playerLines': playerLinesList})
-    pass
+
+        homePlayerLines, awayPlayerLines = formatUnknownTeamPlayerLines(playerLinesList)
+
+        gameDetailsList.append({
+            'exchange': 'unitbet',
+            'startDatetime': event['startDatetime'],
+            'home': event['home'],
+            'away': event['away'],
+            'homePlayerOdds': homePlayerLines,
+            'awayPlayerOdds': awayPlayerLines
+        })
+    return gameDetailsList
+    #todo this has a lot of duplication with the barstool method so would be worth extracting
+
 
 def barstoolOdds(): #only has player prosp to score (first field goal)
     # https://www.barstoolsportsbook.com/sports/basketball/nba
@@ -291,7 +327,7 @@ def barstoolOdds(): #only has player prosp to score (first field goal)
     gameDetailsList = list()
     for event in eventsList:
         sleepChecker(baseTime=0.5, randomMultiplier=2)
-        singleGameResponse = requests.get(singleEventUrlStub.format(str(event[0])), headers={"consumer":"www"}).json()
+        singleGameResponse = requests.get(singleEventUrlStub.format(event['id']), headers={"consumer":"www"}).json()
         mostPopular = singleGameResponse[1]
         allMPBets = mostPopular['criterion']
         playerScoreFirstFG = None
@@ -318,7 +354,8 @@ def barstoolOdds(): #only has player prosp to score (first field goal)
             'startDatetime': event['startDatetime'],
             'home': event['home'],
             'away': event['away'],
-            'homePlayerOdds': homePlayerLines, 'awayPlayerOdds': awayPlayerLines
+            'homePlayerOdds': homePlayerLines,
+            'awayPlayerOdds': awayPlayerLines
         })
     return gameDetailsList
 
@@ -385,3 +422,36 @@ def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='Fanduel'
     print('On', exchange, 'bet', kellyBetFromAOddsAndScoreProb(odds1, aOdds, bankroll=ENVIRONMENT.BANKROLL), 'on', t1FullName, 'assuming odds', str(aOdds))
     print('On', exchange, 'bet', kellyBetFromAOddsAndScoreProb(odds2, aOdds, bankroll=ENVIRONMENT.BANKROLL), 'on', t2FullName, 'assuming odds', str(aOdds))
     print()
+
+
+def createTeamTipperDict():
+    teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX',
+                'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
+    teamList.sort()
+    startersList = list()
+    tipperList = list()
+    fullJson = {}
+
+    for teamLine in teamList:
+        startersList.append({"starters": getStarters(teamLine), "team": teamLine})
+        sleepChecker(printStop=False)
+
+    for teamLine in startersList:
+        player = teamLine["starters"][0]
+        nameList = player[0].split(' ')
+        lcode = ''
+        i = 0
+        while i < 5:
+            try:
+                lcode += nameList[1][i]
+                i += 1
+            except:
+                break
+        code = lcode + nameList[0][:2] + '01.html'
+        code = code.lower()
+
+        tipperList.append({"playerCode":code, "team": teamLine["team"]})
+    fullJson["pairs"] = tipperList
+
+    with open ('Data/JSON/team_tipper_pairs.json', 'w') as file:
+        json.dump(fullJson, file)

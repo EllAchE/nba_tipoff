@@ -1,5 +1,3 @@
-import json
-
 from typing import Any
 
 from src.classes.GameOdds import GameOdds

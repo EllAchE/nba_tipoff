@@ -12,13 +12,20 @@ from src.functions.trueskill_calc import updateSkillDictionary
 # updateCurrentSeason()
 # updateSkillDictionary()
 
-test = barstoolOdds()
-print(test)
-print()
+# test = barstoolOdds()
+# print(test)
+# print()
 
 # getAllOddsAndDisplayByEv()
 
 # getAllExpectedStarters()
+
+# getDailyOdds('GSW', 'CHA')
+# getDailyOdds('IND', 'HOU')
+# getDailyOdds('MIA', 'LAL')
+# getDailyOdds('SAC', 'CHI')
+# getDailyOdds('PHX', 'MEM')
+# getDailyOdds('WAS', 'POR')
 
 # getDailyOdds('MIN', 'TOR')
 # getDailyOdds('BOS', 'WAS')
@@ -66,7 +73,6 @@ https://punter2pro.com/best-sports-arbing-software/
 '''
 
 # backlogtodo make data overwriting transactional, i.e. locally saved csv could have all or no rows updated, no overwrites and partial
-# todo player to fullname to player code relationship
 # todo create dictionary of active players (you can possibly use nba_api for this, and then enhance for bball ref compatibility)
 # todo set up backtester with assumed odds lines, i.e. assuming we are always offered odds on a team of -110, how would the strat perform? (the default should -110)
 # backlogtodo OVERKILL set up bankroll tracker (with stored values on each site and overall).

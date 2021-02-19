@@ -39,21 +39,11 @@ from nba_api.stats.static import players
 # TODO: Writing type stubs for pandas' DataFrame is too cumbersome, so we use this instead.
 # Eventually, we should replace that with real type stubs for DataFrame.
 import ENVIRONMENT
-from src.functions.database_proxy import convertBballRefTeamShortCodeToNBA, \
-    findPlayerFullFromLastGivenPossibleFullNames, getGameIdFromBballRef
+from src.functions.database_proxy import findPlayerFullFromLastGivenPossibleFullNames, getGameIdFromBballRef, \
+    getTeamDictionaryFromShortCode, getAllGamesForTeam
 from src.functions.utils import getDashDateAndHomeCodeFromGameCode, sleepChecker
 
 DataFrame = Any
-
-def getTeamDictionaryFromShortCode(shortCode: str):
-    shortCode = convertBballRefTeamShortCodeToNBA(shortCode)
-    nbaTeams = teams.get_teams()
-    teamDict = [team for team in nbaTeams if team['abbreviation'] == shortCode][0]
-    return teamDict['id']
-
-def getAllGamesForTeam(team_id: str):
-    gamefinder = leaguegamefinder.LeagueGameFinder(team_id_nullable=team_id)
-    return gamefinder.get_data_frames()[0]
 
 def getAllGamesInSeason(season: int, short_code: str):
     season -= 1
@@ -61,16 +51,6 @@ def getAllGamesInSeason(season: int, short_code: str):
     gamesDf = getAllGamesForTeam(teamId)
     
     return gamesDf[gamesDf.SEASON_ID.str[-4:] == str(season)]
-
-# game date format is YYYY-MM-DD
-def _getGameObjFromDateAndTeam(dateStr: str, shortCode: str):
-    teamId = getTeamDictionaryFromShortCode(shortCode)
-    allGames = getAllGamesForTeam(teamId)
-    return allGames[allGames.GAME_DATE == str(dateStr)]
-
-def getGameIdFromTeamAndDate(dateStr: str, shortCode: str):
-    gameObj = _getGameObjFromDateAndTeam(dateStr, shortCode)
-    return gameObj.GAME_ID.iloc[0]
 
 def getGamePlayByPlay(gameId: str):
     return playbyplayv2.PlayByPlayV2(gameId).get_data_frames()[0]
