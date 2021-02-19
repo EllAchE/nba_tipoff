@@ -2,8 +2,8 @@ import json
 
 from typing import Any
 
-from tipoff.classes.GameOdds import GameOdds
-from tipoff.live_information.live_odds_data_handling import createAllOddsDict
+from src.classes.GameOdds import GameOdds
+from src.live_data.live_odds_data_handling import createAllOddsDict
 
 
 def displayUniqueBetsByEV(betDict: Any, showAll: bool = True):

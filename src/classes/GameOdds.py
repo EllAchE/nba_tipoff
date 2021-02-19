@@ -1,6 +1,6 @@
-from tipoff.functions.odds_calculator import convertPlayerLinesToSingleLine, returnGreaterOdds, \
+from src.functions.odds_calculator import convertPlayerLinesToSingleLine, returnGreaterOdds, \
     positiveEvThresholdFromAmerican, getScoreProb, kellyBetFromAOddsAndScoreProb, getEvMultiplier, getPlayerSpread
-from tipoff.live_information.live_odds_retrieval import getExpectedTipper
+from src.live_data.live_odds_retrieval import getExpectedTipper
 
 
 class GameOdds:

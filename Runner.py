@@ -1,14 +1,20 @@
 # backlogtodo find out when the best time for placing bets on various sites is (i.e. when do odds move)
 # todo next prop - who scores last nba, race to 5 points
+# todo compare top rank vs. bottom rank losses
 # backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
 from display_bets import getAllOddsAndDisplayByEv
-from tipoff.functions.utils import sleepChecker
-from tipoff.live_information.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
-from tipoff.functions.trueskill_calc import updateSkillDictionary
+from src.functions.utils import sleepChecker
+from src.historical_data.historical_data_retrieval import updateCurrentSeason
+from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds, barstoolOdds
+from src.functions.trueskill_calc import updateSkillDictionary
 
 # updateCurrentSeason()
 # updateSkillDictionary()
+
+test = barstoolOdds()
+print(test)
+print()
 
 # getAllOddsAndDisplayByEv()
 

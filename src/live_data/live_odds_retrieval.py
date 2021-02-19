@@ -13,13 +13,16 @@ import requests
 import pandas as pd
 
 import ENVIRONMENT
-from tipoff.functions.odds_calculator import check_for_edge, checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb
-from tipoff.functions.utils import sleepChecker, getTeamFullFromShort, getPlayerTeamFromFullName, getSoupFromUrl, \
+from src.functions.database_proxy import getUniversalShortCode
+from src.functions.odds_calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb
+from src.functions.utils import sleepChecker, getTeamFullFromShort, getSoupFromUrl, \
     sleepChecker
-from tipoff.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
 
 
 # todo add a threshold of ev factor to only take safer bets
+from src.live_data.live_odds_data_handling import formatUnknownTeamPlayerLines
+
+
 def getExpectedTipper(team):
 #     lastTipper = getLastTipper()
 #     injuryCheck = checkInjury(lastTipper)
@@ -75,12 +78,6 @@ def fanduelOdds():
     pass
 
 def bovadaOdds():
-    # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
-    # above requires game ids as input but returns odds
-
-    # https://widgets.digitalsportstech.com/?sb=bovada&language=en&oddsType=american&currency=usd&leagueId=123&preMatchOnly=true
-    # Above gets game ids in a .js
-
     soup = getSoupFromUrl('https://widgets.digitalsportstech.com/?sb=bovada&language=en&oddsType=american&currency=usd&leagueId=123&preMatchOnly=true')
     gameIdString = soup.find('script').contents[0]
 
@@ -95,12 +92,43 @@ def bovadaOdds():
         url += ',' + str(id)
 
     allBets = requests.get(url).json()
-    scoreFirstBets = list()
+    scoreFirstBetsSingleTeam = list()
     for bet in allBets:
         print(bet['queryTitle'])
         if bet['queryTitle'].lower() == 'team to score first':
-            scoreFirstBets.append(bet)
-    return scoreFirstBets # todo this only seems to return half of the bets, in decimal odds and needs to be complete to format the bets
+            shortTitle = bet['game']['shortTitle']
+            team1Id = bet['game']['team1Id']
+            team2Id = bet['game']['team2Id']
+            decimalOdds = bet['odds']
+            scoreFirstBetsSingleTeam.append({
+                "shortTitle": shortTitle,
+                "team1id": team1Id,
+                "team2id": team2Id,
+                "decimalOdds": decimalOdds
+            })
+    matchedBets = set()
+
+    scoreFirstBetsBothTeams = list()
+    for bet in scoreFirstBetsSingleTeam:
+        if bet['shortTitle'] not in matchedBets:
+            for potentialPair in scoreFirstBetsSingleTeam:
+                if potentialPair['shortTitle'] == bet['shortTitle']:
+                    matchedBets.add(potentialPair['shortTitle'])
+                    shortTitle = bet['game']['shortTitle']
+                    team1Id = bet['game']['team1Id']
+                    team2Id = bet['game']['team2Id']
+
+                    scoreFirstBetsBothTeams.append({
+                        "shortTitle": shortTitle,
+                        "team1id": team1Id,
+                        "team2id": team2Id,
+                        "team1odds": bet['decimalOdds'],
+                        "team2odds": potentialPair['decimalOdds'],
+                    })
+                    break
+
+    return scoreFirstBetsBothTeamsFormatted # todo LEFTOFF
+            #todo this is just taking a guess at which odds belong to which team assuming second odds for team2
 
 def draftKingsOdds():
     # https://sportsbook.draftkings.com/leagues/basketball/103?category=game-props&subcategory=odd/even
@@ -111,18 +139,18 @@ def draftKingsOdds():
     for category in offerCategories:
         if category['name'] == "Game Props":
            gameProps = category['offerSubcategoryDescriptors']
-        # if category['name'] == "Player Props":
-        #     playerProps = category['offerSubcategoryDescriptors']
+        if category['name'] == "Player Props":
+            playerProps = category['offerSubcategoryDescriptors']
 
     for subCategory in gameProps:
         if subCategory['name'] == "First Team to Score":
             firstTeamToScoreLines = subCategory['offerSubcategory']['offers']
             break
 
-    # for subCategory in playerProps:
-    #     if subCategory['name'] == "First Field Goal": #todo an id may work for these
-    #         firstPlayerToScoreLines = subCategory['offerSubcategory']['offers']
-    #         break
+    for subCategory in playerProps:
+        if subCategory['name'] == "First Field Goal": #todo an id may work for these
+            firstPlayerToScoreLines = subCategory['offerSubcategory']['offers']
+            break
 
     allTeamLines = list()
     for teamLine in firstTeamToScoreLines:
@@ -131,18 +159,32 @@ def draftKingsOdds():
         team1Odds = outcomes[0]['oddsAmerican']
         team2 = outcomes[1]['label']
         team2Odds = outcomes[1]['oddsAmerican']
-        allTeamLines.append({team1: team1Odds, team2: team2Odds})
+        allTeamLines.append({
+            "exchange": "draftkings",
+            "home": getUniversalShortCode(team1),
+            "away": getUniversalShortCode(team2),
+            "homeTeamFirstQuarterOdds": team1Odds,
+            "awayTeamFirstQuarterOdds": team2Odds,
+            "homePlayerFirstQuarterOdds": [],
+            "awayPlayerFirstQuarterOdds": []
+        })
 
-    # allPlayerLines = list()
-    # for allPlayerLinesForGame in firstPlayerToScoreLines:
-    #     gamePlayerLines = allPlayerLinesForGame[0]['outcomes']
-    #     for playerLine in gamePlayerLines:
-    #         name = playerLine['label']
-    #         aOdds = playerLine['oddsAmerican']
-    #         # playerTeam = getPlayerTeamFromFullName(name)
-    #         allPlayerLines.append({name: aOdds}) #, "possibleTeams": playerTeam})
+    rawPlayerLines = list()
+    for playerLine in firstPlayerToScoreLines:
+        outcomes = playerLine[0]['outcomes']
+        rawPlayerLines.append({
+            "player": outcomes[0]['label'],
+            "odds": outcomes[0]['oddsAmerican']
+        })
 
-    return allTeamLines #, allPlayerLines
+    for rawLine in rawPlayerLines:
+        homePlayerLines, awayPlayerLines = formatUnknownTeamPlayerLines(rawLine)
+        for teamLine in allTeamLines:
+            if teamLine['home'] == homePlayerLines[0]['team']:
+                teamLine['homePlayerFirstQuarterOdds'] = teamLine['homePlayerFirstQuarterOdds'].append(rawLine['odds'])
+            elif teamLine['away'] == awayPlayerLines[0]['team']:
+                teamLine['awayPlayerFirstQuarterOdds'] = teamLine['awayPlayerFirstQuarterOdds'].append(rawLine['odds'])
+    return allTeamLines, rawPlayerLines
 
 def mgmOdds():
     # https://sports.co.betmgm.com/en/sports/events/minnesota-timberwolves-at-san-antonio-spurs-11101908?market=10000
@@ -157,7 +199,7 @@ def mgmOdds():
         if (game['stage'] == "PreMatch"):
             gameIDs.append(game['id'])
 
-    allTeamLines = list()
+    allGameLines = list()
     for index in range(len(gameIDs)):
         gameURL = "https://cds-api.co.betmgm.com/bettingoffer/fixture-view?x-bwin-accessid=OTU4NDk3MzEtOTAyNS00MjQzLWIxNWEtNTI2MjdhNWM3Zjk3&lang=en-us&country=US&userCountry=US&subdivision=Texas&offerMapping=All&fixtureIds=" + \
                   gameIDs[index]
@@ -166,13 +208,18 @@ def mgmOdds():
         sleepChecker(iterations=1, printStop=True)
         for odds in oddsInfo:
             if (odds['name']['value'] == "Which team will score the first points?"):
-                t1Name = odds['results'][0]['name']['value']
-                t1Odds = odds['results'][0]['americanOdds']
-                t2Name = odds['results'][1]['name']['value']
-                t2Odds = odds['results'][1]['americanOdds']
-                allTeamLines.append({t1Name: t1Odds, t2Name: t2Odds})
-
-    return allTeamLines
+                team1 = odds['results'][0]['name']['value']
+                team1Odds = odds['results'][0]['americanOdds']
+                team2 = odds['results'][1]['name']['value']
+                team2Odds = odds['results'][1]['americanOdds']
+                allGameLines.append({
+                    'exchange': 'mgm',
+                    "home": getUniversalShortCode(team1),
+                    "away": getUniversalShortCode(team2),
+                    "homeTeamFirstQuarterOdds": team1Odds,
+                    "awayTeamFirstQuarterOdds": team2Odds
+                })
+    return allGameLines
 
 # def pointsBet():
 #     # https://nj.pointsbet.com/sports/basketball/NBA/246723
@@ -191,13 +238,89 @@ def unibetOdds():
     # https://nj.unibet.com/sports/#event/1007123701
     # single game https://eu-offering.kambicdn.org/offering/v2018/ubusnj/betoffer/event/1007123785.json?lang=en_US&market=US&client_id=2&channel_id=1&ncid=1613612842277&includeParticipants=true
     # all games https://eu-offering.kambicdn.org/offering/v2018/ubusnj/listView/basketball/nba.json?lang=en_US&market=US&client_id=2&channel_id=1&ncid=1613612828579&useCombined=true
+    allGamesUrl = 'https://eu-offering.kambicdn.org/offering/v2018/ubusnj/listView/basketball/nba.json?lang=en_US&market=US&client_id=2&channel_id=1&ncid=1613612828579&useCombined=true'
+    allEventsResponse = requests.get(allGamesUrl).json()
+
+    eventsList = list()
+
+    for event in allEventsResponse['events']:
+        event = event['event']
+        eventsList.append([event['id'], event['start'], event['homeName'], event['awayName']])
+
+    singleEventUrlStub = 'https://eu-offering.kambicdn.org/offering/v2018/ubusnj/betoffer/event/{}.json?lang=en_US&market=US&client_id=2&channel_id=1&ncid=1613612842277&includeParticipants=true'
+
+    gameDetails = list()
+    for event in eventsList:
+        sleepChecker(baseTime=0.5, randomMultiplier=2)
+        singleGameResponse = requests.get(singleEventUrlStub.format(str(event[0]))).json()
+        mostPopular = singleGameResponse[1]
+        allMPBets = mostPopular['criterion']
+        playerScoreFirstFG = None
+
+        for bet in allMPBets:
+            if bet['label'] == "Player to Score the First Field Goal of the Game":
+                playerScoreFirstFG = bet
+                break
+        if playerScoreFirstFG is None:
+            raise ValueError("No bet found in unibet for player to score first field goal")
+
+        lines = playerScoreFirstFG['offers'][0]['outcomes']
+        playerLinesList = list()
+        for playerLine in lines:
+            aOdds = playerLine['oddAmerican']
+            pName = playerLine['label']
+            playerId = playerLine['participantId']
+            playerLinesList.append({'name': pName, 'odds': aOdds, 'playerId': playerId})
+        gameDetails.append({'game': event[2] + " vs " + event[3], 'playerLines': playerLinesList})
     pass
 
-def barstoolOdds():
+def barstoolOdds(): #only has player prosp to score (first field goal)
     # https://www.barstoolsportsbook.com/sports/basketball/nba
     # all events https://eu-offering.kambicdn.org/offering/v2018/pivuspa/listView/basketball/nba/all/all/matches.json?includeParticipants=true&useCombined=true&lang=en_US&market=US
     # odds lines single game - https://api.barstoolsportsbook.com/offerings/grouped_event/1007161722/pre_match_event/?lang=en_US&market=US
-    pass
+    allEventsUrl = 'https://eu-offering.kambicdn.org/offering/v2018/pivuspa/listView/basketball/nba/all/all/matches.json?includeParticipants=true&useCombined=true&lang=en_US&market=US'
+    allEventsResponse = requests.get(allEventsUrl).json()
+    eventsList = list()
+
+    for event in allEventsResponse['events']:
+        event = event['event']
+        eventsList.append({"id": event['id'], "startDatetime": event['start'], "home": event['homeName'], "away": event['awayName']})
+
+    singleEventUrlStub = 'https://api.barstoolsportsbook.com/offerings/grouped_event/{}/pre_match_event/?lang=en_US&market=US'
+
+    gameDetailsList = list()
+    for event in eventsList:
+        sleepChecker(baseTime=0.5, randomMultiplier=2)
+        singleGameResponse = requests.get(singleEventUrlStub.format(str(event[0])), headers={"consumer":"www"}).json()
+        mostPopular = singleGameResponse[1]
+        allMPBets = mostPopular['criterion']
+        playerScoreFirstFG = None
+
+        for bet in allMPBets:
+            if bet['label'] == "Player to Score the First Field Goal of the Game":
+                playerScoreFirstFG = bet
+                break
+        if playerScoreFirstFG is None:
+            raise ValueError("No bet found in barstool for player to score first field goal")
+
+        lines = playerScoreFirstFG['offers'][0]['outcomes']
+        playerLinesList = list()
+        for playerLine in lines:
+            aOdds = playerLine['oddAmerican']
+            pName = playerLine['label']
+            playerId = playerLine['participantId']
+            playerLinesList.append({'name': pName, 'odds': aOdds, 'playerId': playerId})
+
+        homePlayerLines, awayPlayerLines = formatUnknownTeamPlayerLines(playerLinesList)
+
+        gameDetailsList.append({
+            'exchange': 'barstool',
+            'startDatetime': event['startDatetime'],
+            'home': event['home'],
+            'away': event['away'],
+            'homePlayerOdds': homePlayerLines, 'awayPlayerOdds': awayPlayerLines
+        })
+    return gameDetailsList
 
 # Other bookmakers https://the-odds-api.com/sports-odds-data/bookmaker-apis.html
 
@@ -262,7 +385,3 @@ def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='Fanduel'
     print('On', exchange, 'bet', kellyBetFromAOddsAndScoreProb(odds1, aOdds, bankroll=ENVIRONMENT.BANKROLL), 'on', t1FullName, 'assuming odds', str(aOdds))
     print('On', exchange, 'bet', kellyBetFromAOddsAndScoreProb(odds2, aOdds, bankroll=ENVIRONMENT.BANKROLL), 'on', t2FullName, 'assuming odds', str(aOdds))
     print()
-
-# test = bovadaOdds()
-# print(test)
-# print()

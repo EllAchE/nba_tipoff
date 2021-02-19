@@ -1,4 +1,5 @@
 import json
+import os
 import random
 import time
 import requests
@@ -107,7 +108,7 @@ def getDashDateAndHomeCodeFromGameCode(game_code: str):
     return getDashDateFromGameCode(game_code), getHomeTeamFromGameCode(game_code)
 
 def sleepChecker(iterations: int = 3, baseTime: int = 2, randomMultiplier: int = 3, printStop: bool = False):
-    with open('Data/sleep_counter.json') as sc:
+    with open(os.path.abspath('Data/sleep_counter.json')) as sc:
         SLEEP_COUNTER = json.load(sc)
 
     SLEEP_COUNTER['counter'] += 1
@@ -119,28 +120,6 @@ def sleepChecker(iterations: int = 3, baseTime: int = 2, randomMultiplier: int =
 
     with open('Data/sleep_counter.json', 'w') as sc:
         json.dump(SLEEP_COUNTER, sc)
-
-def getPlayerTeamFromFullName(name):
-    playerDict = find_players_by_full_name(name)[0] # todo deal with unicode breaking charanacters i.e. in the name bojan bogdonavic 'Bojan Bogdanović'
-    playerId = playerDict['id']
-    data = CommonPlayerInfo(player_id=playerId)
-    playerData = data.common_player_info.get_data_frame()
-    abbreviation = playerData['TEAM_ABBREVIATION'].iloc[0] # index of this if list is 19 (20th item)
-    return abbreviation
-
-def getPlayerTeamFromNbaApi(name):
-    # https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/commonplayerinfo.md
-    pass
-
-def getPlayerTeamInSeasonFromBballRefLink(playerLink, season, longCode=True):
-    if longCode:
-        playerLink = playerLink[11:]
-    with open('Data/JSON/player_team_pairs.json') as teamPairs:
-        seasons = json.load(teamPairs)
-        try:
-            return seasons[str(season)][playerLink]
-        except:
-            raise ValueError("no match found for player", playerLink)
 
 def lowercaseNoSpace(str):
     modStr = str.replace(' ', '').lower()

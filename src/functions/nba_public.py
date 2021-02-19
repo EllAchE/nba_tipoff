@@ -39,18 +39,11 @@ from nba_api.stats.static import players
 # TODO: Writing type stubs for pandas' DataFrame is too cumbersome, so we use this instead.
 # Eventually, we should replace that with real type stubs for DataFrame.
 import ENVIRONMENT
-from tipoff.functions.utils import getDashDateAndHomeCodeFromGameCode, sleepChecker
+from src.functions.database_proxy import convertBballRefTeamShortCodeToNBA, \
+    findPlayerFullFromLastGivenPossibleFullNames, getGameIdFromBballRef
+from src.functions.utils import getDashDateAndHomeCodeFromGameCode, sleepChecker
 
 DataFrame = Any
-
-def convertBballRefTeamShortCodeToNBA(shortCode: str):
-    if shortCode == 'PHO':
-        return 'PHX'
-    if shortCode == 'BRK':
-        return 'BKN'
-    if shortCode == 'CHO':
-        return 'CHA'
-    return shortCode
 
 def getTeamDictionaryFromShortCode(shortCode: str):
     shortCode = convertBballRefTeamShortCodeToNBA(shortCode)
@@ -102,13 +95,6 @@ def getShotTypeFromEventDescription(description: str):
     
     return "2PT " + isMiss
 
-def findPlayerFullFromLast(playerLastName, playerList):
-    for player in playerList:
-        if playerLastName == player["lastName"]:
-            return player["fullName"]
-    print('couldn\'t match player' + playerLastName)
-    return playerLastName
-
 def _getFirstShotStatistics(shotsBeforeFirstScore: pd.DataFrame, bballRefCode):
     shotIndex = 0
     dataList = list()
@@ -124,7 +110,7 @@ def _getFirstShotStatistics(shotsBeforeFirstScore: pd.DataFrame, bballRefCode):
         description = row.HOMEDESCRIPTION if row.HOMEDESCRIPTION is not None else row.VISITORDESCRIPTION
         playerTeam = awayTeam if row.HOMEDESCRIPTION is None else homeTeam
         playerLast = getPlayerLastNameFromShotDescription(description)
-        player = findPlayerFullFromLast(playerLast, allGamePlayers)
+        player = findPlayerFullFromLastGivenPossibleFullNames(playerLast, allGamePlayers)
         shotType = getShotTypeFromEventDescription(description)
         if playerTeam == homeTeam:
             opponentTeam = awayTeam
@@ -215,10 +201,6 @@ def getTipoffLineFromBballRefId(bballRef: str):
     pbpDf = getGamePlayByPlay(gameId)
     tipoffContent, type, isHome = getTipoffLine(pbpDf)
     return tipoffContent
-
-def getGameIdFromBballRef(bballRefId):
-    date, team = getDashDateAndHomeCodeFromGameCode(bballRefId)
-    return getGameIdFromTeamAndDate(date, team)
 
 def getAllFirstPossessionStatisticsIncrementally(season):
     path = '../../Data/CSV/tipoff_and_first_score_details_{}_season.csv'.format(season)
