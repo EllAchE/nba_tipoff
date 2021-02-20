@@ -1,0 +1,2417 @@
+[
+  {
+    "bballRefCode": "achiupr01.html",
+    "fullName": "Precious Achiuwa",
+    "nameWithComma": "Achiuwa,Precious"
+  },
+  {
+    "bballRefCode": "adamsja01.html",
+    "fullName": "Jaylen Adams",
+    "nameWithComma": "Adams,Jaylen"
+  },
+  {
+    "bballRefCode": "adamsst01.html",
+    "fullName": "Steven Adams",
+    "nameWithComma": "Adams,Steven"
+  },
+  {
+    "bballRefCode": "adebaba01.html",
+    "fullName": "Bam Adebayo",
+    "nameWithComma": "Adebayo,Bam"
+  },
+  {
+    "bballRefCode": "aldrila01.html",
+    "fullName": "LaMarcus Aldridge",
+    "nameWithComma": "Aldridge,LaMarcus"
+  },
+  {
+    "bballRefCode": "alexaty01.html",
+    "fullName": "Ty-Shon Alexander",
+    "nameWithComma": "Alexander,Ty-Shon"
+  },
+  {
+    "bballRefCode": "alexani01.html",
+    "fullName": "Nickeil Alexander-Walker",
+    "nameWithComma": "Alexander-Walker,Nickeil"
+  },
+  {
+    "bballRefCode": "allengr01.html",
+    "fullName": "Grayson Allen",
+    "nameWithComma": "Allen,Grayson"
+  },
+  {
+    "bballRefCode": "allenja01.html",
+    "fullName": "Jarrett Allen",
+    "nameWithComma": "Allen,Jarrett"
+  },
+  {
+    "bballRefCode": "aminual01.html",
+    "fullName": "Al-Farouq Aminu",
+    "nameWithComma": "Aminu,Al-Farouq"
+  },
+  {
+    "bballRefCode": "anderky01.html",
+    "fullName": "Kyle Anderson",
+    "nameWithComma": "Anderson,Kyle"
+  },
+  {
+    "bballRefCode": "antetgi01.html",
+    "fullName": "Giannis Antetokounmpo",
+    "nameWithComma": "Antetokounmpo,Giannis"
+  },
+  {
+    "bballRefCode": "antetko01.html",
+    "fullName": "Kostas Antetokounmpo",
+    "nameWithComma": "Antetokounmpo,Kostas"
+  },
+  {
+    "bballRefCode": "antetth01.html",
+    "fullName": "Thanasis Antetokounmpo",
+    "nameWithComma": "Antetokounmpo,Thanasis"
+  },
+  {
+    "bballRefCode": "anthoca01.html",
+    "fullName": "Carmelo Anthony",
+    "nameWithComma": "Anthony,Carmelo"
+  },
+  {
+    "bballRefCode": "anthoco01.html",
+    "fullName": "Cole Anthony",
+    "nameWithComma": "Anthony,Cole"
+  },
+  {
+    "bballRefCode": "anunoog01.html",
+    "fullName": "OG Anunoby",
+    "nameWithComma": "Anunoby,OG"
+  },
+  {
+    "bballRefCode": "arcidry01.html",
+    "fullName": "Ryan Arcidiacono",
+    "nameWithComma": "Arcidiacono,Ryan"
+  },
+  {
+    "bballRefCode": "augusdj01.html",
+    "fullName": "D.J. Augustin",
+    "nameWithComma": "Augustin,D.J."
+  },
+  {
+    "bballRefCode": "avdijde01.html",
+    "fullName": "Deni Avdija",
+    "nameWithComma": "Avdija,Deni"
+  },
+  {
+    "bballRefCode": "aytonde01.html",
+    "fullName": "Deandre Ayton",
+    "nameWithComma": "Ayton,Deandre"
+  },
+  {
+    "bballRefCode": "azubuud01.html",
+    "fullName": "Udoka Azubuike",
+    "nameWithComma": "Azubuike,Udoka"
+  },
+  {
+    "bballRefCode": "bacondw01.html",
+    "fullName": "Dwayne Bacon",
+    "nameWithComma": "Bacon,Dwayne"
+  },
+  {
+    "bballRefCode": "baglema01.html",
+    "fullName": "Marvin Bagley III",
+    "nameWithComma": "Bagley,Marvin"
+  },
+  {
+    "bballRefCode": "ballla01.html",
+    "fullName": "LaMelo Ball",
+    "nameWithComma": "Ball,LaMelo"
+  },
+  {
+    "bballRefCode": "balllo01.html",
+    "fullName": "Lonzo Ball",
+    "nameWithComma": "Ball,Lonzo"
+  },
+  {
+    "bballRefCode": "bambamo01.html",
+    "fullName": "Mo Bamba",
+    "nameWithComma": "Bamba,Mohamed"
+  },
+  {
+    "bballRefCode": "banede01.html",
+    "fullName": "Desmond Bane",
+    "nameWithComma": "Bane,Desmond"
+  },
+  {
+    "bballRefCode": "barneha02.html",
+    "fullName": "Harrison Barnes",
+    "nameWithComma": "Barnes,Harrison"
+  },
+  {
+    "bballRefCode": "barrerj01.html",
+    "fullName": "RJ Barrett",
+    "nameWithComma": "Barrett,RJ"
+  },
+  {
+    "bballRefCode": "bartowi01.html",
+    "fullName": "Will Barton",
+    "nameWithComma": "Barton,Will"
+  },
+  {
+    "bballRefCode": "bateske01.html",
+    "fullName": "Keita Bates-Diop",
+    "nameWithComma": "Bates-Diop,Keita"
+  },
+  {
+    "bballRefCode": "batumni01.html",
+    "fullName": "Nicolas Batum",
+    "nameWithComma": "Batum,Nicolas"
+  },
+  {
+    "bballRefCode": "baynear01.html",
+    "fullName": "Aron Baynes",
+    "nameWithComma": "Baynes,Aron"
+  },
+  {
+    "bballRefCode": "bazemke01.html",
+    "fullName": "Kent Bazemore",
+    "nameWithComma": "Bazemore,Kent"
+  },
+  {
+    "bballRefCode": "bazleda01.html",
+    "fullName": "Darius Bazley",
+    "nameWithComma": "Bazley,Darius"
+  },
+  {
+    "bballRefCode": "bealbr01.html",
+    "fullName": "Bradley Beal",
+    "nameWithComma": "Beal,Bradley"
+  },
+  {
+    "bballRefCode": "beaslma01.html",
+    "fullName": "Malik Beasley",
+    "nameWithComma": "Beasley,Malik"
+  },
+  {
+    "bballRefCode": "belljo01.html",
+    "fullName": "Jordan Bell",
+    "nameWithComma": "Bell,Jordan"
+  },
+  {
+    "bballRefCode": "bembrde01.html",
+    "fullName": "DeAndre' Bembry",
+    "nameWithComma": "Bembry,DeAndre'"
+  },
+  {
+    "bballRefCode": "bertada01.html",
+    "fullName": "D\u0101vis Bert\u0101ns",
+    "nameWithComma": "Bert\u0101ns,D\u0101vis"
+  },
+  {
+    "bballRefCode": "beverpa01.html",
+    "fullName": "Patrick Beverley",
+    "nameWithComma": "Beverley,Patrick"
+  },
+  {
+    "bballRefCode": "beysa01.html",
+    "fullName": "Saddiq Bey",
+    "nameWithComma": "Bey,Saddiq"
+  },
+  {
+    "bballRefCode": "beyty01.html",
+    "fullName": "Tyler Bey",
+    "nameWithComma": "Bey,Tyler"
+  },
+  {
+    "bballRefCode": "birchkh01.html",
+    "fullName": "Khem Birch",
+    "nameWithComma": "Birch,Khem"
+  },
+  {
+    "bballRefCode": "bitadgo01.html",
+    "fullName": "Goga Bitadze",
+    "nameWithComma": "Bitadze,Goga"
+  },
+  {
+    "bballRefCode": "biyombi01.html",
+    "fullName": "Bismack Biyombo",
+    "nameWithComma": "Biyombo,Bismack"
+  },
+  {
+    "bballRefCode": "bjeline01.html",
+    "fullName": "Nemanja Bjelica",
+    "nameWithComma": "Bjelica,Nemanja"
+  },
+  {
+    "bballRefCode": "bledser01.html",
+    "fullName": "Eric Bledsoe",
+    "nameWithComma": "Bledsoe,Eric"
+  },
+  {
+    "bballRefCode": "blevike01.html",
+    "fullName": "Keljin Blevins",
+    "nameWithComma": "Blevins,Keljin"
+  },
+  {
+    "bballRefCode": "bogdabo01.html",
+    "fullName": "Bogdan Bogdanovi\u0107",
+    "nameWithComma": "Bogdanovi\u0107,Bogdan"
+  },
+  {
+    "bballRefCode": "bogdabo02.html",
+    "fullName": "Bojan Bogdanovi\u0107",
+    "nameWithComma": "Bogdanovi\u0107,Bojan"
+  },
+  {
+    "bballRefCode": "bolbo01.html",
+    "fullName": "Bol Bol",
+    "nameWithComma": "Bol,Bol"
+  },
+  {
+    "bballRefCode": "boldema01.html",
+    "fullName": "Marques Bolden",
+    "nameWithComma": "Bolden,Marques"
+  },
+  {
+    "bballRefCode": "bonejo01.html",
+    "fullName": "Jordan Bone",
+    "nameWithComma": "Bone,Jordan"
+  },
+  {
+    "bballRefCode": "bongais01.html",
+    "fullName": "Isaac Bonga",
+    "nameWithComma": "Bonga,Isaac"
+  },
+  {
+    "bballRefCode": "bookede01.html",
+    "fullName": "Devin Booker",
+    "nameWithComma": "Booker,Devin"
+  },
+  {
+    "bballRefCode": "bouchch01.html",
+    "fullName": "Chris Boucher",
+    "nameWithComma": "Boucher,Chris"
+  },
+  {
+    "bballRefCode": "bowenbr02.html",
+    "fullName": "Brian Bowen",
+    "nameWithComma": "Bowen,Brian"
+  },
+  {
+    "bballRefCode": "bradlav01.html",
+    "fullName": "Avery Bradley",
+    "nameWithComma": "Bradley,Avery"
+  },
+  {
+    "bballRefCode": "bradlto01.html",
+    "fullName": "Tony Bradley",
+    "nameWithComma": "Bradley,Tony"
+  },
+  {
+    "bballRefCode": "brantja01.html",
+    "fullName": "Jarrell Brantley",
+    "nameWithComma": "Brantley,Jarrell"
+  },
+  {
+    "bballRefCode": "brazdig01.html",
+    "fullName": "Ignas Brazdeikis",
+    "nameWithComma": "Brazdeikis,Ignas"
+  },
+  {
+    "bballRefCode": "bridgmi01.html",
+    "fullName": "Mikal Bridges",
+    "nameWithComma": "Bridges,Mikal"
+  },
+  {
+    "bballRefCode": "bridgmi02.html",
+    "fullName": "Miles Bridges",
+    "nameWithComma": "Bridges,Miles"
+  },
+  {
+    "bballRefCode": "brogdma01.html",
+    "fullName": "Malcolm Brogdon",
+    "nameWithComma": "Brogdon,Malcolm"
+  },
+  {
+    "bballRefCode": "brookdi01.html",
+    "fullName": "Dillon Brooks",
+    "nameWithComma": "Brooks,Dillon"
+  },
+  {
+    "bballRefCode": "brownbr01.html",
+    "fullName": "Bruce Brown",
+    "nameWithComma": "Brown,Bruce"
+  },
+  {
+    "bballRefCode": "brownja02.html",
+    "fullName": "Jaylen Brown",
+    "nameWithComma": "Brown,Jaylen"
+  },
+  {
+    "bballRefCode": "brownmo01.html",
+    "fullName": "Moses Brown",
+    "nameWithComma": "Brown,Moses"
+  },
+  {
+    "bballRefCode": "brownst02.html",
+    "fullName": "Sterling Brown",
+    "nameWithComma": "Brown,Sterling"
+  },
+  {
+    "bballRefCode": "browntr01.html",
+    "fullName": "Troy Brown Jr.",
+    "nameWithComma": "Brown,Troy"
+  },
+  {
+    "bballRefCode": "brunsja01.html",
+    "fullName": "Jalen Brunson",
+    "nameWithComma": "Brunson,Jalen"
+  },
+  {
+    "bballRefCode": "bryanth01.html",
+    "fullName": "Thomas Bryant",
+    "nameWithComma": "Bryant,Thomas"
+  },
+  {
+    "bballRefCode": "bullore01.html",
+    "fullName": "Reggie Bullock",
+    "nameWithComma": "Bullock,Reggie"
+  },
+  {
+    "bballRefCode": "burketr01.html",
+    "fullName": "Trey Burke",
+    "nameWithComma": "Burke,Trey"
+  },
+  {
+    "bballRefCode": "burksal01.html",
+    "fullName": "Alec Burks",
+    "nameWithComma": "Burks,Alec"
+  },
+  {
+    "bballRefCode": "butleji01.html",
+    "fullName": "Jimmy Butler",
+    "nameWithComma": "Butler,Jimmy"
+  },
+  {
+    "bballRefCode": "cabocbr01.html",
+    "fullName": "Bruno Caboclo",
+    "nameWithComma": "Caboclo,Bruno"
+  },
+  {
+    "bballRefCode": "cacokde01.html",
+    "fullName": "Devontae Cacok",
+    "nameWithComma": "Cacok,Devontae"
+  },
+  {
+    "bballRefCode": "caldwke01.html",
+    "fullName": "Kentavious Caldwell-Pope",
+    "nameWithComma": "Caldwell-Pope,Kentavious"
+  },
+  {
+    "bballRefCode": "campafa01.html",
+    "fullName": "Facundo Campazzo",
+    "nameWithComma": "Campazzo,Facundo"
+  },
+  {
+    "bballRefCode": "cancavl01.html",
+    "fullName": "Vlatko \u010can\u010dar",
+    "nameWithComma": "\u010can\u010dar,Vlatko"
+  },
+  {
+    "bballRefCode": "capelca01.html",
+    "fullName": "Clint Capela",
+    "nameWithComma": "Capela,Clint"
+  },
+  {
+    "bballRefCode": "careyve01.html",
+    "fullName": "Vernon Carey Jr.",
+    "nameWithComma": "Carey,Vernon"
+  },
+  {
+    "bballRefCode": "carteje01.html",
+    "fullName": "Jevon Carter",
+    "nameWithComma": "Carter,Jevon"
+  },
+  {
+    "bballRefCode": "cartewe01.html",
+    "fullName": "Wendell Carter Jr.",
+    "nameWithComma": "Carter,Wendell"
+  },
+  {
+    "bballRefCode": "cartemi01.html",
+    "fullName": "Michael Carter-Williams",
+    "nameWithComma": "Carter-Williams,Michael"
+  },
+  {
+    "bballRefCode": "carusal01.html",
+    "fullName": "Alex Caruso",
+    "nameWithComma": "Caruso,Alex"
+  },
+  {
+    "bballRefCode": "caulewi01.html",
+    "fullName": "Willie Cauley-Stein",
+    "nameWithComma": "Cauley-Stein,Willie"
+  },
+  {
+    "bballRefCode": "chiozch01.html",
+    "fullName": "Chris Chiozza",
+    "nameWithComma": "Chiozza,Chris"
+  },
+  {
+    "bballRefCode": "chrisma01.html",
+    "fullName": "Marquese Chriss",
+    "nameWithComma": "Chriss,Marquese"
+  },
+  {
+    "bballRefCode": "clarkga01.html",
+    "fullName": "Gary Clark",
+    "nameWithComma": "Clark,Gary"
+  },
+  {
+    "bballRefCode": "clarkbr01.html",
+    "fullName": "Brandon Clarke",
+    "nameWithComma": "Clarke,Brandon"
+  },
+  {
+    "bballRefCode": "clarkjo01.html",
+    "fullName": "Jordan Clarkson",
+    "nameWithComma": "Clarkson,Jordan"
+  },
+  {
+    "bballRefCode": "coffeam01.html",
+    "fullName": "Amir Coffey",
+    "nameWithComma": "Coffey,Amir"
+  },
+  {
+    "bballRefCode": "collijo01.html",
+    "fullName": "John Collins",
+    "nameWithComma": "Collins,John"
+  },
+  {
+    "bballRefCode": "conlemi01.html",
+    "fullName": "Mike Conley",
+    "nameWithComma": "Conley,Mike"
+  },
+  {
+    "bballRefCode": "connapa01.html",
+    "fullName": "Pat Connaughton",
+    "nameWithComma": "Connaughton,Pat"
+  },
+  {
+    "bballRefCode": "cookqu01.html",
+    "fullName": "Quinn Cook",
+    "nameWithComma": "Cook,Quinn"
+  },
+  {
+    "bballRefCode": "couside01.html",
+    "fullName": "DeMarcus Cousins",
+    "nameWithComma": "Cousins,DeMarcus"
+  },
+  {
+    "bballRefCode": "covinro01.html",
+    "fullName": "Robert Covington",
+    "nameWithComma": "Covington,Robert"
+  },
+  {
+    "bballRefCode": "craigto01.html",
+    "fullName": "Torrey Craig",
+    "nameWithComma": "Craig,Torrey"
+  },
+  {
+    "bballRefCode": "crowdja01.html",
+    "fullName": "Jae Crowder",
+    "nameWithComma": "Crowder,Jae"
+  },
+  {
+    "bballRefCode": "culveja01.html",
+    "fullName": "Jarrett Culver",
+    "nameWithComma": "Culver,Jarrett"
+  },
+  {
+    "bballRefCode": "curryse01.html",
+    "fullName": "Seth Curry",
+    "nameWithComma": "Curry,Seth"
+  },
+  {
+    "bballRefCode": "curryst01.html",
+    "fullName": "Stephen Curry",
+    "nameWithComma": "Curry,Stephen"
+  },
+  {
+    "bballRefCode": "davisan02.html",
+    "fullName": "Anthony Davis",
+    "nameWithComma": "Davis,Anthony"
+  },
+  {
+    "bballRefCode": "davised01.html",
+    "fullName": "Ed Davis",
+    "nameWithComma": "Davis,Ed"
+  },
+  {
+    "bballRefCode": "daviste02.html",
+    "fullName": "Terence Davis",
+    "nameWithComma": "Davis,Terence"
+  },
+  {
+    "bballRefCode": "derozde01.html",
+    "fullName": "DeMar DeRozan",
+    "nameWithComma": "DeRozan,DeMar"
+  },
+  {
+    "bballRefCode": "diallha01.html",
+    "fullName": "Hamidou Diallo",
+    "nameWithComma": "Diallo,Hamidou"
+  },
+  {
+    "bballRefCode": "dienggo01.html",
+    "fullName": "Gorgui Dieng",
+    "nameWithComma": "Dieng,Gorgui"
+  },
+  {
+    "bballRefCode": "dinwisp01.html",
+    "fullName": "Spencer Dinwiddie",
+    "nameWithComma": "Dinwiddie,Spencer"
+  },
+  {
+    "bballRefCode": "divindo01.html",
+    "fullName": "Donte DiVincenzo",
+    "nameWithComma": "DiVincenzo,Donte"
+  },
+  {
+    "bballRefCode": "doncilu01.html",
+    "fullName": "Luka Don\u010di\u0107",
+    "nameWithComma": "Don\u010di\u0107,Luka"
+  },
+  {
+    "bballRefCode": "dortlu01.html",
+    "fullName": "Luguentz Dort",
+    "nameWithComma": "Dort,Luguentz"
+  },
+  {
+    "bballRefCode": "dotsoda01.html",
+    "fullName": "Damyean Dotson",
+    "nameWithComma": "Dotson,Damyean"
+  },
+  {
+    "bballRefCode": "dotsode01.html",
+    "fullName": "Devon Dotson",
+    "nameWithComma": "Dotson,Devon"
+  },
+  {
+    "bballRefCode": "doumbse01.html",
+    "fullName": "Sekou Doumbouya",
+    "nameWithComma": "Doumbouya,Sekou"
+  },
+  {
+    "bballRefCode": "doziepj01.html",
+    "fullName": "PJ Dozier",
+    "nameWithComma": "Dozier,PJ"
+  },
+  {
+    "bballRefCode": "dragigo01.html",
+    "fullName": "Goran Dragi\u0107",
+    "nameWithComma": "Dragi\u0107,Goran"
+  },
+  {
+    "bballRefCode": "drumman01.html",
+    "fullName": "Andre Drummond",
+    "nameWithComma": "Drummond,Andre"
+  },
+  {
+    "bballRefCode": "dudleja01.html",
+    "fullName": "Jared Dudley",
+    "nameWithComma": "Dudley,Jared"
+  },
+  {
+    "bballRefCode": "duranke01.html",
+    "fullName": "Kevin Durant",
+    "nameWithComma": "Durant,Kevin"
+  },
+  {
+    "bballRefCode": "edwaran01.html",
+    "fullName": "Anthony Edwards",
+    "nameWithComma": "Edwards,Anthony"
+  },
+  {
+    "bballRefCode": "edwarca01.html",
+    "fullName": "Carsen Edwards",
+    "nameWithComma": "Edwards,Carsen"
+  },
+  {
+    "bballRefCode": "ellebcj01.html",
+    "fullName": "CJ Elleby",
+    "nameWithComma": "Elleby,CJ"
+  },
+  {
+    "bballRefCode": "ellinwa01.html",
+    "fullName": "Wayne Ellington",
+    "nameWithComma": "Ellington,Wayne"
+  },
+  {
+    "bballRefCode": "embiijo01.html",
+    "fullName": "Joel Embiid",
+    "nameWithComma": "Embiid,Joel"
+  },
+  {
+    "bballRefCode": "ennisja01.html",
+    "fullName": "James Ennis",
+    "nameWithComma": "Ennis,James"
+  },
+  {
+    "bballRefCode": "eubandr01.html",
+    "fullName": "Drew Eubanks",
+    "nameWithComma": "Eubanks,Drew"
+  },
+  {
+    "bballRefCode": "exumda01.html",
+    "fullName": "Dante Exum",
+    "nameWithComma": "Exum,Dante"
+  },
+  {
+    "bballRefCode": "fallta01.html",
+    "fullName": "Tacko Fall",
+    "nameWithComma": "Fall,Tacko"
+  },
+  {
+    "bballRefCode": "favorde01.html",
+    "fullName": "Derrick Favors",
+    "nameWithComma": "Favors,Derrick"
+  },
+  {
+    "bballRefCode": "feliccr01.html",
+    "fullName": "Cristiano Fel\u00edcio",
+    "nameWithComma": "Fel\u00edcio,Cristiano"
+  },
+  {
+    "bballRefCode": "fergute01.html",
+    "fullName": "Terrance Ferguson",
+    "nameWithComma": "Ferguson,Terrance"
+  },
+  {
+    "bballRefCode": "fernabr01.html",
+    "fullName": "Bruno Fernando",
+    "nameWithComma": "Fernando,Bruno"
+  },
+  {
+    "bballRefCode": "ferreyo01.html",
+    "fullName": "Yogi Ferrell",
+    "nameWithComma": "Ferrell,Yogi"
+  },
+  {
+    "bballRefCode": "finnedo01.html",
+    "fullName": "Dorian Finney-Smith",
+    "nameWithComma": "Finney-Smith,Dorian"
+  },
+  {
+    "bballRefCode": "flynnma01.html",
+    "fullName": "Malachi Flynn",
+    "nameWithComma": "Flynn,Malachi"
+  },
+  {
+    "bballRefCode": "forbebr01.html",
+    "fullName": "Bryn Forbes",
+    "nameWithComma": "Forbes,Bryn"
+  },
+  {
+    "bballRefCode": "forretr01.html",
+    "fullName": "Trent Forrest",
+    "nameWithComma": "Forrest,Trent"
+  },
+  {
+    "bballRefCode": "fournev01.html",
+    "fullName": "Evan Fournier",
+    "nameWithComma": "Fournier,Evan"
+  },
+  {
+    "bballRefCode": "foxde01.html",
+    "fullName": "De'Aaron Fox",
+    "nameWithComma": "Fox,De'Aaron"
+  },
+  {
+    "bballRefCode": "fraziti01.html",
+    "fullName": "Tim Frazier",
+    "nameWithComma": "Frazier,Tim"
+  },
+  {
+    "bballRefCode": "fultzma01.html",
+    "fullName": "Markelle Fultz",
+    "nameWithComma": "Fultz,Markelle"
+  },
+  {
+    "bballRefCode": "gabriwe01.html",
+    "fullName": "Wenyen Gabriel",
+    "nameWithComma": "Gabriel,Wenyen"
+  },
+  {
+    "bballRefCode": "gaffoda01.html",
+    "fullName": "Daniel Gafford",
+    "nameWithComma": "Gafford,Daniel"
+  },
+  {
+    "bballRefCode": "gallida01.html",
+    "fullName": "Danilo Gallinari",
+    "nameWithComma": "Gallinari,Danilo"
+  },
+  {
+    "bballRefCode": "gallola01.html",
+    "fullName": "Langston Galloway",
+    "nameWithComma": "Galloway,Langston"
+  },
+  {
+    "bballRefCode": "garlada01.html",
+    "fullName": "Darius Garland",
+    "nameWithComma": "Garland,Darius"
+  },
+  {
+    "bballRefCode": "gasolma01.html",
+    "fullName": "Marc Gasol",
+    "nameWithComma": "Gasol,Marc"
+  },
+  {
+    "bballRefCode": "gayru01.html",
+    "fullName": "Rudy Gay",
+    "nameWithComma": "Gay,Rudy"
+  },
+  {
+    "bballRefCode": "georgpa01.html",
+    "fullName": "Paul George",
+    "nameWithComma": "George,Paul"
+  },
+  {
+    "bballRefCode": "gibsota01.html",
+    "fullName": "Taj Gibson",
+    "nameWithComma": "Gibson,Taj"
+  },
+  {
+    "bballRefCode": "gilesha01.html",
+    "fullName": "Harry Giles",
+    "nameWithComma": "Giles,Harry"
+  },
+  {
+    "bballRefCode": "gilgesh01.html",
+    "fullName": "Shai Gilgeous-Alexander",
+    "nameWithComma": "Gilgeous-Alexander,Shai"
+  },
+  {
+    "bballRefCode": "gillan01.html",
+    "fullName": "Anthony Gill",
+    "nameWithComma": "Gill,Anthony"
+  },
+  {
+    "bballRefCode": "goberru01.html",
+    "fullName": "Rudy Gobert",
+    "nameWithComma": "Gobert,Rudy"
+  },
+  {
+    "bballRefCode": "goodwbr01.html",
+    "fullName": "Brandon Goodwin",
+    "nameWithComma": "Goodwin,Brandon"
+  },
+  {
+    "bballRefCode": "gordoaa01.html",
+    "fullName": "Aaron Gordon",
+    "nameWithComma": "Gordon,Aaron"
+  },
+  {
+    "bballRefCode": "gordoer01.html",
+    "fullName": "Eric Gordon",
+    "nameWithComma": "Gordon,Eric"
+  },
+  {
+    "bballRefCode": "grahade01.html",
+    "fullName": "Devonte' Graham",
+    "nameWithComma": "Graham,Devonte'"
+  },
+  {
+    "bballRefCode": "grantje01.html",
+    "fullName": "Jerami Grant",
+    "nameWithComma": "Grant,Jerami"
+  },
+  {
+    "bballRefCode": "greenda02.html",
+    "fullName": "Danny Green",
+    "nameWithComma": "Green,Danny"
+  },
+  {
+    "bballRefCode": "greendr01.html",
+    "fullName": "Draymond Green",
+    "nameWithComma": "Green,Draymond"
+  },
+  {
+    "bballRefCode": "greenja01.html",
+    "fullName": "JaMychal Green",
+    "nameWithComma": "Green,JaMychal"
+  },
+  {
+    "bballRefCode": "greenja02.html",
+    "fullName": "Javonte Green",
+    "nameWithComma": "Green,Javonte"
+  },
+  {
+    "bballRefCode": "greenje02.html",
+    "fullName": "Jeff Green",
+    "nameWithComma": "Green,Jeff"
+  },
+  {
+    "bballRefCode": "greenjo02.html",
+    "fullName": "Josh Green",
+    "nameWithComma": "Green,Josh"
+  },
+  {
+    "bballRefCode": "griffbl01.html",
+    "fullName": "Blake Griffin",
+    "nameWithComma": "Griffin,Blake"
+  },
+  {
+    "bballRefCode": "guyky01.html",
+    "fullName": "Kyle Guy",
+    "nameWithComma": "Guy,Kyle"
+  },
+  {
+    "bballRefCode": "hachiru01.html",
+    "fullName": "Rui Hachimura",
+    "nameWithComma": "Hachimura,Rui"
+  },
+  {
+    "bballRefCode": "haganas01.html",
+    "fullName": "Ashton Hagans",
+    "nameWithComma": "Hagans,Ashton"
+  },
+  {
+    "bballRefCode": "halibty01.html",
+    "fullName": "Tyrese Haliburton",
+    "nameWithComma": "Haliburton,Tyrese"
+  },
+  {
+    "bballRefCode": "halljo01.html",
+    "fullName": "Josh Hall",
+    "nameWithComma": "Hall,Josh"
+  },
+  {
+    "bballRefCode": "hamptrj01.html",
+    "fullName": "R.J. Hampton",
+    "nameWithComma": "Hampton,R.J."
+  },
+  {
+    "bballRefCode": "hardati02.html",
+    "fullName": "Tim Hardaway Jr.",
+    "nameWithComma": "Hardaway,Tim"
+  },
+  {
+    "bballRefCode": "hardeja01.html",
+    "fullName": "James Harden",
+    "nameWithComma": "Harden,James"
+  },
+  {
+    "bballRefCode": "harklma01.html",
+    "fullName": "Maurice Harkless",
+    "nameWithComma": "Harkless,Maurice"
+  },
+  {
+    "bballRefCode": "harpeja01.html",
+    "fullName": "Jared Harper",
+    "nameWithComma": "Harper,Jared"
+  },
+  {
+    "bballRefCode": "harremo01.html",
+    "fullName": "Montrezl Harrell",
+    "nameWithComma": "Harrell,Montrezl"
+  },
+  {
+    "bballRefCode": "harriga01.html",
+    "fullName": "Gary Harris",
+    "nameWithComma": "Harris,Gary"
+  },
+  {
+    "bballRefCode": "harrija01.html",
+    "fullName": "Jalen Harris",
+    "nameWithComma": "Harris,Jalen"
+  },
+  {
+    "bballRefCode": "harrijo01.html",
+    "fullName": "Joe Harris",
+    "nameWithComma": "Harris,Joe"
+  },
+  {
+    "bballRefCode": "harrito02.html",
+    "fullName": "Tobias Harris",
+    "nameWithComma": "Harris,Tobias"
+  },
+  {
+    "bballRefCode": "harrish01.html",
+    "fullName": "Shaquille Harrison",
+    "nameWithComma": "Harrison,Shaquille"
+  },
+  {
+    "bballRefCode": "hartjo01.html",
+    "fullName": "Josh Hart",
+    "nameWithComma": "Hart,Josh"
+  },
+  {
+    "bballRefCode": "harteis01.html",
+    "fullName": "Isaiah Hartenstein",
+    "nameWithComma": "Hartenstein,Isaiah"
+  },
+  {
+    "bballRefCode": "hayesja02.html",
+    "fullName": "Jaxson Hayes",
+    "nameWithComma": "Hayes,Jaxson"
+  },
+  {
+    "bballRefCode": "hayeski01.html",
+    "fullName": "Killian Hayes",
+    "nameWithComma": "Hayes,Killian"
+  },
+  {
+    "bballRefCode": "haywago01.html",
+    "fullName": "Gordon Hayward",
+    "nameWithComma": "Hayward,Gordon"
+  },
+  {
+    "bballRefCode": "hernaju01.html",
+    "fullName": "Juan Hernang\u00f3mez",
+    "nameWithComma": "Hernang\u00f3mez,Juan"
+  },
+  {
+    "bballRefCode": "hernawi01.html",
+    "fullName": "Willy Hernang\u00f3mez",
+    "nameWithComma": "Hernang\u00f3mez,Willy"
+  },
+  {
+    "bballRefCode": "herroty01.html",
+    "fullName": "Tyler Herro",
+    "nameWithComma": "Herro,Tyler"
+  },
+  {
+    "bballRefCode": "hieldbu01.html",
+    "fullName": "Buddy Hield",
+    "nameWithComma": "Hield,Buddy"
+  },
+  {
+    "bballRefCode": "hillge01.html",
+    "fullName": "George Hill",
+    "nameWithComma": "Hill,George"
+  },
+  {
+    "bballRefCode": "hillso01.html",
+    "fullName": "Solomon Hill",
+    "nameWithComma": "Hill,Solomon"
+  },
+  {
+    "bballRefCode": "hintona01.html",
+    "fullName": "Nate Hinton",
+    "nameWithComma": "Hinton,Nate"
+  },
+  {
+    "bballRefCode": "holidaa01.html",
+    "fullName": "Aaron Holiday",
+    "nameWithComma": "Holiday,Aaron"
+  },
+  {
+    "bballRefCode": "holidjr01.html",
+    "fullName": "Jrue Holiday",
+    "nameWithComma": "Holiday,Jrue"
+  },
+  {
+    "bballRefCode": "holidju01.html",
+    "fullName": "Justin Holiday",
+    "nameWithComma": "Holiday,Justin"
+  },
+  {
+    "bballRefCode": "holmeri01.html",
+    "fullName": "Richaun Holmes",
+    "nameWithComma": "Holmes,Richaun"
+  },
+  {
+    "bballRefCode": "hoodro01.html",
+    "fullName": "Rodney Hood",
+    "nameWithComma": "Hood,Rodney"
+  },
+  {
+    "bballRefCode": "horfoal01.html",
+    "fullName": "Al Horford",
+    "nameWithComma": "Horford,Al"
+  },
+  {
+    "bballRefCode": "hortota01.html",
+    "fullName": "Talen Horton-Tucker",
+    "nameWithComma": "Horton-Tucker,Talen"
+  },
+  {
+    "bballRefCode": "houseda01.html",
+    "fullName": "Danuel House",
+    "nameWithComma": "House,Danuel"
+  },
+  {
+    "bballRefCode": "howardw01.html",
+    "fullName": "Dwight Howard",
+    "nameWithComma": "Howard,Dwight"
+  },
+  {
+    "bballRefCode": "howarma02.html",
+    "fullName": "Markus Howard",
+    "nameWithComma": "Howard,Markus"
+  },
+  {
+    "bballRefCode": "huertke01.html",
+    "fullName": "Kevin Huerter",
+    "nameWithComma": "Huerter,Kevin"
+  },
+  {
+    "bballRefCode": "hugheel01.html",
+    "fullName": "Elijah Hughes",
+    "nameWithComma": "Hughes,Elijah"
+  },
+  {
+    "bballRefCode": "huntede01.html",
+    "fullName": "De'Andre Hunter",
+    "nameWithComma": "Hunter,De'Andre"
+  },
+  {
+    "bballRefCode": "hutchch01.html",
+    "fullName": "Chandler Hutchison",
+    "nameWithComma": "Hutchison,Chandler"
+  },
+  {
+    "bballRefCode": "ibakase01.html",
+    "fullName": "Serge Ibaka",
+    "nameWithComma": "Ibaka,Serge"
+  },
+  {
+    "bballRefCode": "iguodan01.html",
+    "fullName": "Andre Iguodala",
+    "nameWithComma": "Iguodala,Andre"
+  },
+  {
+    "bballRefCode": "inglejo01.html",
+    "fullName": "Joe Ingles",
+    "nameWithComma": "Ingles,Joe"
+  },
+  {
+    "bballRefCode": "ingrabr01.html",
+    "fullName": "Brandon Ingram",
+    "nameWithComma": "Ingram,Brandon"
+  },
+  {
+    "bballRefCode": "irvinky01.html",
+    "fullName": "Kyrie Irving",
+    "nameWithComma": "Irving,Kyrie"
+  },
+  {
+    "bballRefCode": "iwundwe01.html",
+    "fullName": "Wesley Iwundu",
+    "nameWithComma": "Iwundu,Wesley"
+  },
+  {
+    "bballRefCode": "jacksfr01.html",
+    "fullName": "Frank Jackson",
+    "nameWithComma": "Jackson,Frank"
+  },
+  {
+    "bballRefCode": "jacksjo02.html",
+    "fullName": "Josh Jackson",
+    "nameWithComma": "Jackson,Josh"
+  },
+  {
+    "bballRefCode": "jacksju01.html",
+    "fullName": "Justin Jackson",
+    "nameWithComma": "Jackson,Justin"
+  },
+  {
+    "bballRefCode": "jacksre01.html",
+    "fullName": "Reggie Jackson",
+    "nameWithComma": "Jackson,Reggie"
+  },
+  {
+    "bballRefCode": "jamesju01.html",
+    "fullName": "Justin James",
+    "nameWithComma": "James,Justin"
+  },
+  {
+    "bballRefCode": "jamesle01.html",
+    "fullName": "LeBron James",
+    "nameWithComma": "James,LeBron"
+  },
+  {
+    "bballRefCode": "jeffrda01.html",
+    "fullName": "DaQuan Jeffries",
+    "nameWithComma": "Jeffries,DaQuan"
+  },
+  {
+    "bballRefCode": "joeis01.html",
+    "fullName": "Isaiah Joe",
+    "nameWithComma": "Joe,Isaiah"
+  },
+  {
+    "bballRefCode": "johnsca02.html",
+    "fullName": "Cameron Johnson",
+    "nameWithComma": "Johnson,Cameron"
+  },
+  {
+    "bballRefCode": "johnsja01.html",
+    "fullName": "James Johnson",
+    "nameWithComma": "Johnson,James"
+  },
+  {
+    "bballRefCode": "johnske04.html",
+    "fullName": "Keldon Johnson",
+    "nameWithComma": "Johnson,Keldon"
+  },
+  {
+    "bballRefCode": "johnsst04.html",
+    "fullName": "Stanley Johnson",
+    "nameWithComma": "Johnson,Stanley"
+  },
+  {
+    "bballRefCode": "johnsty01.html",
+    "fullName": "Tyler Johnson",
+    "nameWithComma": "Johnson,Tyler"
+  },
+  {
+    "bballRefCode": "jokicni01.html",
+    "fullName": "Nikola Joki\u0107",
+    "nameWithComma": "Joki\u0107,Nikola"
+  },
+  {
+    "bballRefCode": "jonesda03.html",
+    "fullName": "Damian Jones",
+    "nameWithComma": "Jones,Damian"
+  },
+  {
+    "bballRefCode": "jonesde02.html",
+    "fullName": "Derrick Jones Jr.",
+    "nameWithComma": "Jones,Derrick"
+  },
+  {
+    "bballRefCode": "jonesma05.html",
+    "fullName": "Mason Jones",
+    "nameWithComma": "Jones,Mason"
+  },
+  {
+    "bballRefCode": "jonestr01.html",
+    "fullName": "Tre Jones",
+    "nameWithComma": "Jones,Tre"
+  },
+  {
+    "bballRefCode": "jonesty01.html",
+    "fullName": "Tyus Jones",
+    "nameWithComma": "Jones,Tyus"
+  },
+  {
+    "bballRefCode": "jordade01.html",
+    "fullName": "DeAndre Jordan",
+    "nameWithComma": "Jordan,DeAndre"
+  },
+  {
+    "bballRefCode": "josepco01.html",
+    "fullName": "Cory Joseph",
+    "nameWithComma": "Joseph,Cory"
+  },
+  {
+    "bballRefCode": "kabenmf01.html",
+    "fullName": "Mfiondu Kabengele",
+    "nameWithComma": "Kabengele,Mfiondu"
+  },
+  {
+    "bballRefCode": "kaminfr01.html",
+    "fullName": "Frank Kaminsky",
+    "nameWithComma": "Kaminsky,Frank"
+  },
+  {
+    "bballRefCode": "kanteen01.html",
+    "fullName": "Enes Kanter",
+    "nameWithComma": "Kanter,Enes"
+  },
+  {
+    "bballRefCode": "kennalu01.html",
+    "fullName": "Luke Kennard",
+    "nameWithComma": "Kennard,Luke"
+  },
+  {
+    "bballRefCode": "klebima01.html",
+    "fullName": "Maxi Kleber",
+    "nameWithComma": "Kleber,Maxi"
+  },
+  {
+    "bballRefCode": "knighna01.html",
+    "fullName": "Nathan Knight",
+    "nameWithComma": "Knight,Nathan"
+  },
+  {
+    "bballRefCode": "knoxke01.html",
+    "fullName": "Kevin Knox",
+    "nameWithComma": "Knox,Kevin"
+  },
+  {
+    "bballRefCode": "konchjo01.html",
+    "fullName": "John Konchar",
+    "nameWithComma": "Konchar,John"
+  },
+  {
+    "bballRefCode": "korkmfu01.html",
+    "fullName": "Furkan Korkmaz",
+    "nameWithComma": "Korkmaz,Furkan"
+  },
+  {
+    "bballRefCode": "kornelu01.html",
+    "fullName": "Luke Kornet",
+    "nameWithComma": "Kornet,Luke"
+  },
+  {
+    "bballRefCode": "kurucro01.html",
+    "fullName": "Rodions Kurucs",
+    "nameWithComma": "Kurucs,Rodions"
+  },
+  {
+    "bballRefCode": "kuzmaky01.html",
+    "fullName": "Kyle Kuzma",
+    "nameWithComma": "Kuzma,Kyle"
+  },
+  {
+    "bballRefCode": "lambje01.html",
+    "fullName": "Jeremy Lamb",
+    "nameWithComma": "Lamb,Jeremy"
+  },
+  {
+    "bballRefCode": "lavinza01.html",
+    "fullName": "Zach LaVine",
+    "nameWithComma": "LaVine,Zach"
+  },
+  {
+    "bballRefCode": "laymaja01.html",
+    "fullName": "Jake Layman",
+    "nameWithComma": "Layman,Jake"
+  },
+  {
+    "bballRefCode": "lecquja01.html",
+    "fullName": "Jalen Lecque",
+    "nameWithComma": "Lecque,Jalen"
+  },
+  {
+    "bballRefCode": "leeda03.html",
+    "fullName": "Damion Lee",
+    "nameWithComma": "Lee,Damion"
+  },
+  {
+    "bballRefCode": "leesa01.html",
+    "fullName": "Saben Lee",
+    "nameWithComma": "Lee,Saben"
+  },
+  {
+    "bballRefCode": "lenal01.html",
+    "fullName": "Alex Len",
+    "nameWithComma": "Len,Alex"
+  },
+  {
+    "bballRefCode": "leonaka01.html",
+    "fullName": "Kawhi Leonard",
+    "nameWithComma": "Leonard,Kawhi"
+  },
+  {
+    "bballRefCode": "leoname01.html",
+    "fullName": "Meyers Leonard",
+    "nameWithComma": "Leonard,Meyers"
+  },
+  {
+    "bballRefCode": "leverca01.html",
+    "fullName": "Caris LeVert",
+    "nameWithComma": "LeVert,Caris"
+  },
+  {
+    "bballRefCode": "lewiski01.html",
+    "fullName": "Kira Lewis Jr.",
+    "nameWithComma": "Lewis,Kira"
+  },
+  {
+    "bballRefCode": "lillada01.html",
+    "fullName": "Damian Lillard",
+    "nameWithComma": "Lillard,Damian"
+  },
+  {
+    "bballRefCode": "littlna01.html",
+    "fullName": "Nassir Little",
+    "nameWithComma": "Little,Nassir"
+  },
+  {
+    "bballRefCode": "looneke01.html",
+    "fullName": "Kevon Looney",
+    "nameWithComma": "Looney,Kevon"
+  },
+  {
+    "bballRefCode": "lopezbr01.html",
+    "fullName": "Brook Lopez",
+    "nameWithComma": "Lopez,Brook"
+  },
+  {
+    "bballRefCode": "lopezro01.html",
+    "fullName": "Robin Lopez",
+    "nameWithComma": "Lopez,Robin"
+  },
+  {
+    "bballRefCode": "loveke01.html",
+    "fullName": "Kevin Love",
+    "nameWithComma": "Love,Kevin"
+  },
+  {
+    "bballRefCode": "lowryky01.html",
+    "fullName": "Kyle Lowry",
+    "nameWithComma": "Lowry,Kyle"
+  },
+  {
+    "bballRefCode": "luwawti01.html",
+    "fullName": "Timoth\u00e9 Luwawu-Cabarrot",
+    "nameWithComma": "Luwawu-Cabarrot,Timoth\u00e9"
+  },
+  {
+    "bballRefCode": "lylestr01.html",
+    "fullName": "Trey Lyles",
+    "nameWithComma": "Lyles,Trey"
+  },
+  {
+    "bballRefCode": "makerth01.html",
+    "fullName": "Thon Maker",
+    "nameWithComma": "Maker,Thon"
+  },
+  {
+    "bballRefCode": "maledth01.html",
+    "fullName": "Th\u00e9o Maledon",
+    "nameWithComma": "Maledon,Th\u00e9o"
+  },
+  {
+    "bballRefCode": "maneka01.html",
+    "fullName": "Karim Man\u00e9",
+    "nameWithComma": "Man\u00e9,Karim"
+  },
+  {
+    "bballRefCode": "mannte01.html",
+    "fullName": "Terance Mann",
+    "nameWithComma": "Mann,Terance"
+  },
+  {
+    "bballRefCode": "mannini01.html",
+    "fullName": "Nico Mannion",
+    "nameWithComma": "Mannion,Nico"
+  },
+  {
+    "bballRefCode": "marjabo01.html",
+    "fullName": "Boban Marjanovi\u0107",
+    "nameWithComma": "Marjanovi\u0107,Boban"
+  },
+  {
+    "bballRefCode": "markkla01.html",
+    "fullName": "Lauri Markkanen",
+    "nameWithComma": "Markkanen,Lauri"
+  },
+  {
+    "bballRefCode": "marshna01.html",
+    "fullName": "Naji Marshall",
+    "nameWithComma": "Marshall,Naji"
+  },
+  {
+    "bballRefCode": "martica02.html",
+    "fullName": "Caleb Martin",
+    "nameWithComma": "Martin,Caleb"
+  },
+  {
+    "bballRefCode": "martico01.html",
+    "fullName": "Cody Martin",
+    "nameWithComma": "Martin,Cody"
+  },
+  {
+    "bballRefCode": "martike03.html",
+    "fullName": "Kelan Martin",
+    "nameWithComma": "Martin,Kelan"
+  },
+  {
+    "bballRefCode": "martike04.html",
+    "fullName": "Kenyon Martin Jr.",
+    "nameWithComma": "Martin,Kenyon"
+  },
+  {
+    "bballRefCode": "masonfr01.html",
+    "fullName": "Frank Mason III",
+    "nameWithComma": "Mason,Frank"
+  },
+  {
+    "bballRefCode": "mathega01.html",
+    "fullName": "Garrison Mathews",
+    "nameWithComma": "Mathews,Garrison"
+  },
+  {
+    "bballRefCode": "mathida01.html",
+    "fullName": "Dakota Mathias",
+    "nameWithComma": "Mathias,Dakota"
+  },
+  {
+    "bballRefCode": "matthwe02.html",
+    "fullName": "Wesley Matthews",
+    "nameWithComma": "Matthews,Wesley"
+  },
+  {
+    "bballRefCode": "maxeyty01.html",
+    "fullName": "Tyrese Maxey",
+    "nameWithComma": "Maxey,Tyrese"
+  },
+  {
+    "bballRefCode": "mayssk01.html",
+    "fullName": "Skylar Mays",
+    "nameWithComma": "Mays,Skylar"
+  },
+  {
+    "bballRefCode": "mccawpa01.html",
+    "fullName": "Patrick McCaw",
+    "nameWithComma": "McCaw,Patrick"
+  },
+  {
+    "bballRefCode": "mccolcj01.html",
+    "fullName": "CJ McCollum",
+    "nameWithComma": "McCollum,CJ"
+  },
+  {
+    "bballRefCode": "mccontj01.html",
+    "fullName": "T.J. McConnell",
+    "nameWithComma": "McConnell,T.J."
+  },
+  {
+    "bballRefCode": "mcdanja02.html",
+    "fullName": "Jaden McDaniels",
+    "nameWithComma": "McDaniels,Jaden"
+  },
+  {
+    "bballRefCode": "mcdanja01.html",
+    "fullName": "Jalen McDaniels",
+    "nameWithComma": "McDaniels,Jalen"
+  },
+  {
+    "bballRefCode": "mcderdo01.html",
+    "fullName": "Doug McDermott",
+    "nameWithComma": "McDermott,Doug"
+  },
+  {
+    "bballRefCode": "mcderse01.html",
+    "fullName": "Sean McDermott",
+    "nameWithComma": "McDermott,Sean"
+  },
+  {
+    "bballRefCode": "mcgeeja01.html",
+    "fullName": "JaVale McGee",
+    "nameWithComma": "McGee,JaVale"
+  },
+  {
+    "bballRefCode": "mcgruro01.html",
+    "fullName": "Rodney McGruder",
+    "nameWithComma": "McGruder,Rodney"
+  },
+  {
+    "bballRefCode": "mckinal01.html",
+    "fullName": "Alfonzo McKinnie",
+    "nameWithComma": "McKinnie,Alfonzo"
+  },
+  {
+    "bballRefCode": "mclaujo01.html",
+    "fullName": "Jordan McLaughlin",
+    "nameWithComma": "McLaughlin,Jordan"
+  },
+  {
+    "bballRefCode": "mclembe01.html",
+    "fullName": "Ben McLemore",
+    "nameWithComma": "McLemore,Ben"
+  },
+  {
+    "bballRefCode": "mellini01.html",
+    "fullName": "Nicol\u00f2 Melli",
+    "nameWithComma": "Melli,Nicol\u00f2"
+  },
+  {
+    "bballRefCode": "meltode01.html",
+    "fullName": "De'Anthony Melton",
+    "nameWithComma": "Melton,De'Anthony"
+  },
+  {
+    "bballRefCode": "merrisa01.html",
+    "fullName": "Sam Merrill",
+    "nameWithComma": "Merrill,Sam"
+  },
+  {
+    "bballRefCode": "metuch01.html",
+    "fullName": "Chimezie Metu",
+    "nameWithComma": "Metu,Chimezie"
+  },
+  {
+    "bballRefCode": "middlkh01.html",
+    "fullName": "Khris Middleton",
+    "nameWithComma": "Middleton,Khris"
+  },
+  {
+    "bballRefCode": "milleda01.html",
+    "fullName": "Darius Miller",
+    "nameWithComma": "Miller,Darius"
+  },
+  {
+    "bballRefCode": "millspa02.html",
+    "fullName": "Patty Mills",
+    "nameWithComma": "Mills,Patty"
+  },
+  {
+    "bballRefCode": "millspa01.html",
+    "fullName": "Paul Millsap",
+    "nameWithComma": "Millsap,Paul"
+  },
+  {
+    "bballRefCode": "miltosh01.html",
+    "fullName": "Shake Milton",
+    "nameWithComma": "Milton,Shake"
+  },
+  {
+    "bballRefCode": "mitchdo01.html",
+    "fullName": "Donovan Mitchell",
+    "nameWithComma": "Mitchell,Donovan"
+  },
+  {
+    "bballRefCode": "mokokad01.html",
+    "fullName": "Adam Mokoka",
+    "nameWithComma": "Mokoka,Adam"
+  },
+  {
+    "bballRefCode": "monkma01.html",
+    "fullName": "Malik Monk",
+    "nameWithComma": "Monk,Malik"
+  },
+  {
+    "bballRefCode": "mooreet01.html",
+    "fullName": "E'Twaun Moore",
+    "nameWithComma": "Moore,E'Twaun"
+  },
+  {
+    "bballRefCode": "moranja01.html",
+    "fullName": "Ja Morant",
+    "nameWithComma": "Morant,Ja"
+  },
+  {
+    "bballRefCode": "morgaju01.html",
+    "fullName": "Juwan Morgan",
+    "nameWithComma": "Morgan,Juwan"
+  },
+  {
+    "bballRefCode": "morrima03.html",
+    "fullName": "Marcus Morris",
+    "nameWithComma": "Morris,Marcus"
+  },
+  {
+    "bballRefCode": "morrima02.html",
+    "fullName": "Markieff Morris",
+    "nameWithComma": "Morris,Markieff"
+  },
+  {
+    "bballRefCode": "morrimo01.html",
+    "fullName": "Monte Morris",
+    "nameWithComma": "Morris,Monte"
+  },
+  {
+    "bballRefCode": "muldemy01.html",
+    "fullName": "Mychal Mulder",
+    "nameWithComma": "Mulder,Mychal"
+  },
+  {
+    "bballRefCode": "murrade01.html",
+    "fullName": "Dejounte Murray",
+    "nameWithComma": "Murray,Dejounte"
+  },
+  {
+    "bballRefCode": "murraja01.html",
+    "fullName": "Jamal Murray",
+    "nameWithComma": "Murray,Jamal"
+  },
+  {
+    "bballRefCode": "muscami01.html",
+    "fullName": "Mike Muscala",
+    "nameWithComma": "Muscala,Mike"
+  },
+  {
+    "bballRefCode": "mykhasv01.html",
+    "fullName": "Sviatoslav Mykhailiuk",
+    "nameWithComma": "Mykhailiuk,Sviatoslav"
+  },
+  {
+    "bballRefCode": "naderab01.html",
+    "fullName": "Abdel Nader",
+    "nameWithComma": "Nader,Abdel"
+  },
+  {
+    "bballRefCode": "nancela02.html",
+    "fullName": "Larry Nance Jr.",
+    "nameWithComma": "Nance,Larry"
+  },
+  {
+    "bballRefCode": "nesmiaa01.html",
+    "fullName": "Aaron Nesmith",
+    "nameWithComma": "Nesmith,Aaron"
+  },
+  {
+    "bballRefCode": "netora01.html",
+    "fullName": "Raul Neto",
+    "nameWithComma": "Neto,Raul"
+  },
+  {
+    "bballRefCode": "niangge01.html",
+    "fullName": "Georges Niang",
+    "nameWithComma": "Niang,Georges"
+  },
+  {
+    "bballRefCode": "nnajize01.html",
+    "fullName": "Zeke Nnaji",
+    "nameWithComma": "Nnaji,Zeke"
+  },
+  {
+    "bballRefCode": "noelne01.html",
+    "fullName": "Nerlens Noel",
+    "nameWithComma": "Noel,Nerlens"
+  },
+  {
+    "bballRefCode": "nowelja01.html",
+    "fullName": "Jaylen Nowell",
+    "nameWithComma": "Nowell,Jaylen"
+  },
+  {
+    "bballRefCode": "ntilila01.html",
+    "fullName": "Frank Ntilikina",
+    "nameWithComma": "Ntilikina,Frank"
+  },
+  {
+    "bballRefCode": "nunnke01.html",
+    "fullName": "Kendrick Nunn",
+    "nameWithComma": "Nunn,Kendrick"
+  },
+  {
+    "bballRefCode": "nurkiju01.html",
+    "fullName": "Jusuf Nurki\u0107",
+    "nameWithComma": "Nurki\u0107,Jusuf"
+  },
+  {
+    "bballRefCode": "nwabada01.html",
+    "fullName": "David Nwaba",
+    "nameWithComma": "Nwaba,David"
+  },
+  {
+    "bballRefCode": "nworajo01.html",
+    "fullName": "Jordan Nwora",
+    "nameWithComma": "Nwora,Jordan"
+  },
+  {
+    "bballRefCode": "onealro01.html",
+    "fullName": "Royce O'Neale",
+    "nameWithComma": "O'Neale,Royce"
+  },
+  {
+    "bballRefCode": "ojelese01.html",
+    "fullName": "Semi Ojeleye",
+    "nameWithComma": "Ojeleye,Semi"
+  },
+  {
+    "bballRefCode": "okafoja01.html",
+    "fullName": "Jahlil Okafor",
+    "nameWithComma": "Okafor,Jahlil"
+  },
+  {
+    "bballRefCode": "okekech01.html",
+    "fullName": "Chuma Okeke",
+    "nameWithComma": "Okeke,Chuma"
+  },
+  {
+    "bballRefCode": "okogijo01.html",
+    "fullName": "Josh Okogie",
+    "nameWithComma": "Okogie,Josh"
+  },
+  {
+    "bballRefCode": "okongon01.html",
+    "fullName": "Onyeka Okongwu",
+    "nameWithComma": "Okongwu,Onyeka"
+  },
+  {
+    "bballRefCode": "okorois01.html",
+    "fullName": "Isaac Okoro",
+    "nameWithComma": "Okoro,Isaac"
+  },
+  {
+    "bballRefCode": "okpalkz01.html",
+    "fullName": "KZ Okpala",
+    "nameWithComma": "Okpala,KZ"
+  },
+  {
+    "bballRefCode": "oladivi01.html",
+    "fullName": "Victor Oladipo",
+    "nameWithComma": "Oladipo,Victor"
+  },
+  {
+    "bballRefCode": "olynyke01.html",
+    "fullName": "Kelly Olynyk",
+    "nameWithComma": "Olynyk,Kelly"
+  },
+  {
+    "bballRefCode": "onimi01.html",
+    "fullName": "Miye Oni",
+    "nameWithComma": "Oni,Miye"
+  },
+  {
+    "bballRefCode": "osmande01.html",
+    "fullName": "Cedi Osman",
+    "nameWithComma": "Osman,Cedi"
+  },
+  {
+    "bballRefCode": "oturuda01.html",
+    "fullName": "Daniel Oturu",
+    "nameWithComma": "Oturu,Daniel"
+  },
+  {
+    "bballRefCode": "oubreke01.html",
+    "fullName": "Kelly Oubre Jr.",
+    "nameWithComma": "Oubre,Kelly"
+  },
+  {
+    "bballRefCode": "pascher01.html",
+    "fullName": "Eric Paschall",
+    "nameWithComma": "Paschall,Eric"
+  },
+  {
+    "bballRefCode": "pasecan01.html",
+    "fullName": "An\u017eejs Pase\u010d\u0146iks",
+    "nameWithComma": "Pase\u010d\u0146iks,An\u017eejs"
+  },
+  {
+    "bballRefCode": "pattepa01.html",
+    "fullName": "Patrick Patterson",
+    "nameWithComma": "Patterson,Patrick"
+  },
+  {
+    "bballRefCode": "paulch01.html",
+    "fullName": "Chris Paul",
+    "nameWithComma": "Paul,Chris"
+  },
+  {
+    "bballRefCode": "payneca01.html",
+    "fullName": "Cameron Payne",
+    "nameWithComma": "Payne,Cameron"
+  },
+  {
+    "bballRefCode": "paytoel01.html",
+    "fullName": "Elfrid Payton",
+    "nameWithComma": "Payton,Elfrid"
+  },
+  {
+    "bballRefCode": "pelleno01.html",
+    "fullName": "Norvel Pelle",
+    "nameWithComma": "Pelle,Norvel"
+  },
+  {
+    "bballRefCode": "perryre01.html",
+    "fullName": "Reggie Perry",
+    "nameWithComma": "Perry,Reggie"
+  },
+  {
+    "bballRefCode": "pinsoth01.html",
+    "fullName": "Theo Pinson",
+    "nameWithComma": "Pinson,Theo"
+  },
+  {
+    "bballRefCode": "plumlma01.html",
+    "fullName": "Mason Plumlee",
+    "nameWithComma": "Plumlee,Mason"
+  },
+  {
+    "bballRefCode": "poeltja01.html",
+    "fullName": "Jakob Poeltl",
+    "nameWithComma": "Poeltl,Jakob"
+  },
+  {
+    "bballRefCode": "poirivi01.html",
+    "fullName": "Vincent Poirier",
+    "nameWithComma": "Poirier,Vincent"
+  },
+  {
+    "bballRefCode": "pokusal01.html",
+    "fullName": "Aleksej Pokusevski",
+    "nameWithComma": "Pokusevski,Aleksej"
+  },
+  {
+    "bballRefCode": "poolejo01.html",
+    "fullName": "Jordan Poole",
+    "nameWithComma": "Poole,Jordan"
+  },
+  {
+    "bballRefCode": "portemi01.html",
+    "fullName": "Michael Porter Jr.",
+    "nameWithComma": "Porter,Michael"
+  },
+  {
+    "bballRefCode": "porteot01.html",
+    "fullName": "Otto Porter",
+    "nameWithComma": "Porter,Otto"
+  },
+  {
+    "bballRefCode": "portibo01.html",
+    "fullName": "Bobby Portis",
+    "nameWithComma": "Portis,Bobby"
+  },
+  {
+    "bballRefCode": "porzikr01.html",
+    "fullName": "Kristaps Porzi\u0146\u0123is",
+    "nameWithComma": "Porzi\u0146\u0123is,Kristaps"
+  },
+  {
+    "bballRefCode": "poweldw01.html",
+    "fullName": "Dwight Powell",
+    "nameWithComma": "Powell,Dwight"
+  },
+  {
+    "bballRefCode": "powelno01.html",
+    "fullName": "Norman Powell",
+    "nameWithComma": "Powell,Norman"
+  },
+  {
+    "bballRefCode": "princta02.html",
+    "fullName": "Taurean Prince",
+    "nameWithComma": "Prince,Taurean"
+  },
+  {
+    "bballRefCode": "pritcpa01.html",
+    "fullName": "Payton Pritchard",
+    "nameWithComma": "Pritchard,Payton"
+  },
+  {
+    "bballRefCode": "quickim01.html",
+    "fullName": "Immanuel Quickley",
+    "nameWithComma": "Quickley,Immanuel"
+  },
+  {
+    "bballRefCode": "ramseja01.html",
+    "fullName": "Jahmi'us Ramsey",
+    "nameWithComma": "Ramsey,Jahmi'us"
+  },
+  {
+    "bballRefCode": "randlch01.html",
+    "fullName": "Chasson Randle",
+    "nameWithComma": "Randle,Chasson"
+  },
+  {
+    "bballRefCode": "randlju01.html",
+    "fullName": "Julius Randle",
+    "nameWithComma": "Randle,Julius"
+  },
+  {
+    "bballRefCode": "reddica01.html",
+    "fullName": "Cam Reddish",
+    "nameWithComma": "Reddish,Cam"
+  },
+  {
+    "bballRefCode": "redicjj01.html",
+    "fullName": "J.J. Redick",
+    "nameWithComma": "Redick,J.J."
+  },
+  {
+    "bballRefCode": "reedpa01.html",
+    "fullName": "Paul Reed",
+    "nameWithComma": "Reed,Paul"
+  },
+  {
+    "bballRefCode": "reidna01.html",
+    "fullName": "Naz Reid",
+    "nameWithComma": "Reid,Naz"
+  },
+  {
+    "bballRefCode": "richani01.html",
+    "fullName": "Nick Richards",
+    "nameWithComma": "Richards,Nick"
+  },
+  {
+    "bballRefCode": "richajo01.html",
+    "fullName": "Josh Richardson",
+    "nameWithComma": "Richardson,Josh"
+  },
+  {
+    "bballRefCode": "riverau01.html",
+    "fullName": "Austin Rivers",
+    "nameWithComma": "Rivers,Austin"
+  },
+  {
+    "bballRefCode": "roberan03.html",
+    "fullName": "Andre Roberson",
+    "nameWithComma": "Roberson,Andre"
+  },
+  {
+    "bballRefCode": "robindu01.html",
+    "fullName": "Duncan Robinson",
+    "nameWithComma": "Robinson,Duncan"
+  },
+  {
+    "bballRefCode": "robingl02.html",
+    "fullName": "Glenn Robinson III",
+    "nameWithComma": "Robinson,Glenn"
+  },
+  {
+    "bballRefCode": "robinje01.html",
+    "fullName": "Jerome Robinson",
+    "nameWithComma": "Robinson,Jerome"
+  },
+  {
+    "bballRefCode": "robinmi01.html",
+    "fullName": "Mitchell Robinson",
+    "nameWithComma": "Robinson,Mitchell"
+  },
+  {
+    "bballRefCode": "robyis01.html",
+    "fullName": "Isaiah Roby",
+    "nameWithComma": "Roby,Isaiah"
+  },
+  {
+    "bballRefCode": "rondora01.html",
+    "fullName": "Rajon Rondo",
+    "nameWithComma": "Rondo,Rajon"
+  },
+  {
+    "bballRefCode": "rosede01.html",
+    "fullName": "Derrick Rose",
+    "nameWithComma": "Rose,Derrick"
+  },
+  {
+    "bballRefCode": "rosste01.html",
+    "fullName": "Terrence Ross",
+    "nameWithComma": "Ross,Terrence"
+  },
+  {
+    "bballRefCode": "roziete01.html",
+    "fullName": "Terry Rozier",
+    "nameWithComma": "Rozier,Terry"
+  },
+  {
+    "bballRefCode": "rubiori01.html",
+    "fullName": "Ricky Rubio",
+    "nameWithComma": "Rubio,Ricky"
+  },
+  {
+    "bballRefCode": "russeda01.html",
+    "fullName": "D'Angelo Russell",
+    "nameWithComma": "Russell,D'Angelo"
+  },
+  {
+    "bballRefCode": "sabondo01.html",
+    "fullName": "Domantas Sabonis",
+    "nameWithComma": "Sabonis,Domantas"
+  },
+  {
+    "bballRefCode": "samanlu01.html",
+    "fullName": "Luka \u0160amani\u0107",
+    "nameWithComma": "\u0160amani\u0107,Luka"
+  },
+  {
+    "bballRefCode": "sampsja02.html",
+    "fullName": "JaKarr Sampson",
+    "nameWithComma": "Sampson,JaKarr"
+  },
+  {
+    "bballRefCode": "saricda01.html",
+    "fullName": "Dario \u0160ari\u0107",
+    "nameWithComma": "\u0160ari\u0107,Dario"
+  },
+  {
+    "bballRefCode": "satorto01.html",
+    "fullName": "Tom\u00e1\u0161 Satoransk\u00fd",
+    "nameWithComma": "Satoransk\u00fd,Tom\u00e1\u0161"
+  },
+  {
+    "bballRefCode": "schrode01.html",
+    "fullName": "Dennis Schr\u00f6der",
+    "nameWithComma": "Schr\u00f6der,Dennis"
+  },
+  {
+    "bballRefCode": "scottmi01.html",
+    "fullName": "Mike Scott",
+    "nameWithComma": "Scott,Mike"
+  },
+  {
+    "bballRefCode": "sextoco01.html",
+    "fullName": "Collin Sexton",
+    "nameWithComma": "Sexton,Collin"
+  },
+  {
+    "bballRefCode": "shamela01.html",
+    "fullName": "Landry Shamet",
+    "nameWithComma": "Shamet,Landry"
+  },
+  {
+    "bballRefCode": "siakapa01.html",
+    "fullName": "Pascal Siakam",
+    "nameWithComma": "Siakam,Pascal"
+  },
+  {
+    "bballRefCode": "silvach01.html",
+    "fullName": "Chris Silva",
+    "nameWithComma": "Silva,Chris"
+  },
+  {
+    "bballRefCode": "simmobe01.html",
+    "fullName": "Ben Simmons",
+    "nameWithComma": "Simmons,Ben"
+  },
+  {
+    "bballRefCode": "simonan01.html",
+    "fullName": "Anfernee Simons",
+    "nameWithComma": "Simons,Anfernee"
+  },
+  {
+    "bballRefCode": "sirvyde01.html",
+    "fullName": "Deividas Sirvydis",
+    "nameWithComma": "Sirvydis,Deividas"
+  },
+  {
+    "bballRefCode": "smartma01.html",
+    "fullName": "Marcus Smart",
+    "nameWithComma": "Smart,Marcus"
+  },
+  {
+    "bballRefCode": "smithde03.html",
+    "fullName": "Dennis Smith Jr.",
+    "nameWithComma": "Smith,Dennis"
+  },
+  {
+    "bballRefCode": "smithis01.html",
+    "fullName": "Ish Smith",
+    "nameWithComma": "Smith,Ish"
+  },
+  {
+    "bballRefCode": "smithja04.html",
+    "fullName": "Jalen Smith",
+    "nameWithComma": "Smith,Jalen"
+  },
+  {
+    "bballRefCode": "snellto01.html",
+    "fullName": "Tony Snell",
+    "nameWithComma": "Snell,Tony"
+  },
+  {
+    "bballRefCode": "spaldra01.html",
+    "fullName": "Ray Spalding",
+    "nameWithComma": "Spalding,Ray"
+  },
+  {
+    "bballRefCode": "stanlca01.html",
+    "fullName": "Cassius Stanley",
+    "nameWithComma": "Stanley,Cassius"
+  },
+  {
+    "bballRefCode": "stevela01.html",
+    "fullName": "Lamar Stevens",
+    "nameWithComma": "Stevens,Lamar"
+  },
+  {
+    "bballRefCode": "stewais01.html",
+    "fullName": "Isaiah Stewart",
+    "nameWithComma": "Stewart,Isaiah"
+  },
+  {
+    "bballRefCode": "strusma01.html",
+    "fullName": "Max Strus",
+    "nameWithComma": "Strus,Max"
+  },
+  {
+    "bballRefCode": "sumneed01.html",
+    "fullName": "Edmond Sumner",
+    "nameWithComma": "Sumner,Edmond"
+  },
+  {
+    "bballRefCode": "tateja01.html",
+    "fullName": "Jae'Sean Tate",
+    "nameWithComma": "Tate,Jae'Sean"
+  },
+  {
+    "bballRefCode": "tatumja01.html",
+    "fullName": "Jayson Tatum",
+    "nameWithComma": "Tatum,Jayson"
+  },
+  {
+    "bballRefCode": "teaguje01.html",
+    "fullName": "Jeff Teague",
+    "nameWithComma": "Teague,Jeff"
+  },
+  {
+    "bballRefCode": "templga01.html",
+    "fullName": "Garrett Temple",
+    "nameWithComma": "Temple,Garrett"
+  },
+  {
+    "bballRefCode": "terryty01.html",
+    "fullName": "Tyrell Terry",
+    "nameWithComma": "Terry,Tyrell"
+  },
+  {
+    "bballRefCode": "theisda01.html",
+    "fullName": "Daniel Theis",
+    "nameWithComma": "Theis,Daniel"
+  },
+  {
+    "bballRefCode": "thomabr01.html",
+    "fullName": "Brodric Thomas",
+    "nameWithComma": "Thomas,Brodric"
+  },
+  {
+    "bballRefCode": "thomama02.html",
+    "fullName": "Matt Thomas",
+    "nameWithComma": "Thomas,Matt"
+  },
+  {
+    "bballRefCode": "thomptr01.html",
+    "fullName": "Tristan Thompson",
+    "nameWithComma": "Thompson,Tristan"
+  },
+  {
+    "bballRefCode": "thornsi01.html",
+    "fullName": "Sindarius Thornwell",
+    "nameWithComma": "Thornwell,Sindarius"
+  },
+  {
+    "bballRefCode": "thybuma01.html",
+    "fullName": "Matisse Thybulle",
+    "nameWithComma": "Thybulle,Matisse"
+  },
+  {
+    "bballRefCode": "tillmxa01.html",
+    "fullName": "Xavier Tillman Sr.",
+    "nameWithComma": "Tillman,Xavier"
+  },
+  {
+    "bballRefCode": "toppiob01.html",
+    "fullName": "Obi Toppin",
+    "nameWithComma": "Toppin,Obi"
+  },
+  {
+    "bballRefCode": "toscaju01.html",
+    "fullName": "Juan Toscano-Anderson",
+    "nameWithComma": "Toscano-Anderson,Juan"
+  },
+  {
+    "bballRefCode": "townska01.html",
+    "fullName": "Karl-Anthony Towns",
+    "nameWithComma": "Towns,Karl-Anthony"
+  },
+  {
+    "bballRefCode": "trentga02.html",
+    "fullName": "Gary Trent Jr.",
+    "nameWithComma": "Trent,Gary"
+  },
+  {
+    "bballRefCode": "tuckepj01.html",
+    "fullName": "P.J. Tucker",
+    "nameWithComma": "Tucker,P.J."
+  },
+  {
+    "bballRefCode": "turnemy01.html",
+    "fullName": "Myles Turner",
+    "nameWithComma": "Turner,Myles"
+  },
+  {
+    "bballRefCode": "valanjo01.html",
+    "fullName": "Jonas Valan\u010di\u016bnas",
+    "nameWithComma": "Valan\u010di\u016bnas,Jonas"
+  },
+  {
+    "bballRefCode": "valende01.html",
+    "fullName": "Denzel Valentine",
+    "nameWithComma": "Valentine,Denzel"
+  },
+  {
+    "bballRefCode": "vandeja01.html",
+    "fullName": "Jarred Vanderbilt",
+    "nameWithComma": "Vanderbilt,Jarred"
+  },
+  {
+    "bballRefCode": "vanvlfr01.html",
+    "fullName": "Fred VanVleet",
+    "nameWithComma": "VanVleet,Fred"
+  },
+  {
+    "bballRefCode": "vassede01.html",
+    "fullName": "Devin Vassell",
+    "nameWithComma": "Vassell,Devin"
+  },
+  {
+    "bballRefCode": "vincega01.html",
+    "fullName": "Gabe Vincent",
+    "nameWithComma": "Vincent,Gabe"
+  },
+  {
+    "bballRefCode": "vonleno01.html",
+    "fullName": "Noah Vonleh",
+    "nameWithComma": "Vonleh,Noah"
+  },
+  {
+    "bballRefCode": "vucevni01.html",
+    "fullName": "Nikola Vu\u010devi\u0107",
+    "nameWithComma": "Vu\u010devi\u0107,Nikola"
+  },
+  {
+    "bballRefCode": "wadede01.html",
+    "fullName": "Dean Wade",
+    "nameWithComma": "Wade,Dean"
+  },
+  {
+    "bballRefCode": "wagnemo01.html",
+    "fullName": "Moritz Wagner",
+    "nameWithComma": "Wagner,Moritz"
+  },
+  {
+    "bballRefCode": "walkeke02.html",
+    "fullName": "Kemba Walker",
+    "nameWithComma": "Walker,Kemba"
+  },
+  {
+    "bballRefCode": "walkelo01.html",
+    "fullName": "Lonnie Walker",
+    "nameWithComma": "Walker,Lonnie"
+  },
+  {
+    "bballRefCode": "walljo01.html",
+    "fullName": "John Wall",
+    "nameWithComma": "Wall,John"
+  },
+  {
+    "bballRefCode": "wanambr01.html",
+    "fullName": "Brad Wanamaker",
+    "nameWithComma": "Wanamaker,Brad"
+  },
+  {
+    "bballRefCode": "warretj01.html",
+    "fullName": "T.J. Warren",
+    "nameWithComma": "Warren,T.J."
+  },
+  {
+    "bballRefCode": "washipj01.html",
+    "fullName": "P.J. Washington",
+    "nameWithComma": "Washington,P.J."
+  },
+  {
+    "bballRefCode": "watanyu01.html",
+    "fullName": "Yuta Watanabe",
+    "nameWithComma": "Watanabe,Yuta"
+  },
+  {
+    "bballRefCode": "watertr01.html",
+    "fullName": "Tremont Waters",
+    "nameWithComma": "Waters,Tremont"
+  },
+  {
+    "bballRefCode": "watsopa01.html",
+    "fullName": "Paul Watson",
+    "nameWithComma": "Watson,Paul"
+  },
+  {
+    "bballRefCode": "weathqu01.html",
+    "fullName": "Quinndary Weatherspoon",
+    "nameWithComma": "Weatherspoon,Quinndary"
+  },
+  {
+    "bballRefCode": "westbru01.html",
+    "fullName": "Russell Westbrook",
+    "nameWithComma": "Westbrook,Russell"
+  },
+  {
+    "bballRefCode": "whiteco01.html",
+    "fullName": "Coby White",
+    "nameWithComma": "White,Coby"
+  },
+  {
+    "bballRefCode": "whitede01.html",
+    "fullName": "Derrick White",
+    "nameWithComma": "White,Derrick"
+  },
+  {
+    "bballRefCode": "whiteha01.html",
+    "fullName": "Hassan Whiteside",
+    "nameWithComma": "Whiteside,Hassan"
+  },
+  {
+    "bballRefCode": "wiggian01.html",
+    "fullName": "Andrew Wiggins",
+    "nameWithComma": "Wiggins,Andrew"
+  },
+  {
+    "bballRefCode": "willigr01.html",
+    "fullName": "Grant Williams",
+    "nameWithComma": "Williams,Grant"
+  },
+  {
+    "bballRefCode": "willike04.html",
+    "fullName": "Kenrich Williams",
+    "nameWithComma": "Williams,Kenrich"
+  },
+  {
+    "bballRefCode": "willilo02.html",
+    "fullName": "Lou Williams",
+    "nameWithComma": "Williams,Lou"
+  },
+  {
+    "bballRefCode": "willipa01.html",
+    "fullName": "Patrick Williams",
+    "nameWithComma": "Williams,Patrick"
+  },
+  {
+    "bballRefCode": "williro04.html",
+    "fullName": "Robert Williams",
+    "nameWithComma": "Williams,Robert"
+  },
+  {
+    "bballRefCode": "willizi01.html",
+    "fullName": "Zion Williamson",
+    "nameWithComma": "Williamson,Zion"
+  },
+  {
+    "bballRefCode": "wilsodj01.html",
+    "fullName": "D.J. Wilson",
+    "nameWithComma": "Wilson,D.J."
+  },
+  {
+    "bballRefCode": "windldy01.html",
+    "fullName": "Dylan Windler",
+    "nameWithComma": "Windler,Dylan"
+  },
+  {
+    "bballRefCode": "winstca01.html",
+    "fullName": "Cassius Winston",
+    "nameWithComma": "Winston,Cassius"
+  },
+  {
+    "bballRefCode": "wisemja01.html",
+    "fullName": "James Wiseman",
+    "nameWithComma": "Wiseman,James"
+  },
+  {
+    "bballRefCode": "woodch01.html",
+    "fullName": "Christian Wood",
+    "nameWithComma": "Wood,Christian"
+  },
+  {
+    "bballRefCode": "woodaro01.html",
+    "fullName": "Robert Woodard",
+    "nameWithComma": "Woodard,Robert"
+  },
+  {
+    "bballRefCode": "wrighde01.html",
+    "fullName": "Delon Wright",
+    "nameWithComma": "Wright,Delon"
+  },
+  {
+    "bballRefCode": "youngth01.html",
+    "fullName": "Thaddeus Young",
+    "nameWithComma": "Young,Thaddeus"
+  },
+  {
+    "bballRefCode": "youngtr01.html",
+    "fullName": "Trae Young",
+    "nameWithComma": "Young,Trae"
+  },
+  {
+    "bballRefCode": "zelleco01.html",
+    "fullName": "Cody Zeller",
+    "nameWithComma": "Zeller,Cody"
+  },
+  {
+    "bballRefCode": "zubaciv01.html",
+    "fullName": "Ivica Zubac",
+    "nameWithComma": "Zubac,Ivica"
+  }
+]

@@ -9,7 +9,7 @@ import trueskill
 import pandas as pd
 
 from src.classes.Player import Player
-from src.historical_data.data_handling import resetPredictionSummaries, createPlayerSkillDictionary
+from src.functions.database_creation import resetPredictionSummaries, createPlayerSkillDictionary
 from src.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
 # https://github.com/sublee/glicko2/blob/master/glicko2.py
 

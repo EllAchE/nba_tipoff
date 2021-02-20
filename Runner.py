@@ -4,10 +4,15 @@
 # backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
 from display_bets import getAllOddsAndDisplayByEv
+from src.functions.database_creation import createActivePlayerNameRelationship
 from src.functions.utils import sleepChecker
 from src.historical_data.historical_data_retrieval import updateCurrentSeason
 from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds, barstoolOdds
 from src.functions.trueskill_calc import updateSkillDictionary
+
+# saveActivePlayersTeams(2021)
+
+createActivePlayerNameRelationship()
 
 # updateCurrentSeason()
 # updateSkillDictionary()
@@ -19,12 +24,12 @@ from src.functions.trueskill_calc import updateSkillDictionary
 # getAllOddsAndDisplayByEv()
 
 # getAllExpectedStarters()
-
-# getDailyOdds('GSW', 'CHA')
+#
+# getDailyOdds('GSW', 'CHA', '-115')
 # getDailyOdds('IND', 'HOU')
 # getDailyOdds('MIA', 'LAL')
 # getDailyOdds('SAC', 'CHI')
-# getDailyOdds('PHX', 'MEM')
+# getDailyOdds('PHX', 'MEM', '-106')
 # getDailyOdds('WAS', 'POR')
 
 # getDailyOdds('MIN', 'TOR')

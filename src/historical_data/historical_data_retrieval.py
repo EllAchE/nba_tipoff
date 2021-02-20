@@ -10,7 +10,7 @@ import re
 # backlogtodo BACKLOG get playbyplay from NCAA for rookie projections
 # https://www.ncaa.com/game/5763659/play-by-play
 import ENVIRONMENT
-from src.functions.database_proxy import getPlayerTeamInSeasonFromBballRefLink
+from src.functions.database_access import getPlayerTeamInSeasonFromBballRefLink
 from src.functions.utils import sleepChecker, getSoupFromUrl, \
     sleepChecker
 

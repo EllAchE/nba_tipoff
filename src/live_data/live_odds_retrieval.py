@@ -13,7 +13,7 @@ import requests
 import pandas as pd
 
 import ENVIRONMENT
-from src.functions.database_proxy import getUniversalShortCode, getCurrentPlayerTeam
+from src.functions.database_access import getUniversalShortCode, getCurrentPlayerTeam
 from src.functions.odds_calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb, decimalToAmerican
 from src.functions.utils import getTeamFullFromShort, getSoupFromUrl, sleepChecker
 # todo add a threshold of ev factor to only take safer bets

@@ -16,19 +16,20 @@ def getUniversalShortCode(teamInUnknownFormat):
         splitTeamList = team.split(' ')
         if team['teamName'] == teamInUnknownFormat:
             break
-        elif splitTeamList[-1] in team['teamName'] and splitTeamList[-1] > 3: # make sure it's not a short code before looking in
+        elif splitTeamList[-1] > 3 and splitTeamList[-1] in team['teamName']: # make sure it's not a short code before looking in
+            break
         elif team['simpleName'] == teamInUnknownFormat:
             break
         elif team['location'] == teamInUnknownFormat:
             break
         # elif team['slug'] == teamInUnknownFormat:
         #     break
-        elif team['alternateAbbreviation'] == teamInUnknownFormat:
+        elif teamInUnknownFormat in team['alternateAbbreviations']:
             break
         elif team['abbreviation'] == teamInUnknownFormat:
             break
     # todo add alternate abbreviation
-    # Often format is "LA Clippers" or
+    # Often format is "LA Clippers" or "DEN Nuggets" or "Nuggets"
 
     return team['abbreviation']
 # todo make all of these universal conversions work

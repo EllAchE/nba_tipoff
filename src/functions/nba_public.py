@@ -39,7 +39,7 @@ from nba_api.stats.static import players
 # TODO: Writing type stubs for pandas' DataFrame is too cumbersome, so we use this instead.
 # Eventually, we should replace that with real type stubs for DataFrame.
 import ENVIRONMENT
-from src.functions.database_proxy import findPlayerFullFromLastGivenPossibleFullNames, getGameIdFromBballRef, \
+from src.functions.database_access import findPlayerFullFromLastGivenPossibleFullNames, getGameIdFromBballRef, \
     getTeamDictionaryFromShortCode, getAllGamesForTeam
 from src.functions.utils import getDashDateAndHomeCodeFromGameCode, sleepChecker
 
