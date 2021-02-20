@@ -4,14 +4,13 @@ import pandas as pd
 
 import re
 
-# todo record historical betting lines
-# todo try to find data source for historical betting lines
+# backlogtodo record historical betting lines
+# backlogtodo try to find data source for historical betting lines
 # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
-# todo get playbyplay from NCAA for rookie projections
+# backlogtodo BACKLOG get playbyplay from NCAA for rookie projections
 # https://www.ncaa.com/game/5763659/play-by-play
-
-
-from tipoff.functions.utils import sleepChecker, getSoupFromUrl
+import ENVIRONMENT
+from tipoff.functions.utils import sleepChecker, getSoupFromUrl, getPlayerTeamInSeasonFromBballRefLink
 
 
 def getSingleSeasonGameHeaders(season):
@@ -68,19 +67,8 @@ def getSingleGameHeaders(table_game_strs, table_home_strs, table_away_strs, i):
     return [game_short, game_long, homeStrFull, awayStrFull, homeStrShort, awayStrShort]
 
 
-def getPlayerTeamInSeason(playerLink, season, longCode=True):
-    if longCode:
-        playerLink = playerLink[11:]
-    with open('../Data/JSON/player_team_pairs.json') as teamPairs:
-        seasons = json.load(teamPairs)
-        try:
-            return seasons[str(season)][playerLink]
-        except:
-            return playerLink
-
-
 def conditionalDataChecks(homeTeam, awayTeam, tipper1, tipper2, tipper1Link, tipper2Link, possessionGainingPlayerLink, firstScoringPlayerLink, season):
-    if homeTeam in getPlayerTeamInSeason(tipper1Link, season):
+    if homeTeam in getPlayerTeamInSeasonFromBballRefLink(tipper1Link, season):
         homeTipper = tipper1
         awayTipper = tipper2
         homeTipperLink = tipper1Link
@@ -91,7 +79,7 @@ def conditionalDataChecks(homeTeam, awayTeam, tipper1, tipper2, tipper1Link, tip
         homeTipperLink = tipper2Link
         awayTipperLink = tipper1Link
 
-    if homeTeam in getPlayerTeamInSeason(possessionGainingPlayerLink, season):
+    if homeTeam in getPlayerTeamInSeasonFromBballRefLink(possessionGainingPlayerLink, season):
         possessionGainingTeam = homeTeam
         possessionLosingTeam = awayTeam
         tipWinner = homeTipper
@@ -106,7 +94,7 @@ def conditionalDataChecks(homeTeam, awayTeam, tipper1, tipper2, tipper1Link, tip
         tipWinnerLink = awayTipperLink
         tipLoserLink = homeTipperLink
 
-    if homeTeam in getPlayerTeamInSeason(firstScoringPlayerLink, season):
+    if homeTeam in getPlayerTeamInSeasonFromBballRefLink(firstScoringPlayerLink, season):
         firstScoringTeam = homeTeam
         scoredUponTeam = awayTeam
     else:
@@ -197,8 +185,29 @@ def getOffDefRatings(season=None, savePath=None):
 
     return seasonDict
 
+def updateCurrentSeason(pathToData='Data/CSV/tipoff_and_first_score_details_2021_season.csv', currentSeason=2021):
+    df = pd.read_csv(pathToData)
+    appendFile = open(pathToData, 'a')
+    indexAfterLastGame = len(df)
 
-def oneSeason(season, path):
+    with appendFile:
+        csvWriter = csv.writer(appendFile)
+        gameHeaders = getSingleSeasonGameHeaders(currentSeason)
+        gameHeadersLength = len(gameHeaders)
+
+        sleepCounter = 0
+        while indexAfterLastGame < gameHeadersLength:
+            sleepCounter = sleepChecker(sleepCounter, iterations=16, baseTime=0, randomMultiplier=1)
+            try:
+                line = gameHeaders[indexAfterLastGame]
+                row = line + getTipWinnerAndFirstScore(line[0], currentSeason, line[4], line[5])
+                print(row)
+                csvWriter.writerow(row)
+                indexAfterLastGame += 1
+            except:
+                break
+
+def oneSeasonFromScratch(season, path):
     temp = pd.DataFrame()
     temp.to_csv(path)
     dFile = open(path, 'w')
@@ -206,8 +215,8 @@ def oneSeason(season, path):
     with dFile:
         csvWriter = csv.writer(dFile)
         csvWriter.writerow(
-            ['Game Code', 'Full Hyperlink', 'Home', 'Away', 'Home Short', 'Away Short', 'Home Tipper', 'Away Tipper',
-             'First Scorer', 'Tip Winning Team', 'Tip Losing Team', 'Possession Gaining Player', 'Possession Gaining Player Link',
+            ['Game Code', 'Full Hyperlink', 'Home', 'Away', 'Home Short', 'Away Short', 'Home Tipper', 'Home Tipper Link', 'Away Tipper',
+             'Away Tipper Link', 'First Scorer', 'Tip Winning Team', 'Tip Losing Team', 'Possession Gaining Player', 'Possession Gaining Player Link',
              'First Scoring Team', 'Scored Upon Team', 'Tip Winner', 'Tip Winner Link', 'Tip Loser',
              'Tip Loser Link', 'Tip Winner Scores'])
         gameHeaders = getSingleSeasonGameHeaders(season)
@@ -221,24 +230,3 @@ def oneSeason(season, path):
                 csvWriter.writerow(row)
             except:
                 break
-
-
-def getHistoricalDataRunnerExtraction():
-    startSeason = 2021
-
-    # sss = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
-    #
-    # for start_season in sss:
-
-    all_at_once_path = "tip_and_first_score_details_starting_" + str(startSeason) + "_season.csv"
-    single_season_path = "tip_and_first_score_details_" + str(startSeason) + "_season.csv"
-
-    oneSeason(startSeason, single_season_path)
-
-test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
-                       ['199711160SEA', 'SEA', 'MIL'],
-                        ['199711190LAL', 'LAL', 'MIN'],
-                        ['201911200TOR', 'TOR', 'ORL'],
-                        ['201911260DAL', 'DAL', 'LAC']] # Last one is a violation, others are misformatted
-# '199711210SEA', '199711240TOR', '199711270IND', '201911040PHO',
-#

@@ -1,4 +1,7 @@
 class Season:
-    def __init__(self, year):
-        self.year = year
-        self.player_team_pairs
+    def __init__(self, seasonEndYear):
+        self.gameHeaders = None
+        self.seasonEndYear = seasonEndYear
+
+    def setGameHeaders(self, gameHeaders):
+        self.gameHeaders = gameHeaders

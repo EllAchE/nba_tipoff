@@ -1,110 +1,33 @@
-from tipoff.functions.odds_calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb
+# backlogtodo find out when the best time for placing bets on various sites is (i.e. when do odds move)
+# todo next prop - who scores last nba, race to 5 points
+# backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
+# backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
+from display_bets import getAllOddsAndDisplayByEv
+from tipoff.live_information.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
+from tipoff.functions.trueskill_calc import updateSkillDictionary
 
-# teamList = ['NOP','IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX', 'BOS',\
-#            'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
-# teamList.sort()
-# sleepCounter = 0
-# for team in teamList:
-#     getStarters(team)
-#     sleepCounter = sleepChecker(sleepCounter, printStop=False)
+# updateCurrentSeason()
+# updateSkillDictionary()
 
-a_odds = '-115' # -142
-p1 = 'lopezro01.html'
-p2 = 'zelleco01.html'
-a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-print()
+# getAllOddsAndDisplayByEv()
 
-a_odds = '-125' # -142
-p1 = 'goberru01.html'
-p2 = 'turnemy01.html'
-a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-print()
+# getAllExpectedStarters()
 
-a_odds = '-110' # -142
-p1 = 'adebaba01.html'
-p2 = 'robinmi01.html'
-a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-print()
+# getDailyOdds('MIN', 'TOR')
+# getDailyOdds('BOS', 'WAS')
+# getDailyOdds('SAS', 'CHA')
+# getDailyOdds('POR', 'DAL')
+# getDailyOdds('MIL', 'OKC')
+# getDailyOdds('ORL', 'PHX')
+# getDailyOdds('LAL', 'DEN')
+# getDailyOdds('CLE', 'LAC')
 
-a_odds = '-110' # -142
-p1 = 'thomptr01.html'
-p2 = 'aytonde01.html'
-a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-print()
-
-a_odds = '-110' # -142
-p1 = 'holmeri01.html'
-p2 = 'ibakase01.html'
-a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-print()
-
-# a_odds = '-110' # -108, -118
-# p1 = 'greenje02.html'
-# p2 = 'embiijo01.html'
-# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-# print()
-#
-# a_odds = '-110' # -142
-# p1 = 'horfoal01.html'
-# p2 = 'reidna01.html'
-# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-# print()
-#
-# a_odds = '-125' # -142
-# p1 = 'porzikr01.html'
-# p2 = 'greendr01.html'
-# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-# print()
-#
-# a_odds = '-110' # -142
-# p1 = 'valanjo01.html'
-# p2 = 'adamsst01.html'
-# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-# print()
-#
-# a_odds = '-110' # -142
-# p1 = 'plumlma01.html'
-# p2 = 'davisan01.html'
-# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
-# print()
-#
-# a_odds = '-110' # -142
-# p1 = 'poeltja01.html'
-# p2 = 'couside01.html'
-# a = checkEvPlayerCodesOddsLine(a_odds, p1, p2)
-# b = checkEvPlayerCodesOddsLine(a_odds, p2, p1)
-# print(kellyBetFromAOddsAndScoreProb(a, a_odds, bankroll=5000))
-# print(kellyBetFromAOddsAndScoreProb(b, a_odds, bankroll=5000))
+# test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
+#                        ['199711160SEA', 'SEA', 'MIL'],
+#                         ['199711190LAL', 'LAL', 'MIN'],
+#                         ['201911200TOR', 'TOR', 'ORL'],
+#                         ['201911260DAL', 'DAL', 'LAC']] # Last one is a violation, others are misformatted
+# '199711210SEA', '199711240TOR', '199711270IND', '201911040PHO',
 
 '''
 Existing apis etc.:
@@ -135,25 +58,15 @@ https://www.betburger.com/?sure_bets=1160
 https://punter2pro.com/best-sports-arbing-software/
 '''
 
-# Bookmakers https://the-odds-api.com/sports-odds-data/bookmaker-apis.html
-# TECHNICAL TODOS (NOT IN ORDER OF IMPT)
-# todo make data overwriting transactional, i.e. locally saved csv should have all or no rows updated, no partial
+# backlogtodo make data overwriting transactional, i.e. locally saved csv could have all or no rows updated, no overwrites and partial
 # todo player to fullname to player code relationship
-# todo convert to object oriented, i.e. where players are represented have them be a player object (nba_api may solve this, it has objects for many data types we care about already)
 # todo create dictionary of active players (you can possibly use nba_api for this, and then enhance for bball ref compatibility)
 # todo set up backtester with assumed odds lines, i.e. assuming we are always offered odds on a team of -110, how would the strat perform? (the default should -110)
-# todo OVERKILL set up bankroll tracker (with stored values on each site and overall).
+# backlogtodo OVERKILL set up bankroll tracker (with stored values on each site and overall).
 # todo test if adding in the start of overtime tip performance enhances predictions (may be fatigue facotr/not as good)
+# backlogtodo account for overrepresentation of playoff teams
 
 # MISC
 # todo investigate adjsuted starting rankings for low appearance playersy, i.e. if we can assume certain/lower mu values for a class of player we can improve our predictions
-
-# todo betting calendar (i.e. when do sites post their info)
-# todo (OVERKILL) have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
-# todo deal with players who play but aren't catalogued for a team (perhaps bad Data, i.e. satorto)
-# todo scrape/use api from nba.com instead of bball reference https://www.nba.com/game/phx-vs-nyk-0021000598/play-by-play
-
-'''
-To avoid arbitrage flags if we go that route: Bet round numbers, don't be super esoteric and bet at normal times.
-Also consider parlays as throwaways to placate the monitors
-'''
+# backlogtodo (OVERKILL) have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
+# backlogtodo see if back to back against same team matters
