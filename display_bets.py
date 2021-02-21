@@ -59,7 +59,7 @@ def convertDictToGameOddsObjList(betDict: Any) -> Any:
 
 def getAllOddsAndDisplayByEv():
     allOddsDictList = createAllOddsDict()
-    gameOddsList = list(map(lambda oddsDict : GameOdds(oddsDict, teamOnly=True), allOddsDictList))
+    gameOddsList = list(map(lambda oddsDict : GameOdds(oddsDict, teamOnly=True), allOddsDictList['games']))
     displayAllBetsByEV(gameOddsList)
 
 def printOddsObjDetails(oddsList: Any, showAll: bool = False):
@@ -76,7 +76,7 @@ def printOddsObjDetails(oddsList: Any, showAll: bool = False):
         i += 1
 
         print(str(i) + '.', g.gameCode, "|| Bet On:", betOn, "|| Via:", betOnVia, "|| Kelly Bet:",
-              g.kellyBetReduced, "|| EV Factor:", g.bestEVFactor, "|| Tipoff:", g.gameDatetime) # ". Home/Away:", g.home, g.away,
+              g.kellyBet, "|| EV Factor:", g.bestEVFactor, "|| Tipoff:", g.gameDatetime) # ". Home/Away:", g.home, g.away,
         print("   || Tippers-H/A", g.expectedHomeTipper + '/' + g.expectedAwayTipper, "|| Odds Home Wins", floatHomeScoreProb,
               "|| Min Odds (HoDef):", floatMinBetOdds, "|| Home Line:", g.bestHomeOdds, "|| Away Line:", g.bestAwayOdds)
         print('   Exchange:', g.exchange, '|| Market URL:', g.marketUrl, '|| Odds as of:', g.fetchedDatetime, '\n')

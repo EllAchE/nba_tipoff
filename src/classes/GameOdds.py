@@ -17,11 +17,11 @@ class GameOdds:
         self.isPlayersOnly = playersOnly
 
         if not playersOnly:
-            self.homeTeamOdds = gameDict['odds']['homeTeamScoreFirstOdds']
-            self.awayTeamOdds = gameDict['odds']['awayTeamScoreFirstOdds']
+            self.homeTeamOdds = str(gameDict['teamOdds']['homeTeamFirstQuarterOdds'])
+            self.awayTeamOdds = str(gameDict['teamOdds']['awayTeamFirstQuarterOdds'])
         elif not teamOnly:
-            self.homePlayerOddsList = gameDict['odds']['homePlayerOdds']
-            self.awayPlayerOddsList = gameDict['odds']['awayPlayerOdds']
+            self.homePlayerOddsList = gameDict['playerOdds']['homePlayerFirstQuarterOdds']
+            self.awayPlayerOddsList = gameDict['playerOdds']['awayPlayerFirstQuarterOdds']
         else:
             raise ValueError("need at least team or player")
 
@@ -83,9 +83,9 @@ class GameOdds:
         if not self.betEither():
             return "NEITHER"
         elif self.betOnHome is not None:
-            return "HOME"
+            return self.home + " (HOME)"
         else:
-            return "AWAY"
+            return self.away + " (AWAY)"
 
     def bestBetIsTeamOrPlayers(self):
         betOn = self.betOn()
@@ -107,4 +107,3 @@ class GameOdds:
             elif self.betOnAway is not None:
                 spread = getPlayerSpread(self.awayPlayerOddsList, self.awayScoreProb, self.awayPlayerFloorOdds)
         return spread
-

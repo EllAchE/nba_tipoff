@@ -12,8 +12,6 @@ from src.functions.trueskill_calc import updateSkillDictionary
 
 # saveActivePlayersTeams(2021)
 
-createActivePlayerNameRelationship()
-
 # updateCurrentSeason()
 # updateSkillDictionary()
 
@@ -21,7 +19,7 @@ createActivePlayerNameRelationship()
 # print(test)
 # print()
 
-# getAllOddsAndDisplayByEv()
+getAllOddsAndDisplayByEv()
 
 # getAllExpectedStarters()
 #

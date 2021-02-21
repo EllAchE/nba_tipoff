@@ -9,14 +9,14 @@ from src.functions.utils import getDashDateAndHomeCodeFromGameCode
 # https://www.w3schools.com/python/python_mysql_create_db.asp
 
 def getUniversalShortCode(teamInUnknownFormat):
-    with open('../../Data/JSON/Public_NBA_API/teams.json') as teamsDb:
+    with open('Data/JSON/Public_NBA_API/teams.json') as teamsDb:
         teamsDict = json.load(teamsDb)
 
     for team in teamsDict:
-        splitTeamList = team.split(' ')
+        splitTeamList = teamInUnknownFormat.split(' ')
         if team['teamName'] == teamInUnknownFormat:
             break
-        elif splitTeamList[-1] > 3 and splitTeamList[-1] in team['teamName']: # make sure it's not a short code before looking in
+        elif len(splitTeamList[-1]) > 3 and splitTeamList[-1] in team['teamName']: # make sure it's not a short code before looking in
             break
         elif team['simpleName'] == teamInUnknownFormat:
             break
