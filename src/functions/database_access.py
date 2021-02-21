@@ -8,29 +8,62 @@ from src.functions.utils import getDashDateAndHomeCodeFromGameCode
 # todo player to fullname to player code relationship
 # https://www.w3schools.com/python/python_mysql_create_db.asp
 
+def getUniversalPlayerName(playerInUnknownFormat):
+    with open('Data/JSON/player_name_relationships.json') as playerDb:
+        playersDict = json.load(playerDb)
+
+    match = False
+    for player in playersDict:
+        if player['bballRefCode'] == playerInUnknownFormat:
+            match = True
+            break
+        elif player['fullName'] == playerInUnknownFormat:
+            match = True
+            break
+        elif player['nameWithComma'] == playerInUnknownFormat:
+            match = True
+            break
+        elif player['lowerLettersOnly'] == playerInUnknownFormat:
+            match = True
+            break
+
+    if not match:
+        raise ValueError("player", playerInUnknownFormat, "did not have a match")
+    return player
+
+def getCurrentPlayerTeam(playerNameInUnknownFormat):
+    pass
+
 def getUniversalShortCode(teamInUnknownFormat):
     with open('Data/JSON/Public_NBA_API/teams.json') as teamsDb:
         teamsDict = json.load(teamsDb)
 
+    match = False
     for team in teamsDict:
         splitTeamList = teamInUnknownFormat.split(' ')
         if team['teamName'] == teamInUnknownFormat:
+            match = True
             break
         elif len(splitTeamList[-1]) > 3 and splitTeamList[-1] in team['teamName']: # make sure it's not a short code before looking in
+            match = True
             break
         elif team['simpleName'] == teamInUnknownFormat:
+            match = True
             break
         elif team['location'] == teamInUnknownFormat:
+            match = True
             break
         # elif team['slug'] == teamInUnknownFormat:
         #     break
         elif teamInUnknownFormat in team['alternateAbbreviations']:
+            match = True
             break
         elif team['abbreviation'] == teamInUnknownFormat:
+            match = True
             break
-    # todo add alternate abbreviation
     # Often format is "LA Clippers" or "DEN Nuggets" or "Nuggets"
-
+    if not match:
+        raise ValueError("team", teamInUnknownFormat, "did not have a match")
     return team['abbreviation']
 # todo make all of these universal conversions work
 # todo use fuzzywuzzy on these matches
@@ -63,10 +96,6 @@ def convertBballRefTeamShortCodeToNBA(shortCode: str):
     if shortCode == 'CHO':
         return 'CHA'
     return shortCode
-
-def getCurrentPlayerTeam(player):
-    # todo get a list of all active players for the season and map them to a bunch of possible aliases from different data sources
-    pass
 
 def findPlayerFullFromLastGivenPossibleFullNames(playerLastName, playerList):
     for player in playerList:

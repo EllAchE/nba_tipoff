@@ -4,13 +4,16 @@
 # backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
 from display_bets import getAllOddsAndDisplayByEv
-from src.functions.database_creation import createActivePlayerNameRelationship
+from src.functions.database_creation import createActivePlayerNameRelationship, saveActivePlayersTeams
 from src.functions.utils import sleepChecker
 from src.historical_data.historical_data_retrieval import updateCurrentSeason
 from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds, barstoolOdds
 from src.functions.trueskill_calc import updateSkillDictionary
 
-# saveActivePlayersTeams(2021)
+# todo deal with unicode conversions
+# createActivePlayerNameRelationship()
+
+saveActivePlayersTeams(2021)
 
 # updateCurrentSeason()
 # updateSkillDictionary()
@@ -19,16 +22,18 @@ from src.functions.trueskill_calc import updateSkillDictionary
 # print(test)
 # print()
 
-getAllOddsAndDisplayByEv()
+# getAllOddsAndDisplayByEv()
 
 # getAllExpectedStarters()
-#
-# getDailyOdds('GSW', 'CHA', '-115')
-# getDailyOdds('IND', 'HOU')
-# getDailyOdds('MIA', 'LAL')
-# getDailyOdds('SAC', 'CHI')
-# getDailyOdds('PHX', 'MEM', '-106')
-# getDailyOdds('WAS', 'POR')
+
+# getDailyOdds('BOS', 'NOP', '-115')
+# getDailyOdds('OKC', 'CLE', '-115')
+# getDailyOdds('DET', 'ORL', '-115')
+# getDailyOdds('PHI', 'TOR')
+# getDailyOdds('MIN', 'NYK', '-108')
+# getDailyOdds('DEN', 'ATL', '-104')
+# getDailyOdds('BKN', 'LAC', '-104')
+# getDailyOdds('SAC', 'MIL', '+146')
 
 # getDailyOdds('MIN', 'TOR')
 # getDailyOdds('BOS', 'WAS')

@@ -13,20 +13,18 @@ import requests
 import pandas as pd
 
 import ENVIRONMENT
-from src.functions.database_access import getUniversalShortCode, getCurrentPlayerTeam
+from src.functions.database_access import getUniversalShortCode, getCurrentPlayerTeam, getUniversalPlayerName
 from src.functions.odds_calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb, decimalToAmerican
 from src.functions.utils import getTeamFullFromShort, getSoupFromUrl, sleepChecker
 # todo add a threshold of ev factor to only take safer bets
 
 
 def formatUnknownTeamPlayerLines(rawPlayerLines, homeShortCode=None, awayShortCode=None):
-    if len(rawPlayerLines) != 10:
-        raise ValueError("Must have exactly ten players right now")
-
     home = []
     away = []
     for player in rawPlayerLines:
-        teamShortCode = getCurrentPlayerTeam(player['name'])
+        formattedPlayerName = getUniversalPlayerName(player)
+        teamShortCode = getCurrentPlayerTeam(formattedPlayerName)
         if teamShortCode == homeShortCode:
             home.append({"name": player['name'], "odds": player["odds"], "team": homeShortCode})
         elif teamShortCode == awayShortCode:
@@ -115,8 +113,8 @@ def bovadaOdds():
             decimalOdds = bet['odds']
             scoreFirstBetsSingleTeam.append({
                 "shortTitle": shortTitle,
-                "team1id": team1Id,
-                "team2id": team2Id,
+                "team1id": str(team1Id),
+                "team2id": str(team2Id),
                 "decimalOdds": decimalOdds
             })
     matchedBets = set()
@@ -128,14 +126,14 @@ def bovadaOdds():
                 if potentialPair['shortTitle'] == bet['shortTitle']:
                     matchedBets.add(potentialPair['shortTitle'])
                     shortTitle = bet['shortTitle']
-                    team1Id = bet['team1Id']
-                    team2Id = bet['team2Id']
+                    team1Id = bet['team1id']
+                    team2Id = bet['team2id']
                     # todo bovada has player spreads as well, seemingly for games lacking team props
 
                     scoreFirstBetsBothTeams.append({
                         "shortTitle": shortTitle,
-                        "team1Id": team1Id,
-                        "team2Id": team2Id,
+                        "team1id": team1Id,
+                        "team2id": team2Id,
                         "team1Odds": bet['decimalOdds'],
                         "team2Odds": potentialPair['decimalOdds'],
                     })
@@ -145,8 +143,8 @@ def bovadaOdds():
     for item in scoreFirstBetsBothTeams:
         scoreFirstBetsBothTeamsFormatted.append({
             'exchange': 'bovada',
-            "home": getUniversalShortCode(item['team1Id']),
-            "away": getUniversalShortCode(item['team2Id']),
+            "home": getUniversalShortCode(item['team1id']),
+            "away": getUniversalShortCode(item['team2id']),
             "homeTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds']),
             "awayTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds'])
         })
@@ -194,12 +192,13 @@ def draftKingsOdds():
         })
 
     rawPlayerLines = list()
-    for playerLine in firstPlayerToScoreLines:
-        outcomes = playerLine[0]['outcomes']
-        rawPlayerLines.append({
-            "player": outcomes[0]['label'],
-            "odds": outcomes[0]['oddsAmerican']
-        })
+    for game in firstPlayerToScoreLines:
+        outcomes = game[0]['outcomes']
+        for playerOdds in outcomes:
+            rawPlayerLines.append({
+                "player": playerOdds['label'],
+                "odds": playerOdds['oddsAmerican']
+            })
 
     for rawLine in rawPlayerLines:
         homePlayerLines, awayPlayerLines = formatUnknownTeamPlayerLines(rawLine)

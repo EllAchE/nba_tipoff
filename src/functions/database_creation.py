@@ -65,23 +65,29 @@ def saveActivePlayersTeams(start_season: int):
         noTradeSet = set()
 
         for tag in tradePlayerTags:
+            playerNameTag = tag.select('td[data-stat="player"]')[0]
+            playerFullName = playerNameTag.contents[0].contents[0]
+
             tag = str(tag)
             playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
             playerTeam = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
             if playerCode in noTradeSet:
-                seasons[season][playerCode] += [playerTeam]
+                seasons[season][playerFullName] += [playerTeam]
             else:
-                seasons[season][playerCode] = [playerTeam]
+                seasons[season][playerFullName] = [playerTeam]
             noTradeSet.add(playerCode)
         for tag in noTradePlayerTags:
+            playerNameTag = tag.select('td[data-stat="player"]')[0]
+            playerFullName = playerNameTag.contents[0].contents[0]
+
             tag = str(tag)
             playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
             if playerCode in noTradeSet:
                 continue # skip the trade_players who break the regex
             playerTeam = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
-            seasons[season][playerCode] = [playerTeam]
+            seasons[season][playerFullName] = [playerTeam]
 
-    with open('../Data/JSON/player_team_pairs.json', 'w') as json_file:
+    with open('Data/JSON/player_team_pairs.json', 'w') as json_file:
         json.dump(seasons, json_file)
 
     print('saved seasons Data')
@@ -101,11 +107,16 @@ def createActivePlayerNameRelationship():
         playerFullName = playerNameTag.contents[0].contents[0]
         playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tagStr).group(0)
         playerNameWithComma = re.search(r'(?<=csk=")(.*?)(?=")', str(playerNameTag)).group(0)
+        playerNameLowerLettersOnly = playerFullName.replace(' ', '')
+        playerNameLowerLettersOnly = playerNameLowerLettersOnly.replace('-', '')
+        playerNameLowerLettersOnly = playerNameLowerLettersOnly.replace('.', '')
+        playerNameLowerLettersOnly = playerNameLowerLettersOnly.lower()
 
         activePlayers.append({
             "bballRefCode": playerCode,
             "fullName": playerFullName,
             "nameWithComma": playerNameWithComma,
+            "lowerLettersOnly": playerNameLowerLettersOnly
             # "playerNameTag": tagStr
         })
 

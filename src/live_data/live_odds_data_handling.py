@@ -42,16 +42,16 @@ def createAllOddsDictForExchange(allGameDictsFromExchange, playerOdds=True, team
     return allOddsDicts
 
 def createAllOddsDict():
-    # dkOddsDicts = createAllOddsDictForExchange(draftKingsOdds(), 'draftkings')
-    mgmOddsDicts = createAllOddsDictForExchange(mgmOdds(), playerOdds=False)
-    # bovadaLines = createAllOddsDictForExchange(bovadaOdds(), playerOdds=False)
+    dkOddsDicts = createAllOddsDictForExchange(draftKingsOdds(), 'draftkings')
+    # mgmOddsDicts = createAllOddsDictForExchange(mgmOdds(), playerOdds=False)
+    # bovadaLines = createAllOddsDictForExchange(bovadaOdds(), playerOdds=False) # todo find the bovada specific ids for teams (saved as ors in the team db proxy)
     allOddsDictsList = list()
 
-    # for rawOddsDict in dkOddsDicts:
-    #     allOddsDictsList.append(rawOddsDict)
+    for rawOddsDict in dkOddsDicts:
+        allOddsDictsList.append(rawOddsDict)
 
-    for oddsDict in mgmOddsDicts:
-        allOddsDictsList.append(oddsDict)
+    # for oddsDict in mgmOddsDicts:
+    #     allOddsDictsList.append(oddsDict)
 
     # for oddsDict in bovadaLines:
     #     allOddsDictsList.append(oddsDict)
