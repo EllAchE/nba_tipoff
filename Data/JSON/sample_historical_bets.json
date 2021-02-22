@@ -1,0 +1,33 @@
+[
+  {
+    "date":  "YYYY-MM-DD",
+    "bets": [
+      {
+        "gameCode": "HOUMIAYYYYMMDD",
+        "home": "MIA",
+        "away": "HOU",
+        "exchange": "fanduel",
+        "amount": 500,
+        "oddsAtBet": "-125",
+        "betType": "Team Score First in First Quarter",
+        "betOn": "MIA",
+        "betWins": true,
+        "netEffect": "+400",
+        "timePlaced": "HH:MM:SS"
+      },
+      {
+        "gameCode": "DALNYKYYYYMMDD",
+        "home": "DAL",
+        "away": "NYK",
+        "exchange": "fanduel",
+        "amount": 500,
+        "oddsAtBet": "-125",
+        "betType": "Team Score First in Second Quarter",
+        "betOn": "MIA",
+        "betWins": true,
+        "netEffect": "+400",
+        "timePlaced": "HH:MM:SS"
+      }
+    ]
+  }
+]

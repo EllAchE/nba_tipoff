@@ -6,10 +6,6 @@ from nba_api.stats.static.players import find_players_by_full_name
 
 from src.functions.utils import getDashDateAndHomeCodeFromGameCode, removeAllNonLettersAndLowercase
 
-
-# todo player to fullname to player code relationship
-# https://www.w3schools.com/python/python_mysql_create_db.asp
-
 def getUniversalPlayerName(playerInUnknownFormat):
     with open('Data/JSON/player_name_relationships.json') as playerDb:
         playersDict = json.load(playerDb)
@@ -26,13 +22,13 @@ def getUniversalPlayerName(playerInUnknownFormat):
         elif player['nameWithComma'] == playerInUnknownFormat:
             match = True
             break
-        elif player['lowerLettersOnly'] == playerLoweredLetterOnly:
+        elif player['universalName'] == playerLoweredLetterOnly:
             match = True
             break
 
     if not match:
         raise ValueError("player", playerInUnknownFormat, "did not have a match")
-    return player['lowerLettersOnly']
+    return player['universalName']
 
 def getPlayerCurrentTeam(universalPlayerName): # Returns a list
     with open('Data/JSON/player_team_pairs.json') as playerToTeamDb:
@@ -70,8 +66,6 @@ def getUniversalShortCode(teamInUnknownFormat):
     if not match:
         raise ValueError("team", teamInUnknownFormat, "did not have a match")
     return team['abbreviation']
-# todo make all of these universal conversions work
-# todo use fuzzywuzzy on these matches
 
 def getTeamDictionaryFromShortCode(shortCode: str):
     shortCode = convertBballRefTeamShortCodeToNBA(shortCode)

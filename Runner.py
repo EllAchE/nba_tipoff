@@ -3,6 +3,8 @@
 # todo compare top rank vs. bottom rank losses
 # backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
+import unicodedata
+
 from display_bets import getAllOddsAndDisplayByEv
 from src.functions.database_creation import createActivePlayerNameRelationship, saveActivePlayersTeams
 from src.functions.utils import sleepChecker
@@ -11,9 +13,10 @@ from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOd
 from src.functions.trueskill_calc import updateSkillDictionary
 
 # todo deal with unicode conversions
-# createActivePlayerNameRelationship()
+# todo set up bet tracker
+createActivePlayerNameRelationship()
 
-# saveActivePlayersTeams(2021)
+saveActivePlayersTeams(2021)
 
 # updateCurrentSeason()
 # updateSkillDictionary()
@@ -22,7 +25,7 @@ from src.functions.trueskill_calc import updateSkillDictionary
 # print(test)
 # print()
 
-getAllOddsAndDisplayByEv()
+# getAllOddsAndDisplayByEv()
 
 # getAllExpectedStarters()
 
@@ -81,10 +84,10 @@ https://punter2pro.com/best-sports-arbing-software/
 '''
 
 # backlogtodo make data overwriting transactional, i.e. locally saved csv could have all or no rows updated, no overwrites and partial
-# todo create dictionary of active players (you can possibly use nba_api for this, and then enhance for bball ref compatibility)
 # todo set up backtester with assumed odds lines, i.e. assuming we are always offered odds on a team of -110, how would the strat perform? (the default should -110)
 # backlogtodo OVERKILL set up bankroll tracker (with stored values on each site and overall).
 # todo test if adding in the start of overtime tip performance enhances predictions (may be fatigue facotr/not as good)
+# todo test the enhanced score first predictions for 2nd, 3rd and 4th quarters
 # backlogtodo account for overrepresentation of playoff teams
 
 # MISC

@@ -67,7 +67,7 @@ def createSuffix(name: str):
     normalizedName = unicodedata.normalize('NFD', name.replace(".","")).encode('ascii', 'ignore').decode("utf-8")
     normalizedNameNoSpace = normalizedName.replace(' ', '')
     first = unidecode.unidecode(normalizedNameNoSpace[:2].lower())
-    lasts = normalizedName.split(' ')[1:] # todo this method breaks on some edge cases like r. j. barrett so I customized it, but not sure how weel it works. Also clint capela breaks the convention
+    lasts = normalizedName.split(' ')[1:]
     names = ''.join(lasts)
     second = ""
     if len(names) <= 5:
@@ -124,7 +124,7 @@ def sleepChecker(iterations: int = 3, baseTime: int = 2, randomMultiplier: int =
 def removeAllNonLettersAndLowercase(name):
     playerLowered = name.replace(' ', '')
     playerLowered = playerLowered.replace('.', '')
-    playerLowered = playerLowered.replace('- ', '')
+    playerLowered = playerLowered.replace('-', '')
     return playerLowered.lower()
 
 def lowercaseNoSpace(str):

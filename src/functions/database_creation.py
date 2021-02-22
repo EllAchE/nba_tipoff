@@ -1,11 +1,14 @@
 import glob
 import json
+import unicodedata
+
 import pandas as pd
 import re
 
 import ENVIRONMENT
 from src.functions.database_access import getUniversalPlayerName
-from src.functions.utils import getSoupFromUrl
+from src.functions.utils import getSoupFromUrl, removeAllNonLettersAndLowercase
+
 
 def concatCsv(save_path: str):
     fNames = [i for i in glob.glob('CSV/*.csv')]
@@ -112,16 +115,14 @@ def createActivePlayerNameRelationship():
         playerFullName = playerNameTag.contents[0].contents[0]
         playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tagStr).group(0)
         playerNameWithComma = re.search(r'(?<=csk=")(.*?)(?=")', str(playerNameTag)).group(0)
-        playerNameLowerLettersOnly = playerFullName.replace(' ', '')
-        playerNameLowerLettersOnly = playerNameLowerLettersOnly.replace('-', '')
-        playerNameLowerLettersOnly = playerNameLowerLettersOnly.replace('.', '')
-        playerNameLowerLettersOnly = playerNameLowerLettersOnly.lower()
+        universalName = unicodedata.normalize('NFD', playerFullName.replace(".", "")).encode('ascii', 'ignore').decode("utf-8")
+        universalName = removeAllNonLettersAndLowercase(universalName)
 
         activePlayers.append({
             "bballRefCode": playerCode,
             "fullName": playerFullName,
             "nameWithComma": playerNameWithComma,
-            "lowerLettersOnly": playerNameLowerLettersOnly
+            "universalName": universalName
             # "playerNameTag": tagStr
         })
 

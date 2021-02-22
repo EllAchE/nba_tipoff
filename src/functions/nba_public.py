@@ -36,13 +36,13 @@ from typing import Any
 import pandas as pd
 from nba_api.stats.static import players
 
-# TODO: Writing type stubs for pandas' DataFrame is too cumbersome, so we use this instead.
-# Eventually, we should replace that with real type stubs for DataFrame.
 import ENVIRONMENT
 from src.functions.database_access import findPlayerFullFromLastGivenPossibleFullNames, getGameIdFromBballRef, \
     getTeamDictionaryFromShortCode, getAllGamesForTeam
 from src.functions.utils import getDashDateAndHomeCodeFromGameCode, sleepChecker
 
+# TODO: Writing type stubs for pandas' DataFrame is too cumbersome, so we use this instead.
+# Eventually, we should replace that with real type stubs for DataFrame.
 DataFrame = Any
 
 def getAllGamesInSeason(season: int, short_code: str):

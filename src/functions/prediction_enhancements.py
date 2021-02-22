@@ -64,7 +64,7 @@ def _teamFirstShotStats(game, summaryDict):
         summaryDict[team]['shots'] += 1
         summaryDict[opponent]['opponentShots'] += 1
         summaryDict[team][event['shotType']] += 1
-        summaryDict[opponent][lowercaseNoSpace('opponent' + event['shotType'])] += 1 # todo fix this to use upper
+        summaryDict[opponent][lowercaseNoSpace('opponent' + event['shotType'])] += 1
 
         if "2PT" in event['shotType'] or "3PT" in event['shotType']:
             summaryDict[team]['FG ATTEMPTS'] += 1
