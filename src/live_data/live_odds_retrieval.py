@@ -179,8 +179,8 @@ def draftKingsOdds():
             "exchange": "draftkings",
             "home": getUniversalShortCode(team1),
             "away": getUniversalShortCode(team2),
-            "homeTeamFirstQuarterOdds": team1Odds,
-            "awayTeamFirstQuarterOdds": team2Odds,
+            "homeTeamFirstQuarterOdds": str(team1Odds),
+            "awayTeamFirstQuarterOdds": str(team2Odds),
             "homePlayerFirstQuarterOdds": [],
             "awayPlayerFirstQuarterOdds": []
         })
@@ -243,8 +243,8 @@ def mgmOdds():
                     'exchange': 'mgm',
                     "home": getUniversalShortCode(team1),
                     "away": getUniversalShortCode(team2),
-                    "homeTeamFirstQuarterOdds": team1Odds,
-                    "awayTeamFirstQuarterOdds": team2Odds
+                    "homeTeamFirstQuarterOdds": str(team1Odds),
+                    "awayTeamFirstQuarterOdds": str(team2Odds)
                 })
     return allGameLines
 
@@ -456,5 +456,5 @@ def createTeamTipperDict():
         tipperList.append({"playerCode":code, "team": teamLine["team"]})
     fullJson["pairs"] = tipperList
 
-    with open ('Data/JSON/team_tipper_pairs.json', 'w') as file:
+    with open('Data/JSON/team_tipper_pairs.json', 'w') as file:
         json.dump(fullJson, file)

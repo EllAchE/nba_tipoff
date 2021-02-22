@@ -5,18 +5,24 @@
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
 import unicodedata
 
+import ENVIRONMENT
 from display_bets import getAllOddsAndDisplayByEv
 from src.functions.database_creation import createActivePlayerNameRelationship, saveActivePlayersTeams
 from src.functions.utils import sleepChecker
 from src.historical_data.historical_data_retrieval import updateCurrentSeason
+from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrementally
 from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds, barstoolOdds
 from src.functions.trueskill_calc import updateSkillDictionary
 
 # todo deal with unicode conversions
 # todo set up bet tracker
-createActivePlayerNameRelationship()
+# createActivePlayerNameRelationship()
 
-saveActivePlayersTeams(2021)
+# saveActivePlayersTeams(2021)
+
+for season in ENVIRONMENT.SEASONS_LIST_SINCE_HORNETS:
+    getAllFirstPossessionStatisticsIncrementally(season)
+
 
 # updateCurrentSeason()
 # updateSkillDictionary()

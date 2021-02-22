@@ -109,7 +109,7 @@ def getGameIdFromBballRef(bballRefId):
 
 
 def getPlayerTeamFromFullName(name):
-    playerDict = find_players_by_full_name(name)[0] # todo deal with unicode breaking charanacters i.e. in the name bojan bogdonavic 'Bojan Bogdanović'
+    playerDict = find_players_by_full_name(name)[0]
     playerId = playerDict['id']
     data = CommonPlayerInfo(player_id=playerId)
     playerData = data.common_player_info.get_data_frame()
