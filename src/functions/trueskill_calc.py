@@ -8,9 +8,9 @@ import ENVIRONMENT
 import trueskill
 import pandas as pd
 
-from tipoff.classes.Player import Player
-from tipoff.historical_data.data_handling import resetPredictionSummaries, createPlayerSkillDictionary
-from tipoff.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
+from src.classes.Player import Player
+from src.functions.database_creation import resetPredictionSummaries, createPlayerSkillDictionary
+from src.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
 # https://github.com/sublee/glicko2/blob/master/glicko2.py
 
 

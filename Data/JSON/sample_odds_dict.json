@@ -8,51 +8,63 @@
       "exchange": "Draftkings",
       "marketUrl": "abc.xyz",
       "fetchedDatetime": "2020-03-17 18:43:05 ET",
-      "odds": {
-        "homeTeamScoreFirstOdds": "-173",
-        "awayTeamScoreFirstOdds": "+106",
-        "homePlayerOdds": [
+      "teamOdds": {
+        "homeTeamFirstQuarterOdds": "-173",
+        "awayTeamFirstQuarterOdds": "+106"
+      },
+      "playerOdds": {
+        "homePlayerFirstQuarterOdds": [
           {
             "player": "Mr. Good",
-            "odds": "+500"
+            "odds": "+500",
+            "team": "OKC"
           },
           {
             "player": "Mr. 2nd Option",
-            "odds": "+800"
+            "odds": "+800",
+            "team": "OKC"
           },
           {
             "player": "Mr. Overpaid",
-            "odds": "+800"
+            "odds": "+800",
+            "team": "OKC"
           },
           {
             "player": "Mr. Defender",
-            "odds": "+1000"
+            "odds": "+1000",
+            "team": "OKC"
           },
           {
             "player": "Mr. Sux",
-            "odds": "+1200"
+            "odds": "+1200",
+            "team": "OKC"
           }
         ],
-        "awayPlayerOdds": [
+        "awayPlayerFirstQuarterOdds": [
           {
             "player": "Mr. Stud",
-            "odds": "+450"
+            "odds": "+450",
+            "team": "ABC"
           },
           {
             "player": "Mr. Also Good",
-            "odds": "+600"
+            "odds": "+600",
+            "team": "ABC"
           },
           {
             "player": "Mr. Lucky",
-            "odds": "+950"
+            "odds": "+950",
+            "team": "ABC"
           },
           {
             "player": "Big Shaq",
-            "odds": "+1000"
+            "odds": "+1000",
+            "team": "ABC"
           },
           {
             "player": "Garbage",
-            "odds": "+1900"
+            "odds": "+1900",
+            "team": "ABC"
           }
         ]
       }

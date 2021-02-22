@@ -5,7 +5,7 @@ from collections import OrderedDict
 
 
 # backlogtodo include nonshooting possessions
-from tipoff.functions.utils import lowercaseNoSpace
+from src.functions.utils import lowercaseNoSpace
 
 
 def getFirstShotStats(season):

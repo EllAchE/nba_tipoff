@@ -10,7 +10,9 @@ import re
 # backlogtodo BACKLOG get playbyplay from NCAA for rookie projections
 # https://www.ncaa.com/game/5763659/play-by-play
 import ENVIRONMENT
-from tipoff.functions.utils import sleepChecker, getSoupFromUrl, getPlayerTeamInSeasonFromBballRefLink
+from src.functions.database_access import getPlayerTeamInSeasonFromBballRefLink
+from src.functions.utils import sleepChecker, getSoupFromUrl, \
+    sleepChecker
 
 
 def getSingleSeasonGameHeaders(season):
@@ -195,9 +197,8 @@ def updateCurrentSeason(pathToData='Data/CSV/tipoff_and_first_score_details_2021
         gameHeaders = getSingleSeasonGameHeaders(currentSeason)
         gameHeadersLength = len(gameHeaders)
 
-        sleepCounter = 0
         while indexAfterLastGame < gameHeadersLength:
-            sleepCounter = sleepChecker(sleepCounter, iterations=16, baseTime=0, randomMultiplier=1)
+            sleepChecker(iterations=16, baseTime=0, randomMultiplier=1)
             try:
                 line = gameHeaders[indexAfterLastGame]
                 row = line + getTipWinnerAndFirstScore(line[0], currentSeason, line[4], line[5])
@@ -221,9 +222,8 @@ def oneSeasonFromScratch(season, path):
              'Tip Loser Link', 'Tip Winner Scores'])
         gameHeaders = getSingleSeasonGameHeaders(season)
 
-        sleepCounter = 0
         for line in gameHeaders:
-            sleepCounter = sleepChecker(sleepCounter, iterations=16, baseTime=0, randomMultiplier=1)
+            sleepChecker(iterations=16, baseTime=0, randomMultiplier=1)
             try:
                 row = line + getTipWinnerAndFirstScore(line[0], season, line[4], line[5])
                 print(row)

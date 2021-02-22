@@ -1,17 +1,39 @@
 # backlogtodo find out when the best time for placing bets on various sites is (i.e. when do odds move)
 # todo next prop - who scores last nba, race to 5 points
+# todo compare top rank vs. bottom rank losses
 # backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
 from display_bets import getAllOddsAndDisplayByEv
-from tipoff.live_information.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
-from tipoff.functions.trueskill_calc import updateSkillDictionary
+from src.functions.database_creation import createActivePlayerNameRelationship, saveActivePlayersTeams
+from src.functions.utils import sleepChecker
+from src.historical_data.historical_data_retrieval import updateCurrentSeason
+from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds, barstoolOdds
+from src.functions.trueskill_calc import updateSkillDictionary
+
+# todo deal with unicode conversions
+# createActivePlayerNameRelationship()
+
+# saveActivePlayersTeams(2021)
 
 # updateCurrentSeason()
 # updateSkillDictionary()
 
-# getAllOddsAndDisplayByEv()
+# test = barstoolOdds()
+# print(test)
+# print()
+
+getAllOddsAndDisplayByEv()
 
 # getAllExpectedStarters()
+
+# getDailyOdds('BOS', 'NOP', '-115')
+# getDailyOdds('OKC', 'CLE', '-115')
+# getDailyOdds('DET', 'ORL', '-115')
+# getDailyOdds('PHI', 'TOR')
+# getDailyOdds('MIN', 'NYK', '-108')
+# getDailyOdds('DEN', 'ATL', '-104')
+# getDailyOdds('BKN', 'LAC', '-104')
+# getDailyOdds('SAC', 'MIL', '+146')
 
 # getDailyOdds('MIN', 'TOR')
 # getDailyOdds('BOS', 'WAS')
@@ -24,9 +46,9 @@ from tipoff.functions.trueskill_calc import updateSkillDictionary
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
 #                        ['199711160SEA', 'SEA', 'MIL'],
-#                         ['199711190LAL', 'LAL', 'MIN'],
-#                         ['201911200TOR', 'TOR', 'ORL'],
-#                         ['201911260DAL', 'DAL', 'LAC']] # Last one is a violation, others are misformatted
+#                        ['199711190LAL', 'LAL', 'MIN'],
+#                        ['201911200TOR', 'TOR', 'ORL'],
+#                        ['201911260DAL', 'DAL', 'LAC']] # Last one is a violation, others are misformatted
 # '199711210SEA', '199711240TOR', '199711270IND', '201911040PHO',
 
 '''
@@ -59,7 +81,6 @@ https://punter2pro.com/best-sports-arbing-software/
 '''
 
 # backlogtodo make data overwriting transactional, i.e. locally saved csv could have all or no rows updated, no overwrites and partial
-# todo player to fullname to player code relationship
 # todo create dictionary of active players (you can possibly use nba_api for this, and then enhance for bball ref compatibility)
 # todo set up backtester with assumed odds lines, i.e. assuming we are always offered odds on a team of -110, how would the strat perform? (the default should -110)
 # backlogtodo OVERKILL set up bankroll tracker (with stored values on each site and overall).

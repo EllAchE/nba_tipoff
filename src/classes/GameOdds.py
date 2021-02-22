@@ -1,6 +1,6 @@
-from tipoff.functions.odds_calculator import convertPlayerLinesToSingleLine, returnGreaterOdds, \
+from src.functions.odds_calculator import convertPlayerLinesToSingleLine, returnGreaterOdds, \
     positiveEvThresholdFromAmerican, getScoreProb, kellyBetFromAOddsAndScoreProb, getEvMultiplier, getPlayerSpread
-from tipoff.live_information.live_odds_retrieval import getExpectedTipper
+from src.live_data.live_odds_retrieval import getExpectedTipper
 
 
 class GameOdds:
@@ -17,12 +17,12 @@ class GameOdds:
         self.isPlayersOnly = playersOnly
 
         if not playersOnly:
-            self.homeTeamOdds = gameDict['odds']['homeTeamScoreFirstOdds']
-            self.awayTeamOdds = gameDict['odds']['awayTeamScoreFirstOdds']
-        elif not teamOnly:
-            self.homePlayerOddsList = gameDict['odds']['homePlayerOdds']
-            self.awayPlayerOddsList = gameDict['odds']['awayPlayerOdds']
-        else:
+            self.homeTeamOdds = str(gameDict['teamOdds']['homeTeamFirstQuarterOdds'])
+            self.awayTeamOdds = str(gameDict['teamOdds']['awayTeamFirstQuarterOdds'])
+        if not teamOnly:
+            self.homePlayerOddsList = gameDict['playerOdds']['homePlayerFirstQuarterOdds']
+            self.awayPlayerOddsList = gameDict['playerOdds']['awayPlayerFirstQuarterOdds']
+        if teamOnly and playersOnly:
             raise ValueError("need at least team or player")
 
         if not teamOnly:
@@ -83,9 +83,9 @@ class GameOdds:
         if not self.betEither():
             return "NEITHER"
         elif self.betOnHome is not None:
-            return "HOME"
+            return self.home + " (HOME)"
         else:
-            return "AWAY"
+            return self.away + " (AWAY)"
 
     def bestBetIsTeamOrPlayers(self):
         betOn = self.betOn()
@@ -107,4 +107,3 @@ class GameOdds:
             elif self.betOnAway is not None:
                 spread = getPlayerSpread(self.awayPlayerOddsList, self.awayScoreProb, self.awayPlayerFloorOdds)
         return spread
-

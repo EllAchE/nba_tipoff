@@ -2,241 +2,301 @@
   {
     "teamId": 1610612737,
     "abbreviation": "ATL",
+    "alternateAbbreviations": [],
     "teamName": "Atlanta Hawks",
     "simpleName": "Hawks",
     "location": "Atlanta",
-    "slug": "atlanta-hawks"
+    "slug": "atlanta-hawks",
+    "bovadaId": "2102 or 2117"
   },
   {
     "teamId": 1610612738,
     "abbreviation": "BOS",
     "teamName": "Boston Celtics",
+    "alternateAbbreviations": [],
     "simpleName": "Celtics",
     "location": "Boston",
-    "slug": "boston-celtics"
+    "slug": "boston-celtics",
+    "bovadaId": "2092"
   },
   {
     "teamId": 1610612751,
     "abbreviation": "BKN",
     "teamName": "Brooklyn Nets",
+    "alternateAbbreviations": ["BRK"],
     "simpleName": "Nets",
     "location": "Brooklyn",
-    "slug": "brooklyn-nets"
+    "slug": "brooklyn-nets",
+    "bovadaId": "2108 or 2093"
   },
   {
     "teamId": 1610612766,
     "abbreviation": "CHA",
     "teamName": "Charlotte Hornets",
+    "alternateAbbreviations": ["CHO"],
     "simpleName": "Hornets",
     "location": "Charlotte",
-    "slug": "charlotte-hornets"
+    "slug": "charlotte-hornets",
+    "bovadaId": ""
   },
   {
     "teamId": 1610612741,
     "abbreviation": "CHI",
     "teamName": "Chicago Bulls",
+    "alternateAbbreviations": [],
     "simpleName": "Bulls",
     "location": "Chicago",
-    "slug": "chicago-bulls"
+    "slug": "chicago-bulls",
+    "bovadaId": ""
   },
   {
     "teamId": 1610612739,
     "abbreviation": "CLE",
+    "alternateAbbreviations": [],
     "teamName": "Cleveland Cavaliers",
     "simpleName": "Cavaliers",
     "location": "Cleveland",
-    "slug": "cleveland-cavaliers"
+    "slug": "cleveland-cavaliers",
+    "bovadaId": "2098 or 2119"
   },
   {
     "teamId": 1610612742,
     "abbreviation": "DAL",
+    "alternateAbbreviations": [],
     "teamName": "Dallas Mavericks",
     "simpleName": "Mavericks",
     "location": "Dallas",
-    "slug": "dallas-mavericks"
+    "slug": "dallas-mavericks",
+    "bovadaId": ""
   },
   {
     "teamId": 1610612743,
     "abbreviation": "DEN",
+    "alternateAbbreviations": [],
     "teamName": "Denver Nuggets",
     "simpleName": "Nuggets",
     "location": "Denver",
-    "slug": "denver-nuggets"
+    "slug": "denver-nuggets",
+    "bovadaId": "2102 or 2117"
   },
   {
     "teamId": 1610612765,
     "abbreviation": "DET",
+    "alternateAbbreviations": [],
     "teamName": "Detroit Pistons",
     "simpleName": "Pistons",
     "location": "Detroit",
-    "slug": "detroit-pistons"
+    "slug": "detroit-pistons",
+    "bovadaId": "2098 or 2119"
   },
   {
     "teamId": 1610612744,
     "abbreviation": "GSW",
+    "alternateAbbreviations": [],
     "teamName": "Golden State Warriors",
     "simpleName": "Warriors",
     "location": "Golden State",
-    "slug": "golden-state-warriors"
+    "slug": "golden-state-warriors",
+    "bovadaId": ""
   },
   {
     "teamId": 1610612745,
     "abbreviation": "HOU",
+    "alternateAbbreviations": [],
     "teamName": "Houston Rockets",
     "simpleName": "Rockets",
     "location": "Houston",
-    "slug": "houston-rockets"
+    "slug": "houston-rockets",
+    "bovadaId": ""
   },
   {
     "teamId": 1610612754,
     "abbreviation": "IND",
+    "alternateAbbreviations": [],
     "teamName": "Indiana Pacers",
     "simpleName": "Pacers",
     "location": "Indiana",
-    "slug": "indiana-pacers"
+    "slug": "indiana-pacers",
+    "bovadaId": ""
   },
   {
     "teamId": 1610612746,
     "abbreviation": "LAC",
+    "alternateAbbreviations": [],
     "teamName": "Los Angeles Clippers",
     "simpleName": "Clippers",
     "location": "Los Angeles",
-    "slug": "los-angeles-clippers"
+    "slug": "los-angeles-clippers",
+    "bovadaId": "2108 or 2093"
   },
   {
     "teamId": 1610612747,
     "abbreviation": "LAL",
+    "alternateAbbreviations": [],
     "teamName": "Los Angeles Lakers",
     "simpleName": "Lakers",
     "location": "Los Angeles",
-    "slug": "los-angeles-lakers"
+    "slug": "los-angeles-lakers",
+    "bovadaId": ""
   },
   {
     "teamId": 1610612763,
     "abbreviation": "MEM",
+    "alternateAbbreviations": [],
     "teamName": "Memphis Grizzlies",
     "simpleName": "Grizzlies",
     "location": "Memphis",
-    "slug": "memphis-grizzlies"
+    "slug": "memphis-grizzlies",
+    "bovadaId": ""
   },
   {
     "teamId": 1610612748,
     "abbreviation": "MIA",
+    "alternateAbbreviations": [],
     "teamName": "Miami Heat",
     "simpleName": "Heat",
     "location": "Miami",
-    "slug": "miami-heat"
+    "slug": "miami-heat",
+    "bovadaId": ""
   },
   {
     "teamId": 1610612749,
     "abbreviation": "MIL",
+    "alternateAbbreviations": [],
     "teamName": "Milwaukee Bucks",
     "simpleName": "Bucks",
     "location": "Milwaukee",
-    "slug": "milwaukee-bucks"
+    "slug": "milwaukee-bucks",
+    "bovadaId": "2101 or 2111"
   },
   {
     "teamId": 1610612750,
     "abbreviation": "MIN",
+    "alternateAbbreviations": [],
     "teamName": "Minnesota Timberwolves",
     "simpleName": "Timberwolves",
     "location": "Minnesota",
-    "slug": "minnesota-timberwolves"
+    "slug": "minnesota-timberwolves",
+    "bovadaId": "2094 or 2118"
   },
   {
     "teamId": 1610612740,
     "abbreviation": "NOP",
+    "alternateAbbreviations": [],
     "teamName": "New Orleans Pelicans",
     "simpleName": "Pelicans",
     "location": "New Orleans",
-    "slug": "new-orleans-pelicans"
+    "slug": "new-orleans-pelicans",
+    "bovadaId": "2115"
   },
   {
     "teamId": 1610612752,
     "abbreviation": "NYK",
+    "alternateAbbreviations": [],
     "teamName": "New York Knicks",
     "simpleName": "Knicks",
     "location": "New York",
-    "slug": "new-york-knicks"
+    "slug": "new-york-knicks",
+    "bovadaId": "2094 or 2118"
   },
   {
     "teamId": 1610612760,
     "abbreviation": "OKC",
+    "alternateAbbreviations": [],
     "teamName": "Oklahoma City Thunder",
     "simpleName": "Thunder",
     "location": "Oklahoma City",
-    "slug": "oklahoma-city-thunder"
+    "slug": "oklahoma-city-thunder",
+    "bovadaId": "2098 or 2119"
   },
   {
     "teamId": 1610612753,
     "abbreviation": "ORL",
+    "alternateAbbreviations": [],
     "teamName": "Orlando Magic",
     "simpleName": "Magic",
     "location": "Orlando",
-    "slug": "orlando-magic"
+    "slug": "orlando-magic",
+    "bovadaId": "2105 or 2099"
   },
   {
     "teamId": 1610612755,
     "abbreviation": "PHI",
+    "alternateAbbreviations": [],
     "teamName": "Philadelphia 76ers",
     "simpleName": "76ers",
     "location": "Philadelphia",
-    "slug": "philadelphia-76ers"
+    "slug": "philadelphia-76ers",
+    "bovadaId": "2096 or 2095"
   },
   {
     "teamId": 1610612756,
     "abbreviation": "PHX",
+    "alternateAbbreviations": ["PHO"],
     "teamName": "Phoenix Suns",
     "simpleName": "Suns",
     "location": "Phoenix",
-    "slug": "phoenix-suns"
+    "slug": "phoenix-suns",
+    "bovadaId": ""
   },
   {
     "teamId": 1610612757,
     "abbreviation": "POR",
+    "alternateAbbreviations": [],
     "teamName": "Portland Trail Blazers",
     "simpleName": "Trail Blazers",
     "location": "Portland",
-    "slug": "portland-trail-blazers"
+    "slug": "portland-trail-blazers",
+    "bovadaId": "2120"
   },
   {
     "teamId": 1610612758,
     "abbreviation": "SAC",
+    "alternateAbbreviations": [],
     "teamName": "Sacramento Kings",
     "simpleName": "Kings",
     "location": "Sacramento",
-    "slug": "sacramento-kings"
+    "slug": "sacramento-kings",
+    "bovadaId": "2101 or 2111"
   },
   {
     "teamId": 1610612759,
     "abbreviation": "SAS",
+    "alternateAbbreviations": [],
     "teamName": "San Antonio Spurs",
     "simpleName": "Spurs",
     "location": "San Antonio",
-    "slug": "san-antonio-spurs"
+    "slug": "san-antonio-spurs",
+    "bovadaId": ""
   },
   {
     "teamId": 1610612761,
     "abbreviation": "TOR",
+    "alternateAbbreviations": [],
     "teamName": "Toronto Raptors",
     "simpleName": "Raptors",
     "location": "Toronto",
-    "slug": "toronto-raptors"
+    "slug": "toronto-raptors",
+    "bovadaId": "2096 or 2095"
   },
   {
     "teamId": 1610612762,
     "abbreviation": "UTA",
+    "alternateAbbreviations": [],
     "teamName": "Utah Jazz",
     "simpleName": "Jazz",
     "location": "Utah",
-    "slug": "utah-jazz"
+    "slug": "utah-jazz",
+    "bovadaId": ""
   },
   {
     "teamId": 1610612764,
     "abbreviation": "WAS",
+    "alternateAbbreviations": [],
     "teamName": "Washington Wizards",
     "simpleName": "Wizards",
     "location": "Washington",
-    "slug": "washington-wizards"
+    "slug": "washington-wizards",
+    "bovadaId": ""
   }
 ]
