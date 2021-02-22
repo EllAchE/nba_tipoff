@@ -13,32 +13,26 @@ import requests
 import pandas as pd
 
 import ENVIRONMENT
-from src.functions.database_access import getUniversalShortCode, getCurrentPlayerTeam, getUniversalPlayerName
+from src.functions.database_access import getUniversalShortCode, getPlayerCurrentTeam, getUniversalPlayerName
 from src.functions.odds_calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb, decimalToAmerican
 from src.functions.utils import getTeamFullFromShort, getSoupFromUrl, sleepChecker
 # todo add a threshold of ev factor to only take safer bets
 
 
-def formatUnknownTeamPlayerLines(rawPlayerLines, homeShortCode=None, awayShortCode=None):
-    home = []
-    away = []
-    for player in rawPlayerLines:
-        formattedPlayerName = getUniversalPlayerName(player)
-        teamShortCode = getCurrentPlayerTeam(formattedPlayerName)
-        if teamShortCode == homeShortCode:
-            home.append({"name": player['name'], "odds": player["odds"], "team": homeShortCode})
-        elif teamShortCode == awayShortCode:
-            away.append({"name": player['name'], "odds": player["odds"], "team": homeShortCode})
-        else:
-            raise ValueError("No match for either team", homeShortCode, awayShortCode, "for player", player)
+def addTeamToUnknownPlayerLine(rawPlayerLine):
+    formattedPlayerName = getUniversalPlayerName(rawPlayerLine['player'])
+    teamShortCodeBballRefFormat = getPlayerCurrentTeam(formattedPlayerName)
+    teamShortCode = getUniversalShortCode(teamShortCodeBballRefFormat)
 
-    return home, away
+    rawPlayerLine['team'] = teamShortCode
+
+    return rawPlayerLine
 
 def getExpectedTipper(team):
 #     lastTipper = getLastTipper()
 #     injuryCheck = checkInjury(lastTipper)
 #     starterCheck = checkStarter(lastTipper)
-# todo find a way to get and confirm expected tipper; i.e. you have to look at injuries, changes to starting lineup & team history if it's a nonstandard lineup. May be best to just flag edge cases
+# todo find a way to autofetch and confirm expected tipper; i.e. you have to look at injuries, changes to starting lineup & team history if it's a nonstandard lineup. May be best to just flag edge cases
 # todo in cases where a starter who tips is out we probably want an alert as these are good opportunties for mispricing
 
     if len(team) != 3:
@@ -174,14 +168,14 @@ def draftKingsOdds():
             firstPlayerToScoreLines = subCategory['offerSubcategory']['offers']
             break
 
-    allTeamLines = list()
+    allGameLines = list()
     for teamLine in firstTeamToScoreLines:
         outcomes = teamLine[0]['outcomes']
         team1 = outcomes[0]['label']
         team1Odds = outcomes[0]['oddsAmerican']
         team2 = outcomes[1]['label']
         team2Odds = outcomes[1]['oddsAmerican']
-        allTeamLines.append({
+        allGameLines.append({
             "exchange": "draftkings",
             "home": getUniversalShortCode(team1),
             "away": getUniversalShortCode(team2),
@@ -200,14 +194,14 @@ def draftKingsOdds():
                 "odds": playerOdds['oddsAmerican']
             })
 
-    for rawLine in rawPlayerLines:
-        homePlayerLines, awayPlayerLines = formatUnknownTeamPlayerLines(rawLine)
-        for teamLine in allTeamLines:
-            if teamLine['home'] == homePlayerLines[0]['team']:
-                teamLine['homePlayerFirstQuarterOdds'] = teamLine['homePlayerFirstQuarterOdds'].append(rawLine['odds'])
-            elif teamLine['away'] == awayPlayerLines[0]['team']:
-                teamLine['awayPlayerFirstQuarterOdds'] = teamLine['awayPlayerFirstQuarterOdds'].append(rawLine['odds'])
-    return allTeamLines, rawPlayerLines
+    for teamLine in allGameLines:
+        for rawLine in rawPlayerLines:
+            playerLine = addTeamToUnknownPlayerLine(rawLine)
+            if teamLine['home'] == playerLine['team']:
+                teamLine['homePlayerFirstQuarterOdds'].append(playerLine)
+            elif teamLine['away'] == playerLine['team']:
+                teamLine['awayPlayerFirstQuarterOdds'].append(playerLine)
+    return allGameLines
 
 def mgmOdds():
     # https://sports.co.betmgm.com/en/sports/events/minnesota-timberwolves-at-san-antonio-spurs-11101908?market=10000
@@ -233,8 +227,18 @@ def mgmOdds():
             if (odds['name']['value'] == "Which team will score the first points?"):
                 team1 = odds['results'][0]['name']['value']
                 team1Odds = odds['results'][0]['americanOdds']
+
+                if team1Odds > 0:
+                    team1Odds = '+' + str(team1Odds)
+                else:
+                    team1Odds = str(team1Odds)
                 team2 = odds['results'][1]['name']['value']
                 team2Odds = odds['results'][1]['americanOdds']
+                if team2Odds > 0:
+                    team2Odds = '+' + str(team1Odds)
+                else:
+                    team2Odds = str(team2Odds)
+
                 allGameLines.append({
                     'exchange': 'mgm',
                     "home": getUniversalShortCode(team1),
@@ -295,7 +299,7 @@ def unibetOdds():
             playerId = playerLine['participantId']
             playerLinesList.append({'name': pName, 'odds': aOdds, 'playerId': playerId})
 
-        homePlayerLines, awayPlayerLines = formatUnknownTeamPlayerLines(playerLinesList)
+        homePlayerLines, awayPlayerLines = addTeamToUnknownPlayerLine(playerLinesList)
 
         gameDetailsList.append({
             'exchange': 'unitbet',
@@ -346,7 +350,7 @@ def barstoolOdds(): #only has player prosp to score (first field goal)
             playerId = playerLine['participantId']
             playerLinesList.append({'name': pName, 'odds': aOdds, 'playerId': playerId})
 
-        homePlayerLines, awayPlayerLines = formatUnknownTeamPlayerLines(playerLinesList)
+        homePlayerLines, awayPlayerLines = addTeamToUnknownPlayerLine(playerLinesList)
 
         gameDetailsList.append({
             'exchange': 'barstool',

@@ -19,10 +19,10 @@ class GameOdds:
         if not playersOnly:
             self.homeTeamOdds = str(gameDict['teamOdds']['homeTeamFirstQuarterOdds'])
             self.awayTeamOdds = str(gameDict['teamOdds']['awayTeamFirstQuarterOdds'])
-        elif not teamOnly:
+        if not teamOnly:
             self.homePlayerOddsList = gameDict['playerOdds']['homePlayerFirstQuarterOdds']
             self.awayPlayerOddsList = gameDict['playerOdds']['awayPlayerFirstQuarterOdds']
-        else:
+        if teamOnly and playersOnly:
             raise ValueError("need at least team or player")
 
         if not teamOnly:

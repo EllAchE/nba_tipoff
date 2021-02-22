@@ -4,6 +4,7 @@ import pandas as pd
 import re
 
 import ENVIRONMENT
+from src.functions.database_access import getUniversalPlayerName
 from src.functions.utils import getSoupFromUrl
 
 def concatCsv(save_path: str):
@@ -67,25 +68,29 @@ def saveActivePlayersTeams(start_season: int):
         for tag in tradePlayerTags:
             playerNameTag = tag.select('td[data-stat="player"]')[0]
             playerFullName = playerNameTag.contents[0].contents[0]
+            playerUniversalName = getUniversalPlayerName(playerFullName)
 
             tag = str(tag)
             playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
             playerTeam = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
             if playerCode in noTradeSet:
-                seasons[season][playerFullName] += [playerTeam]
+                seasons[season][playerUniversalName]['possibleTeams'] += [playerTeam]
+                seasons[season][playerUniversalName]['currentTeam'] = playerTeam
             else:
-                seasons[season][playerFullName] = [playerTeam]
+                seasons[season][playerUniversalName] = {"possibleTeams": [playerTeam]}
             noTradeSet.add(playerCode)
         for tag in noTradePlayerTags:
             playerNameTag = tag.select('td[data-stat="player"]')[0]
             playerFullName = playerNameTag.contents[0].contents[0]
+            playerUniversalName = getUniversalPlayerName(playerFullName)
 
             tag = str(tag)
             playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
             if playerCode in noTradeSet:
                 continue # skip the trade_players who break the regex
             playerTeam = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
-            seasons[season][playerFullName] = [playerTeam]
+            seasons[season][playerUniversalName] = {'possibleTeams': [playerTeam]}
+            seasons[season][playerUniversalName]['currentTeam'] = playerTeam
 
     with open('Data/JSON/player_team_pairs.json', 'w') as json_file:
         json.dump(seasons, json_file)
