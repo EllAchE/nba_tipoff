@@ -9,6 +9,7 @@ import trueskill
 import pandas as pd
 
 from src.classes.Player import Player
+from src.functions.database_access import getUniversalPlayerName
 from src.functions.database_creation import resetPredictionSummaries, createPlayerSkillDictionary
 from src.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
 # https://github.com/sublee/glicko2/blob/master/glicko2.py
@@ -39,26 +40,26 @@ def runTSForSeason(season: str, season_csv: str, json_path: str, winning_bet_thr
         if df['Home Tipper'].iloc[i] != df['Home Tipper'].iloc[i]:
             i += 1
             continue
-        h_tip = df['Home Tipper'].iloc[i]
-        t_winner = df['Tipoff Winner'].iloc[i]
-        a_tip = df['Away Tipper'].iloc[i]
-        t_win_link = df['Tipoff Winner Link'].iloc[i]
-        t_lose_link = df['Tipoff Loser Link'].iloc[i]
-        if t_winner == h_tip:
-            h_tip_code = t_win_link[11:]
-            a_tip_code = t_lose_link[11:]
-        elif t_winner == a_tip:
-            h_tip_code = t_lose_link[11:]
-            a_tip_code = t_win_link[11:]
+        hTip = df['Home Tipper'].iloc[i]
+        tWinner = df['Tipoff Winner'].iloc[i]
+        aTip = df['Away Tipper'].iloc[i]
+        tWinLink = df['Tipoff Winner Link'].iloc[i]
+        tLoseLink = df['Tipoff Loser Link'].iloc[i]
+        if tWinner == hTip:
+            hTipCode = tWinLink[11:]
+            aTipCode = tLoseLink[11:]
+        elif tWinner == aTip:
+            hTipCode = tLoseLink[11:]
+            aTipCode = tWinLink[11:]
         else:
             raise ValueError('no match for winner')
 
-        beforeMatchPredictions(season, psd, dsd, h_tip_code, a_tip_code, t_win_link, df['First Scoring Team'].iloc[i], winning_bet_threshold)
-        home_mu, home_sigma, away_mu, away_sigma = updateDataSingleTipoff(psd, t_win_link, t_lose_link, h_tip_code, df['Full Hyperlink'].iloc[i])
-        df['Home Mu'].iloc[i] = home_mu
-        df['Home Sigma'].iloc[i] = home_sigma
-        df['Away Mu'].iloc[i] = away_mu
-        df['Away Sigma'].iloc[i] = away_sigma
+        beforeMatchPredictions(season, psd, dsd, hTipCode, aTipCode, tWinLink, df['First Scoring Team'].iloc[i], winning_bet_threshold)
+        homeMu, homeSigma, awayMu, awaySigma = updateDataSingleTipoff(psd, tWinLink, tLoseLink, hTipCode, df['Full Hyperlink'].iloc[i])
+        df['Home Mu'].iloc[i] = homeMu
+        df['Home Sigma'].iloc[i] = homeSigma
+        df['Away Mu'].iloc[i] = awayMu
+        df['Away Sigma'].iloc[i] = awaySigma
 
         i += 1
 

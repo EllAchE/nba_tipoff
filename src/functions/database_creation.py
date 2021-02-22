@@ -6,7 +6,7 @@ import pandas as pd
 import re
 
 import ENVIRONMENT
-from src.functions.database_access import getUniversalPlayerName
+from src.functions.database_access import getUniversalPlayerName, getBballRefPlayerName
 from src.functions.utils import getSoupFromUrl, removeAllNonLettersAndLowercase
 
 
@@ -38,7 +38,8 @@ def createPlayerSkillDictionary():
 
         for season in ptp.keys():
             for player in ptp[season].keys():
-                playerCodes.add(player)
+                playerBballCode = getBballRefPlayerName(player)
+                playerCodes.add(playerBballCode)
 
         for code in playerCodes:
             playerSkillDict[code] = {'mu': 25, 'sigma': 25/3, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
@@ -71,7 +72,7 @@ def saveActivePlayersTeams(start_season: int):
         for tag in tradePlayerTags:
             playerNameTag = tag.select('td[data-stat="player"]')[0]
             playerFullName = playerNameTag.contents[0].contents[0]
-            playerUniversalName = getUniversalPlayerName(playerFullName)
+            playerUniversalName = createUniversalPlayerName(playerFullName)
 
             tag = str(tag)
             playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
@@ -101,10 +102,10 @@ def saveActivePlayersTeams(start_season: int):
     print('saved seasons Data')
 
 
-def createActivePlayerNameRelationship():
+def createPlayerNameRelationship(startSeason: int=1998): #todo fix this to generate for all players
     activePlayers = []
 
-    url = 'https://www.basketball-reference.com/leagues/NBA_2021_per_game.html'
+    url = 'https://www.basketball-reference.com/leagues/NBA_{}_per_game.html'
     soup, statusCode = getSoupFromUrl(url, returnStatus=True)
     print("GET request for 2021 players list returned status", statusCode)
     allPlayerTags = soup.find_all('tr', class_="full_table")
@@ -122,9 +123,16 @@ def createActivePlayerNameRelationship():
             "bballRefCode": playerCode,
             "fullName": playerFullName,
             "nameWithComma": playerNameWithComma,
-            "universalName": universalName
+            "universalName": universalName,
+            "alternateNames": []
             # "playerNameTag": tagStr
         })
+
+    for playerDict in activePlayers: #todo this is the manual fix
+        if playerDict['fullName'] == "Maxi Kleber":
+            playerDict['alternateNames'] += ["Maximilian Kleber"]
+        elif playerDict['fullName'] == "Garrison Mathews":
+            playerDict['alternateNames'] += ["Garison Matthew"]
 
     with open('Data/JSON/player_name_relationships.json', 'w') as json_file:
         json.dump(activePlayers, json_file)

@@ -7,51 +7,39 @@ import unicodedata
 
 import ENVIRONMENT
 from display_bets import getAllOddsAndDisplayByEv
-from src.functions.database_creation import createActivePlayerNameRelationship, saveActivePlayersTeams
+from src.functions.database_creation import createPlayerNameRelationship, saveActivePlayersTeams
 from src.functions.utils import sleepChecker
 from src.historical_data.historical_data_retrieval import updateCurrentSeason
 from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrementally
 from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds, barstoolOdds
 from src.functions.trueskill_calc import updateSkillDictionary
 
-# todo deal with unicode conversions
 # todo set up bet tracker
-# createActivePlayerNameRelationship()
+createPlayerNameRelationship()
 
-# saveActivePlayersTeams(2021)
+saveActivePlayersTeams(1998)
 
-for season in ENVIRONMENT.SEASONS_LIST_SINCE_HORNETS:
-    getAllFirstPossessionStatisticsIncrementally(season)
+# for season in ENVIRONMENT.SEASONS_LIST_SINCE_HORNETS:
+#     getAllFirstPossessionStatisticsIncrementally(season)
 
 
-# updateCurrentSeason()
-# updateSkillDictionary()
+updateCurrentSeason()
+updateSkillDictionary()
 
 # test = barstoolOdds()
 # print(test)
 # print()
 
-# getAllOddsAndDisplayByEv()
-
 # getAllExpectedStarters()
 
-# getDailyOdds('BOS', 'NOP', '-115')
-# getDailyOdds('OKC', 'CLE', '-115')
-# getDailyOdds('DET', 'ORL', '-115')
-# getDailyOdds('PHI', 'TOR')
-# getDailyOdds('MIN', 'NYK', '-108')
-# getDailyOdds('DEN', 'ATL', '-104')
-# getDailyOdds('BKN', 'LAC', '-104')
-# getDailyOdds('SAC', 'MIL', '+146')
+# getDailyOdds('CHI', 'HOU')
+# getDailyOdds('MEM', 'DAL')
+# getDailyOdds('MIA', 'OKC')
+# getDailyOdds('POR', 'PHX', '-110')
+# getDailyOdds('CHA', 'UTA')
+# getDailyOdds('WAS', 'LAL')
 
-# getDailyOdds('MIN', 'TOR')
-# getDailyOdds('BOS', 'WAS')
-# getDailyOdds('SAS', 'CHA')
-# getDailyOdds('POR', 'DAL')
-# getDailyOdds('MIL', 'OKC')
-# getDailyOdds('ORL', 'PHX')
-# getDailyOdds('LAL', 'DEN')
-# getDailyOdds('CLE', 'LAC')
+# getAllOddsAndDisplayByEv()
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
 #                        ['199711160SEA', 'SEA', 'MIL'],

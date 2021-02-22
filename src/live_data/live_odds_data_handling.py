@@ -22,7 +22,7 @@ def addPlayerOnlyOddsDict(oddsDict, rawOddsDict):
 
 def createSingleOddsDict(rawOddsDict, playerOdds=True, teamOdds=True, *kwargs):#, allPlayerLines,):
   oddsDict = createEmptyOddsDict()
-  oddsDict['fetchedDatetime'] = str(datetime.now)
+  oddsDict['fetchedDatetime'] = str(datetime.now())
   oddsDict['home'] = rawOddsDict['home']
   oddsDict['away'] = rawOddsDict['away']
   oddsDict['exchange'] = rawOddsDict['exchange']
@@ -42,19 +42,21 @@ def createAllOddsDictForExchange(allGameDictsFromExchange, playerOdds=True, team
         allOddsDicts.append(createSingleOddsDict(rawGameDict, playerOdds=playerOdds, teamOdds=teamOdds))
     return allOddsDicts
 
-def createAllOddsDict():
-    dkOddsDicts = createAllOddsDictForExchange(draftKingsOdds(), 'draftkings')
-    mgmOddsDicts = createAllOddsDictForExchange(mgmOdds(), playerOdds=False)
+def createAllOddsDict(includeDk=False, includeMgm=False, includeBovada=False):
     # bovadaLines = createAllOddsDictForExchange(bovadaOdds(), playerOdds=False) # todo find the bovada specific ids for teams (saved as ors in the team db proxy)
     allGameObjList = list()
 
-    for rawOddsDict in dkOddsDicts:
-        gameOddsObj = GameOdds(rawOddsDict)
-        allGameObjList.append(gameOddsObj)
+    if includeDk:
+        dkOddsDicts = createAllOddsDictForExchange(draftKingsOdds(), 'draftkings')
+        for rawOddsDict in dkOddsDicts:
+            gameOddsObj = GameOdds(rawOddsDict)
+            allGameObjList.append(gameOddsObj)
 
-    for rawOddsDict in mgmOddsDicts:
-        gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
-        allGameObjList.append(gameOddsObj)
+    mgmOddsDicts = createAllOddsDictForExchange(mgmOdds(), playerOdds=False)
+    if includeMgm:
+        for rawOddsDict in mgmOddsDicts:
+            gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
+            allGameObjList.append(gameOddsObj)
 
     # for rawOddsDict in bovadaLines:
     #     gameOddsObj = lambda oddsDict: GameOdds(rawOddsDict)

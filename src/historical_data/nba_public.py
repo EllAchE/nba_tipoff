@@ -118,10 +118,11 @@ def _getAllShotsBeforeFirstScore(playsBeforeFirstFgDf: DataFrame):
     return shootingPlays
 
 def getEventsBeforeFirstScoreOfQuarter(pbpDf: DataFrame, startIndex: int=0):
+    startIndexOriginal = startIndex
     pbpDf = pbpDf[startIndex:]
     for item in pbpDf.SCORE:
         if item is not None:
-            return pbpDf[:(startIndex + 1)]
+            return pbpDf[startIndexOriginal:(startIndex + 1)]
         startIndex += 1
 
 def gameIdToFirstScoresOfQuarters(id: str):

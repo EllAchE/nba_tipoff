@@ -1,11 +1,39 @@
 import json
 
 from nba_api.stats.endpoints import CommonPlayerInfo, leaguegamefinder
-from nba_api.stats.library.data import teams
+from nba_api.stats.static import teams
 from nba_api.stats.static.players import find_players_by_full_name
 
 from src.functions.utils import getDashDateAndHomeCodeFromGameCode, removeAllNonLettersAndLowercase
 
+def getBballRefPlayerName(playerInUnknownFormat):
+    with open('Data/JSON/player_name_relationships.json') as playerDb:
+        playersDict = json.load(playerDb)
+
+    match = False
+    playerLoweredLetterOnly = removeAllNonLettersAndLowercase(playerInUnknownFormat)
+    for player in playersDict:
+        if player['universalName'] == playerLoweredLetterOnly:
+            match = True
+            break
+        elif playerInUnknownFormat in player['alternateNames']:
+            match = True
+            break
+        elif player['fullName'] == playerInUnknownFormat:
+            match = True
+            break
+        elif player['nameWithComma'] == playerInUnknownFormat:
+            match = True
+            break
+        elif player['bballRefCode'] == playerInUnknownFormat:
+            match = True
+            break
+
+    if not match:
+        raise ValueError("player", playerInUnknownFormat, "did not have a match")
+    return player['bballRefCode']
+
+# todo fix unmatched players in quarter counting
 def getUniversalPlayerName(playerInUnknownFormat):
     with open('Data/JSON/player_name_relationships.json') as playerDb:
         playersDict = json.load(playerDb)
@@ -14,6 +42,9 @@ def getUniversalPlayerName(playerInUnknownFormat):
     playerLoweredLetterOnly = removeAllNonLettersAndLowercase(playerInUnknownFormat)
     for player in playersDict:
         if player['bballRefCode'] == playerInUnknownFormat:
+            match = True
+            break
+        elif playerInUnknownFormat in player['alternateNames']:
             match = True
             break
         elif player['fullName'] == playerInUnknownFormat:
