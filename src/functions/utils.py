@@ -121,6 +121,12 @@ def sleepChecker(iterations: int = 3, baseTime: int = 2, randomMultiplier: int =
     with open('Data/sleep_counter.json', 'w') as sc:
         json.dump(SLEEP_COUNTER, sc)
 
+def removeAllNonLettersAndLowercase(name):
+    playerLowered = name.replace(' ', '')
+    playerLowered = playerLowered.replace('.', '')
+    playerLowered = playerLowered.replace('- ', '')
+    return playerLowered.lower()
+
 def lowercaseNoSpace(str):
     modStr = str.replace(' ', '').lower()
     return modStr

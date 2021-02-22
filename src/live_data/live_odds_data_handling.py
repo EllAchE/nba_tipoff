@@ -2,6 +2,7 @@
 import json
 from datetime import datetime
 
+from src.classes.GameOdds import GameOdds
 from src.live_data.live_odds_retrieval import draftKingsOdds, mgmOdds, bovadaOdds
 
 
@@ -43,20 +44,23 @@ def createAllOddsDictForExchange(allGameDictsFromExchange, playerOdds=True, team
 
 def createAllOddsDict():
     dkOddsDicts = createAllOddsDictForExchange(draftKingsOdds(), 'draftkings')
-    # mgmOddsDicts = createAllOddsDictForExchange(mgmOdds(), playerOdds=False)
+    mgmOddsDicts = createAllOddsDictForExchange(mgmOdds(), playerOdds=False)
     # bovadaLines = createAllOddsDictForExchange(bovadaOdds(), playerOdds=False) # todo find the bovada specific ids for teams (saved as ors in the team db proxy)
-    allOddsDictsList = list()
+    allGameObjList = list()
 
     for rawOddsDict in dkOddsDicts:
-        allOddsDictsList.append(rawOddsDict)
+        gameOddsObj = GameOdds(rawOddsDict)
+        allGameObjList.append(gameOddsObj)
 
-    # for oddsDict in mgmOddsDicts:
-    #     allOddsDictsList.append(oddsDict)
+    for rawOddsDict in mgmOddsDicts:
+        gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
+        allGameObjList.append(gameOddsObj)
 
-    # for oddsDict in bovadaLines:
-    #     allOddsDictsList.append(oddsDict)
+    # for rawOddsDict in bovadaLines:
+    #     gameOddsObj = lambda oddsDict: GameOdds(rawOddsDict)
+    #     allGameObjList.append(gameOddsObj)
 
-    return {"games": allOddsDictsList} # backlogtodo this dict can be saved for reference for backtesting
+    return allGameObjList # backlogtodo this dict can be saved for reference for backtesting
 
 def createEmptyOddsDict():
     return {

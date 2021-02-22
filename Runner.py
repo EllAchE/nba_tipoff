@@ -13,7 +13,7 @@ from src.functions.trueskill_calc import updateSkillDictionary
 # todo deal with unicode conversions
 # createActivePlayerNameRelationship()
 
-saveActivePlayersTeams(2021)
+# saveActivePlayersTeams(2021)
 
 # updateCurrentSeason()
 # updateSkillDictionary()
@@ -22,7 +22,7 @@ saveActivePlayersTeams(2021)
 # print(test)
 # print()
 
-# getAllOddsAndDisplayByEv()
+getAllOddsAndDisplayByEv()
 
 # getAllExpectedStarters()
 

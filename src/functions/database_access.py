@@ -4,7 +4,9 @@ from nba_api.stats.endpoints import CommonPlayerInfo, leaguegamefinder
 from nba_api.stats.library.data import teams
 from nba_api.stats.static.players import find_players_by_full_name
 
-from src.functions.utils import getDashDateAndHomeCodeFromGameCode
+from src.functions.utils import getDashDateAndHomeCodeFromGameCode, removeAllNonLettersAndLowercase
+
+
 # todo player to fullname to player code relationship
 # https://www.w3schools.com/python/python_mysql_create_db.asp
 
@@ -13,6 +15,7 @@ def getUniversalPlayerName(playerInUnknownFormat):
         playersDict = json.load(playerDb)
 
     match = False
+    playerLoweredLetterOnly = removeAllNonLettersAndLowercase(playerInUnknownFormat)
     for player in playersDict:
         if player['bballRefCode'] == playerInUnknownFormat:
             match = True
@@ -23,16 +26,18 @@ def getUniversalPlayerName(playerInUnknownFormat):
         elif player['nameWithComma'] == playerInUnknownFormat:
             match = True
             break
-        elif player['lowerLettersOnly'] == playerInUnknownFormat:
+        elif player['lowerLettersOnly'] == playerLoweredLetterOnly:
             match = True
             break
 
     if not match:
         raise ValueError("player", playerInUnknownFormat, "did not have a match")
-    return player
+    return player['lowerLettersOnly']
 
-def getCurrentPlayerTeam(playerNameInUnknownFormat):
-    pass
+def getPlayerCurrentTeam(universalPlayerName): # Returns a list
+    with open('Data/JSON/player_team_pairs.json') as playerToTeamDb:
+        playersDict = json.load(playerToTeamDb)
+    return playersDict['2021'][universalPlayerName]['currentTeam']
 
 def getUniversalShortCode(teamInUnknownFormat):
     with open('Data/JSON/Public_NBA_API/teams.json') as teamsDb:
