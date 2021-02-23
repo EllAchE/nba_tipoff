@@ -15,12 +15,11 @@ from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOd
 from src.functions.trueskill_calc import updateSkillDictionary
 
 # todo set up bet tracker
-createPlayerNameRelationship()
+# createPlayerNameRelationship()
+#
+# saveActivePlayersTeams(1998)
 
-saveActivePlayersTeams(1998)
-
-# for season in ENVIRONMENT.SEASONS_LIST_SINCE_HORNETS:
-#     getAllFirstPossessionStatisticsIncrementally(season)
+# getAllFirstPossessionStatisticsIncrementally(2014)
 
 
 updateCurrentSeason()
@@ -31,7 +30,7 @@ updateSkillDictionary()
 # print()
 
 # getAllExpectedStarters()
-
+#
 # getDailyOdds('CHI', 'HOU')
 # getDailyOdds('MEM', 'DAL')
 # getDailyOdds('MIA', 'OKC')

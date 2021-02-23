@@ -7,7 +7,7 @@
     "simpleName": "Hawks",
     "location": "Atlanta",
     "slug": "atlanta-hawks",
-    "bovadaId": "2102 or 2117"
+    "bovadaId": "2102"
   },
   {
     "teamId": 1610612738,
@@ -37,7 +37,7 @@
     "simpleName": "Hornets",
     "location": "Charlotte",
     "slug": "charlotte-hornets",
-    "bovadaId": ""
+    "bovadaId": "2103"
   },
   {
     "teamId": 1610612741,
@@ -47,7 +47,7 @@
     "simpleName": "Bulls",
     "location": "Chicago",
     "slug": "chicago-bulls",
-    "bovadaId": ""
+    "bovadaId": "2097"
   },
   {
     "teamId": 1610612739,
@@ -57,7 +57,7 @@
     "simpleName": "Cavaliers",
     "location": "Cleveland",
     "slug": "cleveland-cavaliers",
-    "bovadaId": "2098 or 2119"
+    "bovadaId": "2098"
   },
   {
     "teamId": 1610612742,
@@ -67,7 +67,7 @@
     "simpleName": "Mavericks",
     "location": "Dallas",
     "slug": "dallas-mavericks",
-    "bovadaId": ""
+    "bovadaId": "2112"
   },
   {
     "teamId": 1610612743,
@@ -77,7 +77,7 @@
     "simpleName": "Nuggets",
     "location": "Denver",
     "slug": "denver-nuggets",
-    "bovadaId": "2102 or 2117"
+    "bovadaId": "2117"
   },
   {
     "teamId": 1610612765,
@@ -87,7 +87,7 @@
     "simpleName": "Pistons",
     "location": "Detroit",
     "slug": "detroit-pistons",
-    "bovadaId": "2098 or 2119"
+    "bovadaId": "2099"
   },
   {
     "teamId": 1610612744,
@@ -97,7 +97,7 @@
     "simpleName": "Warriors",
     "location": "Golden State",
     "slug": "golden-state-warriors",
-    "bovadaId": ""
+    "bovadaId": "2107"
   },
   {
     "teamId": 1610612745,
@@ -107,7 +107,7 @@
     "simpleName": "Rockets",
     "location": "Houston",
     "slug": "houston-rockets",
-    "bovadaId": ""
+    "bovadaId": "2113"
   },
   {
     "teamId": 1610612754,
@@ -117,7 +117,7 @@
     "simpleName": "Pacers",
     "location": "Indiana",
     "slug": "indiana-pacers",
-    "bovadaId": ""
+    "bovadaId": "2100"
   },
   {
     "teamId": 1610612746,
@@ -137,7 +137,7 @@
     "simpleName": "Lakers",
     "location": "Los Angeles",
     "slug": "los-angeles-lakers",
-    "bovadaId": ""
+    "bovadaId": "2109"
   },
   {
     "teamId": 1610612763,
@@ -147,7 +147,7 @@
     "simpleName": "Grizzlies",
     "location": "Memphis",
     "slug": "memphis-grizzlies",
-    "bovadaId": ""
+    "bovadaId": "2114"
   },
   {
     "teamId": 1610612748,
@@ -157,7 +157,7 @@
     "simpleName": "Heat",
     "location": "Miami",
     "slug": "miami-heat",
-    "bovadaId": ""
+    "bovadaId": "2104"
   },
   {
     "teamId": 1610612749,
@@ -167,7 +167,7 @@
     "simpleName": "Bucks",
     "location": "Milwaukee",
     "slug": "milwaukee-bucks",
-    "bovadaId": "2101 or 2111"
+    "bovadaId": "2101"
   },
   {
     "teamId": 1610612750,
@@ -177,7 +177,7 @@
     "simpleName": "Timberwolves",
     "location": "Minnesota",
     "slug": "minnesota-timberwolves",
-    "bovadaId": "2094 or 2118"
+    "bovadaId": "2118"
   },
   {
     "teamId": 1610612740,
@@ -197,7 +197,7 @@
     "simpleName": "Knicks",
     "location": "New York",
     "slug": "new-york-knicks",
-    "bovadaId": "2094 or 2118"
+    "bovadaId": "2094"
   },
   {
     "teamId": 1610612760,
@@ -207,7 +207,7 @@
     "simpleName": "Thunder",
     "location": "Oklahoma City",
     "slug": "oklahoma-city-thunder",
-    "bovadaId": "2098 or 2119"
+    "bovadaId": " 2119"
   },
   {
     "teamId": 1610612753,
@@ -217,7 +217,7 @@
     "simpleName": "Magic",
     "location": "Orlando",
     "slug": "orlando-magic",
-    "bovadaId": "2105 or 2099"
+    "bovadaId": "2105"
   },
   {
     "teamId": 1610612755,
@@ -227,7 +227,7 @@
     "simpleName": "76ers",
     "location": "Philadelphia",
     "slug": "philadelphia-76ers",
-    "bovadaId": "2096 or 2095"
+    "bovadaId": "2095"
   },
   {
     "teamId": 1610612756,
@@ -237,7 +237,7 @@
     "simpleName": "Suns",
     "location": "Phoenix",
     "slug": "phoenix-suns",
-    "bovadaId": ""
+    "bovadaId": "2110"
   },
   {
     "teamId": 1610612757,
@@ -257,7 +257,7 @@
     "simpleName": "Kings",
     "location": "Sacramento",
     "slug": "sacramento-kings",
-    "bovadaId": "2101 or 2111"
+    "bovadaId": "2111"
   },
   {
     "teamId": 1610612759,
@@ -267,7 +267,7 @@
     "simpleName": "Spurs",
     "location": "San Antonio",
     "slug": "san-antonio-spurs",
-    "bovadaId": ""
+    "bovadaId": "2116"
   },
   {
     "teamId": 1610612761,
@@ -277,7 +277,7 @@
     "simpleName": "Raptors",
     "location": "Toronto",
     "slug": "toronto-raptors",
-    "bovadaId": "2096 or 2095"
+    "bovadaId": "2096"
   },
   {
     "teamId": 1610612762,
@@ -287,7 +287,7 @@
     "simpleName": "Jazz",
     "location": "Utah",
     "slug": "utah-jazz",
-    "bovadaId": ""
+    "bovadaId": "2121"
   },
   {
     "teamId": 1610612764,
@@ -297,6 +297,6 @@
     "simpleName": "Wizards",
     "location": "Washington",
     "slug": "washington-wizards",
-    "bovadaId": ""
+    "bovadaId": "2106"
   }
 ]

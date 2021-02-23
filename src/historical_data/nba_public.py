@@ -77,7 +77,6 @@ def getShotTypeFromEventDescription(description: str):
     return "2PT " + isMiss
 
 def _getSingleQuarterStatistics(shotsBeforeFirstScore: pd.DataFrame):
-    shotIndex = 0
     dataList = list()
     gameId = shotsBeforeFirstScore.iloc[0].GAME_ID
     teamDict = getParticipatingTeamsFromId(gameId)
@@ -85,8 +84,8 @@ def _getSingleQuarterStatistics(shotsBeforeFirstScore: pd.DataFrame):
     homeTeam = teamDict['home']
     awayTeam = teamDict['away']
 
-    dfLen = len(shotsBeforeFirstScore.index)
-    while shotIndex < dfLen:
+    shotIndex = 0
+    for abc in shotsBeforeFirstScore.EVENTNUM:
         row = shotsBeforeFirstScore.iloc[shotIndex]
         description = row.HOMEDESCRIPTION if row.HOMEDESCRIPTION is not None else row.VISITORDESCRIPTION
         playerTeam = awayTeam if row.HOMEDESCRIPTION is None else homeTeam
@@ -118,30 +117,34 @@ def _getAllShotsBeforeFirstScore(playsBeforeFirstFgDf: DataFrame):
     return shootingPlays
 
 def getEventsBeforeFirstScoreOfQuarter(pbpDf: DataFrame, startIndex: int=0):
-    startIndexOriginal = startIndex
+    startIndex += 1
+    i = 0
     pbpDf = pbpDf[startIndex:]
     for item in pbpDf.SCORE:
         if item is not None:
-            return pbpDf[startIndexOriginal:(startIndex + 1)]
-        startIndex += 1
+            return pbpDf[:(i + 1)]
+        i += 1
 
 def gameIdToFirstScoresOfQuarters(id: str):
     pbpDf = playbyplayv2.PlayByPlayV2(game_id=id).get_data_frames()[0]
     indicesOfQuarterStarts = pbpDf.index[pbpDf['EVENTMSGTYPE'] == 12].tolist()
+    q2Index = indicesOfQuarterStarts[1]
+    q3Index = indicesOfQuarterStarts[2]
+    q4Index = indicesOfQuarterStarts[3]
 
     plays = getEventsBeforeFirstScoreOfQuarter(pbpDf)
     q1Shots = _getAllShotsBeforeFirstScore(plays)
 
-    plays = getEventsBeforeFirstScoreOfQuarter(pbpDf, indicesOfQuarterStarts[1])
+    plays = getEventsBeforeFirstScoreOfQuarter(pbpDf, q2Index)
     q2Shots = _getAllShotsBeforeFirstScore(plays)
 
-    plays = getEventsBeforeFirstScoreOfQuarter(pbpDf, indicesOfQuarterStarts[2])
+    plays = getEventsBeforeFirstScoreOfQuarter(pbpDf, q3Index)
     q3Shots = _getAllShotsBeforeFirstScore(plays)
 
-    plays = getEventsBeforeFirstScoreOfQuarter(pbpDf, indicesOfQuarterStarts[3])
+    plays = getEventsBeforeFirstScoreOfQuarter(pbpDf, q4Index)
     q4Shots = _getAllShotsBeforeFirstScore(plays)
 
-    return q1Shots, q2Shots, q3Shots, q4Shots
+    return q1Shots, q2Shots, q2Index, q3Shots, q3Index, q4Shots, q4Index
 
 def gameIdToFirstShotList(id: str):
     pbpDf = playbyplayv2.PlayByPlayV2(game_id=id).get_data_frames()[0]
@@ -211,6 +214,7 @@ def getTipoffLineFromBballRefId(bballRef: str):
     tipoffContent, type, isHome = getTipoffLine(pbpDf)
     return tipoffContent
 
+# todo fix this to not break for some specific players and . names, i.e. Nene or W. or Shaw.
 def getAllFirstPossessionStatisticsIncrementally(season):
     path = 'Data/CSV/tipoff_and_first_score_details_{}_season.csv'.format(season)
     df = pd.read_csv(path)
@@ -234,7 +238,7 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         bballRefId = df.iloc[i]["Game Code"]
         print('running for ', bballRefId)
         gameId = getGameIdFromBballRef(bballRefId)
-        q1Shots, q2Shots, q3Shots, q4Shots = gameIdToFirstScoresOfQuarters(gameId)
+        q1Shots, q2Shots, q2Index, q3Shots, q3Index, q4Shots, q4Index = gameIdToFirstScoresOfQuarters(gameId)
         gameStatistics = _getFirstShotStatistics(q1Shots, q2Shots, q3Shots, q4Shots, bballRefId)
         seasonShotList.append(gameStatistics)
         sleepChecker(iterations=3, baseTime=0, randomMultiplier=1)
