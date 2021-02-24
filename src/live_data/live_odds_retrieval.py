@@ -16,7 +16,6 @@ import ENVIRONMENT
 from src.functions.database_access import getUniversalShortCode, getPlayerCurrentTeam, getUniversalPlayerName
 from src.functions.odds_calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb, decimalToAmerican
 from src.functions.utils import getTeamFullFromShort, getSoupFromUrl, sleepChecker
-# todo add a threshold of ev factor to only take safer bets
 
 
 def addTeamToUnknownPlayerLine(rawPlayerLine):
@@ -29,14 +28,8 @@ def addTeamToUnknownPlayerLine(rawPlayerLine):
     return rawPlayerLine
 
 def getExpectedTipper(team):
-#     lastTipper = getLastTipper()
-#     injuryCheck = checkInjury(lastTipper)
-#     starterCheck = checkStarter(lastTipper)
-# todo find a way to autofetch and confirm expected tipper; i.e. you have to look at injuries, changes to starting lineup & team history if it's a nonstandard lineup. May be best to just flag edge cases
-# todo in cases where a starter who tips is out we probably want an alert as these are good opportunties for mispricing
-
     if len(team) != 3:
-        raise ValueError('Need to pass team short code to getExpectedTipper')
+        raise ValueError('Need to pass universal team short code to getExpectedTipper')
 
     tipper = tipperFromTeam(team)
     return tipper
@@ -99,7 +92,7 @@ def bovadaOdds():
     allBets = requests.get(url).json()
     scoreFirstBetsSingleTeam = list()
     for bet in allBets:
-        print(bet['queryTitle'])
+        # print(bet['queryTitle'])
         if bet['queryTitle'].lower() == 'team to score first':
             shortTitle = bet['game']['shortTitle']
             team1Id = bet['game']['team1Id']
@@ -310,7 +303,7 @@ def unibetOdds():
             'awayPlayerOdds': awayPlayerLines
         })
     return gameDetailsList
-    #todo this has a lot of duplication with the barstool method so would be worth extracting
+    # backlogtodo this has a lot of duplication with the barstool method so would be worth extracting
 
 
 def barstoolOdds(): #only has player prosp to score (first field goal)

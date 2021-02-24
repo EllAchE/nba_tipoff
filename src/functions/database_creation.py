@@ -72,7 +72,7 @@ def saveActivePlayersTeams(start_season: int):
         for tag in tradePlayerTags:
             playerNameTag = tag.select('td[data-stat="player"]')[0]
             playerFullName = playerNameTag.contents[0].contents[0]
-            playerUniversalName = createUniversalPlayerName(playerFullName)
+            playerUniversalName = getUniversalPlayerName(playerFullName)
 
             tag = str(tag)
             playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
@@ -105,34 +105,39 @@ def saveActivePlayersTeams(start_season: int):
 def createPlayerNameRelationship(startSeason: int=1998):
     activePlayers = []
 
-    url = 'https://www.basketball-reference.com/leagues/NBA_{}_per_game.html'
-    soup, statusCode = getSoupFromUrl(url, returnStatus=True)
-    print("GET request for 2021 players list returned status", statusCode)
-    allPlayerTags = soup.find_all('tr', class_="full_table")
+    urlStub = 'https://www.basketball-reference.com/leagues/NBA_{}_per_game.html'
+    while startSeason < 2022:
+        url = urlStub.format(str(startSeason))
+        soup, statusCode = getSoupFromUrl(url, returnStatus=True)
+        print("GET request for", startSeason, "players list returned status", statusCode)
+        allPlayerTags = soup.find_all('tr', class_="full_table")
 
-    for tag in allPlayerTags:
-        tagStr = str(tag)
-        playerNameTag = tag.select('td[data-stat="player"]')[0]
-        playerFullName = playerNameTag.contents[0].contents[0]
-        playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tagStr).group(0)
-        playerNameWithComma = re.search(r'(?<=csk=")(.*?)(?=")', str(playerNameTag)).group(0)
-        universalName = unicodedata.normalize('NFD', playerFullName.replace(".", "")).encode('ascii', 'ignore').decode("utf-8")
-        universalName = removeAllNonLettersAndLowercase(universalName)
+        for tag in allPlayerTags:
+            tagStr = str(tag)
+            playerNameTag = tag.select('td[data-stat="player"]')[0]
+            playerFullName = playerNameTag.contents[0].contents[0]
+            playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tagStr).group(0)
+            playerNameWithComma = re.search(r'(?<=csk=")(.*?)(?=")', str(playerNameTag)).group(0)
+            universalName = unicodedata.normalize('NFD', playerFullName.replace(".", "")).encode('ascii', 'ignore').decode("utf-8")
+            universalName = removeAllNonLettersAndLowercase(universalName)
 
-        activePlayers.append({
-            "bballRefCode": playerCode,
-            "fullName": playerFullName,
-            "nameWithComma": playerNameWithComma,
-            "universalName": universalName,
-            "alternateNames": []
-            # "playerNameTag": tagStr
-        })
+            activePlayers.append({
+                "bballRefCode": playerCode,
+                "fullName": playerFullName,
+                "nameWithComma": playerNameWithComma,
+                "universalName": universalName,
+                "alternateNames": []
+                # "playerNameTag": tagStr
+            })
+        startSeason += 1
 
-    for playerDict in activePlayers: #todo this is the manual fix
+    for playerDict in activePlayers:
         if playerDict['fullName'] == "Maxi Kleber":
             playerDict['alternateNames'] += ["Maximilian Kleber"]
         elif playerDict['fullName'] == "Garrison Mathews":
             playerDict['alternateNames'] += ["Garison Matthew"]
+        elif playerDict['fullName'] == "Danuel House":
+            playerDict['alternateNames'] += ["Danuel House Jr."]
 
     with open('Data/JSON/player_name_relationships.json', 'w') as json_file:
         json.dump(activePlayers, json_file)

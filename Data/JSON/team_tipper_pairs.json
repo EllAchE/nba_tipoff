@@ -2,122 +2,152 @@
   "pairs": [
     {
       "playerCode": "capelca01.html",
+      "playerName": "Clint Capela",
       "team": "ATL"
     },
     {
       "playerCode": "greenje02.html",
+      "playerName": "Jeff Green",
       "team": "BKN"
     },
     {
       "playerCode": "theisda01.html",
+      "playerName": "Daneil Theis",
       "team": "BOS"
     },
     {
       "playerCode": "zelleco01.html",
+      "playerName": "Cody Zeller",
       "team": "CHA"
     },
     {
       "playerCode": "cartewe01.html",
+      "playerName": "Wendell Carter Jr.",
       "team": "CHI"
     },
     {
       "playerCode": "allenja01.html",
+      "playerName": "Jarrett Allen",
       "team": "CLE"
     },
     {
       "playerCode": "porzikr01.html",
+      "playerName": "Kristaps Porzingis",
       "team": "DAL"
     },
     {
       "playerCode": "jokicni01.html",
+      "playerName": "Nikola Jokic",
       "team": "DEN"
     },
     {
       "playerCode": "plumlma01.html",
+      "playerName": "Mason Plumlee",
       "team": "DET"
     },
     {
-      "playerCode": "toscaju01.html",
+      "playerCode": "looneke01.html",
+      "playerName": "Kevon Looney",
       "team": "GSW"
     },
     {
-      "playerCode": "couside01.html",
+      "playerCode": "tuckepj01.html",
+      "playerName": "PJ Tucker",
       "team": "HOU"
     },
     {
       "playerCode": "robinmi01.html",
+      "playerName": "Mitchell Robinson",
       "team": "NYK"
     },
     {
       "playerCode": "turnemy01.html",
+      "playerName": "Myles Turner",
       "team": "IND"
     },
     {
       "playerCode": "ibakase01.html",
+      "playerName": "Serge Ibaka",
       "team": "LAC"
     },
     {
       "playerCode": "gasolma01.html",
+      "playerName": "Marc Gasol",
       "team": "LAL"
     },
     {
       "playerCode": "valanjo01.html",
+      "playerName": "Jonas Valanciunas",
       "team": "MEM"
     },
     {
       "playerCode": "adebaba01.html",
+      "playerName": "Bam Adebayo",
       "team": "MIA"
     },
     {
       "playerCode": "lopezbr01.html",
+      "playerName": "Brook Lopez",
       "team": "MIL"
     },
     {
       "playerCode": "townska01.html",
+      "playerName": "Karl Anthony Towns",
       "team": "MIN"
     },
     {
-      "playerCode": "adamsst01.html",
+      "playerCode": "hernawi01.html",
+      "playerName": "Willy Hernangomez",
       "team": "NOP"
     },
     {
       "playerCode": "horfoal01.html",
+      "playerName": "Al Horford",
       "team": "OKC"
     },
     {
       "playerCode": "vucevni01.html",
+      "playerName": "Nikola Vucevic",
       "team": "ORL"
     },
     {
       "playerCode": "embiijo01.html",
+      "playerName": "Joel Embiid",
       "team": "PHI"
     },
     {
       "playerCode": "aytonde01.html",
+      "playerName": "Deandre Ayton",
       "team": "PHX"
     },
     {
       "playerCode": "kanteen01.html",
+      "playerName": "Enes Kanter",
       "team": "POR"
     },
     {
       "playerCode": "holmeri01.html",
+      "playerName": "Richaun Holmes",
       "team": "SAC"
     },
     {
       "playerCode": "poeltja01.html",
+      "playerName": "Jakob Poeltl",
       "team": "SAS"
     },
     {
       "playerCode": "bouchch01.html",
+      "playerName": "Chris Boucher",
       "team": "TOR"
     },
     {
       "playerCode": "goberru01.html",
+      "playerName": "Rudy Gobert",
       "team": "UTA"
     },
     {
       "playerCode": "wagnemo01.html",
+      "playerName": "Moritz Wagner",
       "team": "WAS"
     }
   ]

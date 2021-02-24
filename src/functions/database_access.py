@@ -93,6 +93,9 @@ def getUniversalShortCode(teamInUnknownFormat):
         elif team['abbreviation'] == teamInUnknownFormat:
             match = True
             break
+        elif team['bovadaId'] == teamInUnknownFormat:
+            match = True
+            break
     # Often format is "LA Clippers" or "DEN Nuggets" or "Nuggets"
     if not match:
         raise ValueError("team", teamInUnknownFormat, "did not have a match")

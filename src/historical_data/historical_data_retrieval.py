@@ -9,11 +9,9 @@ import re
 # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
 # backlogtodo BACKLOG get playbyplay from NCAA for rookie projections
 # https://www.ncaa.com/game/5763659/play-by-play
-import ENVIRONMENT
 from src.functions.database_access import getPlayerTeamInSeasonFromBballRefLink
 from src.functions.utils import sleepChecker, getSoupFromUrl, \
     sleepChecker
-
 
 def getSingleSeasonGameHeaders(season):
     normalMonths = ["october", "november", "december", "january", "february", "march", "april", "may", "june"]
@@ -35,7 +33,6 @@ def getSingleSeasonGameHeaders(season):
 
     return seasonGames
 
-
 def getSingleMonthGameHeaders(season, month):
     url = 'https://www.basketball-reference.com/leagues/NBA_{}_games-{}.html'.format(season, month)
     soup = getSoupFromUrl(url)
@@ -53,7 +50,6 @@ def getSingleMonthGameHeaders(season, month):
 
     return monthGames
 
-
 def getSingleGameHeaders(table_game_strs, table_home_strs, table_away_strs, i):
     gameStr = str(table_game_strs[i])
     awayStrFull = str(table_away_strs[i].a.contents[0])
@@ -67,7 +63,6 @@ def getSingleGameHeaders(table_game_strs, table_home_strs, table_away_strs, i):
     game_long = 'https://www.basketball-reference.com/boxscores/pbp/' + game_short + '.html'
 
     return [game_short, game_long, homeStrFull, awayStrFull, homeStrShort, awayStrShort]
-
 
 def conditionalDataChecks(homeTeam, awayTeam, tipper1, tipper2, tipper1Link, tipper2Link, possessionGainingPlayerLink, firstScoringPlayerLink, season):
     if homeTeam in getPlayerTeamInSeasonFromBballRefLink(tipper1Link, season):

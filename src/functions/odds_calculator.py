@@ -88,7 +88,7 @@ def sysEMainDiagonalVarsNeg1Fill(argsList, amtToWin: float = 1, amtToLose: Optio
         multiplier = amtToLose/cost
         return playerSpread * multiplier
 
-def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float=0.7, winAmt: float = 1, bankroll: Optional[float] = None): # assumes binary outcome, requires dollar value
+def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float=ENVIRONMENT.REDUCTION_FACTOR, winAmt: float = 1, bankroll: Optional[float] = None): # assumes binary outcome, requires dollar value
     kellyRatio = (winOdds / lossAmt - (1 - winOdds) / winAmt) * reductionFactor
 
     if bankroll is None:

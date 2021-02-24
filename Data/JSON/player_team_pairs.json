@@ -1,1 +1,2922 @@
-{"2021": {"jarrettallen": {"possibleTeams": ["BRK", "CLE"], "currentTeam": "CLE"}, "jamesharden": {"possibleTeams": ["HOU", "BRK"], "currentTeam": "BRK"}, "rodionskurucs": {"possibleTeams": ["BRK", "HOU"], "currentTeam": "HOU"}, "alexlen": {"possibleTeams": ["TOR", "WAS"], "currentTeam": "WAS"}, "victoroladipo": {"possibleTeams": ["IND", "HOU"], "currentTeam": "HOU"}, "taureanprince": {"possibleTeams": ["BRK", "CLE"], "currentTeam": "CLE"}, "derrickrose": {"possibleTeams": ["DET", "NYK"], "currentTeam": "NYK"}, "dennissmithjr": {"possibleTeams": ["NYK", "DET"], "currentTeam": "DET"}, "preciousachiuwa": {"possibleTeams": ["MIA"], "currentTeam": "MIA"}, "jaylenadams": {"possibleTeams": ["MIL"], "currentTeam": "MIL"}, "stevenadams": {"possibleTeams": ["NOP"], "currentTeam": "NOP"}, "bamadebayo": {"possibleTeams": ["MIA"], "currentTeam": "MIA"}, "lamarcusaldridge": {"possibleTeams": ["SAS"], "currentTeam": "SAS"}, "tyshonalexander": {"possibleTeams": ["PHO"], "currentTeam": "PHO"}, "nickeilalexanderwalker": {"possibleTeams": ["NOP"], "currentTeam": "NOP"}, "graysonallen": {"possibleTeams": ["MEM"], "currentTeam": "MEM"}, "alfarouqaminu": {"possibleTeams": ["ORL"], "currentTeam": "ORL"}, "kyleanderson": {"possibleTeams": ["MEM"], "currentTeam": "MEM"}, "giannisantetokounmpo": {"possibleTeams": ["MIL"], "currentTeam": "MIL"}, "kostasantetokounmpo": {"possibleTeams": ["LAL"], "currentTeam": "LAL"}, "thanasisantetokounmpo": {"possibleTeams": ["MIL"], "currentTeam": "MIL"}, "carmeloanthony": {"possibleTeams": ["POR"], "currentTeam": "POR"}, "coleanthony": {"possibleTeams": ["ORL"], "currentTeam": "ORL"}, "oganunoby": {"possibleTeams": ["TOR"], "currentTeam": "TOR"}, "ryanarcidiacono": {"possibleTeams": ["CHI"], "currentTeam": "CHI"}, "djaugustin": {"possibleTeams": ["MIL"], "currentTeam": "MIL"}, "deniavdija": {"possibleTeams": ["WAS"], "currentTeam": "WAS"}, "deandreayton": {"possibleTeams": ["PHO"], "currentTeam": "PHO"}, "udokaazubuike": {"possibleTeams": ["UTA"], "currentTeam": "UTA"}, "dwaynebacon": {"possibleTeams": ["ORL"], "currentTeam": "ORL"}, "marvinbagleyiii": {"possibleTeams": ["SAC"], "currentTeam": "SAC"}, "lameloball": {"possibleTeams": ["CHO"], "currentTeam": "CHO"}, "lonzoball": {"possibleTeams": ["NOP"], "currentTeam": "NOP"}, "mobamba": {"possibleTeams": ["ORL"], "currentTeam": "ORL"}, "desmondbane": {"possibleTeams": ["MEM"], "currentTeam": "MEM"}, "harrisonbarnes": {"possibleTeams": ["SAC"], "currentTeam": "SAC"}, "rjbarrett": {"possibleTeams": ["NYK"], "currentTeam": "NYK"}, "willbarton": {"possibleTeams": ["DEN"], "currentTeam": "DEN"}, "keitabatesdiop": {"possibleTeams": ["SAS"], "currentTeam": "SAS"}, "nicolasbatum": {"possibleTeams": ["LAC"], "currentTeam": "LAC"}, "aronbaynes": {"possibleTeams": ["TOR"], "currentTeam": "TOR"}, "kentbazemore": {"possibleTeams": ["GSW"], "currentTeam": "GSW"}, "dariusbazley": {"possibleTeams": ["OKC"], "currentTeam": "OKC"}, "bradleybeal": {"possibleTeams": ["WAS"], "currentTeam": "WAS"}, "malikbeasley": {"possibleTeams": ["MIN"], "currentTeam": "MIN"}, "jordanbell": {"possibleTeams": ["WAS"], "currentTeam": "WAS"}, "deandre'bembry": {"possibleTeams": ["TOR"], "currentTeam": "TOR"}, "davisbertans": {"possibleTeams": ["WAS"], "currentTeam": "WAS"}, "patrickbeverley": {"possibleTeams": ["LAC"], "currentTeam": "LAC"}, "saddiqbey": {"possibleTeams": ["DET"], "currentTeam": "DET"}, "tylerbey": {"possibleTeams": ["DAL"], "currentTeam": "DAL"}, "khembirch": {"possibleTeams": ["ORL"], "currentTeam": "ORL"}, "gogabitadze": {"possibleTeams": ["IND"], "currentTeam": "IND"}, "bismackbiyombo": {"possibleTeams": ["CHO"], "currentTeam": "CHO"}, "nemanjabjelica": {"possibleTeams": ["SAC"], "currentTeam": "SAC"}, "ericbledsoe": {"possibleTeams": ["NOP"], "currentTeam": "NOP"}, "keljinblevins": {"possibleTeams": ["POR"], "currentTeam": "POR"}, "bogdanbogdanovic": {"possibleTeams": ["ATL"], "currentTeam": "ATL"}, "bojanbogdanovic": {"possibleTeams": ["UTA"], "currentTeam": "UTA"}, "bolbol": {"possibleTeams": ["DEN"], "currentTeam": "DEN"}, "marquesbolden": {"possibleTeams": ["CLE"], "currentTeam": "CLE"}, "jordanbone": {"possibleTeams": ["ORL"], "currentTeam": "ORL"}, "isaacbonga": {"possibleTeams": ["WAS"], "currentTeam": "WAS"}, "devinbooker": {"possibleTeams": ["PHO"], "currentTeam": "PHO"}, "chrisboucher": {"possibleTeams": ["TOR"], "currentTeam": "TOR"}, "brianbowen": {"possibleTeams": ["IND"], "currentTeam": "IND"}, "averybradley": {"possibleTeams": ["MIA"], "currentTeam": "MIA"}, "tonybradley": {"possibleTeams": ["PHI"], "currentTeam": "PHI"}, "jarrellbrantley": {"possibleTeams": ["UTA"], "currentTeam": "UTA"}, "ignasbrazdeikis": {"possibleTeams": ["NYK"], "currentTeam": "NYK"}, "mikalbridges": {"possibleTeams": ["PHO"], "currentTeam": "PHO"}, "milesbridges": {"possibleTeams": ["CHO"], "currentTeam": "CHO"}, "malcolmbrogdon": {"possibleTeams": ["IND"], "currentTeam": "IND"}, "dillonbrooks": {"possibleTeams": ["MEM"], "currentTeam": "MEM"}, "brucebrown": {"possibleTeams": ["BRK"], "currentTeam": "BRK"}, "jaylenbrown": {"possibleTeams": ["BOS"], "currentTeam": "BOS"}, "mosesbrown": {"possibleTeams": ["OKC"], "currentTeam": "OKC"}, "sterlingbrown": {"possibleTeams": ["HOU"], "currentTeam": "HOU"}, "troybrownjr": {"possibleTeams": ["WAS"], "currentTeam": "WAS"}, "jalenbrunson": {"possibleTeams": ["DAL"], "currentTeam": "DAL"}, "thomasbryant": {"possibleTeams": ["WAS"], "currentTeam": "WAS"}, "reggiebullock": {"possibleTeams": ["NYK"], "currentTeam": "NYK"}, "treyburke": {"possibleTeams": ["DAL"], "currentTeam": "DAL"}, "alecburks": {"possibleTeams": ["NYK"], "currentTeam": "NYK"}, "jimmybutler": {"possibleTeams": ["MIA"], "currentTeam": "MIA"}, "brunocaboclo": {"possibleTeams": ["HOU"], "currentTeam": "HOU"}, "devontaecacok": {"possibleTeams": ["LAL"], "currentTeam": "LAL"}, "kentaviouscaldwellpope": {"possibleTeams": ["LAL"], "currentTeam": "LAL"}, "facundocampazzo": {"possibleTeams": ["DEN"], "currentTeam": "DEN"}, "vlatkocancar": {"possibleTeams": ["DEN"], "currentTeam": "DEN"}, "clintcapela": {"possibleTeams": ["ATL"], "currentTeam": "ATL"}, "vernoncareyjr": {"possibleTeams": ["CHO"], "currentTeam": "CHO"}, "jevoncarter": {"possibleTeams": ["PHO"], "currentTeam": "PHO"}, "wendellcarterjr": {"possibleTeams": ["CHI"], "currentTeam": "CHI"}, "michaelcarterwilliams": {"possibleTeams": ["ORL"], "currentTeam": "ORL"}, "alexcaruso": {"possibleTeams": ["LAL"], "currentTeam": "LAL"}, "williecauleystein": {"possibleTeams": ["DAL"], "currentTeam": "DAL"}, "chrischiozza": {"possibleTeams": ["BRK"], "currentTeam": "BRK"}, "marquesechriss": {"possibleTeams": ["GSW"], "currentTeam": "GSW"}, "garyclark": {"possibleTeams": ["ORL"], "currentTeam": "ORL"}, "brandonclarke": {"possibleTeams": ["MEM"], "currentTeam": "MEM"}, "jordanclarkson": {"possibleTeams": ["UTA"], "currentTeam": "UTA"}, "amircoffey": {"possibleTeams": ["LAC"], "currentTeam": "LAC"}, "johncollins": {"possibleTeams": ["ATL"], "currentTeam": "ATL"}, "mikeconley": {"possibleTeams": ["UTA"], "currentTeam": "UTA"}, "patconnaughton": {"possibleTeams": ["MIL"], "currentTeam": "MIL"}, "quinncook": {"possibleTeams": ["LAL"], "currentTeam": "LAL"}, "demarcuscousins": {"possibleTeams": ["HOU"], "currentTeam": "HOU"}, "robertcovington": {"possibleTeams": ["POR"], "currentTeam": "POR"}, "torreycraig": {"possibleTeams": ["MIL"], "currentTeam": "MIL"}, "jaecrowder": {"possibleTeams": ["PHO"], "currentTeam": "PHO"}, "jarrettculver": {"possibleTeams": ["MIN"], "currentTeam": "MIN"}, "sethcurry": {"possibleTeams": ["PHI"], "currentTeam": "PHI"}, "stephencurry": {"possibleTeams": ["GSW"], "currentTeam": "GSW"}, "anthonydavis": {"possibleTeams": ["LAL"], "currentTeam": "LAL"}, "eddavis": {"possibleTeams": ["MIN"], "currentTeam": "MIN"}, "terencedavis": {"possibleTeams": ["TOR"], "currentTeam": "TOR"}, "demarderozan": {"possibleTeams": ["SAS"], "currentTeam": "SAS"}, "hamidoudiallo": {"possibleTeams": ["OKC"], "currentTeam": "OKC"}, "gorguidieng": {"possibleTeams": ["MEM"], "currentTeam": "MEM"}, "spencerdinwiddie": {"possibleTeams": ["BRK"], "currentTeam": "BRK"}, "dontedivincenzo": {"possibleTeams": ["MIL"], "currentTeam": "MIL"}, "lukadoncic": {"possibleTeams": ["DAL"], "currentTeam": "DAL"}, "luguentzdort": {"possibleTeams": ["OKC"], "currentTeam": "OKC"}, "damyeandotson": {"possibleTeams": ["CLE"], "currentTeam": "CLE"}, "devondotson": {"possibleTeams": ["CHI"], "currentTeam": "CHI"}, "sekoudoumbouya": {"possibleTeams": ["DET"], "currentTeam": "DET"}, "pjdozier": {"possibleTeams": ["DEN"], "currentTeam": "DEN"}, "gorandragic": {"possibleTeams": ["MIA"], "currentTeam": "MIA"}, "andredrummond": {"possibleTeams": ["CLE"], "currentTeam": "CLE"}, "jareddudley": {"possibleTeams": ["LAL"], "currentTeam": "LAL"}, "kevindurant": {"possibleTeams": ["BRK"], "currentTeam": "BRK"}, "anthonyedwards": {"possibleTeams": ["MIN"], "currentTeam": "MIN"}, "carsenedwards": {"possibleTeams": ["BOS"], "currentTeam": "BOS"}, "cjelleby": {"possibleTeams": ["POR"], "currentTeam": "POR"}, "wayneellington": {"possibleTeams": ["DET"], "currentTeam": "DET"}, "joelembiid": {"possibleTeams": ["PHI"], "currentTeam": "PHI"}, "jamesennis": {"possibleTeams": ["ORL"], "currentTeam": "ORL"}, "dreweubanks": {"possibleTeams": ["SAS"], "currentTeam": "SAS"}, "danteexum": {"possibleTeams": ["CLE"], "currentTeam": "CLE"}, "tackofall": {"possibleTeams": ["BOS"], "currentTeam": "BOS"}, "derrickfavors": {"possibleTeams": ["UTA"], "currentTeam": "UTA"}, "cristianofelicio": {"possibleTeams": ["CHI"], "currentTeam": "CHI"}, "terranceferguson": {"possibleTeams": ["PHI"], "currentTeam": "PHI"}, "brunofernando": {"possibleTeams": ["ATL"], "currentTeam": "ATL"}, "yogiferrell": {"possibleTeams": ["CLE"], "currentTeam": "CLE"}, "dorianfinneysmith": {"possibleTeams": ["DAL"], "currentTeam": "DAL"}, "malachiflynn": {"possibleTeams": ["TOR"], "currentTeam": "TOR"}, "brynforbes": {"possibleTeams": ["MIL"], "currentTeam": "MIL"}, "trentforrest": {"possibleTeams": ["UTA"], "currentTeam": "UTA"}, "evanfournier": {"possibleTeams": ["ORL"], "currentTeam": "ORL"}, "de'aaronfox": {"possibleTeams": ["SAC"], "currentTeam": "SAC"}, "timfrazier": {"possibleTeams": ["MEM"], "currentTeam": "MEM"}, "markellefultz": {"possibleTeams": ["ORL"], "currentTeam": "ORL"}, "wenyengabriel": {"possibleTeams": ["NOP"], "currentTeam": "NOP"}, "danielgafford": {"possibleTeams": ["CHI"], "currentTeam": "CHI"}, "danilogallinari": {"possibleTeams": ["ATL"], "currentTeam": "ATL"}, "langstongalloway": {"possibleTeams": ["PHO"], "currentTeam": "PHO"}, "dariusgarland": {"possibleTeams": ["CLE"], "currentTeam": "CLE"}, "marcgasol": {"possibleTeams": ["LAL"], "currentTeam": "LAL"}, "rudygay": {"possibleTeams": ["SAS"], "currentTeam": "SAS"}, "paulgeorge": {"possibleTeams": ["LAC"], "currentTeam": "LAC"}, "tajgibson": {"possibleTeams": ["NYK"], "currentTeam": "NYK"}, "harrygiles": {"possibleTeams": ["POR"], "currentTeam": "POR"}, "shaigilgeousalexander": {"possibleTeams": ["OKC"], "currentTeam": "OKC"}, "anthonygill": {"possibleTeams": ["WAS"], "currentTeam": "WAS"}, "rudygobert": {"possibleTeams": ["UTA"], "currentTeam": "UTA"}, "brandongoodwin": {"possibleTeams": ["ATL"], "currentTeam": "ATL"}, "aarongordon": {"possibleTeams": ["ORL"], "currentTeam": "ORL"}, "ericgordon": {"possibleTeams": ["HOU"], "currentTeam": "HOU"}, "devonte'graham": {"possibleTeams": ["CHO"], "currentTeam": "CHO"}, "jeramigrant": {"possibleTeams": ["DET"], "currentTeam": "DET"}, "dannygreen": {"possibleTeams": ["PHI"], "currentTeam": "PHI"}, "draymondgreen": {"possibleTeams": ["GSW"], "currentTeam": "GSW"}, "jamychalgreen": {"possibleTeams": ["DEN"], "currentTeam": "DEN"}, "javontegreen": {"possibleTeams": ["BOS"], "currentTeam": "BOS"}, "jeffgreen": {"possibleTeams": ["BRK"], "currentTeam": "BRK"}, "joshgreen": {"possibleTeams": ["DAL"], "currentTeam": "DAL"}, "blakegriffin": {"possibleTeams": ["DET"], "currentTeam": "DET"}, "kyleguy": {"possibleTeams": ["SAC"], "currentTeam": "SAC"}, "ruihachimura": {"possibleTeams": ["WAS"], "currentTeam": "WAS"}, "ashtonhagans": {"possibleTeams": ["MIN"], "currentTeam": "MIN"}, "tyresehaliburton": {"possibleTeams": ["SAC"], "currentTeam": "SAC"}, "joshhall": {"possibleTeams": ["OKC"], "currentTeam": "OKC"}, "rjhampton": {"possibleTeams": ["DEN"], "currentTeam": "DEN"}, "timhardawayjr": {"possibleTeams": ["DAL"], "currentTeam": "DAL"}, "mauriceharkless": {"possibleTeams": ["MIA"], "currentTeam": "MIA"}, "jaredharper": {"possibleTeams": ["NYK"], "currentTeam": "NYK"}, "montrezlharrell": {"possibleTeams": ["LAL"], "currentTeam": "LAL"}, "garyharris": {"possibleTeams": ["DEN"], "currentTeam": "DEN"}, "jalenharris": {"possibleTeams": ["TOR"], "currentTeam": "TOR"}, "joeharris": {"possibleTeams": ["BRK"], "currentTeam": "BRK"}, "tobiasharris": {"possibleTeams": ["PHI"], "currentTeam": "PHI"}, "shaquilleharrison": {"possibleTeams": ["UTA"], "currentTeam": "UTA"}, "joshhart": {"possibleTeams": ["NOP"], "currentTeam": "NOP"}, "isaiahhartenstein": {"possibleTeams": ["DEN"], "currentTeam": "DEN"}, "jaxsonhayes": {"possibleTeams": ["NOP"], "currentTeam": "NOP"}, "killianhayes": {"possibleTeams": ["DET"], "currentTeam": "DET"}, "gordonhayward": {"possibleTeams": ["CHO"], "currentTeam": "CHO"}, "juanhernangomez": {"possibleTeams": ["MIN"], "currentTeam": "MIN"}, "willyhernangomez": {"possibleTeams": ["NOP"], "currentTeam": "NOP"}, "tylerherro": {"possibleTeams": ["MIA"], "currentTeam": "MIA"}, "buddyhield": {"possibleTeams": ["SAC"], "currentTeam": "SAC"}, "georgehill": {"possibleTeams": ["OKC"], "currentTeam": "OKC"}, "solomonhill": {"possibleTeams": ["ATL"], "currentTeam": "ATL"}, "natehinton": {"possibleTeams": ["DAL"], "currentTeam": "DAL"}, "aaronholiday": {"possibleTeams": ["IND"], "currentTeam": "IND"}, "jrueholiday": {"possibleTeams": ["MIL"], "currentTeam": "MIL"}, "justinholiday": {"possibleTeams": ["IND"], "currentTeam": "IND"}, "richaunholmes": {"possibleTeams": ["SAC"], "currentTeam": "SAC"}, "rodneyhood": {"possibleTeams": ["POR"], "currentTeam": "POR"}, "alhorford": {"possibleTeams": ["OKC"], "currentTeam": "OKC"}, "talenhortontucker": {"possibleTeams": ["LAL"], "currentTeam": "LAL"}, "danuelhouse": {"possibleTeams": ["HOU"], "currentTeam": "HOU"}, "dwighthoward": {"possibleTeams": ["PHI"], "currentTeam": "PHI"}, "markushoward": {"possibleTeams": ["DEN"], "currentTeam": "DEN"}, "kevinhuerter": {"possibleTeams": ["ATL"], "currentTeam": "ATL"}, "elijahhughes": {"possibleTeams": ["UTA"], "currentTeam": "UTA"}, "de'andrehunter": {"possibleTeams": ["ATL"], "currentTeam": "ATL"}, "chandlerhutchison": {"possibleTeams": ["CHI"], "currentTeam": "CHI"}, "sergeibaka": {"possibleTeams": ["LAC"], "currentTeam": "LAC"}, "andreiguodala": {"possibleTeams": ["MIA"], "currentTeam": "MIA"}, "joeingles": {"possibleTeams": ["UTA"], "currentTeam": "UTA"}, "brandoningram": {"possibleTeams": ["NOP"], "currentTeam": "NOP"}, "kyrieirving": {"possibleTeams": ["BRK"], "currentTeam": "BRK"}, "wesleyiwundu": {"possibleTeams": ["DAL"], "currentTeam": "DAL"}, "frankjackson": {"possibleTeams": ["DET"], "currentTeam": "DET"}, "joshjackson": {"possibleTeams": ["DET"], "currentTeam": "DET"}, "justinjackson": {"possibleTeams": ["OKC"], "currentTeam": "OKC"}, "reggiejackson": {"possibleTeams": ["LAC"], "currentTeam": "LAC"}, "justinjames": {"possibleTeams": ["SAC"], "currentTeam": "SAC"}, "lebronjames": {"possibleTeams": ["LAL"], "currentTeam": "LAL"}, "daquanjeffries": {"possibleTeams": ["SAC"], "currentTeam": "SAC"}, "isaiahjoe": {"possibleTeams": ["PHI"], "currentTeam": "PHI"}, "cameronjohnson": {"possibleTeams": ["PHO"], "currentTeam": "PHO"}, "jamesjohnson": {"possibleTeams": ["DAL"], "currentTeam": "DAL"}, "keldonjohnson": {"possibleTeams": ["SAS"], "currentTeam": "SAS"}, "stanleyjohnson": {"possibleTeams": ["TOR"], "currentTeam": "TOR"}, "tylerjohnson": {"possibleTeams": ["BRK"], "currentTeam": "BRK"}, "nikolajokic": {"possibleTeams": ["DEN"], "currentTeam": "DEN"}, "damianjones": {"possibleTeams": ["PHO"], "currentTeam": "PHO"}, "derrickjonesjr": {"possibleTeams": ["POR"], "currentTeam": "POR"}, "masonjones": {"possibleTeams": ["HOU"], "currentTeam": "HOU"}, "trejones": {"possibleTeams": ["SAS"], "currentTeam": "SAS"}, "tyusjones": {"possibleTeams": ["MEM"], "currentTeam": "MEM"}, "deandrejordan": {"possibleTeams": ["BRK"], "currentTeam": "BRK"}, "coryjoseph": {"possibleTeams": ["SAC"], "currentTeam": "SAC"}, "mfiondukabengele": {"possibleTeams": ["LAC"], "currentTeam": "LAC"}, "frankkaminsky": {"possibleTeams": ["PHO"], "currentTeam": "PHO"}, "eneskanter": {"possibleTeams": ["POR"], "currentTeam": "POR"}, "lukekennard": {"possibleTeams": ["LAC"], "currentTeam": "LAC"}, "maxikleber": {"possibleTeams": ["DAL"], "currentTeam": "DAL"}, "nathanknight": {"possibleTeams": ["ATL"], "currentTeam": "ATL"}, "kevinknox": {"possibleTeams": ["NYK"], "currentTeam": "NYK"}, "johnkonchar": {"possibleTeams": ["MEM"], "currentTeam": "MEM"}, "furkankorkmaz": {"possibleTeams": ["PHI"], "currentTeam": "PHI"}, "lukekornet": {"possibleTeams": ["CHI"], "currentTeam": "CHI"}, "kylekuzma": {"possibleTeams": ["LAL"], "currentTeam": "LAL"}, "jeremylamb": {"possibleTeams": ["IND"], "currentTeam": "IND"}, "zachlavine": {"possibleTeams": ["CHI"], "currentTeam": "CHI"}, "jakelayman": {"possibleTeams": ["MIN"], "currentTeam": "MIN"}, "jalenlecque": {"possibleTeams": ["IND"], "currentTeam": "IND"}, "damionlee": {"possibleTeams": ["GSW"], "currentTeam": "GSW"}, "sabenlee": {"possibleTeams": ["DET"], "currentTeam": "DET"}, "kawhileonard": {"possibleTeams": ["LAC"], "currentTeam": "LAC"}, "meyersleonard": {"possibleTeams": ["MIA"], "currentTeam": "MIA"}, "carislevert": {"possibleTeams": ["BRK"], "currentTeam": "BRK"}, "kiralewisjr": {"possibleTeams": ["NOP"], "currentTeam": "NOP"}, "damianlillard": {"possibleTeams": ["POR"], "currentTeam": "POR"}, "nassirlittle": {"possibleTeams": ["POR"], "currentTeam": "POR"}, "kevonlooney": {"possibleTeams": ["GSW"], "currentTeam": "GSW"}, "brooklopez": {"possibleTeams": ["MIL"], "currentTeam": "MIL"}, "robinlopez": {"possibleTeams": ["WAS"], "currentTeam": "WAS"}, "kevinlove": {"possibleTeams": ["CLE"], "currentTeam": "CLE"}, "kylelowry": {"possibleTeams": ["TOR"], "currentTeam": "TOR"}, "timotheluwawucabarrot": {"possibleTeams": ["BRK"], "currentTeam": "BRK"}, "treylyles": {"possibleTeams": ["SAS"], "currentTeam": "SAS"}, "thonmaker": {"possibleTeams": ["CLE"], "currentTeam": "CLE"}, "theomaledon": {"possibleTeams": ["OKC"], "currentTeam": "OKC"}, "karimmane": {"possibleTeams": ["ORL"], "currentTeam": "ORL"}, "terancemann": {"possibleTeams": ["LAC"], "currentTeam": "LAC"}, "nicomannion": {"possibleTeams": ["GSW"], "currentTeam": "GSW"}, "bobanmarjanovic": {"possibleTeams": ["DAL"], "currentTeam": "DAL"}, "laurimarkkanen": {"possibleTeams": ["CHI"], "currentTeam": "CHI"}, "najimarshall": {"possibleTeams": ["NOP"], "currentTeam": "NOP"}, "calebmartin": {"possibleTeams": ["CHO"], "currentTeam": "CHO"}, "codymartin": {"possibleTeams": ["CHO"], "currentTeam": "CHO"}, "kelanmartin": {"possibleTeams": ["IND"], "currentTeam": "IND"}, "kenyonmartinjr": {"possibleTeams": ["HOU"], "currentTeam": "HOU"}, "frankmasoniii": {"possibleTeams": ["ORL"], "currentTeam": "ORL"}, "garrisonmathews": {"possibleTeams": ["WAS"], "currentTeam": "WAS"}, "dakotamathias": {"possibleTeams": ["PHI"], "currentTeam": "PHI"}, "wesleymatthews": {"possibleTeams": ["LAL"], "currentTeam": "LAL"}, "tyresemaxey": {"possibleTeams": ["PHI"], "currentTeam": "PHI"}, "skylarmays": {"possibleTeams": ["ATL"], "currentTeam": "ATL"}, "patrickmccaw": {"possibleTeams": ["TOR"], "currentTeam": "TOR"}, "cjmccollum": {"possibleTeams": ["POR"], "currentTeam": "POR"}, "tjmcconnell": {"possibleTeams": ["IND"], "currentTeam": "IND"}, "jadenmcdaniels": {"possibleTeams": ["MIN"], "currentTeam": "MIN"}, "jalenmcdaniels": {"possibleTeams": ["CHO"], "currentTeam": "CHO"}, "dougmcdermott": {"possibleTeams": ["IND"], "currentTeam": "IND"}, "seanmcdermott": {"possibleTeams": ["MEM"], "currentTeam": "MEM"}, "javalemcgee": {"possibleTeams": ["CLE"], "currentTeam": "CLE"}, "rodneymcgruder": {"possibleTeams": ["DET"], "currentTeam": "DET"}, "alfonzomckinnie": {"possibleTeams": ["LAL"], "currentTeam": "LAL"}, "jordanmclaughlin": {"possibleTeams": ["MIN"], "currentTeam": "MIN"}, "benmclemore": {"possibleTeams": ["HOU"], "currentTeam": "HOU"}, "nicolomelli": {"possibleTeams": ["NOP"], "currentTeam": "NOP"}, "de'anthonymelton": {"possibleTeams": ["MEM"], "currentTeam": "MEM"}, "sammerrill": {"possibleTeams": ["MIL"], "currentTeam": "MIL"}, "chimeziemetu": {"possibleTeams": ["SAC"], "currentTeam": "SAC"}, "khrismiddleton": {"possibleTeams": ["MIL"], "currentTeam": "MIL"}, "dariusmiller": {"possibleTeams": ["OKC"], "currentTeam": "OKC"}, "pattymills": {"possibleTeams": ["SAS"], "currentTeam": "SAS"}, "paulmillsap": {"possibleTeams": ["DEN"], "currentTeam": "DEN"}, "shakemilton": {"possibleTeams": ["PHI"], "currentTeam": "PHI"}, "donovanmitchell": {"possibleTeams": ["UTA"], "currentTeam": "UTA"}, "adammokoka": {"possibleTeams": ["CHI"], "currentTeam": "CHI"}, "malikmonk": {"possibleTeams": ["CHO"], "currentTeam": "CHO"}, "e'twaunmoore": {"possibleTeams": ["PHO"], "currentTeam": "PHO"}, "jamorant": {"possibleTeams": ["MEM"], "currentTeam": "MEM"}, "juwanmorgan": {"possibleTeams": ["UTA"], "currentTeam": "UTA"}, "marcusmorris": {"possibleTeams": ["LAC"], "currentTeam": "LAC"}, "markieffmorris": {"possibleTeams": ["LAL"], "currentTeam": "LAL"}, "montemorris": {"possibleTeams": ["DEN"], "currentTeam": "DEN"}, "mychalmulder": {"possibleTeams": ["GSW"], "currentTeam": "GSW"}, "dejountemurray": {"possibleTeams": ["SAS"], "currentTeam": "SAS"}, "jamalmurray": {"possibleTeams": ["DEN"], "currentTeam": "DEN"}, "mikemuscala": {"possibleTeams": ["OKC"], "currentTeam": "OKC"}, "sviatoslavmykhailiuk": {"possibleTeams": ["DET"], "currentTeam": "DET"}, "abdelnader": {"possibleTeams": ["PHO"], "currentTeam": "PHO"}, "larrynancejr": {"possibleTeams": ["CLE"], "currentTeam": "CLE"}, "aaronnesmith": {"possibleTeams": ["BOS"], "currentTeam": "BOS"}, "raulneto": {"possibleTeams": ["WAS"], "currentTeam": "WAS"}, "georgesniang": {"possibleTeams": ["UTA"], "currentTeam": "UTA"}, "zekennaji": {"possibleTeams": ["DEN"], "currentTeam": "DEN"}, "nerlensnoel": {"possibleTeams": ["NYK"], "currentTeam": "NYK"}, "jaylennowell": {"possibleTeams": ["MIN"], "currentTeam": "MIN"}, "frankntilikina": {"possibleTeams": ["NYK"], "currentTeam": "NYK"}, "kendricknunn": {"possibleTeams": ["MIA"], "currentTeam": "MIA"}, "jusufnurkic": {"possibleTeams": ["POR"], "currentTeam": "POR"}, "davidnwaba": {"possibleTeams": ["HOU"], "currentTeam": "HOU"}, "jordannwora": {"possibleTeams": ["MIL"], "currentTeam": "MIL"}, "royceo'neale": {"possibleTeams": ["UTA"], "currentTeam": "UTA"}, "semiojeleye": {"possibleTeams": ["BOS"], "currentTeam": "BOS"}, "jahlilokafor": {"possibleTeams": ["DET"], "currentTeam": "DET"}, "chumaokeke": {"possibleTeams": ["ORL"], "currentTeam": "ORL"}, "joshokogie": {"possibleTeams": ["MIN"], "currentTeam": "MIN"}, "onyekaokongwu": {"possibleTeams": ["ATL"], "currentTeam": "ATL"}, "isaacokoro": {"possibleTeams": ["CLE"], "currentTeam": "CLE"}, "kzokpala": {"possibleTeams": ["MIA"], "currentTeam": "MIA"}, "kellyolynyk": {"possibleTeams": ["MIA"], "currentTeam": "MIA"}, "miyeoni": {"possibleTeams": ["UTA"], "currentTeam": "UTA"}, "cediosman": {"possibleTeams": ["CLE"], "currentTeam": "CLE"}, "danieloturu": {"possibleTeams": ["LAC"], "currentTeam": "LAC"}, "kellyoubrejr": {"possibleTeams": ["GSW"], "currentTeam": "GSW"}, "jabariparker": {"possibleTeams": ["SAC"], "currentTeam": "SAC"}, "ericpaschall": {"possibleTeams": ["GSW"], "currentTeam": "GSW"}, "anzejspasecniks": {"possibleTeams": ["WAS"], "currentTeam": "WAS"}, "patrickpatterson": {"possibleTeams": ["LAC"], "currentTeam": "LAC"}, "chrispaul": {"possibleTeams": ["PHO"], "currentTeam": "PHO"}, "cameronpayne": {"possibleTeams": ["PHO"], "currentTeam": "PHO"}, "elfridpayton": {"possibleTeams": ["NYK"], "currentTeam": "NYK"}, "norvelpelle": {"possibleTeams": ["BRK"], "currentTeam": "BRK"}, "reggieperry": {"possibleTeams": ["BRK"], "currentTeam": "BRK"}, "theopinson": {"possibleTeams": ["NYK"], "currentTeam": "NYK"}, "masonplumlee": {"possibleTeams": ["DET"], "currentTeam": "DET"}, "jakobpoeltl": {"possibleTeams": ["SAS"], "currentTeam": "SAS"}, "vincentpoirier": {"possibleTeams": ["PHI"], "currentTeam": "PHI"}, "aleksejpokusevski": {"possibleTeams": ["OKC"], "currentTeam": "OKC"}, "jordanpoole": {"possibleTeams": ["GSW"], "currentTeam": "GSW"}, "michaelporterjr": {"possibleTeams": ["DEN"], "currentTeam": "DEN"}, "ottoporter": {"possibleTeams": ["CHI"], "currentTeam": "CHI"}, "bobbyportis": {"possibleTeams": ["MIL"], "currentTeam": "MIL"}, "kristapsporzingis": {"possibleTeams": ["DAL"], "currentTeam": "DAL"}, "dwightpowell": {"possibleTeams": ["DAL"], "currentTeam": "DAL"}, "normanpowell": {"possibleTeams": ["TOR"], "currentTeam": "TOR"}, "paytonpritchard": {"possibleTeams": ["BOS"], "currentTeam": "BOS"}, "immanuelquickley": {"possibleTeams": ["NYK"], "currentTeam": "NYK"}, "jahmi'usramsey": {"possibleTeams": ["SAC"], "currentTeam": "SAC"}, "chassonrandle": {"possibleTeams": ["ORL"], "currentTeam": "ORL"}, "juliusrandle": {"possibleTeams": ["NYK"], "currentTeam": "NYK"}, "camreddish": {"possibleTeams": ["ATL"], "currentTeam": "ATL"}, "jjredick": {"possibleTeams": ["NOP"], "currentTeam": "NOP"}, "paulreed": {"possibleTeams": ["PHI"], "currentTeam": "PHI"}, "nazreid": {"possibleTeams": ["MIN"], "currentTeam": "MIN"}, "nickrichards": {"possibleTeams": ["CHO"], "currentTeam": "CHO"}, "joshrichardson": {"possibleTeams": ["DAL"], "currentTeam": "DAL"}, "austinrivers": {"possibleTeams": ["NYK"], "currentTeam": "NYK"}, "andreroberson": {"possibleTeams": ["BRK"], "currentTeam": "BRK"}, "duncanrobinson": {"possibleTeams": ["MIA"], "currentTeam": "MIA"}, "glennrobinsoniii": {"possibleTeams": ["SAC"], "currentTeam": "SAC"}, "jeromerobinson": {"possibleTeams": ["WAS"], "currentTeam": "WAS"}, "mitchellrobinson": {"possibleTeams": ["NYK"], "currentTeam": "NYK"}, "isaiahroby": {"possibleTeams": ["OKC"], "currentTeam": "OKC"}, "rajonrondo": {"possibleTeams": ["ATL"], "currentTeam": "ATL"}, "terrenceross": {"possibleTeams": ["ORL"], "currentTeam": "ORL"}, "terryrozier": {"possibleTeams": ["CHO"], "currentTeam": "CHO"}, "rickyrubio": {"possibleTeams": ["MIN"], "currentTeam": "MIN"}, "d'angelorussell": {"possibleTeams": ["MIN"], "currentTeam": "MIN"}, "domantassabonis": {"possibleTeams": ["IND"], "currentTeam": "IND"}, "lukasamanic": {"possibleTeams": ["SAS"], "currentTeam": "SAS"}, "jakarrsampson": {"possibleTeams": ["IND"], "currentTeam": "IND"}, "dariosaric": {"possibleTeams": ["PHO"], "currentTeam": "PHO"}, "tomassatoransky": {"possibleTeams": ["CHI"], "currentTeam": "CHI"}, "dennisschroder": {"possibleTeams": ["LAL"], "currentTeam": "LAL"}, "mikescott": {"possibleTeams": ["PHI"], "currentTeam": "PHI"}, "collinsexton": {"possibleTeams": ["CLE"], "currentTeam": "CLE"}, "landryshamet": {"possibleTeams": ["BRK"], "currentTeam": "BRK"}, "pascalsiakam": {"possibleTeams": ["TOR"], "currentTeam": "TOR"}, "chrissilva": {"possibleTeams": ["MIA"], "currentTeam": "MIA"}, "bensimmons": {"possibleTeams": ["PHI"], "currentTeam": "PHI"}, "anferneesimons": {"possibleTeams": ["POR"], "currentTeam": "POR"}, "deividassirvydis": {"possibleTeams": ["DET"], "currentTeam": "DET"}, "marcussmart": {"possibleTeams": ["BOS"], "currentTeam": "BOS"}, "ishsmith": {"possibleTeams": ["WAS"], "currentTeam": "WAS"}, "jalensmith": {"possibleTeams": ["PHO"], "currentTeam": "PHO"}, "tonysnell": {"possibleTeams": ["ATL"], "currentTeam": "ATL"}, "rayspalding": {"possibleTeams": ["HOU"], "currentTeam": "HOU"}, "cassiusstanley": {"possibleTeams": ["IND"], "currentTeam": "IND"}, "lamarstevens": {"possibleTeams": ["CLE"], "currentTeam": "CLE"}, "isaiahstewart": {"possibleTeams": ["DET"], "currentTeam": "DET"}, "maxstrus": {"possibleTeams": ["MIA"], "currentTeam": "MIA"}, "edmondsumner": {"possibleTeams": ["IND"], "currentTeam": "IND"}, "jae'seantate": {"possibleTeams": ["HOU"], "currentTeam": "HOU"}, "jaysontatum": {"possibleTeams": ["BOS"], "currentTeam": "BOS"}, "jeffteague": {"possibleTeams": ["BOS"], "currentTeam": "BOS"}, "garretttemple": {"possibleTeams": ["CHI"], "currentTeam": "CHI"}, "tyrellterry": {"possibleTeams": ["DAL"], "currentTeam": "DAL"}, "danieltheis": {"possibleTeams": ["BOS"], "currentTeam": "BOS"}, "brodricthomas": {"possibleTeams": ["HOU"], "currentTeam": "HOU"}, "mattthomas": {"possibleTeams": ["TOR"], "currentTeam": "TOR"}, "tristanthompson": {"possibleTeams": ["BOS"], "currentTeam": "BOS"}, "sindariusthornwell": {"possibleTeams": ["NOP"], "currentTeam": "NOP"}, "matissethybulle": {"possibleTeams": ["PHI"], "currentTeam": "PHI"}, "xaviertillmansr": {"possibleTeams": ["MEM"], "currentTeam": "MEM"}, "obitoppin": {"possibleTeams": ["NYK"], "currentTeam": "NYK"}, "juantoscanoanderson": {"possibleTeams": ["GSW"], "currentTeam": "GSW"}, "karlanthonytowns": {"possibleTeams": ["MIN"], "currentTeam": "MIN"}, "garytrentjr": {"possibleTeams": ["POR"], "currentTeam": "POR"}, "pjtucker": {"possibleTeams": ["HOU"], "currentTeam": "HOU"}, "mylesturner": {"possibleTeams": ["IND"], "currentTeam": "IND"}, "jonasvalanciunas": {"possibleTeams": ["MEM"], "currentTeam": "MEM"}, "denzelvalentine": {"possibleTeams": ["CHI"], "currentTeam": "CHI"}, "jarredvanderbilt": {"possibleTeams": ["MIN"], "currentTeam": "MIN"}, "fredvanvleet": {"possibleTeams": ["TOR"], "currentTeam": "TOR"}, "devinvassell": {"possibleTeams": ["SAS"], "currentTeam": "SAS"}, "gabevincent": {"possibleTeams": ["MIA"], "currentTeam": "MIA"}, "noahvonleh": {"possibleTeams": ["BRK"], "currentTeam": "BRK"}, "nikolavucevic": {"possibleTeams": ["ORL"], "currentTeam": "ORL"}, "deanwade": {"possibleTeams": ["CLE"], "currentTeam": "CLE"}, "moritzwagner": {"possibleTeams": ["WAS"], "currentTeam": "WAS"}, "kembawalker": {"possibleTeams": ["BOS"], "currentTeam": "BOS"}, "lonniewalker": {"possibleTeams": ["SAS"], "currentTeam": "SAS"}, "johnwall": {"possibleTeams": ["HOU"], "currentTeam": "HOU"}, "bradwanamaker": {"possibleTeams": ["GSW"], "currentTeam": "GSW"}, "tjwarren": {"possibleTeams": ["IND"], "currentTeam": "IND"}, "pjwashington": {"possibleTeams": ["CHO"], "currentTeam": "CHO"}, "yutawatanabe": {"possibleTeams": ["TOR"], "currentTeam": "TOR"}, "tremontwaters": {"possibleTeams": ["BOS"], "currentTeam": "BOS"}, "paulwatson": {"possibleTeams": ["TOR"], "currentTeam": "TOR"}, "quinndaryweatherspoon": {"possibleTeams": ["SAS"], "currentTeam": "SAS"}, "russellwestbrook": {"possibleTeams": ["WAS"], "currentTeam": "WAS"}, "cobywhite": {"possibleTeams": ["CHI"], "currentTeam": "CHI"}, "derrickwhite": {"possibleTeams": ["SAS"], "currentTeam": "SAS"}, "hassanwhiteside": {"possibleTeams": ["SAC"], "currentTeam": "SAC"}, "andrewwiggins": {"possibleTeams": ["GSW"], "currentTeam": "GSW"}, "grantwilliams": {"possibleTeams": ["BOS"], "currentTeam": "BOS"}, "kenrichwilliams": {"possibleTeams": ["OKC"], "currentTeam": "OKC"}, "louwilliams": {"possibleTeams": ["LAC"], "currentTeam": "LAC"}, "patrickwilliams": {"possibleTeams": ["CHI"], "currentTeam": "CHI"}, "robertwilliams": {"possibleTeams": ["BOS"], "currentTeam": "BOS"}, "zionwilliamson": {"possibleTeams": ["NOP"], "currentTeam": "NOP"}, "djwilson": {"possibleTeams": ["MIL"], "currentTeam": "MIL"}, "dylanwindler": {"possibleTeams": ["CLE"], "currentTeam": "CLE"}, "justisewinslow": {"possibleTeams": ["MEM"], "currentTeam": "MEM"}, "cassiuswinston": {"possibleTeams": ["WAS"], "currentTeam": "WAS"}, "jameswiseman": {"possibleTeams": ["GSW"], "currentTeam": "GSW"}, "christianwood": {"possibleTeams": ["HOU"], "currentTeam": "HOU"}, "robertwoodard": {"possibleTeams": ["SAC"], "currentTeam": "SAC"}, "delonwright": {"possibleTeams": ["DET"], "currentTeam": "DET"}, "thaddeusyoung": {"possibleTeams": ["CHI"], "currentTeam": "CHI"}, "traeyoung": {"possibleTeams": ["ATL"], "currentTeam": "ATL"}, "codyzeller": {"possibleTeams": ["CHO"], "currentTeam": "CHO"}, "ivicazubac": {"possibleTeams": ["LAC"], "currentTeam": "LAC"}}}
+{
+  "2021": {
+    "jarrettallen": {
+      "possibleTeams": [
+        "BRK",
+        "CLE"
+      ],
+      "currentTeam": "CLE"
+    },
+    "jamesharden": {
+      "possibleTeams": [
+        "HOU",
+        "BRK"
+      ],
+      "currentTeam": "BRK"
+    },
+    "rodionskurucs": {
+      "possibleTeams": [
+        "BRK",
+        "HOU"
+      ],
+      "currentTeam": "HOU"
+    },
+    "alexlen": {
+      "possibleTeams": [
+        "TOR",
+        "WAS"
+      ],
+      "currentTeam": "WAS"
+    },
+    "victoroladipo": {
+      "possibleTeams": [
+        "IND",
+        "HOU"
+      ],
+      "currentTeam": "HOU"
+    },
+    "taureanprince": {
+      "possibleTeams": [
+        "BRK",
+        "CLE"
+      ],
+      "currentTeam": "CLE"
+    },
+    "derrickrose": {
+      "possibleTeams": [
+        "DET",
+        "NYK"
+      ],
+      "currentTeam": "NYK"
+    },
+    "dennissmithjr": {
+      "possibleTeams": [
+        "NYK",
+        "DET"
+      ],
+      "currentTeam": "DET"
+    },
+    "preciousachiuwa": {
+      "possibleTeams": [
+        "MIA"
+      ],
+      "currentTeam": "MIA"
+    },
+    "jaylenadams": {
+      "possibleTeams": [
+        "MIL"
+      ],
+      "currentTeam": "MIL"
+    },
+    "stevenadams": {
+      "possibleTeams": [
+        "NOP"
+      ],
+      "currentTeam": "NOP"
+    },
+    "bamadebayo": {
+      "possibleTeams": [
+        "MIA"
+      ],
+      "currentTeam": "MIA"
+    },
+    "lamarcusaldridge": {
+      "possibleTeams": [
+        "SAS"
+      ],
+      "currentTeam": "SAS"
+    },
+    "tyshonalexander": {
+      "possibleTeams": [
+        "PHO"
+      ],
+      "currentTeam": "PHO"
+    },
+    "nickeilalexanderwalker": {
+      "possibleTeams": [
+        "NOP"
+      ],
+      "currentTeam": "NOP"
+    },
+    "graysonallen": {
+      "possibleTeams": [
+        "MEM"
+      ],
+      "currentTeam": "MEM"
+    },
+    "alfarouqaminu": {
+      "possibleTeams": [
+        "ORL"
+      ],
+      "currentTeam": "ORL"
+    },
+    "kyleanderson": {
+      "possibleTeams": [
+        "MEM"
+      ],
+      "currentTeam": "MEM"
+    },
+    "giannisantetokounmpo": {
+      "possibleTeams": [
+        "MIL"
+      ],
+      "currentTeam": "MIL"
+    },
+    "kostasantetokounmpo": {
+      "possibleTeams": [
+        "LAL"
+      ],
+      "currentTeam": "LAL"
+    },
+    "thanasisantetokounmpo": {
+      "possibleTeams": [
+        "MIL"
+      ],
+      "currentTeam": "MIL"
+    },
+    "carmeloanthony": {
+      "possibleTeams": [
+        "POR"
+      ],
+      "currentTeam": "POR"
+    },
+    "coleanthony": {
+      "possibleTeams": [
+        "ORL"
+      ],
+      "currentTeam": "ORL"
+    },
+    "oganunoby": {
+      "possibleTeams": [
+        "TOR"
+      ],
+      "currentTeam": "TOR"
+    },
+    "ryanarcidiacono": {
+      "possibleTeams": [
+        "CHI"
+      ],
+      "currentTeam": "CHI"
+    },
+    "djaugustin": {
+      "possibleTeams": [
+        "MIL"
+      ],
+      "currentTeam": "MIL"
+    },
+    "deniavdija": {
+      "possibleTeams": [
+        "WAS"
+      ],
+      "currentTeam": "WAS"
+    },
+    "deandreayton": {
+      "possibleTeams": [
+        "PHO"
+      ],
+      "currentTeam": "PHO"
+    },
+    "udokaazubuike": {
+      "possibleTeams": [
+        "UTA"
+      ],
+      "currentTeam": "UTA"
+    },
+    "dwaynebacon": {
+      "possibleTeams": [
+        "ORL"
+      ],
+      "currentTeam": "ORL"
+    },
+    "marvinbagleyiii": {
+      "possibleTeams": [
+        "SAC"
+      ],
+      "currentTeam": "SAC"
+    },
+    "lameloball": {
+      "possibleTeams": [
+        "CHO"
+      ],
+      "currentTeam": "CHO"
+    },
+    "lonzoball": {
+      "possibleTeams": [
+        "NOP"
+      ],
+      "currentTeam": "NOP"
+    },
+    "mobamba": {
+      "possibleTeams": [
+        "ORL"
+      ],
+      "currentTeam": "ORL"
+    },
+    "desmondbane": {
+      "possibleTeams": [
+        "MEM"
+      ],
+      "currentTeam": "MEM"
+    },
+    "harrisonbarnes": {
+      "possibleTeams": [
+        "SAC"
+      ],
+      "currentTeam": "SAC"
+    },
+    "rjbarrett": {
+      "possibleTeams": [
+        "NYK"
+      ],
+      "currentTeam": "NYK"
+    },
+    "willbarton": {
+      "possibleTeams": [
+        "DEN"
+      ],
+      "currentTeam": "DEN"
+    },
+    "keitabatesdiop": {
+      "possibleTeams": [
+        "SAS"
+      ],
+      "currentTeam": "SAS"
+    },
+    "nicolasbatum": {
+      "possibleTeams": [
+        "LAC"
+      ],
+      "currentTeam": "LAC"
+    },
+    "aronbaynes": {
+      "possibleTeams": [
+        "TOR"
+      ],
+      "currentTeam": "TOR"
+    },
+    "kentbazemore": {
+      "possibleTeams": [
+        "GSW"
+      ],
+      "currentTeam": "GSW"
+    },
+    "dariusbazley": {
+      "possibleTeams": [
+        "OKC"
+      ],
+      "currentTeam": "OKC"
+    },
+    "bradleybeal": {
+      "possibleTeams": [
+        "WAS"
+      ],
+      "currentTeam": "WAS"
+    },
+    "malikbeasley": {
+      "possibleTeams": [
+        "MIN"
+      ],
+      "currentTeam": "MIN"
+    },
+    "jordanbell": {
+      "possibleTeams": [
+        "WAS"
+      ],
+      "currentTeam": "WAS"
+    },
+    "deandrebembry": {
+      "possibleTeams": [
+        "TOR"
+      ],
+      "currentTeam": "TOR"
+    },
+    "davisbertans": {
+      "possibleTeams": [
+        "WAS"
+      ],
+      "currentTeam": "WAS"
+    },
+    "patrickbeverley": {
+      "possibleTeams": [
+        "LAC"
+      ],
+      "currentTeam": "LAC"
+    },
+    "saddiqbey": {
+      "possibleTeams": [
+        "DET"
+      ],
+      "currentTeam": "DET"
+    },
+    "tylerbey": {
+      "possibleTeams": [
+        "DAL"
+      ],
+      "currentTeam": "DAL"
+    },
+    "khembirch": {
+      "possibleTeams": [
+        "ORL"
+      ],
+      "currentTeam": "ORL"
+    },
+    "gogabitadze": {
+      "possibleTeams": [
+        "IND"
+      ],
+      "currentTeam": "IND"
+    },
+    "bismackbiyombo": {
+      "possibleTeams": [
+        "CHO"
+      ],
+      "currentTeam": "CHO"
+    },
+    "nemanjabjelica": {
+      "possibleTeams": [
+        "SAC"
+      ],
+      "currentTeam": "SAC"
+    },
+    "ericbledsoe": {
+      "possibleTeams": [
+        "NOP"
+      ],
+      "currentTeam": "NOP"
+    },
+    "keljinblevins": {
+      "possibleTeams": [
+        "POR"
+      ],
+      "currentTeam": "POR"
+    },
+    "bogdanbogdanovic": {
+      "possibleTeams": [
+        "ATL"
+      ],
+      "currentTeam": "ATL"
+    },
+    "bojanbogdanovic": {
+      "possibleTeams": [
+        "UTA"
+      ],
+      "currentTeam": "UTA"
+    },
+    "bolbol": {
+      "possibleTeams": [
+        "DEN"
+      ],
+      "currentTeam": "DEN"
+    },
+    "marquesbolden": {
+      "possibleTeams": [
+        "CLE"
+      ],
+      "currentTeam": "CLE"
+    },
+    "jordanbone": {
+      "possibleTeams": [
+        "ORL"
+      ],
+      "currentTeam": "ORL"
+    },
+    "isaacbonga": {
+      "possibleTeams": [
+        "WAS"
+      ],
+      "currentTeam": "WAS"
+    },
+    "devinbooker": {
+      "possibleTeams": [
+        "PHO"
+      ],
+      "currentTeam": "PHO"
+    },
+    "chrisboucher": {
+      "possibleTeams": [
+        "TOR"
+      ],
+      "currentTeam": "TOR"
+    },
+    "brianbowen": {
+      "possibleTeams": [
+        "IND"
+      ],
+      "currentTeam": "IND"
+    },
+    "averybradley": {
+      "possibleTeams": [
+        "MIA"
+      ],
+      "currentTeam": "MIA"
+    },
+    "tonybradley": {
+      "possibleTeams": [
+        "PHI"
+      ],
+      "currentTeam": "PHI"
+    },
+    "jarrellbrantley": {
+      "possibleTeams": [
+        "UTA"
+      ],
+      "currentTeam": "UTA"
+    },
+    "ignasbrazdeikis": {
+      "possibleTeams": [
+        "NYK"
+      ],
+      "currentTeam": "NYK"
+    },
+    "mikalbridges": {
+      "possibleTeams": [
+        "PHO"
+      ],
+      "currentTeam": "PHO"
+    },
+    "milesbridges": {
+      "possibleTeams": [
+        "CHO"
+      ],
+      "currentTeam": "CHO"
+    },
+    "malcolmbrogdon": {
+      "possibleTeams": [
+        "IND"
+      ],
+      "currentTeam": "IND"
+    },
+    "dillonbrooks": {
+      "possibleTeams": [
+        "MEM"
+      ],
+      "currentTeam": "MEM"
+    },
+    "brucebrown": {
+      "possibleTeams": [
+        "BRK"
+      ],
+      "currentTeam": "BRK"
+    },
+    "jaylenbrown": {
+      "possibleTeams": [
+        "BOS"
+      ],
+      "currentTeam": "BOS"
+    },
+    "mosesbrown": {
+      "possibleTeams": [
+        "OKC"
+      ],
+      "currentTeam": "OKC"
+    },
+    "sterlingbrown": {
+      "possibleTeams": [
+        "HOU"
+      ],
+      "currentTeam": "HOU"
+    },
+    "troybrownjr": {
+      "possibleTeams": [
+        "WAS"
+      ],
+      "currentTeam": "WAS"
+    },
+    "jalenbrunson": {
+      "possibleTeams": [
+        "DAL"
+      ],
+      "currentTeam": "DAL"
+    },
+    "thomasbryant": {
+      "possibleTeams": [
+        "WAS"
+      ],
+      "currentTeam": "WAS"
+    },
+    "reggiebullock": {
+      "possibleTeams": [
+        "NYK"
+      ],
+      "currentTeam": "NYK"
+    },
+    "treyburke": {
+      "possibleTeams": [
+        "DAL"
+      ],
+      "currentTeam": "DAL"
+    },
+    "alecburks": {
+      "possibleTeams": [
+        "NYK"
+      ],
+      "currentTeam": "NYK"
+    },
+    "jimmybutler": {
+      "possibleTeams": [
+        "MIA"
+      ],
+      "currentTeam": "MIA"
+    },
+    "brunocaboclo": {
+      "possibleTeams": [
+        "HOU"
+      ],
+      "currentTeam": "HOU"
+    },
+    "devontaecacok": {
+      "possibleTeams": [
+        "LAL"
+      ],
+      "currentTeam": "LAL"
+    },
+    "kentaviouscaldwellpope": {
+      "possibleTeams": [
+        "LAL"
+      ],
+      "currentTeam": "LAL"
+    },
+    "facundocampazzo": {
+      "possibleTeams": [
+        "DEN"
+      ],
+      "currentTeam": "DEN"
+    },
+    "vlatkocancar": {
+      "possibleTeams": [
+        "DEN"
+      ],
+      "currentTeam": "DEN"
+    },
+    "clintcapela": {
+      "possibleTeams": [
+        "ATL"
+      ],
+      "currentTeam": "ATL"
+    },
+    "vernoncareyjr": {
+      "possibleTeams": [
+        "CHO"
+      ],
+      "currentTeam": "CHO"
+    },
+    "jevoncarter": {
+      "possibleTeams": [
+        "PHO"
+      ],
+      "currentTeam": "PHO"
+    },
+    "wendellcarterjr": {
+      "possibleTeams": [
+        "CHI"
+      ],
+      "currentTeam": "CHI"
+    },
+    "michaelcarterwilliams": {
+      "possibleTeams": [
+        "ORL"
+      ],
+      "currentTeam": "ORL"
+    },
+    "alexcaruso": {
+      "possibleTeams": [
+        "LAL"
+      ],
+      "currentTeam": "LAL"
+    },
+    "williecauleystein": {
+      "possibleTeams": [
+        "DAL"
+      ],
+      "currentTeam": "DAL"
+    },
+    "chrischiozza": {
+      "possibleTeams": [
+        "BRK"
+      ],
+      "currentTeam": "BRK"
+    },
+    "marquesechriss": {
+      "possibleTeams": [
+        "GSW"
+      ],
+      "currentTeam": "GSW"
+    },
+    "garyclark": {
+      "possibleTeams": [
+        "ORL"
+      ],
+      "currentTeam": "ORL"
+    },
+    "brandonclarke": {
+      "possibleTeams": [
+        "MEM"
+      ],
+      "currentTeam": "MEM"
+    },
+    "jordanclarkson": {
+      "possibleTeams": [
+        "UTA"
+      ],
+      "currentTeam": "UTA"
+    },
+    "amircoffey": {
+      "possibleTeams": [
+        "LAC"
+      ],
+      "currentTeam": "LAC"
+    },
+    "johncollins": {
+      "possibleTeams": [
+        "ATL"
+      ],
+      "currentTeam": "ATL"
+    },
+    "mikeconley": {
+      "possibleTeams": [
+        "UTA"
+      ],
+      "currentTeam": "UTA"
+    },
+    "patconnaughton": {
+      "possibleTeams": [
+        "MIL"
+      ],
+      "currentTeam": "MIL"
+    },
+    "quinncook": {
+      "possibleTeams": [
+        "LAL"
+      ],
+      "currentTeam": "LAL"
+    },
+    "demarcuscousins": {
+      "possibleTeams": [
+        "HOU"
+      ],
+      "currentTeam": "HOU"
+    },
+    "robertcovington": {
+      "possibleTeams": [
+        "POR"
+      ],
+      "currentTeam": "POR"
+    },
+    "torreycraig": {
+      "possibleTeams": [
+        "MIL"
+      ],
+      "currentTeam": "MIL"
+    },
+    "jaecrowder": {
+      "possibleTeams": [
+        "PHO"
+      ],
+      "currentTeam": "PHO"
+    },
+    "jarrettculver": {
+      "possibleTeams": [
+        "MIN"
+      ],
+      "currentTeam": "MIN"
+    },
+    "sethcurry": {
+      "possibleTeams": [
+        "PHI"
+      ],
+      "currentTeam": "PHI"
+    },
+    "stephencurry": {
+      "possibleTeams": [
+        "GSW"
+      ],
+      "currentTeam": "GSW"
+    },
+    "anthonydavis": {
+      "possibleTeams": [
+        "LAL"
+      ],
+      "currentTeam": "LAL"
+    },
+    "eddavis": {
+      "possibleTeams": [
+        "MIN"
+      ],
+      "currentTeam": "MIN"
+    },
+    "terencedavis": {
+      "possibleTeams": [
+        "TOR"
+      ],
+      "currentTeam": "TOR"
+    },
+    "demarderozan": {
+      "possibleTeams": [
+        "SAS"
+      ],
+      "currentTeam": "SAS"
+    },
+    "hamidoudiallo": {
+      "possibleTeams": [
+        "OKC"
+      ],
+      "currentTeam": "OKC"
+    },
+    "gorguidieng": {
+      "possibleTeams": [
+        "MEM"
+      ],
+      "currentTeam": "MEM"
+    },
+    "spencerdinwiddie": {
+      "possibleTeams": [
+        "BRK"
+      ],
+      "currentTeam": "BRK"
+    },
+    "dontedivincenzo": {
+      "possibleTeams": [
+        "MIL"
+      ],
+      "currentTeam": "MIL"
+    },
+    "lukadoncic": {
+      "possibleTeams": [
+        "DAL"
+      ],
+      "currentTeam": "DAL"
+    },
+    "luguentzdort": {
+      "possibleTeams": [
+        "OKC"
+      ],
+      "currentTeam": "OKC"
+    },
+    "damyeandotson": {
+      "possibleTeams": [
+        "CLE"
+      ],
+      "currentTeam": "CLE"
+    },
+    "devondotson": {
+      "possibleTeams": [
+        "CHI"
+      ],
+      "currentTeam": "CHI"
+    },
+    "sekoudoumbouya": {
+      "possibleTeams": [
+        "DET"
+      ],
+      "currentTeam": "DET"
+    },
+    "pjdozier": {
+      "possibleTeams": [
+        "DEN"
+      ],
+      "currentTeam": "DEN"
+    },
+    "gorandragic": {
+      "possibleTeams": [
+        "MIA"
+      ],
+      "currentTeam": "MIA"
+    },
+    "andredrummond": {
+      "possibleTeams": [
+        "CLE"
+      ],
+      "currentTeam": "CLE"
+    },
+    "jareddudley": {
+      "possibleTeams": [
+        "LAL"
+      ],
+      "currentTeam": "LAL"
+    },
+    "kevindurant": {
+      "possibleTeams": [
+        "BRK"
+      ],
+      "currentTeam": "BRK"
+    },
+    "anthonyedwards": {
+      "possibleTeams": [
+        "MIN"
+      ],
+      "currentTeam": "MIN"
+    },
+    "carsenedwards": {
+      "possibleTeams": [
+        "BOS"
+      ],
+      "currentTeam": "BOS"
+    },
+    "cjelleby": {
+      "possibleTeams": [
+        "POR"
+      ],
+      "currentTeam": "POR"
+    },
+    "wayneellington": {
+      "possibleTeams": [
+        "DET"
+      ],
+      "currentTeam": "DET"
+    },
+    "joelembiid": {
+      "possibleTeams": [
+        "PHI"
+      ],
+      "currentTeam": "PHI"
+    },
+    "jamesennis": {
+      "possibleTeams": [
+        "ORL"
+      ],
+      "currentTeam": "ORL"
+    },
+    "dreweubanks": {
+      "possibleTeams": [
+        "SAS"
+      ],
+      "currentTeam": "SAS"
+    },
+    "danteexum": {
+      "possibleTeams": [
+        "CLE"
+      ],
+      "currentTeam": "CLE"
+    },
+    "tackofall": {
+      "possibleTeams": [
+        "BOS"
+      ],
+      "currentTeam": "BOS"
+    },
+    "derrickfavors": {
+      "possibleTeams": [
+        "UTA"
+      ],
+      "currentTeam": "UTA"
+    },
+    "cristianofelicio": {
+      "possibleTeams": [
+        "CHI"
+      ],
+      "currentTeam": "CHI"
+    },
+    "terranceferguson": {
+      "possibleTeams": [
+        "PHI"
+      ],
+      "currentTeam": "PHI"
+    },
+    "brunofernando": {
+      "possibleTeams": [
+        "ATL"
+      ],
+      "currentTeam": "ATL"
+    },
+    "yogiferrell": {
+      "possibleTeams": [
+        "CLE"
+      ],
+      "currentTeam": "CLE"
+    },
+    "dorianfinneysmith": {
+      "possibleTeams": [
+        "DAL"
+      ],
+      "currentTeam": "DAL"
+    },
+    "malachiflynn": {
+      "possibleTeams": [
+        "TOR"
+      ],
+      "currentTeam": "TOR"
+    },
+    "brynforbes": {
+      "possibleTeams": [
+        "MIL"
+      ],
+      "currentTeam": "MIL"
+    },
+    "trentforrest": {
+      "possibleTeams": [
+        "UTA"
+      ],
+      "currentTeam": "UTA"
+    },
+    "evanfournier": {
+      "possibleTeams": [
+        "ORL"
+      ],
+      "currentTeam": "ORL"
+    },
+    "deaaronfox": {
+      "possibleTeams": [
+        "SAC"
+      ],
+      "currentTeam": "SAC"
+    },
+    "timfrazier": {
+      "possibleTeams": [
+        "MEM"
+      ],
+      "currentTeam": "MEM"
+    },
+    "markellefultz": {
+      "possibleTeams": [
+        "ORL"
+      ],
+      "currentTeam": "ORL"
+    },
+    "wenyengabriel": {
+      "possibleTeams": [
+        "NOP"
+      ],
+      "currentTeam": "NOP"
+    },
+    "danielgafford": {
+      "possibleTeams": [
+        "CHI"
+      ],
+      "currentTeam": "CHI"
+    },
+    "danilogallinari": {
+      "possibleTeams": [
+        "ATL"
+      ],
+      "currentTeam": "ATL"
+    },
+    "langstongalloway": {
+      "possibleTeams": [
+        "PHO"
+      ],
+      "currentTeam": "PHO"
+    },
+    "dariusgarland": {
+      "possibleTeams": [
+        "CLE"
+      ],
+      "currentTeam": "CLE"
+    },
+    "marcgasol": {
+      "possibleTeams": [
+        "LAL"
+      ],
+      "currentTeam": "LAL"
+    },
+    "rudygay": {
+      "possibleTeams": [
+        "SAS"
+      ],
+      "currentTeam": "SAS"
+    },
+    "paulgeorge": {
+      "possibleTeams": [
+        "LAC"
+      ],
+      "currentTeam": "LAC"
+    },
+    "tajgibson": {
+      "possibleTeams": [
+        "NYK"
+      ],
+      "currentTeam": "NYK"
+    },
+    "harrygiles": {
+      "possibleTeams": [
+        "POR"
+      ],
+      "currentTeam": "POR"
+    },
+    "shaigilgeousalexander": {
+      "possibleTeams": [
+        "OKC"
+      ],
+      "currentTeam": "OKC"
+    },
+    "anthonygill": {
+      "possibleTeams": [
+        "WAS"
+      ],
+      "currentTeam": "WAS"
+    },
+    "rudygobert": {
+      "possibleTeams": [
+        "UTA"
+      ],
+      "currentTeam": "UTA"
+    },
+    "brandongoodwin": {
+      "possibleTeams": [
+        "ATL"
+      ],
+      "currentTeam": "ATL"
+    },
+    "aarongordon": {
+      "possibleTeams": [
+        "ORL"
+      ],
+      "currentTeam": "ORL"
+    },
+    "ericgordon": {
+      "possibleTeams": [
+        "HOU"
+      ],
+      "currentTeam": "HOU"
+    },
+    "devontegraham": {
+      "possibleTeams": [
+        "CHO"
+      ],
+      "currentTeam": "CHO"
+    },
+    "jeramigrant": {
+      "possibleTeams": [
+        "DET"
+      ],
+      "currentTeam": "DET"
+    },
+    "dannygreen": {
+      "possibleTeams": [
+        "PHI"
+      ],
+      "currentTeam": "PHI"
+    },
+    "draymondgreen": {
+      "possibleTeams": [
+        "GSW"
+      ],
+      "currentTeam": "GSW"
+    },
+    "jamychalgreen": {
+      "possibleTeams": [
+        "DEN"
+      ],
+      "currentTeam": "DEN"
+    },
+    "javontegreen": {
+      "possibleTeams": [
+        "BOS"
+      ],
+      "currentTeam": "BOS"
+    },
+    "jeffgreen": {
+      "possibleTeams": [
+        "BRK"
+      ],
+      "currentTeam": "BRK"
+    },
+    "joshgreen": {
+      "possibleTeams": [
+        "DAL"
+      ],
+      "currentTeam": "DAL"
+    },
+    "blakegriffin": {
+      "possibleTeams": [
+        "DET"
+      ],
+      "currentTeam": "DET"
+    },
+    "kyleguy": {
+      "possibleTeams": [
+        "SAC"
+      ],
+      "currentTeam": "SAC"
+    },
+    "ruihachimura": {
+      "possibleTeams": [
+        "WAS"
+      ],
+      "currentTeam": "WAS"
+    },
+    "ashtonhagans": {
+      "possibleTeams": [
+        "MIN"
+      ],
+      "currentTeam": "MIN"
+    },
+    "tyresehaliburton": {
+      "possibleTeams": [
+        "SAC"
+      ],
+      "currentTeam": "SAC"
+    },
+    "joshhall": {
+      "possibleTeams": [
+        "OKC"
+      ],
+      "currentTeam": "OKC"
+    },
+    "rjhampton": {
+      "possibleTeams": [
+        "DEN"
+      ],
+      "currentTeam": "DEN"
+    },
+    "timhardawayjr": {
+      "possibleTeams": [
+        "DAL"
+      ],
+      "currentTeam": "DAL"
+    },
+    "mauriceharkless": {
+      "possibleTeams": [
+        "MIA"
+      ],
+      "currentTeam": "MIA"
+    },
+    "jaredharper": {
+      "possibleTeams": [
+        "NYK"
+      ],
+      "currentTeam": "NYK"
+    },
+    "montrezlharrell": {
+      "possibleTeams": [
+        "LAL"
+      ],
+      "currentTeam": "LAL"
+    },
+    "garyharris": {
+      "possibleTeams": [
+        "DEN"
+      ],
+      "currentTeam": "DEN"
+    },
+    "jalenharris": {
+      "possibleTeams": [
+        "TOR"
+      ],
+      "currentTeam": "TOR"
+    },
+    "joeharris": {
+      "possibleTeams": [
+        "BRK"
+      ],
+      "currentTeam": "BRK"
+    },
+    "tobiasharris": {
+      "possibleTeams": [
+        "PHI"
+      ],
+      "currentTeam": "PHI"
+    },
+    "shaquilleharrison": {
+      "possibleTeams": [
+        "UTA"
+      ],
+      "currentTeam": "UTA"
+    },
+    "joshhart": {
+      "possibleTeams": [
+        "NOP"
+      ],
+      "currentTeam": "NOP"
+    },
+    "isaiahhartenstein": {
+      "possibleTeams": [
+        "DEN"
+      ],
+      "currentTeam": "DEN"
+    },
+    "jaxsonhayes": {
+      "possibleTeams": [
+        "NOP"
+      ],
+      "currentTeam": "NOP"
+    },
+    "killianhayes": {
+      "possibleTeams": [
+        "DET"
+      ],
+      "currentTeam": "DET"
+    },
+    "gordonhayward": {
+      "possibleTeams": [
+        "CHO"
+      ],
+      "currentTeam": "CHO"
+    },
+    "juanhernangomez": {
+      "possibleTeams": [
+        "MIN"
+      ],
+      "currentTeam": "MIN"
+    },
+    "willyhernangomez": {
+      "possibleTeams": [
+        "NOP"
+      ],
+      "currentTeam": "NOP"
+    },
+    "tylerherro": {
+      "possibleTeams": [
+        "MIA"
+      ],
+      "currentTeam": "MIA"
+    },
+    "buddyhield": {
+      "possibleTeams": [
+        "SAC"
+      ],
+      "currentTeam": "SAC"
+    },
+    "georgehill": {
+      "possibleTeams": [
+        "OKC"
+      ],
+      "currentTeam": "OKC"
+    },
+    "solomonhill": {
+      "possibleTeams": [
+        "ATL"
+      ],
+      "currentTeam": "ATL"
+    },
+    "natehinton": {
+      "possibleTeams": [
+        "DAL"
+      ],
+      "currentTeam": "DAL"
+    },
+    "aaronholiday": {
+      "possibleTeams": [
+        "IND"
+      ],
+      "currentTeam": "IND"
+    },
+    "jrueholiday": {
+      "possibleTeams": [
+        "MIL"
+      ],
+      "currentTeam": "MIL"
+    },
+    "justinholiday": {
+      "possibleTeams": [
+        "IND"
+      ],
+      "currentTeam": "IND"
+    },
+    "richaunholmes": {
+      "possibleTeams": [
+        "SAC"
+      ],
+      "currentTeam": "SAC"
+    },
+    "rodneyhood": {
+      "possibleTeams": [
+        "POR"
+      ],
+      "currentTeam": "POR"
+    },
+    "alhorford": {
+      "possibleTeams": [
+        "OKC"
+      ],
+      "currentTeam": "OKC"
+    },
+    "talenhortontucker": {
+      "possibleTeams": [
+        "LAL"
+      ],
+      "currentTeam": "LAL"
+    },
+    "danuelhouse": {
+      "possibleTeams": [
+        "HOU"
+      ],
+      "currentTeam": "HOU"
+    },
+    "dwighthoward": {
+      "possibleTeams": [
+        "PHI"
+      ],
+      "currentTeam": "PHI"
+    },
+    "markushoward": {
+      "possibleTeams": [
+        "DEN"
+      ],
+      "currentTeam": "DEN"
+    },
+    "kevinhuerter": {
+      "possibleTeams": [
+        "ATL"
+      ],
+      "currentTeam": "ATL"
+    },
+    "elijahhughes": {
+      "possibleTeams": [
+        "UTA"
+      ],
+      "currentTeam": "UTA"
+    },
+    "deandrehunter": {
+      "possibleTeams": [
+        "ATL"
+      ],
+      "currentTeam": "ATL"
+    },
+    "chandlerhutchison": {
+      "possibleTeams": [
+        "CHI"
+      ],
+      "currentTeam": "CHI"
+    },
+    "sergeibaka": {
+      "possibleTeams": [
+        "LAC"
+      ],
+      "currentTeam": "LAC"
+    },
+    "andreiguodala": {
+      "possibleTeams": [
+        "MIA"
+      ],
+      "currentTeam": "MIA"
+    },
+    "joeingles": {
+      "possibleTeams": [
+        "UTA"
+      ],
+      "currentTeam": "UTA"
+    },
+    "brandoningram": {
+      "possibleTeams": [
+        "NOP"
+      ],
+      "currentTeam": "NOP"
+    },
+    "kyrieirving": {
+      "possibleTeams": [
+        "BRK"
+      ],
+      "currentTeam": "BRK"
+    },
+    "wesleyiwundu": {
+      "possibleTeams": [
+        "DAL"
+      ],
+      "currentTeam": "DAL"
+    },
+    "frankjackson": {
+      "possibleTeams": [
+        "DET"
+      ],
+      "currentTeam": "DET"
+    },
+    "joshjackson": {
+      "possibleTeams": [
+        "DET"
+      ],
+      "currentTeam": "DET"
+    },
+    "justinjackson": {
+      "possibleTeams": [
+        "OKC"
+      ],
+      "currentTeam": "OKC"
+    },
+    "reggiejackson": {
+      "possibleTeams": [
+        "LAC"
+      ],
+      "currentTeam": "LAC"
+    },
+    "justinjames": {
+      "possibleTeams": [
+        "SAC"
+      ],
+      "currentTeam": "SAC"
+    },
+    "lebronjames": {
+      "possibleTeams": [
+        "LAL"
+      ],
+      "currentTeam": "LAL"
+    },
+    "daquanjeffries": {
+      "possibleTeams": [
+        "SAC"
+      ],
+      "currentTeam": "SAC"
+    },
+    "isaiahjoe": {
+      "possibleTeams": [
+        "PHI"
+      ],
+      "currentTeam": "PHI"
+    },
+    "cameronjohnson": {
+      "possibleTeams": [
+        "PHO"
+      ],
+      "currentTeam": "PHO"
+    },
+    "jamesjohnson": {
+      "possibleTeams": [
+        "DAL"
+      ],
+      "currentTeam": "DAL"
+    },
+    "keldonjohnson": {
+      "possibleTeams": [
+        "SAS"
+      ],
+      "currentTeam": "SAS"
+    },
+    "stanleyjohnson": {
+      "possibleTeams": [
+        "TOR"
+      ],
+      "currentTeam": "TOR"
+    },
+    "tylerjohnson": {
+      "possibleTeams": [
+        "BRK"
+      ],
+      "currentTeam": "BRK"
+    },
+    "nikolajokic": {
+      "possibleTeams": [
+        "DEN"
+      ],
+      "currentTeam": "DEN"
+    },
+    "damianjones": {
+      "possibleTeams": [
+        "PHO"
+      ],
+      "currentTeam": "PHO"
+    },
+    "derrickjonesjr": {
+      "possibleTeams": [
+        "POR"
+      ],
+      "currentTeam": "POR"
+    },
+    "masonjones": {
+      "possibleTeams": [
+        "HOU"
+      ],
+      "currentTeam": "HOU"
+    },
+    "trejones": {
+      "possibleTeams": [
+        "SAS"
+      ],
+      "currentTeam": "SAS"
+    },
+    "tyusjones": {
+      "possibleTeams": [
+        "MEM"
+      ],
+      "currentTeam": "MEM"
+    },
+    "deandrejordan": {
+      "possibleTeams": [
+        "BRK"
+      ],
+      "currentTeam": "BRK"
+    },
+    "coryjoseph": {
+      "possibleTeams": [
+        "SAC"
+      ],
+      "currentTeam": "SAC"
+    },
+    "mfiondukabengele": {
+      "possibleTeams": [
+        "LAC"
+      ],
+      "currentTeam": "LAC"
+    },
+    "frankkaminsky": {
+      "possibleTeams": [
+        "PHO"
+      ],
+      "currentTeam": "PHO"
+    },
+    "eneskanter": {
+      "possibleTeams": [
+        "POR"
+      ],
+      "currentTeam": "POR"
+    },
+    "lukekennard": {
+      "possibleTeams": [
+        "LAC"
+      ],
+      "currentTeam": "LAC"
+    },
+    "maxikleber": {
+      "possibleTeams": [
+        "DAL"
+      ],
+      "currentTeam": "DAL"
+    },
+    "nathanknight": {
+      "possibleTeams": [
+        "ATL"
+      ],
+      "currentTeam": "ATL"
+    },
+    "kevinknox": {
+      "possibleTeams": [
+        "NYK"
+      ],
+      "currentTeam": "NYK"
+    },
+    "johnkonchar": {
+      "possibleTeams": [
+        "MEM"
+      ],
+      "currentTeam": "MEM"
+    },
+    "furkankorkmaz": {
+      "possibleTeams": [
+        "PHI"
+      ],
+      "currentTeam": "PHI"
+    },
+    "lukekornet": {
+      "possibleTeams": [
+        "CHI"
+      ],
+      "currentTeam": "CHI"
+    },
+    "kylekuzma": {
+      "possibleTeams": [
+        "LAL"
+      ],
+      "currentTeam": "LAL"
+    },
+    "jeremylamb": {
+      "possibleTeams": [
+        "IND"
+      ],
+      "currentTeam": "IND"
+    },
+    "zachlavine": {
+      "possibleTeams": [
+        "CHI"
+      ],
+      "currentTeam": "CHI"
+    },
+    "jakelayman": {
+      "possibleTeams": [
+        "MIN"
+      ],
+      "currentTeam": "MIN"
+    },
+    "jalenlecque": {
+      "possibleTeams": [
+        "IND"
+      ],
+      "currentTeam": "IND"
+    },
+    "damionlee": {
+      "possibleTeams": [
+        "GSW"
+      ],
+      "currentTeam": "GSW"
+    },
+    "sabenlee": {
+      "possibleTeams": [
+        "DET"
+      ],
+      "currentTeam": "DET"
+    },
+    "kawhileonard": {
+      "possibleTeams": [
+        "LAC"
+      ],
+      "currentTeam": "LAC"
+    },
+    "meyersleonard": {
+      "possibleTeams": [
+        "MIA"
+      ],
+      "currentTeam": "MIA"
+    },
+    "carislevert": {
+      "possibleTeams": [
+        "BRK"
+      ],
+      "currentTeam": "BRK"
+    },
+    "kiralewisjr": {
+      "possibleTeams": [
+        "NOP"
+      ],
+      "currentTeam": "NOP"
+    },
+    "damianlillard": {
+      "possibleTeams": [
+        "POR"
+      ],
+      "currentTeam": "POR"
+    },
+    "nassirlittle": {
+      "possibleTeams": [
+        "POR"
+      ],
+      "currentTeam": "POR"
+    },
+    "kevonlooney": {
+      "possibleTeams": [
+        "GSW"
+      ],
+      "currentTeam": "GSW"
+    },
+    "brooklopez": {
+      "possibleTeams": [
+        "MIL"
+      ],
+      "currentTeam": "MIL"
+    },
+    "robinlopez": {
+      "possibleTeams": [
+        "WAS"
+      ],
+      "currentTeam": "WAS"
+    },
+    "kevinlove": {
+      "possibleTeams": [
+        "CLE"
+      ],
+      "currentTeam": "CLE"
+    },
+    "kylelowry": {
+      "possibleTeams": [
+        "TOR"
+      ],
+      "currentTeam": "TOR"
+    },
+    "timotheluwawucabarrot": {
+      "possibleTeams": [
+        "BRK"
+      ],
+      "currentTeam": "BRK"
+    },
+    "treylyles": {
+      "possibleTeams": [
+        "SAS"
+      ],
+      "currentTeam": "SAS"
+    },
+    "thonmaker": {
+      "possibleTeams": [
+        "CLE"
+      ],
+      "currentTeam": "CLE"
+    },
+    "theomaledon": {
+      "possibleTeams": [
+        "OKC"
+      ],
+      "currentTeam": "OKC"
+    },
+    "karimmane": {
+      "possibleTeams": [
+        "ORL"
+      ],
+      "currentTeam": "ORL"
+    },
+    "terancemann": {
+      "possibleTeams": [
+        "LAC"
+      ],
+      "currentTeam": "LAC"
+    },
+    "nicomannion": {
+      "possibleTeams": [
+        "GSW"
+      ],
+      "currentTeam": "GSW"
+    },
+    "bobanmarjanovic": {
+      "possibleTeams": [
+        "DAL"
+      ],
+      "currentTeam": "DAL"
+    },
+    "laurimarkkanen": {
+      "possibleTeams": [
+        "CHI"
+      ],
+      "currentTeam": "CHI"
+    },
+    "najimarshall": {
+      "possibleTeams": [
+        "NOP"
+      ],
+      "currentTeam": "NOP"
+    },
+    "calebmartin": {
+      "possibleTeams": [
+        "CHO"
+      ],
+      "currentTeam": "CHO"
+    },
+    "codymartin": {
+      "possibleTeams": [
+        "CHO"
+      ],
+      "currentTeam": "CHO"
+    },
+    "kelanmartin": {
+      "possibleTeams": [
+        "IND"
+      ],
+      "currentTeam": "IND"
+    },
+    "kenyonmartinjr": {
+      "possibleTeams": [
+        "HOU"
+      ],
+      "currentTeam": "HOU"
+    },
+    "frankmasoniii": {
+      "possibleTeams": [
+        "ORL"
+      ],
+      "currentTeam": "ORL"
+    },
+    "garrisonmathews": {
+      "possibleTeams": [
+        "WAS"
+      ],
+      "currentTeam": "WAS"
+    },
+    "dakotamathias": {
+      "possibleTeams": [
+        "PHI"
+      ],
+      "currentTeam": "PHI"
+    },
+    "wesleymatthews": {
+      "possibleTeams": [
+        "LAL"
+      ],
+      "currentTeam": "LAL"
+    },
+    "tyresemaxey": {
+      "possibleTeams": [
+        "PHI"
+      ],
+      "currentTeam": "PHI"
+    },
+    "skylarmays": {
+      "possibleTeams": [
+        "ATL"
+      ],
+      "currentTeam": "ATL"
+    },
+    "patrickmccaw": {
+      "possibleTeams": [
+        "TOR"
+      ],
+      "currentTeam": "TOR"
+    },
+    "cjmccollum": {
+      "possibleTeams": [
+        "POR"
+      ],
+      "currentTeam": "POR"
+    },
+    "tjmcconnell": {
+      "possibleTeams": [
+        "IND"
+      ],
+      "currentTeam": "IND"
+    },
+    "jadenmcdaniels": {
+      "possibleTeams": [
+        "MIN"
+      ],
+      "currentTeam": "MIN"
+    },
+    "jalenmcdaniels": {
+      "possibleTeams": [
+        "CHO"
+      ],
+      "currentTeam": "CHO"
+    },
+    "dougmcdermott": {
+      "possibleTeams": [
+        "IND"
+      ],
+      "currentTeam": "IND"
+    },
+    "seanmcdermott": {
+      "possibleTeams": [
+        "MEM"
+      ],
+      "currentTeam": "MEM"
+    },
+    "javalemcgee": {
+      "possibleTeams": [
+        "CLE"
+      ],
+      "currentTeam": "CLE"
+    },
+    "rodneymcgruder": {
+      "possibleTeams": [
+        "DET"
+      ],
+      "currentTeam": "DET"
+    },
+    "alfonzomckinnie": {
+      "possibleTeams": [
+        "LAL"
+      ],
+      "currentTeam": "LAL"
+    },
+    "jordanmclaughlin": {
+      "possibleTeams": [
+        "MIN"
+      ],
+      "currentTeam": "MIN"
+    },
+    "benmclemore": {
+      "possibleTeams": [
+        "HOU"
+      ],
+      "currentTeam": "HOU"
+    },
+    "nicolomelli": {
+      "possibleTeams": [
+        "NOP"
+      ],
+      "currentTeam": "NOP"
+    },
+    "deanthonymelton": {
+      "possibleTeams": [
+        "MEM"
+      ],
+      "currentTeam": "MEM"
+    },
+    "sammerrill": {
+      "possibleTeams": [
+        "MIL"
+      ],
+      "currentTeam": "MIL"
+    },
+    "chimeziemetu": {
+      "possibleTeams": [
+        "SAC"
+      ],
+      "currentTeam": "SAC"
+    },
+    "khrismiddleton": {
+      "possibleTeams": [
+        "MIL"
+      ],
+      "currentTeam": "MIL"
+    },
+    "dariusmiller": {
+      "possibleTeams": [
+        "OKC"
+      ],
+      "currentTeam": "OKC"
+    },
+    "pattymills": {
+      "possibleTeams": [
+        "SAS"
+      ],
+      "currentTeam": "SAS"
+    },
+    "paulmillsap": {
+      "possibleTeams": [
+        "DEN"
+      ],
+      "currentTeam": "DEN"
+    },
+    "shakemilton": {
+      "possibleTeams": [
+        "PHI"
+      ],
+      "currentTeam": "PHI"
+    },
+    "donovanmitchell": {
+      "possibleTeams": [
+        "UTA"
+      ],
+      "currentTeam": "UTA"
+    },
+    "adammokoka": {
+      "possibleTeams": [
+        "CHI"
+      ],
+      "currentTeam": "CHI"
+    },
+    "malikmonk": {
+      "possibleTeams": [
+        "CHO"
+      ],
+      "currentTeam": "CHO"
+    },
+    "etwaunmoore": {
+      "possibleTeams": [
+        "PHO"
+      ],
+      "currentTeam": "PHO"
+    },
+    "jamorant": {
+      "possibleTeams": [
+        "MEM"
+      ],
+      "currentTeam": "MEM"
+    },
+    "juwanmorgan": {
+      "possibleTeams": [
+        "UTA"
+      ],
+      "currentTeam": "UTA"
+    },
+    "marcusmorris": {
+      "possibleTeams": [
+        "LAC"
+      ],
+      "currentTeam": "LAC"
+    },
+    "markieffmorris": {
+      "possibleTeams": [
+        "LAL"
+      ],
+      "currentTeam": "LAL"
+    },
+    "montemorris": {
+      "possibleTeams": [
+        "DEN"
+      ],
+      "currentTeam": "DEN"
+    },
+    "mychalmulder": {
+      "possibleTeams": [
+        "GSW"
+      ],
+      "currentTeam": "GSW"
+    },
+    "dejountemurray": {
+      "possibleTeams": [
+        "SAS"
+      ],
+      "currentTeam": "SAS"
+    },
+    "jamalmurray": {
+      "possibleTeams": [
+        "DEN"
+      ],
+      "currentTeam": "DEN"
+    },
+    "mikemuscala": {
+      "possibleTeams": [
+        "OKC"
+      ],
+      "currentTeam": "OKC"
+    },
+    "sviatoslavmykhailiuk": {
+      "possibleTeams": [
+        "DET"
+      ],
+      "currentTeam": "DET"
+    },
+    "abdelnader": {
+      "possibleTeams": [
+        "PHO"
+      ],
+      "currentTeam": "PHO"
+    },
+    "larrynancejr": {
+      "possibleTeams": [
+        "CLE"
+      ],
+      "currentTeam": "CLE"
+    },
+    "aaronnesmith": {
+      "possibleTeams": [
+        "BOS"
+      ],
+      "currentTeam": "BOS"
+    },
+    "raulneto": {
+      "possibleTeams": [
+        "WAS"
+      ],
+      "currentTeam": "WAS"
+    },
+    "georgesniang": {
+      "possibleTeams": [
+        "UTA"
+      ],
+      "currentTeam": "UTA"
+    },
+    "zekennaji": {
+      "possibleTeams": [
+        "DEN"
+      ],
+      "currentTeam": "DEN"
+    },
+    "nerlensnoel": {
+      "possibleTeams": [
+        "NYK"
+      ],
+      "currentTeam": "NYK"
+    },
+    "jaylennowell": {
+      "possibleTeams": [
+        "MIN"
+      ],
+      "currentTeam": "MIN"
+    },
+    "frankntilikina": {
+      "possibleTeams": [
+        "NYK"
+      ],
+      "currentTeam": "NYK"
+    },
+    "kendricknunn": {
+      "possibleTeams": [
+        "MIA"
+      ],
+      "currentTeam": "MIA"
+    },
+    "jusufnurkic": {
+      "possibleTeams": [
+        "POR"
+      ],
+      "currentTeam": "POR"
+    },
+    "davidnwaba": {
+      "possibleTeams": [
+        "HOU"
+      ],
+      "currentTeam": "HOU"
+    },
+    "jordannwora": {
+      "possibleTeams": [
+        "MIL"
+      ],
+      "currentTeam": "MIL"
+    },
+    "royceoneale": {
+      "possibleTeams": [
+        "UTA"
+      ],
+      "currentTeam": "UTA"
+    },
+    "semiojeleye": {
+      "possibleTeams": [
+        "BOS"
+      ],
+      "currentTeam": "BOS"
+    },
+    "jahlilokafor": {
+      "possibleTeams": [
+        "DET"
+      ],
+      "currentTeam": "DET"
+    },
+    "chumaokeke": {
+      "possibleTeams": [
+        "ORL"
+      ],
+      "currentTeam": "ORL"
+    },
+    "joshokogie": {
+      "possibleTeams": [
+        "MIN"
+      ],
+      "currentTeam": "MIN"
+    },
+    "onyekaokongwu": {
+      "possibleTeams": [
+        "ATL"
+      ],
+      "currentTeam": "ATL"
+    },
+    "isaacokoro": {
+      "possibleTeams": [
+        "CLE"
+      ],
+      "currentTeam": "CLE"
+    },
+    "kzokpala": {
+      "possibleTeams": [
+        "MIA"
+      ],
+      "currentTeam": "MIA"
+    },
+    "kellyolynyk": {
+      "possibleTeams": [
+        "MIA"
+      ],
+      "currentTeam": "MIA"
+    },
+    "miyeoni": {
+      "possibleTeams": [
+        "UTA"
+      ],
+      "currentTeam": "UTA"
+    },
+    "cediosman": {
+      "possibleTeams": [
+        "CLE"
+      ],
+      "currentTeam": "CLE"
+    },
+    "danieloturu": {
+      "possibleTeams": [
+        "LAC"
+      ],
+      "currentTeam": "LAC"
+    },
+    "kellyoubrejr": {
+      "possibleTeams": [
+        "GSW"
+      ],
+      "currentTeam": "GSW"
+    },
+    "jabariparker": {
+      "possibleTeams": [
+        "SAC"
+      ],
+      "currentTeam": "SAC"
+    },
+    "ericpaschall": {
+      "possibleTeams": [
+        "GSW"
+      ],
+      "currentTeam": "GSW"
+    },
+    "anzejspasecniks": {
+      "possibleTeams": [
+        "WAS"
+      ],
+      "currentTeam": "WAS"
+    },
+    "patrickpatterson": {
+      "possibleTeams": [
+        "LAC"
+      ],
+      "currentTeam": "LAC"
+    },
+    "chrispaul": {
+      "possibleTeams": [
+        "PHO"
+      ],
+      "currentTeam": "PHO"
+    },
+    "cameronpayne": {
+      "possibleTeams": [
+        "PHO"
+      ],
+      "currentTeam": "PHO"
+    },
+    "elfridpayton": {
+      "possibleTeams": [
+        "NYK"
+      ],
+      "currentTeam": "NYK"
+    },
+    "norvelpelle": {
+      "possibleTeams": [
+        "BRK"
+      ],
+      "currentTeam": "BRK"
+    },
+    "reggieperry": {
+      "possibleTeams": [
+        "BRK"
+      ],
+      "currentTeam": "BRK"
+    },
+    "theopinson": {
+      "possibleTeams": [
+        "NYK"
+      ],
+      "currentTeam": "NYK"
+    },
+    "masonplumlee": {
+      "possibleTeams": [
+        "DET"
+      ],
+      "currentTeam": "DET"
+    },
+    "jakobpoeltl": {
+      "possibleTeams": [
+        "SAS"
+      ],
+      "currentTeam": "SAS"
+    },
+    "vincentpoirier": {
+      "possibleTeams": [
+        "PHI"
+      ],
+      "currentTeam": "PHI"
+    },
+    "aleksejpokusevski": {
+      "possibleTeams": [
+        "OKC"
+      ],
+      "currentTeam": "OKC"
+    },
+    "jordanpoole": {
+      "possibleTeams": [
+        "GSW"
+      ],
+      "currentTeam": "GSW"
+    },
+    "michaelporterjr": {
+      "possibleTeams": [
+        "DEN"
+      ],
+      "currentTeam": "DEN"
+    },
+    "ottoporter": {
+      "possibleTeams": [
+        "CHI"
+      ],
+      "currentTeam": "CHI"
+    },
+    "bobbyportis": {
+      "possibleTeams": [
+        "MIL"
+      ],
+      "currentTeam": "MIL"
+    },
+    "kristapsporzingis": {
+      "possibleTeams": [
+        "DAL"
+      ],
+      "currentTeam": "DAL"
+    },
+    "dwightpowell": {
+      "possibleTeams": [
+        "DAL"
+      ],
+      "currentTeam": "DAL"
+    },
+    "normanpowell": {
+      "possibleTeams": [
+        "TOR"
+      ],
+      "currentTeam": "TOR"
+    },
+    "paytonpritchard": {
+      "possibleTeams": [
+        "BOS"
+      ],
+      "currentTeam": "BOS"
+    },
+    "immanuelquickley": {
+      "possibleTeams": [
+        "NYK"
+      ],
+      "currentTeam": "NYK"
+    },
+    "jahmiusramsey": {
+      "possibleTeams": [
+        "SAC"
+      ],
+      "currentTeam": "SAC"
+    },
+    "chassonrandle": {
+      "possibleTeams": [
+        "ORL"
+      ],
+      "currentTeam": "ORL"
+    },
+    "juliusrandle": {
+      "possibleTeams": [
+        "NYK"
+      ],
+      "currentTeam": "NYK"
+    },
+    "camreddish": {
+      "possibleTeams": [
+        "ATL"
+      ],
+      "currentTeam": "ATL"
+    },
+    "jjredick": {
+      "possibleTeams": [
+        "NOP"
+      ],
+      "currentTeam": "NOP"
+    },
+    "paulreed": {
+      "possibleTeams": [
+        "PHI"
+      ],
+      "currentTeam": "PHI"
+    },
+    "nazreid": {
+      "possibleTeams": [
+        "MIN"
+      ],
+      "currentTeam": "MIN"
+    },
+    "nickrichards": {
+      "possibleTeams": [
+        "CHO"
+      ],
+      "currentTeam": "CHO"
+    },
+    "joshrichardson": {
+      "possibleTeams": [
+        "DAL"
+      ],
+      "currentTeam": "DAL"
+    },
+    "austinrivers": {
+      "possibleTeams": [
+        "NYK"
+      ],
+      "currentTeam": "NYK"
+    },
+    "andreroberson": {
+      "possibleTeams": [
+        "BRK"
+      ],
+      "currentTeam": "BRK"
+    },
+    "duncanrobinson": {
+      "possibleTeams": [
+        "MIA"
+      ],
+      "currentTeam": "MIA"
+    },
+    "glennrobinsoniii": {
+      "possibleTeams": [
+        "SAC"
+      ],
+      "currentTeam": "SAC"
+    },
+    "jeromerobinson": {
+      "possibleTeams": [
+        "WAS"
+      ],
+      "currentTeam": "WAS"
+    },
+    "mitchellrobinson": {
+      "possibleTeams": [
+        "NYK"
+      ],
+      "currentTeam": "NYK"
+    },
+    "isaiahroby": {
+      "possibleTeams": [
+        "OKC"
+      ],
+      "currentTeam": "OKC"
+    },
+    "rajonrondo": {
+      "possibleTeams": [
+        "ATL"
+      ],
+      "currentTeam": "ATL"
+    },
+    "terrenceross": {
+      "possibleTeams": [
+        "ORL"
+      ],
+      "currentTeam": "ORL"
+    },
+    "terryrozier": {
+      "possibleTeams": [
+        "CHO"
+      ],
+      "currentTeam": "CHO"
+    },
+    "rickyrubio": {
+      "possibleTeams": [
+        "MIN"
+      ],
+      "currentTeam": "MIN"
+    },
+    "dangelorussell": {
+      "possibleTeams": [
+        "MIN"
+      ],
+      "currentTeam": "MIN"
+    },
+    "domantassabonis": {
+      "possibleTeams": [
+        "IND"
+      ],
+      "currentTeam": "IND"
+    },
+    "lukasamanic": {
+      "possibleTeams": [
+        "SAS"
+      ],
+      "currentTeam": "SAS"
+    },
+    "jakarrsampson": {
+      "possibleTeams": [
+        "IND"
+      ],
+      "currentTeam": "IND"
+    },
+    "dariosaric": {
+      "possibleTeams": [
+        "PHO"
+      ],
+      "currentTeam": "PHO"
+    },
+    "tomassatoransky": {
+      "possibleTeams": [
+        "CHI"
+      ],
+      "currentTeam": "CHI"
+    },
+    "dennisschroder": {
+      "possibleTeams": [
+        "LAL"
+      ],
+      "currentTeam": "LAL"
+    },
+    "mikescott": {
+      "possibleTeams": [
+        "PHI"
+      ],
+      "currentTeam": "PHI"
+    },
+    "collinsexton": {
+      "possibleTeams": [
+        "CLE"
+      ],
+      "currentTeam": "CLE"
+    },
+    "landryshamet": {
+      "possibleTeams": [
+        "BRK"
+      ],
+      "currentTeam": "BRK"
+    },
+    "pascalsiakam": {
+      "possibleTeams": [
+        "TOR"
+      ],
+      "currentTeam": "TOR"
+    },
+    "chrissilva": {
+      "possibleTeams": [
+        "MIA"
+      ],
+      "currentTeam": "MIA"
+    },
+    "bensimmons": {
+      "possibleTeams": [
+        "PHI"
+      ],
+      "currentTeam": "PHI"
+    },
+    "anferneesimons": {
+      "possibleTeams": [
+        "POR"
+      ],
+      "currentTeam": "POR"
+    },
+    "deividassirvydis": {
+      "possibleTeams": [
+        "DET"
+      ],
+      "currentTeam": "DET"
+    },
+    "marcussmart": {
+      "possibleTeams": [
+        "BOS"
+      ],
+      "currentTeam": "BOS"
+    },
+    "ishsmith": {
+      "possibleTeams": [
+        "WAS"
+      ],
+      "currentTeam": "WAS"
+    },
+    "jalensmith": {
+      "possibleTeams": [
+        "PHO"
+      ],
+      "currentTeam": "PHO"
+    },
+    "tonysnell": {
+      "possibleTeams": [
+        "ATL"
+      ],
+      "currentTeam": "ATL"
+    },
+    "rayspalding": {
+      "possibleTeams": [
+        "HOU"
+      ],
+      "currentTeam": "HOU"
+    },
+    "cassiusstanley": {
+      "possibleTeams": [
+        "IND"
+      ],
+      "currentTeam": "IND"
+    },
+    "lamarstevens": {
+      "possibleTeams": [
+        "CLE"
+      ],
+      "currentTeam": "CLE"
+    },
+    "isaiahstewart": {
+      "possibleTeams": [
+        "DET"
+      ],
+      "currentTeam": "DET"
+    },
+    "maxstrus": {
+      "possibleTeams": [
+        "MIA"
+      ],
+      "currentTeam": "MIA"
+    },
+    "edmondsumner": {
+      "possibleTeams": [
+        "IND"
+      ],
+      "currentTeam": "IND"
+    },
+    "jaeseantate": {
+      "possibleTeams": [
+        "HOU"
+      ],
+      "currentTeam": "HOU"
+    },
+    "jaysontatum": {
+      "possibleTeams": [
+        "BOS"
+      ],
+      "currentTeam": "BOS"
+    },
+    "jeffteague": {
+      "possibleTeams": [
+        "BOS"
+      ],
+      "currentTeam": "BOS"
+    },
+    "garretttemple": {
+      "possibleTeams": [
+        "CHI"
+      ],
+      "currentTeam": "CHI"
+    },
+    "tyrellterry": {
+      "possibleTeams": [
+        "DAL"
+      ],
+      "currentTeam": "DAL"
+    },
+    "danieltheis": {
+      "possibleTeams": [
+        "BOS"
+      ],
+      "currentTeam": "BOS"
+    },
+    "brodricthomas": {
+      "possibleTeams": [
+        "HOU"
+      ],
+      "currentTeam": "HOU"
+    },
+    "mattthomas": {
+      "possibleTeams": [
+        "TOR"
+      ],
+      "currentTeam": "TOR"
+    },
+    "tristanthompson": {
+      "possibleTeams": [
+        "BOS"
+      ],
+      "currentTeam": "BOS"
+    },
+    "sindariusthornwell": {
+      "possibleTeams": [
+        "NOP"
+      ],
+      "currentTeam": "NOP"
+    },
+    "matissethybulle": {
+      "possibleTeams": [
+        "PHI"
+      ],
+      "currentTeam": "PHI"
+    },
+    "xaviertillmansr": {
+      "possibleTeams": [
+        "MEM"
+      ],
+      "currentTeam": "MEM"
+    },
+    "obitoppin": {
+      "possibleTeams": [
+        "NYK"
+      ],
+      "currentTeam": "NYK"
+    },
+    "juantoscanoanderson": {
+      "possibleTeams": [
+        "GSW"
+      ],
+      "currentTeam": "GSW"
+    },
+    "karlanthonytowns": {
+      "possibleTeams": [
+        "MIN"
+      ],
+      "currentTeam": "MIN"
+    },
+    "garytrentjr": {
+      "possibleTeams": [
+        "POR"
+      ],
+      "currentTeam": "POR"
+    },
+    "pjtucker": {
+      "possibleTeams": [
+        "HOU"
+      ],
+      "currentTeam": "HOU"
+    },
+    "mylesturner": {
+      "possibleTeams": [
+        "IND"
+      ],
+      "currentTeam": "IND"
+    },
+    "jonasvalanciunas": {
+      "possibleTeams": [
+        "MEM"
+      ],
+      "currentTeam": "MEM"
+    },
+    "denzelvalentine": {
+      "possibleTeams": [
+        "CHI"
+      ],
+      "currentTeam": "CHI"
+    },
+    "jarredvanderbilt": {
+      "possibleTeams": [
+        "MIN"
+      ],
+      "currentTeam": "MIN"
+    },
+    "fredvanvleet": {
+      "possibleTeams": [
+        "TOR"
+      ],
+      "currentTeam": "TOR"
+    },
+    "devinvassell": {
+      "possibleTeams": [
+        "SAS"
+      ],
+      "currentTeam": "SAS"
+    },
+    "gabevincent": {
+      "possibleTeams": [
+        "MIA"
+      ],
+      "currentTeam": "MIA"
+    },
+    "noahvonleh": {
+      "possibleTeams": [
+        "BRK"
+      ],
+      "currentTeam": "BRK"
+    },
+    "nikolavucevic": {
+      "possibleTeams": [
+        "ORL"
+      ],
+      "currentTeam": "ORL"
+    },
+    "deanwade": {
+      "possibleTeams": [
+        "CLE"
+      ],
+      "currentTeam": "CLE"
+    },
+    "moritzwagner": {
+      "possibleTeams": [
+        "WAS"
+      ],
+      "currentTeam": "WAS"
+    },
+    "kembawalker": {
+      "possibleTeams": [
+        "BOS"
+      ],
+      "currentTeam": "BOS"
+    },
+    "lonniewalker": {
+      "possibleTeams": [
+        "SAS"
+      ],
+      "currentTeam": "SAS"
+    },
+    "johnwall": {
+      "possibleTeams": [
+        "HOU"
+      ],
+      "currentTeam": "HOU"
+    },
+    "bradwanamaker": {
+      "possibleTeams": [
+        "GSW"
+      ],
+      "currentTeam": "GSW"
+    },
+    "tjwarren": {
+      "possibleTeams": [
+        "IND"
+      ],
+      "currentTeam": "IND"
+    },
+    "pjwashington": {
+      "possibleTeams": [
+        "CHO"
+      ],
+      "currentTeam": "CHO"
+    },
+    "yutawatanabe": {
+      "possibleTeams": [
+        "TOR"
+      ],
+      "currentTeam": "TOR"
+    },
+    "tremontwaters": {
+      "possibleTeams": [
+        "BOS"
+      ],
+      "currentTeam": "BOS"
+    },
+    "paulwatson": {
+      "possibleTeams": [
+        "TOR"
+      ],
+      "currentTeam": "TOR"
+    },
+    "quinndaryweatherspoon": {
+      "possibleTeams": [
+        "SAS"
+      ],
+      "currentTeam": "SAS"
+    },
+    "russellwestbrook": {
+      "possibleTeams": [
+        "WAS"
+      ],
+      "currentTeam": "WAS"
+    },
+    "cobywhite": {
+      "possibleTeams": [
+        "CHI"
+      ],
+      "currentTeam": "CHI"
+    },
+    "derrickwhite": {
+      "possibleTeams": [
+        "SAS"
+      ],
+      "currentTeam": "SAS"
+    },
+    "hassanwhiteside": {
+      "possibleTeams": [
+        "SAC"
+      ],
+      "currentTeam": "SAC"
+    },
+    "andrewwiggins": {
+      "possibleTeams": [
+        "GSW"
+      ],
+      "currentTeam": "GSW"
+    },
+    "grantwilliams": {
+      "possibleTeams": [
+        "BOS"
+      ],
+      "currentTeam": "BOS"
+    },
+    "kenrichwilliams": {
+      "possibleTeams": [
+        "OKC"
+      ],
+      "currentTeam": "OKC"
+    },
+    "louwilliams": {
+      "possibleTeams": [
+        "LAC"
+      ],
+      "currentTeam": "LAC"
+    },
+    "patrickwilliams": {
+      "possibleTeams": [
+        "CHI"
+      ],
+      "currentTeam": "CHI"
+    },
+    "robertwilliams": {
+      "possibleTeams": [
+        "BOS"
+      ],
+      "currentTeam": "BOS"
+    },
+    "zionwilliamson": {
+      "possibleTeams": [
+        "NOP"
+      ],
+      "currentTeam": "NOP"
+    },
+    "djwilson": {
+      "possibleTeams": [
+        "MIL"
+      ],
+      "currentTeam": "MIL"
+    },
+    "dylanwindler": {
+      "possibleTeams": [
+        "CLE"
+      ],
+      "currentTeam": "CLE"
+    },
+    "justisewinslow": {
+      "possibleTeams": [
+        "MEM"
+      ],
+      "currentTeam": "MEM"
+    },
+    "cassiuswinston": {
+      "possibleTeams": [
+        "WAS"
+      ],
+      "currentTeam": "WAS"
+    },
+    "jameswiseman": {
+      "possibleTeams": [
+        "GSW"
+      ],
+      "currentTeam": "GSW"
+    },
+    "christianwood": {
+      "possibleTeams": [
+        "HOU"
+      ],
+      "currentTeam": "HOU"
+    },
+    "robertwoodard": {
+      "possibleTeams": [
+        "SAC"
+      ],
+      "currentTeam": "SAC"
+    },
+    "delonwright": {
+      "possibleTeams": [
+        "DET"
+      ],
+      "currentTeam": "DET"
+    },
+    "thaddeusyoung": {
+      "possibleTeams": [
+        "CHI"
+      ],
+      "currentTeam": "CHI"
+    },
+    "traeyoung": {
+      "possibleTeams": [
+        "ATL"
+      ],
+      "currentTeam": "ATL"
+    },
+    "codyzeller": {
+      "possibleTeams": [
+        "CHO"
+      ],
+      "currentTeam": "CHO"
+    },
+    "ivicazubac": {
+      "possibleTeams": [
+        "LAC"
+      ],
+      "currentTeam": "LAC"
+    }
+  }
+}

@@ -56,8 +56,8 @@ def convertDictToGameOddsObjList(betDict: Any) -> Any:
     
     return gameOddsObjList
 
-def getAllOddsAndDisplayByEv(includeDk=False, includeMgm=False, includeBovada=False):
-    allOddsDictList = createAllOddsDict(includeDk=False, includeMgm=False, includeBovada=False)
+def getAllOddsAndDisplayByEv(includeDk=False, includeMgm=False, includeBovada=False): #todo add a save into this retrieval
+    allOddsDictList = createAllOddsDict(includeDk=includeDk, includeMgm=includeMgm, includeBovada=includeBovada)
     displayAllBetsByEV(allOddsDictList)
 
 def printOddsObjDetails(oddsList: Any, showAll: bool = False):

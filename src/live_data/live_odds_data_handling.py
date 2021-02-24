@@ -43,8 +43,13 @@ def createAllOddsDictForExchange(allGameDictsFromExchange, playerOdds=True, team
     return allOddsDicts
 
 def createAllOddsDict(includeDk=False, includeMgm=False, includeBovada=False):
-    # bovadaLines = createAllOddsDictForExchange(bovadaOdds(), playerOdds=False)
     allGameObjList = list()
+
+    if includeBovada:
+        bovadaDicts = createAllOddsDictForExchange(bovadaOdds(), playerOdds=False)
+        for rawOddsDict in bovadaDicts:
+            gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
+            allGameObjList.append(gameOddsObj)
 
     if includeDk:
         dkOddsDicts = createAllOddsDictForExchange(draftKingsOdds(), 'draftkings')
@@ -52,15 +57,11 @@ def createAllOddsDict(includeDk=False, includeMgm=False, includeBovada=False):
             gameOddsObj = GameOdds(rawOddsDict)
             allGameObjList.append(gameOddsObj)
 
-    mgmOddsDicts = createAllOddsDictForExchange(mgmOdds(), playerOdds=False)
     if includeMgm:
+        mgmOddsDicts = createAllOddsDictForExchange(mgmOdds(), playerOdds=False)
         for rawOddsDict in mgmOddsDicts:
             gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
             allGameObjList.append(gameOddsObj)
-
-    # for rawOddsDict in bovadaLines:
-    #     gameOddsObj = lambda oddsDict: GameOdds(rawOddsDict)
-    #     allGameObjList.append(gameOddsObj)
 
     return allGameObjList # backlogtodo this dict can be saved for reference for backtesting
 

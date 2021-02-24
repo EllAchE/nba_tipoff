@@ -14,7 +14,6 @@ from src.functions.database_creation import resetPredictionSummaries, createPlay
 from src.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
 # https://github.com/sublee/glicko2/blob/master/glicko2.py
 
-
 def runTSForSeason(season: str, season_csv: str, json_path: str, winning_bet_threshold: float =0.6):
     df = pd.read_csv(season_csv)
     # df = df[df['Home Tipper'].notnull()] # filters invalid rows
@@ -73,7 +72,6 @@ def runTSForSeason(season: str, season_csv: str, json_path: str, winning_bet_thr
 
     return winning_bets, losing_bets
 
-
 # todo setup odds prediction to use Ev or win prob rather than bet threshold
 def beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=0.6):
     homeOdds = tipWinProb(homePlayerCode, awayPlayerCode, psd=psd)
@@ -131,9 +129,8 @@ def tipWinProb(player1_code: str, player2_code: str, json_path: str = 'Data/JSON
     denom = math.sqrt(size * (ENVIRONMENT.BASE_SIGMA * ENVIRONMENT.BASE_SIGMA) + sum_sigma)
     ts = trueskill.global_env()
     res = ts.cdf(delta_mu / denom)
-    print('odds', player1_code, 'beats', player2_code, 'are', res)
+    # print('odds', player1_code, 'beats', player2_code, 'are', res)
     return res
-
 
 def runForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD):
     seasonKey = ''
@@ -149,7 +146,6 @@ def runForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRE
 
     with open(ENVIRONMENT.PREDICTION_SUMMARIES_PATH, 'w') as predSum:
         json.dump(dsd, predSum)
-
 
 def updateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, game_code=None):
     if game_code:
@@ -192,13 +188,11 @@ def updateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, game_code
 
     return homeMu, homeSigma, awayMu, awaySigma
 
-
 def _matchWithRawNums(winnerMu, winnerSigma, loserMu, loserSigma):
         winnerRatingObj = trueskill.Rating(winnerMu, winnerSigma)
         loserRatingObj = trueskill.Rating(loserMu, loserSigma)
         winnerRatingObj, loserRatingObj = trueskill.rate_1vs1(winnerRatingObj, loserRatingObj)
         return winnerRatingObj.mu, winnerRatingObj.sigma, loserRatingObj.mu, loserRatingObj.sigma
-
 
 def updateSkillDictionary():
     resetPredictionSummaries() # reset sums

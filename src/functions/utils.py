@@ -108,7 +108,7 @@ def getDashDateAndHomeCodeFromGameCode(game_code: str):
     return getDashDateFromGameCode(game_code), getHomeTeamFromGameCode(game_code)
 
 def sleepChecker(iterations: int = 3, baseTime: int = 2, randomMultiplier: int = 3, printStop: bool = False):
-    with open(os.path.abspath('Data/sleep_counter.json')) as sc:
+    with open(os.path.abspath('sleep_counter.json')) as sc:
         SLEEP_COUNTER = json.load(sc)
 
     SLEEP_COUNTER['counter'] += 1
@@ -118,13 +118,14 @@ def sleepChecker(iterations: int = 3, baseTime: int = 2, randomMultiplier: int =
         time.sleep(baseTime + random.random() * randomMultiplier)
         SLEEP_COUNTER['counter'] = 0
 
-    with open('Data/sleep_counter.json', 'w') as sc:
+    with open('sleep_counter.json', 'w') as sc:
         json.dump(SLEEP_COUNTER, sc)
 
 def removeAllNonLettersAndLowercase(name):
     playerLowered = name.replace(' ', '')
     playerLowered = playerLowered.replace('.', '')
     playerLowered = playerLowered.replace('-', '')
+    playerLowered = playerLowered.replace('\'', '')
     return playerLowered.lower()
 
 def lowercaseNoSpace(str):

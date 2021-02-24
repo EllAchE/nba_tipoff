@@ -38,11 +38,11 @@ from nba_api.stats.static import players
 
 import ENVIRONMENT
 from src.functions.database_access import findPlayerFullFromLastGivenPossibleFullNames, getGameIdFromBballRef, \
-    getTeamDictionaryFromShortCode, getAllGamesForTeam
+    getTeamDictionaryFromShortCode, getAllGamesForTeam, getUniversalPlayerName, getBballRefPlayerName
 from src.functions.utils import getDashDateAndHomeCodeFromGameCode, sleepChecker
 
-# Todo different sites may only look at first field goal (NOT FREE THROW) which makes for a much weaker correlation
-# TODO: Writing type stubs for pandas' DataFrame is too cumbersome, so we use this instead.
+# backlogTodo different sites may only look at first field goal (NOT FREE THROW) which makes for a weaker correlation
+# backlogTODO: Writing type stubs for pandas' DataFrame is too cumbersome, so we use this instead.
 # Eventually, we should replace that with real type stubs for DataFrame.
 DataFrame = Any
 
@@ -209,15 +209,39 @@ def getTipoffLine(pbpDf: DataFrame, returnIndex: bool = False):
         return content, type, isHome, tipoffContent.index
     return content, type, isHome
 
+def getFirstScoreLine(gameCode, season):
+    with open("Data/JSON/Public_NBA_API/shots_before_first_field_goal") as sbffg:
+        firstScoreDict = json.load(sbffg)
+    return firstScoreDict[season][gameCode]
+
+def parseDataFromTipoffLine(homeShort, awayShort, content, type, isHome, season):
+    tipper1 = getBballRefPlayerName(None)
+    tipper2 = getBballRefPlayerName(None)
+    possessingPlayer = getBballRefPlayerName(None)
+    homeTipper = None
+    awayTipper = None
+    firstScoret = None
+    tipWinningTeam = None
+    tipLosingTeam = None
+    possessingTeam = None
+    firstScoringTeam = None
+    scoredUponTeam = None
+    tipoffWinner = None
+    tipoffLoser = None
+    tipLoserLink = None
+    tipWinnerlink = None
+    tipWinnerScores = None
+
+
 def getTipoffLineFromBballRefId(bballRef: str):
     gameId = getGameIdFromBballRef(bballRef)
     pbpDf = getGamePlayByPlay(gameId)
     tipoffContent, type, isHome = getTipoffLine(pbpDf)
     return tipoffContent
 
-# todo fix this to not break for some specific players and . names, i.e. Nene or W. or Shaw.
+# backlogtodo fix this to not break for some specific players and . names, i.e. Nene or W. or Shaw.
 def getAllFirstPossessionStatisticsIncrementally(season):
-    path = 'Data/CSV/tipoff_and_first_score_details_{}_season.csv'.format(season)
+    path = 'Data/CSV/season_data/tipoff_and_first_score_details_{}_season.csv'.format(season)
     df = pd.read_csv(path)
     i = 0
     dfLen = len(df.index)
