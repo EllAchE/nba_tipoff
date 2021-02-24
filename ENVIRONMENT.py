@@ -23,7 +23,7 @@ PLAYER_TEAM_PAIR_DICT_PATH = Path(os.path.abspath('Data/JSON/player_team_pairs.j
 PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/prediction_summaries.json'))
 SEASON_CSV_NEEDING_FORMAT_PATH = os.path.abspath('Data/CSV/tipoff_and_first_score_details_{}_season.csv')
 TEAM_CONVERSION_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/teams.json'))
-SHOTS_BEFORE_FIRST_SCORE_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/shots_before_first_score.json'))
+SHOTS_BEFORE_FIRST_SCORE_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json'))
 
 # Misc
 LIVE_ODDS_API_1 = '5f92a0468c6f365be7db417f13d52742'

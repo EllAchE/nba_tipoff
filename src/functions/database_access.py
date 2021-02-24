@@ -33,7 +33,7 @@ def getBballRefPlayerName(playerInUnknownFormat):
         raise ValueError("player", playerInUnknownFormat, "did not have a match")
     return player['bballRefCode']
 
-# todo fix unmatched players in quarter counting
+# backlogtodo fix unmatched players in quarter counting
 def getUniversalPlayerName(playerInUnknownFormat):
     with open('Data/JSON/player_name_relationships.json') as playerDb:
         playersDict = json.load(playerDb)

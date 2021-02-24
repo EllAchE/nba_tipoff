@@ -76,7 +76,7 @@ def createSuffix(name: str):
     else:
         second += names[:5].lower()
 
-    return second + first + '01.html' #todo this doesn't account for if the name appears more than once
+    return second + first
 
 def getDashDateFromGameCode(gameCode: str):
     gameCode = str(gameCode)

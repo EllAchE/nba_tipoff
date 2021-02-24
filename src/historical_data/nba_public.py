@@ -112,44 +112,45 @@ def _getFirstQuarterShotStatistics(shotsBeforeFirstScore: pd.DataFrame, bballRef
     dataList = _getSingleQuarterStatistics(shotsBeforeFirstScore)
     return {"gameCode": bballRefCode, "gameData": dataList}
 
-def _getAllShotsBeforeFirstScore(playsBeforeFirstFgDf: DataFrame):
+def _getAllShotsBeforeFirstFieldGoal(playsBeforeFirstFgDf: DataFrame):
     shootingPlays = playsBeforeFirstFgDf[playsBeforeFirstFgDf['EVENTMSGTYPE'].isin([1, 2, 3])]
     return shootingPlays
 
-def getEventsBeforeFirstScoreOfQuarter(pbpDf: DataFrame, startIndex: int=0):
+def getEventsBeforeFirstFieldGoalOfQuarter(pbpDf: DataFrame, startIndex: int=0):
     startIndex += 1
     i = 0
     pbpDf = pbpDf[startIndex:]
     for item in pbpDf.SCORE:
-        if item is not None:
+        eventMsgType = pbpDf.iloc[i]['EVENTMSGTYPE']
+        if item is not None and (eventMsgType == 2 or eventMsgType == 1):
             return pbpDf[:(i + 1)]
         i += 1
 
-def gameIdToFirstScoresOfQuarters(id: str):
+def gameIdToFirstFieldGoalsOfQuarters(id: str):
     pbpDf = playbyplayv2.PlayByPlayV2(game_id=id).get_data_frames()[0]
     indicesOfQuarterStarts = pbpDf.index[pbpDf['EVENTMSGTYPE'] == 12].tolist()
     q2Index = indicesOfQuarterStarts[1]
     q3Index = indicesOfQuarterStarts[2]
     q4Index = indicesOfQuarterStarts[3]
 
-    plays = getEventsBeforeFirstScoreOfQuarter(pbpDf)
-    q1Shots = _getAllShotsBeforeFirstScore(plays)
+    plays = getEventsBeforeFirstFieldGoalOfQuarter(pbpDf)
+    q1Shots = _getAllShotsBeforeFirstFieldGoal(plays)
 
-    plays = getEventsBeforeFirstScoreOfQuarter(pbpDf, q2Index)
-    q2Shots = _getAllShotsBeforeFirstScore(plays)
+    plays = getEventsBeforeFirstFieldGoalOfQuarter(pbpDf, q2Index)
+    q2Shots = _getAllShotsBeforeFirstFieldGoal(plays)
 
-    plays = getEventsBeforeFirstScoreOfQuarter(pbpDf, q3Index)
-    q3Shots = _getAllShotsBeforeFirstScore(plays)
+    plays = getEventsBeforeFirstFieldGoalOfQuarter(pbpDf, q3Index)
+    q3Shots = _getAllShotsBeforeFirstFieldGoal(plays)
 
-    plays = getEventsBeforeFirstScoreOfQuarter(pbpDf, q4Index)
-    q4Shots = _getAllShotsBeforeFirstScore(plays)
+    plays = getEventsBeforeFirstFieldGoalOfQuarter(pbpDf, q4Index)
+    q4Shots = _getAllShotsBeforeFirstFieldGoal(plays)
 
-    return q1Shots, q2Shots, q2Index, q3Shots, q3Index, q4Shots, q4Index
+    return q1Shots, q2Shots, q3Shots, q4Shots
 
 def gameIdToFirstShotList(id: str):
     pbpDf = playbyplayv2.PlayByPlayV2(game_id=id).get_data_frames()[0]
-    plays = getEventsBeforeFirstScoreOfQuarter(pbpDf)
-    shots = _getAllShotsBeforeFirstScore(plays)
+    plays = getEventsBeforeFirstFieldGoalOfQuarter(pbpDf)
+    shots = _getAllShotsBeforeFirstFieldGoal(plays)
     return shots
 
 def getParticipatingTeamsFromId(id): # (id: str) -> dict[str, str]:
@@ -221,7 +222,7 @@ def getAllFirstPossessionStatisticsIncrementally(season):
     i = 0
     dfLen = len(df.index)
 
-    with open('Data/JSON/Public_NBA_API/shots_before_first_score.json') as sbfs:
+    with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as sbfs:
         shotsDict = json.load(sbfs)
     seasonShotList = shotsDict[str(season)]
 
@@ -231,57 +232,57 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         lastGameIndex = df[df['Game Code'] == lastGameCode].index.values[0]
         i = lastGameIndex + 1
     while i < dfLen:
-        with open('Data/JSON/Public_NBA_API/shots_before_first_score.json') as sbfs:
+        with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as sbfs:
             shotsDict = json.load(sbfs)
         seasonShotList = shotsDict[str(season)]
 
         bballRefId = df.iloc[i]["Game Code"]
         print('running for ', bballRefId)
         gameId = getGameIdFromBballRef(bballRefId)
-        q1Shots, q2Shots, q2Index, q3Shots, q3Index, q4Shots, q4Index = gameIdToFirstScoresOfQuarters(gameId)
+        q1Shots, q2Shots, q3Shots, q4Shots = gameIdToFirstFieldGoalsOfQuarters(gameId)
         gameStatistics = _getFirstShotStatistics(q1Shots, q2Shots, q3Shots, q4Shots, bballRefId)
         seasonShotList.append(gameStatistics)
-        sleepChecker(iterations=3, baseTime=0, randomMultiplier=1)
+        sleepChecker(iterations=1, baseTime=10, randomMultiplier=1)
 
         shotsDict[str(season)] = seasonShotList
-        with open('Data/JSON/Public_NBA_API/shots_before_first_score.json', 'w') as jsonFile:
+        with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json', 'w') as jsonFile:
             json.dump(shotsDict, jsonFile)
 
         i += 1
 
-def getAllFirstQuarterFirstPossessionStatisticsIncrementally(season):
-    path = 'Data/CSV/tipoff_and_first_score_details_{}_season.csv'.format(season)
-    df = pd.read_csv(path)
-    i = 0
-    dfLen = len(df.index)
-
-    with open('Data/JSON/Public_NBA_API/shots_before_first_score.json') as sbfs:
-        shotsDict = json.load(sbfs)
-    seasonShotList = shotsDict[str(season)]
-
-    if len(seasonShotList) > 0:
-        lastGame = seasonShotList[-1]
-        lastGameCode = lastGame['gameCode']
-        lastGameIndex = df[df['Game Code'] == lastGameCode].index.values[0]
-        i = lastGameIndex + 1
-    while i < dfLen:
-        with open('Data/JSON/Public_NBA_API/shots_before_first_score.json') as sbfs:
-            shotsDict = json.load(sbfs)
-        seasonShotList = shotsDict[str(season)]
-
-        bballRefId = df.iloc[i]["Game Code"]
-        print('running for ', bballRefId)
-        gameId = getGameIdFromBballRef(bballRefId)
-        gameShots = gameIdToFirstShotList(gameId)
-        gameStatistics = _getFirstQuarterShotStatistics(gameShots, bballRefId)
-        seasonShotList.append(gameStatistics)
-        sleepChecker(iterations=3, baseTime=0, randomMultiplier=1)
-
-        shotsDict[str(season)] = seasonShotList
-        with open('Data/JSON/Public_NBA_API/shots_before_first_score.json', 'w') as jsonFile:
-            json.dump(shotsDict, jsonFile)
-
-        i += 1
+# def getAllFirstQuarterFirstPossessionStatisticsIncrementally(season):
+#     path = 'Data/CSV/tipoff_and_first_score_details_{}_season.csv'.format(season)
+#     df = pd.read_csv(path)
+#     i = 0
+#     dfLen = len(df.index)
+#
+#     with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as sbfs:
+#         shotsDict = json.load(sbfs)
+#     seasonShotList = shotsDict[str(season)]
+#
+#     if len(seasonShotList) > 0:
+#         lastGame = seasonShotList[-1]
+#         lastGameCode = lastGame['gameCode']
+#         lastGameIndex = df[df['Game Code'] == lastGameCode].index.values[0]
+#         i = lastGameIndex + 1
+#     while i < dfLen:
+#         with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as sbfs:
+#             shotsDict = json.load(sbfs)
+#         seasonShotList = shotsDict[str(season)]
+#
+#         bballRefId = df.iloc[i]["Game Code"]
+#         print('running for ', bballRefId)
+#         gameId = getGameIdFromBballRef(bballRefId)
+#         gameShots = gameIdToFirstShotList(gameId)
+#         gameStatistics = _getFirstQuarterShotStatistics(gameShots, bballRefId)
+#         seasonShotList.append(gameStatistics)
+#         sleepChecker(iterations=3, baseTime=0, randomMultiplier=1)
+#
+#         shotsDict[str(season)] = seasonShotList
+#         with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json', 'w') as jsonFile:
+#             json.dump(shotsDict, jsonFile)
+#
+#         i += 1
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'], ['199711160SEA', 'SEA', 'MIL'], ['199711190LAL', 'LAL', 'MIN'],
 #   ['201911200TOR', 'TOR', 'ORL'], ['201911260DAL', 'DAL', 'LAC']] # Last one is a violation, others are misformatted

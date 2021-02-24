@@ -9,7 +9,7 @@ from src.functions.utils import lowercaseNoSpace
 
 
 def getFirstShotStats(season):
-    with open('../../Data/JSON/Public_NBA_API/shots_before_first_score.json') as data:
+    with open('../../Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as data:
         firstShotsDict = json.load(data)
 
     lastSeasonData = firstShotsDict[str(season)]

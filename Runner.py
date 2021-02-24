@@ -19,11 +19,11 @@ from src.functions.trueskill_calc import updateSkillDictionary
 #
 # saveActivePlayersTeams(1998)
 
-# getAllFirstPossessionStatisticsIncrementally(2014)
+getAllFirstPossessionStatisticsIncrementally(2014)
 
 
-updateCurrentSeason()
-updateSkillDictionary()
+# updateCurrentSeason()
+# updateSkillDictionary()
 
 # test = barstoolOdds()
 # print(test)

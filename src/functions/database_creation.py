@@ -102,7 +102,7 @@ def saveActivePlayersTeams(start_season: int):
     print('saved seasons Data')
 
 
-def createPlayerNameRelationship(startSeason: int=1998): #todo fix this to generate for all players
+def createPlayerNameRelationship(startSeason: int=1998):
     activePlayers = []
 
     url = 'https://www.basketball-reference.com/leagues/NBA_{}_per_game.html'
