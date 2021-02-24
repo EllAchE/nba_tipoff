@@ -143,7 +143,7 @@ def bovadaOdds():
             "awayTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds'])
         })
 
-    return scoreFirstBetsBothTeamsFormatted # todo LEFTOFF
+    return scoreFirstBetsBothTeamsFormatted
             #todo this is just taking a guess at which odds belong to which team assuming second odds for team2
 
 def draftKingsOdds():
@@ -164,7 +164,7 @@ def draftKingsOdds():
             break
 
     for subCategory in playerProps:
-        if subCategory['name'] == "First Field Goal": #todo an id may work for these
+        if subCategory['name'] == "First Field Goal":
             firstPlayerToScoreLines = subCategory['offerSubcategory']['offers']
             break
 
