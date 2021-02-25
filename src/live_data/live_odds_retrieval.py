@@ -246,8 +246,9 @@ def mgmOdds():
                 })
     return allGameLines
 
-# todo figure out the math on pointsbets
-def pointsBet():
+# todo figure out the math on pointsbets accelerators etc. (seem not worth)
+# todo add accelerators maybe
+def pointsBetOdds():
     # https://nj.pointsbet.com/sports/basketball/NBA/246723
     # request for all things that are on the page - https://api-usa.pointsbet.com/api/v2/competitions/105/events/featured?includeLive=false&page=1
     # single game - https://api-usa.pointsbet.com/api/v2/events/249073
@@ -255,33 +256,49 @@ def pointsBet():
     allGamesUrl = 'https://api-usa.pointsbet.com/api/v2/competitions/105/events/featured?includeLive=false&page=1'
     allGames = requests.get(allGamesUrl).json()
 
-    rawPlayerLines = list()
-    for event in allGames:
-        eventId = event['id']
-        homeTeam = event['homeName']
-        awayTeam = event['awayName']
+    gameDictList = list()
+    for event in allGames['events']:
+        rawPlayerLines = list()
+        eventId = event['key']
+        homeTeam = getUniversalShortCode(event['homeTeam'])
+        awayTeam = getUniversalShortCode(event['awayTeam'])
         singleGameUrl = 'https://api-usa.pointsbet.com/api/v2/events/{}'.format(eventId)
         singleGameResponse = requests.get(singleGameUrl).json()
-
-        # find by key ['fixedOddsMarkets'] which has array of events, find by ['eventName'] == "First Basker", then get outcomes, which has array of player bets
 
         # assumes just a single game
         for market in singleGameResponse['fixedOddsMarkets']:
             if market['eventName'] == "First Basket":
                 firstBasketMarket = market
-                break
+                for outcome in firstBasketMarket['outcomes']:
+                    rawPlayerLines.append({
+                        "player": outcome['name'],
+                        "teamId": outcome['teamId'],
+                        "odds": '+' + str(outcome['price'] * 100 - 100) #todo confirm this needs the -100
+                    })
 
-        for outcome in firstBasketMarket['outcomes']:
-            rawPlayerLines.append({
-                "player": outcome['name'],
-                "homeOrAway": outcome['side'],
-                "teamId": outcome['teamId'],
-                "odds": '+' + str(outcome['price'] * 100 - 100) #todo confirm this
-            })
+                homePlayerList = list()
+                awayPlayerList = list()
+                for player in rawPlayerLines:
+                    universalName = getUniversalPlayerName(player['player'])
+                    player['team'] = getPlayerCurrentTeam(universalName)
+                    if player['team'] == homeTeam:
+                        homePlayerList.append(player)
+                    elif player['team'] == awayTeam:
+                        awayPlayerList.append(player)
+                    else:
+                        raise ValueError("player didn't match either team, or teams are misformatted/don't match universal team code")
 
-    return rawPlayerLines
+                gameDictList.append({
+                    'exchange': 'pointsBet',
+                    "home": homeTeam,
+                    "away": awayTeam,
+                    "homePlayerFirstQuarterOdds": homePlayerList,
+                    "awayPlayerFirstQuarterOdds": awayPlayerList
+                })
+            else:
+                print("no first basket market found for game", awayTeam, "@", homeTeam)
 
-    pass
+    return gameDictList
 
 def unibetOdds():
     # https://nj.unibet.com/sports/#event/1007123701
@@ -300,9 +317,9 @@ def unibetOdds():
 
     gameDetailsList = list()
     for event in eventsList:
-        sleepChecker(baseTime=0.5, randomMultiplier=2)
+        sleepChecker(baseTime=0.5, randomMultiplier=3)
         singleGameResponse = requests.get(singleEventUrlStub.format(str(event[0]))).json()
-        mostPopular = singleGameResponse[1]
+        mostPopular = singleGameResponse['betOffers'][1]
         allMPBets = mostPopular['criterion']
         playerScoreFirstFG = None
 

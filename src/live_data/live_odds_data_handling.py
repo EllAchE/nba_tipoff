@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 
 from src.classes.GameOdds import GameOdds
-from src.live_data.live_odds_retrieval import draftKingsOdds, mgmOdds, bovadaOdds
+from src.live_data.live_odds_retrieval import draftKingsOdds, mgmOdds, bovadaOdds, pointsBetOdds, unibetOdds
 
 
 def makeTeamPlayerLinePairs(playerLines, teamLines):
@@ -42,7 +42,7 @@ def createAllOddsDictForExchange(allGameDictsFromExchange, playerOdds=True, team
         allOddsDicts.append(createSingleOddsDict(rawGameDict, playerOdds=playerOdds, teamOdds=teamOdds))
     return allOddsDicts
 
-def createAllOddsDict(includeDk=False, includeMgm=False, includeBovada=False):
+def createAllOddsDict(includeDk=False, includeMgm=False, includeBovada=False, includePointsBet=False, includeUnibetOdds=False):
     allGameObjList = list()
 
     if includeBovada:
@@ -61,6 +61,18 @@ def createAllOddsDict(includeDk=False, includeMgm=False, includeBovada=False):
         mgmOddsDicts = createAllOddsDictForExchange(mgmOdds(), playerOdds=False)
         for rawOddsDict in mgmOddsDicts:
             gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
+            allGameObjList.append(gameOddsObj)
+
+    if includePointsBet:
+        mgmOddsDicts = createAllOddsDictForExchange(pointsBetOdds(), teamOdds=False)
+        for rawOddsDict in mgmOddsDicts:
+            gameOddsObj = GameOdds(rawOddsDict, playersOnly=True)
+            allGameObjList.append(gameOddsObj)
+
+    if includeUnibetOdds:
+        unibetOddsDicts = createAllOddsDictForExchange(unibetOdds(), teamOdds=False)
+        for rawOddsDict in unibetOddsDicts:
+            gameOddsObj = GameOdds(rawOddsDict, playersOnly=True)
             allGameObjList.append(gameOddsObj)
 
     return allGameObjList # backlogtodo this dict can be saved for reference for backtesting

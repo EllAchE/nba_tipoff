@@ -14,7 +14,7 @@ from src.live_data.live_odds_retrieval import getAllExpectedStarters
 #
 # saveActivePlayersTeams(1998)
 #
-getAllFirstPossessionStatisticsIncrementally(2016)
+# getAllFirstPossessionStatisticsIncrementally(2016)
 #
 # updateCurrentSeason()
 # updateSkillDictionary()
@@ -28,7 +28,7 @@ getAllFirstPossessionStatisticsIncrementally(2016)
 # getDailyOdds('CHA', 'UTA')
 # getDailyOdds('WAS', 'LAL')
 
-# getAllOddsAndDisplayByEv(includeDk=True, includeBovada=True, includeMgm=True)
+getAllOddsAndDisplayByEv(includeDk=False, includeBovada=False, includeMgm=False, includePointsBet=False, includeUnibetOdds=True)
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
 #                        ['199711160SEA', 'SEA', 'MIL'],
