@@ -1,4 +1,7 @@
 from typing import Any
+from datetime import datetime
+import json
+import jsonpickle
 
 from src.classes.GameOdds import GameOdds
 from src.live_data.live_odds_data_handling import createAllOddsDict
@@ -42,29 +45,36 @@ def filterBestByGameCode(oddsObjList: Any) -> Any:
 
     for gameOdds in oddsObjList:
         gameCodes.add(gameOdds.gameCode)
-    
+
     for gameCode in gameCodes:
         singleGameList = list(filter(lambda x: x.gameCode == gameCode, oddsObjList))
         bestPerGameOnly.append(max([x.bestEVFactor for x in singleGameList]))
-    
+
     return bestPerGameOnly
 
 def convertDictToGameOddsObjList(betDict: Any) -> Any:
     gameOddsObjList = list()
-    
+
     for game in betDict['games']:
         oddsObj = GameOdds(game)
         gameOddsObjList.append(oddsObj)
-    
+
     return gameOddsObjList
+
+def saveOddsToFile(path, odds):
+    with open(path, 'w') as f:
+        f.write(jsonpickle.encode(odds))
+    f.close()
 
 def getAllOddsAndDisplayByEv(includeDk=False, includeMgm=False, includeBovada=False): #todo add a save into this retrieval
     allOddsDictList = createAllOddsDict(includeDk=includeDk, includeMgm=includeMgm, includeBovada=includeBovada)
+    d = datetime.now().strftime("%Y-%m-%d_%H-%M-%S%p")
+    saveOddsToFile(f"Data/JSON/historical_odds/{d}.json", allOddsDictList)
     displayAllBetsByEV(allOddsDictList)
 
 def printOddsObjDetails(oddsList: Any, showAll: bool = False):
     i = 0
-    
+
     for g in oddsList:
         if not showAll and not g.betEither():
             continue

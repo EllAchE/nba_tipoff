@@ -11,14 +11,14 @@ from src.live_data.display_bets import getAllOddsAndDisplayByEv
 
 # createPlayerNameRelationship()
 #
-saveActivePlayersTeams(1998)
+#saveActivePlayersTeams(1998)
 
 # recordBet(exchange='ac', amount=450, odds='-110', team="BOS")
 
-getAllFirstPossessionStatisticsIncrementally(2016)
+#getAllFirstPossessionStatisticsIncrementally(2016)
 
-updateCurrentSeason()
-updateSkillDictionary()
+#updateCurrentSeason()
+#updateSkillDictionary()
 
 # test = barstoolOdds()
 # print(test)
@@ -34,7 +34,7 @@ from src.live_data.live_odds_retrieval import getAllExpectedStarters
 # getDailyOdds('CHA', 'UTA')
 # getDailyOdds('WAS', 'LAL')
 
-# getAllOddsAndDisplayByEv(includeDk=True, includeBovada=False, includeMgm=False)
+getAllOddsAndDisplayByEv(includeDk=True, includeBovada=False, includeMgm=False)
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
 #                        ['199711160SEA', 'SEA', 'MIL'],
