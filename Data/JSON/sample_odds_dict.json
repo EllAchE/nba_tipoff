@@ -13,6 +13,7 @@
         "awayTeamFirstQuarterOdds": "+106"
       },
       "playerOdds": {
+        "isFirstFieldGoal": "This is a boolean that states if the bet cares about fg or just pts.",
         "homePlayerFirstQuarterOdds": [
           {
             "player": "Mr. Good",

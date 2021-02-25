@@ -38,8 +38,7 @@ def createPlayerSkillDictionary():
 
         for season in ptp.keys():
             for player in ptp[season].keys():
-                playerBballCode = getBballRefPlayerName(player)
-                playerCodes.add(playerBballCode)
+                playerCodes.add(player)
 
         for code in playerCodes:
             playerSkillDict[code] = {'mu': 25, 'sigma': 25/3, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
@@ -84,6 +83,7 @@ def saveActivePlayersTeams(start_season: int):
                 seasons[season][playerCode]['currentTeam'] = playerTeam
             else:
                 seasons[season][playerUniversalName] = {"possibleTeams": [playerTeam]}
+                seasons[season][playerCode] = {"possibleTeams": [playerTeam]}
             noTradeSet.add(playerCode)
         for tag in noTradePlayerTags:
             playerNameTag = tag.select('td[data-stat="player"]')[0]

@@ -79,6 +79,7 @@ def createEmptyOddsDict():
         "awayTeamFirstQuarterOdds": None,
       },
         "playerOdds": {
+        "isFirstFieldGoal": False,
         "homePlayerFirstQuarterOdds": [],
         "awayPlayerFirstQuarterOdds": []
       }

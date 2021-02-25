@@ -23,6 +23,7 @@ class GameOdds:
         if not teamOnly:
             self.homePlayerOddsList = gameDict['playerOdds']['homePlayerFirstQuarterOdds']
             self.awayPlayerOddsList = gameDict['playerOdds']['awayPlayerFirstQuarterOdds']
+            self.isFirstFieldGoal = gameDict['playerOdds']['isFirstFieldGoal']
         if teamOnly and playersOnly:
             raise ValueError("need at least team or player")
 

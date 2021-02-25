@@ -93,7 +93,6 @@ def bovadaOdds():
     scoreFirstBetsSingleTeam = list()
     customId = 0
     for bet in allBets:
-        # print(bet['queryTitle'])
         if bet['queryTitle'].lower() == 'team to score first':
             shortTitle = bet['game']['shortTitle']
             team1Id = bet['game']['team1Id']
@@ -123,7 +122,7 @@ def bovadaOdds():
                     team2Id = bet['team2id']
                     # todo bovada has player spreads as well, seemingly for games lacking team props
 
-                    # This implicitly relies on team1 being the first one on the list, which I think is true and I'll test
+                    # This implicitly relies on team1 being the first one on the list
                     scoreFirstBetsBothTeams.append({
                         "shortTitle": shortTitle,
                         "team1id": team1Id,
@@ -144,7 +143,6 @@ def bovadaOdds():
         })
 
     return scoreFirstBetsBothTeamsFormatted
-            #todo this is just taking a guess at which odds belong to which team assuming second odds for team2
 
 def draftKingsOdds():
     # https://sportsbook.draftkings.com/leagues/basketball/103?category=game-props&subcategory=odd/even
@@ -248,18 +246,42 @@ def mgmOdds():
                 })
     return allGameLines
 
-# def pointsBet():
-#     # https://nj.pointsbet.com/sports/basketball/NBA/246723
-#     # request for all things that are on the page - https://api-usa.pointsbet.com/api/v2/competitions/105/events/featured?includeLive=false&page=1
-#     # single game - https://api-usa.pointsbet.com/api/v2/events/249073
-#
-#     allGamesUrl = 'https://api-usa.pointsbet.com/api/v2/competitions/105/events/featured?includeLive=false&page=1'
-#     allGames = requests.get(allGamesUrl).json()
-#
-#     for eventId in eventIdList:
-#         singleGameUrl = 'https://api-usa.pointsbet.com/api/v2/events/{}'.format(eventId)
-#
-#     pass
+# todo figure out the math on pointsbets
+def pointsBet():
+    # https://nj.pointsbet.com/sports/basketball/NBA/246723
+    # request for all things that are on the page - https://api-usa.pointsbet.com/api/v2/competitions/105/events/featured?includeLive=false&page=1
+    # single game - https://api-usa.pointsbet.com/api/v2/events/249073
+
+    allGamesUrl = 'https://api-usa.pointsbet.com/api/v2/competitions/105/events/featured?includeLive=false&page=1'
+    allGames = requests.get(allGamesUrl).json()
+
+    rawPlayerLines = list()
+    for event in allGames:
+        eventId = event['id']
+        homeTeam = event['homeName']
+        awayTeam = event['awayName']
+        singleGameUrl = 'https://api-usa.pointsbet.com/api/v2/events/{}'.format(eventId)
+        singleGameResponse = requests.get(singleGameUrl).json()
+
+        # find by key ['fixedOddsMarkets'] which has array of events, find by ['eventName'] == "First Basker", then get outcomes, which has array of player bets
+
+        # assumes just a single game
+        for market in singleGameResponse['fixedOddsMarkets']:
+            if market['eventName'] == "First Basket":
+                firstBasketMarket = market
+                break
+
+        for outcome in firstBasketMarket['outcomes']:
+            rawPlayerLines.append({
+                "player": outcome['name'],
+                "homeOrAway": outcome['side'],
+                "teamId": outcome['teamId'],
+                "odds": '+' + str(outcome['price'] * 100 - 100) #todo confirm this
+            })
+
+    return rawPlayerLines
+
+    pass
 
 def unibetOdds():
     # https://nj.unibet.com/sports/#event/1007123701
@@ -302,12 +324,12 @@ def unibetOdds():
         homePlayerLines, awayPlayerLines = addTeamToUnknownPlayerLine(playerLinesList)
 
         gameDetailsList.append({
-            'exchange': 'unitbet',
+            'exchange': 'unibet',
             'startDatetime': event['startDatetime'],
-            'home': event['home'],
-            'away': event['away'],
-            'homePlayerOdds': homePlayerLines,
-            'awayPlayerOdds': awayPlayerLines
+            'homeTeamFirstQuarterOdds': event['home'],
+            'awayTeamFirstQuarterOdds': event['away'],
+            'homePlayerFirstQuarterOdds': homePlayerLines,
+            'awayPlayerFirstQuarterOdds': awayPlayerLines
         })
     return gameDetailsList
     # backlogtodo this has a lot of duplication with the barstool method so would be worth extracting
@@ -357,8 +379,8 @@ def barstoolOdds(): #only has player prosp to score (first field goal)
             'startDatetime': event['startDatetime'],
             'home': event['home'],
             'away': event['away'],
-            'homePlayerOdds': homePlayerLines,
-            'awayPlayerOdds': awayPlayerLines
+            'homePlayerFirstQuarterOdds': homePlayerLines,
+            'awayPlayerFirstQuarterOdds': awayPlayerLines
         })
     return gameDetailsList
 
