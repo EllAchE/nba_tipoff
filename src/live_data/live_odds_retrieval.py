@@ -292,6 +292,7 @@ def pointsBetOdds():
                     'exchange': 'pointsBet',
                     "home": homeTeam,
                     "away": awayTeam,
+                    "isFirstFieldGoal": True,
                     "homePlayerFirstQuarterOdds": homePlayerList,
                     "awayPlayerFirstQuarterOdds": awayPlayerList
                 })
@@ -321,8 +322,8 @@ def unibetOdds():
         singleGameResponse = requests.get(singleEventUrlStub.format(str(event[0]))).json()
         mostPopular = singleGameResponse['betOffers'][1]
         allMPBets = mostPopular['criterion']
-        playerScoreFirstFG = None
 
+        playerScoreFirstFG = None
         for bet in allMPBets:
             if bet['label'] == "Player to Score the First Field Goal of the Game":
                 playerScoreFirstFG = bet
@@ -342,6 +343,7 @@ def unibetOdds():
 
         gameDetailsList.append({
             'exchange': 'unibet',
+            "isFirstFieldGoal": True,
             'startDatetime': event['startDatetime'],
             'homeTeamFirstQuarterOdds': event['home'],
             'awayTeamFirstQuarterOdds': event['away'],
