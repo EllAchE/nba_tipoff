@@ -80,6 +80,8 @@ def saveActivePlayersTeams(start_season: int):
             if playerCode in noTradeSet:
                 seasons[season][playerUniversalName]['possibleTeams'] += [playerTeam]
                 seasons[season][playerUniversalName]['currentTeam'] = playerTeam
+                seasons[season][playerCode]['possibleTeams'] += [playerTeam]
+                seasons[season][playerCode]['currentTeam'] = playerTeam
             else:
                 seasons[season][playerUniversalName] = {"possibleTeams": [playerTeam]}
             noTradeSet.add(playerCode)
@@ -95,6 +97,8 @@ def saveActivePlayersTeams(start_season: int):
             playerTeam = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
             seasons[season][playerUniversalName] = {'possibleTeams': [playerTeam]}
             seasons[season][playerUniversalName]['currentTeam'] = playerTeam
+            seasons[season][playerCode] = {'possibleTeams': [playerTeam]}
+            seasons[season][playerCode]['currentTeam'] = playerTeam
 
     with open('Data/JSON/player_team_pairs.json', 'w') as json_file:
         json.dump(seasons, json_file)

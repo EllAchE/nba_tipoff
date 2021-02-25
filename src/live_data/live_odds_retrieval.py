@@ -91,32 +91,39 @@ def bovadaOdds():
 
     allBets = requests.get(url).json()
     scoreFirstBetsSingleTeam = list()
+    customId = 0
     for bet in allBets:
         # print(bet['queryTitle'])
         if bet['queryTitle'].lower() == 'team to score first':
             shortTitle = bet['game']['shortTitle']
             team1Id = bet['game']['team1Id']
             team2Id = bet['game']['team2Id']
-            decimalOdds = bet['odds']
+            if bet['oddsOverride'] is not None:
+                decimalOdds = bet['oddsOverride']
+            else:
+                decimalOdds = bet['odds']
             scoreFirstBetsSingleTeam.append({
                 "shortTitle": shortTitle,
                 "team1id": str(team1Id),
                 "team2id": str(team2Id),
-                "decimalOdds": decimalOdds
+                "decimalOdds": decimalOdds,
+                "customId": customId
             })
+            customId += 1
     matchedBets = set()
 
     scoreFirstBetsBothTeams = list()
     for bet in scoreFirstBetsSingleTeam:
         if bet['shortTitle'] not in matchedBets:
             for potentialPair in scoreFirstBetsSingleTeam:
-                if potentialPair['shortTitle'] == bet['shortTitle']:
+                if potentialPair['shortTitle'] == bet['shortTitle'] and potentialPair['customId'] != bet['customId']:
                     matchedBets.add(potentialPair['shortTitle'])
                     shortTitle = bet['shortTitle']
                     team1Id = bet['team1id']
                     team2Id = bet['team2id']
                     # todo bovada has player spreads as well, seemingly for games lacking team props
 
+                    # This implicitly relies on team1 being the first one on the list, which I think is true and I'll test
                     scoreFirstBetsBothTeams.append({
                         "shortTitle": shortTitle,
                         "team1id": team1Id,
@@ -130,10 +137,10 @@ def bovadaOdds():
     for item in scoreFirstBetsBothTeams:
         scoreFirstBetsBothTeamsFormatted.append({
             'exchange': 'bovada',
-            "home": getUniversalShortCode(item['team1id']),
-            "away": getUniversalShortCode(item['team2id']),
-            "homeTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds']),
-            "awayTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds'])
+            "home": getUniversalShortCode(item['team2id']),
+            "away": getUniversalShortCode(item['team1id']),
+            "homeTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds']),
+            "awayTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds'])
         })
 
     return scoreFirstBetsBothTeamsFormatted

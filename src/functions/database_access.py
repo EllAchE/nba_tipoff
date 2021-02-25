@@ -157,6 +157,7 @@ def getPlayerTeamFromNbaApi(name):
 def getPlayerTeamInSeasonFromBballRefLink(playerLink, season, longCode=True):
     if longCode:
         playerLink = playerLink[11:]
+    # playerName = getUniversalPlayerName(playerLink)
     with open('Data/JSON/player_team_pairs.json') as teamPairs:
         seasons = json.load(teamPairs)
         try:

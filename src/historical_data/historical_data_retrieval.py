@@ -182,7 +182,7 @@ def getOffDefRatings(season=None, savePath=None):
 
     return seasonDict
 
-def updateCurrentSeason(pathToData='Data/CSV/tipoff_and_first_score_details_2021_season.csv', currentSeason=2021):
+def updateCurrentSeason(pathToData='Data/CSV/season_data/tipoff_and_first_score_details_2021_season.csv', currentSeason=2021):
     df = pd.read_csv(pathToData)
     appendFile = open(pathToData, 'a')
     indexAfterLastGame = len(df)

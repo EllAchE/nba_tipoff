@@ -56,7 +56,7 @@ def getPlayerSpread(oddsLine, winProb: float, playerSpreadAsSingleAOdds: str):
 
     i = 0
     while i < numPlayers:
-        playerSpread.append({"player": oddsLine[i]['player'], "bet":bettingSpread[i]})
+        playerSpread.append({"player": oddsLine[i]['player'], "bet":bettingSpread[i], "odds":oddsLine[i]["odds"]})
         i += 1
 
     return playerSpread
