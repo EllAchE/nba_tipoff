@@ -1,15 +1,39 @@
 import json
 
 from nba_api.stats.endpoints import CommonPlayerInfo, leaguegamefinder
-from nba_api.stats.library.data import teams
+from nba_api.stats.static import teams
 from nba_api.stats.static.players import find_players_by_full_name
 
 from src.functions.utils import getDashDateAndHomeCodeFromGameCode, removeAllNonLettersAndLowercase
 
+def getBballRefPlayerName(playerInUnknownFormat):
+    with open('Data/JSON/player_name_relationships.json') as playerDb:
+        playersDict = json.load(playerDb)
 
-# todo player to fullname to player code relationship
-# https://www.w3schools.com/python/python_mysql_create_db.asp
+    match = False
+    playerLoweredLetterOnly = removeAllNonLettersAndLowercase(playerInUnknownFormat)
+    for player in playersDict:
+        if player['universalName'] == playerLoweredLetterOnly:
+            match = True
+            break
+        elif playerInUnknownFormat in player['alternateNames']:
+            match = True
+            break
+        elif player['fullName'] == playerInUnknownFormat:
+            match = True
+            break
+        elif player['nameWithComma'] == playerInUnknownFormat:
+            match = True
+            break
+        elif player['bballRefCode'] == playerInUnknownFormat:
+            match = True
+            break
 
+    if not match:
+        raise ValueError("player", playerInUnknownFormat, "did not have a match")
+    return player['bballRefCode']
+
+# backlogtodo fix unmatched players in quarter counting
 def getUniversalPlayerName(playerInUnknownFormat):
     with open('Data/JSON/player_name_relationships.json') as playerDb:
         playersDict = json.load(playerDb)
@@ -20,19 +44,22 @@ def getUniversalPlayerName(playerInUnknownFormat):
         if player['bballRefCode'] == playerInUnknownFormat:
             match = True
             break
+        elif playerInUnknownFormat in player['alternateNames']:
+            match = True
+            break
         elif player['fullName'] == playerInUnknownFormat:
             match = True
             break
         elif player['nameWithComma'] == playerInUnknownFormat:
             match = True
             break
-        elif player['lowerLettersOnly'] == playerLoweredLetterOnly:
+        elif player['universalName'] == playerLoweredLetterOnly:
             match = True
             break
 
     if not match:
         raise ValueError("player", playerInUnknownFormat, "did not have a match")
-    return player['lowerLettersOnly']
+    return player['universalName']
 
 def getPlayerCurrentTeam(universalPlayerName): # Returns a list
     with open('Data/JSON/player_team_pairs.json') as playerToTeamDb:
@@ -66,12 +93,13 @@ def getUniversalShortCode(teamInUnknownFormat):
         elif team['abbreviation'] == teamInUnknownFormat:
             match = True
             break
+        elif team['bovadaId'] == teamInUnknownFormat:
+            match = True
+            break
     # Often format is "LA Clippers" or "DEN Nuggets" or "Nuggets"
     if not match:
         raise ValueError("team", teamInUnknownFormat, "did not have a match")
     return team['abbreviation']
-# todo make all of these universal conversions work
-# todo use fuzzywuzzy on these matches
 
 def getTeamDictionaryFromShortCode(shortCode: str):
     shortCode = convertBballRefTeamShortCodeToNBA(shortCode)
@@ -115,7 +143,7 @@ def getGameIdFromBballRef(bballRefId):
 
 
 def getPlayerTeamFromFullName(name):
-    playerDict = find_players_by_full_name(name)[0] # todo deal with unicode breaking charanacters i.e. in the name bojan bogdonavic 'Bojan Bogdanović'
+    playerDict = find_players_by_full_name(name)[0]
     playerId = playerDict['id']
     data = CommonPlayerInfo(player_id=playerId)
     playerData = data.common_player_info.get_data_frame()
@@ -129,6 +157,7 @@ def getPlayerTeamFromNbaApi(name):
 def getPlayerTeamInSeasonFromBballRefLink(playerLink, season, longCode=True):
     if longCode:
         playerLink = playerLink[11:]
+    # playerName = getUniversalPlayerName(playerLink)
     with open('Data/JSON/player_team_pairs.json') as teamPairs:
         seasons = json.load(teamPairs)
         try:

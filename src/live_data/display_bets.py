@@ -2,6 +2,8 @@ from typing import Any
 
 from src.classes.GameOdds import GameOdds
 from src.live_data.live_odds_data_handling import createAllOddsDict
+# todo update player spread calculation to include summary and kelly bet size
+# backlogtodo update player spread calculation to round
 
 
 def displayUniqueBetsByEV(betDict: Any, showAll: bool = True):
@@ -56,12 +58,12 @@ def convertDictToGameOddsObjList(betDict: Any) -> Any:
     
     return gameOddsObjList
 
-def getAllOddsAndDisplayByEv():
-    allOddsDictList = createAllOddsDict()
+def getAllOddsAndDisplayByEv(includeDk=False, includeMgm=False, includeBovada=False): #todo add a save into this retrieval
+    allOddsDictList = createAllOddsDict(includeDk=includeDk, includeMgm=includeMgm, includeBovada=includeBovada)
     displayAllBetsByEV(allOddsDictList)
 
 def printOddsObjDetails(oddsList: Any, showAll: bool = False):
-    i = 1
+    i = 0
     
     for g in oddsList:
         if not showAll and not g.betEither():
@@ -71,18 +73,22 @@ def printOddsObjDetails(oddsList: Any, showAll: bool = False):
         floatMinBetOdds = round(float(g.minHomeWinPercentage), 3) if g.betOnHome else round(float(g.minAwayWinPercentage), 3)
         betOnVia = g.bestBetIsTeamOrPlayers()
         playerSpread = g.bestPlayerSpread()
-        i += 1
 
         print(str(i) + '.', g.gameCode, "|| Bet On:", betOn, "|| Via:", betOnVia, "|| Kelly Bet:",
-              g.kellyBet, "|| EV Factor:", g.bestEVFactor, "|| Tipoff:", g.gameDatetime) # ". Home/Away:", g.home, g.away,
+              g.kellyBet, "|| EV Factor:", g.bestEVFactor)#, "|| Tipoff:", g.gameDatetime)
         print("   || Tippers-H/A", g.expectedHomeTipper + '/' + g.expectedAwayTipper, "|| Odds Home Wins", floatHomeScoreProb,
               "|| Min Odds (HoDef):", floatMinBetOdds, "|| Home Line:", g.bestHomeOdds, "|| Away Line:", g.bestAwayOdds)
         print('   Exchange:', g.exchange, '|| Market URL:', g.marketUrl, '|| Odds as of:', g.fetchedDatetime, '\n')
         if betOnVia == "PLAYERS":
             print("    Player Spread:")
+            playerTotalCost = 0
             for player in playerSpread:
                 print('   ', player)
+                playerTotalCost += player['bet']
+            print("     Total Bet Amount:", playerTotalCost)
             print()
+
+        i += 1
 
 # Format is https://www.basketball-reference.com/boxscores/pbp/201901220OKC.html
 # Home team 3 letter symbol is used after a 0, i.e. YYYYMMDD0###.html

@@ -9,10 +9,10 @@ import trueskill
 import pandas as pd
 
 from src.classes.Player import Player
+from src.functions.database_access import getUniversalPlayerName
 from src.functions.database_creation import resetPredictionSummaries, createPlayerSkillDictionary
 from src.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
 # https://github.com/sublee/glicko2/blob/master/glicko2.py
-
 
 def runTSForSeason(season: str, season_csv: str, json_path: str, winning_bet_threshold: float =0.6):
     df = pd.read_csv(season_csv)
@@ -39,26 +39,26 @@ def runTSForSeason(season: str, season_csv: str, json_path: str, winning_bet_thr
         if df['Home Tipper'].iloc[i] != df['Home Tipper'].iloc[i]:
             i += 1
             continue
-        h_tip = df['Home Tipper'].iloc[i]
-        t_winner = df['Tipoff Winner'].iloc[i]
-        a_tip = df['Away Tipper'].iloc[i]
-        t_win_link = df['Tipoff Winner Link'].iloc[i]
-        t_lose_link = df['Tipoff Loser Link'].iloc[i]
-        if t_winner == h_tip:
-            h_tip_code = t_win_link[11:]
-            a_tip_code = t_lose_link[11:]
-        elif t_winner == a_tip:
-            h_tip_code = t_lose_link[11:]
-            a_tip_code = t_win_link[11:]
+        hTip = df['Home Tipper'].iloc[i]
+        tWinner = df['Tipoff Winner'].iloc[i]
+        aTip = df['Away Tipper'].iloc[i]
+        tWinLink = df['Tipoff Winner Link'].iloc[i]
+        tLoseLink = df['Tipoff Loser Link'].iloc[i]
+        if tWinner == hTip:
+            hTipCode = tWinLink[11:]
+            aTipCode = tLoseLink[11:]
+        elif tWinner == aTip:
+            hTipCode = tLoseLink[11:]
+            aTipCode = tWinLink[11:]
         else:
             raise ValueError('no match for winner')
 
-        beforeMatchPredictions(season, psd, dsd, h_tip_code, a_tip_code, t_win_link, df['First Scoring Team'].iloc[i], winning_bet_threshold)
-        home_mu, home_sigma, away_mu, away_sigma = updateDataSingleTipoff(psd, t_win_link, t_lose_link, h_tip_code, df['Full Hyperlink'].iloc[i])
-        df['Home Mu'].iloc[i] = home_mu
-        df['Home Sigma'].iloc[i] = home_sigma
-        df['Away Mu'].iloc[i] = away_mu
-        df['Away Sigma'].iloc[i] = away_sigma
+        beforeMatchPredictions(season, psd, dsd, hTipCode, aTipCode, tWinLink, df['First Scoring Team'].iloc[i], winning_bet_threshold)
+        homeMu, homeSigma, awayMu, awaySigma = updateDataSingleTipoff(psd, tWinLink, tLoseLink, hTipCode, df['Full Hyperlink'].iloc[i])
+        df['Home Mu'].iloc[i] = homeMu
+        df['Home Sigma'].iloc[i] = homeSigma
+        df['Away Mu'].iloc[i] = awayMu
+        df['Away Sigma'].iloc[i] = awaySigma
 
         i += 1
 
@@ -71,7 +71,6 @@ def runTSForSeason(season: str, season_csv: str, json_path: str, winning_bet_thr
     df.to_csv(season_csv[:-4] + '-test.csv')
 
     return winning_bets, losing_bets
-
 
 # todo setup odds prediction to use Ev or win prob rather than bet threshold
 def beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=0.6):
@@ -130,9 +129,8 @@ def tipWinProb(player1_code: str, player2_code: str, json_path: str = 'Data/JSON
     denom = math.sqrt(size * (ENVIRONMENT.BASE_SIGMA * ENVIRONMENT.BASE_SIGMA) + sum_sigma)
     ts = trueskill.global_env()
     res = ts.cdf(delta_mu / denom)
-    print('odds', player1_code, 'beats', player2_code, 'are', res)
+    # print('odds', player1_code, 'beats', player2_code, 'are', res)
     return res
-
 
 def runForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD):
     seasonKey = ''
@@ -148,7 +146,6 @@ def runForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRE
 
     with open(ENVIRONMENT.PREDICTION_SUMMARIES_PATH, 'w') as predSum:
         json.dump(dsd, predSum)
-
 
 def updateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, game_code=None):
     if game_code:
@@ -191,13 +188,11 @@ def updateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, game_code
 
     return homeMu, homeSigma, awayMu, awaySigma
 
-
 def _matchWithRawNums(winnerMu, winnerSigma, loserMu, loserSigma):
         winnerRatingObj = trueskill.Rating(winnerMu, winnerSigma)
         loserRatingObj = trueskill.Rating(loserMu, loserSigma)
         winnerRatingObj, loserRatingObj = trueskill.rate_1vs1(winnerRatingObj, loserRatingObj)
         return winnerRatingObj.mu, winnerRatingObj.sigma, loserRatingObj.mu, loserRatingObj.sigma
-
 
 def updateSkillDictionary():
     resetPredictionSummaries() # reset sums

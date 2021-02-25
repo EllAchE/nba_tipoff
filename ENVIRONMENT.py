@@ -10,7 +10,8 @@ HOME_SCORE_ODDS = 0.52111318 # todo slightly deflated due to 0.5 approximation o
 HOME_TIP_WIN_ODDS = 0.51615348 # todo these are slightly deflated due to 0.5 approximation of empty rows
 TIP_WINNER_SCORE_ODDS = 0.65495626 # todo these are slightly deflated due to 0.5 approximation of empty rows
 # todo recalculate all of the uncertain data points above. This was originally done with a simple excel function on a fully concatenated csv of all seasons
-BANKROLL = 5820
+BANKROLL = 5000
+REDUCTION_FACTOR = 0.7
 
 # Trueskill Base values
 BASE_SIGMA = 25 / 6
@@ -23,7 +24,7 @@ PLAYER_TEAM_PAIR_DICT_PATH = Path(os.path.abspath('Data/JSON/player_team_pairs.j
 PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/prediction_summaries.json'))
 SEASON_CSV_NEEDING_FORMAT_PATH = os.path.abspath('Data/CSV/tipoff_and_first_score_details_{}_season.csv')
 TEAM_CONVERSION_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/teams.json'))
-SHOTS_BEFORE_FIRST_SCORE_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/shots_before_first_score.json'))
+SHOTS_BEFORE_FIRST_SCORE_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json'))
 
 # Misc
 LIVE_ODDS_API_1 = '5f92a0468c6f365be7db417f13d52742'

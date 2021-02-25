@@ -1,11 +1,14 @@
 import glob
 import json
+import unicodedata
+
 import pandas as pd
 import re
 
 import ENVIRONMENT
-from src.functions.database_access import getUniversalPlayerName
-from src.functions.utils import getSoupFromUrl
+from src.functions.database_access import getUniversalPlayerName, getBballRefPlayerName
+from src.functions.utils import getSoupFromUrl, removeAllNonLettersAndLowercase
+
 
 def concatCsv(save_path: str):
     fNames = [i for i in glob.glob('CSV/*.csv')]
@@ -35,7 +38,8 @@ def createPlayerSkillDictionary():
 
         for season in ptp.keys():
             for player in ptp[season].keys():
-                playerCodes.add(player)
+                playerBballCode = getBballRefPlayerName(player)
+                playerCodes.add(playerBballCode)
 
         for code in playerCodes:
             playerSkillDict[code] = {'mu': 25, 'sigma': 25/3, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
@@ -76,6 +80,8 @@ def saveActivePlayersTeams(start_season: int):
             if playerCode in noTradeSet:
                 seasons[season][playerUniversalName]['possibleTeams'] += [playerTeam]
                 seasons[season][playerUniversalName]['currentTeam'] = playerTeam
+                seasons[season][playerCode]['possibleTeams'] += [playerTeam]
+                seasons[season][playerCode]['currentTeam'] = playerTeam
             else:
                 seasons[season][playerUniversalName] = {"possibleTeams": [playerTeam]}
             noTradeSet.add(playerCode)
@@ -91,6 +97,8 @@ def saveActivePlayersTeams(start_season: int):
             playerTeam = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
             seasons[season][playerUniversalName] = {'possibleTeams': [playerTeam]}
             seasons[season][playerUniversalName]['currentTeam'] = playerTeam
+            seasons[season][playerCode] = {'possibleTeams': [playerTeam]}
+            seasons[season][playerCode]['currentTeam'] = playerTeam
 
     with open('Data/JSON/player_team_pairs.json', 'w') as json_file:
         json.dump(seasons, json_file)
@@ -98,32 +106,42 @@ def saveActivePlayersTeams(start_season: int):
     print('saved seasons Data')
 
 
-def createActivePlayerNameRelationship():
+def createPlayerNameRelationship(startSeason: int=1998):
     activePlayers = []
 
-    url = 'https://www.basketball-reference.com/leagues/NBA_2021_per_game.html'
-    soup, statusCode = getSoupFromUrl(url, returnStatus=True)
-    print("GET request for 2021 players list returned status", statusCode)
-    allPlayerTags = soup.find_all('tr', class_="full_table")
+    urlStub = 'https://www.basketball-reference.com/leagues/NBA_{}_per_game.html'
+    while startSeason < 2022:
+        url = urlStub.format(str(startSeason))
+        soup, statusCode = getSoupFromUrl(url, returnStatus=True)
+        print("GET request for", startSeason, "players list returned status", statusCode)
+        allPlayerTags = soup.find_all('tr', class_="full_table")
 
-    for tag in allPlayerTags:
-        tagStr = str(tag)
-        playerNameTag = tag.select('td[data-stat="player"]')[0]
-        playerFullName = playerNameTag.contents[0].contents[0]
-        playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tagStr).group(0)
-        playerNameWithComma = re.search(r'(?<=csk=")(.*?)(?=")', str(playerNameTag)).group(0)
-        playerNameLowerLettersOnly = playerFullName.replace(' ', '')
-        playerNameLowerLettersOnly = playerNameLowerLettersOnly.replace('-', '')
-        playerNameLowerLettersOnly = playerNameLowerLettersOnly.replace('.', '')
-        playerNameLowerLettersOnly = playerNameLowerLettersOnly.lower()
+        for tag in allPlayerTags:
+            tagStr = str(tag)
+            playerNameTag = tag.select('td[data-stat="player"]')[0]
+            playerFullName = playerNameTag.contents[0].contents[0]
+            playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tagStr).group(0)
+            playerNameWithComma = re.search(r'(?<=csk=")(.*?)(?=")', str(playerNameTag)).group(0)
+            universalName = unicodedata.normalize('NFD', playerFullName.replace(".", "")).encode('ascii', 'ignore').decode("utf-8")
+            universalName = removeAllNonLettersAndLowercase(universalName)
 
-        activePlayers.append({
-            "bballRefCode": playerCode,
-            "fullName": playerFullName,
-            "nameWithComma": playerNameWithComma,
-            "lowerLettersOnly": playerNameLowerLettersOnly
-            # "playerNameTag": tagStr
-        })
+            activePlayers.append({
+                "bballRefCode": playerCode,
+                "fullName": playerFullName,
+                "nameWithComma": playerNameWithComma,
+                "universalName": universalName,
+                "alternateNames": []
+                # "playerNameTag": tagStr
+            })
+        startSeason += 1
+
+    for playerDict in activePlayers:
+        if playerDict['fullName'] == "Maxi Kleber":
+            playerDict['alternateNames'] += ["Maximilian Kleber"]
+        elif playerDict['fullName'] == "Garrison Mathews":
+            playerDict['alternateNames'] += ["Garison Matthew"]
+        elif playerDict['fullName'] == "Danuel House":
+            playerDict['alternateNames'] += ["Danuel House Jr."]
 
     with open('Data/JSON/player_name_relationships.json', 'w') as json_file:
         json.dump(activePlayers, json_file)

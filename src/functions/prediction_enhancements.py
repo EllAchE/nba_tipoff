@@ -7,9 +7,11 @@ from collections import OrderedDict
 # backlogtodo include nonshooting possessions
 from src.functions.utils import lowercaseNoSpace
 
+# todo these should be done:
+#    Offensive efficiency, Def E, Percentage of FT & 2s vs. 3s (effective score percentage)
 
 def getFirstShotStats(season):
-    with open('../../Data/JSON/Public_NBA_API/shots_before_first_score.json') as data:
+    with open('../../Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as data:
         firstShotsDict = json.load(data)
 
     lastSeasonData = firstShotsDict[str(season)]
@@ -64,7 +66,7 @@ def _teamFirstShotStats(game, summaryDict):
         summaryDict[team]['shots'] += 1
         summaryDict[opponent]['opponentShots'] += 1
         summaryDict[team][event['shotType']] += 1
-        summaryDict[opponent][lowercaseNoSpace('opponent' + event['shotType'])] += 1 # todo fix this to use upper
+        summaryDict[opponent][lowercaseNoSpace('opponent' + event['shotType'])] += 1
 
         if "2PT" in event['shotType'] or "3PT" in event['shotType']:
             summaryDict[team]['FG ATTEMPTS'] += 1

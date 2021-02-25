@@ -56,7 +56,7 @@ def getPlayerSpread(oddsLine, winProb: float, playerSpreadAsSingleAOdds: str):
 
     i = 0
     while i < numPlayers:
-        playerSpread.append({"player": oddsLine[i]['player'], "bet":bettingSpread[i]})
+        playerSpread.append({"player": oddsLine[i]['player'], "bet":bettingSpread[i], "odds":oddsLine[i]["odds"]})
         i += 1
 
     return playerSpread
@@ -88,7 +88,7 @@ def sysEMainDiagonalVarsNeg1Fill(argsList, amtToWin: float = 1, amtToLose: Optio
         multiplier = amtToLose/cost
         return playerSpread * multiplier
 
-def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float=0.7, winAmt: float = 1, bankroll: Optional[float] = None): # assumes binary outcome, requires dollar value
+def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float=ENVIRONMENT.REDUCTION_FACTOR, winAmt: float = 1, bankroll: Optional[float] = None): # assumes binary outcome, requires dollar value
     kellyRatio = (winOdds / lossAmt - (1 - winOdds) / winAmt) * reductionFactor
 
     if bankroll is None:

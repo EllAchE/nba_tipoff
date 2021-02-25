@@ -67,7 +67,7 @@ def createSuffix(name: str):
     normalizedName = unicodedata.normalize('NFD', name.replace(".","")).encode('ascii', 'ignore').decode("utf-8")
     normalizedNameNoSpace = normalizedName.replace(' ', '')
     first = unidecode.unidecode(normalizedNameNoSpace[:2].lower())
-    lasts = normalizedName.split(' ')[1:] # todo this method breaks on some edge cases like r. j. barrett so I customized it, but not sure how weel it works. Also clint capela breaks the convention
+    lasts = normalizedName.split(' ')[1:]
     names = ''.join(lasts)
     second = ""
     if len(names) <= 5:
@@ -76,7 +76,7 @@ def createSuffix(name: str):
     else:
         second += names[:5].lower()
 
-    return second + first + '01.html' #todo this doesn't account for if the name appears more than once
+    return second + first
 
 def getDashDateFromGameCode(gameCode: str):
     gameCode = str(gameCode)
@@ -108,7 +108,7 @@ def getDashDateAndHomeCodeFromGameCode(game_code: str):
     return getDashDateFromGameCode(game_code), getHomeTeamFromGameCode(game_code)
 
 def sleepChecker(iterations: int = 3, baseTime: int = 2, randomMultiplier: int = 3, printStop: bool = False):
-    with open(os.path.abspath('Data/sleep_counter.json')) as sc:
+    with open(os.path.abspath('sleep_counter.json')) as sc:
         SLEEP_COUNTER = json.load(sc)
 
     SLEEP_COUNTER['counter'] += 1
@@ -118,13 +118,14 @@ def sleepChecker(iterations: int = 3, baseTime: int = 2, randomMultiplier: int =
         time.sleep(baseTime + random.random() * randomMultiplier)
         SLEEP_COUNTER['counter'] = 0
 
-    with open('Data/sleep_counter.json', 'w') as sc:
+    with open('sleep_counter.json', 'w') as sc:
         json.dump(SLEEP_COUNTER, sc)
 
 def removeAllNonLettersAndLowercase(name):
     playerLowered = name.replace(' ', '')
     playerLowered = playerLowered.replace('.', '')
-    playerLowered = playerLowered.replace('- ', '')
+    playerLowered = playerLowered.replace('-', '')
+    playerLowered = playerLowered.replace('\'', '')
     return playerLowered.lower()
 
 def lowercaseNoSpace(str):

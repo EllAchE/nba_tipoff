@@ -16,7 +16,6 @@ import ENVIRONMENT
 from src.functions.database_access import getUniversalShortCode, getPlayerCurrentTeam, getUniversalPlayerName
 from src.functions.odds_calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb, decimalToAmerican
 from src.functions.utils import getTeamFullFromShort, getSoupFromUrl, sleepChecker
-# todo add a threshold of ev factor to only take safer bets
 
 
 def addTeamToUnknownPlayerLine(rawPlayerLine):
@@ -29,14 +28,8 @@ def addTeamToUnknownPlayerLine(rawPlayerLine):
     return rawPlayerLine
 
 def getExpectedTipper(team):
-#     lastTipper = getLastTipper()
-#     injuryCheck = checkInjury(lastTipper)
-#     starterCheck = checkStarter(lastTipper)
-# todo find a way to autofetch and confirm expected tipper; i.e. you have to look at injuries, changes to starting lineup & team history if it's a nonstandard lineup. May be best to just flag edge cases
-# todo in cases where a starter who tips is out we probably want an alert as these are good opportunties for mispricing
-
     if len(team) != 3:
-        raise ValueError('Need to pass team short code to getExpectedTipper')
+        raise ValueError('Need to pass universal team short code to getExpectedTipper')
 
     tipper = tipperFromTeam(team)
     return tipper
@@ -98,32 +91,39 @@ def bovadaOdds():
 
     allBets = requests.get(url).json()
     scoreFirstBetsSingleTeam = list()
+    customId = 0
     for bet in allBets:
-        print(bet['queryTitle'])
+        # print(bet['queryTitle'])
         if bet['queryTitle'].lower() == 'team to score first':
             shortTitle = bet['game']['shortTitle']
             team1Id = bet['game']['team1Id']
             team2Id = bet['game']['team2Id']
-            decimalOdds = bet['odds']
+            if bet['oddsOverride'] is not None:
+                decimalOdds = bet['oddsOverride']
+            else:
+                decimalOdds = bet['odds']
             scoreFirstBetsSingleTeam.append({
                 "shortTitle": shortTitle,
                 "team1id": str(team1Id),
                 "team2id": str(team2Id),
-                "decimalOdds": decimalOdds
+                "decimalOdds": decimalOdds,
+                "customId": customId
             })
+            customId += 1
     matchedBets = set()
 
     scoreFirstBetsBothTeams = list()
     for bet in scoreFirstBetsSingleTeam:
         if bet['shortTitle'] not in matchedBets:
             for potentialPair in scoreFirstBetsSingleTeam:
-                if potentialPair['shortTitle'] == bet['shortTitle']:
+                if potentialPair['shortTitle'] == bet['shortTitle'] and potentialPair['customId'] != bet['customId']:
                     matchedBets.add(potentialPair['shortTitle'])
                     shortTitle = bet['shortTitle']
                     team1Id = bet['team1id']
                     team2Id = bet['team2id']
                     # todo bovada has player spreads as well, seemingly for games lacking team props
 
+                    # This implicitly relies on team1 being the first one on the list, which I think is true and I'll test
                     scoreFirstBetsBothTeams.append({
                         "shortTitle": shortTitle,
                         "team1id": team1Id,
@@ -137,13 +137,13 @@ def bovadaOdds():
     for item in scoreFirstBetsBothTeams:
         scoreFirstBetsBothTeamsFormatted.append({
             'exchange': 'bovada',
-            "home": getUniversalShortCode(item['team1id']),
-            "away": getUniversalShortCode(item['team2id']),
-            "homeTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds']),
-            "awayTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds'])
+            "home": getUniversalShortCode(item['team2id']),
+            "away": getUniversalShortCode(item['team1id']),
+            "homeTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds']),
+            "awayTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds'])
         })
 
-    return scoreFirstBetsBothTeamsFormatted # todo LEFTOFF
+    return scoreFirstBetsBothTeamsFormatted
             #todo this is just taking a guess at which odds belong to which team assuming second odds for team2
 
 def draftKingsOdds():
@@ -164,7 +164,7 @@ def draftKingsOdds():
             break
 
     for subCategory in playerProps:
-        if subCategory['name'] == "First Field Goal": #todo an id may work for these
+        if subCategory['name'] == "First Field Goal":
             firstPlayerToScoreLines = subCategory['offerSubcategory']['offers']
             break
 
@@ -179,8 +179,8 @@ def draftKingsOdds():
             "exchange": "draftkings",
             "home": getUniversalShortCode(team1),
             "away": getUniversalShortCode(team2),
-            "homeTeamFirstQuarterOdds": team1Odds,
-            "awayTeamFirstQuarterOdds": team2Odds,
+            "homeTeamFirstQuarterOdds": str(team1Odds),
+            "awayTeamFirstQuarterOdds": str(team2Odds),
             "homePlayerFirstQuarterOdds": [],
             "awayPlayerFirstQuarterOdds": []
         })
@@ -243,8 +243,8 @@ def mgmOdds():
                     'exchange': 'mgm',
                     "home": getUniversalShortCode(team1),
                     "away": getUniversalShortCode(team2),
-                    "homeTeamFirstQuarterOdds": team1Odds,
-                    "awayTeamFirstQuarterOdds": team2Odds
+                    "homeTeamFirstQuarterOdds": str(team1Odds),
+                    "awayTeamFirstQuarterOdds": str(team2Odds)
                 })
     return allGameLines
 
@@ -310,7 +310,7 @@ def unibetOdds():
             'awayPlayerOdds': awayPlayerLines
         })
     return gameDetailsList
-    #todo this has a lot of duplication with the barstool method so would be worth extracting
+    # backlogtodo this has a lot of duplication with the barstool method so would be worth extracting
 
 
 def barstoolOdds(): #only has player prosp to score (first field goal)
@@ -456,5 +456,5 @@ def createTeamTipperDict():
         tipperList.append({"playerCode":code, "team": teamLine["team"]})
     fullJson["pairs"] = tipperList
 
-    with open ('Data/JSON/team_tipper_pairs.json', 'w') as file:
+    with open('Data/JSON/team_tipper_pairs.json', 'w') as file:
         json.dump(fullJson, file)
