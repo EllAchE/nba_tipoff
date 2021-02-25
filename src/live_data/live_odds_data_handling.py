@@ -17,6 +17,8 @@ def addTeamOnlyToOddsDict(oddsDict, rawOddsDict):
 def addPlayerOnlyOddsDict(oddsDict, rawOddsDict):
     oddsDict['playerOdds']['homePlayerFirstQuarterOdds'] = rawOddsDict['homePlayerFirstQuarterOdds']
     oddsDict['playerOdds']['awayPlayerFirstQuarterOdds'] = rawOddsDict['awayPlayerFirstQuarterOdds']
+    if 'isFirstField' in rawOddsDict.keys():
+        oddsDict['playerOdds']['isFirstFieldGoal'] = rawOddsDict['isFirstFieldGoal']
     return oddsDict
 
 
@@ -26,8 +28,7 @@ def createSingleOddsDict(rawOddsDict, playerOdds=True, teamOdds=True, *kwargs):#
   oddsDict['home'] = rawOddsDict['home']
   oddsDict['away'] = rawOddsDict['away']
   oddsDict['exchange'] = rawOddsDict['exchange']
-  oddsDict['isFirstFieldGoal'] = rawOddsDict['isFirstFieldGoal']
-  oddsDict['gameCode'] = rawOddsDict['home'] + " @ " + rawOddsDict['away'] + " " + rawOddsDict['fetchedDatetime'][:10]
+  oddsDict['gameCode'] = rawOddsDict['home'] + " @ " + rawOddsDict['away'] + " " + oddsDict['fetchedDatetime'][:10]
 
   if teamOdds:
       oddsDict = addTeamOnlyToOddsDict(oddsDict, rawOddsDict)

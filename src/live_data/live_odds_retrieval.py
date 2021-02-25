@@ -156,41 +156,52 @@ def draftKingsOdds():
         if category['name'] == "Player Props":
             playerProps = category['offerSubcategoryDescriptors']
 
+    teamMatch = False
+    playerMatch = False
     for subCategory in gameProps:
         if subCategory['name'] == "First Team to Score":
             firstTeamToScoreLines = subCategory['offerSubcategory']['offers']
+            teamMatch = True
             break
 
     for subCategory in playerProps:
         if subCategory['name'] == "First Field Goal":
             firstPlayerToScoreLines = subCategory['offerSubcategory']['offers']
+            playerMatch = True
             break
 
+    if not playerMatch:
+        print('No player odds for draftkings currently')
+    if not teamMatch:
+        print('No team odds for draftkings currently')
+
     allGameLines = list()
-    for teamLine in firstTeamToScoreLines:
-        outcomes = teamLine[0]['outcomes']
-        team1 = outcomes[0]['label']
-        team1Odds = outcomes[0]['oddsAmerican']
-        team2 = outcomes[1]['label']
-        team2Odds = outcomes[1]['oddsAmerican']
-        allGameLines.append({
-            "exchange": "draftkings",
-            "home": getUniversalShortCode(team1),
-            "away": getUniversalShortCode(team2),
-            "homeTeamFirstQuarterOdds": str(team1Odds),
-            "awayTeamFirstQuarterOdds": str(team2Odds),
-            "homePlayerFirstQuarterOdds": [],
-            "awayPlayerFirstQuarterOdds": []
-        })
+    if teamMatch:
+        for teamLine in firstTeamToScoreLines:
+            outcomes = teamLine[0]['outcomes']
+            team1 = outcomes[0]['label']
+            team1Odds = outcomes[0]['oddsAmerican']
+            team2 = outcomes[1]['label']
+            team2Odds = outcomes[1]['oddsAmerican']
+            allGameLines.append({
+                "exchange": "draftkings",
+                "home": getUniversalShortCode(team1),
+                "away": getUniversalShortCode(team2),
+                "homeTeamFirstQuarterOdds": str(team1Odds),
+                "awayTeamFirstQuarterOdds": str(team2Odds),
+                "homePlayerFirstQuarterOdds": [],
+                "awayPlayerFirstQuarterOdds": []
+            })
 
     rawPlayerLines = list()
-    for game in firstPlayerToScoreLines:
-        outcomes = game[0]['outcomes']
-        for playerOdds in outcomes:
-            rawPlayerLines.append({
-                "player": playerOdds['label'],
-                "odds": playerOdds['oddsAmerican']
-            })
+    if playerMatch:
+        for game in firstPlayerToScoreLines:
+            outcomes = game[0]['outcomes']
+            for playerOdds in outcomes:
+                rawPlayerLines.append({
+                    "player": playerOdds['label'],
+                    "odds": playerOdds['oddsAmerican']
+                })
 
     for teamLine in allGameLines:
         for rawLine in rawPlayerLines:
@@ -286,7 +297,7 @@ def pointsBetOdds():
                     elif player['team'] == awayTeam:
                         awayPlayerList.append(player)
                     else:
-                        raise ValueError("player didn't match either team, or teams are misformatted/don't match universal team code")
+                        raise ValueError("player didn't match either team, or teams are misformatted/don't match universal team code", player)
 
                 gameDictList.append({
                     'exchange': 'pointsBet',
