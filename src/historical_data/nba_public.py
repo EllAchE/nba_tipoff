@@ -38,7 +38,8 @@ from nba_api.stats.static import players
 
 import ENVIRONMENT
 from src.functions.database_access import findPlayerFullFromLastGivenPossibleFullNames, getGameIdFromBballRef, \
-    getTeamDictionaryFromShortCode, getAllGamesForTeam, getUniversalPlayerName, getBballRefPlayerName
+    getTeamDictionaryFromShortCode, getAllGamesForTeam, getUniversalPlayerName, getBballRefPlayerName, \
+    getGameIdByTeamAndDateFromStaticData
 from src.functions.utils import getDashDateAndHomeCodeFromGameCode, sleepChecker
 
 # backlogTodo different sites may only look at first field goal (NOT FREE THROW) which makes for a weaker correlation
@@ -263,7 +264,7 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         bballRefId = df.iloc[i]["Game Code"]
         print('running for ', bballRefId)
         gameId = getGameIdFromBballRef(bballRefId)
-        gameId = getGameIdFromBballRefStaticData(bballRefId)
+        # gameId = getGameIdByTeamAndDateFromStaticData(bballRefId)
         q1Shots, q2Shots, q3Shots, q4Shots = gameIdToFirstFieldGoalsOfQuarters(gameId)
         gameStatistics = _getFirstShotStatistics(q1Shots, q2Shots, q3Shots, q4Shots, bballRefId)
         seasonShotList.append(gameStatistics)

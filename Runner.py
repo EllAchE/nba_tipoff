@@ -10,13 +10,13 @@ from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrem
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import getAllExpectedStarters
 
-getAllGameData()
+# getAllGameData()
 
 # createPlayerNameRelationship()
 #
 # saveActivePlayersTeams(1998)
 #
-# getAllFirstPossessionStatisticsIncrementally(2016)
+getAllFirstPossessionStatisticsIncrementally(2016)
 #
 # updateCurrentSeason()
 # updateSkillDictionary()
