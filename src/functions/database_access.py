@@ -33,6 +33,7 @@ def getBballRefPlayerName(playerInUnknownFormat):
         raise ValueError("player", playerInUnknownFormat, "did not have a match")
     return player['bballRefCode']
 
+# todo add reversed comma name with no special characters
 # backlogtodo fix unmatched players in quarter counting
 def getUniversalPlayerName(playerInUnknownFormat):
     with open('Data/JSON/player_name_relationships.json') as playerDb:
@@ -54,6 +55,9 @@ def getUniversalPlayerName(playerInUnknownFormat):
             match = True
             break
         elif player['universalName'] == playerLoweredLetterOnly:
+            match = True
+            break
+        elif removeAllNonLettersAndLowercase(player['nameWithComma']) == playerLoweredLetterOnly:
             match = True
             break
 
@@ -117,6 +121,7 @@ def _getGameObjFromDateAndTeam(dateStr: str, shortCode: str):
     allGames = getAllGamesForTeam(teamId)
     return allGames[allGames.GAME_DATE == str(dateStr)]
 
+# todo fix this to just store a list of all gameIds and it'll be good
 def getGameIdFromTeamAndDate(dateStr: str, shortCode: str):
     gameObj = _getGameObjFromDateAndTeam(dateStr, shortCode)
     return gameObj.GAME_ID.iloc[0]

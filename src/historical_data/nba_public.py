@@ -263,6 +263,7 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         bballRefId = df.iloc[i]["Game Code"]
         print('running for ', bballRefId)
         gameId = getGameIdFromBballRef(bballRefId)
+        gameId = getGameIdFromBballRefStaticData(bballRefId)
         q1Shots, q2Shots, q3Shots, q4Shots = gameIdToFirstFieldGoalsOfQuarters(gameId)
         gameStatistics = _getFirstShotStatistics(q1Shots, q2Shots, q3Shots, q4Shots, bballRefId)
         seasonShotList.append(gameStatistics)

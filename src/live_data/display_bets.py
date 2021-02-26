@@ -58,9 +58,9 @@ def convertDictToGameOddsObjList(betDict: Any) -> Any:
     
     return gameOddsObjList
 
-def getAllOddsAndDisplayByEv(includeDk=False, includeMgm=False, includeBovada=False): #todo add a save into this retrieval
-    allOddsDictList = createAllOddsDict(includeDk=includeDk, includeMgm=includeMgm, includeBovada=includeBovada)
-    displayAllBetsByEV(allOddsDictList)
+def getAllOddsAndDisplayByEv(getDk=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False): #todo add a save into this retrieval
+    allGameOddsObjList = createAllOddsDict(getDk=getDk, getMgm=getMgm, getBovada=getBovada, getPointsBet=getPointsBet, getUnibet=getUnibet, getBarstool=getBarstool)
+    displayAllBetsByEV(allGameOddsObjList)
 
 def printOddsObjDetails(oddsList: Any, showAll: bool = False):
     i = 0
@@ -70,15 +70,18 @@ def printOddsObjDetails(oddsList: Any, showAll: bool = False):
             continue
         betOn = g.betOn()
         floatHomeScoreProb = round(float(g.homeScoreProb), 3)
-        floatMinBetOdds = round(float(g.minHomeWinPercentage), 3) if g.betOnHome else round(float(g.minAwayWinPercentage), 3)
+        if betOn == "NEITHER":
+            floatMinBetOdds = round(float(g.minHomeWinPercentage), 3)
+        else:
+            floatMinBetOdds = round(float(g.minHomeWinPercentage), 3) if g.betOnHome else round(float(g.minAwayWinPercentage), 3)
         betOnVia = g.bestBetIsTeamOrPlayers()
         playerSpread = g.bestPlayerSpread()
 
         print(str(i) + '.', g.gameCode, "|| Bet On:", betOn, "|| Via:", betOnVia, "|| Kelly Bet:",
               g.kellyBet, "|| EV Factor:", g.bestEVFactor)#, "|| Tipoff:", g.gameDatetime)
         print("   || Tippers-H/A", g.expectedHomeTipper + '/' + g.expectedAwayTipper, "|| Odds Home Wins", floatHomeScoreProb,
-              "|| Min Odds (HoDef):", floatMinBetOdds, "|| Home Line:", g.bestHomeOdds, "|| Away Line:", g.bestAwayOdds)
-        print('   Exchange:', g.exchange, '|| Market URL:', g.marketUrl, '|| Odds as of:', g.fetchedDatetime, '\n')
+              "|| Min Odds:", floatMinBetOdds, "|| Home Line:", g.bestHomeOdds, "|| Away Line:", g.bestAwayOdds)
+        print('   Exchange:', g.exchange, '|| Odds as of:', g.fetchedDatetime, '\n') # '|| Market URL:', g.marketUrl,
         if betOnVia == "PLAYERS":
             print("    Player Spread:")
             playerTotalCost = 0
@@ -86,6 +89,8 @@ def printOddsObjDetails(oddsList: Any, showAll: bool = False):
                 print('   ', player)
                 playerTotalCost += player['bet']
             print("     Total Bet Amount:", playerTotalCost)
+            if g.isFirstFieldGoal:
+                print("    * This is for first field goal only")
             print()
 
         i += 1

@@ -106,7 +106,6 @@ def conditionalDataChecks(homeTeam, awayTeam, tipper1, tipper2, tipper1Link, tip
     return homeTipper, awayTipper, homeTipperLink, awayTipperLink, possessionGainingTeam, possessionLosingTeam, tipWinner,\
            tipLoser, tipWinnerLink, tipLoserLink, firstScoringTeam, scoredUponTeam, tipWinScore
 
-
 def getTipWinnerAndFirstScore(gameLink, season, homeTeam, awayTeam):
     # https://www.basketball-reference.com/boxscores/pbp/201901220OKC.html
     url = 'https://www.basketball-reference.com/boxscores/pbp/{}.html'.format(gameLink)

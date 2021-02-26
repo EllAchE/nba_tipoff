@@ -3,7 +3,8 @@ import json
 from datetime import datetime
 
 from src.classes.GameOdds import GameOdds
-from src.live_data.live_odds_retrieval import draftKingsOdds, mgmOdds, bovadaOdds
+from src.live_data.live_odds_retrieval import draftKingsOdds, mgmOdds, bovadaOdds, pointsBetOdds, unibetOdds, \
+    barstoolOdds
 
 
 def makeTeamPlayerLinePairs(playerLines, teamLines):
@@ -17,6 +18,8 @@ def addTeamOnlyToOddsDict(oddsDict, rawOddsDict):
 def addPlayerOnlyOddsDict(oddsDict, rawOddsDict):
     oddsDict['playerOdds']['homePlayerFirstQuarterOdds'] = rawOddsDict['homePlayerFirstQuarterOdds']
     oddsDict['playerOdds']['awayPlayerFirstQuarterOdds'] = rawOddsDict['awayPlayerFirstQuarterOdds']
+    if 'isFirstFieldGoal' in rawOddsDict.keys():
+        oddsDict['playerOdds']['isFirstFieldGoal'] = rawOddsDict['isFirstFieldGoal']
     return oddsDict
 
 
@@ -26,6 +29,7 @@ def createSingleOddsDict(rawOddsDict, playerOdds=True, teamOdds=True, *kwargs):#
   oddsDict['home'] = rawOddsDict['home']
   oddsDict['away'] = rawOddsDict['away']
   oddsDict['exchange'] = rawOddsDict['exchange']
+  oddsDict['gameCode'] = rawOddsDict['home'] + " @ " + rawOddsDict['away'] + " " + oddsDict['fetchedDatetime'][:10]
 
   if teamOdds:
       oddsDict = addTeamOnlyToOddsDict(oddsDict, rawOddsDict)
@@ -42,25 +46,43 @@ def createAllOddsDictForExchange(allGameDictsFromExchange, playerOdds=True, team
         allOddsDicts.append(createSingleOddsDict(rawGameDict, playerOdds=playerOdds, teamOdds=teamOdds))
     return allOddsDicts
 
-def createAllOddsDict(includeDk=False, includeMgm=False, includeBovada=False):
+def createAllOddsDict(getDk=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False):
     allGameObjList = list()
 
-    if includeBovada:
+    if getBovada:
         bovadaDicts = createAllOddsDictForExchange(bovadaOdds(), playerOdds=False)
         for rawOddsDict in bovadaDicts:
             gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
             allGameObjList.append(gameOddsObj)
 
-    if includeDk:
+    if getDk:
         dkOddsDicts = createAllOddsDictForExchange(draftKingsOdds(), 'draftkings')
         for rawOddsDict in dkOddsDicts:
             gameOddsObj = GameOdds(rawOddsDict)
             allGameObjList.append(gameOddsObj)
 
-    if includeMgm:
+    if getMgm:
         mgmOddsDicts = createAllOddsDictForExchange(mgmOdds(), playerOdds=False)
         for rawOddsDict in mgmOddsDicts:
             gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
+            allGameObjList.append(gameOddsObj)
+
+    if getPointsBet:
+        mgmOddsDicts = createAllOddsDictForExchange(pointsBetOdds(), teamOdds=False)
+        for rawOddsDict in mgmOddsDicts:
+            gameOddsObj = GameOdds(rawOddsDict, playersOnly=True)
+            allGameObjList.append(gameOddsObj)
+
+    if getUnibet:
+        unibetOddsDicts = createAllOddsDictForExchange(unibetOdds(), teamOdds=False)
+        for rawOddsDict in unibetOddsDicts:
+            gameOddsObj = GameOdds(rawOddsDict, playersOnly=True)
+            allGameObjList.append(gameOddsObj)
+
+    if getBarstool:
+        barstoolOddsDicts = createAllOddsDictForExchange(barstoolOdds(), teamOdds=False)
+        for rawOddsDict in barstoolOddsDicts:
+            gameOddsObj = GameOdds(rawOddsDict, playersOnly=True)
             allGameObjList.append(gameOddsObj)
 
     return allGameObjList # backlogtodo this dict can be saved for reference for backtesting
@@ -79,6 +101,7 @@ def createEmptyOddsDict():
         "awayTeamFirstQuarterOdds": None,
       },
         "playerOdds": {
+        "isFirstFieldGoal": False,
         "homePlayerFirstQuarterOdds": [],
         "awayPlayerFirstQuarterOdds": []
       }

@@ -75,8 +75,8 @@ def runTSForSeason(season: str, season_csv: str, json_path: str, winning_bet_thr
 # todo setup odds prediction to use Ev or win prob rather than bet threshold
 def beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=0.6):
     homeOdds = tipWinProb(homePlayerCode, awayPlayerCode, psd=psd)
-    homePlayerTeam = getPlayerTeamInSeasonFromBballRefLink(homePlayerCode, season, longCode=False)[0]
-    awayPlayerTeam = getPlayerTeamInSeasonFromBballRefLink(awayPlayerCode, season, longCode=False)[0]
+    homePlayerTeam = getPlayerTeamInSeasonFromBballRefLink(homePlayerCode, season, longCode=False)['currentTeam']
+    awayPlayerTeam = getPlayerTeamInSeasonFromBballRefLink(awayPlayerCode, season, longCode=False)['currentTeam']
 
     if psd[homePlayerCode]['appearances'] > ENVIRONMENT.MIN_APPEARANCES and psd[awayPlayerCode]['appearances'] > ENVIRONMENT.MIN_APPEARANCES:
         if homeOdds > winningBetThreshold:

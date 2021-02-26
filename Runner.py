@@ -3,27 +3,23 @@
 # todo compare top rank vs. bottom rank losses
 # backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
-from src.functions.database_creation import createPlayerNameRelationship, saveActivePlayersTeams
+from src.functions.database_creation import createPlayerNameRelationship, saveActivePlayersTeams, getAllGameData
 from src.functions.trueskill_calc import updateSkillDictionary
 from src.historical_data.historical_data_retrieval import updateCurrentSeason
 from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrementally
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
+from src.live_data.live_odds_retrieval import getAllExpectedStarters
+
+getAllGameData()
 
 # createPlayerNameRelationship()
 #
-saveActivePlayersTeams(1998)
-
-# recordBet(exchange='ac', amount=450, odds='-110', team="BOS")
-
-getAllFirstPossessionStatisticsIncrementally(2016)
-
-updateCurrentSeason()
-updateSkillDictionary()
-
-# test = barstoolOdds()
-# print(test)
-# print()
-from src.live_data.live_odds_retrieval import getAllExpectedStarters
+# saveActivePlayersTeams(1998)
+#
+# getAllFirstPossessionStatisticsIncrementally(2016)
+#
+# updateCurrentSeason()
+# updateSkillDictionary()
 
 # getAllExpectedStarters()
 #
@@ -34,7 +30,7 @@ from src.live_data.live_odds_retrieval import getAllExpectedStarters
 # getDailyOdds('CHA', 'UTA')
 # getDailyOdds('WAS', 'LAL')
 
-# getAllOddsAndDisplayByEv(includeDk=True, includeBovada=False, includeMgm=False)
+# getAllOddsAndDisplayByEv(getDk=False, getBovada=False, getMgm=False, getPointsBet=False, getUnibet=False, getBarstool=True)
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
 #                        ['199711160SEA', 'SEA', 'MIL'],
