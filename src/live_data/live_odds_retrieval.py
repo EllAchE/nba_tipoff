@@ -75,6 +75,7 @@ def fanduelOdds():
     # Rohit has this partly in typescript already
     pass
 
+# todo these could have the wrong odds on the wrong person
 def bovadaOdds():
     soup = getSoupFromUrl('https://widgets.digitalsportstech.com/?sb=bovada&language=en&oddsType=american&currency=usd&leagueId=123&preMatchOnly=true')
     gameIdString = soup.find('script').contents[0]
@@ -127,8 +128,8 @@ def bovadaOdds():
                         "shortTitle": shortTitle,
                         "team1id": team1Id,
                         "team2id": team2Id,
-                        "team1Odds": bet['decimalOdds'],
-                        "team2Odds": potentialPair['decimalOdds'],
+                        "team1Odds": potentialPair['decimalOdds'],
+                        "team2Odds": bet['decimalOdds'],
                     })
                     break
 
@@ -136,10 +137,10 @@ def bovadaOdds():
     for item in scoreFirstBetsBothTeams:
         scoreFirstBetsBothTeamsFormatted.append({
             'exchange': 'bovada',
-            "home": getUniversalShortCode(item['team2id']),
-            "away": getUniversalShortCode(item['team1id']),
-            "homeTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds']),
-            "awayTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds'])
+            "away": getUniversalShortCode(item['team2id']),
+            "home": getUniversalShortCode(item['team1id']),
+            "awayTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds']),
+            "homeTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds'])
         })
 
     return scoreFirstBetsBothTeamsFormatted
@@ -250,10 +251,10 @@ def mgmOdds():
 
                 allGameLines.append({
                     'exchange': 'mgm',
-                    "home": getUniversalShortCode(team1),
-                    "away": getUniversalShortCode(team2),
-                    "homeTeamFirstQuarterOdds": str(team1Odds),
-                    "awayTeamFirstQuarterOdds": str(team2Odds)
+                    "home": getUniversalShortCode(team2),
+                    "away": getUniversalShortCode(team1),
+                    "homeTeamFirstQuarterOdds": str(team2Odds),
+                    "awayTeamFirstQuarterOdds": str(team1Odds)
                 })
     return allGameLines
 
@@ -335,6 +336,10 @@ def unibetOdds():
         allMPBets = mostPopular['criterion']
 
         playerScoreFirstFG = None
+        if len(allMPBets) < 1:
+            continue
+        if len(allMPBets) == 1:
+            allMPBets = [allMPBets]
         for bet in allMPBets:
             if bet['label'] == "Player to Score the First Field Goal of the Game":
                 playerScoreFirstFG = bet
@@ -383,34 +388,53 @@ def barstoolOdds(): #only has player prosp to score (first field goal)
     for event in eventsList:
         sleepChecker(baseTime=0.5, randomMultiplier=2)
         singleGameResponse = requests.get(singleEventUrlStub.format(event['id']), headers={"consumer":"www"}).json()
-        mostPopular = singleGameResponse[1]
-        allMPBets = mostPopular['criterion']
-        playerScoreFirstFG = None
+        homeTeam = getUniversalShortCode(event['home'])
+        awayTeam = getUniversalShortCode(event['away'])
 
-        for bet in allMPBets:
-            if bet['label'] == "Player to Score the First Field Goal of the Game":
-                playerScoreFirstFG = bet
+        hasPlayerSpecials = False
+        for category in singleGameResponse:
+            if category['name'] == "Player Specials":
+                hasPlayerSpecials = True
                 break
-        if playerScoreFirstFG is None:
-            raise ValueError("No bet found in barstool for player to score first field goal")
+        if not hasPlayerSpecials:
+            continue
 
-        lines = playerScoreFirstFG['offers'][0]['outcomes']
+        betOptions = category['criterion']
+
+        hasFirstFieldGoal = False
+        for option in betOptions:
+            if option['label'] == "Player to Score the First Field Goal of the Game":
+                hasFirstFieldGoal = True
+                break
+
+        allOffers = option['offers'][0]['outcomes']
+
         playerLinesList = list()
-        for playerLine in lines:
-            aOdds = playerLine['oddAmerican']
-            pName = playerLine['label']
+        for playerLine in allOffers:
+            aOdds = '+' + str(playerLine['oddsAmerican'])
+            pName = playerLine['englishLabel']
             playerId = playerLine['participantId']
-            playerLinesList.append({'name': pName, 'odds': aOdds, 'playerId': playerId})
+            playerLinesList.append({'player': pName, 'odds': aOdds, 'playerId': playerId})
 
-        homePlayerLines, awayPlayerLines = addTeamToUnknownPlayerLine(playerLinesList)
+        formattedPlayerlines = list()
+        for playerOdds in playerLinesList:
+            formattedPlayerlines.append(addTeamToUnknownPlayerLine(playerOdds))
+
+        homePlayerList = list()
+        awayPlayerList = list()
+        for player in formattedPlayerlines:
+            if player['team'] == homeTeam:
+                homePlayerList.append(player)
+            elif player['team'] == awayTeam:
+                awayPlayerList.append(player)
 
         gameDetailsList.append({
             'exchange': 'barstool',
             'startDatetime': event['startDatetime'],
-            'home': event['home'],
-            'away': event['away'],
-            'homePlayerFirstQuarterOdds': homePlayerLines,
-            'awayPlayerFirstQuarterOdds': awayPlayerLines
+            'home': homeTeam,
+            'away': awayTeam,
+            'homePlayerFirstQuarterOdds': homePlayerList,
+            'awayPlayerFirstQuarterOdds': awayPlayerList
         })
     return gameDetailsList
 
@@ -510,3 +534,19 @@ def createTeamTipperDict():
 
     with open('Data/JSON/team_tipper_pairs.json', 'w') as file:
         json.dump(fullJson, file)
+
+
+        # mostPopular = singleGameResponse
+        # allMPBets = mostPopular['criterion']
+        # playerScoreFirstFG = None
+        #
+        # for bet in allMPBets:
+        #     if bet['label'] == "Player to Score the First Field Goal of the Game":
+        #         playerScoreFirstFG = bet
+        #         break
+        # if playerScoreFirstFG is None:
+        #     print("No bet found in barstool for player to score first field goal in game", event)
+        #     continue
+
+        # lines = playerScoreFirstFG['offers'][0]['outcomes']
+

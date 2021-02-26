@@ -28,7 +28,7 @@ from src.live_data.live_odds_retrieval import getAllExpectedStarters
 # getDailyOdds('CHA', 'UTA')
 # getDailyOdds('WAS', 'LAL')
 
-getAllOddsAndDisplayByEv(includeDk=True, includeBovada=True, includeMgm=True, includePointsBet=False, includeUnibetOdds=False)
+getAllOddsAndDisplayByEv(getDk=False, getBovada=False, getMgm=False, getPointsBet=False, getUnibet=False, getBarstool=True)
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
 #                        ['199711160SEA', 'SEA', 'MIL'],

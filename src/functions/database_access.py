@@ -33,6 +33,7 @@ def getBballRefPlayerName(playerInUnknownFormat):
         raise ValueError("player", playerInUnknownFormat, "did not have a match")
     return player['bballRefCode']
 
+# todo add reversed comma name with no special characters
 # backlogtodo fix unmatched players in quarter counting
 def getUniversalPlayerName(playerInUnknownFormat):
     with open('Data/JSON/player_name_relationships.json') as playerDb:
@@ -54,6 +55,9 @@ def getUniversalPlayerName(playerInUnknownFormat):
             match = True
             break
         elif player['universalName'] == playerLoweredLetterOnly:
+            match = True
+            break
+        elif removeAllNonLettersAndLowercase(player['nameWithComma']) == playerLoweredLetterOnly:
             match = True
             break
 

@@ -106,7 +106,7 @@ class GameOdds:
     def betOn(self):
         if not self.betEither():
             return "NEITHER"
-        elif self.betOnHome is not None:
+        elif self.betOnHome:
             return self.home + " (HOME)"
         else:
             return self.away + " (AWAY)"
@@ -124,9 +124,9 @@ class GameOdds:
     def bestPlayerSpread(self):
         spread = "NA"
         if self.bestBetIsTeamOrPlayers() == "PLAYERS":
-            if self.betOnHome is not None:
+            if self.betOnHome:
                 spread = getPlayerSpread(self.homePlayerOddsList, self.homeScoreProb, self.homePlayerFloorOdds)
-            elif self.betOnAway is not None:
+            elif self.betOnAway:
                 spread = getPlayerSpread(self.awayPlayerOddsList, self.awayScoreProb, self.awayPlayerFloorOdds)
         return spread
 
