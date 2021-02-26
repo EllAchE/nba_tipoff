@@ -126,14 +126,13 @@ def _getGameObjFromDateAndTeam(dateStr: str, shortCode: str):
     allGames = getAllGamesForTeam(teamId)
     return allGames[allGames.GAME_DATE == str(dateStr)]
 
-# todo fix this to just store a list of all gameIds and it'll be good
 def getGameIdFromTeamAndDate(dateStr: str, shortCode: str):
     gameObj = _getGameObjFromDateAndTeam(dateStr, shortCode)
     return gameObj.GAME_ID.iloc[0]
 
 def getGameIdByTeamAndDateFromStaticData(bballRefId: str):
     date, team = getDashDateAndHomeCodeFromGameCode(bballRefId)
-    gameObj = _getGameObjFromDateAndTeamUsingLocalData(date, team)
+    gameObj = _getGameObjFromDateAndTeamUsingLocalData(date, getUniversalShortCode(team))
     return gameObj.GAME_ID.iloc[0]
 
 def convertBballRefTeamShortCodeToNBA(shortCode: str):
