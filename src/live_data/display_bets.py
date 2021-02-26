@@ -64,7 +64,7 @@ def convertDictToGameOddsObjList(betDict: Any) -> Any:
 def saveOddsToFile(path, odds):
     with open(path, 'w') as f:
         f.write(jsonpickle.encode(odds))
-    f.close()
+        f.close()
 
 def getAllOddsAndDisplayByEv(includeDk=False, includeMgm=False, includeBovada=False): #todo add a save into this retrieval
     allOddsDictList = createAllOddsDict(includeDk=includeDk, includeMgm=includeMgm, includeBovada=includeBovada)
