@@ -4,7 +4,7 @@ from src.functions.odds_calculator import convertPlayerLinesToSingleLine, return
 from src.live_data.live_odds_retrieval import getExpectedTipper
 
 
-# todo make this work for displayihng not just best but all bets
+# todo make this work for displaying not just best of team and players but all bets
 class GameOdds:
     def __init__(self, gameDict, teamOnly=False, playersOnly=False):
         self.home = gameDict['home']

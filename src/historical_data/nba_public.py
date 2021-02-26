@@ -38,7 +38,8 @@ from nba_api.stats.static import players
 
 import ENVIRONMENT
 from src.functions.database_access import findPlayerFullFromLastGivenPossibleFullNames, getGameIdFromBballRef, \
-    getTeamDictionaryFromShortCode, getAllGamesForTeam, getUniversalPlayerName, getBballRefPlayerName
+    getTeamDictionaryFromShortCode, getAllGamesForTeam, getUniversalPlayerName, getBballRefPlayerName, \
+    getGameIdByTeamAndDateFromStaticData
 from src.functions.utils import getDashDateAndHomeCodeFromGameCode, sleepChecker
 
 # backlogTodo different sites may only look at first field goal (NOT FREE THROW) which makes for a weaker correlation
@@ -127,7 +128,7 @@ def getEventsBeforeFirstFieldGoalOfQuarter(pbpDf: DataFrame, startIndex: int=0):
         i += 1
 
 def gameIdToFirstFieldGoalsOfQuarters(id: str):
-    pbpDf = playbyplayv2.PlayByPlayV2(game_id=id).get_data_frames()[0]
+    pbpDf = playbyplayv2.PlayByPlayV2(game_id=id).get_data_frames()[0] # todo multithread to speed this
     indicesOfQuarterStarts = pbpDf.index[pbpDf['EVENTMSGTYPE'] == 12].tolist()
     q2Index = indicesOfQuarterStarts[1]
     q3Index = indicesOfQuarterStarts[2]
@@ -263,11 +264,11 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         bballRefId = df.iloc[i]["Game Code"]
         print('running for ', bballRefId)
         gameId = getGameIdFromBballRef(bballRefId)
-        gameId = getGameIdFromBballRefStaticData(bballRefId)
+        # gameId = '00' + str(getGameIdByTeamAndDateFromStaticData(bballRefId))
         q1Shots, q2Shots, q3Shots, q4Shots = gameIdToFirstFieldGoalsOfQuarters(gameId)
         gameStatistics = _getFirstShotStatistics(q1Shots, q2Shots, q3Shots, q4Shots, bballRefId)
         seasonShotList.append(gameStatistics)
-        sleepChecker(iterations=1, baseTime=10, randomMultiplier=1)
+        sleepChecker(iterations=1, baseTime=1, randomMultiplier=1)
 
         shotsDict[str(season)] = seasonShotList
         with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json', 'w') as jsonFile:
