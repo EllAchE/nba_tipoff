@@ -11,7 +11,7 @@ from nba_api.stats.static import teams
 import ENVIRONMENT
 from src.functions.database_access import getUniversalPlayerName, getBballRefPlayerName, getAllGamesForTeam, \
     getTeamDictionaryFromShortCode, convertBballRefTeamShortCodeToNBA
-from src.functions.utils import getSoupFromUrl, removeAllNonLettersAndLowercase
+from src.functions.utils import getSoupFromUrl, removeAllNonLettersAndLowercase, sleepChecker
 
 
 def concatCsv(save_path: str):
@@ -153,7 +153,7 @@ def createPlayerNameRelationship(startSeason: int=1998):
     print('saved player DB Data')
 
 def getAllGameData():
-    shortCodes = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX', 'NYK'
+    shortCodes = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX', 'NYK',
                 'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
     nbaTeams = teams.get_teams()
     teamDicts = [team for team in nbaTeams if team['abbreviation'] in shortCodes]
@@ -165,6 +165,7 @@ def getAllGameData():
 
     teamGameList = list()
     for id in teamIds:
+        sleepChecker()
         gamefinder = leaguegamefinder.LeagueGameFinder(team_id_nullable=id)
         teamGameList.append(gamefinder.get_data_frames()[0])
 

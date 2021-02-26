@@ -263,12 +263,12 @@ def getAllFirstPossessionStatisticsIncrementally(season):
 
         bballRefId = df.iloc[i]["Game Code"]
         print('running for ', bballRefId)
-        gameId = getGameIdFromBballRef(bballRefId)
-        # gameId = '00' + str(getGameIdByTeamAndDateFromStaticData(bballRefId))
+        # gameId = getGameIdFromBballRef(bballRefId)
+        gameId = '00' + str(getGameIdByTeamAndDateFromStaticData(bballRefId))
         q1Shots, q2Shots, q3Shots, q4Shots = gameIdToFirstFieldGoalsOfQuarters(gameId)
         gameStatistics = _getFirstShotStatistics(q1Shots, q2Shots, q3Shots, q4Shots, bballRefId)
         seasonShotList.append(gameStatistics)
-        sleepChecker(iterations=1, baseTime=1, randomMultiplier=1)
+        sleepChecker(iterations=1, baseTime=10, randomMultiplier=1)
 
         shotsDict[str(season)] = seasonShotList
         with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json', 'w') as jsonFile:
