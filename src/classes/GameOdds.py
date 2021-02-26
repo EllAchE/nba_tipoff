@@ -61,7 +61,6 @@ class GameOdds:
             self.bestHomeOdds = returnGreaterOdds(self.homeTeamOdds, self.homePlayerFloorOdds)
             self.bestAwayOdds = returnGreaterOdds(self.awayTeamOdds, self.awayPlayerFloorOdds)
             self.betOnVia = self.betTeamOrPlayers()
-            # todo fix to check whether on team or players
         self.minHomeWinPercentage = positiveEvThresholdFromAmerican(self.bestHomeOdds)
         self.minAwayWinPercentage = positiveEvThresholdFromAmerican(self.bestAwayOdds)
 

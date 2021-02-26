@@ -292,7 +292,7 @@ def pointsBetOdds():
                 awayPlayerList = list()
                 for player in rawPlayerLines:
                     universalName = getUniversalPlayerName(player['player'])
-                    player['team'] = getPlayerCurrentTeam(universalName)
+                    player['team'] = getUniversalShortCode(getPlayerCurrentTeam(universalName))
                     if player['team'] == homeTeam:
                         homePlayerList.append(player)
                     elif player['team'] == awayTeam:
@@ -332,37 +332,46 @@ def unibetOdds():
     for event in eventsList:
         sleepChecker(baseTime=0.5, randomMultiplier=3)
         singleGameResponse = requests.get(singleEventUrlStub.format(str(event[0]))).json()
-        mostPopular = singleGameResponse['betOffers'][1]
-        allMPBets = mostPopular['criterion']
+        allBets = singleGameResponse['betOffers']
+        homeTeam = getUniversalShortCode(event[2])
+        awayTeam = getUniversalShortCode(event[3])
 
         playerScoreFirstFG = None
-        if len(allMPBets) < 1:
-            continue
-        if len(allMPBets) == 1:
-            allMPBets = [allMPBets]
-        for bet in allMPBets:
-            if bet['label'] == "Player to Score the First Field Goal of the Game":
+        for bet in allBets:
+            if bet['criterion']['label'] == "Player to Score the First Field Goal of the Game":
                 playerScoreFirstFG = bet
                 break
         if playerScoreFirstFG is None:
-            raise ValueError("No bet found in unibet for player to score first field goal")
+            print("No bet found in unibet for player to score first field goal for event", event)
+            continue
 
-        lines = playerScoreFirstFG['offers'][0]['outcomes']
-        playerLinesList = list()
+        lines = playerScoreFirstFG['outcomes']
+        rawPlayerLines = list()
         for playerLine in lines:
-            aOdds = playerLine['oddAmerican']
+            aOdds = '+' + playerLine['oddsAmerican']
             pName = playerLine['label']
             playerId = playerLine['participantId']
-            playerLinesList.append({'name': pName, 'odds': aOdds, 'playerId': playerId})
+            rawPlayerLines.append({'player': pName, 'odds': aOdds, 'playerId': playerId})
 
-        homePlayerLines, awayPlayerLines = addTeamToUnknownPlayerLine(playerLinesList)
+        homePlayerLines = list()
+        awayPlayerLines = list()
+        for player in rawPlayerLines:
+            universalName = getUniversalPlayerName(player['player'])
+            player['team'] = getUniversalShortCode(getPlayerCurrentTeam(universalName))
+            if player['team'] == homeTeam:
+                homePlayerLines.append(player)
+            elif player['team'] == awayTeam:
+                awayPlayerLines.append(player)
+            else:
+                raise ValueError(
+                    "player didn't match either team, or teams are misformatted/don't match universal team code",
+                    player)
 
         gameDetailsList.append({
             'exchange': 'unibet',
             "isFirstFieldGoal": True,
-            'startDatetime': event['startDatetime'],
-            'homeTeamFirstQuarterOdds': event['home'],
-            'awayTeamFirstQuarterOdds': event['away'],
+            'home': homeTeam,
+            'away': awayTeam,
             'homePlayerFirstQuarterOdds': homePlayerLines,
             'awayPlayerFirstQuarterOdds': awayPlayerLines
         })

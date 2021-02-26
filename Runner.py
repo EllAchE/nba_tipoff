@@ -16,7 +16,7 @@ from src.live_data.live_odds_retrieval import getAllExpectedStarters
 #
 # saveActivePlayersTeams(1998)
 #
-getAllFirstPossessionStatisticsIncrementally(2018)
+# getAllFirstPossessionStatisticsIncrementally(2018)
 #
 # updateCurrentSeason()
 # updateSkillDictionary()
@@ -33,8 +33,8 @@ getAllFirstPossessionStatisticsIncrementally(2018)
 # getAllOddsAndDisplayByEv(getDk=True)
 # getAllOddsAndDisplayByEv(getBovada=True)
 # getAllOddsAndDisplayByEv(getMgm=True)
-# getAllOddsAndDisplayByEv(getPointsBet=False)
-# getAllOddsAndDisplayByEv(getUnibet=False)
+# getAllOddsAndDisplayByEv(getPointsBet=True)
+getAllOddsAndDisplayByEv(getUnibet=True)
 # getAllOddsAndDisplayByEv(getBarstool=False)
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
@@ -76,7 +76,7 @@ https://punter2pro.com/best-sports-arbing-software/
 # backlogtodo make data overwriting transactional, i.e. locally saved csv could have all or no rows updated, no overwrites and partial
 # backlogtodo set up backtester with assumed odds lines, i.e. assuming we are always offered odds on a team of -110, how would the strat perform? (the default should -110)
 # backlogtodo OVERKILL set up bankroll tracker (with stored values on each site and overall).
-# todo test if adding in the start of overtime tip performance enhances predictions (may be fatigue facotr/not as good)
+# backogtodo test if adding in the start of overtime tip performance enhances predictions (may be fatigue facotr/not as good)
 # todo test the enhanced score first predictions for 2nd, 3rd and 4th quarters
 # backlogtodo account for overrepresentation of playoff teams
 

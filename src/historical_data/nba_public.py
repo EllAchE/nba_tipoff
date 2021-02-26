@@ -128,7 +128,7 @@ def getEventsBeforeFirstFieldGoalOfQuarter(pbpDf: DataFrame, startIndex: int=0):
         i += 1
 
 def gameIdToFirstFieldGoalsOfQuarters(id: str):
-    pbpDf = playbyplayv2.PlayByPlayV2(game_id=id).get_data_frames()[0] # todo multithread to speed this
+    pbpDf = playbyplayv2.PlayByPlayV2(game_id=id).get_data_frames()[0]
     indicesOfQuarterStarts = pbpDf.index[pbpDf['EVENTMSGTYPE'] == 12].tolist()
     q2Index = indicesOfQuarterStarts[1]
     q3Index = indicesOfQuarterStarts[2]

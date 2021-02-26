@@ -146,6 +146,8 @@ def createPlayerNameRelationship(startSeason: int=1998):
             playerDict['alternateNames'] += ["Garison Matthew"]
         elif playerDict['fullName'] == "Danuel House":
             playerDict['alternateNames'] += ["Danuel House Jr."]
+        elif playerDict['fullName'] == "P.J. Washington":
+            playerDict['alternateNames'] += ["P.J. Washington Jr."]
 
     with open('Data/JSON/player_name_relationships.json', 'w') as json_file:
         json.dump(activePlayers, json_file)
