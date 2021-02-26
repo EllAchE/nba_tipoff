@@ -5,8 +5,12 @@ import unicodedata
 import pandas as pd
 import re
 
+from nba_api.stats.endpoints import leaguegamefinder
+from nba_api.stats.static import teams
+
 import ENVIRONMENT
-from src.functions.database_access import getUniversalPlayerName, getBballRefPlayerName
+from src.functions.database_access import getUniversalPlayerName, getBballRefPlayerName, getAllGamesForTeam, \
+    getTeamDictionaryFromShortCode, convertBballRefTeamShortCodeToNBA
 from src.functions.utils import getSoupFromUrl, removeAllNonLettersAndLowercase
 
 
@@ -147,3 +151,29 @@ def createPlayerNameRelationship(startSeason: int=1998):
         json.dump(activePlayers, json_file)
 
     print('saved player DB Data')
+
+def getAllGameData():
+    shortCodes = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX', 'NYK'
+                'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
+    nbaTeams = teams.get_teams()
+    teamDicts = [team for team in nbaTeams if team['abbreviation'] in shortCodes]
+
+    def extractId(x):
+        return x['id']
+
+    teamIds = map(extractId, teamDicts)
+
+    teamGameList = list()
+    for id in teamIds:
+        gamefinder = leaguegamefinder.LeagueGameFinder(team_id_nullable=id)
+        teamGameList.append(gamefinder.get_data_frames()[0])
+
+    basePath = "Data/CSV/season_summary_data/{}_allgames.csv"
+    for teamDf in teamGameList:
+        teamName = teamDf.iloc[0]["TEAM_ABBREVIATION"]
+        teamDf.to_csv(basePath.format(teamName))
+        print("saved data for", teamName)
+
+    print("extracted the game data")
+
+    return teamIds

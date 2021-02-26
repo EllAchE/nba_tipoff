@@ -121,6 +121,7 @@ def _getGameObjFromDateAndTeam(dateStr: str, shortCode: str):
     allGames = getAllGamesForTeam(teamId)
     return allGames[allGames.GAME_DATE == str(dateStr)]
 
+# todo fix this to just store a list of all gameIds and it'll be good
 def getGameIdFromTeamAndDate(dateStr: str, shortCode: str):
     gameObj = _getGameObjFromDateAndTeam(dateStr, shortCode)
     return gameObj.GAME_ID.iloc[0]

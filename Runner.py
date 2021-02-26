@@ -3,12 +3,14 @@
 # todo compare top rank vs. bottom rank losses
 # backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
-from src.functions.database_creation import createPlayerNameRelationship, saveActivePlayersTeams
+from src.functions.database_creation import createPlayerNameRelationship, saveActivePlayersTeams, getAllGameData
 from src.functions.trueskill_calc import updateSkillDictionary
 from src.historical_data.historical_data_retrieval import updateCurrentSeason
 from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrementally
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import getAllExpectedStarters
+
+getAllGameData()
 
 # createPlayerNameRelationship()
 #
@@ -28,7 +30,7 @@ from src.live_data.live_odds_retrieval import getAllExpectedStarters
 # getDailyOdds('CHA', 'UTA')
 # getDailyOdds('WAS', 'LAL')
 
-getAllOddsAndDisplayByEv(getDk=False, getBovada=False, getMgm=False, getPointsBet=False, getUnibet=False, getBarstool=True)
+# getAllOddsAndDisplayByEv(getDk=False, getBovada=False, getMgm=False, getPointsBet=False, getUnibet=False, getBarstool=True)
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
 #                        ['199711160SEA', 'SEA', 'MIL'],
