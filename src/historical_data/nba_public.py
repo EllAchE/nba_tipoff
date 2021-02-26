@@ -256,6 +256,7 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         lastGameCode = lastGame['gameCode']
         lastGameIndex = df[df['Game Code'] == lastGameCode].index.values[0]
         i = lastGameIndex + 1
+        # todo figure out why some of these are breaking. In fetching the data a small number of games were ignored due to failure to return data
     while i < dfLen:
         with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as sbfs:
             shotsDict = json.load(sbfs)
