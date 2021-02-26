@@ -75,6 +75,7 @@ def fanduelOdds():
     # Rohit has this partly in typescript already
     pass
 
+# todo these could have the wrong odds on the wrong person
 def bovadaOdds():
     soup = getSoupFromUrl('https://widgets.digitalsportstech.com/?sb=bovada&language=en&oddsType=american&currency=usd&leagueId=123&preMatchOnly=true')
     gameIdString = soup.find('script').contents[0]
@@ -93,7 +94,6 @@ def bovadaOdds():
     scoreFirstBetsSingleTeam = list()
     customId = 0
     for bet in allBets:
-        # print(bet['queryTitle'])
         if bet['queryTitle'].lower() == 'team to score first':
             shortTitle = bet['game']['shortTitle']
             team1Id = bet['game']['team1Id']
@@ -123,13 +123,13 @@ def bovadaOdds():
                     team2Id = bet['team2id']
                     # todo bovada has player spreads as well, seemingly for games lacking team props
 
-                    # This implicitly relies on team1 being the first one on the list, which I think is true and I'll test
+                    # This implicitly relies on team1 being the first one on the list
                     scoreFirstBetsBothTeams.append({
                         "shortTitle": shortTitle,
                         "team1id": team1Id,
                         "team2id": team2Id,
-                        "team1Odds": bet['decimalOdds'],
-                        "team2Odds": potentialPair['decimalOdds'],
+                        "team1Odds": potentialPair['decimalOdds'],
+                        "team2Odds": bet['decimalOdds'],
                     })
                     break
 
@@ -137,14 +137,13 @@ def bovadaOdds():
     for item in scoreFirstBetsBothTeams:
         scoreFirstBetsBothTeamsFormatted.append({
             'exchange': 'bovada',
-            "home": getUniversalShortCode(item['team2id']),
-            "away": getUniversalShortCode(item['team1id']),
-            "homeTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds']),
-            "awayTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds'])
+            "away": getUniversalShortCode(item['team2id']),
+            "home": getUniversalShortCode(item['team1id']),
+            "awayTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds']),
+            "homeTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds'])
         })
 
     return scoreFirstBetsBothTeamsFormatted
-            #todo this is just taking a guess at which odds belong to which team assuming second odds for team2
 
 def draftKingsOdds():
     # https://sportsbook.draftkings.com/leagues/basketball/103?category=game-props&subcategory=odd/even
@@ -158,41 +157,52 @@ def draftKingsOdds():
         if category['name'] == "Player Props":
             playerProps = category['offerSubcategoryDescriptors']
 
+    teamMatch = False
+    playerMatch = False
     for subCategory in gameProps:
         if subCategory['name'] == "First Team to Score":
             firstTeamToScoreLines = subCategory['offerSubcategory']['offers']
+            teamMatch = True
             break
 
     for subCategory in playerProps:
         if subCategory['name'] == "First Field Goal":
             firstPlayerToScoreLines = subCategory['offerSubcategory']['offers']
+            playerMatch = True
             break
 
+    if not playerMatch:
+        print('No player odds for draftkings currently')
+    if not teamMatch:
+        print('No team odds for draftkings currently')
+
     allGameLines = list()
-    for teamLine in firstTeamToScoreLines:
-        outcomes = teamLine[0]['outcomes']
-        team1 = outcomes[0]['label']
-        team1Odds = outcomes[0]['oddsAmerican']
-        team2 = outcomes[1]['label']
-        team2Odds = outcomes[1]['oddsAmerican']
-        allGameLines.append({
-            "exchange": "draftkings",
-            "home": getUniversalShortCode(team1),
-            "away": getUniversalShortCode(team2),
-            "homeTeamFirstQuarterOdds": str(team1Odds),
-            "awayTeamFirstQuarterOdds": str(team2Odds),
-            "homePlayerFirstQuarterOdds": [],
-            "awayPlayerFirstQuarterOdds": []
-        })
+    if teamMatch:
+        for teamLine in firstTeamToScoreLines:
+            outcomes = teamLine[0]['outcomes']
+            team1 = outcomes[0]['label']
+            team1Odds = outcomes[0]['oddsAmerican']
+            team2 = outcomes[1]['label']
+            team2Odds = outcomes[1]['oddsAmerican']
+            allGameLines.append({
+                "exchange": "draftkings",
+                "home": getUniversalShortCode(team1),
+                "away": getUniversalShortCode(team2),
+                "homeTeamFirstQuarterOdds": str(team1Odds),
+                "awayTeamFirstQuarterOdds": str(team2Odds),
+                "homePlayerFirstQuarterOdds": [],
+                "awayPlayerFirstQuarterOdds": []
+            })
 
     rawPlayerLines = list()
-    for game in firstPlayerToScoreLines:
-        outcomes = game[0]['outcomes']
-        for playerOdds in outcomes:
-            rawPlayerLines.append({
-                "player": playerOdds['label'],
-                "odds": playerOdds['oddsAmerican']
-            })
+    if playerMatch:
+        for game in firstPlayerToScoreLines:
+            outcomes = game[0]['outcomes']
+            for playerOdds in outcomes:
+                rawPlayerLines.append({
+                    "player": playerOdds['label'],
+                    "odds": playerOdds['oddsAmerican']
+                })
 
     for teamLine in allGameLines:
         for rawLine in rawPlayerLines:
@@ -241,25 +251,67 @@ def mgmOdds():
 
                 allGameLines.append({
                     'exchange': 'mgm',
-                    "home": getUniversalShortCode(team1),
-                    "away": getUniversalShortCode(team2),
-                    "homeTeamFirstQuarterOdds": str(team1Odds),
-                    "awayTeamFirstQuarterOdds": str(team2Odds)
+                    "home": getUniversalShortCode(team2),
+                    "away": getUniversalShortCode(team1),
+                    "homeTeamFirstQuarterOdds": str(team2Odds),
+                    "awayTeamFirstQuarterOdds": str(team1Odds)
                 })
     return allGameLines
 
-# def pointsBet():
-#     # https://nj.pointsbet.com/sports/basketball/NBA/246723
-#     # request for all things that are on the page - https://api-usa.pointsbet.com/api/v2/competitions/105/events/featured?includeLive=false&page=1
-#     # single game - https://api-usa.pointsbet.com/api/v2/events/249073
-#
-#     allGamesUrl = 'https://api-usa.pointsbet.com/api/v2/competitions/105/events/featured?includeLive=false&page=1'
-#     allGames = requests.get(allGamesUrl).json()
-#
-#     for eventId in eventIdList:
-#         singleGameUrl = 'https://api-usa.pointsbet.com/api/v2/events/{}'.format(eventId)
-#
-#     pass
+# todo figure out the math on pointsbets accelerators etc. (seem not worth)
+# todo add accelerators maybe
+def pointsBetOdds():
+    # https://nj.pointsbet.com/sports/basketball/NBA/246723
+    # request for all things that are on the page - https://api-usa.pointsbet.com/api/v2/competitions/105/events/featured?includeLive=false&page=1
+    # single game - https://api-usa.pointsbet.com/api/v2/events/249073
+
+    allGamesUrl = 'https://api-usa.pointsbet.com/api/v2/competitions/105/events/featured?includeLive=false&page=1'
+    allGames = requests.get(allGamesUrl).json()
+
+    gameDictList = list()
+    for event in allGames['events']:
+        rawPlayerLines = list()
+        eventId = event['key']
+        homeTeam = getUniversalShortCode(event['homeTeam'])
+        awayTeam = getUniversalShortCode(event['awayTeam'])
+        singleGameUrl = 'https://api-usa.pointsbet.com/api/v2/events/{}'.format(eventId)
+        singleGameResponse = requests.get(singleGameUrl).json()
+
+        # assumes just a single game
+        for market in singleGameResponse['fixedOddsMarkets']:
+            if market['eventName'] == "First Basket":
+                firstBasketMarket = market
+                for outcome in firstBasketMarket['outcomes']:
+                    rawPlayerLines.append({
+                        "player": outcome['name'],
+                        "teamId": outcome['teamId'],
+                        "odds": '+' + str(outcome['price'] * 100 - 100) #todo confirm this needs the -100
+                    })
+
+                homePlayerList = list()
+                awayPlayerList = list()
+                for player in rawPlayerLines:
+                    universalName = getUniversalPlayerName(player['player'])
+                    player['team'] = getPlayerCurrentTeam(universalName)
+                    if player['team'] == homeTeam:
+                        homePlayerList.append(player)
+                    elif player['team'] == awayTeam:
+                        awayPlayerList.append(player)
+                    else:
+                        raise ValueError("player didn't match either team, or teams are misformatted/don't match universal team code", player)
+
+                gameDictList.append({
+                    'exchange': 'pointsBet',
+                    "home": homeTeam,
+                    "away": awayTeam,
+                    "isFirstFieldGoal": True,
+                    "homePlayerFirstQuarterOdds": homePlayerList,
+                    "awayPlayerFirstQuarterOdds": awayPlayerList
+                })
+            else:
+                print("no first basket market found for game", awayTeam, "@", homeTeam)
+
+    return gameDictList
 
 def unibetOdds():
     # https://nj.unibet.com/sports/#event/1007123701
@@ -278,12 +330,16 @@ def unibetOdds():
 
     gameDetailsList = list()
     for event in eventsList:
-        sleepChecker(baseTime=0.5, randomMultiplier=2)
+        sleepChecker(baseTime=0.5, randomMultiplier=3)
         singleGameResponse = requests.get(singleEventUrlStub.format(str(event[0]))).json()
-        mostPopular = singleGameResponse[1]
+        mostPopular = singleGameResponse['betOffers'][1]
         allMPBets = mostPopular['criterion']
-        playerScoreFirstFG = None
 
+        playerScoreFirstFG = None
+        if len(allMPBets) < 1:
+            continue
+        if len(allMPBets) == 1:
+            allMPBets = [allMPBets]
         for bet in allMPBets:
             if bet['label'] == "Player to Score the First Field Goal of the Game":
                 playerScoreFirstFG = bet
@@ -302,12 +358,13 @@ def unibetOdds():
         homePlayerLines, awayPlayerLines = addTeamToUnknownPlayerLine(playerLinesList)
 
         gameDetailsList.append({
-            'exchange': 'unitbet',
+            'exchange': 'unibet',
+            "isFirstFieldGoal": True,
             'startDatetime': event['startDatetime'],
-            'home': event['home'],
-            'away': event['away'],
-            'homePlayerOdds': homePlayerLines,
-            'awayPlayerOdds': awayPlayerLines
+            'homeTeamFirstQuarterOdds': event['home'],
+            'awayTeamFirstQuarterOdds': event['away'],
+            'homePlayerFirstQuarterOdds': homePlayerLines,
+            'awayPlayerFirstQuarterOdds': awayPlayerLines
         })
     return gameDetailsList
     # backlogtodo this has a lot of duplication with the barstool method so would be worth extracting
@@ -331,34 +388,53 @@ def barstoolOdds(): #only has player prosp to score (first field goal)
     for event in eventsList:
         sleepChecker(baseTime=0.5, randomMultiplier=2)
         singleGameResponse = requests.get(singleEventUrlStub.format(event['id']), headers={"consumer":"www"}).json()
-        mostPopular = singleGameResponse[1]
-        allMPBets = mostPopular['criterion']
-        playerScoreFirstFG = None
+        homeTeam = getUniversalShortCode(event['home'])
+        awayTeam = getUniversalShortCode(event['away'])
 
-        for bet in allMPBets:
-            if bet['label'] == "Player to Score the First Field Goal of the Game":
-                playerScoreFirstFG = bet
+        hasPlayerSpecials = False
+        for category in singleGameResponse:
+            if category['name'] == "Player Specials":
+                hasPlayerSpecials = True
                 break
-        if playerScoreFirstFG is None:
-            raise ValueError("No bet found in barstool for player to score first field goal")
+        if not hasPlayerSpecials:
+            continue
 
-        lines = playerScoreFirstFG['offers'][0]['outcomes']
+        betOptions = category['criterion']
+
+        hasFirstFieldGoal = False
+        for option in betOptions:
+            if option['label'] == "Player to Score the First Field Goal of the Game":
+                hasFirstFieldGoal = True
+                break
+
+        allOffers = option['offers'][0]['outcomes']
+
         playerLinesList = list()
-        for playerLine in lines:
-            aOdds = playerLine['oddAmerican']
-            pName = playerLine['label']
+        for playerLine in allOffers:
+            aOdds = '+' + str(playerLine['oddsAmerican'])
+            pName = playerLine['englishLabel']
             playerId = playerLine['participantId']
-            playerLinesList.append({'name': pName, 'odds': aOdds, 'playerId': playerId})
+            playerLinesList.append({'player': pName, 'odds': aOdds, 'playerId': playerId})
 
-        homePlayerLines, awayPlayerLines = addTeamToUnknownPlayerLine(playerLinesList)
+        formattedPlayerlines = list()
+        for playerOdds in playerLinesList:
+            formattedPlayerlines.append(addTeamToUnknownPlayerLine(playerOdds))
+
+        homePlayerList = list()
+        awayPlayerList = list()
+        for player in formattedPlayerlines:
+            if player['team'] == homeTeam:
+                homePlayerList.append(player)
+            elif player['team'] == awayTeam:
+                awayPlayerList.append(player)
 
         gameDetailsList.append({
             'exchange': 'barstool',
             'startDatetime': event['startDatetime'],
-            'home': event['home'],
-            'away': event['away'],
-            'homePlayerOdds': homePlayerLines,
-            'awayPlayerOdds': awayPlayerLines
+            'home': homeTeam,
+            'away': awayTeam,
+            'homePlayerFirstQuarterOdds': homePlayerList,
+            'awayPlayerFirstQuarterOdds': awayPlayerList
         })
     return gameDetailsList
 
@@ -409,7 +485,7 @@ def tipperFromTeam(teamShort: str):
             return row["playerCode"]
 
 def getAllExpectedStarters():
-    teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX',
+    teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX', 'NYK'
                 'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
     for team in teamList:
         sleepChecker(iterations=5, baseTime=1, randomMultiplier=1)
@@ -428,7 +504,7 @@ def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='Fanduel'
 
 
 def createTeamTipperDict():
-    teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX',
+    teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX', 'NYK'
                 'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
     teamList.sort()
     startersList = list()
@@ -458,3 +534,19 @@ def createTeamTipperDict():
 
     with open('Data/JSON/team_tipper_pairs.json', 'w') as file:
         json.dump(fullJson, file)
+
+
+        # mostPopular = singleGameResponse
+        # allMPBets = mostPopular['criterion']
+        # playerScoreFirstFG = None
+        #
+        # for bet in allMPBets:
+        #     if bet['label'] == "Player to Score the First Field Goal of the Game":
+        #         playerScoreFirstFG = bet
+        #         break
+        # if playerScoreFirstFG is None:
+        #     print("No bet found in barstool for player to score first field goal in game", event)
+        #     continue
+
+        # lines = playerScoreFirstFG['offers'][0]['outcomes']
+
