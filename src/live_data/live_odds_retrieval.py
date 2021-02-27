@@ -75,25 +75,10 @@ def fanduelOdds():
     # Rohit has this partly in typescript already
     pass
 
-# todo these could have the wrong odds on the wrong team, so add two versions
-def bovadaOdds():
-    soup = getSoupFromUrl('https://widgets.digitalsportstech.com/?sb=bovada&language=en&oddsType=american&currency=usd&leagueId=123&preMatchOnly=true')
-    gameIdString = soup.find('script').contents[0]
-
-    uniqueIds = set()
-    allGameIds = re.findall(r'(?<="id":)([0-9]{6}?)(?=,)', gameIdString)
-
-    for id in allGameIds:
-        uniqueIds.add(id)
-
-    url = 'https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in'
-    for id in uniqueIds:
-        url += ',' + str(id)
-
-    allBets = requests.get(url).json()
+def bovadaTeamOdds(allTeamBets):
     scoreFirstBetsSingleTeam = list()
     customId = 0
-    for bet in allBets:
+    for bet in allTeamBets:
         if bet['queryTitle'].lower() == 'team to score first':
             shortTitle = bet['game']['shortTitle']
             team1Id = bet['game']['team1Id']
@@ -121,7 +106,6 @@ def bovadaOdds():
                     shortTitle = bet['shortTitle']
                     team1Id = bet['team1id']
                     team2Id = bet['team2id']
-                    # todo bovada has player spreads as well, seemingly for games lacking team props
 
                     # This implicitly relies on team1 being the first one on the list
                     scoreFirstBetsBothTeams.append({
@@ -137,20 +121,90 @@ def bovadaOdds():
     for item in scoreFirstBetsBothTeams:
         scoreFirstBetsBothTeamsFormatted.append({
             'exchange': 'bovada',
+            "shortTitle": item['shortTitle'],
             "away": getUniversalShortCode(item['team2id']),
             "home": getUniversalShortCode(item['team1id']),
             "awayTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds']),
-            "homeTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds'])
+            "homeTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds']),
+            "awayPlayerFirstQuarterOdds": [],
+            "homePlayerFirstQuarterOdds": []
         })
         scoreFirstBetsBothTeamsFormatted.append({
             'exchange': 'bovada',
             "away": getUniversalShortCode(item['team1id']),
             "home": getUniversalShortCode(item['team2id']),
+            "shortTitle": item['shortTitle'],
             "awayTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds']),
-            "homeTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds'])
-        }) # This is done as it is unknown for bovada whic hteam belongs to which odds
+            "homeTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds']),
+            "awayPlayerFirstQuarterOdds": [],
+            "homePlayerFirstQuarterOdds": []
+        })  # This is done as it is unknown for bovada whic hteam belongs to which odds
 
     return scoreFirstBetsBothTeamsFormatted
+
+# todo get bovada player spreads
+def bovadaPlayerOdds(playerBetGamesList):
+    match = False
+    for game in playerBetGamesList:
+        for betCategory in game:
+            if betCategory['settings']['title'] == "First Point":
+                match = True
+                selections = betCategory['selections']
+                break
+
+        if match:
+            shortTitle = betCategory['settings']['games'][0]['shortTitle']
+            homeShort = shortTitle[-3:]
+            awayShort = shortTitle[:3]
+            homePlayerOdds = list()
+            awayPlayerOdds = list()
+
+            for player in selections:
+                actualOdds = player['odds'] if player['oddsOverride'] is None else player['oddsOverride']
+                if player['player']['team']['abbreviation'] == homeShort:
+                    homePlayerOdds.append({
+                        "player": player['player']['name'],
+                        "odds": actualOdds,
+                        "team": homeShort
+                    })
+                elif player['player']['team']['abbreviation'] == awayShort:
+                    awayPlayerOdds.append({
+                        "player": player['player']['name'],
+                        "odds": actualOdds,
+                        "team": homeShort
+                    })
+                else:
+                    raise ValueError("Bovada misformattted something in player and team codes")
+
+
+# backlogtodo these could have the wrong odds on the wrong team, so currently add two versions. Fix this
+def bovadaOdds():
+    soup = getSoupFromUrl('https://widgets.digitalsportstech.com/?sb=bovada&language=en&oddsType=american&currency=usd&leagueId=123&preMatchOnly=true')
+    gameIdString = soup.find('script').contents[0]
+
+    uniqueIds = set()
+    allGameIds = re.findall(r'(?<="id":)([0-9]{6}?)(?=,)', gameIdString)
+
+    for id in allGameIds:
+        uniqueIds.add(id)
+
+    teamBetUrl = 'https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in'
+    for id in uniqueIds:
+        teamBetUrl += ',' + str(id)
+    allTeamBets = requests.get(teamBetUrl).json()
+
+    playerBetUrlStub = 'https://widgets.digitalsportstech.com/api/custom-markets?sb=bovada&tz=-5&gameId='
+    playerBetGames = list()
+    for id in uniqueIds:
+        playerBetGame = requests.get(playerBetUrlStub + str(id)).json()
+        playerBetGames.append(playerBetGame)
+
+
+
+    scoreFirstBetsBothTeamsFormatted = bovadaTeamOdds(allTeamBets)
+    scoreFirstBetsAllPlayersFormatted = bovadaPlayerOdds(playerBetGames)
+
+    return scoreFirstBetsBothTeamsFormatted, scoreFirstBetsAllPlayersFormatted
 
 def draftKingsOdds():
     # https://sportsbook.draftkings.com/leagues/basketball/103?category=game-props&subcategory=odd/even
@@ -215,7 +269,6 @@ def draftKingsOdds():
                     "odds": playerOdds['oddsAmerican']
                 })
 
-# todo improve this performance by popping form list and sorting dicts/arrays
     playerTeamDict = {}
     for team in teamSet:
         playerTeamDict[team] = []
@@ -575,4 +628,3 @@ def createTeamTipperDict():
         #     continue
 
         # lines = playerScoreFirstFG['offers'][0]['outcomes']
-

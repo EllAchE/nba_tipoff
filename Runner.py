@@ -13,22 +13,15 @@ from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOd
 # getAllGameData()
 
 # createPlayerNameRelationship()
-#
 # saveActivePlayersTeams(1998)
-#
-getAllFirstPossessionStatisticsIncrementally(2019)
-#
+
+#todo to optimize the player spreads completely you can bet on different players at different prices across exchanges
+getAllFirstPossessionStatisticsIncrementally(2020)
+
 # updateCurrentSeason()
 # updateSkillDictionary()
 
 # getAllExpectedStarters()
-#
-# getDailyOdds('TOR', 'HOU')
-# getDailyOdds('MEM', 'DAL')
-# getDailyOdds('MIA', 'OKC')
-# getDailyOdds('POR', 'PHX', '-110')
-# getDailyOdds('CHA', 'UTA')
-# getDailyOdds('WAS', 'LAL')
 
 # getAllOddsAndDisplayByEv(getDk=True)
 # getAllOddsAndDisplayByEv(getBovada=True)
