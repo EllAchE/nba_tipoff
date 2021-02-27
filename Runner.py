@@ -16,19 +16,35 @@ from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOd
 # saveActivePlayersTeams(1998)
 
 #todo to optimize the player spreads completely you can bet on different players at different prices across exchanges
-getAllFirstPossessionStatisticsIncrementally(2020)
+# getAllFirstPossessionStatisticsIncrementally(2020)
+# todo add player start percentage to 1st shot summary (retrieve game rotation stats from NBA API)
 
 # updateCurrentSeason()
 # updateSkillDictionary()
 
 # getAllExpectedStarters()
 
-# getAllOddsAndDisplayByEv(getDk=True)
-# getAllOddsAndDisplayByEv(getBovada=True)
-# getAllOddsAndDisplayByEv(getMgm=True)
-# getAllOddsAndDisplayByEv(getPointsBet=True)
-# getAllOddsAndDisplayByEv(getUnibet=True)
-# getAllOddsAndDisplayByEv(getBarstool=True)
+getAllOddsAndDisplayByEv(getDk=True)
+print("####### NEW EXCHANGE ########", '\n')
+print()
+getAllOddsAndDisplayByEv(getBovada=True)
+print("####### NEW EXCHANGE ########", '\n')
+print()
+getAllOddsAndDisplayByEv(getMgm=True)
+print("####### NEW EXCHANGE ########", '\n')
+print()
+getAllOddsAndDisplayByEv(getPointsBet=True)
+print("####### NEW EXCHANGE ########", '\n')
+print()
+# todo see if this needs optimization
+getAllOddsAndDisplayByEv(getUnibet=True)
+print("####### NEW EXCHANGE ########", '\n')
+print()
+# todo see if this needs optimization
+# todo if betting player spreads move the liekly to win and likely to lose bets around
+getAllOddsAndDisplayByEv(getBarstool=True)
+# print("####### NEW EXCHANGE ########", '\n')
+# print()
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
 #                        ['199711160SEA', 'SEA', 'MIL'],

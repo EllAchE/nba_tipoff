@@ -77,8 +77,10 @@ def fanduelOdds():
 
 def bovadaTeamOdds(allTeamBets):
     scoreFirstBetsSingleTeam = list()
+    gameIdSet = set()
     customId = 0
     for bet in allTeamBets:
+        gameIdSet.add(bet['game']['id'])
         if bet['queryTitle'].lower() == 'team to score first':
             shortTitle = bet['game']['shortTitle']
             team1Id = bet['game']['team1Id']
@@ -140,10 +142,11 @@ def bovadaTeamOdds(allTeamBets):
             "homePlayerFirstQuarterOdds": []
         })  # This is done as it is unknown for bovada whic hteam belongs to which odds
 
-    return scoreFirstBetsBothTeamsFormatted
+    return scoreFirstBetsBothTeamsFormatted, gameIdSet
 
 # todo get bovada player spreads
 def bovadaPlayerOdds(playerBetGamesList):
+    playerTeamDict = {}
     match = False
     for game in playerBetGamesList:
         for betCategory in game:
@@ -153,9 +156,10 @@ def bovadaPlayerOdds(playerBetGamesList):
                 break
 
         if match:
+            match = False
             shortTitle = betCategory['settings']['games'][0]['shortTitle']
-            homeShort = shortTitle[-3:]
-            awayShort = shortTitle[:3]
+            homeShort = shortTitle.split()[-1]
+            awayShort = shortTitle.split()[0]
             homePlayerOdds = list()
             awayPlayerOdds = list()
 
@@ -165,21 +169,26 @@ def bovadaPlayerOdds(playerBetGamesList):
                     homePlayerOdds.append({
                         "player": player['player']['name'],
                         "odds": actualOdds,
-                        "team": homeShort
+                        "team": getUniversalShortCode(homeShort)
                     })
                 elif player['player']['team']['abbreviation'] == awayShort:
                     awayPlayerOdds.append({
                         "player": player['player']['name'],
                         "odds": actualOdds,
-                        "team": homeShort
+                        "team": getUniversalShortCode(awayShort)
                     })
                 else:
                     raise ValueError("Bovada misformattted something in player and team codes")
 
+            playerTeamDict[homePlayerOdds[0]['team']] = homePlayerOdds
+            playerTeamDict[awayPlayerOdds[0]['team']] = awayPlayerOdds
+
+    return playerTeamDict
+
 
 # backlogtodo these could have the wrong odds on the wrong team, so currently add two versions. Fix this
 def bovadaOdds():
-    soup = getSoupFromUrl('https://widgets.digitalsportstech.com/?sb=bovada&language=en&oddsType=american&currency=usd&leagueId=123&preMatchOnly=true')
+    soup = getSoupFromUrl('https://widgets.digitalsportstech.com/?sb=bovada&language=en&oddsType=american&currency=usd&leagueId=123&preMatchOnly=true&liveOnly=true')
     gameIdString = soup.find('script').contents[0]
 
     uniqueIds = set()
@@ -188,23 +197,31 @@ def bovadaOdds():
     for id in allGameIds:
         uniqueIds.add(id)
 
-    teamBetUrl = 'https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in'
+    teamBetUrl = 'https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&preMatchOnly=true&liveOnly=true&gameId=in'
     for id in uniqueIds:
         teamBetUrl += ',' + str(id)
     allTeamBets = requests.get(teamBetUrl).json()
 
+    scoreFirstBetsBothTeamsFormatted, gameIdSet = bovadaTeamOdds(allTeamBets)
+
+#todo fix this to account for vames that don't yet matter
+
     playerBetUrlStub = 'https://widgets.digitalsportstech.com/api/custom-markets?sb=bovada&tz=-5&gameId='
     playerBetGames = list()
-    for id in uniqueIds:
+    for id in gameIdSet:
         playerBetGame = requests.get(playerBetUrlStub + str(id)).json()
         playerBetGames.append(playerBetGame)
 
+    scoreFirstBetsAllPlayersDict = bovadaPlayerOdds(playerBetGames)
 
+    for gameLine in scoreFirstBetsBothTeamsFormatted:
+        try:
+            gameLine["homePlayerFirstQuarterOdds"] = scoreFirstBetsAllPlayersDict[gameLine["home"]]
+            gameLine["awayPlayerFirstQuarterOdds"] = scoreFirstBetsAllPlayersDict[gameLine["away"]]
+        except:
+            print("no player lines found for game", gameLine)
 
-    scoreFirstBetsBothTeamsFormatted = bovadaTeamOdds(allTeamBets)
-    scoreFirstBetsAllPlayersFormatted = bovadaPlayerOdds(playerBetGames)
-
-    return scoreFirstBetsBothTeamsFormatted, scoreFirstBetsAllPlayersFormatted
+    return scoreFirstBetsBothTeamsFormatted
 
 def draftKingsOdds():
     # https://sportsbook.draftkings.com/leagues/basketball/103?category=game-props&subcategory=odd/even
@@ -378,7 +395,8 @@ def pointsBetOdds():
                     "awayPlayerFirstQuarterOdds": awayPlayerList
                 })
             else:
-                print("no first basket market found for game", awayTeam, "@", homeTeam)
+                # print("no first basket market found for game", awayTeam, "@", homeTeam)
+                pass
 
     return gameDictList
 

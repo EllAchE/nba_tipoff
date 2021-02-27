@@ -182,7 +182,7 @@
   {
     "teamId": 1610612740,
     "abbreviation": "NOP",
-    "alternateAbbreviations": [],
+    "alternateAbbreviations": ["NO"],
     "teamName": "New Orleans Pelicans",
     "simpleName": "Pelicans",
     "location": "New Orleans",
@@ -192,7 +192,7 @@
   {
     "teamId": 1610612752,
     "abbreviation": "NYK",
-    "alternateAbbreviations": [],
+    "alternateAbbreviations": ["NY"],
     "teamName": "New York Knicks",
     "simpleName": "Knicks",
     "location": "New York",
@@ -262,7 +262,7 @@
   {
     "teamId": 1610612759,
     "abbreviation": "SAS",
-    "alternateAbbreviations": [],
+    "alternateAbbreviations": ["SA"],
     "teamName": "San Antonio Spurs",
     "simpleName": "Spurs",
     "location": "San Antonio",
