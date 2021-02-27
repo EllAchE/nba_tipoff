@@ -4,7 +4,6 @@ from src.functions.odds_calculator import convertPlayerLinesToSingleLine, return
 from src.live_data.live_odds_retrieval import getExpectedTipper
 
 
-# todo make this work for displaying not just best of team and players but all bets
 class GameOdds:
     def __init__(self, gameDict, teamOnly=False, playersOnly=False):
         self.home = gameDict['home']
@@ -69,16 +68,22 @@ class GameOdds:
         self.homeScoreProb = getScoreProb(self.expectedHomeTipper, self.expectedAwayTipper)
         self.awayScoreProb = getScoreProb(self.expectedAwayTipper, self.expectedHomeTipper)
 
-        self.homeKellyBet = kellyBetFromAOddsAndScoreProb(self.homeScoreProb, self.bestHomeOdds)
-        self.awayKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.bestAwayOdds)
+        self.homeBestKellyBet = kellyBetFromAOddsAndScoreProb(self.homeScoreProb, self.bestHomeOdds)
+        self.awayBestKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.bestAwayOdds)
         self.betOnHome = (self.homeScoreProb > self.minHomeWinPercentage)
         self.betOnAway = (self.awayScoreProb > self.minAwayWinPercentage)
         self.kellyBet = None
+        if not playersOnly:
+            self.homeTeamKellyBet = kellyBetFromAOddsAndScoreProb(self.homeScoreProb, self.homeTeamOdds)
+            self.awayTeamKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.awayTeamOdds)
+        elif not teamOnly:
+            self.homePlayersKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.homePlayerFloorOdds)
+            self.awayPlayersKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.awayPlayerFloorOdds)
 
-        if self.homeKellyBet > 0:
-            self.kellyBet = {"bet": self.homeKellyBet, "team": self.home}
-        elif self.awayKellyBet > 0:
-            self.kellyBet = {"bet": self.awayKellyBet, "team": self.away}
+        if self.homeBestKellyBet > 0:
+            self.kellyBet = {"bet": self.homeBestKellyBet, "team": self.home}
+        elif self.awayBestKellyBet > 0:
+            self.kellyBet = {"bet": self.awayBestKellyBet, "team": self.away}
 
         self.homeEVFactor = getEvMultiplier(self.homeScoreProb, self.minHomeWinPercentage)
         self.awayEVFactor = getEvMultiplier(self.awayScoreProb, self.minAwayWinPercentage)

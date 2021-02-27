@@ -256,7 +256,7 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         lastGameCode = lastGame['gameCode']
         lastGameIndex = df[df['Game Code'] == lastGameCode].index.values[0]
         i = lastGameIndex + 1
-        # todo figure out why some of these are breaking. In fetching the data a small number of games were ignored due to failure to return data
+        # backlogtodo figure out why some of these games are breaking. In fetching the data a small number of games were ignored due to failure to return data
     while i < dfLen:
         with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as sbfs:
             shotsDict = json.load(sbfs)
@@ -335,4 +335,4 @@ def getAllFirstPossessionStatisticsIncrementally(season):
 #     deb = getTipoffResults(test)
 #     print(deb)
 
-# todo use this work (specifically the getTipoffLine) to fill in the blanks on the missing games in the csv
+# todo VICTOR use this work (specifically the getTipoffLine) to fill in the blanks on the missing games in the csv

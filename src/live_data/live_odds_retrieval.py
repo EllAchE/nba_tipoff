@@ -75,7 +75,7 @@ def fanduelOdds():
     # Rohit has this partly in typescript already
     pass
 
-# todo these could have the wrong odds on the wrong person
+# todo these could have the wrong odds on the wrong team, so add two versions
 def bovadaOdds():
     soup = getSoupFromUrl('https://widgets.digitalsportstech.com/?sb=bovada&language=en&oddsType=american&currency=usd&leagueId=123&preMatchOnly=true')
     gameIdString = soup.find('script').contents[0]
@@ -142,6 +142,13 @@ def bovadaOdds():
             "awayTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds']),
             "homeTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds'])
         })
+        scoreFirstBetsBothTeamsFormatted.append({
+            'exchange': 'bovada',
+            "away": getUniversalShortCode(item['team1id']),
+            "home": getUniversalShortCode(item['team2id']),
+            "awayTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds']),
+            "homeTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds'])
+        }) # This is done as it is unknown for bovada whic hteam belongs to which odds
 
     return scoreFirstBetsBothTeamsFormatted
 
@@ -176,18 +183,22 @@ def draftKingsOdds():
     if not teamMatch:
         print('No team odds for draftkings currently')
 
+    teamSet = set()
     allGameLines = list()
     if teamMatch:
         for teamLine in firstTeamToScoreLines:
             outcomes = teamLine[0]['outcomes']
-            team1 = outcomes[0]['label']
+            team1 = getUniversalShortCode(outcomes[0]['label'])
             team1Odds = outcomes[0]['oddsAmerican']
-            team2 = outcomes[1]['label']
+            team2 = getUniversalShortCode(outcomes[1]['label'])
             team2Odds = outcomes[1]['oddsAmerican']
+            teamSet.add(team2)
+            teamSet.add(team1)
+
             allGameLines.append({
                 "exchange": "draftkings",
-                "home": getUniversalShortCode(team1),
-                "away": getUniversalShortCode(team2),
+                "home": team1,
+                "away": team2,
                 "homeTeamFirstQuarterOdds": str(team1Odds),
                 "awayTeamFirstQuarterOdds": str(team2Odds),
                 "homePlayerFirstQuarterOdds": [],
@@ -204,13 +215,18 @@ def draftKingsOdds():
                     "odds": playerOdds['oddsAmerican']
                 })
 
-    for teamLine in allGameLines:
-        for rawLine in rawPlayerLines:
-            playerLine = addTeamToUnknownPlayerLine(rawLine)
-            if teamLine['home'] == playerLine['team']:
-                teamLine['homePlayerFirstQuarterOdds'].append(playerLine)
-            elif teamLine['away'] == playerLine['team']:
-                teamLine['awayPlayerFirstQuarterOdds'].append(playerLine)
+# todo improve this performance by popping form list and sorting dicts/arrays
+    playerTeamDict = {}
+    for team in teamSet:
+        playerTeamDict[team] = []
+    for rawLine in rawPlayerLines:
+        playerLine = addTeamToUnknownPlayerLine(rawLine)
+        playerTeamDict[playerLine['team']] += [playerLine]
+
+    for gameLine in allGameLines:
+        gameLine["homePlayerFirstQuarterOdds"] = playerTeamDict[gameLine["home"]]
+        gameLine["awayPlayerFirstQuarterOdds"] = playerTeamDict[gameLine["away"]]
+
     return allGameLines
 
 def mgmOdds():
@@ -258,8 +274,8 @@ def mgmOdds():
                 })
     return allGameLines
 
-# todo figure out the math on pointsbets accelerators etc. (seem not worth)
-# todo add accelerators maybe
+# backlogtodo figure out the math on pointsbets accelerators etc. (seem not worth)
+# backlogtodo add accelerators maybe
 def pointsBetOdds():
     # https://nj.pointsbet.com/sports/basketball/NBA/246723
     # request for all things that are on the page - https://api-usa.pointsbet.com/api/v2/competitions/105/events/featured?includeLive=false&page=1
@@ -415,6 +431,8 @@ def barstoolOdds(): #only has player prosp to score (first field goal)
             if option['label'] == "Player to Score the First Field Goal of the Game":
                 hasFirstFieldGoal = True
                 break
+        if not hasFirstFieldGoal:
+            continue
 
         allOffers = option['offers'][0]['outcomes']
 
@@ -422,8 +440,7 @@ def barstoolOdds(): #only has player prosp to score (first field goal)
         for playerLine in allOffers:
             aOdds = '+' + str(playerLine['oddsAmerican'])
             pName = playerLine['englishLabel']
-            playerId = playerLine['participantId']
-            playerLinesList.append({'player': pName, 'odds': aOdds, 'playerId': playerId})
+            playerLinesList.append({'player': pName, 'odds': aOdds})
 
         formattedPlayerlines = list()
         for playerOdds in playerLinesList:

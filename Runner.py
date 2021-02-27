@@ -8,7 +8,7 @@ from src.functions.trueskill_calc import updateSkillDictionary
 from src.historical_data.historical_data_retrieval import updateCurrentSeason
 from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrementally
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
-from src.live_data.live_odds_retrieval import getAllExpectedStarters
+from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 
 # getAllGameData()
 
@@ -16,14 +16,14 @@ from src.live_data.live_odds_retrieval import getAllExpectedStarters
 #
 # saveActivePlayersTeams(1998)
 #
-# getAllFirstPossessionStatisticsIncrementally(2018)
+getAllFirstPossessionStatisticsIncrementally(2019)
 #
 # updateCurrentSeason()
 # updateSkillDictionary()
 
 # getAllExpectedStarters()
 #
-# getDailyOdds('CHI', 'HOU')
+# getDailyOdds('TOR', 'HOU')
 # getDailyOdds('MEM', 'DAL')
 # getDailyOdds('MIA', 'OKC')
 # getDailyOdds('POR', 'PHX', '-110')
@@ -34,8 +34,8 @@ from src.live_data.live_odds_retrieval import getAllExpectedStarters
 # getAllOddsAndDisplayByEv(getBovada=True)
 # getAllOddsAndDisplayByEv(getMgm=True)
 # getAllOddsAndDisplayByEv(getPointsBet=True)
-getAllOddsAndDisplayByEv(getUnibet=True)
-# getAllOddsAndDisplayByEv(getBarstool=False)
+# getAllOddsAndDisplayByEv(getUnibet=True)
+# getAllOddsAndDisplayByEv(getBarstool=True)
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
 #                        ['199711160SEA', 'SEA', 'MIL'],
