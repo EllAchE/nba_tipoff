@@ -2,6 +2,7 @@
 # backlogtodo next prop - who scores last nba, race to 5 points
 # todo compare top rank vs. bottom rank losses
 # todo add exchange names to the jsonpickle file name
+# todo convert from printing desired bets to putting them into a json/csv
 # backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
 from src.functions.database_creation import createPlayerNameRelationship, saveActivePlayersTeams, getAllGameData
@@ -42,10 +43,10 @@ getAllFirstPossessionStatisticsIncrementally(2020)
 # print("####### NEW EXCHANGE ########", '\n', '\n')
 # getAllOddsAndDisplayByEv(getPointsBet=True)
 # print("####### NEW EXCHANGE ########", '\n', '\n')
-# # todo see if this needs optimization
+# backlogtodo see if this needs optimization
 # getAllOddsAndDisplayByEv(getUnibet=True)
 # print("####### NEW EXCHANGE ########", '\n', '\n')
-# # todo see if this needs optimization
+# backlogtodo see if this needs optimization
 # getAllOddsAndDisplayByEv(getBarstool=True)
 # print("####### NEW EXCHANGE ########", '\n', '\n')
 

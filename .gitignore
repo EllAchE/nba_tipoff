@@ -9,6 +9,10 @@ __pycache__/
 #Typescript files
 package-lock.json
 package.json
+odds_scrapers/package.json
+odds_scrapers/package-lock.json
+odds_scrapers/node_modules/dotenv
+odds_scrapers/node_modules/.package-lock.json
 
 # C extensions
 *.so

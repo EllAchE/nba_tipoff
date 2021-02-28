@@ -2,7 +2,6 @@
 # https://www.rotowire.com/basketball/nba-lineups.php
 # https://www.nba.com/players/todays-lineups
 # stats api here - https://stats.nba.com/js/data/leaders/00_active_starters_20210128.json
-# todo get live
 
 import json
 import re
@@ -142,7 +141,6 @@ def bovadaTeamOdds(allTeamBets):
 
     return scoreFirstBetsBothTeamsFormatted, gameIdSet
 
-# todo get bovada player spreads
 def bovadaPlayerOdds(playerBetGamesList):
     playerTeamDict = {}
     match = False
@@ -202,7 +200,7 @@ def bovadaOdds():
 
     scoreFirstBetsBothTeamsFormatted, gameIdSet = bovadaTeamOdds(allTeamBets)
 
-#todo fix this to account for vames that don't yet matter
+# backlogtodo fix this to account for vames that don't yet matter
 
     playerBetUrlStub = 'https://widgets.digitalsportstech.com/api/custom-markets?sb=bovada&tz=-5&gameId='
     playerBetGames = list()
@@ -369,7 +367,7 @@ def pointsBetOdds():
                     rawPlayerLines.append({
                         "player": outcome['name'],
                         "teamId": outcome['teamId'],
-                        "odds": '+' + str(outcome['price'] * 100 - 100) #todo confirm this needs the -100
+                        "odds": '+' + str(outcome['price'] * 100 - 100)
                     })
 
                 homePlayerList = list()
@@ -478,7 +476,7 @@ def barstoolOdds(): #only has player prosp to score (first field goal)
 
     singleEventUrlStub = 'https://api.barstoolsportsbook.com/offerings/grouped_event/{}/pre_match_event/?lang=en_US&market=US'
 
-    # todo see if this needs optimization, may be duplciate values with unibet
+    # backlogtodo see if this needs optimization, may be duplciate values with unibet
     gameDetailsList = list()
     for event in eventsList:
         sleepChecker(baseTime=0.5, randomMultiplier=2)
