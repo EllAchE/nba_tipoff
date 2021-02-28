@@ -1,6 +1,7 @@
 # backlogtodo find out when the best time for placing bets on various sites is (i.e. when do odds move)
 # backlogtodo next prop - who scores last nba, race to 5 points
 # todo compare top rank vs. bottom rank losses
+# todo add exchange names to the jsonpickle file name
 # backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
 from src.functions.database_creation import createPlayerNameRelationship, saveActivePlayersTeams, getAllGameData
@@ -20,33 +21,33 @@ getAllFirstPossessionStatisticsIncrementally(2020)
 #todo to optimize the player spreads completely you can bet on different players at different prices across exchanges
 # getAllFirstPossessionStatisticsIncrementally(2020)
 # todo add player start percentage to 1st shot summary (retrieve game rotation stats from NBA API)
+# todo get usage percentages for players
 
 # updateCurrentSeason()
 # updateSkillDictionary()
 
 # getAllExpectedStarters()
 
+# getDailyOdds('WAS', 'BOS', '+100')
+# getDailyOdds('HOU', 'MEM', '-104')
+# getDailyOdds('SAC', 'CHA', '-111')
+# getDailyOdds('MIN', 'PHX', '+108')
+# getDailyOdds('MIA', 'ATL', '-102')
+
 # getAllOddsAndDisplayByEv(getDk=True)
-# print("####### NEW EXCHANGE ########", '\n')
-# print()
+# print("####### NEW EXCHANGE ########", '\n', '\n')
 # getAllOddsAndDisplayByEv(getBovada=True)
-# print("####### NEW EXCHANGE ########", '\n')
-# print()
+# print("####### NEW EXCHANGE ########", '\n', '\n')
 # getAllOddsAndDisplayByEv(getMgm=True)
-# print("####### NEW EXCHANGE ########", '\n')
-# print()
+# print("####### NEW EXCHANGE ########", '\n', '\n')
 # getAllOddsAndDisplayByEv(getPointsBet=True)
-# print("####### NEW EXCHANGE ########", '\n')
-# print()
+# print("####### NEW EXCHANGE ########", '\n', '\n')
 # # todo see if this needs optimization
 # getAllOddsAndDisplayByEv(getUnibet=True)
-# print("####### NEW EXCHANGE ########", '\n')
-# print()
+# print("####### NEW EXCHANGE ########", '\n', '\n')
 # # todo see if this needs optimization
-# # todo if betting player spreads move the liekly to win and likely to lose bets around
 # getAllOddsAndDisplayByEv(getBarstool=True)
-# print("####### NEW EXCHANGE ########", '\n')
-# print()
+# print("####### NEW EXCHANGE ########", '\n', '\n')
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
 #                        ['199711160SEA', 'SEA', 'MIL'],

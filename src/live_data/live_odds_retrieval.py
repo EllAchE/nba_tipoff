@@ -2,9 +2,7 @@
 # https://www.rotowire.com/basketball/nba-lineups.php
 # https://www.nba.com/players/todays-lineups
 # stats api here - https://stats.nba.com/js/data/leaders/00_active_starters_20210128.json
-# https://rotogrinders.com/lineups/nba
-# https://dailynbalineups.com/
-# https://www.lineups.com/nba/lineups
+# todo get live
 
 import json
 import re
@@ -480,6 +478,7 @@ def barstoolOdds(): #only has player prosp to score (first field goal)
 
     singleEventUrlStub = 'https://api.barstoolsportsbook.com/offerings/grouped_event/{}/pre_match_event/?lang=en_US&market=US'
 
+    # todo see if this needs optimization, may be duplciate values with unibet
     gameDetailsList = list()
     for event in eventsList:
         sleepChecker(baseTime=0.5, randomMultiplier=2)
@@ -551,6 +550,7 @@ def barstoolOdds(): #only has player prosp to score (first field goal)
 #     # this is a mirror of pointsbets for specific geos, so backlogged
 #     pass
 
+# https://www.lineups.com/nba/lineups
 def getStarters(team_code: str, team_dict: dict=None):
     full_name = teamCodeToSlugName(team_code, team_dict)
 
@@ -584,11 +584,12 @@ def tipperFromTeam(teamShort: str):
 def getAllExpectedStarters():
     teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX', 'NYK',
                 'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
+    teamList.sort()
     for team in teamList:
         sleepChecker(iterations=5, baseTime=1, randomMultiplier=1)
         getStarters(team)
 
-def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='Fanduel'):
+def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='unspecified exchange'):
     p1 = tipperFromTeam(t1)
     p2 = tipperFromTeam(t2)
     odds1 = checkEvPlayerCodesOddsLine(aOdds, p1, p2)

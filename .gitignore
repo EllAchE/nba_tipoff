@@ -6,6 +6,10 @@ __pycache__/
 #Logan custom
 .idea
 
+#Typescript files
+package-lock.json
+package.json
+
 # C extensions
 *.so
 

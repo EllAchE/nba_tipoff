@@ -28,9 +28,9 @@ class GameOdds:
 
         if not teamOnly:
             if(len(self.homePlayerOddsList) < 5 or len(self.homePlayerOddsList) > 6):
-                print("fewer than five players for game", self.gameCode)
-                self.homePlayerFloorOdds = None
-                self.awayPlayerFloorOdds = None
+                print("fewer than five players for game", self.gameCode, 'setting odds to -200')
+                self.homePlayerFloorOdds = '-200'
+                self.awayPlayerFloorOdds = '-200'
             else:
                 try:
                     self.homePlayerFloorOdds = convertPlayerLinesToSingleLine(self.homePlayerOddsList)
