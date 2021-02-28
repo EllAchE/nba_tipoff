@@ -165,6 +165,12 @@ def getParticipatingTeamsFromId(id): # (id: str) -> dict[str, str]:
     
     return {"home": homeTeamCity + ' ' + homeTeamName, "homeId": homeTeamId, "away": awayTeamCity + ' ' + awayTeamName, "awayId": awayTeamId}
 
+# todo get historical starters
+def getStartersHistorical():
+    # https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/gamerotation.md
+    # this endpoint should provide the data
+    pass
+
 def getGamePlayersFromId(id):
     playerSet = set()
     playerList = list()

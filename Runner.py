@@ -12,6 +12,8 @@ from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOd
 
 # getAllGameData()
 
+getAllFirstPossessionStatisticsIncrementally(2020)
+
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
 
@@ -24,25 +26,25 @@ from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOd
 
 # getAllExpectedStarters()
 
-getAllOddsAndDisplayByEv(getDk=True)
-print("####### NEW EXCHANGE ########", '\n')
-print()
-getAllOddsAndDisplayByEv(getBovada=True)
-print("####### NEW EXCHANGE ########", '\n')
-print()
-getAllOddsAndDisplayByEv(getMgm=True)
-print("####### NEW EXCHANGE ########", '\n')
-print()
-getAllOddsAndDisplayByEv(getPointsBet=True)
-print("####### NEW EXCHANGE ########", '\n')
-print()
-# todo see if this needs optimization
-getAllOddsAndDisplayByEv(getUnibet=True)
-print("####### NEW EXCHANGE ########", '\n')
-print()
-# todo see if this needs optimization
-# todo if betting player spreads move the liekly to win and likely to lose bets around
-getAllOddsAndDisplayByEv(getBarstool=True)
+# getAllOddsAndDisplayByEv(getDk=True)
+# print("####### NEW EXCHANGE ########", '\n')
+# print()
+# getAllOddsAndDisplayByEv(getBovada=True)
+# print("####### NEW EXCHANGE ########", '\n')
+# print()
+# getAllOddsAndDisplayByEv(getMgm=True)
+# print("####### NEW EXCHANGE ########", '\n')
+# print()
+# getAllOddsAndDisplayByEv(getPointsBet=True)
+# print("####### NEW EXCHANGE ########", '\n')
+# print()
+# # todo see if this needs optimization
+# getAllOddsAndDisplayByEv(getUnibet=True)
+# print("####### NEW EXCHANGE ########", '\n')
+# print()
+# # todo see if this needs optimization
+# # todo if betting player spreads move the liekly to win and likely to lose bets around
+# getAllOddsAndDisplayByEv(getBarstool=True)
 # print("####### NEW EXCHANGE ########", '\n')
 # print()
 
