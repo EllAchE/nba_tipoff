@@ -146,6 +146,10 @@ def createPlayerNameRelationship(startSeason: int=1998):
             playerDict['alternateNames'] += ["Garison Matthew"]
         elif playerDict['fullName'] == "Danuel House":
             playerDict['alternateNames'] += ["Danuel House Jr."]
+        elif playerDict['fullName'] == "P.J. Washington":
+            playerDict['alternateNames'] += ["P.J. Washington Jr."]
+        elif playerDict['fullName'] == "Lonnie Walker":
+            playerDict['alternateNames'] += ["Lonnie Walker IV"]
 
     with open('Data/JSON/player_name_relationships.json', 'w') as json_file:
         json.dump(activePlayers, json_file)
@@ -155,6 +159,7 @@ def createPlayerNameRelationship(startSeason: int=1998):
 def getAllGameData():
     shortCodes = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX', 'NYK',
                 'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
+    shortCodes.sort()
     nbaTeams = teams.get_teams()
     teamDicts = [team for team in nbaTeams if team['abbreviation'] in shortCodes]
 

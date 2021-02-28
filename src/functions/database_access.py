@@ -41,6 +41,13 @@ def getUniversalPlayerName(playerInUnknownFormat):
 
     match = False
     playerLoweredLetterOnly = removeAllNonLettersAndLowercase(playerInUnknownFormat)
+    undoPlayerCommaReversal = None
+
+    if ',' in playerInUnknownFormat:
+        head, tail = playerInUnknownFormat.split(',')
+        undoPlayerCommaReversal = tail + head
+        undoPlayerCommaReversal = removeAllNonLettersAndLowercase(undoPlayerCommaReversal)
+
     for player in playersDict:
         if player['bballRefCode'] == playerInUnknownFormat:
             match = True
@@ -57,9 +64,18 @@ def getUniversalPlayerName(playerInUnknownFormat):
         elif player['universalName'] == playerLoweredLetterOnly:
             match = True
             break
+        elif player['universalName'] == undoPlayerCommaReversal:
+            match = True
+            break
         elif removeAllNonLettersAndLowercase(player['nameWithComma']) == playerLoweredLetterOnly:
             match = True
             break
+        try:
+            if removeAllNonLettersAndLowercase(player['alternateNames'][0]) == undoPlayerCommaReversal:
+                match = True
+                break
+        except:
+            pass
 
     if not match:
         raise ValueError("player", playerInUnknownFormat, "did not have a match")

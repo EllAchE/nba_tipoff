@@ -128,7 +128,7 @@ def getEventsBeforeFirstFieldGoalOfQuarter(pbpDf: DataFrame, startIndex: int=0):
         i += 1
 
 def gameIdToFirstFieldGoalsOfQuarters(id: str):
-    pbpDf = playbyplayv2.PlayByPlayV2(game_id=id).get_data_frames()[0] # todo multithread to speed this
+    pbpDf = playbyplayv2.PlayByPlayV2(game_id=id).get_data_frames()[0]
     indicesOfQuarterStarts = pbpDf.index[pbpDf['EVENTMSGTYPE'] == 12].tolist()
     q2Index = indicesOfQuarterStarts[1]
     q3Index = indicesOfQuarterStarts[2]
@@ -164,6 +164,12 @@ def getParticipatingTeamsFromId(id): # (id: str) -> dict[str, str]:
     homeTeamId = response.home_team.get_dict()['data'][0][4]
     
     return {"home": homeTeamCity + ' ' + homeTeamName, "homeId": homeTeamId, "away": awayTeamCity + ' ' + awayTeamName, "awayId": awayTeamId}
+
+# todo get historical starters
+def getStartersHistorical():
+    # https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/gamerotation.md
+    # this endpoint should provide the data
+    pass
 
 def getGamePlayersFromId(id):
     playerSet = set()
@@ -256,6 +262,7 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         lastGameCode = lastGame['gameCode']
         lastGameIndex = df[df['Game Code'] == lastGameCode].index.values[0]
         i = lastGameIndex + 1
+        # backlogtodo figure out why some of these games are breaking. In fetching the data a small number of games were ignored due to failure to return data
     while i < dfLen:
         with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as sbfs:
             shotsDict = json.load(sbfs)
@@ -334,4 +341,4 @@ def getAllFirstPossessionStatisticsIncrementally(season):
 #     deb = getTipoffResults(test)
 #     print(deb)
 
-# todo use this work (specifically the getTipoffLine) to fill in the blanks on the missing games in the csv
+# todo VICTOR use this work (specifically the getTipoffLine) to fill in the blanks on the missing games in the csv

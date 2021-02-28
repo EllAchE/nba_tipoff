@@ -224,3 +224,15 @@ def oneSeasonFromScratch(season, path):
                 csvWriter.writerow(row)
             except:
                 break
+
+
+# Format is https://www.basketball-reference.com/boxscores/pbp/201901220OKC.html
+# Home team 3 letter symbol is used after a 0, i.e. YYYYMMDD0###.html
+#
+# URL for game https://www.basketball-reference.com/boxscores/pbp/201901220OKC.html
+# Where YYYYMMDD0### (# = home team code)
+#
+# game schedule in order for seasons https://www.basketball-reference.com/leagues/NBA_2019_games.html
+# Games played https://www.basketball-reference.com/leagues/NBA_2019_games-october.html
+# Year is ending year (i.e. 2018-2019 is 2019)
+# All relevant are October-June except 2019-2020 and 2020-21 (first bc covid, second is in progress)

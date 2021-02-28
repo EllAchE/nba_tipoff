@@ -10,7 +10,7 @@ HOME_SCORE_ODDS = 0.52111318 # todo slightly deflated due to 0.5 approximation o
 HOME_TIP_WIN_ODDS = 0.51615348 # todo these are slightly deflated due to 0.5 approximation of empty rows
 TIP_WINNER_SCORE_ODDS = 0.65495626 # todo these are slightly deflated due to 0.5 approximation of empty rows
 # todo recalculate all of the uncertain data points above. This was originally done with a simple excel function on a fully concatenated csv of all seasons
-# todo consider weighting for season recency
+# backlogtodo consider weighting for season recency
 BANKROLL = 5000
 REDUCTION_FACTOR = 0.7
 
