@@ -29,18 +29,14 @@ Percentage of first shots taken by particular player
 '''
 import json
 
-from nba_api.stats.static import teams
-from nba_api.stats.endpoints import leaguegamefinder
 from nba_api.stats.endpoints import gamerotation, playbyplayv2
 from typing import Any
 import pandas as pd
-from nba_api.stats.static import players
 
-import ENVIRONMENT
-from src.functions.database_access import findPlayerFullFromLastGivenPossibleFullNames, getGameIdFromBballRef, \
-    getTeamDictionaryFromShortCode, getAllGamesForTeam, getUniversalPlayerName, getBballRefPlayerName, \
+from src.database.database_access import findPlayerFullFromLastGivenPossibleFullNames, getGameIdFromBballRef, \
+    getTeamDictionaryFromShortCode, getAllGamesForTeam, getBballRefPlayerName, \
     getGameIdByTeamAndDateFromStaticData
-from src.functions.utils import getDashDateAndHomeCodeFromGameCode, sleepChecker
+from src.utils import sleepChecker
 
 # backlogTodo different sites may only look at first field goal (NOT FREE THROW) which makes for a weaker correlation
 # backlogTODO: Writing type stubs for pandas' DataFrame is too cumbersome, so we use this instead.

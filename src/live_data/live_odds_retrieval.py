@@ -10,9 +10,9 @@ import requests
 import pandas as pd
 
 import ENVIRONMENT
-from src.functions.database_access import getUniversalShortCode, getPlayerCurrentTeam, getUniversalPlayerName
-from src.functions.odds_calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb, decimalToAmerican
-from src.functions.utils import getTeamFullFromShort, getSoupFromUrl, sleepChecker
+from src.database.database_access import getUniversalShortCode, getPlayerCurrentTeam, getUniversalPlayerName
+from src.odds_and_statistics.odds_calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb, decimalToAmerican
+from src.utils import getTeamFullFromShort, getSoupFromUrl, sleepChecker
 
 
 def addTeamToUnknownPlayerLine(rawPlayerLine):
