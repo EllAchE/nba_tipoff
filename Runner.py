@@ -6,6 +6,7 @@
 # backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
 from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrementally
+from src.live_data.display_bets import getAllOddsAndDisplayByEv
 
 # getAllGameData()
 
@@ -21,6 +22,7 @@ getAllFirstPossessionStatisticsIncrementally(2020)
 
 # updateCurrentSeason()
 # updateSkillDictionary()
+from src.live_data.live_odds_retrieval import getAllExpectedStarters
 
 # getAllExpectedStarters()
 
@@ -38,12 +40,12 @@ getAllFirstPossessionStatisticsIncrementally(2020)
 # print("####### NEW EXCHANGE ########", '\n', '\n')
 # getAllOddsAndDisplayByEv(getPointsBet=True)
 # print("####### NEW EXCHANGE ########", '\n', '\n')
-# backlogtodo see if this needs optimization
 # getAllOddsAndDisplayByEv(getUnibet=True)
 # print("####### NEW EXCHANGE ########", '\n', '\n')
-# backlogtodo see if this needs optimization
 # getAllOddsAndDisplayByEv(getBarstool=True)
 # print("####### NEW EXCHANGE ########", '\n', '\n')
+
+#backlogtodo see about optimizing this fetching
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
 #                        ['199711160SEA', 'SEA', 'MIL'],

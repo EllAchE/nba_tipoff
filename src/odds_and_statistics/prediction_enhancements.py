@@ -8,7 +8,12 @@ from collections import OrderedDict
 from src.utils import lowercaseNoSpace
 
 # todo these should be done:
-#    Offensive efficiency, Def E, Percentage of FT & 2s vs. 3s (effective score percentage)
+#    Offensive efficiency, Def E, Percentage of FT & 2s vs. 3s (effective score percentage), usage rate for players
+
+def getCurrentSeasonUsageRate():
+    # https://www.nba.com/stats/players/usage/?CF=MIN*G*100&sort=USG_PCT&dir=-1&Season=2020-21&SeasonType=Regular%20Season
+    # todo use the above or alternate data source to get player usage rate
+    pass
 
 def getFirstShotStats(season):
     with open('../../Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as data:
