@@ -243,7 +243,7 @@ def getTipoffLineFromBballRefId(bballRef: str):
     return tipoffContent
 
 def splitAllSeasonsFirstShotDataToMultipleFiles():
-    with open('Data/JSON/Public_NBA_API') as allDataFile:
+    with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as allDataFile:
         allDataDict = json.load(allDataFile)
 
     data2014 = allDataDict['2014']

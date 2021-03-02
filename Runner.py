@@ -5,13 +5,15 @@
 # backlogtodo convert from printing desired bets to putting them into a json/csv
 # backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
-from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrementally
+from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrementally, \
+    splitAllSeasonsFirstShotDataToMultipleFiles
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import getAllExpectedStarters
 
 # getAllGameData()
 
-getAllFirstPossessionStatisticsIncrementally(2021)
+# getAllFirstPossessionStatisticsIncrementally(2021)
+# splitAllSeasonsFirstShotDataToMultipleFiles()
 
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
