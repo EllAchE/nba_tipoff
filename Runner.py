@@ -5,15 +5,17 @@
 # backlogtodo convert from printing desired bets to putting them into a json/csv
 # backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
+from src.database.database_creation import getAllGameData
+from src.historical_data.historical_data_retrieval import updateCurrentSeason
 from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrementally, \
     splitAllSeasonsFirstShotDataToMultipleFiles
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
-from src.live_data.live_odds_retrieval import getAllExpectedStarters
+from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
+from src.trueskill.trueskill_calc import updateSkillDictionary
 
 # getAllGameData()
 
-# getAllFirstPossessionStatisticsIncrementally(2021)
-# splitAllSeasonsFirstShotDataToMultipleFiles()
+splitAllSeasonsFirstShotDataToMultipleFiles()
 
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
@@ -28,11 +30,14 @@ from src.live_data.live_odds_retrieval import getAllExpectedStarters
 
 # getAllExpectedStarters()
 
-# getDailyOdds('WAS', 'BOS', '+100')
-# getDailyOdds('HOU', 'MEM', '-104')
+# getDailyOdds('DEN', 'MIL', '+122')
+# getDailyOdds('DEN', 'MIL', '-105')
+# getDailyOdds('WAS', 'MEM', '-111')
+# getDailyOdds('WAS', 'MEM', '-113')
 # getDailyOdds('SAC', 'CHA', '-111')
 # getDailyOdds('MIN', 'PHX', '+108')
-# getDailyOdds('MIA', 'ATL', '-102')
+# getDailyOdds('MIA', 'ATL', '-100')
+# getDailyOdds('MIA', 'ATL', '-113')
 
 # getAllOddsAndDisplayByEv(getDk=True)
 # print("####### NEW EXCHANGE ########", '\n', '\n')

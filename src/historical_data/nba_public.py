@@ -246,38 +246,38 @@ def splitAllSeasonsFirstShotDataToMultipleFiles():
     with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as allDataFile:
         allDataDict = json.load(allDataFile)
 
-    data2014 = allDataDict['2014']
-    data2015 = allDataDict['2015']
-    data2016 = allDataDict['2016']
-    data2017 = allDataDict['2017']
-    data2018 = allDataDict['2018']
-    data2019 = allDataDict['2019']
-    data2020 = allDataDict['2020']
+    # data2014 = allDataDict['2014']
+    # data2015 = allDataDict['2015']
+    # data2016 = allDataDict['2016']
+    # data2017 = allDataDict['2017']
+    # data2018 = allDataDict['2018']
+    # data2019 = allDataDict['2019']
+    # data2020 = allDataDict['2020']
     data2021 = allDataDict['2021']
-
-    with open('Data/JSON/Public_NBA_API/first_shots_data/2014_data.json', 'w') as f2014:
-        json.dump(data2014, f2014, indent=4)
-
-    with open('Data/JSON/Public_NBA_API/first_shots_data/2015_data.json', 'w') as f2015:
-        json.dump(data2015, f2015, indent=4)
-
-    with open('Data/JSON/Public_NBA_API/first_shots_data/2016_data.json', 'w') as f2016:
-        json.dump(data2016, f2016, indent=4)
-
-    with open('Data/JSON/Public_NBA_API/first_shots_data/2016_data.json', 'w') as f2016:
-        json.dump(data2016, f2016, indent=4)
-
-    with open('Data/JSON/Public_NBA_API/first_shots_data/2017_data.json', 'w') as f2017:
-        json.dump(data2017, f2017, indent=4)
-
-    with open('Data/JSON/Public_NBA_API/first_shots_data/2018_data.json', 'w') as f2018:
-        json.dump(data2018, f2018, indent=4)
-
-    with open('Data/JSON/Public_NBA_API/first_shots_data/2019_data.json', 'w') as f2019:
-        json.dump(data2019, f2019, indent=4)
-
-    with open('Data/JSON/Public_NBA_API/first_shots_data/2020_data.json', 'w') as f2020:
-        json.dump(data2020, f2020, indent=4)
+    #
+    # with open('Data/JSON/Public_NBA_API/first_shots_data/2014_data.json', 'w') as f2014:
+    #     json.dump(data2014, f2014, indent=4)
+    #
+    # with open('Data/JSON/Public_NBA_API/first_shots_data/2015_data.json', 'w') as f2015:
+    #     json.dump(data2015, f2015, indent=4)
+    #
+    # with open('Data/JSON/Public_NBA_API/first_shots_data/2016_data.json', 'w') as f2016:
+    #     json.dump(data2016, f2016, indent=4)
+    #
+    # with open('Data/JSON/Public_NBA_API/first_shots_data/2016_data.json', 'w') as f2016:
+    #     json.dump(data2016, f2016, indent=4)
+    #
+    # with open('Data/JSON/Public_NBA_API/first_shots_data/2017_data.json', 'w') as f2017:
+    #     json.dump(data2017, f2017, indent=4)
+    #
+    # with open('Data/JSON/Public_NBA_API/first_shots_data/2018_data.json', 'w') as f2018:
+    #     json.dump(data2018, f2018, indent=4)
+    #
+    # with open('Data/JSON/Public_NBA_API/first_shots_data/2019_data.json', 'w') as f2019:
+    #     json.dump(data2019, f2019, indent=4)
+    #
+    # with open('Data/JSON/Public_NBA_API/first_shots_data/2020_data.json', 'w') as f2020:
+    #     json.dump(data2020, f2020, indent=4)
 
     with open('Data/JSON/Public_NBA_API/first_shots_data/2021_data.json', 'w') as f2021:
         json.dump(data2021, f2021, indent=4)
