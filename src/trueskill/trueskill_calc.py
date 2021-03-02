@@ -61,10 +61,10 @@ def runTSForSeason(season: str, season_csv: str, json_path: str, winning_bet_thr
         i += 1
 
     with open(json_path, 'w') as write_file:
-        json.dump(psd, write_file)
+        json.dump(psd, write_file, indent=4)
 
     with open(ENVIRONMENT.PREDICTION_SUMMARIES_PATH, 'w') as write_file:
-        json.dump(dsd, write_file)
+        json.dump(dsd, write_file, indent=4)
 
     df.to_csv(season_csv[:-4] + '-test.csv')
 
@@ -143,7 +143,7 @@ def runForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRE
     dsd['seasons'] = seasonKey + 'with-odds-' + str(winning_bet_threshold)
 
     with open(ENVIRONMENT.PREDICTION_SUMMARIES_PATH, 'w') as predSum:
-        json.dump(dsd, predSum)
+        json.dump(dsd, predSum, indent=4)
 
 def updateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, game_code=None):
     if game_code:

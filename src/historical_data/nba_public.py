@@ -256,31 +256,31 @@ def splitAllSeasonsFirstShotDataToMultipleFiles():
     data2021 = allDataDict['2021']
 
     with open('Data/JSON/Public_NBA_API/first_shots_data/2014_data.json', 'w') as f2014:
-        json.dump(data2014, f2014)
+        json.dump(data2014, f2014, indent=4)
 
     with open('Data/JSON/Public_NBA_API/first_shots_data/2015_data.json', 'w') as f2015:
-        json.dump(data2015, f2015)
+        json.dump(data2015, f2015, indent=4)
 
     with open('Data/JSON/Public_NBA_API/first_shots_data/2016_data.json', 'w') as f2016:
-        json.dump(data2016, f2016)
+        json.dump(data2016, f2016, indent=4)
 
     with open('Data/JSON/Public_NBA_API/first_shots_data/2016_data.json', 'w') as f2016:
-        json.dump(data2016, f2016)
+        json.dump(data2016, f2016, indent=4)
 
     with open('Data/JSON/Public_NBA_API/first_shots_data/2017_data.json', 'w') as f2017:
-        json.dump(data2017, f2017)
+        json.dump(data2017, f2017, indent=4)
 
     with open('Data/JSON/Public_NBA_API/first_shots_data/2018_data.json', 'w') as f2018:
-        json.dump(data2018, f2018)
+        json.dump(data2018, f2018, indent=4)
 
     with open('Data/JSON/Public_NBA_API/first_shots_data/2019_data.json', 'w') as f2019:
-        json.dump(data2019, f2019)
+        json.dump(data2019, f2019, indent=4)
 
     with open('Data/JSON/Public_NBA_API/first_shots_data/2020_data.json', 'w') as f2020:
-        json.dump(data2020, f2020)
+        json.dump(data2020, f2020, indent=4)
 
     with open('Data/JSON/Public_NBA_API/first_shots_data/2021_data.json', 'w') as f2021:
-        json.dump(data2021, f2021)
+        json.dump(data2021, f2021, indent=4)
 
 # backlogtodo fix this to not break for some specific players and . names, i.e. Nene or W. or Shaw.
 def getAllFirstPossessionStatisticsIncrementally(season):
@@ -315,7 +315,7 @@ def getAllFirstPossessionStatisticsIncrementally(season):
 
         shotsDict[str(season)] = seasonShotList
         with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json', 'w') as jsonFile:
-            json.dump(shotsDict, jsonFile)
+            json.dump(shotsDict, jsonFile, indent=4)
 
         i += 1
 

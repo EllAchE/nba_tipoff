@@ -629,7 +629,7 @@ def createTeamTipperDict():
     fullJson["pairs"] = tipperList
 
     with open('Data/JSON/team_tipper_pairs.json', 'w') as file:
-        json.dump(fullJson, file)
+        json.dump(fullJson, file, indent=4)
 
 
         # mostPopular = singleGameResponse
