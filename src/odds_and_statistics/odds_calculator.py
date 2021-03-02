@@ -195,7 +195,11 @@ def convertPlayerLinesToSingleLine(playerOddsList):
     total = 0
     i = 0
     costsAsAOdds = [playerOddsList[0]['odds'], playerOddsList[1]['odds'], playerOddsList[2]['odds'], playerOddsList[3]['odds'], playerOddsList[4]['odds']]
-    costsAsRatios = map(americanToDecimal, costsAsAOdds)
+
+    def americanToRatio(x):
+        return americanToDecimal(x) - 1
+
+    costsAsRatios = map(americanToRatio, costsAsAOdds)
     costs = sysEMainDiagonalVarsNeg1Fill(list(costsAsRatios), amtToWin=100)
 
     for cost in costs:

@@ -1,12 +1,13 @@
 # backlogtodo find out when the best time for placing bets on various sites is (i.e. when do odds move)
 # backlogtodo next prop - who scores last nba, race to 5 points
 # todo compare top rank vs. bottom rank losses
-# todo add exchange names to the jsonpickle file name
-# todo convert from printing desired bets to putting them into a json/csv
+# backlogtodo add exchange names to the jsonpickle file name
+# backlogtodo convert from printing desired bets to putting them into a json/csv
 # backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
 from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrementally
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
+from src.live_data.live_odds_retrieval import getAllExpectedStarters
 
 # getAllGameData()
 
@@ -15,14 +16,13 @@ getAllFirstPossessionStatisticsIncrementally(2021)
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
 
+# todo separate out seasons first shot data
 #todo to optimize the player spreads completely you can bet on different players at different prices across exchanges
-# getAllFirstPossessionStatisticsIncrementally(2020)
 # todo add player start percentage to 1st shot summary (retrieve game rotation stats from NBA API)
 # todo get usage percentages for players
 
 # updateCurrentSeason()
 # updateSkillDictionary()
-from src.live_data.live_odds_retrieval import getAllExpectedStarters
 
 # getAllExpectedStarters()
 
