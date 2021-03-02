@@ -1,0 +1,1493 @@
+[
+  {
+    "py/object": "src.classes.GameOdds.GameOdds",
+    "home": "ORL",
+    "away": "DAL",
+    "gameDatetime": null,
+    "exchange": "pointsBet",
+    "marketUrl": null,
+    "fetchedDatetime": "2021-03-01 11:54:57.159080",
+    "isTeamOnly": false,
+    "isPlayersOnly": true,
+    "gameCode": "ORL @ DAL 2021-03-01",
+    "homePlayerOddsList": [
+      {
+        "player": "Nikola Vucevic",
+        "teamId": "404013",
+        "odds": "+450.0",
+        "team": "ORL"
+      },
+      {
+        "player": "Evan Fournier",
+        "teamId": "404013",
+        "odds": "+650.0",
+        "team": "ORL"
+      },
+      {
+        "player": "Dwayne Bacon",
+        "teamId": "404013",
+        "odds": "+1200.0",
+        "team": "ORL"
+      },
+      {
+        "player": "Michael Carter-Williams",
+        "teamId": "404013",
+        "odds": "+1200.0",
+        "team": "ORL"
+      },
+      {
+        "player": "Al-Farouq Aminu",
+        "teamId": "404013",
+        "odds": "+1300.0",
+        "team": "ORL"
+      }
+    ],
+    "awayPlayerOddsList": [
+      {
+        "player": "Luka Doncic",
+        "teamId": "404047",
+        "odds": "+400.0",
+        "team": "DAL"
+      },
+      {
+        "player": "Kristaps Porzingis",
+        "teamId": "404047",
+        "odds": "+600.0",
+        "team": "DAL"
+      },
+      {
+        "player": "Josh Richardson",
+        "teamId": "404047",
+        "odds": "+900.0",
+        "team": "DAL"
+      },
+      {
+        "player": "Dorian Finney-Smith",
+        "teamId": "404047",
+        "odds": "+1100.0",
+        "team": "DAL"
+      },
+      {
+        "player": "Maxi Kleber",
+        "teamId": "404047",
+        "odds": "+1200.0",
+        "team": "DAL"
+      }
+    ],
+    "isFirstFieldGoal": true,
+    "homePlayerFloorOdds": "+107.89285074359432",
+    "awayPlayerFloorOdds": "-113.1866181560032",
+    "bestHomeOdds": "+107.89285074359432",
+    "bestAwayOdds": "-113.1866181560032",
+    "betOnVia": "PLAYERS",
+    "minHomeWinPercentage": 0.4810170221934928,
+    "minAwayWinPercentage": 0.530927405927406,
+    "expectedHomeTipper": "vucevni01.html",
+    "expectedAwayTipper": "porzikr01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/reduce": [
+                {
+                  "py/type": "numpy.dtype"
+                },
+                {
+                  "py/tuple": [
+                    "f8",
+                    0,
+                    1
+                  ]
+                },
+                {
+                  "py/tuple": [
+                    3,
+                    "<",
+                    null,
+                    null,
+                    null,
+                    -1,
+                    -1,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "py/b64": "1ompPuSd2T8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "FTur4A0x4z8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "Px0/28BcgsA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "ohRlKNxZfEA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/reduce": [
+                {
+                  "py/type": "numpy.dtype"
+                },
+                {
+                  "py/tuple": [
+                    "b1",
+                    0,
+                    1
+                  ]
+                },
+                {
+                  "py/tuple": [
+                    3,
+                    "|",
+                    null,
+                    null,
+                    null,
+                    -1,
+                    -1,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "py/b64": "AA=="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnAway": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 20
+            },
+            {
+              "py/b64": "AQ=="
+            }
+          ]
+        }
+      ]
+    },
+    "kellyBet": {
+      "bet": {
+        "py/id": 18
+      },
+      "team": "DAL"
+    },
+    "homePlayersKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "X87RZcD+ikA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayPlayersKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "ohRlKNxZfEA="
+            }
+          ]
+        }
+      ]
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "VC8DorGg6j8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "5B1dUdwS8j8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 26
+    }
+  },
+  {
+    "py/object": "src.classes.GameOdds.GameOdds",
+    "home": "CHI",
+    "away": "DEN",
+    "gameDatetime": null,
+    "exchange": "pointsBet",
+    "marketUrl": null,
+    "fetchedDatetime": "2021-03-01 11:54:57.159101",
+    "isTeamOnly": false,
+    "isPlayersOnly": true,
+    "gameCode": "CHI @ DEN 2021-03-01",
+    "homePlayerOddsList": [
+      {
+        "player": "Zach LaVine",
+        "teamId": "404198",
+        "odds": "+450.0",
+        "team": "CHI"
+      },
+      {
+        "player": "Coby White",
+        "teamId": "404198",
+        "odds": "+850.0",
+        "team": "CHI"
+      },
+      {
+        "player": "Wendell Carter Jr.",
+        "teamId": "404198",
+        "odds": "+1000.0",
+        "team": "CHI"
+      },
+      {
+        "player": "Patrick Williams",
+        "teamId": "404198",
+        "odds": "+1000.0",
+        "team": "CHI"
+      },
+      {
+        "player": "Garrett Temple",
+        "teamId": "404198",
+        "odds": "+1300.0",
+        "team": "CHI"
+      }
+    ],
+    "awayPlayerOddsList": [
+      {
+        "player": "Nikola Jokic",
+        "teamId": "404065",
+        "odds": "+450.0",
+        "team": "DEN"
+      },
+      {
+        "player": "Jamal Murray",
+        "teamId": "404065",
+        "odds": "+650.0",
+        "team": "DEN"
+      },
+      {
+        "player": "Michael Porter Jr.",
+        "teamId": "404065",
+        "odds": "+900.0",
+        "team": "DEN"
+      },
+      {
+        "player": "Will Barton",
+        "teamId": "404065",
+        "odds": "+1000.0",
+        "team": "DEN"
+      },
+      {
+        "player": "Monte Morris",
+        "teamId": "404065",
+        "odds": "+1100.0",
+        "team": "DEN"
+      }
+    ],
+    "isFirstFieldGoal": true,
+    "homePlayerFloorOdds": "+107.28929384965829",
+    "awayPlayerFloorOdds": "-109.49371633752244",
+    "bestHomeOdds": "+107.28929384965829",
+    "bestAwayOdds": "-109.49371633752244",
+    "betOnVia": "PLAYERS",
+    "minHomeWinPercentage": 0.4824175824175825,
+    "minAwayWinPercentage": 0.5226587138351845,
+    "expectedHomeTipper": "cartewe01.html",
+    "expectedAwayTipper": "jokicni01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "7uyK2A9p3j8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "iYm6E3jL4D8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "FOGDKYFRSsA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "ZSjtvFcuLUA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 19
+    },
+    "betOnAway": {
+      "py/id": 21
+    },
+    "kellyBet": {
+      "bet": {
+        "py/id": 43
+      },
+      "team": "DEN"
+    },
+    "homePlayersKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "RkXCTzE8c0A="
+            }
+          ]
+        }
+      ]
+    },
+    "awayPlayersKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "ZSjtvFcuLUA="
+            }
+          ]
+        }
+      ]
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "zhZcx8yE7z8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "L1O6NxMR8D8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 48
+    }
+  },
+  {
+    "py/object": "src.classes.GameOdds.GameOdds",
+    "home": "NOP",
+    "away": "UTA",
+    "gameDatetime": null,
+    "exchange": "pointsBet",
+    "marketUrl": null,
+    "fetchedDatetime": "2021-03-01 11:54:57.159106",
+    "isTeamOnly": false,
+    "isPlayersOnly": true,
+    "gameCode": "NOP @ UTA 2021-03-01",
+    "homePlayerOddsList": [
+      {
+        "player": "Brandon Ingram",
+        "teamId": "404101",
+        "odds": "+600.0",
+        "team": "NOP"
+      },
+      {
+        "player": "Zion Williamson",
+        "teamId": "404101",
+        "odds": "+650.0",
+        "team": "NOP"
+      },
+      {
+        "player": "Steven Adams",
+        "teamId": "404101",
+        "odds": "+900.0",
+        "team": "NOP"
+      },
+      {
+        "player": "Eric Bledsoe",
+        "teamId": "404101",
+        "odds": "+1100.0",
+        "team": "NOP"
+      },
+      {
+        "player": "Lonzo Ball",
+        "teamId": "404101",
+        "odds": "+1100.0",
+        "team": "NOP"
+      }
+    ],
+    "awayPlayerOddsList": [
+      {
+        "player": "Donovan Mitchell",
+        "teamId": "404031",
+        "odds": "+550.0",
+        "team": "UTA"
+      },
+      {
+        "player": "Rudy Gobert",
+        "teamId": "404031",
+        "odds": "+550.0",
+        "team": "UTA"
+      },
+      {
+        "player": "Bojan Bogdanovic",
+        "teamId": "404031",
+        "odds": "+750.0",
+        "team": "UTA"
+      },
+      {
+        "player": "Mike Conley",
+        "teamId": "404031",
+        "odds": "+800.0",
+        "team": "UTA"
+      },
+      {
+        "player": "Royce O'Neale",
+        "teamId": "404031",
+        "odds": "+1400.0",
+        "team": "UTA"
+      }
+    ],
+    "isFirstFieldGoal": true,
+    "homePlayerFloorOdds": "+105.16932165840281",
+    "awayPlayerFloorOdds": "-114.79039095619405",
+    "bestHomeOdds": "+105.16932165840281",
+    "bestAwayOdds": "-114.79039095619405",
+    "betOnVia": "PLAYERS",
+    "minHomeWinPercentage": 0.4874023035787741,
+    "minAwayWinPercentage": 0.5344298245614034,
+    "expectedHomeTipper": "adamsst01.html",
+    "expectedAwayTipper": "goberru01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "KcU/SuMn4T8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "rnWAazmw3T8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "XzL5ZU/ddUA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "Splo8HDgfMA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 21
+    },
+    "betOnAway": {
+      "py/id": 19
+    },
+    "kellyBet": {
+      "bet": {
+        "py/id": 64
+      },
+      "team": "NOP"
+    },
+    "homePlayersKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "4IIJ5PocZcA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayPlayersKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "Splo8HDgfMA="
+            }
+          ]
+        }
+      ]
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "qzPUO2eZ8T8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "xMYkapfG6z8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 69
+    }
+  },
+  {
+    "py/object": "src.classes.GameOdds.GameOdds",
+    "home": "SAS",
+    "away": "BKN",
+    "gameDatetime": null,
+    "exchange": "pointsBet",
+    "marketUrl": null,
+    "fetchedDatetime": "2021-03-01 11:54:57.159109",
+    "isTeamOnly": false,
+    "isPlayersOnly": true,
+    "gameCode": "SAS @ BKN 2021-03-01",
+    "homePlayerOddsList": [
+      {
+        "player": "Dejounte Murray",
+        "teamId": "404302",
+        "odds": "+650.0",
+        "team": "SAS"
+      },
+      {
+        "player": "DeMar DeRozan",
+        "teamId": "404302",
+        "odds": "+700.0",
+        "team": "SAS"
+      },
+      {
+        "player": "Lonnie Walker IV",
+        "teamId": "404302",
+        "odds": "+850.0",
+        "team": "SAS"
+      },
+      {
+        "player": "Trey Lyles",
+        "teamId": "404302",
+        "odds": "+1000.0",
+        "team": "SAS"
+      },
+      {
+        "player": "Jakob Poeltl",
+        "teamId": "404302",
+        "odds": "+1100.0",
+        "team": "SAS"
+      }
+    ],
+    "awayPlayerOddsList": [
+      {
+        "player": "Kyrie Irving",
+        "teamId": "404117",
+        "odds": "+500.0",
+        "team": "BKN"
+      },
+      {
+        "player": "James Harden",
+        "teamId": "404117",
+        "odds": "+500.0",
+        "team": "BKN"
+      },
+      {
+        "player": "Joe Harris",
+        "teamId": "404117",
+        "odds": "+900.0",
+        "team": "BKN"
+      },
+      {
+        "player": "DeAndre Jordan",
+        "teamId": "404117",
+        "odds": "+900.0",
+        "team": "BKN"
+      },
+      {
+        "player": "Bruce Brown",
+        "teamId": "404117",
+        "odds": "+1400.0",
+        "team": "BKN"
+      }
+    ],
+    "isFirstFieldGoal": true,
+    "homePlayerFloorOdds": "+106.50376358040712",
+    "awayPlayerFloorOdds": "-112.78065630397236",
+    "bestHomeOdds": "+106.50376358040712",
+    "bestAwayOdds": "-112.78065630397236",
+    "betOnVia": "PLAYERS",
+    "minHomeWinPercentage": 0.4842526754291461,
+    "minAwayWinPercentage": 0.5300324675324676,
+    "expectedHomeTipper": "poeltja01.html",
+    "expectedAwayTipper": "greenje02.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "2Li+cQsd4T8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "UI6CHOnF3T8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "40j+2ODUdkA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "jZo/2FPBesA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 21
+    },
+    "betOnAway": {
+      "py/id": 19
+    },
+    "kellyBet": {
+      "bet": {
+        "py/id": 86
+      },
+      "team": "SAS"
+    },
+    "homePlayersKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "ofn6mYo1YcA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayPlayersKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "jZo/2FPBesA="
+            }
+          ]
+        }
+      ]
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "xrxn14Kr8T8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "NkMnjgoW7D8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 91
+    }
+  },
+  {
+    "py/object": "src.classes.GameOdds.GameOdds",
+    "home": "HOU",
+    "away": "CLE",
+    "gameDatetime": null,
+    "exchange": "pointsBet",
+    "marketUrl": null,
+    "fetchedDatetime": "2021-03-01 11:54:57.159113",
+    "isTeamOnly": false,
+    "isPlayersOnly": true,
+    "gameCode": "HOU @ CLE 2021-03-01",
+    "homePlayerOddsList": [
+      {
+        "player": "John Wall",
+        "teamId": "404137",
+        "odds": "+400.0",
+        "team": "HOU"
+      },
+      {
+        "player": "Eric Gordon",
+        "teamId": "404137",
+        "odds": "+500.0",
+        "team": "HOU"
+      },
+      {
+        "player": "Danuel House",
+        "teamId": "404137",
+        "odds": "+900.0",
+        "team": "HOU"
+      },
+      {
+        "player": "Justin Patton",
+        "teamId": "404137",
+        "odds": "+1100.0",
+        "team": "HOU"
+      },
+      {
+        "player": "P.J. Tucker",
+        "teamId": "404137",
+        "odds": "+1200.0",
+        "team": "HOU"
+      }
+    ],
+    "awayPlayerOddsList": [
+      {
+        "player": "Collin Sexton",
+        "teamId": "404213",
+        "odds": "+550.0",
+        "team": "CLE"
+      },
+      {
+        "player": "Jarrett Allen",
+        "teamId": "404213",
+        "odds": "+700.0",
+        "team": "CLE"
+      },
+      {
+        "player": "Darius Garland",
+        "teamId": "404213",
+        "odds": "+900.0",
+        "team": "CLE"
+      },
+      {
+        "player": "Dean Wade",
+        "teamId": "404213",
+        "odds": "+1400.0",
+        "team": "CLE"
+      },
+      {
+        "player": "Isaac Okoro",
+        "teamId": "404213",
+        "odds": "+1400.0",
+        "team": "CLE"
+      }
+    ],
+    "isFirstFieldGoal": true,
+    "homePlayerFloorOdds": "-121.62361623616238",
+    "awayPlayerFloorOdds": "+117.22435545803619",
+    "bestHomeOdds": "-121.62361623616238",
+    "bestAwayOdds": "+117.22435545803619",
+    "betOnVia": "PLAYERS",
+    "minHomeWinPercentage": 0.5487845487845489,
+    "minAwayWinPercentage": 0.46035353535353535,
+    "expectedHomeTipper": "tuckepj01.html",
+    "expectedAwayTipper": "allenja01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "AvCMGwQ33z8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "/4c58n1k4D8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "eaY9Je9VeMA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "Vr7/og6reEA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 19
+    },
+    "betOnAway": {
+      "py/id": 21
+    },
+    "kellyBet": {
+      "bet": {
+        "py/id": 109
+      },
+      "team": "CLE"
+    },
+    "homePlayersKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "QZrqxsAcbcA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayPlayersKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "Vr7/og6reEA="
+            }
+          ]
+        }
+      ]
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "2kU6TqZw7D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "kXI4vebN8T8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 114
+    }
+  },
+  {
+    "py/object": "src.classes.GameOdds.GameOdds",
+    "home": "POR",
+    "away": "CHA",
+    "gameDatetime": null,
+    "exchange": "pointsBet",
+    "marketUrl": null,
+    "fetchedDatetime": "2021-03-01 11:54:57.159117",
+    "isTeamOnly": false,
+    "isPlayersOnly": true,
+    "gameCode": "POR @ CHA 2021-03-01",
+    "homePlayerOddsList": [
+      {
+        "player": "Damian Lillard",
+        "teamId": "403993",
+        "odds": "+450.0",
+        "team": "POR"
+      },
+      {
+        "player": "Enes Kanter",
+        "teamId": "403993",
+        "odds": "+550.0",
+        "team": "POR"
+      },
+      {
+        "player": "Gary Trent Jr.",
+        "teamId": "403993",
+        "odds": "+700.0",
+        "team": "POR"
+      },
+      {
+        "player": "Robert Covington",
+        "teamId": "403993",
+        "odds": "+1200.0",
+        "team": "POR"
+      },
+      {
+        "player": "Derrick Jones Jr",
+        "teamId": "403993",
+        "odds": "+1600.0",
+        "team": "POR"
+      }
+    ],
+    "awayPlayerOddsList": [
+      {
+        "player": "Terry Rozier",
+        "teamId": "664421",
+        "odds": "+500.0",
+        "team": "CHA"
+      },
+      {
+        "player": "LaMelo Ball",
+        "teamId": "664421",
+        "odds": "+550.0",
+        "team": "CHA"
+      },
+      {
+        "player": "P.J. Washington Jr.",
+        "teamId": "664421",
+        "odds": "+1100.0",
+        "team": "CHA"
+      },
+      {
+        "player": "Bismack Biyombo",
+        "teamId": "664421",
+        "odds": "+1300.0",
+        "team": "CHA"
+      },
+      {
+        "player": "Jalen McDaniels",
+        "teamId": "664421",
+        "odds": "+1300.0",
+        "team": "CHA"
+      }
+    ],
+    "isFirstFieldGoal": true,
+    "homePlayerFloorOdds": "-110.64814814814812",
+    "awayPlayerFloorOdds": "+105.57228915662652",
+    "bestHomeOdds": "-110.64814814814812",
+    "bestAwayOdds": "+105.57228915662652",
+    "betOnVia": "PLAYERS",
+    "minHomeWinPercentage": 0.5252747252747252,
+    "minAwayWinPercentage": 0.4864468864468864,
+    "expectedHomeTipper": "kanteen01.html",
+    "expectedAwayTipper": "zelleco01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "I9ftR4zA4D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "ulEkcOd+3j8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "HCJXd5SXJ8A="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "fL5iLWLmUcA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 19
+    },
+    "betOnAway": {
+      "py/id": 19
+    },
+    "kellyBet": null,
+    "homePlayersKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "OWpWbGJQdMA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayPlayersKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "fL5iLWLmUcA="
+            }
+          ]
+        }
+      ]
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "iS9D92Pk7z8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "oHOXampY7z8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 134
+    }
+  }
+]

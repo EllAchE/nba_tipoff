@@ -1,7 +1,7 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-from src.functions.utils import getSoupFromUrl
+from src.utils import getSoupFromUrl
 
 def getPlayerHeightAndAge(playerLink):
     playerLink = playerLink[0] + '/' + playerLink # assumes playerLink doesn't have first initial

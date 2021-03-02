@@ -9,8 +9,8 @@ import re
 # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
 # backlogtodo BACKLOG get playbyplay from NCAA for rookie projections
 # https://www.ncaa.com/game/5763659/play-by-play
-from src.functions.database_access import getPlayerTeamInSeasonFromBballRefLink
-from src.functions.utils import sleepChecker, getSoupFromUrl, \
+from src.database.database_access import getPlayerTeamInSeasonFromBballRefLink
+from src.utils import getSoupFromUrl, \
     sleepChecker
 
 def getSingleSeasonGameHeaders(season):

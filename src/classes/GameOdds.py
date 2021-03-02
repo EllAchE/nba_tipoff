@@ -1,4 +1,4 @@
-from src.functions.odds_calculator import convertPlayerLinesToSingleLine, returnGreaterOdds, \
+from src.odds_and_statistics.odds_calculator import convertPlayerLinesToSingleLine, returnGreaterOdds, \
     positiveEvThresholdFromAmerican, getScoreProb, kellyBetFromAOddsAndScoreProb, getEvMultiplier, getPlayerSpread, \
     costFor100
 from src.live_data.live_odds_retrieval import getExpectedTipper
