@@ -10,7 +10,7 @@ from src.live_data.display_bets import getAllOddsAndDisplayByEv
 
 # getAllGameData()
 
-getAllFirstPossessionStatisticsIncrementally(2020)
+getAllFirstPossessionStatisticsIncrementally(2021)
 
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
