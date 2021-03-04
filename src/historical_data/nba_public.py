@@ -319,43 +319,6 @@ def getAllFirstPossessionStatisticsIncrementally(season):
 
         i += 1
 
-# def getAllFirstQuarterFirstPossessionStatisticsIncrementally(season):
-#     path = 'Data/CSV/tipoff_and_first_score_details_{}_season.csv'.format(season)
-#     df = pd.read_csv(path)
-#     i = 0
-#     dfLen = len(df.index)
-#
-#     with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as sbfs:
-#         shotsDict = json.load(sbfs)
-#     seasonShotList = shotsDict[str(season)]
-#
-#     if len(seasonShotList) > 0:
-#         lastGame = seasonShotList[-1]
-#         lastGameCode = lastGame['gameCode']
-#         lastGameIndex = df[df['Game Code'] == lastGameCode].index.values[0]
-#         i = lastGameIndex + 1
-#     while i < dfLen:
-#         with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as sbfs:
-#             shotsDict = json.load(sbfs)
-#         seasonShotList = shotsDict[str(season)]
-#
-#         bballRefId = df.iloc[i]["Game Code"]
-#         print('running for ', bballRefId)
-#         gameId = getGameIdFromBballRef(bballRefId)
-#         gameShots = gameIdToFirstShotList(gameId)
-#         gameStatistics = _getFirstQuarterShotStatistics(gameShots, bballRefId)
-#         seasonShotList.append(gameStatistics)
-#         sleepChecker(iterations=3, baseTime=0, randomMultiplier=1)
-#
-#         shotsDict[str(season)] = seasonShotList
-#         with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json', 'w') as jsonFile:
-#             json.dump(shotsDict, jsonFile)
-#
-#         i += 1
-
-# test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'], ['199711160SEA', 'SEA', 'MIL'], ['199711190LAL', 'LAL', 'MIN'],
-#   ['201911200TOR', 'TOR', 'ORL'], ['201911260DAL', 'DAL', 'LAC']] # Last one is a violation, others are misformatted
-
 # class EventMsgType(Enum):
 #     FIELD_GOAL_MADE = 1 #backlogtodo replace above uses of numbers with ENUM values for readability
 #     FIELD_GOAL_MISSED = 2
@@ -370,11 +333,5 @@ def getAllFirstPossessionStatisticsIncrementally(season):
 #     EJECTION = 11
 #     PERIOD_BEGIN = 12
 #     PERIOD_END = 13
-
-# def getNbaComResultsFromBballReferenceCode(bballCode):
-#     date, team_code = getDashDateAndHomeCodeFromGameCode(bballCode)
-#     test = getGameIdFromTeamAndDate(date, team_code)
-#     deb = getTipoffResults(test)
-#     print(deb)
 
 # todo VICTOR use this work (specifically the getTipoffLine) to fill in the blanks on the missing games in the csv

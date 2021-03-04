@@ -11,26 +11,29 @@ from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrem
     splitAllSeasonsFirstShotDataToMultipleFiles
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
+from src.odds_and_statistics.prediction_enhancements import getFirstShotStats
 from src.trueskill.trueskill_calc import updateSkillDictionary
 
 # getAllGameData()
 
-splitAllSeasonsFirstShotDataToMultipleFiles()
+# splitAllSeasonsFirstShotDataToMultipleFiles()
 
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
 
 # todo separate out seasons first shot data
-#todo to optimize the player spreads completely you can bet on different players at different prices across exchanges
+# todo to optimize the player spreads completely you can bet on different players at different prices across exchanges
 # todo add player start percentage to 1st shot summary (retrieve game rotation stats from NBA API)
-# todo get usage percentages for players
+# todo get starting lineups
 
 # updateCurrentSeason()
 # updateSkillDictionary()
 
+# getFirstShotStats(2021)
+
 # getAllExpectedStarters()
 
-# getDailyOdds('DEN', 'MIL', '+122')
+# getDailyOdds('DET', 'TOR', '-102')
 # getDailyOdds('DEN', 'MIL', '-105')
 # getDailyOdds('WAS', 'MEM', '-111')
 # getDailyOdds('WAS', 'MEM', '-113')
@@ -39,7 +42,7 @@ splitAllSeasonsFirstShotDataToMultipleFiles()
 # getDailyOdds('MIA', 'ATL', '-100')
 # getDailyOdds('MIA', 'ATL', '-113')
 
-# getAllOddsAndDisplayByEv(getDk=True)
+getAllOddsAndDisplayByEv(getDk=True)
 # print("####### NEW EXCHANGE ########", '\n', '\n')
 # getAllOddsAndDisplayByEv(getBovada=True)
 # print("####### NEW EXCHANGE ########", '\n', '\n')

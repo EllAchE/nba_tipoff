@@ -43,23 +43,18 @@ class GameOdds:
         if teamOnly:
             self.bestHomeOdds = self.homeTeamOdds
             self.bestAwayOdds = self.awayTeamOdds
-            self.betOnVia = "TEAM"
         elif playersOnly:
             self.bestHomeOdds = self.homePlayerFloorOdds
             self.bestAwayOdds = self.awayPlayerFloorOdds
-            self.betOnVia = "PLAYERS"
         elif self.homeTeamOdds is None:
             self.bestHomeOdds = self.homePlayerFloorOdds
             self.bestAwayOdds = self.awayPlayerFloorOdds
-            self.betOnVia = "PLAYERS"
         elif self.awayPlayerFloorOdds is None:
             self.bestHomeOdds = self.homeTeamOdds
             self.bestAwayOdds = self.awayTeamOdds
-            self.betOnVia = "TEAM"
         else:
             self.bestHomeOdds = returnGreaterOdds(self.homeTeamOdds, self.homePlayerFloorOdds)
             self.bestAwayOdds = returnGreaterOdds(self.awayTeamOdds, self.awayPlayerFloorOdds)
-            self.betOnVia = self.betTeamOrPlayers()
         self.minHomeWinPercentage = positiveEvThresholdFromAmerican(self.bestHomeOdds)
         self.minAwayWinPercentage = positiveEvThresholdFromAmerican(self.bestAwayOdds)
 
@@ -73,6 +68,7 @@ class GameOdds:
         self.betOnHome = (self.homeScoreProb > self.minHomeWinPercentage)
         self.betOnAway = (self.awayScoreProb > self.minAwayWinPercentage)
         self.kellyBet = None
+
         if not playersOnly:
             self.homeTeamKellyBet = kellyBetFromAOddsAndScoreProb(self.homeScoreProb, self.homeTeamOdds)
             self.awayTeamKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.awayTeamOdds)
@@ -89,8 +85,24 @@ class GameOdds:
         self.awayEVFactor = getEvMultiplier(self.awayScoreProb, self.minAwayWinPercentage)
         if self.awayEVFactor < self.homeEVFactor:
             self.bestEVFactor = self.homeEVFactor
+            if self.homeTeamOdds is None:
+                self.betOnVia = "PLAYERS"
+            elif self.homePlayerFloorOdds is None:
+                self.betOnVia = "TEAM"
+            elif self.bestHomeOdds == self.homeTeamOdds:
+                self.betOnVia = "TEAM"
+            elif self.bestHomeOdds == self.homePlayerFloorOdds:
+                self.betOnVia = "PLAYERS"
         else:
             self.bestEVFactor = self.awayEVFactor
+            if self.awayTeamOdds is None:
+                self.betOnVia = "PLAYERS"
+            elif self.awayPlayerFloorOdds is None:
+                self.betOnVia = "TEAM"
+            elif self.bestAwayOdds == self.awayTeamOdds:
+                self.betOnVia = "TEAM"
+            elif self.awayHomeOdds == self.awayPlayerFloorOdds:
+                self.betOnVia = "PLAYERS"
 
     def homeLineIsTeam(self):
         if self.bestHomeOdds == self.homeTeamOdds:
@@ -134,16 +146,16 @@ class GameOdds:
                 spread = getPlayerSpread(self.awayPlayerOddsList, self.awayScoreProb, self.awayPlayerFloorOdds)
         return spread
 
-    def betTeamOrPlayers(self):
-        lst = list()
-        lst.append([costFor100(self.homeTeamOdds), "TEAM"])
-        lst.append([costFor100(self.awayTeamOdds), "TEAM"])
-        lst.append([costFor100(self.homePlayerFloorOdds), "PLAYERS"])
-        lst.append([costFor100(self.awayPlayerFloorOdds), "PLAYERS"])
-
-        def sortFn(x):
-            return x[0]
-
-        lst.sort(key=sortFn)
-        return lst[0][1]
+    # def betTeamOrPlayers(self):
+    #     lst = list()
+    #     lst.append([costFor100(self.homeTeamOdds), "TEAM"])
+    #     lst.append([costFor100(self.awayTeamOdds), "TEAM"])
+    #     lst.append([costFor100(self.homePlayerFloorOdds), "PLAYERS"])
+    #     lst.append([costFor100(self.awayPlayerFloorOdds), "PLAYERS"])
+    #
+    #     def sortFn(x):
+    #         return x[0]
+    #
+    #     lst.sort(key=sortFn)
+    #     return lst[0][1]
 

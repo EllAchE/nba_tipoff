@@ -16,31 +16,36 @@ def getCurrentSeasonUsageRate():
     pass
 
 def getFirstShotStats(season):
-    with open('../../Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as data:
+    with open('Data/JSON/Public_NBA_API/first_shots_data/{}_data.json'.format(season)) as data:
         firstShotsDict = json.load(data)
 
-    lastSeasonData = firstShotsDict[str(season)]
     summaryDict = {}
     makesOverall = 0
 
-    summaryDict = _initializePlayerDict(summaryDict, lastSeasonData)
-    summaryDict = _initializeTeamDict(summaryDict, lastSeasonData)
+    summaryDict = _initializePlayerDict(summaryDict, firstShotsDict)
+    summaryDict = _initializeTeamDict(summaryDict, firstShotsDict)
 
-    for game in lastSeasonData:
+    for game in firstShotsDict:
         summaryDict, makesOverall = _playerFirstShotStats(game, summaryDict, makesOverall)
         summaryDict = _teamFirstShotStats(game, summaryDict)
 
     summaryDict = _summaryStats(summaryDict)
 
     summaryDict = OrderedDict(sorted(summaryDict.items(), key=lambda item: list(item)[1]['totalMakes'], reverse=True))
-    with open('../../Data/JSON/Public_NBA_API/player_first_shot_summary.json', 'w') as writeFile:
+    with open('Data/JSON/Public_NBA_API/player_first_shot_summary.json', 'w') as writeFile:
         json.dump(summaryDict, writeFile)
     print('first shot statistics compiled. Total makes was counted as', makesOverall)
 
 def _initializePlayerDict(summaryDict, lastSeasonData):
     playerSet = set()
     for game in lastSeasonData:
-        for event in game['gameData']:
+        for event in game['quarter1']:
+            playerSet.add(event['player'])
+        for event in game['quarter2']:
+            playerSet.add(event['player'])
+        for event in game['quarter3']:
+            playerSet.add(event['player'])
+        for event in game['quarter4']:
             playerSet.add(event['player'])
 
     for player in playerSet:
@@ -53,7 +58,13 @@ def _initializePlayerDict(summaryDict, lastSeasonData):
 def _initializeTeamDict(summaryDict, lastSeasonData):
     teamSet = set()
     for game in lastSeasonData:
-        for event in game['gameData']:
+        for event in game['quarter1']:
+            teamSet.add(event['team'])
+        for event in game['quarter2']:
+            teamSet.add(event['team'])
+        for event in game['quarter3']:
+            teamSet.add(event['team'])
+        for event in game['quarter4']:
             teamSet.add(event['team'])
 
     for team in teamSet:
@@ -65,23 +76,25 @@ def _initializeTeamDict(summaryDict, lastSeasonData):
     return summaryDict
 
 def _teamFirstShotStats(game, summaryDict):
-    for event in game['gameData']:
-        team = event['team']
-        opponent = event['opponentTeam']
-        summaryDict[team]['shots'] += 1
-        summaryDict[opponent]['opponentShots'] += 1
-        summaryDict[team][event['shotType']] += 1
-        summaryDict[opponent][lowercaseNoSpace('opponent' + event['shotType'])] += 1
+    quarters = ["quarter1", "quarter2", "quarter3", "quarter4"]
+    for quarter in quarters:
+        for event in game[quarter]:
+            team = event['team']
+            opponent = event['opponentTeam']
+            summaryDict[team]['shots'] += 1
+            summaryDict[opponent]['opponentShots'] += 1
+            summaryDict[team][event['shotType']] += 1
+            summaryDict[opponent][lowercaseNoSpace('opponent' + event['shotType'])] += 1
 
-        if "2PT" in event['shotType'] or "3PT" in event['shotType']:
-            summaryDict[team]['FG ATTEMPTS'] += 1
-            summaryDict[opponent]['opponentFgAttempts'] += 1
-        else:
-            summaryDict[team]['FREE THROW ATTEMPTS'] += 1
-            summaryDict[opponent]['opponentFtAttempts'] += 1
-        if "MAKE" in event['shotType']:
-            summaryDict[team]['totalMakes'] += 1
-            summaryDict[opponent]['opponentTotalMakes'] += 1
+            if "2PT" in event['shotType'] or "3PT" in event['shotType']:
+                summaryDict[team]['FG ATTEMPTS'] += 1
+                summaryDict[opponent]['opponentFgAttempts'] += 1
+            else:
+                summaryDict[team]['FREE THROW ATTEMPTS'] += 1
+                summaryDict[opponent]['opponentFtAttempts'] += 1
+            if "MAKE" in event['shotType']:
+                summaryDict[team]['totalMakes'] += 1
+                summaryDict[opponent]['opponentTotalMakes'] += 1
 
     return summaryDict
 
@@ -102,29 +115,31 @@ def _summaryStats(summaryDict):
 
 def _playerFirstShotStats(game, summaryDict, makesOverall):
     playerHasShotInGame = set()
-    for event in game['gameData']:
-        player = event['player']
-        playerTeam = event['team']
-        if playerTeam not in summaryDict[player]['teams']:
-            summaryDict[player]['teams'].append(playerTeam)
-        summaryDict[player]['averageShotIndex'] = (summaryDict[player]['shots'] * summaryDict[player][
-            'averageShotIndex'] + event['shotIndex']) / (summaryDict[player]['shots'] + 1)
+    quarters = ["quarter1", "quarter2", "quarter3", "quarter4"]
+    for quarter in quarters:
+        for event in game[quarter]:
+            player = event['player']
+            playerTeam = event['team']
+            if playerTeam not in summaryDict[player]['teams']:
+                summaryDict[player]['teams'].append(playerTeam)
+            summaryDict[player]['averageShotIndex'] = (summaryDict[player]['shots'] * summaryDict[player][
+                'averageShotIndex'] + event['shotIndex']) / (summaryDict[player]['shots'] + 1)
 
-        if player not in playerHasShotInGame:
-            summaryDict[player]['firstShotIndex'] = (summaryDict[player]['shots'] * summaryDict[player][
-                'firstShotIndex'] + event['shotIndex']) / (summaryDict[player]['shots'] + 1)
-        playerHasShotInGame.add(player)
-        summaryDict[player]['shots'] += 1
-        summaryDict[player][event['shotType']] += 1
-        if event['shotIndex'] == 1:
-            summaryDict[player]['firstShots'] += 1
-        if "2PT" in event['shotType'] or "3PT" in event['shotType']:
-            summaryDict[player]['FG ATTEMPTS'] += 1
-        else:
-            summaryDict[player]['FREE THROW ATTEMPTS'] += 1
-        if "MAKE" in event['shotType']:
-            summaryDict[player]['totalMakes'] += 1
-            makesOverall += 1
+            if player not in playerHasShotInGame:
+                summaryDict[player]['firstShotIndex'] = (summaryDict[player]['shots'] * summaryDict[player][
+                    'firstShotIndex'] + event['shotIndex']) / (summaryDict[player]['shots'] + 1)
+            playerHasShotInGame.add(player)
+            summaryDict[player]['shots'] += 1
+            summaryDict[player][event['shotType']] += 1
+            if event['shotIndex'] == 1:
+                summaryDict[player]['firstShots'] += 1
+            if "2PT" in event['shotType'] or "3PT" in event['shotType']:
+                summaryDict[player]['FG ATTEMPTS'] += 1
+            else:
+                summaryDict[player]['FREE THROW ATTEMPTS'] += 1
+            if "MAKE" in event['shotType']:
+                summaryDict[player]['totalMakes'] += 1
+                makesOverall += 1
     return summaryDict, makesOverall
 
 
