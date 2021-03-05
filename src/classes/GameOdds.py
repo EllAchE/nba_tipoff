@@ -26,6 +26,8 @@ class GameOdds:
         if teamOnly and playersOnly:
             raise ValueError("need at least team or player")
 
+        self.homePlayerFloorOdds = None
+        self.awayPlayerFloorOdds = None
         if not teamOnly:
             if(len(self.homePlayerOddsList) < 5 or len(self.homePlayerOddsList) > 6):
                 print("fewer than five players for game", self.gameCode, 'setting odds to -200')
@@ -37,8 +39,6 @@ class GameOdds:
                     self.awayPlayerFloorOdds = convertPlayerLinesToSingleLine(self.awayPlayerOddsList)
                 except:
                     print("player odds failed, odds will stay as None")
-                    self.homePlayerFloorOdds = None
-                    self.awayPlayerFloorOdds = None
 
         if teamOnly:
             self.bestHomeOdds = self.homeTeamOdds

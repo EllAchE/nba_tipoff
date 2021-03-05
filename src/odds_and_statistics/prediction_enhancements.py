@@ -5,15 +5,30 @@ from collections import OrderedDict
 
 
 # backlogtodo include nonshooting possessions
+import requests
+
 from src.utils import lowercaseNoSpace
 
 # todo these should be done:
 #    Offensive efficiency, Def E, Percentage of FT & 2s vs. 3s (effective score percentage), usage rate for players
 
 def getCurrentSeasonUsageRate():
-    # https://www.nba.com/stats/players/usage/?CF=MIN*G*100&sort=USG_PCT&dir=-1&Season=2020-21&SeasonType=Regular%20Season
-    # todo use the above or alternate data source to get player usage rate
-    pass
+    headers = {
+        "x-nba-stats-token":"true",
+        "x-nba-stats-origin":"stats",
+        "Origin":"https://nba.com",
+        "Referer":"https://nba.com/",
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
+    }
+    response = requests.get(url='https://stats.nba.com/stats/leaguedashplayerstats?College=&Conference=&Country=&DateFrom=&DateTo=&Division=&DraftPick=&DraftYear=&GameScope=&GameSegment=&Height=&LastNGames=5&LeagueID=00&Location=&MeasureType=Usage&Month=0&OpponentTeamID=0&Outcome=&PORound=0&PaceAdjust=N&PerMode=PerGame&Period=0&PlayerExperience=&PlayerPosition=&PlusMinus=N&Rank=N&Season=2020-21&SeasonSegment=&SeasonType=Regular+Season&ShotClockRange=&StarterBench=&TeamID=0&TwoWay=0&VsConference=&VsDivision=&Weight=',
+                            headers=headers).json()
+
+    playerUsageDict = response
+
+    with open("Data/JSON/player_usage.json", 'w') as pUsageFile:
+        json.dump(playerUsageDict, pUsageFile)
+
+    print("saved Player Usage Dictionary")
 
 def getFirstShotStats(season):
     with open('Data/JSON/Public_NBA_API/first_shots_data/{}_data.json'.format(season)) as data:

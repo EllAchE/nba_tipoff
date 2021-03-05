@@ -11,7 +11,7 @@ from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrem
     splitAllSeasonsFirstShotDataToMultipleFiles
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
-from src.odds_and_statistics.prediction_enhancements import getFirstShotStats
+from src.odds_and_statistics.prediction_enhancements import getFirstShotStats, getCurrentSeasonUsageRate
 from src.trueskill.trueskill_calc import updateSkillDictionary
 
 # getAllGameData()
@@ -26,23 +26,21 @@ from src.trueskill.trueskill_calc import updateSkillDictionary
 # todo add player start percentage to 1st shot summary (retrieve game rotation stats from NBA API)
 # todo get starting lineups
 
+getCurrentSeasonUsageRate()
+
 # updateCurrentSeason()
 # updateSkillDictionary()
 
 # getFirstShotStats(2021)
-
+#
 # getAllExpectedStarters()
 
-# getDailyOdds('DET', 'TOR', '-102')
-# getDailyOdds('DEN', 'MIL', '-105')
-# getDailyOdds('WAS', 'MEM', '-111')
-# getDailyOdds('WAS', 'MEM', '-113')
-# getDailyOdds('SAC', 'CHA', '-111')
-# getDailyOdds('MIN', 'PHX', '+108')
-# getDailyOdds('MIA', 'ATL', '-100')
-# getDailyOdds('MIA', 'ATL', '-113')
+# getDailyOdds('BOS', 'TOR', '-111')
+# getDailyOdds('PHX', 'GSW', '+116')
+# getDailyOdds('IND', 'DEN', '-111')
+# getDailyOdds('LAC', 'WAS', '+100')
 
-getAllOddsAndDisplayByEv(getDk=True)
+# getAllOddsAndDisplayByEv(getDk=True)
 # print("####### NEW EXCHANGE ########", '\n', '\n')
 # getAllOddsAndDisplayByEv(getBovada=True)
 # print("####### NEW EXCHANGE ########", '\n', '\n')

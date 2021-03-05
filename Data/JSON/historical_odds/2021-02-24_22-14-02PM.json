@@ -1,1 +1,270 @@
-[{"py/object": "src.classes.GameOdds.GameOdds", "home": "LAL", "away": "UTA", "gameDatetime": null, "exchange": "draftkings", "marketUrl": null, "fetchedDatetime": "2021-02-24 22:14:02.422863", "isTeamOnly": false, "isPlayersOnly": false, "gameCode": "LAL @ UTA 2021-02-24", "homeTeamOdds": "+100", "awayTeamOdds": "-121", "homePlayerOddsList": [{"player": "LeBron James", "odds": "+440", "team": "LAL"}, {"player": "Kyle Kuzma", "odds": "+800", "team": "LAL"}, {"player": "Kentavious Caldwell-Pope", "odds": "+950", "team": "LAL"}, {"player": "Marc Gasol", "odds": "+1200", "team": "LAL"}, {"player": "Wesley Matthews", "odds": "+1300", "team": "LAL"}], "awayPlayerOddsList": [{"player": "Rudy Gobert", "odds": "+550", "team": "UTA"}, {"player": "Donovan Mitchell", "odds": "+550", "team": "UTA"}, {"player": "Bojan Bogdanovi\u0107", "odds": "+700", "team": "UTA"}, {"player": "Mike Conley", "odds": "+750", "team": "UTA"}, {"player": "Royce O'Neale", "odds": "+1400", "team": "UTA"}], "homePlayerFloorOdds": "+107.76986154052965", "awayPlayerFloorOdds": "-120.04182081389739", "bestHomeOdds": "+107.76986154052965", "bestAwayOdds": "-120.04182081389739", "betOnVia": "PLAYERS", "minHomeWinPercentage": 0.48130175983436857, "minAwayWinPercentage": 0.5455409356725146, "expectedHomeTipper": "gasolma01.html", "expectedAwayTipper": "goberru01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/reduce": [{"py/type": "numpy.dtype"}, {"py/tuple": ["f8", false, true]}, {"py/tuple": [3, "<", null, null, null, -1, -1, 0]}]}, {"py/b64": "AAAAAAAA4D8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 15}, {"py/b64": "AAAAAAAA4D8="}]}]}, "homeKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 15}, {"py/b64": "2hy3WR//YEA="}]}]}, "awayKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 15}, {"py/b64": "7uVHsMtCcsA="}]}]}, "betOnHome": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/reduce": [{"py/type": "numpy.dtype"}, {"py/tuple": ["b1", false, true]}, {"py/tuple": [3, "|", null, null, null, -1, -1, 0]}]}, {"py/b64": "AQ=="}]}]}, "betOnAway": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 20}, {"py/b64": "AA=="}]}]}, "kellyBet": {"bet": {"py/id": 17}, "team": "LAL"}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 15}, {"py/b64": "wOGgcyCf8D8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 15}, {"py/b64": "jITY6CRU7T8="}]}]}, "bestEVFactor": {"py/id": 23}}]
+[
+  {
+    "py/object": "src.classes.GameOdds.GameOdds",
+    "home": "LAL",
+    "away": "UTA",
+    "gameDatetime": null,
+    "exchange": "draftkings",
+    "marketUrl": null,
+    "fetchedDatetime": "2021-02-24 22:14:02.422863",
+    "isTeamOnly": false,
+    "isPlayersOnly": false,
+    "gameCode": "LAL @ UTA 2021-02-24",
+    "homeTeamOdds": "+100",
+    "awayTeamOdds": "-121",
+    "homePlayerOddsList": [
+      {
+        "player": "LeBron James",
+        "odds": "+440",
+        "team": "LAL"
+      },
+      {
+        "player": "Kyle Kuzma",
+        "odds": "+800",
+        "team": "LAL"
+      },
+      {
+        "player": "Kentavious Caldwell-Pope",
+        "odds": "+950",
+        "team": "LAL"
+      },
+      {
+        "player": "Marc Gasol",
+        "odds": "+1200",
+        "team": "LAL"
+      },
+      {
+        "player": "Wesley Matthews",
+        "odds": "+1300",
+        "team": "LAL"
+      }
+    ],
+    "awayPlayerOddsList": [
+      {
+        "player": "Rudy Gobert",
+        "odds": "+550",
+        "team": "UTA"
+      },
+      {
+        "player": "Donovan Mitchell",
+        "odds": "+550",
+        "team": "UTA"
+      },
+      {
+        "player": "Bojan Bogdanovi\u0107",
+        "odds": "+700",
+        "team": "UTA"
+      },
+      {
+        "player": "Mike Conley",
+        "odds": "+750",
+        "team": "UTA"
+      },
+      {
+        "player": "Royce O'Neale",
+        "odds": "+1400",
+        "team": "UTA"
+      }
+    ],
+    "homePlayerFloorOdds": "+107.76986154052965",
+    "awayPlayerFloorOdds": "-120.04182081389739",
+    "bestHomeOdds": "+107.76986154052965",
+    "bestAwayOdds": "-120.04182081389739",
+    "betOnVia": "PLAYERS",
+    "minHomeWinPercentage": 0.48130175983436857,
+    "minAwayWinPercentage": 0.5455409356725146,
+    "expectedHomeTipper": "gasolma01.html",
+    "expectedAwayTipper": "goberru01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/reduce": [
+                {
+                  "py/type": "numpy.dtype"
+                },
+                {
+                  "py/tuple": [
+                    "f8",
+                    false,
+                    true
+                  ]
+                },
+                {
+                  "py/tuple": [
+                    3,
+                    "<",
+                    null,
+                    null,
+                    null,
+                    -1,
+                    -1,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "py/b64": "AAAAAAAA4D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "AAAAAAAA4D8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "2hy3WR//YEA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "7uVHsMtCcsA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/reduce": [
+                {
+                  "py/type": "numpy.dtype"
+                },
+                {
+                  "py/tuple": [
+                    "b1",
+                    false,
+                    true
+                  ]
+                },
+                {
+                  "py/tuple": [
+                    3,
+                    "|",
+                    null,
+                    null,
+                    null,
+                    -1,
+                    -1,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "py/b64": "AQ=="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnAway": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 20
+            },
+            {
+              "py/b64": "AA=="
+            }
+          ]
+        }
+      ]
+    },
+    "kellyBet": {
+      "bet": {
+        "py/id": 17
+      },
+      "team": "LAL"
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "wOGgcyCf8D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 15
+            },
+            {
+              "py/b64": "jITY6CRU7T8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 23
+    }
+  }
+]
