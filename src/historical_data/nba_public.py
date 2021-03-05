@@ -243,44 +243,44 @@ def getTipoffLineFromBballRefId(bballRef: str):
     return tipoffContent
 
 def splitAllSeasonsFirstShotDataToMultipleFiles():
-    with open('Data/JSON/Public_NBA_API') as allDataFile:
+    with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as allDataFile:
         allDataDict = json.load(allDataFile)
 
-    data2014 = allDataDict['2014']
-    data2015 = allDataDict['2015']
-    data2016 = allDataDict['2016']
-    data2017 = allDataDict['2017']
-    data2018 = allDataDict['2018']
-    data2019 = allDataDict['2019']
-    data2020 = allDataDict['2020']
+    # data2014 = allDataDict['2014']
+    # data2015 = allDataDict['2015']
+    # data2016 = allDataDict['2016']
+    # data2017 = allDataDict['2017']
+    # data2018 = allDataDict['2018']
+    # data2019 = allDataDict['2019']
+    # data2020 = allDataDict['2020']
     data2021 = allDataDict['2021']
-
-    with open('Data/JSON/Public_NBA_API/first_shots_data/2014_data.json', 'w') as f2014:
-        json.dump(data2014, f2014)
-
-    with open('Data/JSON/Public_NBA_API/first_shots_data/2015_data.json', 'w') as f2015:
-        json.dump(data2015, f2015)
-
-    with open('Data/JSON/Public_NBA_API/first_shots_data/2016_data.json', 'w') as f2016:
-        json.dump(data2016, f2016)
-
-    with open('Data/JSON/Public_NBA_API/first_shots_data/2016_data.json', 'w') as f2016:
-        json.dump(data2016, f2016)
-
-    with open('Data/JSON/Public_NBA_API/first_shots_data/2017_data.json', 'w') as f2017:
-        json.dump(data2017, f2017)
-
-    with open('Data/JSON/Public_NBA_API/first_shots_data/2018_data.json', 'w') as f2018:
-        json.dump(data2018, f2018)
-
-    with open('Data/JSON/Public_NBA_API/first_shots_data/2019_data.json', 'w') as f2019:
-        json.dump(data2019, f2019)
-
-    with open('Data/JSON/Public_NBA_API/first_shots_data/2020_data.json', 'w') as f2020:
-        json.dump(data2020, f2020)
+    #
+    # with open('Data/JSON/Public_NBA_API/first_shots_data/2014_data.json', 'w') as f2014:
+    #     json.dump(data2014, f2014, indent=4)
+    #
+    # with open('Data/JSON/Public_NBA_API/first_shots_data/2015_data.json', 'w') as f2015:
+    #     json.dump(data2015, f2015, indent=4)
+    #
+    # with open('Data/JSON/Public_NBA_API/first_shots_data/2016_data.json', 'w') as f2016:
+    #     json.dump(data2016, f2016, indent=4)
+    #
+    # with open('Data/JSON/Public_NBA_API/first_shots_data/2016_data.json', 'w') as f2016:
+    #     json.dump(data2016, f2016, indent=4)
+    #
+    # with open('Data/JSON/Public_NBA_API/first_shots_data/2017_data.json', 'w') as f2017:
+    #     json.dump(data2017, f2017, indent=4)
+    #
+    # with open('Data/JSON/Public_NBA_API/first_shots_data/2018_data.json', 'w') as f2018:
+    #     json.dump(data2018, f2018, indent=4)
+    #
+    # with open('Data/JSON/Public_NBA_API/first_shots_data/2019_data.json', 'w') as f2019:
+    #     json.dump(data2019, f2019, indent=4)
+    #
+    # with open('Data/JSON/Public_NBA_API/first_shots_data/2020_data.json', 'w') as f2020:
+    #     json.dump(data2020, f2020, indent=4)
 
     with open('Data/JSON/Public_NBA_API/first_shots_data/2021_data.json', 'w') as f2021:
-        json.dump(data2021, f2021)
+        json.dump(data2021, f2021, indent=4)
 
 # backlogtodo fix this to not break for some specific players and . names, i.e. Nene or W. or Shaw.
 def getAllFirstPossessionStatisticsIncrementally(season):
@@ -315,46 +315,9 @@ def getAllFirstPossessionStatisticsIncrementally(season):
 
         shotsDict[str(season)] = seasonShotList
         with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json', 'w') as jsonFile:
-            json.dump(shotsDict, jsonFile)
+            json.dump(shotsDict, jsonFile, indent=4)
 
         i += 1
-
-# def getAllFirstQuarterFirstPossessionStatisticsIncrementally(season):
-#     path = 'Data/CSV/tipoff_and_first_score_details_{}_season.csv'.format(season)
-#     df = pd.read_csv(path)
-#     i = 0
-#     dfLen = len(df.index)
-#
-#     with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as sbfs:
-#         shotsDict = json.load(sbfs)
-#     seasonShotList = shotsDict[str(season)]
-#
-#     if len(seasonShotList) > 0:
-#         lastGame = seasonShotList[-1]
-#         lastGameCode = lastGame['gameCode']
-#         lastGameIndex = df[df['Game Code'] == lastGameCode].index.values[0]
-#         i = lastGameIndex + 1
-#     while i < dfLen:
-#         with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as sbfs:
-#             shotsDict = json.load(sbfs)
-#         seasonShotList = shotsDict[str(season)]
-#
-#         bballRefId = df.iloc[i]["Game Code"]
-#         print('running for ', bballRefId)
-#         gameId = getGameIdFromBballRef(bballRefId)
-#         gameShots = gameIdToFirstShotList(gameId)
-#         gameStatistics = _getFirstQuarterShotStatistics(gameShots, bballRefId)
-#         seasonShotList.append(gameStatistics)
-#         sleepChecker(iterations=3, baseTime=0, randomMultiplier=1)
-#
-#         shotsDict[str(season)] = seasonShotList
-#         with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json', 'w') as jsonFile:
-#             json.dump(shotsDict, jsonFile)
-#
-#         i += 1
-
-# test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'], ['199711160SEA', 'SEA', 'MIL'], ['199711190LAL', 'LAL', 'MIN'],
-#   ['201911200TOR', 'TOR', 'ORL'], ['201911260DAL', 'DAL', 'LAC']] # Last one is a violation, others are misformatted
 
 # class EventMsgType(Enum):
 #     FIELD_GOAL_MADE = 1 #backlogtodo replace above uses of numbers with ENUM values for readability
@@ -370,11 +333,5 @@ def getAllFirstPossessionStatisticsIncrementally(season):
 #     EJECTION = 11
 #     PERIOD_BEGIN = 12
 #     PERIOD_END = 13
-
-# def getNbaComResultsFromBballReferenceCode(bballCode):
-#     date, team_code = getDashDateAndHomeCodeFromGameCode(bballCode)
-#     test = getGameIdFromTeamAndDate(date, team_code)
-#     deb = getTipoffResults(test)
-#     print(deb)
 
 # todo VICTOR use this work (specifically the getTipoffLine) to fill in the blanks on the missing games in the csv

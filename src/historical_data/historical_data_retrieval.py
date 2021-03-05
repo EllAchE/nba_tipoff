@@ -177,7 +177,7 @@ def getOffDefRatings(season=None, savePath=None):
 
     if savePath is not None:
         with open(savePath, 'w') as jsonF:
-            json.dump(seasonDict, jsonF)
+            json.dump(seasonDict, jsonF, indent=4)
 
     return seasonDict
 

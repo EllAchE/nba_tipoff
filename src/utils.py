@@ -24,7 +24,7 @@ def addSlugToNames():
         team['slug'] = slug
 
     with open('../Data/JSON/Public_NBA_API/teams.json', 'w') as w_file:
-        json.dump(team_dict, w_file)
+        json.dump(team_dict, w_file, indent=4)
     print('added slugs')
 
 def checkForBadSuffix(suffix):
@@ -119,7 +119,7 @@ def sleepChecker(iterations: int = 3, baseTime: int = 2, randomMultiplier: int =
         SLEEP_COUNTER['counter'] = 0
 
     with open('sleep_counter.json', 'w') as sc:
-        json.dump(SLEEP_COUNTER, sc)
+        json.dump(SLEEP_COUNTER, sc, indent=4)
 
 def removeAllNonLettersAndLowercase(name):
     playerLowered = name.replace(' ', '')

@@ -5,32 +5,40 @@
 # backlogtodo convert from printing desired bets to putting them into a json/csv
 # backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
-from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrementally
+from src.database.database_creation import getAllGameData
+from src.historical_data.historical_data_retrieval import updateCurrentSeason
+from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrementally, \
+    splitAllSeasonsFirstShotDataToMultipleFiles
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
-from src.live_data.live_odds_retrieval import getAllExpectedStarters
+from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
+from src.odds_and_statistics.prediction_enhancements import getFirstShotStats, getCurrentSeasonUsageRate
+from src.trueskill.trueskill_calc import updateSkillDictionary
 
 # getAllGameData()
 
-getAllFirstPossessionStatisticsIncrementally(2021)
+# splitAllSeasonsFirstShotDataToMultipleFiles()
 
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
 
 # todo separate out seasons first shot data
-#todo to optimize the player spreads completely you can bet on different players at different prices across exchanges
+# todo to optimize the player spreads completely you can bet on different players at different prices across exchanges
 # todo add player start percentage to 1st shot summary (retrieve game rotation stats from NBA API)
-# todo get usage percentages for players
+# todo get starting lineups
+
+getCurrentSeasonUsageRate()
 
 # updateCurrentSeason()
 # updateSkillDictionary()
 
+# getFirstShotStats(2021)
+#
 # getAllExpectedStarters()
 
-# getDailyOdds('WAS', 'BOS', '+100')
-# getDailyOdds('HOU', 'MEM', '-104')
-# getDailyOdds('SAC', 'CHA', '-111')
-# getDailyOdds('MIN', 'PHX', '+108')
-# getDailyOdds('MIA', 'ATL', '-102')
+# getDailyOdds('BOS', 'TOR', '-111')
+# getDailyOdds('PHX', 'GSW', '+116')
+# getDailyOdds('IND', 'DEN', '-111')
+# getDailyOdds('LAC', 'WAS', '+100')
 
 # getAllOddsAndDisplayByEv(getDk=True)
 # print("####### NEW EXCHANGE ########", '\n', '\n')

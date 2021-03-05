@@ -28,7 +28,7 @@ def resetPredictionSummaries(j=ENVIRONMENT.PREDICTION_SUMMARIES_PATH):
     d['incorrectTipoffPredictions'] = 0
 
     with open(j, 'w') as jsonWFile:
-        json.dump(d, jsonWFile)
+        json.dump(d, jsonWFile, indent=4)
 
     print('reset prediction summaries')
 
@@ -47,7 +47,7 @@ def createPlayerSkillDictionary():
             playerSkillDict[code] = {'mu': 25, 'sigma': 25/3, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
 
     with open(ENVIRONMENT.PLAYER_SKILL_DICT_PATH, 'w') as psd:
-        json.dump(playerSkillDict, psd)
+        json.dump(playerSkillDict, psd, indent=4)
         print()
 
 def saveActivePlayersTeams(start_season: int):
@@ -104,7 +104,7 @@ def saveActivePlayersTeams(start_season: int):
             seasons[season][playerCode]['currentTeam'] = playerTeam
 
     with open('Data/JSON/player_team_pairs.json', 'w') as json_file:
-        json.dump(seasons, json_file)
+        json.dump(seasons, json_file, indent=4)
 
     print('saved seasons Data')
 
@@ -151,7 +151,7 @@ def createPlayerNameRelationship(startSeason: int=1998):
             playerDict['alternateNames'] += ["Lonnie Walker IV"]
 
     with open('Data/JSON/player_name_relationships.json', 'w') as json_file:
-        json.dump(activePlayers, json_file)
+        json.dump(activePlayers, json_file, indent=4)
 
     print('saved player DB Data')
 
