@@ -4,11 +4,12 @@ from nba_api.stats.endpoints import CommonPlayerInfo, leaguegamefinder
 from nba_api.stats.static import teams
 from nba_api.stats.static.players import find_players_by_full_name
 
+import ENVIRONMENT
 from src.utils import getDashDateAndHomeCodeFromGameCode, removeAllNonLettersAndLowercase
 import pandas as pd
 
 def getBballRefPlayerName(playerInUnknownFormat):
-    with open('Data/JSON/player_name_relationships.json') as playerDb:
+    with open(ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH) as playerDb:
         playersDict = json.load(playerDb)
 
     match = False
@@ -36,7 +37,7 @@ def getBballRefPlayerName(playerInUnknownFormat):
 
 # backlogtodo fix unmatched players in quarter counting
 def getUniversalPlayerName(playerInUnknownFormat):
-    with open('Data/JSON/player_name_relationships.json') as playerDb:
+    with open(ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH) as playerDb:
         playersDict = json.load(playerDb)
 
     match = False
@@ -84,12 +85,12 @@ def getUniversalPlayerName(playerInUnknownFormat):
     return player['universalName']
 
 def getPlayerCurrentTeam(universalPlayerName): # Returns a list
-    with open('Data/JSON/player_team_pairs.json') as playerToTeamDb:
+    with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as playerToTeamDb:
         playersDict = json.load(playerToTeamDb)
     return playersDict['2021'][universalPlayerName]['currentTeam']
 
 def getUniversalShortCode(teamInUnknownFormat):
-    with open('Data/JSON/Public_NBA_API/teams.json') as teamsDb:
+    with open(ENVIRONMENT.TEAM_NAMES_PATH) as teamsDb:
         teamsDict = json.load(teamsDb)
 
     match = False
@@ -134,7 +135,8 @@ def getAllGamesForTeam(team_id: str):
     return gamefinder.get_data_frames()[0]
 
 def _getGameObjFromDateAndTeamUsingLocalData(dateStr: str, shortCode: str):
-    filePath = "Data/CSV/season_summary_data/{}_allgames.csv".format(shortCode)
+    filePath = ENVIRONMENT.GAME_SUMMARY_UNFORMATTED_PATH
+    filePath = filePath.format(shortCode)
     gameData = pd.read_csv(filePath)
     return gameData[gameData['GAME_DATE'] == dateStr]
 
@@ -190,7 +192,7 @@ def getPlayerTeamInSeasonFromBballRefLink(playerLink, season, longCode=True):
     if longCode:
         playerLink = playerLink[11:]
     # playerName = getUniversalPlayerName(playerLink)
-    with open('Data/JSON/player_team_pairs.json') as teamPairs:
+    with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as teamPairs:
         seasons = json.load(teamPairs)
         try:
             return seasons[str(season)][playerLink]

@@ -7,14 +7,12 @@ import unicodedata
 import unidecode
 
 from bs4 import BeautifulSoup
-from nba_api.stats.endpoints import CommonPlayerInfo
-from nba_api.stats.static.players import find_players_by_full_name
 
 import ENVIRONMENT
 
 
 def addSlugToNames():
-    with open('../Data/JSON/Public_NBA_API/teams.json') as dat_file:
+    with open(ENVIRONMENT.TEAM_NAMES_PATH) as dat_file:
         team_dict = json.load(dat_file)
 
     for team in team_dict:
@@ -23,7 +21,7 @@ def addSlugToNames():
         slug = slug.lower()
         team['slug'] = slug
 
-    with open('../Data/JSON/Public_NBA_API/teams.json', 'w') as w_file:
+    with open(ENVIRONMENT.TEAM_NAMES_PATH, 'w') as w_file:
         json.dump(team_dict, w_file, indent=4)
     print('added slugs')
 
@@ -86,7 +84,7 @@ def getDashDateFromGameCode(gameCode: str):
     return year + '-' + month + '-' + day
 
 def getTeamFullFromShort(shortCode):
-    with open(ENVIRONMENT.TEAM_CONVERSION_PATH) as teamsJson:
+    with open(ENVIRONMENT.TEAM_NAMES_PATH) as teamsJson:
         teamDict = json.load(teamsJson)
     for team in teamDict:
         if team["abbreviation"] == shortCode:

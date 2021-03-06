@@ -37,7 +37,7 @@ def getExpectedTipper(team):
     tipper = tipperFromTeam(team)
     return tipper
 
-def getLastTipper(team_code, season_csv='CSV/tipoff_and_first_score_details_2021_season.csv'):
+def getLastTipper(team_code, season_csv=ENVIRONMENT.CURRENT_SEASON_CSV):
     df = pd.read_csv(season_csv)
     i = len(df['Game Code']) - 1
     while i >= 0:
@@ -58,7 +58,7 @@ def teamCodeToSlugName(team_code, team_dict=None, json_path=None):
         with open(json_path) as j_file:
             team_dict = json.load(j_file)
     elif team_dict is None:
-        with open('Data/JSON/Public_NBA_API/teams.json') as j_file:
+        with open(ENVIRONMENT.TEAM_NAMES_PATH) as j_file:
             team_dict = json.load(j_file)
 
     for team in team_dict:
@@ -616,7 +616,7 @@ def getStarters(team_code: str, team_dict: dict=None):
     return starters_list
 
 def tipperFromTeam(teamShort: str):
-    with open('Data/JSON/team_tipper_pairs.json') as file:
+    with open(ENVIRONMENT.TEAM_TIPPER_PAIRS_PATH) as file:
         dict = json.load(file)
     for row in dict["pairs"]:
         if teamShort == row["team"]:
@@ -669,7 +669,7 @@ def createTeamTipperDict():
         tipperList.append({"playerCode":code, "team": teamLine["team"]})
     fullJson["pairs"] = tipperList
 
-    with open('Data/JSON/team_tipper_pairs.json', 'w') as file:
+    with open(ENVIRONMENT.TEAM_TIPPER_PAIRS_PATH, 'w') as file:
         json.dump(fullJson, file, indent=4)
 
 

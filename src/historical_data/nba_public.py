@@ -166,7 +166,7 @@ def getParticipatingTeamsFromId(id): # (id: str) -> dict[str, str]:
     return {"home": homeTeamCity + ' ' + homeTeamName, "homeId": homeTeamId, "away": awayTeamCity + ' ' + awayTeamName, "awayId": awayTeamId}
 
 def saveAllHistoricalStarters():
-    stub = 'Data/CSV/season_summary_data/{}_allgames.csv'
+    stub = ENVIRONMENT.GAME_SUMMARY_UNFORMATTED_PATH
     for shortCode in ENVIRONMENT.CURRENT_TEAMS:
         path = stub.format(shortCode)
         allGamesDf = pd.read_csv(path)
@@ -327,53 +327,52 @@ def getTipoffLineFromBballRefId(bballRef: str):
     return tipoffContent
 
 def splitAllSeasonsFirstShotDataToMultipleFiles():
-    with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as allDataFile:
+    with open(ENVIRONMENT.ALL_SHOTS_BEFORE_FIRST_FG_PATH) as allDataFile:
         allDataDict = json.load(allDataFile)
 
-    # data2014 = allDataDict['2014']
-    # data2015 = allDataDict['2015']
-    # data2016 = allDataDict['2016']
-    # data2017 = allDataDict['2017']
-    # data2018 = allDataDict['2018']
-    # data2019 = allDataDict['2019']
-    # data2020 = allDataDict['2020']
+    stub = ENVIRONMENT.SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH
+    data2014 = allDataDict['2014']
+    data2015 = allDataDict['2015']
+    data2016 = allDataDict['2016']
+    data2017 = allDataDict['2017']
+    data2018 = allDataDict['2018']
+    data2019 = allDataDict['2019']
+    data2020 = allDataDict['2020']
     data2021 = allDataDict['2021']
-    #
-    # with open('Data/JSON/Public_NBA_API/first_shots_data/2014_data.json', 'w') as f2014:
-    #     json.dump(data2014, f2014, indent=4)
-    #
-    # with open('Data/JSON/Public_NBA_API/first_shots_data/2015_data.json', 'w') as f2015:
-    #     json.dump(data2015, f2015, indent=4)
-    #
-    # with open('Data/JSON/Public_NBA_API/first_shots_data/2016_data.json', 'w') as f2016:
-    #     json.dump(data2016, f2016, indent=4)
-    #
-    # with open('Data/JSON/Public_NBA_API/first_shots_data/2016_data.json', 'w') as f2016:
-    #     json.dump(data2016, f2016, indent=4)
-    #
-    # with open('Data/JSON/Public_NBA_API/first_shots_data/2017_data.json', 'w') as f2017:
-    #     json.dump(data2017, f2017, indent=4)
-    #
-    # with open('Data/JSON/Public_NBA_API/first_shots_data/2018_data.json', 'w') as f2018:
-    #     json.dump(data2018, f2018, indent=4)
-    #
-    # with open('Data/JSON/Public_NBA_API/first_shots_data/2019_data.json', 'w') as f2019:
-    #     json.dump(data2019, f2019, indent=4)
-    #
-    # with open('Data/JSON/Public_NBA_API/first_shots_data/2020_data.json', 'w') as f2020:
-    #     json.dump(data2020, f2020, indent=4)
 
-    with open('Data/JSON/Public_NBA_API/first_shots_data/2021_data.json', 'w') as f2021:
+    with open(stub.format('2014'), 'w') as f2014:
+        json.dump(data2014, f2014, indent=4)
+
+    with open(stub.format('2015'), 'w') as f2015:
+        json.dump(data2015, f2015, indent=4)
+
+    with open(stub.format('2016'), 'w') as f2016:
+        json.dump(data2016, f2016, indent=4)
+
+    with open(stub.format('2017'), 'w') as f2017:
+        json.dump(data2017, f2017, indent=4)
+
+    with open(stub.format('2018'), 'w') as f2018:
+        json.dump(data2018, f2018, indent=4)
+
+    with open(stub.format('2019'), 'w') as f2019:
+        json.dump(data2019, f2019, indent=4)
+
+    with open(stub.format('2020'), 'w') as f2020:
+        json.dump(data2020, f2020, indent=4)
+
+    with open(stub.format('2021'), 'w') as f2021:
         json.dump(data2021, f2021, indent=4)
 
 # backlogtodo fix this to not break for some specific players and . names, i.e. Nene or W. or Shaw.
 def getAllFirstPossessionStatisticsIncrementally(season):
-    path = 'Data/CSV/season_data/tipoff_and_first_score_details_{}_season.csv'.format(season)
+    path = ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH
+    path = path.format(season)
     df = pd.read_csv(path)
     i = 0
     dfLen = len(df.index)
 
-    with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as sbfs:
+    with open(ENVIRONMENT.ALL_SHOTS_BEFORE_FIRST_FG_PATH) as sbfs:
         shotsDict = json.load(sbfs)
     seasonShotList = shotsDict[str(season)]
 
@@ -384,7 +383,7 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         i = lastGameIndex + 1
         # backlogtodo figure out why some of these games are breaking. In fetching the data a small number of games were ignored due to failure to return data
     while i < dfLen:
-        with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json') as sbfs:
+        with open(ENVIRONMENT.ALL_SHOTS_BEFORE_FIRST_FG_PATH) as sbfs:
             shotsDict = json.load(sbfs)
         seasonShotList = shotsDict[str(season)]
 
@@ -398,7 +397,7 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         sleepChecker(iterations=1, baseTime=10, randomMultiplier=1)
 
         shotsDict[str(season)] = seasonShotList
-        with open('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json', 'w') as jsonFile:
+        with open(ENVIRONMENT.ALL_SHOTS_BEFORE_FIRST_FG_PATH, 'w') as jsonFile:
             json.dump(shotsDict, jsonFile, indent=4)
 
         i += 1

@@ -12,7 +12,7 @@ from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrem
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 from src.odds_and_statistics.prediction_enhancements import getFirstShotStats, getCurrentSeasonUsageRate
-from src.trueskill.trueskill_calc import updateSkillDictionary
+from src.trueskill.trueskill_calc import updateSkillDictionaryFromZero
 
 # getAllGameData()
 
@@ -26,11 +26,14 @@ from src.trueskill.trueskill_calc import updateSkillDictionary
 # todo fix fanduel when there are games to fetch data from
 # todo performance improvements, binary search of player db
 # todo performance improvements, backwards count and metadata sto
+# todo use environment rather than hardcoded 2021 for current season
+# todo use environment for storing all paths
+# todo wrap post formatted paths in Path object to be functional for windows (if needed)
 
 # getCurrentSeasonUsageRate()
-saveAllHistoricalStarters()
+
 # updateCurrentSeason()
-# updateSkillDictionary()
+updateSkillDictionaryFromZero()
 
 # getFirstShotStats(2021)
 #

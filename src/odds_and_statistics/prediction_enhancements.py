@@ -7,6 +7,7 @@ from collections import OrderedDict
 # backlogtodo include nonshooting possessions
 import requests
 
+import ENVIRONMENT
 from src.utils import lowercaseNoSpace
 
 # todo these should be done:
@@ -25,13 +26,14 @@ def getCurrentSeasonUsageRate():
 
     playerUsageDict = response
 
-    with open("Data/JSON/player_usage.json", 'w') as pUsageFile:
+    with open(ENVIRONMENT.PLAYER_USAGE_PATH, 'w') as pUsageFile:
         json.dump(playerUsageDict, pUsageFile)
 
     print("saved Player Usage Dictionary")
 
 def getFirstShotStats(season):
-    with open('Data/JSON/Public_NBA_API/first_shots_data/{}_data.json'.format(season)) as data:
+    stub = ENVIRONMENT.SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH
+    with open(stub.format(season)) as data:
         firstShotsDict = json.load(data)
 
     summaryDict = {}
@@ -47,7 +49,7 @@ def getFirstShotStats(season):
     summaryDict = _summaryStats(summaryDict)
 
     summaryDict = OrderedDict(sorted(summaryDict.items(), key=lambda item: list(item)[1]['totalMakes'], reverse=True))
-    with open('Data/JSON/Public_NBA_API/player_first_shot_summary.json', 'w') as writeFile:
+    with open(ENVIRONMENT.FIRST_SHOT_SUMMARY_PATH, 'w') as writeFile:
         json.dump(summaryDict, writeFile)
     print('first shot statistics compiled. Total makes was counted as', makesOverall)
 

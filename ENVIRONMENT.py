@@ -19,17 +19,29 @@ BASE_SIGMA = 25 / 6
 BASE_RATING = 25
 BASE_DEVIATION = 25 * 25 / 3 / 3
 
-# Path management
-PLAYER_SKILL_DICT_PATH = Path(os.path.abspath('Data/JSON/player_skill_dictionary.json'))
-PLAYER_TEAM_PAIR_DICT_PATH = Path(os.path.abspath('Data/JSON/player_team_pairs.json'))
-PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/prediction_summaries.json'))
-SEASON_CSV_NEEDING_FORMAT_PATH = os.path.abspath('Data/CSV/season_data/tipoff_and_first_score_details_{}_season.csv')
-TEAM_CONVERSION_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/teams.json'))
-SHOTS_BEFORE_FIRST_SCORE_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json'))
-
 # Misc
 LIVE_ODDS_API_1 = '5f92a0468c6f365be7db417f13d52742'
 SEASONS_LIST = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
-SEASONS_LIST_SINCE_HORNETS = [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
+SEASONS_LIST_SINCE_HORNETS = SEASONS_LIST[14:]
+CURRENT_SEASON = SEASONS_LIST[-1]
 CURRENT_TEAMS = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX', 'NYK',
                 'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
+
+# Calculated Value Paths
+PLAYER_SKILL_DICT_PATH = Path(os.path.abspath('Data/JSON/player_skill_dictionary.json'))
+PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/prediction_summaries.json'))
+SEASON_CSV_UNFORMATTED_PATH = os.path.abspath('Data/CSV/season_data/tipoff_and_first_score_details_{}_season.csv')
+ALL_SHOTS_BEFORE_FIRST_FG_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json'))
+SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH = os.path.abspath('Data/JSON/Public_NBA_API/first_shots_data/{}_data.json')
+FIRST_SHOT_SUMMARY_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/player_first_shot_summary.json'))
+
+# Raw Data Paths
+PLAYER_TEAM_PAIRS_PATH = Path(os.path.abspath('Data/JSON/player_team_pairs.json'))
+CURRENT_SEASON_CSV = Path(os.path.abspath('Data/CSV/season_data/tipoff_and_first_score_details_{}_season.csv'.format(CURRENT_SEASON)))
+TEAM_NAMES_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/teams.json'))
+PLAYER_NAME_RELATIONSHIPS_PATH = Path(os.path.abspath('Data/JSON/player_name_relationships.json'))
+BET_HISTORY_PATH = Path(os.path.abspath("Data/CSV/bet_history.csv"))
+GAME_SUMMARY_UNFORMATTED_PATH = os.path.abspath('Data/CSV/season_summary_data/{}_allgames.csv')
+TEAM_TIPPER_PAIRS_PATH = Path(os.path.abspath('Data/JSON/team_tipper_pairs.json'))
+PLAYER_USAGE_PATH = Path(os.path.abspath("Data/JSON/player_usage.json"))
+A = Path(os.path.abspath('Data'))
