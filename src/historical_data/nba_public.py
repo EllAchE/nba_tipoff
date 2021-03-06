@@ -183,7 +183,6 @@ def saveAllHistoricalStarters():
         i = 0
 
         while allGamesDf.iloc[i]['SEASON_ID'] != 22012:
-            print(allGamesDf.iloc[i]['SEASON_ID'])
             print("iteration", i, "for team", shortCode)
             sleepChecker(baseTime=0, randomMultiplier=0.5, iterations=4)
             row = allGamesDf.iloc[i]

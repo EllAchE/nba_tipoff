@@ -24,6 +24,8 @@ from src.trueskill.trueskill_calc import updateSkillDictionary
 # todo TEST optimized player spreads across exchanges (i.e. look at first point on fd, bovada and dk; Need to consider first field goal as well
 # todo add player start percentage to 1st shot summary (retrieve game rotation stats from NBA API)
 # todo fix fanduel when there are games to fetch data from
+# todo performance improvements, binary search of player db
+# todo performance improvements, backwards count and metadata sto
 
 # getCurrentSeasonUsageRate()
 saveAllHistoricalStarters()
