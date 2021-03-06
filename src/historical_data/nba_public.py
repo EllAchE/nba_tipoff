@@ -27,6 +27,8 @@ Percentage of first shots made by player overall
 Percentage of first shots taken by particular player
 
 '''
+# todo get historical starting lineups
+# todo split summary data for 2nd, 3rd and 4th quarters
 import json
 
 from nba_api.stats.endpoints import gamerotation, playbyplayv2
