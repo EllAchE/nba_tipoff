@@ -12,26 +12,30 @@ from src.database.database_creation import resetPredictionSummaries, createPlaye
 from src.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
 # https://github.com/sublee/glicko2/blob/master/glicko2.py
 
-def runTSForSeason(season: str, season_csv: str, json_path: str, winning_bet_threshold: float =0.6):
-    df = pd.read_csv(season_csv)
+def runTSForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winningBetThreshold: float =0.6, startFromBeginning=False):
+    df = pd.read_csv(seasonCsv)
     # df = df[df['Home Tipper'].notnull()] # filters invalid rows
     df['Home Mu'] = None
     df['Home Sigma'] = None
     df['Away Mu'] = None
     df['Away Sigma'] = None
 
-    winning_bets = 0
-    losing_bets = 0
+    winningBets = 0
+    losingBets = 0
 
-    print('running for season doc', season_csv, '\n', '\n')
+    print('running for season doc', seasonCsv, '\n', '\n')
     col_len = len(df['Game Code'])
-    i = 0
 
-    with open(json_path) as json_file:
-        psd = json.load(json_file)
+    with open(playerSkillDictPath) as jsonFile:
+        psd = json.load(jsonFile)
 
-    with open(ENVIRONMENT.PREDICTION_SUMMARIES_PATH) as json_file:
-        dsd = json.load(json_file)
+    if startFromBeginning:
+        i = 0
+    else:
+        i = 0 # todo find index of lastGameCode
+
+    with open(ENVIRONMENT.PREDICTION_SUMMARIES_PATH) as jsonFile:
+        dsd = json.load(jsonFile)
 
     while i < col_len:
         if df['Home Tipper'].iloc[i] != df['Home Tipper'].iloc[i]:
@@ -51,7 +55,7 @@ def runTSForSeason(season: str, season_csv: str, json_path: str, winning_bet_thr
         else:
             raise ValueError('no match for winner')
 
-        beforeMatchPredictions(season, psd, dsd, hTipCode, aTipCode, tWinLink, df['First Scoring Team'].iloc[i], winning_bet_threshold)
+        beforeMatchPredictions(season, psd, dsd, hTipCode, aTipCode, tWinLink, df['First Scoring Team'].iloc[i], winningBetThreshold)
         homeMu, homeSigma, awayMu, awaySigma = updateDataSingleTipoff(psd, tWinLink, tLoseLink, hTipCode, df['Full Hyperlink'].iloc[i])
         df['Home Mu'].iloc[i] = homeMu
         df['Home Sigma'].iloc[i] = homeSigma
@@ -60,15 +64,16 @@ def runTSForSeason(season: str, season_csv: str, json_path: str, winning_bet_thr
 
         i += 1
 
-    with open(json_path, 'w') as write_file:
+    psd['lastGameCode'] = df.iloc[-1]['Game Code']
+    with open(playerSkillDictPath, 'w') as write_file:
         json.dump(psd, write_file, indent=4)
 
     with open(ENVIRONMENT.PREDICTION_SUMMARIES_PATH, 'w') as write_file:
         json.dump(dsd, write_file, indent=4)
 
-    df.to_csv(season_csv[:-4] + '-test.csv')
+    df.to_csv(seasonCsv[:-4] + '-test.csv')
 
-    return winning_bets, losing_bets
+    return winningBets, losingBets
 
 # backlogtodo setup odds prediction to use Ev or win prob rather than bet threshold
 def beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=0.6):
@@ -109,7 +114,7 @@ def beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tip
     else:
         print('no bet, not enough Data on participants')
 
-def tipWinProb(player1_code: str, player2_code: str, json_path: str = 'Data/JSON/player_skill_dictionary.json', psd: Any = None): #win prob for first player
+def tipWinProb(player1_code: str, player2_code: str, json_path: str = ENVIRONMENT.PLAYER_SKILL_DICT_PATH, psd: Any = None): #win prob for first player
     env = trueskill.TrueSkill(draw_probability=0, backend='scipy')
     env.make_as_global()
     if psd is None:
@@ -133,8 +138,8 @@ def tipWinProb(player1_code: str, player2_code: str, json_path: str = 'Data/JSON
 def runForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD):
     seasonKey = ''
     for season in seasons:
-        runTSForSeason(season, ENVIRONMENT.SEASON_CSV_NEEDING_FORMAT_PATH.format(season),
-                       ENVIRONMENT.PLAYER_SKILL_DICT_PATH, winning_bet_threshold)
+        runTSForSeason(season, ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season),
+                       ENVIRONMENT.PLAYER_SKILL_DICT_PATH, winning_bet_threshold, startFromBeginning=True)
         seasonKey += str(season) + '-'
 
     with open(ENVIRONMENT.PREDICTION_SUMMARIES_PATH) as predSum:
@@ -192,8 +197,12 @@ def _matchWithRawNums(winnerMu, winnerSigma, loserMu, loserSigma):
         winnerRatingObj, loserRatingObj = trueskill.rate_1vs1(winnerRatingObj, loserRatingObj)
         return winnerRatingObj.mu, winnerRatingObj.sigma, loserRatingObj.mu, loserRatingObj.sigma
 
-def updateSkillDictionary():
+def updateSkillDictionaryFromZero():
     resetPredictionSummaries() # reset sums
     createPlayerSkillDictionary() # clears the stored values,
     runForAllSeasons(ENVIRONMENT.SEASONS_LIST, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD)
+    print("\n", "skill dictionary updated", "\n")
+
+def updateSkillDictionaryFromLastGame():
+    runTSForSeason(ENVIRONMENT.CURRENT_SEASON, ENVIRONMENT.CURRENT_SEASON_CSV, ENVIRONMENT.PLAYER_SKILL_DICT_PATH, winningBetThreshold=0.6, startFromBeginning=False)
     print("\n", "skill dictionary updated", "\n")

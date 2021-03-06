@@ -33,7 +33,7 @@ def resetPredictionSummaries(j=ENVIRONMENT.PREDICTION_SUMMARIES_PATH):
     print('reset prediction summaries')
 
 def createPlayerSkillDictionary():
-    with open(ENVIRONMENT.PLAYER_TEAM_PAIR_DICT_PATH) as playerTeamPairsJson:
+    with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as playerTeamPairsJson:
         ptp = json.load(playerTeamPairsJson)
 
         playerCodes = set()
@@ -103,7 +103,7 @@ def saveActivePlayersTeams(start_season: int):
             seasons[season][playerCode] = {'possibleTeams': [playerTeam]}
             seasons[season][playerCode]['currentTeam'] = playerTeam
 
-    with open('Data/JSON/player_team_pairs.json', 'w') as json_file:
+    with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH, 'w') as json_file:
         json.dump(seasons, json_file, indent=4)
 
     print('saved seasons Data')
@@ -150,14 +150,13 @@ def createPlayerNameRelationship(startSeason: int=1998):
         elif playerDict['fullName'] == "Lonnie Walker":
             playerDict['alternateNames'] += ["Lonnie Walker IV"]
 
-    with open('Data/JSON/player_name_relationships.json', 'w') as json_file:
+    with open(ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH, 'w') as json_file:
         json.dump(activePlayers, json_file, indent=4)
 
     print('saved player DB Data')
 
 def getAllGameData():
-    shortCodes = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX', 'NYK',
-                'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
+    shortCodes = ENVIRONMENT.CURRENT_TEAMS
     shortCodes.sort()
     nbaTeams = teams.get_teams()
     teamDicts = [team for team in nbaTeams if team['abbreviation'] in shortCodes]
@@ -173,7 +172,7 @@ def getAllGameData():
         gamefinder = leaguegamefinder.LeagueGameFinder(team_id_nullable=id)
         teamGameList.append(gamefinder.get_data_frames()[0])
 
-    basePath = "Data/CSV/season_summary_data/{}_allgames.csv"
+    basePath = ENVIRONMENT.GAME_SUMMARY_UNFORMATTED_PATH
     for teamDf in teamGameList:
         teamName = teamDf.iloc[0]["TEAM_ABBREVIATION"]
         teamDf.to_csv(basePath.format(teamName))

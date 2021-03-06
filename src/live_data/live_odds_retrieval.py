@@ -37,7 +37,7 @@ def getExpectedTipper(team):
     tipper = tipperFromTeam(team)
     return tipper
 
-def getLastTipper(team_code, season_csv='CSV/tipoff_and_first_score_details_2021_season.csv'):
+def getLastTipper(team_code, season_csv=ENVIRONMENT.CURRENT_SEASON_CSV):
     df = pd.read_csv(season_csv)
     i = len(df['Game Code']) - 1
     while i >= 0:
@@ -58,7 +58,7 @@ def teamCodeToSlugName(team_code, team_dict=None, json_path=None):
         with open(json_path) as j_file:
             team_dict = json.load(j_file)
     elif team_dict is None:
-        with open('Data/JSON/Public_NBA_API/teams.json') as j_file:
+        with open(ENVIRONMENT.TEAM_NAMES_PATH) as j_file:
             team_dict = json.load(j_file)
 
     for team in team_dict:
@@ -294,6 +294,49 @@ def draftKingsOdds():
         gameLine["awayPlayerFirstQuarterOdds"] = playerTeamDict[gameLine["away"]]
 
     return allGameLines
+
+def fanduelOdds():
+    # export
+    # const
+    # collect = async () = > {
+    #     const
+    # date = new
+    # Date();
+    # let
+    # oddsList: odds[] = [];
+    # const
+    # gamesResponse: GamesResponse = await util.get("https://sportsbook.fanduel.com/cache/psmg/UK/63747.3.json");
+    # const
+    # listOfGames = gamesResponse.events.map((game) = > game.idfoevent);
+    # console.log(listOfGames);
+    #
+    # for (const game of listOfGames) {
+    #     const gameResponse: GameResponse = await util.get(
+    #     `https: // sportsbook.fanduel.com / cache / psevent / UK / 1 / false /${game}.json
+    # `);
+    #
+    # for (const eventMarketGroup of gameResponse.eventmarketgroups) {
+    # for (const market of eventMarketGroup.markets) {
+    # for (const selection of market.selections) {
+    # oddsList.push({
+    # date: date,
+    #       gameCode: getGameCode(new
+    # Date(gameResponse.tsstart), gameResponse.participantshortname_home.split(" ")[0]),
+    # gameDatetime: gameResponse.tsstart,
+    # home: gameResponse.participantshortname_home.split(" ")[0],
+    # away: gameResponse.participantshortname_away.split(" ")[0],
+    # exchange: "fanduel",
+    # betName: market.name,
+    # subBetName: selection.name,
+    # americanOdds: getAmericanOdds(selection.currentpriceup, selection.currentpricedown),
+    # currentPriceUp: selection.currentpriceup,
+    # currentPriceDown: selection.currentpricedown,
+    # });
+    # }
+    # }
+    # }
+    # }
+    pass
 
 def mgmOdds():
     # https://sports.co.betmgm.com/en/sports/events/minnesota-timberwolves-at-san-antonio-spurs-11101908?market=10000
@@ -573,15 +616,14 @@ def getStarters(team_code: str, team_dict: dict=None):
     return starters_list
 
 def tipperFromTeam(teamShort: str):
-    with open('Data/JSON/team_tipper_pairs.json') as file:
+    with open(ENVIRONMENT.TEAM_TIPPER_PAIRS_PATH) as file:
         dict = json.load(file)
     for row in dict["pairs"]:
         if teamShort == row["team"]:
             return row["playerCode"]
 
 def getAllExpectedStarters():
-    teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX', 'NYK',
-                'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
+    teamList = ENVIRONMENT.CURRENT_TEAMS
     teamList.sort()
     for team in teamList:
         sleepChecker(iterations=5, baseTime=1, randomMultiplier=1)
@@ -600,8 +642,7 @@ def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='unspecif
 
 
 def createTeamTipperDict():
-    teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX', 'NYK'
-                'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
+    teamList = ENVIRONMENT.CURRENT_TEAMS
     teamList.sort()
     startersList = list()
     tipperList = list()
@@ -628,7 +669,7 @@ def createTeamTipperDict():
         tipperList.append({"playerCode":code, "team": teamLine["team"]})
     fullJson["pairs"] = tipperList
 
-    with open('Data/JSON/team_tipper_pairs.json', 'w') as file:
+    with open(ENVIRONMENT.TEAM_TIPPER_PAIRS_PATH, 'w') as file:
         json.dump(fullJson, file, indent=4)
 
 

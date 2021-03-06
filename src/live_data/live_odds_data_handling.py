@@ -2,9 +2,12 @@
 import json
 from datetime import datetime
 
+from src.classes.FanduelGameOdds import FanduelGameOdds
 from src.classes.GameOdds import GameOdds
+from src.database.database_access import getUniversalPlayerName
 from src.live_data.live_odds_retrieval import draftKingsOdds, mgmOdds, bovadaOdds, pointsBetOdds, unibetOdds, \
-    barstoolOdds
+    barstoolOdds, fanduelOdds
+from src.odds_and_statistics.odds_calculator import americanToDecimal
 
 
 def makeTeamPlayerLinePairs(playerLines, teamLines):
@@ -46,17 +49,54 @@ def createAllOddsDictForExchange(allGameDictsFromExchange, playerOdds=True, team
         allOddsDicts.append(createSingleOddsDict(rawGameDict, playerOdds=playerOdds, teamOdds=teamOdds))
     return allOddsDicts
 
-def createAllOddsDict(getDk=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False):
+def createOptimalPlayerSpreadObject(gameOddsObjList):
+    optimalSpreadsList = list()
+    emptyOddsDict = createEmptyOddsDict()
+    gameCodeSet = set()
+    bestPlayerOddsDict = {}
+    for game in gameOddsObjList:
+        if game.isTeamOnly:
+            continue
+        gameCodeSet.add({"code": game.gameCode, "home": game.home, "away": game.away})
+
+    for game in gameOddsObjList:
+        for line in (game.homePlayerOddsList + game.awayPlayerOddsList):
+            universalName = getUniversalPlayerName(line['player'])
+            try:
+                if americanToDecimal(bestPlayerOddsDict[universalName]['odds']) < americanToDecimal(line['odds']):
+                    bestPlayerOddsDict[universalName]['odds'] = line['odds']
+                    bestPlayerOddsDict[universalName]['exchange'] = game.exchange
+            except: # backlogtodo shouldn;t use except to see if key is populated
+                bestPlayerOddsDict[universalName] = line
+                bestPlayerOddsDict[universalName]['exchange'] = game.exchange
+
+    for gameCodeAndTeamNames in gameCodeSet:
+        tempOddsDict = emptyOddsDict
+        tempOddsDict['gameCode'] = gameCodeAndTeamNames['code']
+        tempOddsDict['home'] = gameCodeAndTeamNames['home']
+        tempOddsDict['away'] = gameCodeAndTeamNames['away']
+        tempOddsDict['exchange'] = "OPTIMAL PLAYER SPREAD"
+        for key in bestPlayerOddsDict.keys():
+            if bestPlayerOddsDict[key]['team'] == tempOddsDict['home']:
+                tempOddsDict['playerOdds']['homePlayerScoreFirstOdds'].append(bestPlayerOddsDict[key])
+            elif bestPlayerOddsDict[key]['team'] == tempOddsDict['away']:
+                tempOddsDict['playerOdds']['awayPlayerScoreFirstOdds'].append(bestPlayerOddsDict[key])
+        optimalSpreadsList.append(GameOdds(tempOddsDict, playersOnly=True))
+
+    return optimalSpreadsList
+
+
+def createAllOddsDict(getDk=False, getFanduel=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False):
     allGameObjList = list()
 
-    if getBovada:
-        bovadaDicts = createAllOddsDictForExchange(bovadaOdds(), playerOdds=False)
-        for rawOddsDict in bovadaDicts:
-            gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
+    if getFanduel:
+        dkOddsDicts = createAllOddsDictForExchange(fanduelOdds())
+        for rawOddsDict in dkOddsDicts:
+            gameOddsObj = FanduelGameOdds(rawOddsDict)
             allGameObjList.append(gameOddsObj)
 
     if getDk:
-        dkOddsDicts = createAllOddsDictForExchange(draftKingsOdds(), 'draftkings')
+        dkOddsDicts = createAllOddsDictForExchange(draftKingsOdds())
         for rawOddsDict in dkOddsDicts:
             gameOddsObj = GameOdds(rawOddsDict)
             allGameObjList.append(gameOddsObj)
@@ -64,6 +104,12 @@ def createAllOddsDict(getDk=False, getMgm=False, getBovada=False, getPointsBet=F
     if getMgm:
         mgmOddsDicts = createAllOddsDictForExchange(mgmOdds(), playerOdds=False)
         for rawOddsDict in mgmOddsDicts:
+            gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
+            allGameObjList.append(gameOddsObj)
+
+    if getBovada:
+        bovadaDicts = createAllOddsDictForExchange(bovadaOdds(), playerOdds=False)
+        for rawOddsDict in bovadaDicts:
             gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
             allGameObjList.append(gameOddsObj)
 
@@ -84,6 +130,10 @@ def createAllOddsDict(getDk=False, getMgm=False, getBovada=False, getPointsBet=F
         for rawOddsDict in barstoolOddsDicts:
             gameOddsObj = GameOdds(rawOddsDict, playersOnly=True)
             allGameObjList.append(gameOddsObj)
+
+    optimalPlayerSpreads = createOptimalPlayerSpreadObject(allGameObjList)
+    for obj in optimalPlayerSpreads:
+        allGameObjList.append(obj)
 
     return allGameObjList # backlogtodo this dict can be saved for reference for backtesting
 
@@ -106,3 +156,48 @@ def createEmptyOddsDict():
         "awayPlayerFirstQuarterOdds": []
       }
     }
+
+
+# def createOptimalPlayerSpreadObject(gameOddsObjList):
+#     optimalSpreadsList = list()
+#     emptyOddsDict = createEmptyOddsDict()
+#     gameCodeSet = set()
+#     teamBestLineDict = {}
+#     for game in gameOddsObjList:
+#         if game.isTeamOnly:
+#             continue
+#         gameCodeSet.add({"code": game.gameCode, "home": game.home, "away": game.away})
+#         teamBestLineDict[game.home] = []
+#         teamBestLineDict[game.away] = []
+#
+#     for game in gameOddsObjList:
+#         homePlayerLines = game.homePlayerOddsList
+#         awayPlayerLines = game.awayPlayerOddsList
+#
+#         for line in homePlayerLines:
+#             name = getUniversalPlayerName(line['player'])
+#             listLen = len(teamBestLineDict[game.home])
+#             i = 0
+#             while i < listLen:
+#                 if name == getUniversalPlayerName(teamBestLineDict[game.home][i]) and americanToDecimal(teamBestLineDict[game.home][i]['odds']) > americanToDecimal(line['odds']):
+#                     teamBestLineDict[game.home][i]['odds'] = line['odds']
+#
+#         for line in awayPlayerLines:
+#             name = getUniversalPlayerName(line['player'])
+#             listLen = len(teamBestLineDict[game.away])
+#             i = 0
+#             while i < listLen:
+#                 if name == getUniversalPlayerName(teamBestLineDict[game.away][i]):
+#                     if americanToDecimal(teamBestLineDict[game.away][i]['odds']) > americanToDecimal(line['odds']):
+#                         teamBestLineDict[game.away][i]['odds'] = line['odds']
+#                 else:
+#                     teamBestLineDict[]
+#
+#     for gameCodeAndTeamNames in gameCodeSet:
+#         tempOddsDict = emptyOddsDict
+#         tempOddsDict['gameCode'] = gameCodeAndTeamNames['code']
+#         tempOddsDict['home'] = gameCodeAndTeamNames['home']
+#         tempOddsDict['away'] = gameCodeAndTeamNames['away']
+#         tempOddsDict['playerOdds']['homePlayerScoreFirstOdds'] = teamBestLineDict[gameCodeSet['home']]
+#         tempOddsDict['playerOdds']['awayPlayerScoreFirstOdds'] = teamBestLineDict[gameCodeSet['away']]
+#         optimalSpreadsList.append(GameOdds(tempOddsDict, playersOnly=True))

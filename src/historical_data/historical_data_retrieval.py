@@ -9,6 +9,7 @@ import re
 # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
 # backlogtodo BACKLOG get playbyplay from NCAA for rookie projections
 # https://www.ncaa.com/game/5763659/play-by-play
+import ENVIRONMENT
 from src.database.database_access import getPlayerTeamInSeasonFromBballRefLink
 from src.utils import getSoupFromUrl, \
     sleepChecker
@@ -181,7 +182,7 @@ def getOffDefRatings(season=None, savePath=None):
 
     return seasonDict
 
-def updateCurrentSeason(pathToData='Data/CSV/season_data/tipoff_and_first_score_details_2021_season.csv', currentSeason=2021):
+def updateCurrentSeason(pathToData=ENVIRONMENT.CURRENT_SEASON_CSV, currentSeason=2021):
     df = pd.read_csv(pathToData)
     appendFile = open(pathToData, 'a')
     indexAfterLastGame = len(df)

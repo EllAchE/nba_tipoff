@@ -3,16 +3,16 @@ from datetime import datetime
 
 # 1) record bet data that are placed
 # 2) take the odds even if bets aren't placed
-
+import ENVIRONMENT
+#todo this should be archived as it won't be needed unles a site doesn't offer retroactive vie of your bet history
 
 def recordBet(exchange: str, team: str, amount: int, odds: str, includeCurrentDate=True): #assumes this is being done on the same day as the game
     dateStr = "NA"
-    path = "Data/CSV/bet_history.csv"
     if includeCurrentDate:
         date = datetime.now()
         dateStr = date.strftime("%Y-%m-%d")
 
-    appendFile = open(path, 'a')
+    appendFile = open(ENVIRONMENT.BET_HISTORY_PATH, 'a')
 
     with appendFile:
         csvWriter = csv.writer(appendFile)

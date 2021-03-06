@@ -8,11 +8,11 @@
 from src.database.database_creation import getAllGameData
 from src.historical_data.historical_data_retrieval import updateCurrentSeason
 from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrementally, \
-    splitAllSeasonsFirstShotDataToMultipleFiles
+    splitAllSeasonsFirstShotDataToMultipleFiles, getSingleGameStarters, saveAllHistoricalStarters
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 from src.odds_and_statistics.prediction_enhancements import getFirstShotStats, getCurrentSeasonUsageRate
-from src.trueskill.trueskill_calc import updateSkillDictionary
+from src.trueskill.trueskill_calc import updateSkillDictionaryFromZero
 
 # getAllGameData()
 
@@ -21,15 +21,19 @@ from src.trueskill.trueskill_calc import updateSkillDictionary
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
 
-# todo separate out seasons first shot data
-# todo to optimize the player spreads completely you can bet on different players at different prices across exchanges
+# todo TEST optimized player spreads across exchanges (i.e. look at first point on fd, bovada and dk; Need to consider first field goal as well
 # todo add player start percentage to 1st shot summary (retrieve game rotation stats from NBA API)
-# todo get starting lineups
+# todo fix fanduel when there are games to fetch data from
+# todo performance improvements, binary search of player db
+# todo performance improvements, backwards count and metadata sto
+# todo use environment rather than hardcoded 2021 for current season
+# todo use environment for storing all paths
+# todo wrap post formatted paths in Path object to be functional for windows (if needed)
 
-getCurrentSeasonUsageRate()
+# getCurrentSeasonUsageRate()
 
 # updateCurrentSeason()
-# updateSkillDictionary()
+updateSkillDictionaryFromZero()
 
 # getFirstShotStats(2021)
 #
@@ -40,18 +44,7 @@ getCurrentSeasonUsageRate()
 # getDailyOdds('IND', 'DEN', '-111')
 # getDailyOdds('LAC', 'WAS', '+100')
 
-# getAllOddsAndDisplayByEv(getDk=True)
-# print("####### NEW EXCHANGE ########", '\n', '\n')
-# getAllOddsAndDisplayByEv(getBovada=True)
-# print("####### NEW EXCHANGE ########", '\n', '\n')
-# getAllOddsAndDisplayByEv(getMgm=True)
-# print("####### NEW EXCHANGE ########", '\n', '\n')
-# getAllOddsAndDisplayByEv(getPointsBet=True)
-# print("####### NEW EXCHANGE ########", '\n', '\n')
-# getAllOddsAndDisplayByEv(getUnibet=True)
-# print("####### NEW EXCHANGE ########", '\n', '\n')
-# getAllOddsAndDisplayByEv(getBarstool=True)
-# print("####### NEW EXCHANGE ########", '\n', '\n')
+# getAllOddsAndDisplayByEv(getDk=True, getBovada=True, getMgm=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)
 
 #backlogtodo see about optimizing this fetching
 
@@ -95,7 +88,6 @@ https://punter2pro.com/best-sports-arbing-software/
 # backlogtodo set up backtester with assumed odds lines, i.e. assuming we are always offered odds on a team of -110, how would the strat perform? (the default should -110)
 # backlogtodo OVERKILL set up bankroll tracker (with stored values on each site and overall).
 # backogtodo test if adding in the start of overtime tip performance enhances predictions (may be fatigue facotr/not as good)
-# todo test the enhanced score first predictions for 2nd, 3rd and 4th quarters
 # backlogtodo account for overrepresentation of playoff teams
 
 # MISC
