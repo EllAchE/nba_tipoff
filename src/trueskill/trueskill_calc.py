@@ -12,7 +12,7 @@ from src.database.database_creation import resetPredictionSummaries, createPlaye
 from src.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
 # https://github.com/sublee/glicko2/blob/master/glicko2.py
 
-def runTSForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winningBetThreshold: float =0.6, startFromBeginning=False):
+def runTSForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winningBetThreshold: float=0.6, startFromBeginning=False):
     df = pd.read_csv(seasonCsv)
     # df = df[df['Home Tipper'].notnull()] # filters invalid rows
     df['Home Mu'] = None
@@ -24,7 +24,7 @@ def runTSForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winnin
     losingBets = 0
 
     print('running for season doc', seasonCsv, '\n', '\n')
-    col_len = len(df['Game Code'])
+    colLen = len(df['Game Code'])
 
     with open(playerSkillDictPath) as jsonFile:
         psd = json.load(jsonFile)
@@ -32,12 +32,17 @@ def runTSForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winnin
     if startFromBeginning:
         i = 0
     else:
-        i = 0 # todo find index of lastGameCode
+        i = colLen
+        lastGameCode = psd['lastGameCode']
+        while df.iloc[i] != lastGameCode:
+            i -= 1
+        i += 1
+        # todo test this new logic
 
     with open(ENVIRONMENT.PREDICTION_SUMMARIES_PATH) as jsonFile:
         dsd = json.load(jsonFile)
 
-    while i < col_len:
+    while i < colLen:
         if df['Home Tipper'].iloc[i] != df['Home Tipper'].iloc[i]:
             i += 1
             continue
