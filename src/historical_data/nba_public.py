@@ -181,26 +181,28 @@ def saveAllHistoricalStarters():
         allGamesDf['awayStarter4'] = None
         allGamesDf['awayStarter5'] = None
         i = 0
-        validSeasons = '22012'
-        while allGamesDf.iloc[i]['SEASON_ID'] != validSeasons:
+
+        while allGamesDf.iloc[i]['SEASON_ID'] != 22012:
+            print(allGamesDf.iloc[i]['SEASON_ID'])
+            print("iteration", i, "for team", shortCode)
             sleepChecker(baseTime=0, randomMultiplier=0.5, iterations=4)
             row = allGamesDf.iloc[i]
-            i += 1
-            homeTeam, homeStarters, awayTeam, awayStarters = getSingleGameStarters(row['GAME_ID'])
-            isHome = "vs." in row["MATCHUP"]
-            if isHome:
+            try:
+                homeTeam, homeStarters, awayTeam, awayStarters = getSingleGameStarters(row['GAME_ID'])
                 allGamesDf.at[i, 'homeStarter1'] = homeStarters[0]
                 allGamesDf.at[i, 'homeStarter2'] = homeStarters[1]
                 allGamesDf.at[i, 'homeStarter3'] = homeStarters[2]
                 allGamesDf.at[i, 'homeStarter4'] = homeStarters[3]
                 allGamesDf.at[i, 'homeStarter5'] = homeStarters[4]
-            else:
                 allGamesDf.at[i, 'awayStarter1'] = awayStarters[0]
                 allGamesDf.at[i, 'awayStarter2'] = awayStarters[1]
                 allGamesDf.at[i, 'awayStarter3'] = awayStarters[2]
                 allGamesDf.at[i, 'awayStarter4'] = awayStarters[3]
                 allGamesDf.at[i, 'awayStarter5'] = awayStarters[4]
-        allGamesDf.to_csv(path)
+            except:
+                print('some error occured, values will stay as None')
+            i += 1
+        allGamesDf.to_csv(path, index=False)
         # todo test this method
 
 def getSingleGameStarters(gameId):
@@ -218,7 +220,6 @@ def getSingleGameStarters(gameId):
     url = urlStub.format('00' + str(gameId))
 
     response = requests.get(url, headers=headers).json()
-    print()
 
     homeStartersSet = set()
     awayStartersSet = set()
@@ -232,11 +233,11 @@ def getSingleGameStarters(gameId):
     homeTeam = getUniversalShortCode(homeTeamObj['rowSet'][0][2] + ' ' + homeTeamObj['rowSet'][0][3])
     awayTeam = getUniversalShortCode(awayTeamObj['rowSet'][0][2] + ' ' + awayTeamObj['rowSet'][0][3])
 
-    for playerInOut in awayTeamObj['rowSet']:
+    for playerInOut in homeTeamObj['rowSet']:
         if playerInOut[-5] == 0.0:
             name = playerInOut[5] + ' ' + playerInOut[6]
             homeStartersSet.add(getUniversalPlayerName(name))
-    for playerInOut in homeTeamObj['rowSet']:
+    for playerInOut in awayTeamObj['rowSet']:
         if playerInOut[-5] == 0.0:
             name = playerInOut[5] + ' ' + playerInOut[6]
             awayStartersSet.add(getUniversalPlayerName(name))

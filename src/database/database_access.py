@@ -78,7 +78,9 @@ def getUniversalPlayerName(playerInUnknownFormat):
             pass
 
     if not match:
-        raise ValueError("player", playerInUnknownFormat, "did not have a match")
+        # raise ValueError("player", playerInUnknownFormat, "did not have a match")
+        print("player", playerInUnknownFormat, "did not have a match, things may break")
+        return playerInUnknownFormat
     return player['universalName']
 
 def getPlayerCurrentTeam(universalPlayerName): # Returns a list
