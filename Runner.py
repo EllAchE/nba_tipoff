@@ -8,7 +8,7 @@
 from src.database.database_creation import getAllGameData
 from src.historical_data.historical_data_retrieval import updateCurrentSeason
 from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrementally, \
-    splitAllSeasonsFirstShotDataToMultipleFiles, getSingleGameStarters
+    splitAllSeasonsFirstShotDataToMultipleFiles, getSingleGameStarters, saveAllHistoricalStarters
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 from src.odds_and_statistics.prediction_enhancements import getFirstShotStats, getCurrentSeasonUsageRate
@@ -26,7 +26,7 @@ from src.trueskill.trueskill_calc import updateSkillDictionary
 # todo fix fanduel when there are games to fetch data from
 
 # getCurrentSeasonUsageRate()
-
+saveAllHistoricalStarters()
 # updateCurrentSeason()
 # updateSkillDictionary()
 
