@@ -215,8 +215,10 @@ def getSingleGameStarters(gameId):
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
     }
     urlStub = 'https://stats.nba.com/stats/gamerotation?GameID={}&LeagueID=00'
+    url = urlStub.format('00' + str(gameId))
 
-    response = requests.get(urlStub.format(gameId), headers=headers).json()
+    response = requests.get(url, headers=headers).json()
+    print()
 
     homeStartersSet = set()
     awayStartersSet = set()
