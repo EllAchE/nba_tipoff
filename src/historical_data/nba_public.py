@@ -181,8 +181,9 @@ def saveAllHistoricalStarters():
         allGamesDf['awayStarter4'] = None
         allGamesDf['awayStarter5'] = None
         i = 0
-        validSeasons = ['22020', '22019', '22018', '22017', '22016', '22015', '22014', '22013']
-        while allGamesDf.iloc[i]['SEASON_ID'] in validSeasons:
+        validSeasons = '22012'
+        while allGamesDf.iloc[i]['SEASON_ID'] != validSeasons:
+            sleepChecker(baseTime=0, randomMultiplier=0.5, iterations=4)
             row = allGamesDf.iloc[i]
             i += 1
             homeTeam, homeStarters, awayTeam, awayStarters = getSingleGameStarters(row['GAME_ID'])
