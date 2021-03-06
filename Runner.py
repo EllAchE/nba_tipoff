@@ -8,7 +8,7 @@
 from src.database.database_creation import getAllGameData
 from src.historical_data.historical_data_retrieval import updateCurrentSeason
 from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrementally, \
-    splitAllSeasonsFirstShotDataToMultipleFiles
+    splitAllSeasonsFirstShotDataToMultipleFiles, getSingleGameStarters
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 from src.odds_and_statistics.prediction_enhancements import getFirstShotStats, getCurrentSeasonUsageRate
@@ -21,10 +21,11 @@ from src.trueskill.trueskill_calc import updateSkillDictionary
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
 
-# todo optimize player spreads across exchanges (i.e. look at first point on fd, bovada and dk; consider first field goal as well
+# todo TEST optimized player spreads across exchanges (i.e. look at first point on fd, bovada and dk; Need to consider first field goal as well
 # todo add player start percentage to 1st shot summary (retrieve game rotation stats from NBA API)
+# todo fix fanduel when there are games to fetch data from
 
-getCurrentSeasonUsageRate()
+# getCurrentSeasonUsageRate()
 
 # updateCurrentSeason()
 # updateSkillDictionary()
@@ -38,7 +39,7 @@ getCurrentSeasonUsageRate()
 # getDailyOdds('IND', 'DEN', '-111')
 # getDailyOdds('LAC', 'WAS', '+100')
 
-getAllOddsAndDisplayByEv(getDk=True, getBovada=True, getMgm=True, getPointsBet=True, getUnibet=True, getBarstool=True)
+# getAllOddsAndDisplayByEv(getDk=True, getBovada=True, getMgm=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)
 
 #backlogtodo see about optimizing this fetching
 

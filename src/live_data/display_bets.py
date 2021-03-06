@@ -1,6 +1,5 @@
 from typing import Any
 from datetime import datetime
-import json
 import jsonpickle
 
 from src.classes.GameOdds import GameOdds

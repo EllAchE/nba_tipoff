@@ -31,13 +31,15 @@ Percentage of first shots taken by particular player
 # todo split summary data for 2nd, 3rd and 4th quarters
 import json
 
+import requests
 from nba_api.stats.endpoints import gamerotation, playbyplayv2
 from typing import Any
 import pandas as pd
 
+import ENVIRONMENT
 from src.database.database_access import findPlayerFullFromLastGivenPossibleFullNames, getGameIdFromBballRef, \
     getTeamDictionaryFromShortCode, getAllGamesForTeam, getBballRefPlayerName, \
-    getGameIdByTeamAndDateFromStaticData
+    getGameIdByTeamAndDateFromStaticData, getUniversalPlayerName, getUniversalShortCode
 from src.utils import sleepChecker
 
 # backlogTodo different sites may only look at first field goal (NOT FREE THROW) which makes for a weaker correlation
@@ -163,11 +165,88 @@ def getParticipatingTeamsFromId(id): # (id: str) -> dict[str, str]:
     
     return {"home": homeTeamCity + ' ' + homeTeamName, "homeId": homeTeamId, "away": awayTeamCity + ' ' + awayTeamName, "awayId": awayTeamId}
 
-# backlogtodo get historical starters
-def getStartersHistorical():
+def saveAllHistoricalStarters():
+    stub = 'Data/CSV/season_summary_data/{}_allgames.csv'
+    for shortCode in ENVIRONMENT.CURRENT_TEAMS:
+        path = stub.format(shortCode)
+        allGamesDf = pd.read_csv(path)
+        allGamesDf['homeStarter1'] = None
+        allGamesDf['homeStarter2'] = None
+        allGamesDf['homeStarter3'] = None
+        allGamesDf['homeStarter4'] = None
+        allGamesDf['homeStarter5'] = None
+        allGamesDf['awayStarter1'] = None
+        allGamesDf['awayStarter2'] = None
+        allGamesDf['awayStarter3'] = None
+        allGamesDf['awayStarter4'] = None
+        allGamesDf['awayStarter5'] = None
+        i = 0
+        validSeasons = ['22020', '22019', '22018', '22017', '22016', '22015', '22014', '22013']
+        while allGamesDf.iloc[i]['SEASON_ID'] in validSeasons:
+            row = allGamesDf.iloc[i]
+            i += 1
+            homeTeam, homeStarters, awayTeam, awayStarters = getSingleGameStarters(row['GAME_ID'])
+            isHome = "vs." in row["MATCHUP"]
+            if isHome:
+                allGamesDf.at[i, 'homeStarter1'] = homeStarters[0]
+                allGamesDf.at[i, 'homeStarter2'] = homeStarters[1]
+                allGamesDf.at[i, 'homeStarter3'] = homeStarters[2]
+                allGamesDf.at[i, 'homeStarter4'] = homeStarters[3]
+                allGamesDf.at[i, 'homeStarter5'] = homeStarters[4]
+            else:
+                allGamesDf.at[i, 'awayStarter1'] = awayStarters[0]
+                allGamesDf.at[i, 'awayStarter2'] = awayStarters[1]
+                allGamesDf.at[i, 'awayStarter3'] = awayStarters[2]
+                allGamesDf.at[i, 'awayStarter4'] = awayStarters[3]
+                allGamesDf.at[i, 'awayStarter5'] = awayStarters[4]
+        allGamesDf.to_csv(path)
+        # todo test this method
+
+def getSingleGameStarters(gameId):
     # https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/gamerotation.md
     # this endpoint should provide the data
-    pass
+    # https://stats.nba.com/stats/gamerotation?GameID=0022000524&LeagueID=00
+    headers = {
+        "x-nba-stats-token":"true",
+        "x-nba-stats-origin":"stats",
+        "Origin":"https://nba.com",
+        "Referer":"https://nba.com/",
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
+    }
+    urlStub = 'https://stats.nba.com/stats/gamerotation?GameID={}&LeagueID=00'
+
+    response = requests.get(urlStub.format(gameId), headers=headers).json()
+
+    homeStartersSet = set()
+    awayStartersSet = set()
+    if response['resultSets'][0]['name'] == "AwayTeam":
+        awayTeamObj = response['resultSets'][0]
+        homeTeamObj = response['resultSets'][1]
+    else:
+        awayTeamObj = response['resultSets'][1]
+        homeTeamObj = response['resultSets'][0]
+
+    homeTeam = getUniversalShortCode(homeTeamObj['rowSet'][0][2] + ' ' + homeTeamObj['rowSet'][0][3])
+    awayTeam = getUniversalShortCode(awayTeamObj['rowSet'][0][2] + ' ' + awayTeamObj['rowSet'][0][3])
+
+    for playerInOut in awayTeamObj['rowSet']:
+        if playerInOut[-5] == 0.0:
+            name = playerInOut[5] + ' ' + playerInOut[6]
+            homeStartersSet.add(getUniversalPlayerName(name))
+    for playerInOut in homeTeamObj['rowSet']:
+        if playerInOut[-5] == 0.0:
+            name = playerInOut[5] + ' ' + playerInOut[6]
+            awayStartersSet.add(getUniversalPlayerName(name))
+
+    homeStarters = list()
+    awayStarters = list()
+    for item in homeStartersSet:
+        homeStarters.append(item)
+    for item in awayStartersSet:
+        awayStarters.append(item)
+
+    return homeTeam, homeStarters, awayTeam, awayStarters
+
 
 def getGamePlayersFromId(id):
     playerSet = set()

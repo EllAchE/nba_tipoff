@@ -142,9 +142,6 @@ def americanToDecimal(americanOdds: Any):
     odds = positiveEvThresholdFromAmerican(americanOdds)
     return 1 / odds
 
-def check_for_edge(home_team: Any, away_team: Any, home_c: Any, away_c: Any, home_odds: Any, away_odds: Any, bankroll: Any):
-    pass
-
 def tipScoreProb(tipWinOdds: float, tipWinnerScoresOdds: float = ENVIRONMENT.TIP_WINNER_SCORE_ODDS):
     return tipWinOdds * tipWinnerScoresOdds + (1 - tipWinOdds) * (1 - tipWinnerScoresOdds)
 

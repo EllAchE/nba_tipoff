@@ -156,8 +156,7 @@ def createPlayerNameRelationship(startSeason: int=1998):
     print('saved player DB Data')
 
 def getAllGameData():
-    shortCodes = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX', 'NYK',
-                'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
+    shortCodes = ENVIRONMENT.CURRENT_TEAMS
     shortCodes.sort()
     nbaTeams = teams.get_teams()
     teamDicts = [team for team in nbaTeams if team['abbreviation'] in shortCodes]

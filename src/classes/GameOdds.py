@@ -1,8 +1,6 @@
 from src.odds_and_statistics.odds_calculator import convertPlayerLinesToSingleLine, returnGreaterOdds, \
-    positiveEvThresholdFromAmerican, getScoreProb, kellyBetFromAOddsAndScoreProb, getEvMultiplier, getPlayerSpread, \
-    costFor100
+    positiveEvThresholdFromAmerican, getScoreProb, kellyBetFromAOddsAndScoreProb, getEvMultiplier, getPlayerSpread
 from src.live_data.live_odds_retrieval import getExpectedTipper
-
 
 class GameOdds:
     def __init__(self, gameDict, teamOnly=False, playersOnly=False):
@@ -17,8 +15,8 @@ class GameOdds:
         self.gameCode = self.home + " @ " + self.away + " " + self.fetchedDatetime[:10]
 
         if not playersOnly:
-            self.homeTeamOdds = str(gameDict['teamOdds']['homeTeamFirstQuarterOdds'])
-            self.awayTeamOdds = str(gameDict['teamOdds']['awayTeamFirstQuarterOdds'])
+            self.homeTeamFirstQuarterOdds = str(gameDict['teamOdds']['homeTeamFirstQuarterOdds'])
+            self.awayTeamFirsQuarterOdds = str(gameDict['teamOdds']['awayTeamFirstQuarterOdds'])
         if not teamOnly:
             self.homePlayerOddsList = gameDict['playerOdds']['homePlayerFirstQuarterOdds']
             self.awayPlayerOddsList = gameDict['playerOdds']['awayPlayerFirstQuarterOdds']
@@ -41,20 +39,20 @@ class GameOdds:
                     print("player odds failed, odds will stay as None")
 
         if teamOnly:
-            self.bestHomeOdds = self.homeTeamOdds
-            self.bestAwayOdds = self.awayTeamOdds
+            self.bestHomeOdds = self.homeTeamFirstQuarterOdds
+            self.bestAwayOdds = self.awayTeamFirsQuarterOdds
         elif playersOnly:
             self.bestHomeOdds = self.homePlayerFloorOdds
             self.bestAwayOdds = self.awayPlayerFloorOdds
-        elif self.homeTeamOdds is None:
+        elif self.homeTeamFirstQuarterOdds is None:
             self.bestHomeOdds = self.homePlayerFloorOdds
             self.bestAwayOdds = self.awayPlayerFloorOdds
         elif self.awayPlayerFloorOdds is None:
-            self.bestHomeOdds = self.homeTeamOdds
-            self.bestAwayOdds = self.awayTeamOdds
+            self.bestHomeOdds = self.homeTeamFirstQuarterOdds
+            self.bestAwayOdds = self.awayTeamFirsQuarterOdds
         else:
-            self.bestHomeOdds = returnGreaterOdds(self.homeTeamOdds, self.homePlayerFloorOdds)
-            self.bestAwayOdds = returnGreaterOdds(self.awayTeamOdds, self.awayPlayerFloorOdds)
+            self.bestHomeOdds = returnGreaterOdds(self.homeTeamFirstQuarterOdds, self.homePlayerFloorOdds)
+            self.bestAwayOdds = returnGreaterOdds(self.awayTeamFirsQuarterOdds, self.awayPlayerFloorOdds)
         self.minHomeWinPercentage = positiveEvThresholdFromAmerican(self.bestHomeOdds)
         self.minAwayWinPercentage = positiveEvThresholdFromAmerican(self.bestAwayOdds)
 
@@ -70,8 +68,8 @@ class GameOdds:
         self.kellyBet = None
 
         if not playersOnly:
-            self.homeTeamKellyBet = kellyBetFromAOddsAndScoreProb(self.homeScoreProb, self.homeTeamOdds)
-            self.awayTeamKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.awayTeamOdds)
+            self.homeTeamKellyBet = kellyBetFromAOddsAndScoreProb(self.homeScoreProb, self.homeTeamFirstQuarterOdds)
+            self.awayTeamKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.awayTeamFirsQuarterOdds)
         elif not teamOnly:
             self.homePlayersKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.homePlayerFloorOdds)
             self.awayPlayersKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.awayPlayerFloorOdds)
@@ -85,32 +83,32 @@ class GameOdds:
         self.awayEVFactor = getEvMultiplier(self.awayScoreProb, self.minAwayWinPercentage)
         if self.awayEVFactor < self.homeEVFactor:
             self.bestEVFactor = self.homeEVFactor
-            if self.homeTeamOdds is None:
+            if self.homeTeamFirstQuarterOdds is None:
                 self.betOnVia = "PLAYERS"
             elif self.homePlayerFloorOdds is None:
                 self.betOnVia = "TEAM"
-            elif self.bestHomeOdds == self.homeTeamOdds:
+            elif self.bestHomeOdds == self.homeTeamFirstQuarterOdds:
                 self.betOnVia = "TEAM"
             elif self.bestHomeOdds == self.homePlayerFloorOdds:
                 self.betOnVia = "PLAYERS"
         else:
             self.bestEVFactor = self.awayEVFactor
-            if self.awayTeamOdds is None:
+            if self.awayTeamFirsQuarterOdds is None:
                 self.betOnVia = "PLAYERS"
             elif self.awayPlayerFloorOdds is None:
                 self.betOnVia = "TEAM"
-            elif self.bestAwayOdds == self.awayTeamOdds:
+            elif self.bestAwayOdds == self.awayTeamFirsQuarterOdds:
                 self.betOnVia = "TEAM"
             elif self.awayHomeOdds == self.awayPlayerFloorOdds:
                 self.betOnVia = "PLAYERS"
 
     def homeLineIsTeam(self):
-        if self.bestHomeOdds == self.homeTeamOdds:
+        if self.bestHomeOdds == self.homeTeamFirstQuarterOdds:
             return "TEAM"
         return "PLAYERS"
 
     def awayLineIsTeam(self):
-        if self.bestAwayOdds == self.awayTeamOdds:
+        if self.bestAwayOdds == self.awayTeamFirsQuarterOdds:
             return "TEAM"
         return "PLAYERS"
 

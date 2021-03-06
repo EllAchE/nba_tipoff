@@ -2,10 +2,11 @@
 import json
 from datetime import datetime
 
+from src.classes.FanduelGameOdds import FanduelGameOdds
 from src.classes.GameOdds import GameOdds
 from src.database.database_access import getUniversalPlayerName
 from src.live_data.live_odds_retrieval import draftKingsOdds, mgmOdds, bovadaOdds, pointsBetOdds, unibetOdds, \
-    barstoolOdds
+    barstoolOdds, fanduelOdds
 from src.odds_and_statistics.odds_calculator import americanToDecimal
 
 
@@ -85,17 +86,17 @@ def createOptimalPlayerSpreadObject(gameOddsObjList):
     return optimalSpreadsList
 
 
-def createAllOddsDict(getDk=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False):
+def createAllOddsDict(getDk=False, getFanduel=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False):
     allGameObjList = list()
 
-    if getBovada:
-        bovadaDicts = createAllOddsDictForExchange(bovadaOdds(), playerOdds=False)
-        for rawOddsDict in bovadaDicts:
-            gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
+    if getFanduel:
+        dkOddsDicts = createAllOddsDictForExchange(fanduelOdds())
+        for rawOddsDict in dkOddsDicts:
+            gameOddsObj = FanduelGameOdds(rawOddsDict)
             allGameObjList.append(gameOddsObj)
 
     if getDk:
-        dkOddsDicts = createAllOddsDictForExchange(draftKingsOdds(), 'draftkings')
+        dkOddsDicts = createAllOddsDictForExchange(draftKingsOdds())
         for rawOddsDict in dkOddsDicts:
             gameOddsObj = GameOdds(rawOddsDict)
             allGameObjList.append(gameOddsObj)
@@ -103,6 +104,12 @@ def createAllOddsDict(getDk=False, getMgm=False, getBovada=False, getPointsBet=F
     if getMgm:
         mgmOddsDicts = createAllOddsDictForExchange(mgmOdds(), playerOdds=False)
         for rawOddsDict in mgmOddsDicts:
+            gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
+            allGameObjList.append(gameOddsObj)
+
+    if getBovada:
+        bovadaDicts = createAllOddsDictForExchange(bovadaOdds(), playerOdds=False)
+        for rawOddsDict in bovadaDicts:
             gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
             allGameObjList.append(gameOddsObj)
 

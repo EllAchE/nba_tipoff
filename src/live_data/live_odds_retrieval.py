@@ -295,6 +295,49 @@ def draftKingsOdds():
 
     return allGameLines
 
+def fanduelOdds():
+    # export
+    # const
+    # collect = async () = > {
+    #     const
+    # date = new
+    # Date();
+    # let
+    # oddsList: odds[] = [];
+    # const
+    # gamesResponse: GamesResponse = await util.get("https://sportsbook.fanduel.com/cache/psmg/UK/63747.3.json");
+    # const
+    # listOfGames = gamesResponse.events.map((game) = > game.idfoevent);
+    # console.log(listOfGames);
+    #
+    # for (const game of listOfGames) {
+    #     const gameResponse: GameResponse = await util.get(
+    #     `https: // sportsbook.fanduel.com / cache / psevent / UK / 1 / false /${game}.json
+    # `);
+    #
+    # for (const eventMarketGroup of gameResponse.eventmarketgroups) {
+    # for (const market of eventMarketGroup.markets) {
+    # for (const selection of market.selections) {
+    # oddsList.push({
+    # date: date,
+    #       gameCode: getGameCode(new
+    # Date(gameResponse.tsstart), gameResponse.participantshortname_home.split(" ")[0]),
+    # gameDatetime: gameResponse.tsstart,
+    # home: gameResponse.participantshortname_home.split(" ")[0],
+    # away: gameResponse.participantshortname_away.split(" ")[0],
+    # exchange: "fanduel",
+    # betName: market.name,
+    # subBetName: selection.name,
+    # americanOdds: getAmericanOdds(selection.currentpriceup, selection.currentpricedown),
+    # currentPriceUp: selection.currentpriceup,
+    # currentPriceDown: selection.currentpricedown,
+    # });
+    # }
+    # }
+    # }
+    # }
+    pass
+
 def mgmOdds():
     # https://sports.co.betmgm.com/en/sports/events/minnesota-timberwolves-at-san-antonio-spurs-11101908?market=10000
     url = "https://cds-api.co.betmgm.com/bettingoffer/fixtures?x-bwin-accessid=OTU4NDk3MzEtOTAyNS00MjQzLWIxNWEtNTI2MjdhNWM3Zjk3&lang=en-us&country=US&userCountry=US&subdivision=Texas&fixtureTypes=Standard&state=Latest&offerMapping=Filtered&offerCategories=Gridable&fixtureCategories=Gridable,NonGridable,Other&sportIds=7&regionIds=9&competitionIds=6004&skip=0&take=50&sortBy=Tags"
@@ -580,8 +623,7 @@ def tipperFromTeam(teamShort: str):
             return row["playerCode"]
 
 def getAllExpectedStarters():
-    teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX', 'NYK',
-                'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
+    teamList = ENVIRONMENT.CURRENT_TEAMS
     teamList.sort()
     for team in teamList:
         sleepChecker(iterations=5, baseTime=1, randomMultiplier=1)
@@ -600,8 +642,7 @@ def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='unspecif
 
 
 def createTeamTipperDict():
-    teamList = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX', 'NYK'
-                'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
+    teamList = ENVIRONMENT.CURRENT_TEAMS
     teamList.sort()
     startersList = list()
     tipperList = list()
