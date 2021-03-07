@@ -27,7 +27,6 @@ Percentage of first shots made by player overall
 Percentage of first shots taken by particular player
 
 '''
-# todo get historical starting lineups
 # todo split summary data for 2nd, 3rd and 4th quarters
 import json
 
@@ -202,7 +201,6 @@ def saveAllHistoricalStarters():
                 print('some error occured, values will stay as None')
             i += 1
         allGamesDf.to_csv(path, index=False)
-        # todo test this method
 
 def getSingleGameStarters(gameId):
     # https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/gamerotation.md

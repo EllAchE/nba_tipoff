@@ -1,9 +1,9 @@
 # backlogtodo find out when the best time for placing bets on various sites is (i.e. when do odds move)
 # backlogtodo next prop - who scores last nba, race to 5 points
 # todo compare top rank vs. bottom rank losses
-# backlogtodo add exchange names to the jsonpickle file name
+# todo reverse engineer odds from site odds and use that to find mismatches in correlation i.e. last team to score
 # backlogtodo convert from printing desired bets to putting them into a json/csv
-# backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
+# backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season. This may be solved by just taking the last index of team list, unless
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
 from src.database.database_creation import getAllGameData
 from src.historical_data.historical_data_retrieval import updateCurrentSeason
@@ -12,7 +12,7 @@ from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrem
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 from src.odds_and_statistics.prediction_enhancements import getFirstShotStats, getCurrentSeasonUsageRate
-from src.trueskill.trueskill_calc import updateSkillDictionaryFromZero
+from src.rating_algorithms.data_processing import updateSkillDictionaryFromZero, updateSkillDictionaryFromLastGame
 
 # getAllGameData()
 
@@ -24,29 +24,26 @@ from src.trueskill.trueskill_calc import updateSkillDictionaryFromZero
 # todo TEST optimized player spreads across exchanges (i.e. look at first point on fd, bovada and dk; Need to consider first field goal as well
 # todo add player start percentage to 1st shot summary (retrieve game rotation stats from NBA API)
 # todo fix fanduel when there are games to fetch data from
-# todo performance improvements, binary search of player db
-# todo performance improvements, backwards count and metadata sto
-# todo use environment rather than hardcoded 2021 for current season
-# todo use environment for storing all paths
+# todo performance improvements, binary search of player db and smaller file size
+# todo performance improvements, use in and index[itemIWant] for C native code performance improvements
 # todo wrap post formatted paths in Path object to be functional for windows (if needed)
+# todo update print statements to be more take up less space
 
 # getCurrentSeasonUsageRate()
 
 # updateCurrentSeason()
-updateSkillDictionaryFromZero()
+# updateSkillDictionaryFromLastGame()
 
 # getFirstShotStats(2021)
 #
 # getAllExpectedStarters()
 
-# getDailyOdds('BOS', 'TOR', '-111')
+getDailyOdds('DEN', 'PHI', '-102')
 # getDailyOdds('PHX', 'GSW', '+116')
 # getDailyOdds('IND', 'DEN', '-111')
 # getDailyOdds('LAC', 'WAS', '+100')
 
 # getAllOddsAndDisplayByEv(getDk=True, getBovada=True, getMgm=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)
-
-#backlogtodo see about optimizing this fetching
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
 #                        ['199711160SEA', 'SEA', 'MIL'],
@@ -84,13 +81,10 @@ https://www.betburger.com/?sure_bets=1160
 https://punter2pro.com/best-sports-arbing-software/
 '''
 
-# backlogtodo make data overwriting transactional, i.e. locally saved csv could have all or no rows updated, no overwrites and partial
 # backlogtodo set up backtester with assumed odds lines, i.e. assuming we are always offered odds on a team of -110, how would the strat perform? (the default should -110)
-# backlogtodo OVERKILL set up bankroll tracker (with stored values on each site and overall).
 # backogtodo test if adding in the start of overtime tip performance enhances predictions (may be fatigue facotr/not as good)
 # backlogtodo account for overrepresentation of playoff teams
 
 # MISC
 # todo investigate adjsuted starting rankings for low appearance playersy, i.e. if we can assume certain/lower mu values for a class of player we can improve our predictions
 # backlogtodo (OVERKILL) have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
-# backlogtodo see if back to back against same team matters

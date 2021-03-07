@@ -155,6 +155,22 @@ def createPlayerNameRelationship(startSeason: int=1998):
 
     print('saved player DB Data')
 
+# backlogtodo implement binary search
+def sortPlayerNameRelationships():
+    with open(ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH) as pNameRelationships:
+        pNameList = json.load(pNameRelationships)
+    # https://docs.python.org/3/library/bisect.html
+
+    def sortByUniversalName(x):
+        return x['universalName']
+
+    pNameList.sort(key=sortByUniversalName)
+
+    with open(ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH) as writeFile:
+        json.dump(pNameList, ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH)
+
+    print("Sorted player name relationships")
+
 def getAllGameData():
     shortCodes = ENVIRONMENT.CURRENT_TEAMS
     shortCodes.sort()
