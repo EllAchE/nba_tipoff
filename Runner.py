@@ -12,7 +12,8 @@ from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrem
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 from src.odds_and_statistics.prediction_enhancements import getFirstShotStats, getCurrentSeasonUsageRate
-from src.rating_algorithms.data_processing import updateSkillDictionaryFromZero, updateSkillDictionaryFromLastGame
+from src.rating_algorithms.elo_data_processing import runEloForAllSeasons
+from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero, updateTrueSkillDictionaryFromLastGame
 
 # getAllGameData()
 
@@ -38,7 +39,8 @@ from src.rating_algorithms.data_processing import updateSkillDictionaryFromZero,
 #
 # getAllExpectedStarters()
 
-getDailyOdds('DEN', 'PHI', '-102')
+runEloForAllSeasons()
+
 # getDailyOdds('PHX', 'GSW', '+116')
 # getDailyOdds('IND', 'DEN', '-111')
 # getDailyOdds('LAC', 'WAS', '+100')

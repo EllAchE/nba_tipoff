@@ -8,7 +8,7 @@ import numpy as np
 import trueskill
 import ENVIRONMENT
 
-from src.rating_algorithms.data_processing import tipWinProb
+from src.rating_algorithms.trueskill_data_processing import tipWinProb
 from typing import Any, Optional
 
 

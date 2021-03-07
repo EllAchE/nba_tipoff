@@ -4,9 +4,12 @@ import ENVIRONMENT
 
 import pandas as pd
 
-from src.database.database_creation import resetPredictionSummaries, createPlayerSkillDictionary
+from src.database.database_creation import resetPredictionSummaries, createPlayerTrueSkillDictionary
 from src.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
-from src.rating_algorithms.algorithms import _trueSkillMatchWithRawNums, trueSkillTipWinProb
+from src.rating_algorithms.algorithms import trueSkillMatchWithRawNums, trueSkillTipWinProb
+
+# todo refactor equations here to be generic
+from src.rating_algorithms.common_data_processing import preMatchPredictions
 
 
 def runTSForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winningBetThreshold: float=0.6, startFromBeginning=False):
@@ -36,7 +39,7 @@ def runTSForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winnin
         i += 1
         # todo test this new logic
 
-    with open(ENVIRONMENT.PREDICTION_SUMMARIES_PATH) as jsonFile:
+    with open(ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH) as jsonFile:
         dsd = json.load(jsonFile)
 
     while i < colLen:
@@ -79,7 +82,7 @@ def runTSForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winnin
     with open(playerSkillDictPath, 'w') as write_file:
         json.dump(psd, write_file, indent=4)
 
-    with open(ENVIRONMENT.PREDICTION_SUMMARIES_PATH, 'w') as write_file:
+    with open(ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH, 'w') as write_file:
         json.dump(dsd, write_file, indent=4)
 
     df.to_csv(str(seasonCsv)[:-4] + '-test.csv')
@@ -92,52 +95,25 @@ def trueskillBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayer
     homePlayerTeam = getPlayerTeamInSeasonFromBballRefLink(homePlayerCode, season, longCode=False)['currentTeam']
     awayPlayerTeam = getPlayerTeamInSeasonFromBballRefLink(awayPlayerCode, season, longCode=False)['currentTeam']
 
-    if psd[homePlayerCode]['appearances'] > ENVIRONMENT.MIN_APPEARANCES and psd[awayPlayerCode]['appearances'] > ENVIRONMENT.MIN_APPEARANCES:
-        if homeOdds > winningBetThreshold:
-            if tipWinnerCode[11:] == homePlayerCode:
-                dsd['correctTipoffPredictions'] += 1
-                print('good prediction on home tip winner')
-            else:
-                dsd['incorrectTipoffPredictions'] += 1
-                print('bad prediction on home tip winner')
-            if homePlayerTeam == scoringTeam:
-                dsd["winningBets"] += 1
-                print('good prediction on home scorer')
-            else:
-                dsd["losingBets"] += 1
-                print('bad prediction on home tip scorer')
-            pass
-        elif (1 - homeOdds) > winningBetThreshold:
-            if tipWinnerCode[11:] == awayPlayerCode:
-                dsd['correctTipoffPredictions'] += 1
-                print('good prediction on away tip winner')
-            else:
-                dsd['incorrectTipoffPredictions'] += 1
-                print('bad prediction on away tip winner')
-            if awayPlayerTeam == scoringTeam:
-                dsd["winningBets"] += 1
-                print('good prediction on away scorer')
-            else:
-                dsd['losingBets'] += 1
-                print('bad prediction on away scorer')
-        else:
-            print('no bet, odds were not good enough')
+    if psd[homePlayerCode]['appearances'] > ENVIRONMENT.MIN_TS_APPEARANCES and psd[awayPlayerCode]['appearances'] > ENVIRONMENT.MIN_TS_APPEARANCES:
+        preMatchPredictions(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
+                            tipWinnerCode, winningBetThreshold)
     else:
         print('no bet, not enough Data on participants')
 
-def runForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD):
+def runTSForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD):
     seasonKey = ''
     for season in seasons:
         runTSForSeason(season, ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season),
-                       ENVIRONMENT.PLAYER_SKILL_DICT_PATH, winning_bet_threshold, startFromBeginning=True)
+                       ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, winning_bet_threshold, startFromBeginning=True)
         seasonKey += str(season) + '-'
 
-    with open(ENVIRONMENT.PREDICTION_SUMMARIES_PATH) as predSum:
+    with open(ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH) as predSum:
         dsd = json.load(predSum)
 
     dsd['seasons'] = seasonKey + 'with-odds-' + str(winning_bet_threshold)
 
-    with open(ENVIRONMENT.PREDICTION_SUMMARIES_PATH, 'w') as predSum:
+    with open(ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH, 'w') as predSum:
         json.dump(dsd, predSum, indent=4)
 
 def trueSkillUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, game_code=None):
@@ -150,7 +126,7 @@ def trueSkillUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, 
     winnerOgSigma = psd[winnerCode]["sigma"]
     loserOgMu = psd[loserCode]["mu"]
     loserOgSigma = psd[loserCode]["sigma"]
-    winnerMu, winnerSigma, loserMu, loserSigma = _trueSkillMatchWithRawNums(psd[winnerCode]["mu"], psd[winnerCode]["sigma"], psd[loserCode]['mu'], psd[loserCode]["sigma"])
+    winnerMu, winnerSigma, loserMu, loserSigma = trueSkillMatchWithRawNums(psd[winnerCode]["mu"], psd[winnerCode]["sigma"], psd[loserCode]['mu'], psd[loserCode]["sigma"])
     winnerWinCount = psd[winnerCode]["wins"] + 1
     winnerAppearances = psd[winnerCode]["appearances"] + 1
     loserLosses = psd[loserCode]["losses"] + 1
@@ -165,8 +141,8 @@ def trueSkillUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, 
     psd[loserCode]["mu"] = loserMu
     psd[loserCode]["sigma"] = loserSigma
 
-    print('Winner:', winnerCode, 'rating increased', winnerMu - winnerOgMu, 'to', winnerMu, '. Sigma is now', winnerSigma, '. W:', winnerWinCount, 'L', winnerAppearances - winnerWinCount)
-    print('Loser:', loserCode, 'rating decreased', loserMu - loserOgMu, 'to', loserMu, '. Sigma is now', loserSigma, '. W:', loserAppearances - loserLosses, 'L', loserLosses)
+    print('Winner:', winnerCode, 'trueskill increased', winnerMu - winnerOgMu, 'to', winnerMu, '. Sigma is now', winnerSigma, '. W:', winnerWinCount, 'L', winnerAppearances - winnerWinCount)
+    print('Loser:', loserCode, 'trueskill decreased', loserMu - loserOgMu, 'to', loserMu, '. Sigma is now', loserSigma, '. W:', loserAppearances - loserLosses, 'L', loserLosses)
 
     if homePlayerCode == winnerCode:
         homeMu = winnerOgMu
@@ -181,13 +157,12 @@ def trueSkillUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, 
 
     return homeMu, homeSigma, awayMu, awaySigma
 
-# todo refactor equations here to be generic
-def updateSkillDictionaryFromZero():
-    resetPredictionSummaries() # reset sums
-    createPlayerSkillDictionary() # clears the stored values,
-    runForAllSeasons(ENVIRONMENT.SEASONS_LIST, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD)
-    print("\n", "skill dictionary updated", "\n")
+def calculateTrueSkillDictionaryFromZero():
+    resetPredictionSummaries(ENVIRONMENT.ELO_PREDICTION_SUMMARIES_PATH) # reset sums
+    createPlayerTrueSkillDictionary() # clears the stored values,
+    runTSForAllSeasons(ENVIRONMENT.SEASONS_LIST, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD)
+    print("\n", "trueskill dictionary updated for seasons", ENVIRONMENT.SEASONS_LIST, "\n")
 
-def updateSkillDictionaryFromLastGame():
-    runTSForSeason(ENVIRONMENT.CURRENT_SEASON, ENVIRONMENT.CURRENT_SEASON_CSV, ENVIRONMENT.PLAYER_SKILL_DICT_PATH, winningBetThreshold=0.6, startFromBeginning=False)
-    print("\n", "skill dictionary updated", "\n")
+def updateTrueSkillDictionaryFromLastGame():
+    runTSForSeason(ENVIRONMENT.CURRENT_SEASON, ENVIRONMENT.CURRENT_SEASON_CSV, ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, winningBetThreshold=0.6, startFromBeginning=False)
+    print("\n", "trueskill dictionary updated from last game", "\n")

@@ -2,7 +2,8 @@ import os
 from pathlib import Path
 
 TIPOFF_ODDS_THRESHOLD = 0.73
-MIN_APPEARANCES = 20
+MIN_TS_APPEARANCES = 20
+MIN_ELO_APPEARANCES = 20
 MAX_APPEARANCES = 9900
 
 # Observed Values
@@ -16,10 +17,15 @@ REDUCTION_FACTOR = 0.7
 
 # Trueskill Base values
 BASE_SIGMA = 25 / 6 # 8.333333333333334
-BASE_RATING = 25
+BASE_MU = 25
 BASE_DEVIATION = 25 * 25 / 3 / 3
 TAU = BASE_SIGMA / 100 # 0.08333333333333334
 BETA = BASE_SIGMA / 2 # 4.166666666666667
+
+# Elo Base values
+K_FACTOR = 10
+BASE_ELO = 1500
+BETA = 200
 
 # Misc
 LIVE_ODDS_API_1 = '5f92a0468c6f365be7db417f13d52742'
@@ -30,8 +36,12 @@ CURRENT_TEAMS = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 
                 'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
 
 # Calculated Value Paths
-PLAYER_SKILL_DICT_PATH = Path(os.path.abspath('Data/JSON/player_skill_dictionary.json'))
-PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/prediction_summaries.json'))
+PLAYER_TRUESKILL_DICT_PATH = Path(os.path.abspath('Data/JSON/algorithms/trueskill/player_trueskill_dictionary.json'))
+TS_PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/algorithms/trueskill/ts_prediction_summaries.json'))
+
+PLAYER_ELO_DICT_PATH = Path(os.path.abspath('Data/JSON/algorithms/elo/player_elo_dictionary.json'))
+ELO_PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/algorithms/elo/elo_prediction_summaries.json'))
+PLAYER_GLICKO_DICT_PATH = Path(os.path.abspath('Data/JSON/player_elo_dictionary.json'))
 SEASON_CSV_UNFORMATTED_PATH = os.path.abspath('Data/CSV/season_data/tipoff_and_first_score_details_{}_season.csv')
 ALL_SHOTS_BEFORE_FIRST_FG_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json'))
 SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH = os.path.abspath('Data/JSON/Public_NBA_API/first_shots_data/{}_data.json')

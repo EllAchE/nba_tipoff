@@ -18,8 +18,8 @@ def concatCsv(save_path: str):
     concattedCsv = pd.concat([pd.read_csv(f) for f in fNames])
     concattedCsv.to_csv(save_path, index=False, encoding='utf-8-sig')
 
-def resetPredictionSummaries(j=ENVIRONMENT.PREDICTION_SUMMARIES_PATH):
-    with open(j) as json_file:
+def resetPredictionSummaries(path):
+    with open(path) as json_file:
         d = json.load(json_file)
 
     d['winningBets'] = 0
@@ -27,12 +27,12 @@ def resetPredictionSummaries(j=ENVIRONMENT.PREDICTION_SUMMARIES_PATH):
     d['correctTipoffPredictions'] = 0
     d['incorrectTipoffPredictions'] = 0
 
-    with open(j, 'w') as jsonWFile:
+    with open(path, 'w') as jsonWFile:
         json.dump(d, jsonWFile, indent=4)
 
     print('reset prediction summaries')
 
-def createPlayerSkillDictionary():
+def createPlayerEloDictionary(path=ENVIRONMENT.PLAYER_ELO_DICT_PATH):
     with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as playerTeamPairsJson:
         ptp = json.load(playerTeamPairsJson)
 
@@ -44,11 +44,27 @@ def createPlayerSkillDictionary():
                 playerCodes.add(player)
 
         for code in playerCodes:
-            playerSkillDict[code] = {'mu': 25, 'sigma': 25/3, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
+            playerSkillDict[code] = {'elo': ENVIRONMENT.BASE_ELO, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
 
-    with open(ENVIRONMENT.PLAYER_SKILL_DICT_PATH, 'w') as psd:
+    with open(path, 'w') as psd:
         json.dump(playerSkillDict, psd, indent=4)
-        print()
+
+def createPlayerTrueSkillDictionary(path=ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH):
+    with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as playerTeamPairsJson:
+        ptp = json.load(playerTeamPairsJson)
+
+        playerCodes = set()
+        playerSkillDict = {}
+
+        for season in ptp.keys():
+            for player in ptp[season].keys():
+                playerCodes.add(player)
+
+        for code in playerCodes:
+            playerSkillDict[code] = {'mu': ENVIRONMENT.BASE_MU, 'sigma': ENVIRONMENT.BASE_SIGMA, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
+
+    with open(path, 'w') as psd:
+        json.dump(playerSkillDict, psd, indent=4)
 
 def saveActivePlayersTeams(start_season: int):
     # https://www.basketball-reference.com/leagues/NBA_2021_per_game.html

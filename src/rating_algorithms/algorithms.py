@@ -5,20 +5,25 @@
 # todo trueskill/glicko tuning:
 # lower tau prevents volatitliy from changing a lot. It's a baseline volatiity added to prevent convergence to zero by
 # the standard deviation
+# todo elo may be most useful for just looking at current season as a rating period
+# for elo the toggleable parameter can be the length of the rating period(s)
+# Known effect of running this from 1997 is that earlier players will have inflated ratings as they took all the early points
+# then retired and took their points with them
 
 # backlogtodo track stats on appearance first time midseason, first tip ever etc.
 # https://jmlr.csail.mit.edu/papers/volume12/weng11a/weng11a.pdf
 import itertools
 import json
 import math
+from typing import Any
 
 import trueskill
+import elo
 
 import ENVIRONMENT
 
-
 def naiveComparison(): # p1, p2):
-#     return 1 - weaker_player_win_rate * stronger_player_loss_rate
+    # return 1 - weaker_player_win_rate * stronger_player_loss_rate
     pass
 
 def trueSkill2():
@@ -26,22 +31,54 @@ def trueSkill2():
     # https://www.microsoft.com/en-us/research/uploads/prod/2018/03/trueskill2.pdf
     pass
 
-def eloDictionary():
-    # https://github.com/sublee/elo
-    pass
-
 def glickoDictionary():
     # https://github.com/sublee/glicko2/blob/master/glicko2.py
     pass
 
-def _trueSkillMatchWithRawNums(winnerMu, winnerSigma, loserMu, loserSigma):
+
+def eloDictionary():
+    # https://github.com/sublee/elo
+    # def expect(self, rating, other_rating): # this predicts the expected value of rating 1 over rating 2)
+    # 2 * beta is the f factor for this library, which is the denominator of the diff in the ratings calculation
+    # K_Factor is the K factor for sensitivity to game change. 538 for games set this to 10, should be toggled
+    # def rate_1vs1(self, rating1, rating2, drawn=False): # function that can be used to return the new ratings
+    pass
+
+def eloMatchWithRawNums(winnerElo: int, loserElo: int):
+    eloObj = elo.Elo()
+    updatedWinnerElo, updatedLoserElo = eloObj.rate_1vs1(winnerElo, loserElo)
+    return updatedWinnerElo, updatedLoserElo
+
+def _eloGlobalConstants(k:int=ENVIRONMENT.K_FACTOR, baseElo=ENVIRONMENT.BASE_ELO, beta=ENVIRONMENT.BETA):
+    elo.setup(k_factor=k, initial=baseElo, beta=beta)
+    print("Set k, base Elo and beta to", k, baseElo, beta)
+
+def _eloRatingPeriod(selfRating: int, gameResults: Any):
+    # For this gameResults is a series ( I believe an actual pd.series) that has Score (i.e. 1, 0.5 or 0 for W/L/D) and
+    # Other Rating (i.e. opponent rating) as the 2 params. Run this for x games into the season, perhaps when first team
+    # reaches 30, then go game by game for a season.
+    # For porting to a new season you want some continuity; i.e. 2/3 of the previous elo value. Or leave it the same.
+    # pass
+    pass
+
+# todo this may need to use ENV reset to get adjusted beta values etc.
+def eloWinProb(player1_code: str, player2_code: str, json_path: str = ENVIRONMENT.PLAYER_ELO_DICT_PATH, psd: Any = None):
+    if psd is None:
+        with open(json_path) as json_file:
+            psd = json.load(json_file)
+    elo1 = psd[player1_code]['elo']
+    elo2 = psd[player2_code]['elo']
+    eloObj = elo.Elo()
+    return eloObj.expect(elo1, elo2)
+
+def trueSkillMatchWithRawNums(winnerMu: float, winnerSigma: float, loserMu: float, loserSigma: float):
         winnerRatingObj = trueskill.Rating(winnerMu, winnerSigma)
         loserRatingObj = trueskill.Rating(loserMu, loserSigma)
         winnerRatingObj, loserRatingObj = trueskill.rate_1vs1(winnerRatingObj, loserRatingObj)
         return winnerRatingObj.mu, winnerRatingObj.sigma, loserRatingObj.mu, loserRatingObj.sigma
 
-def trueSkillTipWinProb(player1_code: str, player2_code: str, json_path: str = ENVIRONMENT.PLAYER_SKILL_DICT_PATH, psd: Any = None): #win prob for first player
-    env = trueskill.TrueSkill(draw_probability=0, backend='scipy', tau=ENVIRONMENT.TAU)
+def trueSkillTipWinProb(player1_code: str, player2_code: str, json_path: str = ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, psd: Any = None): #win prob for first player
+    env = trueskill.TrueSkill(draw_probability=0, backend='scipy', tau=ENVIRONMENT.TAU, beta=ENVIRONMENT.BETA)
     env.make_as_global()
     if psd is None:
         with open(json_path) as json_file:
