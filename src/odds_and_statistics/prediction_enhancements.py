@@ -2,15 +2,11 @@
 # backlogtodo add other stats and run ludwig/ai checker
 import json
 from collections import OrderedDict
-
-
-# backlogtodo include nonshooting possessions
 import requests
-
 import ENVIRONMENT
-from src.database.database_access import getUniversalShortCode
 from src.utils import lowercaseNoSpace
 
+# backlogtodo include nonshooting possessions
 # todo these should be done:
 #    Offensive efficiency, Def E, Percentage of FT & 2s vs. 3s (effective score percentage), usage rate for players
 
@@ -49,15 +45,16 @@ def getFirstShotStats(season):
 
     summaryDict = _summaryStats(summaryDict)
 
-    summaryDict = OrderedDict(sorted(summaryDict.items(), key=lambda item: list(item)['quarter1'][1]['totalMakes'], reverse=True))
+    summaryDict = OrderedDict(sorted(summaryDict.items(), key=lambda item: list(item)[1]['quarter1']['totalMakes'], reverse=True))
     savePath = ENVIRONMENT.FIRST_SHOT_SUMMARY_UNFORMATTED_PATH.format(str(season))
     with open(savePath, 'w') as writeFile:
-        json.dump(summaryDict, writeFile)
+        json.dump(summaryDict, writeFile, indent=4)
     print('first shot statistics compiled. Total makes was counted as', makesOverall)
 
 def _initializePlayerDict(summaryDict, lastSeasonData):
     playerSet = set()
-    quarters = ['quarter1', 'quarter2', 'quarter3', 'quarter4']
+    quarters = ['quarter1']#, 'quarter2', 'quarter3', 'quarter4']
+    # currently only looking at q1 for players
     for game in lastSeasonData:
         for quarter in quarters:
             for event in game[quarter]:
@@ -143,25 +140,25 @@ def _playerFirstShotStats(game, summaryDict, makesOverall):
         for event in game[quarter]:
             player = event['player']
             playerTeam = event['team']
-            if playerTeam not in summaryDict[player]['teams']:
-                summaryDict[player]['teams'].append(playerTeam)
-            summaryDict[player]['averageShotIndex'] = (summaryDict[player]['shots'] * summaryDict[player][
-                'averageShotIndex'] + event['shotIndex']) / (summaryDict[player]['shots'] + 1)
+            if playerTeam not in summaryDict[player][quarter]['teams']:
+                summaryDict[player][quarter]['teams'].append(playerTeam)
+            summaryDict[player][quarter]['averageShotIndex'] = (summaryDict[player][quarter]['shots'] * summaryDict[player][quarter][
+                'averageShotIndex'] + event['shotIndex']) / (summaryDict[player][quarter]['shots'] + 1)
 
             if player not in playerHasShotInGame:
-                summaryDict[player]['firstShotIndex'] = (summaryDict[player]['shots'] * summaryDict[player][
-                    'firstShotIndex'] + event['shotIndex']) / (summaryDict[player]['shots'] + 1)
+                summaryDict[player][quarter]['firstShotIndex'] = (summaryDict[player][quarter]['shots'] * summaryDict[player][quarter][
+                    'firstShotIndex'] + event['shotIndex']) / (summaryDict[player][quarter]['shots'] + 1)
             playerHasShotInGame.add(player)
-            summaryDict[player]['shots'] += 1
-            summaryDict[player][event['shotType']] += 1
+            summaryDict[player][quarter]['shots'] += 1
+            summaryDict[player][quarter][event['shotType']] += 1
             if event['shotIndex'] == 1:
-                summaryDict[player]['firstShots'] += 1
+                summaryDict[player][quarter]['firstShots'] += 1
             if '2PT' in event['shotType'] or '3PT' in event['shotType']:
-                summaryDict[player]['FG ATTEMPTS'] += 1
+                summaryDict[player][quarter]['FG ATTEMPTS'] += 1
             else:
-                summaryDict[player]['FREE THROW ATTEMPTS'] += 1
+                summaryDict[player][quarter]['FREE THROW ATTEMPTS'] += 1
             if 'MAKE' in event['shotType']:
-                summaryDict[player]['totalMakes'] += 1
+                summaryDict[player][quarter]['totalMakes'] += 1
                 makesOverall += 1
     return summaryDict, makesOverall
 
