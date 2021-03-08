@@ -6,12 +6,10 @@ import pandas as pd
 
 from src.database.database_creation import resetPredictionSummaries, createPlayerTrueSkillDictionary
 from src.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
-from src.rating_algorithms.algorithms import trueSkillMatchWithRawNums, trueSkillTipWinProb
-
-# todo refactor equations here to be generic
+from src.rating_algorithms.algorithms import trueSkillMatchWithRawNums, trueSkillWinProb
 from src.rating_algorithms.common_data_processing import preMatchPredictions
 
-
+# todo refactor equations here to be generic
 def runTSForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winningBetThreshold: float=0.6, startFromBeginning=False):
     df = pd.read_csv(seasonCsv)
     # df = df[df['Home Tipper'].notnull()] # filters invalid rows
@@ -37,7 +35,6 @@ def runTSForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winnin
         while df.iloc[i]['Game Code'] != lastGameCode:
             i -= 1
         i += 1
-        # todo test this new logic
 
     with open(ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH) as jsonFile:
         dsd = json.load(jsonFile)
@@ -69,14 +66,14 @@ def runTSForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winnin
 
         i += 1
 
-    if startFromBeginning:
-        allKeys = psd.keys()
-        for key in allKeys:
-            key['sigma'] += 2
-            #todo place where season end sigma is udpated. Can toggle this to different effects
-            if key['sigma'] > 8.333333333333334:
-                key['sigma'] = 8.333333333333334
-        print("added 2 to all sigmas for new season")
+    # if startFromBeginning:
+    #     allKeys = psd.keys()
+    #     for key in allKeys:
+    #         key['sigma'] += 2
+    #         #todo place where season end sigma is udpated. Can toggle this to different effects
+    #         if key['sigma'] > 8.333333333333334:
+    #             key['sigma'] = 8.333333333333334
+    #     print("added 2 to all sigmas for new season")
 
     psd['lastGameCode'] = df.iloc[-1]['Game Code']
     with open(playerSkillDictPath, 'w') as write_file:
@@ -91,7 +88,7 @@ def runTSForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winnin
 
 # backlogtodo setup odds prediction to use Ev or win prob rather than bet threshold
 def trueskillBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=0.6):
-    homeOdds = trueSkillTipWinProb(homePlayerCode, awayPlayerCode, psd=psd)
+    homeOdds = trueSkillWinProb(homePlayerCode, awayPlayerCode, psd=psd)
     homePlayerTeam = getPlayerTeamInSeasonFromBballRefLink(homePlayerCode, season, longCode=False)['currentTeam']
     awayPlayerTeam = getPlayerTeamInSeasonFromBballRefLink(awayPlayerCode, season, longCode=False)['currentTeam']
 
@@ -158,10 +155,10 @@ def trueSkillUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, 
     return homeMu, homeSigma, awayMu, awaySigma
 
 def calculateTrueSkillDictionaryFromZero():
-    resetPredictionSummaries(ENVIRONMENT.ELO_PREDICTION_SUMMARIES_PATH) # reset sums
+    resetPredictionSummaries(ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH) # reset sums
     createPlayerTrueSkillDictionary() # clears the stored values,
-    runTSForAllSeasons(ENVIRONMENT.SEASONS_LIST, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD)
-    print("\n", "trueskill dictionary updated for seasons", ENVIRONMENT.SEASONS_LIST, "\n")
+    runTSForAllSeasons(ENVIRONMENT.ALL_SEASONS_LIST, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD)
+    print("\n", "trueskill dictionary updated for seasons", ENVIRONMENT.ALL_SEASONS_LIST, "\n")
 
 def updateTrueSkillDictionaryFromLastGame():
     runTSForSeason(ENVIRONMENT.CURRENT_SEASON, ENVIRONMENT.CURRENT_SEASON_CSV, ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, winningBetThreshold=0.6, startFromBeginning=False)

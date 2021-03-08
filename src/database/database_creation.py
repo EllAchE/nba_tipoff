@@ -49,6 +49,23 @@ def createPlayerEloDictionary(path=ENVIRONMENT.PLAYER_ELO_DICT_PATH):
     with open(path, 'w') as psd:
         json.dump(playerSkillDict, psd, indent=4)
 
+def createPlayerGlickoDictionary(path=ENVIRONMENT.PLAYER_GLICKO_DICT_PATH):
+    with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as playerTeamPairsJson:
+        ptp = json.load(playerTeamPairsJson)
+
+        playerCodes = set()
+        playerSkillDict = {}
+
+        for season in ptp.keys():
+            for player in ptp[season].keys():
+                playerCodes.add(player)
+
+        for code in playerCodes:
+            playerSkillDict[code] = {'mu': ENVIRONMENT.BASE_GLICKO_MU, 'sigma': ENVIRONMENT.BASE_GLICKO_SIGMA, 'phi': ENVIRONMENT.BASE_GLICKO_PHI, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
+
+    with open(path, 'w') as psd:
+        json.dump(playerSkillDict, psd, indent=4)
+
 def createPlayerTrueSkillDictionary(path=ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH):
     with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as playerTeamPairsJson:
         ptp = json.load(playerTeamPairsJson)
@@ -61,7 +78,7 @@ def createPlayerTrueSkillDictionary(path=ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH)
                 playerCodes.add(player)
 
         for code in playerCodes:
-            playerSkillDict[code] = {'mu': ENVIRONMENT.BASE_MU, 'sigma': ENVIRONMENT.BASE_SIGMA, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
+            playerSkillDict[code] = {'mu': ENVIRONMENT.BASE_TS_MU, 'sigma': ENVIRONMENT.BASE_TS_SIGMA, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
 
     with open(path, 'w') as psd:
         json.dump(playerSkillDict, psd, indent=4)
@@ -123,7 +140,6 @@ def saveActivePlayersTeams(start_season: int):
         json.dump(seasons, json_file, indent=4)
 
     print('saved seasons Data')
-
 
 def createPlayerNameRelationship(startSeason: int=1998):
     activePlayers = []

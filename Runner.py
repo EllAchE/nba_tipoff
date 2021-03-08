@@ -5,7 +5,9 @@
 # backlogtodo convert from printing desired bets to putting them into a json/csv
 # backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season. This may be solved by just taking the last index of team list, unless
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
-from src.database.database_creation import getAllGameData
+import ENVIRONMENT
+from src.database.database_creation import getAllGameData, createPlayerEloDictionary, resetPredictionSummaries, \
+    createPlayerGlickoDictionary
 from src.historical_data.historical_data_retrieval import updateCurrentSeason
 from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrementally, \
     splitAllSeasonsFirstShotDataToMultipleFiles, getSingleGameStarters, saveAllHistoricalStarters
@@ -13,6 +15,7 @@ from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 from src.odds_and_statistics.prediction_enhancements import getFirstShotStats, getCurrentSeasonUsageRate
 from src.rating_algorithms.elo_data_processing import runEloForAllSeasons
+from src.rating_algorithms.glicko_data_processing import runGlickoForAllSeasons
 from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero, updateTrueSkillDictionaryFromLastGame
 
 # getAllGameData()
@@ -39,7 +42,8 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 #
 # getAllExpectedStarters()
 
-runEloForAllSeasons()
+createPlayerGlickoDictionary()
+runGlickoForAllSeasons(ENVIRONMENT.ALL_SEASONS_LIST)
 
 # getDailyOdds('PHX', 'GSW', '+116')
 # getDailyOdds('IND', 'DEN', '-111')
