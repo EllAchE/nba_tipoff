@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    glicko2
+    glicko
     ~~~~~~~
 
     The Glicko2 rating system.

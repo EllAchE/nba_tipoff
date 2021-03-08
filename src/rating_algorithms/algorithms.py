@@ -1,6 +1,6 @@
 # backlogtodo test a probabilistic means of comparing players that does not use rating_algorithms algo
-# todo use glicko2/compare it to rating_algorithms
-# todo add time decay to glicko2/true skill RD
+# todo use glicko/compare it to rating_algorithms
+# todo add time decay to glicko/true skill RD
 
 # todo trueskill/glicko tuning:
 # lower tau prevents volatitliy from changing a lot. It's a baseline volatiity added to prevent convergence to zero by

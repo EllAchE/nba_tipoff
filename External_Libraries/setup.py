@@ -21,7 +21,7 @@ test.run_tests = run_tests
 
 
 setup(
-    name='glicko2',
+    name='glicko',
     version=version,
     license='BSD',
     author='Heungsub Lee',
@@ -30,7 +30,7 @@ setup(
     description='The Glicko-2 rating system',
     long_description=__doc__,
     platforms='any',
-    py_modules=['glicko2'],
+    py_modules=['glicko'],
     classifiers=['Development Status :: 1 - Planning',
                  'Intended Audience :: Developers',
                  'Intended Audience :: Science/Research',
