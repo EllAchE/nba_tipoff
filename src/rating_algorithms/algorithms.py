@@ -1,11 +1,8 @@
 # backlogtodo test a probabilistic means of comparing players that does not use rating_algorithms algo
-# todo use glicko/compare it to rating_algorithms
 # todo add time decay to glicko/true skill RD
-
 # todo trueskill/glicko tuning:
 # lower tau prevents volatitliy from changing a lot. It's a baseline volatiity added to prevent convergence to zero by
 # the standard deviation
-# todo elo may be most useful for just looking at current season as a rating period
 # for elo the toggleable parameter can be the length of the rating period(s)
 # Known effect of running this from 1997 is that earlier players will have inflated ratings as they took all the early points
 # then retired and took their points with them

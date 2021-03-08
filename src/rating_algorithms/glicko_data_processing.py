@@ -8,11 +8,10 @@ from src.database.database_creation import resetPredictionSummaries, createPlaye
 from src.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
 from src.rating_algorithms.algorithms import glickoWinProb, glickoMatchWithRawNums
 
-# todo refactor equations here to be generic
 from src.rating_algorithms.common_data_processing import preMatchPredictions
 
 
-def runGlickoForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winningBetThreshold: float=0.6, startFromBeginning=False):
+def runGlickoForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winningBetThreshold: float=ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
     df = pd.read_csv(seasonCsv)
     # df = df[df['Home Tipper'].notnull()] # filters invalid rows
     # df['Home Mu'] = None
@@ -72,7 +71,6 @@ def runGlickoForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, wi
     #     allKeys = psd.keys()
     #     for key in allKeys:
     #         key['sigma'] += 2
-    #         #todo place where season end sigma is udpated. Can toggle this to different effects
     #         if key['sigma'] > 8.333333333333334:
     #             key['sigma'] = 8.333333333333334
     #     print('added 2 to all sigmas for new season')
@@ -89,7 +87,7 @@ def runGlickoForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, wi
     return winningBets, losingBets
 
 # backlogtodo setup odds prediction to use Ev or win prob rather than bet threshold
-def glickoBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=0.6):
+def glickoBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD):
     homeOdds = glickoWinProb(homePlayerCode, awayPlayerCode, psd=psd)
     homePlayerTeam = getPlayerTeamInSeasonFromBballRefLink(homePlayerCode, season, longCode=False)['currentTeam']
     awayPlayerTeam = getPlayerTeamInSeasonFromBballRefLink(awayPlayerCode, season, longCode=False)['currentTeam']
@@ -100,7 +98,7 @@ def glickoBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCod
     else:
         print('no bet, not enough Data on participants')
 
-def runGlickoForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD):
+def runGlickoForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD):
     seasonKey = ''
     for season in seasons:
         runGlickoForSeason(season, ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season),
@@ -164,9 +162,9 @@ def glickoUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, gam
 def calculateGlickoDictionaryFromZero():
     resetPredictionSummaries(ENVIRONMENT.GLICKO_PREDICTION_SUMMARIES_PATH) # reset sums
     createPlayerGlickoDictionary() # clears the stored values,
-    runGlickoForAllSeasons(ENVIRONMENT.ALL_SEASONS_LIST, winningBetThreshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD)
+    runGlickoForAllSeasons(ENVIRONMENT.ALL_SEASONS_LIST, winningBetThreshold=ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD)
     print('\n', 'trueskill dictionary updated for seasons', ENVIRONMENT.ALL_SEASONS_LIST, '\n')
 
 def updateGlickoDictionaryFromLastGame():
-    runGlickoForSeason(ENVIRONMENT.CURRENT_SEASON, ENVIRONMENT.CURRENT_SEASON_CSV, ENVIRONMENT.PLAYER_GLICKO_DICT_PATH, winningBetThreshold=0.6, startFromBeginning=False)
+    runGlickoForSeason(ENVIRONMENT.CURRENT_SEASON, ENVIRONMENT.CURRENT_SEASON_CSV, ENVIRONMENT.PLAYER_GLICKO_DICT_PATH, winningBetThreshold=ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False)
     print('\n', 'trueskill dictionary updated from last game', '\n')

@@ -248,7 +248,6 @@ def getSingleGameStarters(gameId):
 
     return homeTeam, homeStarters, awayTeam, awayStarters
 
-
 def getGamePlayersFromId(id):
     playerSet = set()
     playerList = list()
@@ -316,7 +315,6 @@ def parseDataFromTipoffLine(homeShort, awayShort, content, type, isHome, season)
     tipLoserLink = None
     tipWinnerlink = None
     tipWinnerScores = None
-
 
 def getTipoffLineFromBballRefId(bballRef: str):
     gameId = getGameIdFromBballRef(bballRef)

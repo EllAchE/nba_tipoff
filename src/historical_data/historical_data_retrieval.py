@@ -182,7 +182,7 @@ def getOffDefRatings(season=None, savePath=None):
 
     return seasonDict
 
-def updateCurrentSeason(pathToData=ENVIRONMENT.CURRENT_SEASON_CSV, currentSeason=2021):
+def updateCurrentSeasonRawGameData(pathToData=ENVIRONMENT.CURRENT_SEASON_CSV, currentSeason=2021):
     df = pd.read_csv(pathToData)
     appendFile = open(pathToData, 'a')
     indexAfterLastGame = len(df)

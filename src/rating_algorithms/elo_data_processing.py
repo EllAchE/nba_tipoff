@@ -7,12 +7,10 @@ from src.historical_data.historical_data_retrieval import getPlayerTeamInSeasonF
 from src.rating_algorithms.algorithms import eloMatchWithRawNums, eloWinProb
 
 from src.rating_algorithms.common_data_processing import preMatchPredictions
-# todo refactor equations here to be generic
 
-def runEloForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winningBetThreshold: float=0.6, startFromBeginning=False):
+def runEloForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winningBetThreshold: float=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
     df = pd.read_csv(seasonCsv)
     # df = df[df['Home Tipper'].notnull()] # filters invalid rows
-    # todo consider adding elo rating per game to files as well
     # df['Home Elo'] = None
     # df['Away Elo'] = None
 
@@ -73,7 +71,7 @@ def runEloForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winni
 
     return winningBets, losingBets
 
-def eloBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=0.6):
+def eloBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD):
     homeOdds = eloWinProb(homePlayerCode, awayPlayerCode, psd=psd)
     homePlayerTeam = getPlayerTeamInSeasonFromBballRefLink(homePlayerCode, season, longCode=False)['currentTeam']
     awayPlayerTeam = getPlayerTeamInSeasonFromBballRefLink(awayPlayerCode, season, longCode=False)['currentTeam']
@@ -84,7 +82,7 @@ def eloBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, 
     else:
         print('no bet, not enough Data on participants')
 
-def runEloForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD):
+def runEloForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD):
     seasonKey = ''
     for season in seasons:
         runEloForSeason(season, ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season),
@@ -135,9 +133,9 @@ def eloUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, game_c
 def calculateEloDictionaryFromZero():
     resetPredictionSummaries(ENVIRONMENT.ELO_PREDICTION_SUMMARIES_PATH) # reset sums
     createPlayerEloDictionary() # clears the stored values,
-    runEloForAllSeasons(ENVIRONMENT.ALL_SEASONS_LIST, winningBetThreshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD)
+    runEloForAllSeasons(ENVIRONMENT.ALL_SEASONS_LIST, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD)
     print("\n", "elo dictionary updated for seasons", ENVIRONMENT.ALL_SEASONS_LIST, "\n")
 
 def updateEloDictionaryFromLastGame():
-    runEloForSeason(ENVIRONMENT.CURRENT_SEASON, ENVIRONMENT.CURRENT_SEASON_CSV, ENVIRONMENT.PLAYER_ELO_DICT_PATH, winningBetThreshold=0.6, startFromBeginning=False)
+    runEloForSeason(ENVIRONMENT.CURRENT_SEASON, ENVIRONMENT.CURRENT_SEASON_CSV, ENVIRONMENT.PLAYER_ELO_DICT_PATH, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False)
     print("\n", "elo dictionary updated from last game", "\n")

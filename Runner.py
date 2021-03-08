@@ -8,8 +8,8 @@
 import ENVIRONMENT
 from src.database.database_creation import getAllGameData, createPlayerEloDictionary, resetPredictionSummaries, \
     createPlayerGlickoDictionary
-from src.historical_data.historical_data_retrieval import updateCurrentSeason
-from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrementally, \
+from src.historical_data.historical_data_retrieval import updateCurrentSeasonRawGameData
+from src.historical_data.play_by_play_methods import getAllFirstPossessionStatisticsIncrementally, \
     splitAllSeasonsFirstShotDataToMultipleFiles, getSingleGameStarters, saveAllHistoricalStarters
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
@@ -26,26 +26,20 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # saveActivePlayersTeams(1998)
 
 # todo TEST optimized player spreads across exchanges (i.e. look at first point on fd, bovada and dk; Need to consider first field goal as well
-# todo add player start percentage to 1st shot summary (retrieve game rotation stats from NBA API)
+# todo add player start percentage to 1st shot summary
 # todo fix fanduel when there are games to fetch data from
-# todo performance improvements, binary search of player db and smaller file size
-# todo performance improvements, use in and index[itemIWant] for C native code performance improvements
-# todo wrap post formatted paths in Path object to be functional for windows (if needed)
-# todo update print statements to be more take up less space
-
-# getCurrentSeasonUsageRate()
-
-# updateCurrentSeason()
+# todo expand to NCAA which is offered on betmgm
+# backlogtodo write checker for updating all data that may need to be updated
+# backlogtodo write checker for updating only game to game data (not rare breaking things like new players/player team pairs
+# backlogtodo performance improvements, binary search of player db and smaller file size
+# backlogtodo performance improvements, use in and index[itemIWant] for C native code performance improvements in numpy
+# backlogtodo update print statements to show more and take up less space
+# backlogtodo combine to update all relevant game dictionaries from last game after fetching new game details
+# updateCurrentSeasonRawGameData()
 # updateSkillDictionaryFromLastGame()
 
-# getFirstShotStats(2021)
-#
+getFirstShotStats(2019)
 # getAllExpectedStarters()
-
-# todo combine these trifectas to run separately
-resetPredictionSummaries(ENVIRONMENT.GLICKO_PREDICTION_SUMMARIES_PATH)
-createPlayerGlickoDictionary()
-runGlickoForAllSeasons(ENVIRONMENT.ALL_SEASONS_LIST)
 
 # getDailyOdds('PHX', 'GSW', '+116')
 # getDailyOdds('IND', 'DEN', '-111')
@@ -90,6 +84,7 @@ https://punter2pro.com/best-sports-arbing-software/
 '''
 
 # backlogtodo set up backtester with assumed odds lines, i.e. assuming we are always offered odds on a team of -110, how would the strat perform? (the default should -110)
+# backlogtodo set up backtester using pickled GameOdds objects
 # backogtodo test if adding in the start of overtime tip performance enhances predictions (may be fatigue facotr/not as good)
 # backlogtodo account for overrepresentation of playoff teams
 

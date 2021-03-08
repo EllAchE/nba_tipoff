@@ -10,7 +10,7 @@ from src.rating_algorithms.algorithms import trueSkillMatchWithRawNums, trueSkil
 from src.rating_algorithms.common_data_processing import preMatchPredictions
 
 # todo refactor equations here to be generic
-def runTSForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winningBetThreshold: float=0.6, startFromBeginning=False):
+def runTSForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winningBetThreshold: float=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
     df = pd.read_csv(seasonCsv)
     # df = df[df['Home Tipper'].notnull()] # filters invalid rows
     df['Home Mu'] = None
@@ -87,7 +87,7 @@ def runTSForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winnin
     return winningBets, losingBets
 
 # backlogtodo setup odds prediction to use Ev or win prob rather than bet threshold
-def trueskillBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=0.6):
+def trueskillBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
     homeOdds = trueSkillWinProb(homePlayerCode, awayPlayerCode, psd=psd)
     homePlayerTeam = getPlayerTeamInSeasonFromBballRefLink(homePlayerCode, season, longCode=False)['currentTeam']
     awayPlayerTeam = getPlayerTeamInSeasonFromBballRefLink(awayPlayerCode, season, longCode=False)['currentTeam']
@@ -98,7 +98,7 @@ def trueskillBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayer
     else:
         print('no bet, not enough Data on participants')
 
-def runTSForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD):
+def runTSForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
     seasonKey = ''
     for season in seasons:
         runTSForSeason(season, ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season),
@@ -157,9 +157,9 @@ def trueSkillUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, 
 def calculateTrueSkillDictionaryFromZero():
     resetPredictionSummaries(ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH) # reset sums
     createPlayerTrueSkillDictionary() # clears the stored values,
-    runTSForAllSeasons(ENVIRONMENT.ALL_SEASONS_LIST, winning_bet_threshold=ENVIRONMENT.TIPOFF_ODDS_THRESHOLD)
+    runTSForAllSeasons(ENVIRONMENT.ALL_SEASONS_LIST, winning_bet_threshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD)
     print("\n", "trueskill dictionary updated for seasons", ENVIRONMENT.ALL_SEASONS_LIST, "\n")
 
 def updateTrueSkillDictionaryFromLastGame():
-    runTSForSeason(ENVIRONMENT.CURRENT_SEASON, ENVIRONMENT.CURRENT_SEASON_CSV, ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, winningBetThreshold=0.6, startFromBeginning=False)
+    runTSForSeason(ENVIRONMENT.CURRENT_SEASON, ENVIRONMENT.CURRENT_SEASON_CSV, ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False)
     print("\n", "trueskill dictionary updated from last game", "\n")

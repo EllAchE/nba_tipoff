@@ -1,7 +1,6 @@
 import os
 from pathlib import Path
 
-TIPOFF_ODDS_THRESHOLD = 0.73
 MAX_APPEARANCES = 9900
 
 # Observed Values
@@ -20,17 +19,18 @@ BASE_TS_RD = 25 * 25 / 3 / 3
 BASE_TS_TAU = BASE_TS_SIGMA / 100 # 0.08333333333333334
 BASE_TS_BETA = BASE_TS_SIGMA / 2 # 4.166666666666667
 MIN_TS_APPEARANCES = 20
+TS_TIPOFF_ODDS_THRESHOLD = 0.73
 # Trueskill files
 PLAYER_TRUESKILL_DICT_PATH = Path(os.path.abspath('Data/JSON/algorithms/trueskill/player_trueskill_dictionary.json'))
 TS_PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/algorithms/trueskill/ts_prediction_summaries.json'))
 
 # Glicko Base values
-# todo these may have to be adjusted directly in the downloaded libraries
 BASE_GLICKO_MU = 1500
 BASE_GLICKO_PHI = 350
 BASE_GLICKO_SIGMA = 0.06
 BASE_GLICKO_TAU = 1.0
 MIN_GLICKO_APPEARANCES = 20
+GLICKO_TIPOFF_ODDS_THRESHOLD = 0.73
 # Epsilon can be adjusted for convergence speed/accuracy tradeoffs
 # GLicko Files
 PLAYER_GLICKO_DICT_PATH = Path(os.path.abspath('Data/JSON/algorithms/glicko/player_glicko_dictionary.json'))
@@ -42,6 +42,7 @@ K_FACTOR = 10
 BASE_ELO = 1500
 BASE_ELO_BETA = 200
 MIN_ELO_APPEARANCES = 20
+ELO_TIPOFF_ODDS_THRESHOLD = 0.73
 # Elo files
 PLAYER_ELO_DICT_PATH = Path(os.path.abspath('Data/JSON/algorithms/elo/player_elo_dictionary.json'))
 ELO_PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/algorithms/elo/elo_prediction_summaries.json'))
@@ -57,7 +58,8 @@ CURRENT_TEAMS = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 
 # Calculated Value Paths
 ALL_SHOTS_BEFORE_FIRST_FG_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json'))
 SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH = os.path.abspath('Data/JSON/Public_NBA_API/first_shots_data/{}_data.json')
-FIRST_SHOT_SUMMARY_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/player_first_shot_summary.json'))
+FIRST_SHOT_SUMMARY_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/first_shot_summary.json'))
+FIRST_SHOT_SUMMARY_UNFORMATTED_PATH = os.path.abspath('Data/JSON/Public_NBA_API/first_shot_summary_{}.json')
 
 # Raw Data Paths
 PLAYER_TEAM_PAIRS_PATH = Path(os.path.abspath('Data/JSON/player_team_pairs.json'))
