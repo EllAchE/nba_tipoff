@@ -53,14 +53,16 @@ def glickoMatchWithRawNums(winnerMu: float, winnerSigma: float, winnerPhi: float
     newRO1, newRO2 = glickoObj.rate_1vs1(ratingObj1, ratingObj2)
     return newRO1.mu, newRO1.sigma, newRO1.phi, newRO2.mu, newRO2.sigma, newRO2.phi
 
+# todo debug the glicko predictions
 def glickoWinProb(player1Code: str, player2Code: str, jsonPath: str = ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, psd: Any = None): #win prob for first player
     if psd is None:
         with open(jsonPath) as json_file:
             psd = json.load(json_file)
 
+    glickoObj = glicko2.Glicko2()
     player1 = glicko2.Rating(mu=psd[player1Code]['mu'], phi=psd[player1Code]['phi'], sigma=psd[player1Code]['sigma'])
     player2 = glicko2.Rating(mu=psd[player2Code]['mu'], phi=psd[player2Code]['phi'], sigma=psd[player2Code]['sigma'])
-    return player1.expect_score(player1, player2, player1.reduce_impact(player1))
+    return glickoObj.expect_score(player1, player2, glickoObj.reduce_impact(player1))
 
 def glickoRatingPeriod():
     pass

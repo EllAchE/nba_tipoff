@@ -34,7 +34,7 @@ MIN_GLICKO_APPEARANCES = 20
 # Epsilon can be adjusted for convergence speed/accuracy tradeoffs
 # GLicko Files
 PLAYER_GLICKO_DICT_PATH = Path(os.path.abspath('Data/JSON/algorithms/glicko/player_glicko_dictionary.json'))
-GLICKO_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/algorithms/glicko/glicko_prediction_summaries.json'))
+GLICKO_PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/algorithms/glicko/glicko_prediction_summaries.json'))
 SEASON_CSV_UNFORMATTED_PATH = os.path.abspath('Data/CSV/season_data/tipoff_and_first_score_details_{}_season.csv')
 
 # Elo Base values
@@ -68,4 +68,3 @@ BET_HISTORY_PATH = Path(os.path.abspath("Data/CSV/bet_history.csv"))
 GAME_SUMMARY_UNFORMATTED_PATH = os.path.abspath('Data/CSV/season_summary_data/{}_allgames.csv')
 TEAM_TIPPER_PAIRS_PATH = Path(os.path.abspath('Data/JSON/team_tipper_pairs.json'))
 PLAYER_USAGE_PATH = Path(os.path.abspath("Data/JSON/player_usage.json"))
-A = Path(os.path.abspath('Data'))

@@ -42,6 +42,8 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 #
 # getAllExpectedStarters()
 
+# todo combine these trifectas to run separately
+resetPredictionSummaries(ENVIRONMENT.GLICKO_PREDICTION_SUMMARIES_PATH)
 createPlayerGlickoDictionary()
 runGlickoForAllSeasons(ENVIRONMENT.ALL_SEASONS_LIST)
 

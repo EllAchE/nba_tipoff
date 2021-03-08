@@ -84,7 +84,7 @@ def runGlickoForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, wi
     with open(ENVIRONMENT.GLICKO_PREDICTION_SUMMARIES_PATH, 'w') as write_file:
         json.dump(dsd, write_file, indent=4)
 
-    df.to_csv(str(seasonCsv)[:-4] + '-test.csv')
+    # df.to_csv(str(seasonCsv)[:-4] + '-test.csv')
 
     return winningBets, losingBets
 
