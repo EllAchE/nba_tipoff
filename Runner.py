@@ -1,7 +1,7 @@
 # backlogtodo find out when the best time for placing bets on various sites is (i.e. when do odds move)
 # backlogtodo next prop - who scores last nba, race to 5 points
-# todo compare top rank vs. bottom rank losses
-# todo reverse engineer odds from site odds and use that to find mismatches in correlation i.e. last team to score
+# backlogtodo compare top rank vs. bottom rank losses
+# backlogtodo reverse engineer odds from site odds and use that to find mismatches in correlation i.e. last team to score
 # backlogtodo convert from printing desired bets to putting them into a json/csv
 # backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season. This may be solved by just taking the last index of team list, unless
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match

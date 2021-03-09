@@ -3,10 +3,8 @@ import ENVIRONMENT
 import pandas as pd
 
 from src.database.database_creation import resetPredictionSummaries, createPlayerEloDictionary
-from src.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
 from src.rating_algorithms.algorithms import eloMatchWithRawNums, eloWinProb
-
-from src.rating_algorithms.common_data_processing import preMatchPredictions
+from src.rating_algorithms.common_data_processing import beforeMatchPredictions
 
 def runEloForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winningBetThreshold: float=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
     df = pd.read_csv(seasonCsv)
@@ -72,15 +70,7 @@ def runEloForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winni
     return winningBets, losingBets
 
 def eloBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD):
-    homeOdds = eloWinProb(homePlayerCode, awayPlayerCode, psd=psd)
-    homePlayerTeam = getPlayerTeamInSeasonFromBballRefLink(homePlayerCode, season, longCode=False)['currentTeam']
-    awayPlayerTeam = getPlayerTeamInSeasonFromBballRefLink(awayPlayerCode, season, longCode=False)['currentTeam']
-
-    if psd[homePlayerCode]['appearances'] > ENVIRONMENT.MIN_ELO_APPEARANCES and psd[awayPlayerCode]['appearances'] > ENVIRONMENT.MIN_ELO_APPEARANCES:
-        preMatchPredictions(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
-                            tipWinnerCode, winningBetThreshold)
-    else:
-        print('no bet, not enough Data on participants')
+    beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=winningBetThreshold, predictionFunction=eloWinProb)
 
 def runEloForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD):
     seasonKey = ''

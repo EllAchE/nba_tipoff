@@ -5,11 +5,12 @@ import ENVIRONMENT
 import pandas as pd
 
 from src.database.database_creation import resetPredictionSummaries, createPlayerTrueSkillDictionary
-from src.historical_data.historical_data_retrieval import getPlayerTeamInSeasonFromBballRefLink
 from src.rating_algorithms.algorithms import trueSkillMatchWithRawNums, trueSkillWinProb
-from src.rating_algorithms.common_data_processing import preMatchPredictions
+from src.rating_algorithms.common_data_processing import preMatchPredictions, beforeMatchPredictions
 
-# todo refactor equations here to be generic
+
+# todo optimize trueskill, glicko etc. for rapid iteration
+# backlogtodo refactor equations here to be generic
 def runTSForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winningBetThreshold: float=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
     df = pd.read_csv(seasonCsv)
     # df = df[df['Home Tipper'].notnull()] # filters invalid rows
@@ -88,15 +89,7 @@ def runTSForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winnin
 
 # backlogtodo setup odds prediction to use Ev or win prob rather than bet threshold
 def trueskillBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
-    homeOdds = trueSkillWinProb(homePlayerCode, awayPlayerCode, psd=psd)
-    homePlayerTeam = getPlayerTeamInSeasonFromBballRefLink(homePlayerCode, season, longCode=False)['currentTeam']
-    awayPlayerTeam = getPlayerTeamInSeasonFromBballRefLink(awayPlayerCode, season, longCode=False)['currentTeam']
-
-    if psd[homePlayerCode]['appearances'] > ENVIRONMENT.MIN_TS_APPEARANCES and psd[awayPlayerCode]['appearances'] > ENVIRONMENT.MIN_TS_APPEARANCES:
-        preMatchPredictions(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
-                            tipWinnerCode, winningBetThreshold)
-    else:
-        print('no bet, not enough Data on participants')
+    beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=winningBetThreshold, predictionFunction=trueSkillWinProb)
 
 def runTSForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
     seasonKey = ''

@@ -135,7 +135,7 @@ def _playerFirstShotStats(game, summaryDict, makesOverall, isFirstFieldGoal=Fals
     quarters = ['quarter1']#, 'quarter2', 'quarter3', 'quarter4']
     # only consider first quarter shots for individual players currently
     # todo normalize for games started, compare to known player usage rate for a given season
-    # todo add in tip result to quarter data
+    # todo add favorable/unfavorable tip result to quarter data
 
     def getTotalShots(playerQuarter):
         return playerQuarter['FG ATTEMPTS'] + playerQuarter['FREE THROW ATTEMPTS']
