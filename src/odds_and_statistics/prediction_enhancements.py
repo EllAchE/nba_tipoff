@@ -74,7 +74,6 @@ def _initializePlayerDict(summaryDict, lastSeasonData):
                                             'totalMakes': 0, 'teams': [], 'favorableTipResults': 0} # backlogtodo get games started as a separate stat
     return summaryDict
 
-# todo set this up to differentiate between when it's first field goal and first free throw that matter
 def _initializeTeamDict(summaryDict, lastSeasonData):
     teamSet = set()
     quarters = ['quarter1', 'quarter2', 'quarter3', 'quarter4']
@@ -95,8 +94,7 @@ def _initializeTeamDict(summaryDict, lastSeasonData):
     return summaryDict
 
 def _teamFirstShotStats(game, summaryDict, isFirstFieldGoal=False):
-    # todo add in tip result to quarter data
-    # todo group quarters 1 and 4 as 'tip wins', 2 & 3 as 'tip losses'
+    # todo add in tip result to quarter data i.e. group quarters 1 and 4 as 'tip wins', 2 & 3 as 'tip losses'
     quarters = ['quarter1', 'quarter2', 'quarter3', 'quarter4']
     for quarter in quarters:
         for event in game[quarter]:

@@ -1,7 +1,6 @@
 import json
 import csv
 import pandas as pd
-
 import re
 
 # backlogtodo record historical betting lines
@@ -9,6 +8,7 @@ import re
 # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
 # backlogtodo BACKLOG get playbyplay from NCAA for rookie projections
 # https://www.ncaa.com/game/5763659/play-by-play
+#
 import ENVIRONMENT
 from src.database.database_access import getPlayerTeamInSeasonFromBballRefLink
 from src.utils import getSoupFromUrl, \

@@ -9,7 +9,7 @@ from src.rating_algorithms.algorithms import trueSkillMatchWithRawNums, trueSkil
 from src.rating_algorithms.common_data_processing import preMatchPredictions, beforeMatchPredictions
 
 
-# todo optimize trueskill, glicko etc. for rapid iteration
+# backlogtodo optimize trueskill, glicko etc. for rapid iteration
 # backlogtodo refactor equations here to be generic
 def runTSForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winningBetThreshold: float=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
     df = pd.read_csv(seasonCsv)

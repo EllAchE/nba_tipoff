@@ -18,7 +18,7 @@ from src.rating_algorithms.elo_data_processing import runEloForAllSeasons
 from src.rating_algorithms.glicko_data_processing import runGlickoForAllSeasons
 from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero, updateTrueSkillDictionaryFromLastGame
 
-#todo look into multithreading for the multiple algorithm analysis (run the three concurrently)
+# backlogtodo look into multithreading for the multiple algorithm analysis (run the three concurrently)
 
 # getAllGameData()
 

@@ -1,6 +1,4 @@
 # backlogtodo test a probabilistic means of comparing players that does not use rating_algorithms algo
-# todo add time decay to glicko/true skill RD
-# todo trueskill/glicko tuning:
 # lower tau prevents volatitliy from changing a lot. It's a baseline volatiity added to prevent convergence to zero by
 # the standard deviation
 # for elo the toggleable parameter can be the length of the rating period(s)
@@ -50,7 +48,7 @@ def glickoMatchWithRawNums(winnerMu: float, winnerSigma: float, winnerPhi: float
     newRO1, newRO2 = glickoObj.rate_1vs1(ratingObj1, ratingObj2)
     return newRO1.mu, newRO1.sigma, newRO1.phi, newRO2.mu, newRO2.sigma, newRO2.phi
 
-# todo debug the glicko predictions
+# todo toggle/test the glicko, ts and elo predictions
 def glickoWinProb(player1Code: str, player2Code: str, jsonPath: str = ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, psd: Any = None): #win prob for first player
     if psd is None:
         with open(jsonPath) as json_file:
@@ -64,7 +62,7 @@ def glickoWinProb(player1Code: str, player2Code: str, jsonPath: str = ENVIRONMEN
 def glickoRatingPeriod():
     pass
 
-# todo possibly creating a new Elo object here repeatedly is inefficient
+# backlogtodo possibly creating a new Elo object here repeatedly is inefficient
 def eloMatchWithRawNums(winnerElo: int, loserElo: int):
     eloObj = elo.Elo()
     updatedWinnerElo, updatedLoserElo = eloObj.rate_1vs1(winnerElo, loserElo)
