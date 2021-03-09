@@ -27,7 +27,6 @@ Percentage of first shots made by player overall
 Percentage of first shots taken by particular player
 
 '''
-# todo split summary data for 2nd, 3rd and 4th quarters
 import json
 
 import requests

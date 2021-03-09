@@ -28,7 +28,7 @@ def getCurrentSeasonUsageRate():
 
     print('saved Player Usage Dictionary')
 
-def getFirstShotStats(season):
+def getFirstFieldGoalStats(season, isFirstFieldGoal=False):
     stub = ENVIRONMENT.SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH
     with open(stub.format(season)) as data:
         firstShotsDict = json.load(data)
@@ -40,13 +40,17 @@ def getFirstShotStats(season):
     summaryDict = _initializeTeamDict(summaryDict, firstShotsDict)
 
     for game in firstShotsDict:
-        summaryDict, makesOverall = _playerFirstShotStats(game, summaryDict, makesOverall)
-        summaryDict = _teamFirstShotStats(game, summaryDict)
+        summaryDict, makesOverall = _playerFirstShotStats(game, summaryDict, makesOverall, isFirstFieldGoal=isFirstFieldGoal)
+        summaryDict = _teamFirstShotStats(game, summaryDict, isFirstFieldGoal=isFirstFieldGoal)
 
     summaryDict = _summaryStats(summaryDict)
 
-    summaryDict = OrderedDict(sorted(summaryDict.items(), key=lambda item: list(item)[1]['quarter1']['totalMakes'], reverse=True))
-    savePath = ENVIRONMENT.FIRST_SHOT_SUMMARY_UNFORMATTED_PATH.format(str(season))
+    def sortFunction(item):
+        quarterData = list(item)[1]['quarter1']
+        return quarterData['2PT MAKE'] + quarterData['3PT MAKE']
+
+    summaryDict = OrderedDict(sorted(summaryDict.items(), key=sortFunction, reverse=True))
+    savePath = ENVIRONMENT.FIRST_FG_SUMMARY_UNFORMATTED_PATH.format(str(season)) if isFirstFieldGoal else ENVIRONMENT.FIRST_POINT_SUMMARY_UNFORMATTED_PATH.format(str(season))
     with open(savePath, 'w') as writeFile:
         json.dump(summaryDict, writeFile, indent=4)
     print('first shot statistics compiled. Total makes was counted as', makesOverall)
@@ -64,12 +68,13 @@ def _initializePlayerDict(summaryDict, lastSeasonData):
         summaryDict[player] = {}
     for player in playerSet:
         for quarter in quarters:
-            summaryDict[player][quarter] = {'shots': 0, '2PT MAKE': 0, '3PT MAKE': 0, 'FREE THROW MAKE': 0, 'FG ATTEMPTS': 0,
-                               '2PT MISS': 0, '3PT MISS': 0, 'FREE THROW MISS': 0, 'FREE THROW ATTEMPTS': 0,
-                               'firstShotIndex': 0, 'firstShots': 0, 'averageShotIndex': 0, 'gamesStarted': None,
-                               'totalMakes': 0, 'teams': [], 'favorableTipResults': 0}  # backlogtodo get games started as a separate stat
+            summaryDict[player][quarter] = {'2PT MAKE': 0, '3PT MAKE': 0, 'FREE THROW MAKE': 0, 'FG ATTEMPTS': 0,
+                                            '2PT MISS': 0, '3PT MISS': 0, 'FREE THROW MISS': 0, 'FREE THROW ATTEMPTS': 0,
+                                            'firstShotIndex': 0, 'firstShots': 0, 'averageShotIndex': 0, 'gamesStarted': 0,
+                                            'totalMakes': 0, 'teams': [], 'favorableTipResults': 0} # backlogtodo get games started as a separate stat
     return summaryDict
 
+# todo set this up to differentiate between when it's first field goal and first free throw that matter
 def _initializeTeamDict(summaryDict, lastSeasonData):
     teamSet = set()
     quarters = ['quarter1', 'quarter2', 'quarter3', 'quarter4']
@@ -82,15 +87,14 @@ def _initializeTeamDict(summaryDict, lastSeasonData):
         summaryDict[team] = {}
     for team in teamSet:
         for quarter in quarters:
-            summaryDict[team][quarter] = {'favorableTipResults': 0, 'shots': 0, '2PT MAKE': 0, '3PT MAKE': 0, 'FREE THROW MAKE': 0,
-                                          'FG ATTEMPTS': 0, 'shootingStarters': [], '2PT MISS': 0, '3PT MISS': 0, 'FREE THROW MISS': 0,
-                                          'FREE THROW ATTEMPTS': 0, 'firstShotIndex': 0, 'firstShots': 0, 'totalMakes': 0,
-                                          'opponentFgAttempts': 0, 'opponentFtAttempts': 0, 'opponent2ptmake': 0, 'opponent2ptmiss': 0,
-                                          'opponent3ptmake': 0, 'opponent3ptmiss': 0, 'opponentfreethrowmake': 0, 'opponentfreethrowmiss': 0,
-                                          'opponentShots': 0, 'opponentTotalMakes': 0}
+            summaryDict[team][quarter] = {'favorableTipResults': 0, '2PT MAKE': 0, '3PT MAKE': 0, 'FREE THROW MAKE': 0,
+                                          'FG ATTEMPTS': 0, '2PT MISS': 0, '3PT MISS': 0, 'FREE THROW MISS': 0,
+                                          'FREE THROW ATTEMPTS': 0, 'opponentFgAttempts': 0, 'opponentFtAttempts': 0,
+                                          'opponent2ptmake': 0, 'opponent2ptmiss': 0, 'opponent3ptmake': 0, 'opponent3ptmiss': 0,
+                                          'opponentfreethrowmake': 0, 'opponentfreethrowmiss': 0}
     return summaryDict
 
-def _teamFirstShotStats(game, summaryDict):
+def _teamFirstShotStats(game, summaryDict, isFirstFieldGoal=False):
     # todo add in tip result to quarter data
     # todo group quarters 1 and 4 as 'tip wins', 2 & 3 as 'tip losses'
     quarters = ['quarter1', 'quarter2', 'quarter3', 'quarter4']
@@ -98,8 +102,6 @@ def _teamFirstShotStats(game, summaryDict):
         for event in game[quarter]:
             team = event['team']
             opponent = event['opponentTeam']
-            summaryDict[team][quarter]['shots'] += 1
-            summaryDict[opponent][quarter]['opponentShots'] += 1
             summaryDict[team][quarter][event['shotType']] += 1
             summaryDict[opponent][quarter][lowercaseNoSpace('opponent' + event['shotType'])] += 1
 
@@ -109,32 +111,37 @@ def _teamFirstShotStats(game, summaryDict):
             else:
                 summaryDict[team][quarter]['FREE THROW ATTEMPTS'] += 1
                 summaryDict[opponent][quarter]['opponentFtAttempts'] += 1
-            if 'MAKE' in event['shotType']:
-                summaryDict[team][quarter]['totalMakes'] += 1
-                summaryDict[opponent][quarter]['opponentTotalMakes'] += 1
+            if not isFirstFieldGoal and 'MAKE' in event['shotType']:
+                break
 
     return summaryDict
 
 def _summaryStats(summaryDict):
-    for playerOrTeam in summaryDict:
-        try:
-            summaryDict[playerOrTeam]['shootingPercentage'] = (summaryDict[playerOrTeam]['2PT MAKE'] + summaryDict[playerOrTeam]['3PT MAKE'])\
-                                                        / summaryDict[playerOrTeam]['FG ATTEMPTS']
-        except:
-            summaryDict[playerOrTeam]['shootingPercentage'] = None
-        try:
-            summaryDict[playerOrTeam]['freeThrowPercentage'] = (summaryDict[playerOrTeam]['FREE THROW MAKE']) / summaryDict[playerOrTeam]['FREE THROW ATTEMPTS']
-        except:
-            summaryDict[playerOrTeam]['freeThrowPercentage'] = None
+    # for playerOrTeam in summaryDict:
+        # try:
+        #     summaryDict[playerOrTeam]['shootingPercentage'] = (summaryDict[playerOrTeam]['2PT MAKE'] + summaryDict[playerOrTeam]['3PT MAKE'])\
+        #                                                 / (summaryDict[playerOrTeam]['2PT MAKE'] + summaryDict[playerOrTeam]['3PT MAKE'] + summaryDict[playerOrTeam]['2PT MISS'] + summaryDict[playerOrTeam]['3PT MISS'])
+        # except:
+        #     summaryDict[playerOrTeam]['shootingPercentage'] = None
+        # try:
+        #     summaryDict[playerOrTeam]['freeThrowPercentage'] = (summaryDict[playerOrTeam]['FREE THROW MAKE']) / (summaryDict[playerOrTeam]['FREE THROW MAKE']  + summaryDict[playerOrTeam]['FREE THROW ATTEMPTS'])
+        # except:
+        #     summaryDict[playerOrTeam]['freeThrowPercentage'] = None
 
     return summaryDict
 
-def _playerFirstShotStats(game, summaryDict, makesOverall):
+def _playerFirstShotStats(game, summaryDict, makesOverall, isFirstFieldGoal=False):
     playerHasShotInGame = set()
     quarters = ['quarter1']#, 'quarter2', 'quarter3', 'quarter4']
     # only consider first quarter shots for individual players currently
     # todo normalize for games started, compare to known player usage rate for a given season
     # todo add in tip result to quarter data
+
+    def getTotalShots(playerQuarter):
+        return playerQuarter['FG ATTEMPTS'] + playerQuarter['FREE THROW ATTEMPTS']
+
+    def getTotalShotsDenominator(playerQuarter):
+        return getTotalShots(playerQuarter) + 1
 
     for quarter in quarters:
         for event in game[quarter]:
@@ -142,14 +149,13 @@ def _playerFirstShotStats(game, summaryDict, makesOverall):
             playerTeam = event['team']
             if playerTeam not in summaryDict[player][quarter]['teams']:
                 summaryDict[player][quarter]['teams'].append(playerTeam)
-            summaryDict[player][quarter]['averageShotIndex'] = (summaryDict[player][quarter]['shots'] * summaryDict[player][quarter][
-                'averageShotIndex'] + event['shotIndex']) / (summaryDict[player][quarter]['shots'] + 1)
+            summaryDict[player][quarter]['averageShotIndex'] = (getTotalShots(summaryDict[player][quarter]) * summaryDict[player][quarter][
+                'averageShotIndex'] + event['shotIndex']) / (getTotalShotsDenominator(summaryDict[player][quarter]))
 
             if player not in playerHasShotInGame:
-                summaryDict[player][quarter]['firstShotIndex'] = (summaryDict[player][quarter]['shots'] * summaryDict[player][quarter][
-                    'firstShotIndex'] + event['shotIndex']) / (summaryDict[player][quarter]['shots'] + 1)
+                summaryDict[player][quarter]['firstShotIndex'] = (getTotalShots(summaryDict[player][quarter]) * summaryDict[player][quarter][
+                    'firstShotIndex'] + event['shotIndex']) / (getTotalShotsDenominator(summaryDict[player][quarter]))
             playerHasShotInGame.add(player)
-            summaryDict[player][quarter]['shots'] += 1
             summaryDict[player][quarter][event['shotType']] += 1
             if event['shotIndex'] == 1:
                 summaryDict[player][quarter]['firstShots'] += 1
@@ -157,9 +163,8 @@ def _playerFirstShotStats(game, summaryDict, makesOverall):
                 summaryDict[player][quarter]['FG ATTEMPTS'] += 1
             else:
                 summaryDict[player][quarter]['FREE THROW ATTEMPTS'] += 1
-            if 'MAKE' in event['shotType']:
-                summaryDict[player][quarter]['totalMakes'] += 1
-                makesOverall += 1
+            if not isFirstFieldGoal and 'MAKE' in event['shotType']:
+                break
     return summaryDict, makesOverall
 
 # Additional variables'

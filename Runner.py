@@ -13,7 +13,7 @@ from src.historical_data.play_by_play_methods import getAllFirstPossessionStatis
     splitAllSeasonsFirstShotDataToMultipleFiles, getSingleGameStarters, saveAllHistoricalStarters
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
-from src.odds_and_statistics.prediction_enhancements import getFirstShotStats, getCurrentSeasonUsageRate
+from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalStats, getCurrentSeasonUsageRate
 from src.rating_algorithms.elo_data_processing import runEloForAllSeasons
 from src.rating_algorithms.glicko_data_processing import runGlickoForAllSeasons
 from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero, updateTrueSkillDictionaryFromLastGame
@@ -38,7 +38,7 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # updateCurrentSeasonRawGameData()
 # updateSkillDictionaryFromLastGame()
 
-getFirstShotStats(2019)
+getFirstFieldGoalStats(2019)#, isFirstFieldGoal=True)
 # getAllExpectedStarters()
 
 # getDailyOdds('PHX', 'GSW', '+116')
