@@ -64,6 +64,7 @@ def glickoWinProb(player1Code: str, player2Code: str, jsonPath: str = ENVIRONMEN
 def glickoRatingPeriod():
     pass
 
+# todo possibly creating a new Elo object here repeatedly is inefficient
 def eloMatchWithRawNums(winnerElo: int, loserElo: int):
     eloObj = elo.Elo()
     updatedWinnerElo, updatedLoserElo = eloObj.rate_1vs1(winnerElo, loserElo)

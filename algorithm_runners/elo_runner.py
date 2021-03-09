@@ -1,0 +1,3 @@
+from src.rating_algorithms.elo_data_processing import calculateEloDictionaryFromZero
+
+calculateEloDictionaryFromZero()

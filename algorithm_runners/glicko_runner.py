@@ -1,0 +1,3 @@
+from src.rating_algorithms.glicko_data_processing import calculateGlickoDictionaryFromZero
+
+calculateGlickoDictionaryFromZero()
