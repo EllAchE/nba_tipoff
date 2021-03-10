@@ -49,6 +49,7 @@ def glickoMatchWithRawNums(winnerMu: float, winnerSigma: float, winnerPhi: float
     return newRO1.mu, newRO1.sigma, newRO1.phi, newRO2.mu, newRO2.sigma, newRO2.phi
 
 # todo toggle/test the glicko, ts and elo predictions
+# this is going to have to be done with histograms bucketed out to an appropriate size and a minimum
 def glickoWinProb(player1Code: str, player2Code: str, jsonPath: str = ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, psd: Any = None): #win prob for first player
     if psd is None:
         with open(jsonPath) as json_file:

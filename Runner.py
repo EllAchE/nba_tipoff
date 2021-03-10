@@ -32,6 +32,7 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # todo add player start percentage to 1st shot summary
 # todo fix fanduel when there are games to fetch data from
 # todo expand to NCAA which is offered on betmgm
+# todo expand to other countries which are offered on betmgm
 # backlogtodo write checker for updating all data that may need to be updated
 # backlogtodo write checker for updating only game to game data (not rare breaking things like new players/player team pairs
 # backlogtodo performance improvements, binary search of player db and smaller file size
@@ -41,7 +42,7 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 
 # updateCurrentSeasonRawGameData()
 # updateTrueSkillDictionaryFromLastGame()
-saveActivePlayersTeams(1997)
+calculateTrueSkillDictionaryFromZero()
 
 # getFirstFieldGoalStats(2019)#, isFirstFieldGoal=True)
 # getAllExpectedStarters()

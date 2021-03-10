@@ -107,7 +107,7 @@ def saveActivePlayersTeams(start_season: int):
 
         for tag in tradePlayerTags:
             playerNameTag = tag.select('td[data-stat="player"]')[0]
-            playerFullName = playerNameTag.contents[0].contents[0]
+            # playerFullName = playerNameTag.contents[0].contents[0]
             # playerUniversalName = getUniversalPlayerName(playerFullName)
 
             tag = str(tag)
@@ -124,7 +124,7 @@ def saveActivePlayersTeams(start_season: int):
             noTradeSet.add(playerCode)
         for tag in noTradePlayerTags:
             playerNameTag = tag.select('td[data-stat="player"]')[0]
-            playerFullName = playerNameTag.contents[0].contents[0]
+            # playerFullName = playerNameTag.contents[0].contents[0]
             # playerUniversalName = getUniversalPlayerName(playerFullName)
 
             tag = str(tag)
