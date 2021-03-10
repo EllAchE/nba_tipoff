@@ -21,7 +21,7 @@ GLICKO_PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/algorithms/gl
 ELO_PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/algorithms/elo/elo_prediction_summaries.json'))
 
 # Trueskill Base values
-BASE_TS_SIGMA = 25 / 6 # 8.333333333333334
+BASE_TS_SIGMA = 25 / 3 # 8.333333333333334
 BASE_TS_MU = 25
 BASE_TS_RD = 25 * 25 / 3 / 3
 BASE_TS_TAU = BASE_TS_SIGMA / 100 # 0.08333333333333334
