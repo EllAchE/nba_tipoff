@@ -1,7 +1,9 @@
+import ENVIRONMENT
 from src.database.database_access import getPlayerTeamInSeasonFromBballRefLink
 
 def preMatchPredictions(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
                         tipWinnerCode, winningBetThreshold):
+    totalBets = dsd['winningBets'] + dsd['losingBets']
     if homeOdds > winningBetThreshold:
         if tipWinnerCode[11:] == homePlayerCode:
             dsd['correctTipoffPredictions'] += 1
@@ -11,6 +13,7 @@ def preMatchPredictions(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlaye
             dsd["winningBets"] += 1
         else:
             dsd["losingBets"] += 1
+        dsd['predictionAverage'] = (dsd['predictionAverage'] * totalBets + homeOdds) / (totalBets + 1)
     elif (1 - homeOdds) > winningBetThreshold:
         if tipWinnerCode[11:] == awayPlayerCode:
             dsd['correctTipoffPredictions'] += 1
@@ -20,6 +23,7 @@ def preMatchPredictions(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlaye
             dsd["winningBets"] += 1
         else:
             dsd['losingBets'] += 1
+        dsd['predictionAverage'] = (dsd['predictionAverage'] * totalBets + (1 - homeOdds)) / (totalBets + 1)
     else:
         print('no bet, odds were not good enough')
 
@@ -33,6 +37,12 @@ def beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tip
                             tipWinnerCode, winningBetThreshold)
     else:
         print('no bet, not enough Data on participants')
+
+def addSummaryMathToAlgoSummary(dsd):
+    dsd['correctTipoffPredictionPercentage'] = dsd['correctTipoffPredictions'] / (dsd['correctTipoffPredictions'] + dsd['incorrectTipoffPredictions'])
+    dsd['winPercentage'] = dsd['winningBets'] / (dsd['winningBets'] + dsd['losingBets'])
+    dsd['expectedWinsFromTip'] = dsd['correctTipoffPredictionPercentage'] * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1-dsd['correctTipoffPredictionPercentage']) * (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
+    return dsd
 
 def runAlgorithmForSeason():
     # def runEloForSeason(season: str, seasonCsv: str, playerSkillDictPath: str,

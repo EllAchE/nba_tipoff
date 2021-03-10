@@ -7,7 +7,8 @@ import pandas as pd
 from src.database.database_creation import resetPredictionSummaries, createPlayerGlickoDictionary
 from src.rating_algorithms.algorithms import glickoWinProb, glickoMatchWithRawNums
 
-from src.rating_algorithms.common_data_processing import preMatchPredictions, beforeMatchPredictions
+from src.rating_algorithms.common_data_processing import preMatchPredictions, beforeMatchPredictions, \
+    addSummaryMathToAlgoSummary
 
 
 def runGlickoForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winningBetThreshold: float=ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
@@ -99,6 +100,7 @@ def runGlickoForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.GLICKO_TIPOF
         dsd = json.load(predSum)
 
     dsd['seasons'] = seasonKey + 'with-odds-' + str(winningBetThreshold)
+    dsd = addSummaryMathToAlgoSummary(dsd)
 
     with open(ENVIRONMENT.GLICKO_PREDICTION_SUMMARIES_PATH, 'w') as predSum:
         json.dump(dsd, predSum, indent=4)

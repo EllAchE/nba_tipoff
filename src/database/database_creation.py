@@ -26,6 +26,7 @@ def resetPredictionSummaries(path):
     d['losingBets'] = 0
     d['correctTipoffPredictions'] = 0
     d['incorrectTipoffPredictions'] = 0
+    d['predictionAverage']
 
     with open(path, 'w') as jsonWFile:
         json.dump(d, jsonWFile, indent=4)
@@ -107,32 +108,32 @@ def saveActivePlayersTeams(start_season: int):
         for tag in tradePlayerTags:
             playerNameTag = tag.select('td[data-stat="player"]')[0]
             playerFullName = playerNameTag.contents[0].contents[0]
-            playerUniversalName = getUniversalPlayerName(playerFullName)
+            # playerUniversalName = getUniversalPlayerName(playerFullName)
 
             tag = str(tag)
             playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
             playerTeam = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
             if playerCode in noTradeSet:
-                seasons[season][playerUniversalName]['possibleTeams'] += [playerTeam]
-                seasons[season][playerUniversalName]['currentTeam'] = playerTeam
+                # seasons[season][playerUniversalName]['possibleTeams'] += [playerTeam]
+                # seasons[season][playerUniversalName]['currentTeam'] = playerTeam
                 seasons[season][playerCode]['possibleTeams'] += [playerTeam]
                 seasons[season][playerCode]['currentTeam'] = playerTeam
             else:
-                seasons[season][playerUniversalName] = {"possibleTeams": [playerTeam]}
+                # seasons[season][playerUniversalName] = {"possibleTeams": [playerTeam]}
                 seasons[season][playerCode] = {"possibleTeams": [playerTeam]}
             noTradeSet.add(playerCode)
         for tag in noTradePlayerTags:
             playerNameTag = tag.select('td[data-stat="player"]')[0]
             playerFullName = playerNameTag.contents[0].contents[0]
-            playerUniversalName = getUniversalPlayerName(playerFullName)
+            # playerUniversalName = getUniversalPlayerName(playerFullName)
 
             tag = str(tag)
             playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
             if playerCode in noTradeSet:
                 continue # skip the trade_players who break the regex
             playerTeam = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
-            seasons[season][playerUniversalName] = {'possibleTeams': [playerTeam]}
-            seasons[season][playerUniversalName]['currentTeam'] = playerTeam
+            # seasons[season][playerUniversalName] = {'possibleTeams': [playerTeam]}
+            # seasons[season][playerUniversalName]['currentTeam'] = playerTeam
             seasons[season][playerCode] = {'possibleTeams': [playerTeam]}
             seasons[season][playerCode]['currentTeam'] = playerTeam
 

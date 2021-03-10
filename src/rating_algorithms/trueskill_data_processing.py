@@ -6,7 +6,8 @@ import pandas as pd
 
 from src.database.database_creation import resetPredictionSummaries, createPlayerTrueSkillDictionary
 from src.rating_algorithms.algorithms import trueSkillMatchWithRawNums, trueSkillWinProb
-from src.rating_algorithms.common_data_processing import preMatchPredictions, beforeMatchPredictions
+from src.rating_algorithms.common_data_processing import preMatchPredictions, beforeMatchPredictions, \
+    addSummaryMathToAlgoSummary
 
 
 # backlogtodo optimize trueskill, glicko etc. for rapid iteration
@@ -102,6 +103,7 @@ def runTSForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TS_TIPOFF_ODDS
         dsd = json.load(predSum)
 
     dsd['seasons'] = seasonKey + 'with-odds-' + str(winning_bet_threshold)
+    dsd = addSummaryMathToAlgoSummary(dsd)
 
     with open(ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH, 'w') as predSum:
         json.dump(dsd, predSum, indent=4)

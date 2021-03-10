@@ -7,7 +7,7 @@
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
 import ENVIRONMENT
 from src.database.database_creation import getAllGameData, createPlayerEloDictionary, resetPredictionSummaries, \
-    createPlayerGlickoDictionary
+    createPlayerGlickoDictionary, saveActivePlayersTeams
 from src.historical_data.historical_data_retrieval import updateCurrentSeasonRawGameData
 from src.historical_data.play_by_play_methods import getAllFirstPossessionStatisticsIncrementally, \
     splitAllSeasonsFirstShotDataToMultipleFiles, getSingleGameStarters, saveAllHistoricalStarters
@@ -18,6 +18,7 @@ from src.rating_algorithms.elo_data_processing import runEloForAllSeasons
 from src.rating_algorithms.glicko_data_processing import runGlickoForAllSeasons
 from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero, updateTrueSkillDictionaryFromLastGame
 
+# More books https://bookies.com/pennsylvania
 # backlogtodo look into multithreading for the multiple algorithm analysis (run the three concurrently)
 
 # getAllGameData()
@@ -37,14 +38,16 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # backlogtodo performance improvements, use in and index[itemIWant] for C native code performance improvements in numpy
 # backlogtodo update print statements to show more and take up less space
 # backlogtodo combine to update all relevant game dictionaries from last game after fetching new game details
+
 # updateCurrentSeasonRawGameData()
-# updateSkillDictionaryFromLastGame()
+# updateTrueSkillDictionaryFromLastGame()
+saveActivePlayersTeams(1997)
 
 # getFirstFieldGoalStats(2019)#, isFirstFieldGoal=True)
 # getAllExpectedStarters()
 
-# getDailyOdds('PHX', 'GSW', '+116')
-# getDailyOdds('IND', 'DEN', '-111')
+# getDailyOdds('WAS', 'MEM')
+# getDailyOdds('SAS', 'DAL')
 # getDailyOdds('LAC', 'WAS', '+100')
 
 # getAllOddsAndDisplayByEv(getDk=True, getBovada=True, getMgm=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)

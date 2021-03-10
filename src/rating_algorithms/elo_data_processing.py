@@ -4,7 +4,8 @@ import pandas as pd
 
 from src.database.database_creation import resetPredictionSummaries, createPlayerEloDictionary
 from src.rating_algorithms.algorithms import eloMatchWithRawNums, eloWinProb
-from src.rating_algorithms.common_data_processing import beforeMatchPredictions
+from src.rating_algorithms.common_data_processing import beforeMatchPredictions, addSummaryMathToAlgoSummary
+
 
 def runEloForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winningBetThreshold: float=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
     df = pd.read_csv(seasonCsv)
@@ -83,6 +84,7 @@ def runEloForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS
         dsd = json.load(predSum)
 
     dsd['seasons'] = seasonKey + 'with-odds-' + str(winningBetThreshold)
+    dsd = addSummaryMathToAlgoSummary(dsd)
 
     with open(ENVIRONMENT.ELO_PREDICTION_SUMMARIES_PATH, 'w') as predSum:
         json.dump(dsd, predSum, indent=4)
