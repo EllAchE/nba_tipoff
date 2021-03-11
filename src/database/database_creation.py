@@ -107,33 +107,33 @@ def saveActivePlayersTeams(start_season: int):
 
         for tag in tradePlayerTags:
             playerNameTag = tag.select('td[data-stat="player"]')[0]
-            # playerFullName = playerNameTag.contents[0].contents[0]
-            # playerUniversalName = getUniversalPlayerName(playerFullName)
+            playerFullName = playerNameTag.contents[0].contents[0]
+            playerUniversalName = getUniversalPlayerName(playerFullName)
 
             tag = str(tag)
             playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
             playerTeam = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
             if playerCode in noTradeSet:
-                # seasons[season][playerUniversalName]['possibleTeams'] += [playerTeam]
-                # seasons[season][playerUniversalName]['currentTeam'] = playerTeam
+                seasons[season][playerUniversalName]['possibleTeams'] += [playerTeam]
+                seasons[season][playerUniversalName]['currentTeam'] = playerTeam
                 seasons[season][playerCode]['possibleTeams'] += [playerTeam]
                 seasons[season][playerCode]['currentTeam'] = playerTeam
             else:
-                # seasons[season][playerUniversalName] = {"possibleTeams": [playerTeam]}
+                seasons[season][playerUniversalName] = {"possibleTeams": [playerTeam]}
                 seasons[season][playerCode] = {"possibleTeams": [playerTeam]}
             noTradeSet.add(playerCode)
         for tag in noTradePlayerTags:
             playerNameTag = tag.select('td[data-stat="player"]')[0]
-            # playerFullName = playerNameTag.contents[0].contents[0]
-            # playerUniversalName = getUniversalPlayerName(playerFullName)
+            playerFullName = playerNameTag.contents[0].contents[0]
+            playerUniversalName = getUniversalPlayerName(playerFullName)
 
             tag = str(tag)
             playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
             if playerCode in noTradeSet:
                 continue # skip the trade_players who break the regex
             playerTeam = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
-            # seasons[season][playerUniversalName] = {'possibleTeams': [playerTeam]}
-            # seasons[season][playerUniversalName]['currentTeam'] = playerTeam
+            seasons[season][playerUniversalName] = {'possibleTeams': [playerTeam]}
+            seasons[season][playerUniversalName]['currentTeam'] = playerTeam
             seasons[season][playerCode] = {'possibleTeams': [playerTeam]}
             seasons[season][playerCode]['currentTeam'] = playerTeam
 
@@ -182,6 +182,10 @@ def createPlayerNameRelationship(startSeason: int=1998):
             playerDict['alternateNames'] += ["P.J. Washington Jr."]
         elif playerDict['fullName'] == "Lonnie Walker":
             playerDict['alternateNames'] += ["Lonnie Walker IV"]
+        elif playerDict['fullName'] == "Dennis Smith Jr.":
+            playerDict['alternateNames'] += ["Dennis Smith"]
+        elif playerDict['fullName'] == 'Wendell Carter Jr.':
+            playerDict['alternateNames'] += ['Wendell Carter']
 
     with open(ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH, 'w') as json_file:
         json.dump(activePlayers, json_file, indent=4)

@@ -86,7 +86,7 @@ def createOptimalPlayerSpreadObject(gameOddsObjList):
     return optimalSpreadsList
 
 
-def createAllOddsDict(getDk=False, getFanduel=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False):
+def createAllOddsDict(getDk=False, getFanduel=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False, includeOptimalPlayerSpread=False):
     allGameObjList = list()
 
     if getFanduel:
@@ -131,9 +131,10 @@ def createAllOddsDict(getDk=False, getFanduel=False, getMgm=False, getBovada=Fal
             gameOddsObj = GameOdds(rawOddsDict, playersOnly=True)
             allGameObjList.append(gameOddsObj)
 
-    optimalPlayerSpreads = createOptimalPlayerSpreadObject(allGameObjList)
-    for obj in optimalPlayerSpreads:
-        allGameObjList.append(obj)
+    if includeOptimalPlayerSpread:
+        optimalPlayerSpreads = createOptimalPlayerSpreadObject(allGameObjList)
+        for obj in optimalPlayerSpreads:
+            allGameObjList.append(obj)
 
     return allGameObjList # backlogtodo this dict can be saved for reference for backtesting
 

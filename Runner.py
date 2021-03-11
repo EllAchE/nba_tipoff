@@ -45,11 +45,10 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # getFirstFieldGoalStats(2019)#, isFirstFieldGoal=True)
 # getAllExpectedStarters()
 
-# getDailyOdds('WAS', 'MEM')
-# getDailyOdds('SAS', 'DAL')
-# getDailyOdds('LAC', 'WAS', '+100')
+# getDailyOdds('ORL', 'ORL', '+105')
 
-getAllOddsAndDisplayByEv(getFanduel=True, getDk=True, getBovada=True, getMgm=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)
+# getAllOddsAndDisplayByEv(getFanduel=True, getDk=True, getBovada=True, getMgm=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)
+getAllOddsAndDisplayByEv(getFanduel=True)
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
 #                        ['199711160SEA', 'SEA', 'MIL'],
