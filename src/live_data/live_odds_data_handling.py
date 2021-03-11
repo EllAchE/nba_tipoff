@@ -90,8 +90,8 @@ def createAllOddsDict(getDk=False, getFanduel=False, getMgm=False, getBovada=Fal
     allGameObjList = list()
 
     if getFanduel:
-        dkOddsDicts = createAllOddsDictForExchange(fanduelOdds())
-        for rawOddsDict in dkOddsDicts:
+        fanduelOddsDicts = createAllOddsDictForExchange(fanduelOdds())
+        for rawOddsDict in fanduelOddsDicts:
             gameOddsObj = FanduelGameOdds(rawOddsDict)
             allGameObjList.append(gameOddsObj)
 

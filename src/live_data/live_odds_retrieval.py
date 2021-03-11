@@ -5,6 +5,7 @@
 
 import json
 import re
+from datetime import datetime
 
 import requests
 import pandas as pd
@@ -245,11 +246,6 @@ def draftKingsOdds():
             playerMatch = True
             break
 
-    if not playerMatch:
-        print('No player odds for draftkings currently')
-    if not teamMatch:
-        print('No team odds for draftkings currently')
-
     teamSet = set()
     allGameLines = list()
     if teamMatch:
@@ -271,6 +267,8 @@ def draftKingsOdds():
                 "homePlayerFirstQuarterOdds": [],
                 "awayPlayerFirstQuarterOdds": []
             })
+    else:
+        print('No team odds for draftkings currently')')
 
     rawPlayerLines = list()
     if playerMatch:
@@ -281,6 +279,8 @@ def draftKingsOdds():
                     "player": playerOdds['label'],
                     "odds": playerOdds['oddsAmerican']
                 })
+    else:
+        print('No player odds for draftkings currently')
 
     playerTeamDict = {}
     for team in teamSet:
@@ -295,48 +295,93 @@ def draftKingsOdds():
 
     return allGameLines
 
+def getAmericanOddsFanduel(currentpriceup, currentpricedown):
+    if currentpriceup is None:
+        return None
+    if currentpriceup >= currentpricedown:
+        return '+' + str((currentpriceup / currentpricedown) * 100)
+    elif currentpriceup < currentpricedown:
+        return str((100 / currentpriceup) * currentpricedown * -1)
+    else:
+        raise ValueError('fanduel odds messed up')
+
 def fanduelOdds():
-    # export
-    # const
-    # collect = async () = > {
-    #     const
-    # date = new
-    # Date();
-    # let
-    # oddsList: odds[] = [];
-    # const
-    # gamesResponse: GamesResponse = await util.get("https://sportsbook.fanduel.com/cache/psmg/UK/63747.3.json");
-    # const
-    # listOfGames = gamesResponse.events.map((game) = > game.idfoevent);
-    # console.log(listOfGames);
-    #
-    # for (const game of listOfGames) {
-    #     const gameResponse: GameResponse = await util.get(
-    #     `https: // sportsbook.fanduel.com / cache / psevent / UK / 1 / false /${game}.json
-    # `);
-    #
-    # for (const eventMarketGroup of gameResponse.eventmarketgroups) {
-    # for (const market of eventMarketGroup.markets) {
-    # for (const selection of market.selections) {
-    # oddsList.push({
-    # date: date,
-    #       gameCode: getGameCode(new
-    # Date(gameResponse.tsstart), gameResponse.participantshortname_home.split(" ")[0]),
-    # gameDatetime: gameResponse.tsstart,
-    # home: gameResponse.participantshortname_home.split(" ")[0],
-    # away: gameResponse.participantshortname_away.split(" ")[0],
-    # exchange: "fanduel",
-    # betName: market.name,
-    # subBetName: selection.name,
-    # americanOdds: getAmericanOdds(selection.currentpriceup, selection.currentpricedown),
-    # currentPriceUp: selection.currentpriceup,
-    # currentPriceDown: selection.currentpricedown,
-    # });
-    # }
-    # }
-    # }
-    # }
-    pass
+    currentDate = datetime.today().strftime('%Y-%m-%d')
+
+    gamesResponse = requests.get("https://sportsbook.fanduel.com/cache/psmg/UK/63747.3.json").json()
+
+    quarterOddsList = list()
+    unassignedPlayerOddsList = list()
+    gameIdSet = set()
+    listOfGames = gamesResponse['events']
+
+    for game in listOfGames:
+        if game['tsstart'][:10] == currentDate:
+            gameIdSet.add(game['idfoevent'])
+
+    for gameId in gameIdSet:
+        gameResponse = requests.get('https://sportsbook.fanduel.com/cache/psevent/UK/1/false/{}.json'.format(gameId)).json()
+        sleepChecker(iterations=1, baseTime=2)
+        for eventMarketGroup in gameResponse['eventmarketgroups']:
+            if eventMarketGroup['name'] == ['All']:
+                allEventMatch = True
+                break
+        teamScoreFirstQuarter1 = None
+        teamScoreFirstQuarter2 = None
+        teamScoreFirstQuarter3 = None
+        teamScoreFirstQuarter4 = None
+        playerScoreFirst = None
+        if allEventMatch:
+            for market in eventMarketGroup['markets']:
+                if 'to Score First' in market['name']:
+                    if market['name'] == ['Team to Score First']:
+                        teamScoreFirstQuarter1 = market
+                    elif market['name'] == ['2nd Quarter Team to Score First']:
+                        teamScoreFirstQuarter2 = market
+                    elif market['name'] == ['3rd Quarter Team to Score First']:
+                        teamScoreFirstQuarter3 = market
+                    elif market['name'] == ['4th Quarter Team to Score First']:
+                        teamScoreFirstQuarter4 = market
+                elif market['name'] == 'First Basket':
+                    playerScoreFirst = market
+
+    if playerScoreFirst is not None:
+        for selection in playerScoreFirst['selections']:
+            unassignedPlayerOddsList.append({
+                "player": selection['name'],
+                "odds": getAmericanOddsFanduel(selection['currentpriceup'], selection['currentpricedown']),
+            })
+    else:
+        print('no player odds for fanduel currently')
+
+    if teamScoreFirstQuarter1 is not None:
+        quarter1home = teamScoreFirstQuarter1[0] if teamScoreFirstQuarter1[0]['hadvalue'] == 'H' else teamScoreFirstQuarter1[1]
+        quarter1away = teamScoreFirstQuarter1[0] if teamScoreFirstQuarter1[0]['hadvalue'] == 'A' else teamScoreFirstQuarter1[1]
+    if teamScoreFirstQuarter2 is not None:
+        quarter2home = teamScoreFirstQuarter2[0] if teamScoreFirstQuarter2[0]['hadvalue'] == 'H' else teamScoreFirstQuarter2[1]
+        quarter2away = teamScoreFirstQuarter2[0] if teamScoreFirstQuarter2[0]['hadvalue'] == 'A' else teamScoreFirstQuarter2[1]
+    if teamScoreFirstQuarter3 is not None:
+        quarter3home = teamScoreFirstQuarter3[0] if teamScoreFirstQuarter3[0]['hadvalue'] == 'H' else teamScoreFirstQuarter3[1]
+        quarter3away = teamScoreFirstQuarter3[0] if teamScoreFirstQuarter3[0]['hadvalue'] == 'A' else teamScoreFirstQuarter3[1]
+    if teamScoreFirstQuarter4 is not None:
+        quarter4home = teamScoreFirstQuarter4[0] if teamScoreFirstQuarter4[0]['hadvalue'] == 'H' else teamScoreFirstQuarter4[1]
+        quarter4away = teamScoreFirstQuarter4[0] if teamScoreFirstQuarter4[0]['hadvalue'] == 'A' else teamScoreFirstQuarter4[1]
+
+    quarterOddsList.append({
+        "gameDatetime": gameResponse['tsstart'],
+        "home": gameResponse['participantshortname_home'].split(" ")[0],
+        "away": gameResponse['participantshortname_away'].split(" ")[0],
+        "exchange": "fanduel",
+        "americanOdds": getAmericanOddsFanduel(selection.currentpriceup, selection.currentpricedown),
+        "homeTeamFirstQuarterOdds": getAmericanOddsFanduel(quarter1home['currentpriceup'], quarter1home['currentpricedown']),
+        "awayTeamFirstQuarterOdds": getAmericanOddsFanduel(quarter1away['currentpriceup'], quarter1away['currentpricedown']),
+        "homeTeamSecondQuarterOdds": getAmericanOddsFanduel(quarter2home['currentpriceup'], quarter2home['currentpricedown']),
+        "awayTeamSecondQuarterOdds": getAmericanOddsFanduel(quarter2away['currentpriceup'], quarter2away['currentpricedown']),
+        "homeTeamThirdQuarterOdds": getAmericanOddsFanduel(quarter3home['currentpriceup'], quarter3home['currentpricedown']),
+        "awayTeamThirdQuarterOdds": getAmericanOddsFanduel(quarter3away['currentpriceup'], quarter3away['currentpricedown']),
+        "homeTeamFourthQuarterOdds": getAmericanOddsFanduel(quarter4home['currentpriceup'], quarter4home['currentpricedown']),
+        "awayTeamFourthQuarterOdds": getAmericanOddsFanduel(quarter4away['currentpriceup'], quarter4away['currentpricedown']),
+    })
 
 def mgmOdds():
     # https://sports.co.betmgm.com/en/sports/events/minnesota-timberwolves-at-san-antonio-spurs-11101908?market=10000

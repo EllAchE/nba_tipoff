@@ -77,3 +77,6 @@ BET_HISTORY_PATH = Path(os.path.abspath("Data/CSV/bet_history.csv"))
 GAME_SUMMARY_UNFORMATTED_PATH = os.path.abspath('Data/CSV/season_summary_data/{}_allgames.csv')
 TEAM_TIPPER_PAIRS_PATH = Path(os.path.abspath('Data/JSON/team_tipper_pairs.json'))
 PLAYER_USAGE_PATH = Path(os.path.abspath("Data/JSON/player_usage.json"))
+
+# NCAA Raw Data
+NCAA_DATA_FOLDER = Path(os.path.abspath('Data/ncaahoopR_data-master'))

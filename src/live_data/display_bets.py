@@ -64,8 +64,8 @@ def saveOddsToFile(path, odds):
         f.write(jsonpickle.encode(odds))
         f.close()
 
-def getAllOddsAndDisplayByEv(getDk=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False):
-    allGameOddsObjList = createAllOddsDict(getDk=getDk, getMgm=getMgm, getBovada=getBovada, getPointsBet=getPointsBet, getUnibet=getUnibet, getBarstool=getBarstool)
+def getAllOddsAndDisplayByEv(getDk=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False, getFanduel=False):
+    allGameOddsObjList = createAllOddsDict(getDk=getDk, getMgm=getMgm, getBovada=getBovada, getPointsBet=getPointsBet, getUnibet=getUnibet, getBarstool=getBarstool, getFanduel=getFanduel)
     d = datetime.now().strftime("%Y-%m-%d_%H-%M-%S%p")
     saveOddsToFile(f"Data/JSON/historical_odds/{d}.json", allGameOddsObjList)
     displayAllBetsByEV(allGameOddsObjList)

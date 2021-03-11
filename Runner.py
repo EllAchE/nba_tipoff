@@ -5,29 +5,7 @@
 # backlogtodo convert from printing desired bets to putting them into a json/csv
 # backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season. This may be solved by just taking the last index of team list, unless
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
-import ENVIRONMENT
-from src.database.database_creation import getAllGameData, createPlayerEloDictionary, resetPredictionSummaries, \
-    createPlayerGlickoDictionary, saveActivePlayersTeams
-from src.historical_data.historical_data_retrieval import updateCurrentSeasonRawGameData
-from src.historical_data.play_by_play_methods import getAllFirstPossessionStatisticsIncrementally, \
-    splitAllSeasonsFirstShotDataToMultipleFiles, getSingleGameStarters, saveAllHistoricalStarters
-from src.live_data.display_bets import getAllOddsAndDisplayByEv
-from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
-from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalStats, getCurrentSeasonUsageRate
-from src.rating_algorithms.elo_data_processing import runEloForAllSeasons
-from src.rating_algorithms.glicko_data_processing import runGlickoForAllSeasons
-from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero, updateTrueSkillDictionaryFromLastGame
-
-# More books https://bookies.com/pennsylvania
 # backlogtodo look into multithreading for the multiple algorithm analysis (run the three concurrently)
-
-# getAllGameData()
-
-# splitAllSeasonsFirstShotDataToMultipleFiles()
-
-# createPlayerNameRelationship()
-# saveActivePlayersTeams(1998)
-
 # todo TEST optimized player spreads across exchanges (i.e. look at first point on fd, bovada and dk; Need to consider first field goal as well
 # todo add player start percentage to 1st shot summary
 # todo fix fanduel when there are games to fetch data from
@@ -39,10 +17,30 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # backlogtodo performance improvements, use in and index[itemIWant] for C native code performance improvements in numpy
 # backlogtodo update print statements to show more and take up less space
 # backlogtodo combine to update all relevant game dictionaries from last game after fetching new game details
+# More books https://bookies.com/pennsylvania
+import ENVIRONMENT
+from src.database.database_creation import getAllGameData, createPlayerEloDictionary, resetPredictionSummaries, \
+    createPlayerGlickoDictionary, saveActivePlayersTeams
+from src.historical_data.historical_data_retrieval import updateCurrentSeasonRawGameData
+from src.historical_data.nba_play_by_play_methods import getAllFirstPossessionStatisticsIncrementally, \
+    splitAllSeasonsFirstShotDataToMultipleFiles, getSingleGameStarters, saveAllHistoricalStarters
+from src.live_data.display_bets import getAllOddsAndDisplayByEv
+from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
+from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalStats, getCurrentSeasonUsageRate
+from src.rating_algorithms.elo_data_processing import runEloForAllSeasons
+from src.rating_algorithms.glicko_data_processing import runGlickoForAllSeasons
+from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero, updateTrueSkillDictionaryFromLastGame
+
+# getAllGameData()
+
+# splitAllSeasonsFirstShotDataToMultipleFiles()
+
+# createPlayerNameRelationship()
+# saveActivePlayersTeams(1998)
 
 # updateCurrentSeasonRawGameData()
 # updateTrueSkillDictionaryFromLastGame()
-calculateTrueSkillDictionaryFromZero()
+# calculateTrueSkillDictionaryFromZero()
 
 # getFirstFieldGoalStats(2019)#, isFirstFieldGoal=True)
 # getAllExpectedStarters()
@@ -51,7 +49,7 @@ calculateTrueSkillDictionaryFromZero()
 # getDailyOdds('SAS', 'DAL')
 # getDailyOdds('LAC', 'WAS', '+100')
 
-# getAllOddsAndDisplayByEv(getDk=True, getBovada=True, getMgm=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)
+getAllOddsAndDisplayByEv(getFanduel=True, getDk=True, getBovada=True, getMgm=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)
 
 # test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
 #                        ['199711160SEA', 'SEA', 'MIL'],
