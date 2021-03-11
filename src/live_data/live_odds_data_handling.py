@@ -16,6 +16,15 @@ def makeTeamPlayerLinePairs(playerLines, teamLines):
 def addTeamOnlyToOddsDict(oddsDict, rawOddsDict):
     oddsDict['teamOdds']['homeTeamFirstQuarterOdds'] = rawOddsDict['homeTeamFirstQuarterOdds']
     oddsDict['teamOdds']['awayTeamFirstQuarterOdds'] = rawOddsDict['awayTeamFirstQuarterOdds']
+    try:
+        oddsDict['teamOdds']["homeTeamSecondQuarterOdds"] = rawOddsDict["homeTeamSecondQuarterOdds"]
+        oddsDict['teamOdds']["awayTeamSecondQuarterOdds"] = rawOddsDict["awayTeamSecondQuarterOdds"]
+        oddsDict['teamOdds']["homeTeamThirdQuarterOdds"] = rawOddsDict["homeTeamThirdQuarterOdds"]
+        oddsDict['teamOdds']["awayTeamThirdQuarterOdds"] = rawOddsDict["awayTeamThirdQuarterOdds"]
+        oddsDict['teamOdds']["homeTeamFourthQuarterOdds"] = rawOddsDict["homeTeamFourthQuarterOdds"]
+        oddsDict['teamOdds']["awayTeamFourthQuarterOdds"] = rawOddsDict["awayTeamFourthQuarterOdds"]
+    except:
+        pass
     return oddsDict
 
 def addPlayerOnlyOddsDict(oddsDict, rawOddsDict):
@@ -150,6 +159,12 @@ def createEmptyOddsDict():
       "teamOdds": {
         "homeTeamFirstQuarterOdds": None,
         "awayTeamFirstQuarterOdds": None,
+        "homeTeamSecondQuarterOdds": None,
+        "awayTeamSecondQuarterOdds": None,
+        "homeTeamThirdQuarterOdds": None,
+        "awayTeamThirdQuarterOdds": None,
+        "homeTeamFourthQuarterOdds": None,
+        "awayTeamFourthQuarterOdds": None,
       },
         "playerOdds": {
         "isFirstFieldGoal": False,
