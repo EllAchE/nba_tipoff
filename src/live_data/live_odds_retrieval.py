@@ -268,7 +268,7 @@ def draftKingsOdds():
                 "awayPlayerFirstQuarterOdds": []
             })
     else:
-        print('No team odds for draftkings currently')')
+        print('No team odds for draftkings currently')
 
     rawPlayerLines = list()
     if playerMatch:
