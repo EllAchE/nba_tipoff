@@ -1,11 +1,11 @@
 {
-    "winningBets": 0,
-    "losingBets": 0,
-    "correctTipoffPredictions": 0,
-    "incorrectTipoffPredictions": 0,
+    "winningBets": 4163,
+    "losingBets": 2958,
+    "correctTipoffPredictions": 5254,
+    "incorrectTipoffPredictions": 1867,
     "seasons": "1998-1999-2000-2001-2002-2003-2004-2005-2006-2007-2010-2011-2012-2013-2014-2015-2016-2017-2018-2019-2020-2021-with-odds-0.73",
-    "winPercentage": 0.588256101874779,
-    "correctTipoffPredictionPercentage": 0.7534488857446056,
-    "expectedWinsFromTip": 0.5785469828723028,
-    "predictionAverage": 0.797417591003482
+    "winPercentage": 0.5846089032439264,
+    "correctTipoffPredictionPercentage": 0.7378177222300238,
+    "expectedWinsFromTip": 0.5737026895969667,
+    "predictionAverage": 0.8125421343974149
 }

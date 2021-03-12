@@ -30,41 +30,35 @@ def preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, 
     else:
         print('no bet, odds were not good enough')
 
-def createEmptySummaryDictionary():
-    return {
-        "correctTipoffPredictions": None,
-        "incorrectTipoffPredictions": None,
-        "correctTipoffPredictionPercentage": None,
-        "winningBets": None,
-        "losingBets": None,
-        "winPercentage": None,
-        "expectedWinsFromTip": None,
-        "predictionAverage": None,
-        "totalMatchups": None,
-    }
+def histogramBinningPredictions(dsd, homeOdds, homePlayerCode, tipWinnerCode):
+     # divisions are based on the probability for the more likely player
+     greaterOdds = homeOdds if homeOdds > 1-homeOdds else 1-homeOdds
+     oddsBelongToHome = True if homeOdds > 1-homeOdds else False
 
-def histogramBinningPredictions(awayPlayerCode, awayPlayerTeam, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
-                                tipWinnerCode):
-    histogramBinDivisions = range(0.5, 1, 0.05) # divisions are based on the probability for the more likely player
-    intervalList = list()
-    i = 0
-    lstLen = len(histogramBinDivisions)
-    while i < lstLen - 2:
-        dsd = createEmptySummaryDictionary()
-        preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
-                                     tipWinnerCode)
-        intervalList.append({
-            "start": histogramBinDivisions[i],
-            "end": histogramBinDivisions[i + 1],
-            "predictionSummaries": dsd
-        })
+     for item in dsd['histogramDivisions']:
+        if item['start'] < greaterOdds and item['end'] > greaterOdds:
+            subItem=item['predictionSummaries']
+            subItem['totalMatchups'] += 1
+            subItem['expectedWinsFromAlgo'] += greaterOdds
+            if tipWinnerCode[11:] == homePlayerCode:
+                if oddsBelongToHome:
+                    subItem['tipoffWinsByHigher'] += 1
+                else:
+                    subItem['tipoffLossesByHigher'] += 1
+            else:
+                if not oddsBelongToHome:
+                    subItem['tipoffWinsByHigher'] += 1
+                else:
+                    subItem['tipoffLossesByHigher'] += 1
+            break
 
-def beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, minimumTipWinPercentage, predictionFunction):
+
+def beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, minimumTipWinPercentage, predictionFunction, histogramBinDivisions):
     homeOdds = predictionFunction(homePlayerCode, awayPlayerCode, psd=psd)
     homePlayerTeam = getPlayerTeamInSeasonFromBballRefLink(homePlayerCode, season, longCode=False)['currentTeam']
     awayPlayerTeam = getPlayerTeamInSeasonFromBballRefLink(awayPlayerCode, season, longCode=False)['currentTeam']
 
-    # histogramBinningPredictions(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam, tipWinnerCode)
+    histogramBinningPredictions(dsd, homeOdds, homePlayerCode, tipWinnerCode)
 
     if psd[homePlayerCode]['appearances'] > minimumTipWinPercentage and psd[awayPlayerCode]['appearances'] > minimumTipWinPercentage:
         preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
@@ -79,8 +73,8 @@ def addSummaryMathToAlgoSummary(dsd):
         dsd['expectedWinsFromTip'] = dsd['correctTipoffPredictionPercentage'] * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1-dsd['correctTipoffPredictionPercentage']) * (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
     return dsd
 
-def runAlgoForSeason(season: str, skillDictPath: str, predictionSummariesPath: str, algoPrematch,
-                     algoSingleTipoff, winningBetThreshold, seasonCsv: str, columnAdds=None, startFromBeginning=False):
+def runAlgoForSeason(season: str, dsd, skillDictPath: str, predictionSummariesPath: str, algoPrematch, algoSingleTipoff, winningBetThreshold: float,
+                     seasonCsv: str, histogramBinDivisions, columnAdds=None, startFromBeginning=False):
     df = pd.read_csv(seasonCsv)
     # df = df[df['Home Tipper'].notnull()] # filters invalid rows
     if columnAdds is not None:
@@ -103,9 +97,6 @@ def runAlgoForSeason(season: str, skillDictPath: str, predictionSummariesPath: s
             i -= 1
         i += 1
 
-    with open(predictionSummariesPath) as jsonFile:
-        dsd = json.load(jsonFile)
-
     while i < colLen:
         if df['Home Tipper'].iloc[i] != df['Home Tipper'].iloc[i]:
             i += 1
@@ -124,7 +115,7 @@ def runAlgoForSeason(season: str, skillDictPath: str, predictionSummariesPath: s
         else:
             raise ValueError('no match for winner')
 
-        algoPrematch(season, psd, dsd, hTipCode, aTipCode, tWinLink, df['First Scoring Team'].iloc[i], winningBetThreshold)
+        algoPrematch(season, psd, dsd, hTipCode, aTipCode, tWinLink, df['First Scoring Team'].iloc[i], histogramBinDivisions, winningBetThreshold)
         returnObj = algoSingleTipoff(psd, tWinLink, tLoseLink, hTipCode, df['Full Hyperlink'].iloc[i])
         if columnAdds is not None:
             for key in returnObj.keys():
@@ -152,15 +143,50 @@ def runAlgoForSeason(season: str, skillDictPath: str, predictionSummariesPath: s
 
     return winningBets, losingBets
 
+def resetAndInitializePredictionSummaryDict(histogramBinDivisions):
+    intervalList = list()
+    i = 0
+    lstLen = len(histogramBinDivisions)
+    while i < lstLen - 2:
+        subDsd = {
+            "totalMatchups": 0,
+            "tipoffWinsByHigher": 0,
+            "tipoffLossesByHigher": 0,
+            "winPercentage": 0,
+            "expectedWinsFromAlgo": 0,
+        }
+        intervalList.append({
+            "start": histogramBinDivisions[i],
+            "end": histogramBinDivisions[i + 1],
+            "predictionSummaries": subDsd
+        })
+        i += 1
+    dsd = {
+        "winningBets": 0,
+        "losingBets": 0,
+        "totalBets": 0,
+        "correctTipoffPredictions": 0,
+        "incorrectTipoffPredictions": 0,
+        "seasons": None,
+        "winPercentage": 0,
+        "correctTipoffPredictionPercentage": 0,
+        "expectedWinsFromTip": 0,
+        "predictionAverage": 0,
+        "histogramDivisions": intervalList,
+    }
+    return dsd
+
+
 def runAlgoForAllSeasons(seasons, skillDictPath, predictionSummariesPath, algoPrematch, algoSingleTipoff, winningBetThreshold, columnAdds=None):
     seasonKey = ''
+    histogramBinDivisions = list(range(50, 105, 5))
+    histogramBinDivisions = [x/100 for x in histogramBinDivisions]
+    print(histogramBinDivisions)
+    dsd = resetAndInitializePredictionSummaryDict(histogramBinDivisions)
     for season in seasons:
-        runAlgoForSeason(season, skillDictPath, predictionSummariesPath, algoPrematch, algoSingleTipoff,
-                         winningBetThreshold, ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), startFromBeginning=True, columnAdds=columnAdds)
+        runAlgoForSeason(season, dsd, skillDictPath, predictionSummariesPath, algoPrematch, algoSingleTipoff, winningBetThreshold,
+                         ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), histogramBinDivisions, startFromBeginning=True, columnAdds=columnAdds)
         seasonKey += str(season) + '-'
-
-    with open(predictionSummariesPath) as predSum:
-        dsd = json.load(predSum)
 
     dsd['seasons'] = seasonKey + 'with-odds-' + str(winningBetThreshold)
     dsd = addSummaryMathToAlgoSummary(dsd)

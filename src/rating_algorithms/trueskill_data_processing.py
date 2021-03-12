@@ -68,6 +68,6 @@ def calculateTrueSkillDictionaryFromZero():
     print("\n", "trueskill dictionary updated for seasons", ENVIRONMENT.ALL_SEASONS_LIST, "\n")
 
 def updateTrueSkillDictionaryFromLastGame():
-    runTSForSeason(ENVIRONMENT.CURRENT_SEASON, ENVIRONMENT.CURRENT_SEASON_CSV, ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False)
+    runTSForSeason(ENVIRONMENT.CURRENT_SEASON, ENVIRONMENT.CURRENT_SEASON_CSV, winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False)
     print("\n", "trueskill dictionary updated from last game", "\n")
 

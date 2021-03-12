@@ -426,6 +426,7 @@ def mgmOdds():
 
     allGameLines = list()
     for index in range(len(gameIDs)):
+        print('Fetching MGM for game', gameIDs[index])
         gameURL = "https://cds-api.co.betmgm.com/bettingoffer/fixture-view?x-bwin-accessid=OTU4NDk3MzEtOTAyNS00MjQzLWIxNWEtNTI2MjdhNWM3Zjk3&lang=en-us&country=US&userCountry=US&subdivision=Texas&offerMapping=All&fixtureIds=" + \
                   gameIDs[index]
         gameResponse = requests.get(gameURL, headers=headers)
@@ -433,7 +434,6 @@ def mgmOdds():
         sleepChecker(iterations=1)
 
         for odds in oddsInfo:
-            print('Fetching MGM for game', odds['results'][0]['name']['value'], "@",odds['results'][1]['name']['value'])
             if (odds['name']['value'] == "Which team will score the first points?"):
                 team1 = odds['results'][0]['name']['value']
                 team1Odds = odds['results'][0]['americanOdds']

@@ -42,18 +42,19 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 
 # updateCurrentSeasonRawGameData()
 # updateTrueSkillDictionaryFromLastGame()
-calculateEloDictionaryFromZero()
+# calculateTrueSkillDictionaryFromZero()
 
 # getAllExpectedStarters()
 
+# todo add expected wins from tip to
 # getDailyOdds('NOP', 'MIN', '+130')
 
 # getAllOddsAndDisplayByEv(getFanduel=True, getDk=True, getBovada=True, getMgm=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)
-# getAllOddsAndDisplayByEv(getFanduel=True)
-# getAllOddsAndDisplayByEv(getMgm=True)
-# getAllOddsAndDisplayByEv(getDk=True)#, getBovada=True)
-# getAllOddsAndDisplayByEv(getUnibet=True, getPointsBet=True, getBarstool=True)
-# getAllOddsAndDisplayByEv(getBovada=True)
+getAllOddsAndDisplayByEv(getFanduel=True)
+getAllOddsAndDisplayByEv(getMgm=True)
+getAllOddsAndDisplayByEv(getDk=True)#, getBovada=True)
+getAllOddsAndDisplayByEv(getBovada=True)
+getAllOddsAndDisplayByEv(getUnibet=True, getPointsBet=True, getBarstool=True)
 
 '''
 Existing apis etc.:
