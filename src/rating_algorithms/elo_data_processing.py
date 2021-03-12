@@ -13,7 +13,7 @@ def runEloForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winni
     # df['Home Elo'] = None
     # df['Away Elo'] = None
 
-    winningBets, losingBets = 0, 0
+    winningBets = losingBets = 0
 
     print('running for season doc', seasonCsv, '\n', '\n')
     colLen = len(df['Game Code'])

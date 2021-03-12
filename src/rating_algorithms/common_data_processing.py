@@ -1,3 +1,6 @@
+import json
+import pandas as pd
+
 import ENVIRONMENT
 from src.database.database_access import getPlayerTeamInSeasonFromBballRefLink
 
@@ -76,59 +79,76 @@ def addSummaryMathToAlgoSummary(dsd):
     dsd['expectedWinsFromTip'] = dsd['correctTipoffPredictionPercentage'] * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1-dsd['correctTipoffPredictionPercentage']) * (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
     return dsd
 
-def runAlgorithmForSeason():
-    # def runEloForSeason(season: str, seasonCsv: str, playerSkillDictPath: str,
-    #                     winningBetThreshold: float = ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
-    #     df = pd.read_csv(seasonCsv)
-    #     # df = df[df['Home Tipper'].notnull()] # filters invalid rows
-    #     # df['Home Elo'] = None
-    #     # df['Away Elo'] = None
-    #
-    #     winningBets, losingBets = 0, 0
-    #
-    #     print('running for season doc', seasonCsv, '\n', '\n')
-    #     colLen = len(df['Game Code'])
-    #
-    #     with open(playerSkillDictPath) as jsonFile:
-    #         psd = json.load(jsonFile)
-    #
-    #     if startFromBeginning:
-    #         i = 0
-    #     else:
-    #         i = colLen - 1
-    #         lastGameCode = psd['lastGameCode']
-    #         while df.iloc[i]['Game Code'] != lastGameCode:
-    #             i -= 1
-    #         i += 1
-    #
-    #     with open(ENVIRONMENT.ELO_PREDICTION_SUMMARIES_PATH) as jsonFile:
-    #         dsd = json.load(jsonFile)
-    #
-    #     while i < colLen:
-    #         if df['Home Tipper'].iloc[i] != df['Home Tipper'].iloc[i]:
-    #             i += 1
-    #             continue
-    #         hTip = df['Home Tipper'].iloc[i]
-    #         tWinner = df['Tipoff Winner'].iloc[i]
-    #         aTip = df['Away Tipper'].iloc[i]
-    #         tWinLink = df['Tipoff Winner Link'].iloc[i]
-    #         tLoseLink = df['Tipoff Loser Link'].iloc[i]
-    #         if tWinner == hTip:
-    #             hTipCode = tWinLink[11:]
-    #             aTipCode = tLoseLink[11:]
-    #         elif tWinner == aTip:
-    #             hTipCode = tLoseLink[11:]
-    #             aTipCode = tWinLink[11:]
-    #         else:
-    #             raise ValueError('no match for winner')
-    #
-    #         eloBeforeMatchPredictions(season, psd, dsd, hTipCode, aTipCode, tWinLink, df['First Scoring Team'].iloc[i],
-    #                                   winningBetThreshold)
-    #         eloUpdateDataSingleTipoff(psd, tWinLink, tLoseLink, hTipCode, df['Full Hyperlink'].iloc[i])
-    #         # df['Home Elo'].iloc[i] = homeElo
-    #         # df['Away Elo'].iloc[i] = awayElo
-    #
-    #         i += 1
-    #
-    #     psd['lastGameCode'] = df.iloc[-1]['Game Code']
-    pass
+def runAlgoForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, predictionSummariesPath: str, algoPrematch,
+                     algoSingleTipoff, winningBetThreshold, columnAddAlgo=None, startFromBeginning=False):
+    df = pd.read_csv(seasonCsv)
+    # df = df[df['Home Tipper'].notnull()] # filters invalid rows
+    if columnAddAlgo is not None:
+        df = columnAddAlgo(df)
+
+    winningBets = losingBets = 0
+
+    print('running for season doc', seasonCsv, '\n', '\n')
+    colLen = len(df['Game Code'])
+
+    with open(playerSkillDictPath) as jsonFile:
+        psd = json.load(jsonFile)
+
+    if startFromBeginning:
+        i = 0
+    else:
+        i = colLen - 1
+        lastGameCode = psd['lastGameCode']
+        while df.iloc[i]['Game Code'] != lastGameCode:
+            i -= 1
+        i += 1
+
+    with open(predictionSummariesPath) as jsonFile:
+        dsd = json.load(jsonFile)
+
+    while i < colLen:
+        if df['Home Tipper'].iloc[i] != df['Home Tipper'].iloc[i]:
+            i += 1
+            continue
+        hTip = df['Home Tipper'].iloc[i]
+        tWinner = df['Tipoff Winner'].iloc[i]
+        aTip = df['Away Tipper'].iloc[i]
+        tWinLink = df['Tipoff Winner Link'].iloc[i]
+        tLoseLink = df['Tipoff Loser Link'].iloc[i]
+        if tWinner == hTip:
+            hTipCode = tWinLink[11:]
+            aTipCode = tLoseLink[11:]
+        elif tWinner == aTip:
+            hTipCode = tLoseLink[11:]
+            aTipCode = tWinLink[11:]
+        else:
+            raise ValueError('no match for winner')
+
+        algoPrematch(season, psd, dsd, hTipCode, aTipCode, tWinLink, df['First Scoring Team'].iloc[i], winningBetThreshold)
+        homeMu, homeSigma, awayMu, awaySigma = algoSingleTipoff(psd, tWinLink, tLoseLink, hTipCode, df['Full Hyperlink'].iloc[i])
+        df['Home Mu'].iloc[i] = homeMu
+        df['Home Sigma'].iloc[i] = homeSigma
+        df['Away Mu'].iloc[i] = awayMu
+        df['Away Sigma'].iloc[i] = awaySigma
+
+        i += 1
+
+    # if startFromBeginning:
+    #     allKeys = psd.keys()
+    #     for key in allKeys:
+    #         key['sigma'] += 2
+    #         #todo place where season end sigma is udpated. Can toggle this to different effects
+    #         if key['sigma'] > 8.333333333333334:
+    #             key['sigma'] = 8.333333333333334
+    #     print("added 2 to all sigmas for new season")
+
+    psd['lastGameCode'] = df.iloc[-1]['Game Code']
+    with open(playerSkillDictPath, 'w') as write_file:
+        json.dump(psd, write_file, indent=4)
+
+    with open(predictionSummariesPath, 'w') as write_file:
+        json.dump(dsd, write_file, indent=4)
+
+    df.to_csv(str(seasonCsv)[:-4] + '-test.csv')
+
+    return winningBets, losingBets
