@@ -9,3 +9,11 @@ class FanduelGameOdds(GameOdds):
         self.awayTeamThirdQuarterOdds = gameDict['teamOdds']['awayTeamThirdQuarterOdds']
         self.homeTeamFourthQuarterOdds = gameDict['teamOdds']['awayTeamFourthQuarterOdds']
         self.awayTeamFourthQuarterOdds = gameDict['teamOdds']['awayTeamFourthQuarterOdds']
+
+    def getBetSideOdds(self):
+        if self.betOnHome:
+            return self.awayTeamSecondQuarterOdds, self.awayTeamThirdQuarterOdds, self.homeTeamFourthQuarterOdds
+        elif self.betOnAway:
+            return self.homeTeamSecondQuarterOdds, self.homeTeamThirdQuarterOdds, self.awayTeamFourthQuarterOdds
+        else:
+            return None, None, None

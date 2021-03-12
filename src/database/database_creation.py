@@ -142,6 +142,11 @@ def saveActivePlayersTeams(start_season: int):
 
     print('saved seasons Data')
 
+# todo edit the methods inside here to use append
+def updateCurrentSeasonPlayerData():
+    createPlayerNameRelationship(ENVIRONMENT.CURRENT_SEASON)
+    saveActivePlayersTeams(ENVIRONMENT.CURRENT_SEASON)
+
 def createPlayerNameRelationship(startSeason: int=1998):
     activePlayers = []
 
@@ -189,6 +194,8 @@ def createPlayerNameRelationship(startSeason: int=1998):
             playerDict['alternateNames'] += ['Wendell Carter']
         elif playerDict['fullName'] == 'Marvin Bagley III':
             playerDict['alternateNames'] += ["Marvin Bagley"]
+        elif playerDict['fullName'] == 'Moritz Wagner':
+            playerDict['alternateNames'] += ["Mo Wagner"]
 
     with open(ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH, 'w') as json_file:
         json.dump(activePlayers, json_file, indent=4)

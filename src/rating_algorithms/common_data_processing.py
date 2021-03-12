@@ -6,7 +6,6 @@ from src.database.database_access import getPlayerTeamInSeasonFromBballRefLink
 
 def preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
                                  tipWinnerCode, winningBetThreshold):
-    totalBets = dsd['winningBets'] + dsd['losingBets']
     if homeOdds > winningBetThreshold:
         if tipWinnerCode[11:] == homePlayerCode:
             dsd['correctTipoffPredictions'] += 1
@@ -16,7 +15,7 @@ def preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, 
             dsd["winningBets"] += 1
         else:
             dsd["losingBets"] += 1
-        dsd['predictionAverage'] = (dsd['predictionAverage'] * totalBets + homeOdds) / (totalBets + 1)
+        dsd['expectedWins'] += homeOdds
     elif (1 - homeOdds) > winningBetThreshold:
         if tipWinnerCode[11:] == awayPlayerCode:
             dsd['correctTipoffPredictions'] += 1
@@ -26,7 +25,7 @@ def preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, 
             dsd["winningBets"] += 1
         else:
             dsd['losingBets'] += 1
-        dsd['predictionAverage'] = (dsd['predictionAverage'] * totalBets + (1 - homeOdds)) / (totalBets + 1)
+        dsd['expectedWins'] += (1 - homeOdds)
     else:
         print('no bet, odds were not good enough')
 
@@ -71,6 +70,12 @@ def addSummaryMathToAlgoSummary(dsd):
         dsd['correctTipoffPredictionPercentage'] = dsd['correctTipoffPredictions'] / (dsd['correctTipoffPredictions'] + dsd['incorrectTipoffPredictions'])
         dsd['winPercentage'] = dsd['winningBets'] / (dsd['winningBets'] + dsd['losingBets'])
         dsd['expectedWinsFromTip'] = dsd['correctTipoffPredictionPercentage'] * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1-dsd['correctTipoffPredictionPercentage']) * (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
+    for histogramBin in dsd['histogramDivisions']:
+        if histogramBin['predictionSummaries']['totalMatchups'] > 0:
+            histogramBin['predictionSummaries']['winPercentage'] = histogramBin['predictionSummaries']['tipoffWinsByHigher'] / histogramBin['predictionSummaries']['totalMatchups']
+            histogramBin['predictionSummaries']['expectedWinPercentage'] = histogramBin['predictionSummaries']['expectedWinsFromAlgo'] / histogramBin['predictionSummaries']['totalMatchups']
+        else:
+            print('No matchups for bin', histogramBin['start'], 'to', histogramBin['end'])
     return dsd
 
 def runAlgoForSeason(season: str, dsd, skillDictPath: str, predictionSummariesPath: str, algoPrematch, algoSingleTipoff, winningBetThreshold: float,

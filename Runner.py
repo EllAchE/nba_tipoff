@@ -31,23 +31,22 @@ from src.rating_algorithms.elo_data_processing import runEloForAllSeasons, calcu
 from src.rating_algorithms.glicko_data_processing import runGlickoForAllSeasons, calculateGlickoDictionaryFromZero
 from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero, updateTrueSkillDictionaryFromLastGame
 
+# todo implement minimum appearance threshold for summary statistics
 # todo import decimal module or similar https://docs.python.org/3/library/decimal.html
 # todo fix dk to accept player bets only
-
-# getAllGameData()
-
 # todo combine the two below methods
+
+# todo change this to update just the current season
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
+
+# getAllGameData()
 
 # updateCurrentSeasonRawGameData()
 # updateTrueSkillDictionaryFromLastGame()
 # calculateTrueSkillDictionaryFromZero()
 
 # getAllExpectedStarters()
-
-# todo add expected wins from tip to
-# getDailyOdds('NOP', 'MIN', '+130')
 
 # getAllOddsAndDisplayByEv(getFanduel=True, getDk=True, getBovada=True, getMgm=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)
 getAllOddsAndDisplayByEv(getFanduel=True)
@@ -56,6 +55,7 @@ getAllOddsAndDisplayByEv(getDk=True)#, getBovada=True)
 getAllOddsAndDisplayByEv(getBovada=True)
 getAllOddsAndDisplayByEv(getUnibet=True, getPointsBet=True, getBarstool=True)
 
+# getDailyOdds('NOP', 'MIN', '+130')
 '''
 Existing apis etc.:
 

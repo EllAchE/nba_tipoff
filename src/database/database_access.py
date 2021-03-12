@@ -71,6 +71,18 @@ def getUniversalPlayerName(playerInUnknownFormat):
         elif removeAllNonLettersAndLowercase(player['nameWithComma']) == playerLoweredLetterOnly:
             match = True
             break
+        elif player['fullName'] == playerInUnknownFormat + " Jr.":
+            match = True
+            break
+        elif player['fullName'] == playerInUnknownFormat + " Sr.":
+            match = True
+            break
+        elif player['fullName'] == playerInUnknownFormat + " III":
+            match = True
+            break
+        elif player['fullName'] == playerInUnknownFormat + " IV":
+            match = True
+            break
         try:
             if removeAllNonLettersAndLowercase(player['alternateNames'][0]) == undoPlayerCommaReversal:
                 match = True

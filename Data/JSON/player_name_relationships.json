@@ -71114,7 +71114,7 @@
         "fullName": "Moritz Wagner",
         "nameWithComma": "Wagner,Moritz",
         "universalName": "moritzwagner",
-        "alternateNames": []
+        "alternateNames": ["Mo Wagner"]
     },
     {
         "bballRefCode": "waitedi01.html",
@@ -75878,6 +75878,13 @@
         "alternateNames": []
     },
     {
+        "bballRefCode": "diakima01.html",
+        "fullName": "Mamadi Diakite",
+        "nameWithComma": "Diakite,Mamadi",
+        "universalName": "mamadidiakite",
+        "alternateNames": []
+    },
+    {
         "bballRefCode": "diallha01.html",
         "fullName": "Hamidou Diallo",
         "nameWithComma": "Diallo,Hamidou",
@@ -77694,6 +77701,13 @@
         "fullName": "Jordan Poole",
         "nameWithComma": "Poole,Jordan",
         "universalName": "jordanpoole",
+        "alternateNames": []
+    },
+    {
+        "bballRefCode": "porteke02.html",
+        "fullName": "Kevin Porter Jr.",
+        "nameWithComma": "Porter,Kevin",
+        "universalName": "kevinporterjr",
         "alternateNames": []
     },
     {
