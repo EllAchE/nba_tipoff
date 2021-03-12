@@ -1,11 +1,11 @@
 {
-    "winningBets": 0,
-    "losingBets": 0,
-    "correctTipoffPredictions": 0,
-    "incorrectTipoffPredictions": 0,
-    "seasons": "2017-2018-2019-with-odds-0.73",
-    "winPercentage": 0.5393480408297662,
-    "correctTipoffPredictionPercentage": 0.6565689825485677,
-    "expectedWinsFromTip": 0.5485226879354627,
-    "predictionAverage": 0.937341760168549
+    "winningBets": 183,
+    "losingBets": 178,
+    "correctTipoffPredictions": 208,
+    "incorrectTipoffPredictions": 153,
+    "seasons": "2021-with-odds-0.73",
+    "winPercentage": 0.5069252077562327,
+    "correctTipoffPredictionPercentage": 0.5761772853185596,
+    "expectedWinsFromTip": 0.5236082944598338,
+    "predictionAverage": 0.9148062881968292
 }

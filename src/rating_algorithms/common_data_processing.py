@@ -59,13 +59,12 @@ def histogramBinningPredictions(awayPlayerCode, awayPlayerTeam, homeOdds, homePl
             "predictionSummaries": dsd
         })
 
-
 def beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, minimumTipWinPercentage, predictionFunction):
     homeOdds = predictionFunction(homePlayerCode, awayPlayerCode, psd=psd)
     homePlayerTeam = getPlayerTeamInSeasonFromBballRefLink(homePlayerCode, season, longCode=False)['currentTeam']
     awayPlayerTeam = getPlayerTeamInSeasonFromBballRefLink(awayPlayerCode, season, longCode=False)['currentTeam']
 
-    histogramBinningPredictions(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam, tipWinnerCode)
+    # histogramBinningPredictions(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam, tipWinnerCode)
 
     if psd[homePlayerCode]['appearances'] > minimumTipWinPercentage and psd[awayPlayerCode]['appearances'] > minimumTipWinPercentage:
         preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
@@ -74,24 +73,25 @@ def beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tip
         print('no bet, not enough Data on participants')
 
 def addSummaryMathToAlgoSummary(dsd):
-    dsd['correctTipoffPredictionPercentage'] = dsd['correctTipoffPredictions'] / (dsd['correctTipoffPredictions'] + dsd['incorrectTipoffPredictions'])
-    dsd['winPercentage'] = dsd['winningBets'] / (dsd['winningBets'] + dsd['losingBets'])
-    dsd['expectedWinsFromTip'] = dsd['correctTipoffPredictionPercentage'] * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1-dsd['correctTipoffPredictionPercentage']) * (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
+    if dsd['winningBets'] + dsd['losingBets'] > 0:
+        dsd['correctTipoffPredictionPercentage'] = dsd['correctTipoffPredictions'] / (dsd['correctTipoffPredictions'] + dsd['incorrectTipoffPredictions'])
+        dsd['winPercentage'] = dsd['winningBets'] / (dsd['winningBets'] + dsd['losingBets'])
+        dsd['expectedWinsFromTip'] = dsd['correctTipoffPredictionPercentage'] * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1-dsd['correctTipoffPredictionPercentage']) * (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
     return dsd
 
-def runAlgoForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, predictionSummariesPath: str, algoPrematch,
-                     algoSingleTipoff, winningBetThreshold, columnAddAlgo=None, startFromBeginning=False):
+def runAlgoForSeason(season: str, skillDictPath: str, predictionSummariesPath: str, algoPrematch,
+                     algoSingleTipoff, winningBetThreshold, seasonCsv: str, columnAdds=None, startFromBeginning=False):
     df = pd.read_csv(seasonCsv)
     # df = df[df['Home Tipper'].notnull()] # filters invalid rows
-    if columnAddAlgo is not None:
-        df = columnAddAlgo(df)
+    if columnAdds is not None:
+        df = dfEmptyColumnAdd(df, columnAdds)
 
     winningBets = losingBets = 0
 
     print('running for season doc', seasonCsv, '\n', '\n')
     colLen = len(df['Game Code'])
 
-    with open(playerSkillDictPath) as jsonFile:
+    with open(skillDictPath) as jsonFile:
         psd = json.load(jsonFile)
 
     if startFromBeginning:
@@ -125,11 +125,10 @@ def runAlgoForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, pred
             raise ValueError('no match for winner')
 
         algoPrematch(season, psd, dsd, hTipCode, aTipCode, tWinLink, df['First Scoring Team'].iloc[i], winningBetThreshold)
-        homeMu, homeSigma, awayMu, awaySigma = algoSingleTipoff(psd, tWinLink, tLoseLink, hTipCode, df['Full Hyperlink'].iloc[i])
-        df['Home Mu'].iloc[i] = homeMu
-        df['Home Sigma'].iloc[i] = homeSigma
-        df['Away Mu'].iloc[i] = awayMu
-        df['Away Sigma'].iloc[i] = awaySigma
+        returnObj = algoSingleTipoff(psd, tWinLink, tLoseLink, hTipCode, df['Full Hyperlink'].iloc[i])
+        if columnAdds is not None:
+            for key in returnObj.keys():
+                df[key] = returnObj[key]
 
         i += 1
 
@@ -143,7 +142,7 @@ def runAlgoForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, pred
     #     print("added 2 to all sigmas for new season")
 
     psd['lastGameCode'] = df.iloc[-1]['Game Code']
-    with open(playerSkillDictPath, 'w') as write_file:
+    with open(skillDictPath, 'w') as write_file:
         json.dump(psd, write_file, indent=4)
 
     with open(predictionSummariesPath, 'w') as write_file:
@@ -152,3 +151,24 @@ def runAlgoForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, pred
     df.to_csv(str(seasonCsv)[:-4] + '-test.csv')
 
     return winningBets, losingBets
+
+def runAlgoForAllSeasons(seasons, skillDictPath, predictionSummariesPath, algoPrematch, algoSingleTipoff, winningBetThreshold, columnAdds=None):
+    seasonKey = ''
+    for season in seasons:
+        runAlgoForSeason(season, skillDictPath, predictionSummariesPath, algoPrematch, algoSingleTipoff,
+                         winningBetThreshold, ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), startFromBeginning=True, columnAdds=columnAdds)
+        seasonKey += str(season) + '-'
+
+    with open(predictionSummariesPath) as predSum:
+        dsd = json.load(predSum)
+
+    dsd['seasons'] = seasonKey + 'with-odds-' + str(winningBetThreshold)
+    dsd = addSummaryMathToAlgoSummary(dsd)
+
+    with open(predictionSummariesPath, 'w') as predSum:
+        json.dump(dsd, predSum, indent=4)
+
+def dfEmptyColumnAdd(df, columns):
+    for column in columns:
+        df[column] = None
+    return df

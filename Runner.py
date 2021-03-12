@@ -27,8 +27,8 @@ from src.historical_data.nba_play_by_play_methods import getAllFirstPossessionSt
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalStats, getCurrentSeasonUsageRate
-from src.rating_algorithms.elo_data_processing import runEloForAllSeasons
-from src.rating_algorithms.glicko_data_processing import runGlickoForAllSeasons
+from src.rating_algorithms.elo_data_processing import runEloForAllSeasons, calculateEloDictionaryFromZero
+from src.rating_algorithms.glicko_data_processing import runGlickoForAllSeasons, calculateGlickoDictionaryFromZero
 from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero, updateTrueSkillDictionaryFromLastGame
 
 # todo import decimal module or similar https://docs.python.org/3/library/decimal.html
@@ -40,9 +40,9 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
 
-updateCurrentSeasonRawGameData()
-updateTrueSkillDictionaryFromLastGame()
-# calculateTrueSkillDictionaryFromZero()
+# updateCurrentSeasonRawGameData()
+# updateTrueSkillDictionaryFromLastGame()
+calculateEloDictionaryFromZero()
 
 # getAllExpectedStarters()
 

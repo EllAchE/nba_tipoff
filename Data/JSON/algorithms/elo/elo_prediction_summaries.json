@@ -1,8 +1,8 @@
 {
-    "winningBets": 121,
-    "losingBets": 66,
-    "correctTipoffPredictions": 155,
-    "incorrectTipoffPredictions": 32,
+    "winningBets": 0,
+    "losingBets": 0,
+    "correctTipoffPredictions": 0,
+    "incorrectTipoffPredictions": 0,
     "seasons": "2017-2018-2019-with-odds-0.73",
     "winPercentage": 0.6470588235294118,
     "correctTipoffPredictionPercentage": 0.8288770053475936,
