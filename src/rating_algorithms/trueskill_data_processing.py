@@ -6,7 +6,7 @@ import pandas as pd
 
 from src.database.database_creation import resetPredictionSummaries, createPlayerTrueSkillDictionary
 from src.rating_algorithms.algorithms import trueSkillMatchWithRawNums, trueSkillWinProb
-from src.rating_algorithms.common_data_processing import preMatchPredictions, beforeMatchPredictions, \
+from src.rating_algorithms.common_data_processing import preMatchPredictionsNoBinning, beforeMatchPredictions, \
     addSummaryMathToAlgoSummary
 
 
@@ -90,7 +90,7 @@ def runTSForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winnin
 
 # backlogtodo setup odds prediction to use Ev or win prob rather than bet threshold
 def trueskillBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
-    beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=winningBetThreshold, predictionFunction=trueSkillWinProb)
+    beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, minimumTipWinPercentage=winningBetThreshold, predictionFunction=trueSkillWinProb)
 
 def runTSForAllSeasons(seasons, winning_bet_threshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
     seasonKey = ''

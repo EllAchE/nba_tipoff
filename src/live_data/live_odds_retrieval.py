@@ -11,7 +11,7 @@ import requests
 import pandas as pd
 
 import ENVIRONMENT
-from src.database.database_access import getUniversalShortCode, getPlayerCurrentTeam, getUniversalPlayerName
+from src.database.database_access import getUniversalTeamShortCode, getPlayerCurrentTeam, getUniversalPlayerName
 from src.odds_and_statistics.odds_calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb, decimalToAmerican
 from src.utils import getTeamFullFromShort, getSoupFromUrl, sleepChecker
 
@@ -19,7 +19,7 @@ from src.utils import getTeamFullFromShort, getSoupFromUrl, sleepChecker
 def addTeamToUnknownPlayerLine(rawPlayerLine):
     formattedPlayerName = getUniversalPlayerName(rawPlayerLine['player'])
     teamShortCodeBballRefFormat = getPlayerCurrentTeam(formattedPlayerName)
-    teamShortCode = getUniversalShortCode(teamShortCodeBballRefFormat)
+    teamShortCode = getUniversalTeamShortCode(teamShortCodeBballRefFormat)
 
     rawPlayerLine['team'] = teamShortCode
 
@@ -122,8 +122,8 @@ def bovadaTeamOdds(allTeamBets):
         scoreFirstBetsBothTeamsFormatted.append({
             'exchange': 'bovada',
             "shortTitle": item['shortTitle'],
-            "away": getUniversalShortCode(item['team2id']),
-            "home": getUniversalShortCode(item['team1id']),
+            "away": getUniversalTeamShortCode(item['team2id']),
+            "home": getUniversalTeamShortCode(item['team1id']),
             "awayTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds']),
             "homeTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds']),
             "awayPlayerFirstQuarterOdds": [],
@@ -131,8 +131,8 @@ def bovadaTeamOdds(allTeamBets):
         })
         scoreFirstBetsBothTeamsFormatted.append({
             'exchange': 'bovada',
-            "away": getUniversalShortCode(item['team1id']),
-            "home": getUniversalShortCode(item['team2id']),
+            "away": getUniversalTeamShortCode(item['team1id']),
+            "home": getUniversalTeamShortCode(item['team2id']),
             "shortTitle": item['shortTitle'],
             "awayTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds']),
             "homeTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds']),
@@ -166,13 +166,13 @@ def bovadaPlayerOdds(playerBetGamesList):
                     homePlayerOdds.append({
                         "player": player['player']['name'],
                         "odds": actualOdds,
-                        "team": getUniversalShortCode(homeShort)
+                        "team": getUniversalTeamShortCode(homeShort)
                     })
                 elif player['player']['team']['abbreviation'] == awayShort:
                     awayPlayerOdds.append({
                         "player": player['player']['name'],
                         "odds": actualOdds,
-                        "team": getUniversalShortCode(awayShort)
+                        "team": getUniversalTeamShortCode(awayShort)
                     })
                 else:
                     raise ValueError("Bovada misformattted something in player and team codes")
@@ -251,9 +251,9 @@ def draftKingsOdds():
     if teamMatch:
         for teamLine in firstTeamToScoreLines:
             outcomes = teamLine[0]['outcomes']
-            team1 = getUniversalShortCode(outcomes[0]['label'])
+            team1 = getUniversalTeamShortCode(outcomes[0]['label'])
             team1Odds = outcomes[0]['oddsAmerican']
-            team2 = getUniversalShortCode(outcomes[1]['label'])
+            team2 = getUniversalTeamShortCode(outcomes[1]['label'])
             team2Odds = outcomes[1]['oddsAmerican']
             teamSet.add(team2)
             teamSet.add(team1)
@@ -323,7 +323,9 @@ def fanduelOdds():
     for gameId in gameIdSet:
         gameResponse = requests.get('https://sportsbook.fanduel.com/cache/psevent/UK/1/false/{}.json'.format(gameId)).json()
         print('running for fanduel game', gameResponse['externaldescription'])
-        sleepChecker(iterations=1, baseTime=2)
+        sleepChecker(iterations=1, baseTime=2, randomMultiplier=8)
+        if gameResponse['islive']:
+            continue
         for eventMarketGroup in gameResponse['eventmarketgroups']:
             if eventMarketGroup['name'] == 'All':
                 allEventMatch = True
@@ -377,8 +379,8 @@ def fanduelOdds():
             home4Odds = getAmericanOddsFanduel(quarter4home['currentpriceup'], quarter4home['currentpricedown'])
             away4Odds = getAmericanOddsFanduel(quarter4away['currentpriceup'], quarter4away['currentpricedown'])
 
-        home = getUniversalShortCode(gameResponse['participantshortname_home'].split(" ")[1])
-        away = getUniversalShortCode(gameResponse['participantshortname_away'].split(" ")[1])
+        home = getUniversalTeamShortCode(gameResponse['participantshortname_home'].split(" ")[1])
+        away = getUniversalTeamShortCode(gameResponse['participantshortname_away'].split(" ")[1])
         teamSet.add(home)
         teamSet.add(away)
         quarterOddsList.append({
@@ -428,8 +430,10 @@ def mgmOdds():
                   gameIDs[index]
         gameResponse = requests.get(gameURL, headers=headers)
         oddsInfo = json.loads(gameResponse.text)['fixture']['games']
-        sleepChecker(iterations=1, printStop=True)
+        sleepChecker(iterations=1)
+
         for odds in oddsInfo:
+            print('Fetching MGM for game', odds['results'][0]['name']['value'], "@",odds['results'][1]['name']['value'])
             if (odds['name']['value'] == "Which team will score the first points?"):
                 team1 = odds['results'][0]['name']['value']
                 team1Odds = odds['results'][0]['americanOdds']
@@ -447,8 +451,8 @@ def mgmOdds():
 
                 allGameLines.append({
                     'exchange': 'mgm',
-                    "home": getUniversalShortCode(team2),
-                    "away": getUniversalShortCode(team1),
+                    "home": getUniversalTeamShortCode(team2),
+                    "away": getUniversalTeamShortCode(team1),
                     "homeTeamFirstQuarterOdds": str(team2Odds),
                     "awayTeamFirstQuarterOdds": str(team1Odds)
                 })
@@ -468,8 +472,8 @@ def pointsBetOdds():
     for event in allGames['events']:
         rawPlayerLines = list()
         eventId = event['key']
-        homeTeam = getUniversalShortCode(event['homeTeam'])
-        awayTeam = getUniversalShortCode(event['awayTeam'])
+        homeTeam = getUniversalTeamShortCode(event['homeTeam'])
+        awayTeam = getUniversalTeamShortCode(event['awayTeam'])
         singleGameUrl = 'https://api-usa.pointsbet.com/api/v2/events/{}'.format(eventId)
         singleGameResponse = requests.get(singleGameUrl).json()
 
@@ -488,7 +492,7 @@ def pointsBetOdds():
                 awayPlayerList = list()
                 for player in rawPlayerLines:
                     universalName = getUniversalPlayerName(player['player'])
-                    player['team'] = getUniversalShortCode(getPlayerCurrentTeam(universalName))
+                    player['team'] = getUniversalTeamShortCode(getPlayerCurrentTeam(universalName))
                     if player['team'] == homeTeam:
                         homePlayerList.append(player)
                     elif player['team'] == awayTeam:
@@ -530,8 +534,8 @@ def unibetOdds():
         sleepChecker(baseTime=0.5, randomMultiplier=3)
         singleGameResponse = requests.get(singleEventUrlStub.format(str(event[0]))).json()
         allBets = singleGameResponse['betOffers']
-        homeTeam = getUniversalShortCode(event[2])
-        awayTeam = getUniversalShortCode(event[3])
+        homeTeam = getUniversalTeamShortCode(event[2])
+        awayTeam = getUniversalTeamShortCode(event[3])
 
         playerScoreFirstFG = None
         for bet in allBets:
@@ -554,7 +558,7 @@ def unibetOdds():
         awayPlayerLines = list()
         for player in rawPlayerLines:
             universalName = getUniversalPlayerName(player['player'])
-            player['team'] = getUniversalShortCode(getPlayerCurrentTeam(universalName))
+            player['team'] = getUniversalTeamShortCode(getPlayerCurrentTeam(universalName))
             if player['team'] == homeTeam:
                 homePlayerLines.append(player)
             elif player['team'] == awayTeam:
@@ -595,8 +599,8 @@ def barstoolOdds(): #only has player prosp to score (first field goal)
     for event in eventsList:
         sleepChecker(baseTime=0.5, randomMultiplier=2)
         singleGameResponse = requests.get(singleEventUrlStub.format(event['id']), headers={"consumer":"www"}).json()
-        homeTeam = getUniversalShortCode(event['home'])
-        awayTeam = getUniversalShortCode(event['away'])
+        homeTeam = getUniversalTeamShortCode(event['home'])
+        awayTeam = getUniversalTeamShortCode(event['away'])
 
         hasPlayerSpecials = False
         for category in singleGameResponse:

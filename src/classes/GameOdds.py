@@ -4,6 +4,7 @@ from src.live_data.live_odds_retrieval import getExpectedTipper
 
 class GameOdds:
     def __init__(self, gameDict, teamOnly=False, playersOnly=False):
+        self.awayPlayerFloorOdds = self.homePlayerFloorOdds = self.awayPlayerFloorOdds = self.homePlayerFloorOdds = self.awayPlayerFloorOdds = self.kellyBet = self.awayTeamFirstQuarterOdds = None
         self.home = gameDict['home']
         self.away = gameDict['away']
         self.gameDatetime = gameDict['gameDatetime']
@@ -24,13 +25,9 @@ class GameOdds:
         if teamOnly and playersOnly:
             raise ValueError("need at least team or player")
 
-        self.homePlayerFloorOdds = None
-        self.awayPlayerFloorOdds = None
         if not teamOnly:
             if(len(self.homePlayerOddsList) < 5 or len(self.homePlayerOddsList) > 6):
-                print("fewer than five players for game", self.gameCode, 'setting odds to -200')
-                self.homePlayerFloorOdds = '-200'
-                self.awayPlayerFloorOdds = '-200'
+                print("fewer than five players for game", self.gameCode, 'odds will be None')
             else:
                 try:
                     self.homePlayerFloorOdds = convertPlayerLinesToSingleLine(self.homePlayerOddsList)
@@ -65,14 +62,13 @@ class GameOdds:
         self.awayBestKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.bestAwayOdds)
         self.betOnHome = (self.homeScoreProb > self.minHomeWinPercentage)
         self.betOnAway = (self.awayScoreProb > self.minAwayWinPercentage)
-        self.kellyBet = None
 
-        if not playersOnly:
-            self.homeTeamKellyBet = kellyBetFromAOddsAndScoreProb(self.homeScoreProb, self.homeTeamFirstQuarterOdds)
-            self.awayTeamKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.awayTeamFirstQuarterOdds)
-        elif not teamOnly:
-            self.homePlayersKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.homePlayerFloorOdds)
-            self.awayPlayersKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.awayPlayerFloorOdds)
+        # if not playersOnly and self.homeTeamFirstQuarterOdds is not None:
+        #     self.homeTeamKellyBet = kellyBetFromAOddsAndScoreProb(self.homeScoreProb, self.homeTeamFirstQuarterOdds)
+        #     self.awayTeamKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.awayTeamFirstQuarterOdds)
+        # if not teamOnly: # and self.homePlayerFloorOdds != '-200':
+        #     self.homePlayersKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.homePlayerFloorOdds)
+        #     self.awayPlayersKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.awayPlayerFloorOdds)
 
         if self.homeBestKellyBet > 0:
             self.kellyBet = {"bet": self.homeBestKellyBet, "team": self.home}

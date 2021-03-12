@@ -112,7 +112,7 @@ def trueSkillWinProb(player1Code: str, player2Code: str, jsonPath: str = ENVIRON
     delta_mu = sum(r.mu for r in team1) - sum(r.mu for r in team2)
     sum_sigma = sum(r.sigma ** 2 for r in itertools.chain(team1, team2))
     size = len(team1) + len(team2)
-    denom = math.sqrt(size * (ENVIRONMENT.BASE_TS_SIGMA * ENVIRONMENT.BASE_TS_SIGMA) + sum_sigma)
+    denom = math.sqrt(size * (ENVIRONMENT.BASE_TS_BETA * ENVIRONMENT.BASE_TS_BETA) + sum_sigma)
     ts = trueskill.global_env()
     res = ts.cdf(delta_mu / denom)
     # print('odds', player1_code, 'beats', player2_code, 'are', res)

@@ -7,7 +7,7 @@ import pandas as pd
 from src.database.database_creation import resetPredictionSummaries, createPlayerGlickoDictionary
 from src.rating_algorithms.algorithms import glickoWinProb, glickoMatchWithRawNums
 
-from src.rating_algorithms.common_data_processing import preMatchPredictions, beforeMatchPredictions, \
+from src.rating_algorithms.common_data_processing import preMatchPredictionsNoBinning, beforeMatchPredictions, \
     addSummaryMathToAlgoSummary
 
 
@@ -87,7 +87,7 @@ def runGlickoForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, wi
     return winningBets, losingBets
 
 def glickoBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD):
-    beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=winningBetThreshold, predictionFunction=glickoWinProb)
+    beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, minimumTipWinPercentage=winningBetThreshold, predictionFunction=glickoWinProb)
 
 def runGlickoForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD):
     seasonKey = ''

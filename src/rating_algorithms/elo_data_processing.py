@@ -71,19 +71,19 @@ def runEloForSeason(season: str, seasonCsv: str, playerSkillDictPath: str, winni
     return winningBets, losingBets
 
 def eloBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD):
-    beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=winningBetThreshold, predictionFunction=eloWinProb)
+    beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, minimumTipWinPercentage=winningBetThreshold, predictionFunction=eloWinProb)
 
-def runEloForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD):
+def runEloForAllSeasons(seasons, winningTipPercentage=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD):
     seasonKey = ''
     for season in seasons:
         runEloForSeason(season, ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season),
-                        ENVIRONMENT.PLAYER_ELO_DICT_PATH, winningBetThreshold, startFromBeginning=True)
+                        ENVIRONMENT.PLAYER_ELO_DICT_PATH, winningTipPercentage, startFromBeginning=True)
         seasonKey += str(season) + '-'
 
     with open(ENVIRONMENT.ELO_PREDICTION_SUMMARIES_PATH) as predSum:
         dsd = json.load(predSum)
 
-    dsd['seasons'] = seasonKey + 'with-odds-' + str(winningBetThreshold)
+    dsd['seasons'] = seasonKey + 'with-odds-' + str(winningTipPercentage)
     dsd = addSummaryMathToAlgoSummary(dsd)
 
     with open(ENVIRONMENT.ELO_PREDICTION_SUMMARIES_PATH, 'w') as predSum:
@@ -125,7 +125,7 @@ def eloUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, game_c
 def calculateEloDictionaryFromZero():
     resetPredictionSummaries(ENVIRONMENT.ELO_PREDICTION_SUMMARIES_PATH) # reset sums
     createPlayerEloDictionary() # clears the stored values,
-    runEloForAllSeasons(ENVIRONMENT.ALL_SEASONS_LIST, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD)
+    runEloForAllSeasons(ENVIRONMENT.ALL_SEASONS_LIST, winningTipPercentage=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD)
     print("\n", "elo dictionary updated for seasons", ENVIRONMENT.ALL_SEASONS_LIST, "\n")
 
 def updateEloDictionaryFromLastGame():

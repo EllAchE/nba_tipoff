@@ -16,6 +16,8 @@ REDUCTION_FACTOR = 0.7
 TIP_WIN = 0.73
 MIN_APPEARANCES = 20
 
+# Algorithm Comparison
+ALGO_COMPARISON_PATH = Path(os.path.abspath('Data/JSON/algorithms/comparison.json'))
 TS_PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/algorithms/trueskill/ts_prediction_summaries.json'))
 GLICKO_PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/algorithms/glicko/glicko_prediction_summaries.json'))
 ELO_PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/algorithms/elo/elo_prediction_summaries.json'))
@@ -25,7 +27,8 @@ BASE_TS_SIGMA = 25 / 3 # 8.333333333333334
 BASE_TS_MU = 25
 BASE_TS_RD = 25 * 25 / 3 / 3
 BASE_TS_TAU = BASE_TS_SIGMA / 100 # 0.08333333333333334
-BASE_TS_BETA = BASE_TS_SIGMA / 2 # 4.166666666666667
+BASE_TS_BETA = BASE_TS_SIGMA / 2.1 # 4.166666666666667 # todo this is the confidence interval for 76% certainty
+# todo log the constants used in creating the summary
 MIN_TS_APPEARANCES = MIN_APPEARANCES
 TS_TIPOFF_ODDS_THRESHOLD = TIP_WIN
 # Trueskill files

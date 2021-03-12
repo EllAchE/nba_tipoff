@@ -37,7 +37,7 @@ import pandas as pd
 import ENVIRONMENT
 from src.database.database_access import findPlayerFullFromLastGivenPossibleFullNames, getGameIdFromBballRef, \
     getTeamDictionaryFromShortCode, getAllGamesForTeam, getBballRefPlayerName, \
-    getGameIdByTeamAndDateFromStaticData, getUniversalPlayerName, getUniversalShortCode
+    getGameIdByTeamAndDateFromStaticData, getUniversalPlayerName, getUniversalTeamShortCode
 from src.utils import sleepChecker
 
 # backlogTodo different sites may only look at first field goal (NOT FREE THROW) which makes for a weaker correlation
@@ -226,8 +226,8 @@ def getSingleGameStarters(gameId):
         awayTeamObj = response['resultSets'][1]
         homeTeamObj = response['resultSets'][0]
 
-    homeTeam = getUniversalShortCode(homeTeamObj['rowSet'][0][2] + ' ' + homeTeamObj['rowSet'][0][3])
-    awayTeam = getUniversalShortCode(awayTeamObj['rowSet'][0][2] + ' ' + awayTeamObj['rowSet'][0][3])
+    homeTeam = getUniversalTeamShortCode(homeTeamObj['rowSet'][0][2] + ' ' + homeTeamObj['rowSet'][0][3])
+    awayTeam = getUniversalTeamShortCode(awayTeamObj['rowSet'][0][2] + ' ' + awayTeamObj['rowSet'][0][3])
 
     for playerInOut in homeTeamObj['rowSet']:
         if playerInOut[-5] == 0.0:

@@ -20,7 +20,7 @@
 # More books https://bookies.com/pennsylvania
 import ENVIRONMENT
 from src.database.database_creation import getAllGameData, createPlayerEloDictionary, resetPredictionSummaries, \
-    createPlayerGlickoDictionary, saveActivePlayersTeams
+    createPlayerGlickoDictionary, saveActivePlayersTeams, createPlayerNameRelationship
 from src.historical_data.historical_data_retrieval import updateCurrentSeasonRawGameData
 from src.historical_data.nba_play_by_play_methods import getAllFirstPossessionStatisticsIncrementally, \
     splitAllSeasonsFirstShotDataToMultipleFiles, getSingleGameStarters, saveAllHistoricalStarters
@@ -31,31 +31,29 @@ from src.rating_algorithms.elo_data_processing import runEloForAllSeasons
 from src.rating_algorithms.glicko_data_processing import runGlickoForAllSeasons
 from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero, updateTrueSkillDictionaryFromLastGame
 
+# todo import decimal module or similar https://docs.python.org/3/library/decimal.html
+# todo fix dk to accept player bets only
+
 # getAllGameData()
 
-# splitAllSeasonsFirstShotDataToMultipleFiles()
-
+# todo combine the two below methods
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
 
-# updateCurrentSeasonRawGameData()
-# updateTrueSkillDictionaryFromLastGame()
+updateCurrentSeasonRawGameData()
+updateTrueSkillDictionaryFromLastGame()
 # calculateTrueSkillDictionaryFromZero()
 
-# getFirstFieldGoalStats(2019)#, isFirstFieldGoal=True)
 # getAllExpectedStarters()
 
-# getDailyOdds('ORL', 'ORL', '+105')
+# getDailyOdds('NOP', 'MIN', '+130')
 
 # getAllOddsAndDisplayByEv(getFanduel=True, getDk=True, getBovada=True, getMgm=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)
-getAllOddsAndDisplayByEv(getFanduel=True)
-
-# test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
-#                        ['199711160SEA', 'SEA', 'MIL'],
-#                        ['199711190LAL', 'LAL', 'MIN'],
-#                        ['201911200TOR', 'TOR', 'ORL'],
-#                        ['201911260DAL', 'DAL', 'LAC']] # Last one is a violation, others are misformatted
-# '199711210SEA', '199711240TOR', '199711270IND', '201911040PHO',
+# getAllOddsAndDisplayByEv(getFanduel=True)
+# getAllOddsAndDisplayByEv(getMgm=True)
+# getAllOddsAndDisplayByEv(getDk=True)#, getBovada=True)
+# getAllOddsAndDisplayByEv(getUnibet=True, getPointsBet=True, getBarstool=True)
+# getAllOddsAndDisplayByEv(getBovada=True)
 
 '''
 Existing apis etc.:

@@ -89,7 +89,7 @@ def getPlayerCurrentTeam(universalPlayerName): # Returns a list
         playersDict = json.load(playerToTeamDb)
     return playersDict['2021'][universalPlayerName]['currentTeam']
 
-def getUniversalShortCode(teamInUnknownFormat):
+def getUniversalTeamShortCode(teamInUnknownFormat):
     with open(ENVIRONMENT.TEAM_NAMES_PATH) as teamsDb:
         teamsDict = json.load(teamsDb)
 
@@ -152,7 +152,7 @@ def getGameIdFromTeamAndDate(dateStr: str, shortCode: str):
 
 def getGameIdByTeamAndDateFromStaticData(bballRefId: str):
     date, team = getDashDateAndHomeCodeFromGameCode(bballRefId)
-    gameObj = _getGameObjFromDateAndTeamUsingLocalData(date, getUniversalShortCode(team))
+    gameObj = _getGameObjFromDateAndTeamUsingLocalData(date, getUniversalTeamShortCode(team))
     return gameObj.GAME_ID.iloc[0]
 
 def convertBballRefTeamShortCodeToNBA(shortCode: str):

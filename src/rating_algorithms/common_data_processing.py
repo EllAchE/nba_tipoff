@@ -1,8 +1,8 @@
 import ENVIRONMENT
 from src.database.database_access import getPlayerTeamInSeasonFromBballRefLink
 
-def preMatchPredictions(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
-                        tipWinnerCode, winningBetThreshold):
+def preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
+                                 tipWinnerCode, winningBetThreshold):
     totalBets = dsd['winningBets'] + dsd['losingBets']
     if homeOdds > winningBetThreshold:
         if tipWinnerCode[11:] == homePlayerCode:
@@ -27,14 +27,46 @@ def preMatchPredictions(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlaye
     else:
         print('no bet, odds were not good enough')
 
-def beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold, predictionFunction):
+def createEmptySummaryDictionary():
+    return {
+        "correctTipoffPredictions": None,
+        "incorrectTipoffPredictions": None,
+        "correctTipoffPredictionPercentage": None,
+        "winningBets": None,
+        "losingBets": None,
+        "winPercentage": None,
+        "expectedWinsFromTip": None,
+        "predictionAverage": None,
+        "totalMatchups": None,
+    }
+
+def histogramBinningPredictions(awayPlayerCode, awayPlayerTeam, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
+                                tipWinnerCode):
+    histogramBinDivisions = range(0.5, 1, 0.05) # divisions are based on the probability for the more likely player
+    intervalList = list()
+    i = 0
+    lstLen = len(histogramBinDivisions)
+    while i < lstLen - 2:
+        dsd = createEmptySummaryDictionary()
+        preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
+                                     tipWinnerCode)
+        intervalList.append({
+            "start": histogramBinDivisions[i],
+            "end": histogramBinDivisions[i + 1],
+            "predictionSummaries": dsd
+        })
+
+
+def beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, minimumTipWinPercentage, predictionFunction):
     homeOdds = predictionFunction(homePlayerCode, awayPlayerCode, psd=psd)
     homePlayerTeam = getPlayerTeamInSeasonFromBballRefLink(homePlayerCode, season, longCode=False)['currentTeam']
     awayPlayerTeam = getPlayerTeamInSeasonFromBballRefLink(awayPlayerCode, season, longCode=False)['currentTeam']
 
-    if psd[homePlayerCode]['appearances'] > winningBetThreshold and psd[awayPlayerCode]['appearances'] > winningBetThreshold:
-        preMatchPredictions(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
-                            tipWinnerCode, winningBetThreshold)
+    histogramBinningPredictions(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam, tipWinnerCode)
+
+    if psd[homePlayerCode]['appearances'] > minimumTipWinPercentage and psd[awayPlayerCode]['appearances'] > minimumTipWinPercentage:
+        preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
+                                     tipWinnerCode, minimumTipWinPercentage)
     else:
         print('no bet, not enough Data on participants')
 
