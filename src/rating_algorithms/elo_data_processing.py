@@ -1,7 +1,7 @@
 import ENVIRONMENT
-from src.database.database_creation import resetPredictionSummaries, createPlayerEloDictionary
+from src.database.database_creation import createPlayerEloDictionary, resetAndInitializePredictionSummaryDict
 from src.rating_algorithms.algorithms import eloMatchWithRawNums, eloWinProb
-from src.rating_algorithms.common_data_processing import beforeMatchPredictions, addSummaryMathToAlgoSummary, \
+from src.rating_algorithms.common_data_processing import beforeMatchPredictions, \
     runAlgoForSeason, runAlgoForAllSeasons
 
 
@@ -9,7 +9,7 @@ def runEloForSeason(season: str, seasonCsv: str, winningBetThreshold: float=ENVI
     runAlgoForSeason(season, seasonCsv, winningBetThreshold, columnAdds=["Home Elo", "Away Elo"], startFromBeginning=startFromBeginning)
 
 def eloBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD):
-    beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, minimumTipWinPercentage=winningBetThreshold, predictionFunction=eloWinProb)
+    beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, predictionSummaryPath=ENVIRONMENT.ELO_PREDICTION_SUMMARIES_PATH, minimumTipWinPercentage=winningBetThreshold, predictionFunction=eloWinProb)
 
 def runEloForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD):
     runAlgoForAllSeasons(seasons, ENVIRONMENT.PLAYER_ELO_DICT_PATH, ENVIRONMENT.ELO_PREDICTION_SUMMARIES_PATH, eloBeforeMatchPredictions,
@@ -49,7 +49,6 @@ def eloUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, game_c
     return {"Home Elo": homeElo, "Away Elo": awayElo}
 
 def calculateEloDictionaryFromZero():
-    resetPredictionSummaries(ENVIRONMENT.ELO_PREDICTION_SUMMARIES_PATH) # reset sums
     createPlayerEloDictionary() # clears the stored values,
     runEloForAllSeasons(ENVIRONMENT.ALL_SEASONS_LIST, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD)
     print("\n", "elo dictionary updated for seasons", ENVIRONMENT.ALL_SEASONS_LIST, "\n")

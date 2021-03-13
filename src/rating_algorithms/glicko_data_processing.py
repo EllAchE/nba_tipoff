@@ -1,5 +1,5 @@
 import ENVIRONMENT
-from src.database.database_creation import resetPredictionSummaries, createPlayerGlickoDictionary
+from src.database.database_creation import createPlayerGlickoDictionary
 from src.rating_algorithms.algorithms import glickoWinProb, glickoMatchWithRawNums
 
 from src.rating_algorithms.common_data_processing import beforeMatchPredictions,runAlgoForSeason, runAlgoForAllSeasons
@@ -10,7 +10,7 @@ def runGlickoForSeason(season: str, seasonCsv: str, winningBetThreshold: float=E
                     glickoUpdateDataSingleTipoff, winningBetThreshold, columnAdds=['Home Glicko Mu', 'Away Glicko Mu', "Home Glicko Sigma", "Away Glicko Sigma", "Home Glicko Phi", "Away Glicko Phi"], startFromBeginning=startFromBeginning)
 
 def glickoBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD):
-    beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, minimumTipWinPercentage=winningBetThreshold, predictionFunction=glickoWinProb)
+    beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, predictionSummaryPath=ENVIRONMENT.GLICKO_PREDICTION_SUMMARIES_PATH, minimumTipWinPercentage=winningBetThreshold, predictionFunction=glickoWinProb)
 
 def runGlickoForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD):
     runAlgoForAllSeasons(seasons, ENVIRONMENT.PLAYER_GLICKO_DICT_PATH, ENVIRONMENT.GLICKO_PREDICTION_SUMMARIES_PATH, glickoBeforeMatchPredictions,
@@ -68,7 +68,6 @@ def glickoUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, gam
             "Home Glicko Phi": homePhi, "Away Glicko Phi": awayPhi}
 
 def calculateGlickoDictionaryFromZero():
-    resetPredictionSummaries(ENVIRONMENT.GLICKO_PREDICTION_SUMMARIES_PATH) # reset sums
     createPlayerGlickoDictionary() # clears the stored values,
     runGlickoForAllSeasons(ENVIRONMENT.ALL_SEASONS_LIST, winningBetThreshold=ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD)
     print('\n', 'glicko dictionary updated for seasons', ENVIRONMENT.ALL_SEASONS_LIST, '\n')

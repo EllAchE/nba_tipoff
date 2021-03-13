@@ -1,6 +1,6 @@
 import ENVIRONMENT
 
-from src.database.database_creation import resetPredictionSummaries, createPlayerTrueSkillDictionary
+from src.database.database_creation import createPlayerTrueSkillDictionary
 from src.rating_algorithms.algorithms import trueSkillMatchWithRawNums, trueSkillWinProb
 from src.rating_algorithms.common_data_processing import beforeMatchPredictions, runAlgoForSeason, runAlgoForAllSeasons
 
@@ -15,7 +15,7 @@ def runTSForSeason(season: str, seasonCsv: str, winningBetThreshold: float=ENVIR
 # backlogtodo setup odds prediction to use Ev or win prob rather than bet threshold
 def trueskillBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam,
         winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
-    beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam,
+    beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, predictionSummaryPath=ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH,
             minimumTipWinPercentage=winningBetThreshold, predictionFunction=trueSkillWinProb)
 
 def runTSForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
@@ -64,7 +64,6 @@ def trueskillUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, 
     return {"Home TS Mu": homeMu, "Home TS Sigma":homeSigma, "Away TS Mu": awayMu, "Away TS Sigma": awaySigma}
 
 def calculateTrueSkillDictionaryFromZero():
-    resetPredictionSummaries(ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH) # reset sums
     createPlayerTrueSkillDictionary() # clears the stored values,
     runTSForAllSeasons(ENVIRONMENT.ALL_SEASONS_LIST, winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD)
     print("\n", "trueskill dictionary updated for seasons", ENVIRONMENT.ALL_SEASONS_LIST, "\n")

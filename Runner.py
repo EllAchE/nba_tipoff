@@ -19,7 +19,7 @@
 # backlogtodo combine to update all relevant game dictionaries from last game after fetching new game details
 # More books https://bookies.com/pennsylvania
 import ENVIRONMENT
-from src.database.database_creation import getAllGameData, createPlayerEloDictionary, resetPredictionSummaries, \
+from src.database.database_creation import getAllGameData, createPlayerEloDictionary, \
     createPlayerGlickoDictionary, saveActivePlayersTeams, createPlayerNameRelationship
 from src.historical_data.historical_data_retrieval import updateCurrentSeasonRawGameData, oneSeasonFromScratch
 from src.historical_data.nba_play_by_play_methods import getAllFirstPossessionStatisticsIncrementally, \
@@ -46,7 +46,7 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # oneSeasonFromScratch(2021)
 # updateCurrentSeasonRawGameData()
 # updateTrueSkillDictionaryFromLastGame()
-calculateEloDictionaryFromZero()
+calculateGlickoDictionaryFromZero()
 
 # getAllExpectedStarters()
 

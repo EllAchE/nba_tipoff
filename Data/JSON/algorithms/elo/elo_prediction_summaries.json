@@ -4,106 +4,100 @@
     "totalBets": 0,
     "correctTipoffPredictions": 0,
     "incorrectTipoffPredictions": 0,
-    "seasons": "2019-2020-2021-with-odds-0.73",
-    "winPercentage": 0.47244094488188976,
-    "correctTipoffPredictionPercentage": 0.7952755905511811,
-    "expectedWinsFromAlgo": 97.86090119271913,
+    "seasons": null,
+    "winPercentage": 0,
+    "correctTipoffPredictionPercentage": 0,
+    "expectedWinsFromAlgo": 0,
     "predictionAverage": 0,
     "histogramDivisions": [
         {
             "start": 0.5,
             "end": 0.55,
             "predictionSummaries": {
-                "totalMatchups": 1200,
-                "tipoffWinsByHigher": 664,
-                "tipoffLossesByHigher": 536,
-                "winPercentage": 0.5537948290241869,
-                "expectedWinsFromAlgo": 627.7661461568537,
-                "expectedWinPercentage": 0.5231493588647058
+                "totalMatchups": 498,
+                "tipoffWinsByHigher": 247,
+                "tipoffLossesByHigher": 251,
+                "winPercentage": 0.4959839357429719,
+                "expectedWinsFromAlgo": 258.1055982962376,
+                "expectedWinPercentage": 0.518284333928188
             }
         },
         {
             "start": 0.55,
             "end": 0.6,
             "predictionSummaries": {
-                "totalMatchups": 726,
-                "tipoffWinsByHigher": 446,
-                "tipoffLossesByHigher": 280,
-                "winPercentage": 0.6143250688705234,
-                "expectedWinsFromAlgo": 415.48686875510754,
-                "expectedWinPercentage": 0.5722959624726
+                "totalMatchups": 16,
+                "tipoffWinsByHigher": 4,
+                "tipoffLossesByHigher": 12,
+                "winPercentage": 0.25,
+                "expectedWinsFromAlgo": 8.961907888017056,
+                "expectedWinPercentage": 0.560119243001066
             }
         },
         {
             "start": 0.6,
             "end": 0.65,
             "predictionSummaries": {
-                "totalMatchups": 485,
-                "tipoffWinsByHigher": 335,
-                "tipoffLossesByHigher": 150,
-                "winPercentage": 0.6907216494845361,
-                "expectedWinsFromAlgo": 302.3606546991726,
-                "expectedWinPercentage": 0.6234240303075723
+                "totalMatchups": 0,
+                "tipoffWinsByHigher": 0,
+                "tipoffLossesByHigher": 0,
+                "winPercentage": 0,
+                "expectedWinsFromAlgo": 0
             }
         },
         {
             "start": 0.65,
             "end": 0.7,
             "predictionSummaries": {
-                "totalMatchups": 283,
-                "tipoffWinsByHigher": 201,
-                "tipoffLossesByHigher": 82,
-                "winPercentage": 0.7102473498233216,
-                "expectedWinsFromAlgo": 190.43956700266983,
-                "expectedWinPercentage": 0.6729313321649111
+                "totalMatchups": 0,
+                "tipoffWinsByHigher": 0,
+                "tipoffLossesByHigher": 0,
+                "winPercentage": 0,
+                "expectedWinsFromAlgo": 0
             }
         },
         {
             "start": 0.7,
             "end": 0.75,
             "predictionSummaries": {
-                "totalMatchups": 163,
-                "tipoffWinsByHigher": 122,
-                "tipoffLossesByHigher": 41,
-                "winPercentage": 0.7484662576687117,
-                "expectedWinsFromAlgo": 117.49504409107946,
-                "expectedWinPercentage": 0.7208284913563158
+                "totalMatchups": 0,
+                "tipoffWinsByHigher": 0,
+                "tipoffLossesByHigher": 0,
+                "winPercentage": 0,
+                "expectedWinsFromAlgo": 0
             }
         },
         {
             "start": 0.75,
             "end": 0.8,
             "predictionSummaries": {
-                "totalMatchups": 58,
-                "tipoffWinsByHigher": 47,
-                "tipoffLossesByHigher": 11,
-                "winPercentage": 0.8103448275862069,
-                "expectedWinsFromAlgo": 44.60839209069011,
-                "expectedWinPercentage": 0.7691102084601743
+                "totalMatchups": 0,
+                "tipoffWinsByHigher": 0,
+                "tipoffLossesByHigher": 0,
+                "winPercentage": 0,
+                "expectedWinsFromAlgo": 0
             }
         },
         {
             "start": 0.8,
             "end": 0.85,
             "predictionSummaries": {
-                "totalMatchups": 25,
-                "tipoffWinsByHigher": 19,
-                "tipoffLossesByHigher": 6,
-                "winPercentage": 0.76,
-                "expectedWinsFromAlgo": 20.51171331468861,
-                "expectedWinPercentage": 0.8204685325875444
+                "totalMatchups": 0,
+                "tipoffWinsByHigher": 0,
+                "tipoffLossesByHigher": 0,
+                "winPercentage": 0,
+                "expectedWinsFromAlgo": 0
             }
         },
         {
             "start": 0.85,
             "end": 0.9,
             "predictionSummaries": {
-                "totalMatchups": 1,
-                "tipoffWinsByHigher": 1,
+                "totalMatchups": 0,
+                "tipoffWinsByHigher": 0,
                 "tipoffLossesByHigher": 0,
-                "winPercentage": 1.0,
-                "expectedWinsFromAlgo": 0.8645015144004887,
-                "expectedWinPercentage": 0.8645015144004887
+                "winPercentage": 0,
+                "expectedWinsFromAlgo": 0
             }
         },
         {
@@ -116,7 +110,44 @@
                 "winPercentage": 0,
                 "expectedWinsFromAlgo": 0
             }
+        },
+        {
+            "start": 0.95,
+            "end": 1.0,
+            "predictionSummaries": {
+                "totalMatchups": 0,
+                "tipoffWinsByHigher": 0,
+                "tipoffLossesByHigher": 0,
+                "winPercentage": 0,
+                "expectedWinsFromAlgo": 0
+            }
         }
     ],
-    "expectedWinsFromTipWinPercentage": 0.5915096023622046
+    "trueskillConstants": [
+        {
+            "sigma": 8.333333333333334,
+            "mu": 25,
+            "rd": 69.44444444444444,
+            "tau": 0.08333333333333334,
+            "beta": 4.385964912280702,
+            "minAppearances": 20
+        }
+    ],
+    "eloConstants": [
+        {
+            "k_factor": 10,
+            "base_elo": 1200,
+            "base_elo_beta": 200,
+            "minAppearances": 20
+        }
+    ],
+    "glickoConstants": [
+        {
+            "sigma": 0.06,
+            "mu": 1500,
+            "tau": 1.0,
+            "phi": 350,
+            "minAppearances": 20
+        }
+    ]
 }

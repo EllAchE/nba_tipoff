@@ -18,20 +18,43 @@ def concatCsv(save_path: str):
     concattedCsv = pd.concat([pd.read_csv(f) for f in fNames])
     concattedCsv.to_csv(save_path, index=False, encoding='utf-8-sig')
 
-def resetPredictionSummaries(path):
-    with open(path) as json_file:
-        d = json.load(json_file)
+def resetAndInitializePredictionSummaryDict(histogramBinDivisions, path):
+    intervalList = list()
+    i = 0
+    lstLen = len(histogramBinDivisions)
 
-    d['winningBets'] = 0
-    d['losingBets'] = 0
-    d['correctTipoffPredictions'] = 0
-    d['incorrectTipoffPredictions'] = 0
-    d['predictionAverage']
+    while i < lstLen - 1:
+        subDsd = {
+            "totalMatchups": 0,
+            "tipoffWinsByHigher": 0,
+            "tipoffLossesByHigher": 0,
+            "winPercentage": 0,
+            "expectedWinsFromAlgo": 0,
+        }
+        intervalList.append({
+            "start": histogramBinDivisions[i],
+            "end": histogramBinDivisions[i + 1],
+            "predictionSummaries": subDsd
+        })
+        i += 1
+    dsd = {
+        "winningBets": 0,
+        "losingBets": 0,
+        "totalBets": 0,
+        "correctTipoffPredictions": 0,
+        "incorrectTipoffPredictions": 0,
+        "seasons": None,
+        "winPercentage": 0,
+        "correctTipoffPredictionPercentage": 0,
+        "expectedWinsFromAlgo": 0,
+        "predictionAverage": 0,
+        "histogramDivisions": intervalList,
+    }
 
-    with open(path, 'w') as jsonWFile:
-        json.dump(d, jsonWFile, indent=4)
+    with open(path, 'w') as json_file:
+        json.dump(dsd, json_file, indent=4)
 
-    print('reset prediction summaries')
+    return dsd
 
 def createPlayerEloDictionary(path=ENVIRONMENT.PLAYER_ELO_DICT_PATH):
     with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as playerTeamPairsJson:
