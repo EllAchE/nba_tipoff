@@ -7,8 +7,8 @@
     "seasons": "2019-2020-2021-with-odds-0.73",
     "winPercentage": 0.47244094488188976,
     "correctTipoffPredictionPercentage": 0.7952755905511811,
-    "expectedWinsFromTip": 0.5915096023622046,
-    "predictionAverage": 0.7705582771080248,
+    "expectedWinsFromAlgo": 97.86090119271913,
+    "predictionAverage": 0,
     "histogramDivisions": [
         {
             "start": 0.5,
@@ -117,5 +117,6 @@
                 "expectedWinsFromAlgo": 0
             }
         }
-    ]
+    ],
+    "expectedWinsFromTipWinPercentage": 0.5915096023622046
 }

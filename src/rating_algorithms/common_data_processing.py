@@ -15,7 +15,7 @@ def preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, 
             dsd["winningBets"] += 1
         else:
             dsd["losingBets"] += 1
-        dsd['expectedWins'] += homeOdds
+        dsd['expectedWinsFromAlgo'] += homeOdds
     elif (1 - homeOdds) > winningBetThreshold:
         if tipWinnerCode[11:] == awayPlayerCode:
             dsd['correctTipoffPredictions'] += 1
@@ -25,7 +25,7 @@ def preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, dsd, homeOdds, 
             dsd["winningBets"] += 1
         else:
             dsd['losingBets'] += 1
-        dsd['expectedWins'] += (1 - homeOdds)
+        dsd['expectedWinsFromAlgo'] += (1 - homeOdds)
     else:
         print('no bet, odds were not good enough')
 
@@ -52,7 +52,8 @@ def histogramBinningPredictions(dsd, homeOdds, homePlayerCode, tipWinnerCode):
             break
 
 
-def beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, minimumTipWinPercentage, predictionFunction, histogramBinDivisions):
+def beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam,
+                           minimumTipWinPercentage, predictionFunction):
     homeOdds = predictionFunction(homePlayerCode, awayPlayerCode, psd=psd)
     homePlayerTeam = getPlayerTeamInSeasonFromBballRefLink(homePlayerCode, season, longCode=False)['currentTeam']
     awayPlayerTeam = getPlayerTeamInSeasonFromBballRefLink(awayPlayerCode, season, longCode=False)['currentTeam']
@@ -69,7 +70,7 @@ def addSummaryMathToAlgoSummary(dsd):
     if dsd['winningBets'] + dsd['losingBets'] > 0:
         dsd['correctTipoffPredictionPercentage'] = dsd['correctTipoffPredictions'] / (dsd['correctTipoffPredictions'] + dsd['incorrectTipoffPredictions'])
         dsd['winPercentage'] = dsd['winningBets'] / (dsd['winningBets'] + dsd['losingBets'])
-        dsd['expectedWinsFromTip'] = dsd['correctTipoffPredictionPercentage'] * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1-dsd['correctTipoffPredictionPercentage']) * (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
+        dsd['expectedWinsFromTipWinPercentage'] = dsd['correctTipoffPredictionPercentage'] * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1-dsd['correctTipoffPredictionPercentage']) * (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
     for histogramBin in dsd['histogramDivisions']:
         if histogramBin['predictionSummaries']['totalMatchups'] > 0:
             histogramBin['predictionSummaries']['winPercentage'] = histogramBin['predictionSummaries']['tipoffWinsByHigher'] / histogramBin['predictionSummaries']['totalMatchups']
@@ -119,8 +120,11 @@ def runAlgoForSeason(season: str, dsd, skillDictPath: str, predictionSummariesPa
             aTipCode = tWinLink[11:]
         else:
             raise ValueError('no match for winner')
+        test = df['First Scoring Team'].iloc[i]
+        print(test)
 
-        algoPrematch(season, psd, dsd, hTipCode, aTipCode, tWinLink, df['First Scoring Team'].iloc[i], histogramBinDivisions, winningBetThreshold)
+        algoPrematch(season, psd, dsd, hTipCode, aTipCode, tWinLink, df['First Scoring Team'].iloc[i],
+                     winningBetThreshold)
         returnObj = algoSingleTipoff(psd, tWinLink, tLoseLink, hTipCode, df['Full Hyperlink'].iloc[i])
         if columnAdds is not None:
             for key in returnObj.keys():
@@ -175,7 +179,7 @@ def resetAndInitializePredictionSummaryDict(histogramBinDivisions):
         "seasons": None,
         "winPercentage": 0,
         "correctTipoffPredictionPercentage": 0,
-        "expectedWinsFromTip": 0,
+        "expectedWinsFromAlgo": 0,
         "predictionAverage": 0,
         "histogramDivisions": intervalList,
     }

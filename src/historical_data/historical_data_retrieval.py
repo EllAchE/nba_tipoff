@@ -203,8 +203,9 @@ def updateCurrentSeasonRawGameData(pathToData=ENVIRONMENT.CURRENT_SEASON_CSV, cu
             except:
                 break
 
-def oneSeasonFromScratch(season, path):
+def oneSeasonFromScratch(season):
     temp = pd.DataFrame()
+    path =ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(str(season))
     temp.to_csv(path)
     dFile = open(path, 'w')
 

@@ -21,7 +21,7 @@
 import ENVIRONMENT
 from src.database.database_creation import getAllGameData, createPlayerEloDictionary, resetPredictionSummaries, \
     createPlayerGlickoDictionary, saveActivePlayersTeams, createPlayerNameRelationship
-from src.historical_data.historical_data_retrieval import updateCurrentSeasonRawGameData
+from src.historical_data.historical_data_retrieval import updateCurrentSeasonRawGameData, oneSeasonFromScratch
 from src.historical_data.nba_play_by_play_methods import getAllFirstPossessionStatisticsIncrementally, \
     splitAllSeasonsFirstShotDataToMultipleFiles, getSingleGameStarters, saveAllHistoricalStarters
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
@@ -43,6 +43,7 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 
 # getAllGameData()
 
+oneSeasonFromScratch(2021)
 # updateCurrentSeasonRawGameData()
 # updateTrueSkillDictionaryFromLastGame()
 # calculateTrueSkillDictionaryFromZero()
@@ -50,15 +51,15 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # getAllExpectedStarters()
 
 # getAllOddsAndDisplayByEv(getFanduel=True, getDk=True, getBovada=True, getMgm=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)
-getAllOddsAndDisplayByEv(getFanduelToday=True)
-getAllOddsAndDisplayByEv(getMgm=True)
-getAllOddsAndDisplayByEv(getDk=True)#, getBovada=True)
-getAllOddsAndDisplayByEv(getBovada=True)
-getAllOddsAndDisplayByEv(getUnibet=True)
-getAllOddsAndDisplayByEv(getPointsBet=True)
-getAllOddsAndDisplayByEv(getBarstool=True)
-
-getDailyOdds('DEN', 'MEM', '-111')
+# getAllOddsAndDisplayByEv(getFanduelToday=True)
+# getAllOddsAndDisplayByEv(getMgm=True)
+# getAllOddsAndDisplayByEv(getDk=True)#, getBovada=True)
+# getAllOddsAndDisplayByEv(getBovada=True)
+# getAllOddsAndDisplayByEv(getUnibet=True)
+# getAllOddsAndDisplayByEv(getPointsBet=True)
+# getAllOddsAndDisplayByEv(getBarstool=True)
+#
+# getDailyOdds('DEN', 'MEM', '-111')
 '''
 Existing apis etc.:
 
