@@ -203,13 +203,15 @@ def getPlayerTeamFromNbaApi(name):
     # https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/commonplayerinfo.md
     pass
 
-def getPlayerTeamInSeasonFromBballRefLink(playerLink, season, longCode=True):
+def getPlayerTeamInSeasonFromBballRefLink(playerLink, season, longCode=True, returnCurrentTeam=False):
     if longCode:
         playerLink = playerLink[11:]
     # playerName = getUniversalPlayerName(playerLink)
     with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as teamPairs:
         seasons = json.load(teamPairs)
         try:
+            if returnCurrentTeam:
+                return seasons[str(season)][playerLink]['currentTeam']
             return seasons[str(season)][playerLink]['possibleTeams']
         except:
             raise ValueError("no match found for player", playerLink)

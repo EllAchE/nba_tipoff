@@ -2,9 +2,8 @@ import json
 import pandas as pd
 
 import ENVIRONMENT
-from src.database.database_access import getPlayerTeamInSeasonFromBballRefLink
+from src.database.database_access import getUniversalTeamShortCode
 from src.database.database_creation import resetAndInitializePredictionSummaryDict
-
 
 def preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
                                  tipWinnerCode, winningBetThreshold, predictionSummaryPath):
@@ -82,20 +81,17 @@ def histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePla
             elif not homeWinsTip and homeScoresFirst:
                 print('case')
 
-
     with open(predictionSummaryPath, 'w') as saveDictFile:
         json.dump(dsd, saveDictFile)
 
-def beforeMatchPredictions(season, psd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam,
+def beforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam,
                            minimumTipWinPercentage, predictionFunction, predictionSummaryPath):
     homeOdds = predictionFunction(homePlayerCode, awayPlayerCode, psd=psd)
-    homePlayerTeam = getPlayerTeamInSeasonFromBballRefLink(homePlayerCode, season, longCode=False)['currentTeam']
-    awayPlayerTeam = getPlayerTeamInSeasonFromBballRefLink(awayPlayerCode, season, longCode=False)['currentTeam']
 
-    histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePlayerTeam, scoringTeam, predictionSummaryPath, minTipWinOdds=minimumTipWinPercentage)
+    histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homeTeam, scoringTeam, predictionSummaryPath, minTipWinOdds=minimumTipWinPercentage)
 
     if psd[homePlayerCode]['appearances'] > minimumTipWinPercentage and psd[awayPlayerCode]['appearances'] > minimumTipWinPercentage:
-        preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
+        preMatchPredictionsNoBinning(awayPlayerCode, awayTeam, homeOdds, homePlayerCode, homeTeam, scoringTeam,
                                      tipWinnerCode, minimumTipWinPercentage, predictionSummaryPath)
     else:
         print('no bet, not enough Data on participants')
@@ -143,7 +139,7 @@ def addSummaryMathToAlgoSummary(predictionSummariesPath):
     with open(predictionSummariesPath, 'w') as wFile:
         json.dump(dsd, wFile, indent=4)
 
-def runAlgoForSeason(season: str, seasonCsv: str, skillDictPath: str, predictionSummariesPath: str, algoPrematch, algoSingleTipoff, winningBetThreshold: float,
+def runAlgoForSeason(seasonCsv: str, skillDictPath: str, predictionSummariesPath: str, algoPrematch, algoSingleTipoff, winningBetThreshold: float,
                       columnAdds=None, startFromBeginning=False):
     df = pd.read_csv(seasonCsv)
     # df = df[df['Home Tipper'].notnull()] # filters invalid rows
@@ -193,8 +189,10 @@ def runAlgoForSeason(season: str, seasonCsv: str, skillDictPath: str, prediction
             dsd = json.load(file)
 
         scoringTeam = df['First Scoring Team'].iloc[i]
+        hTeam = getUniversalTeamShortCode(df['Home Short'])
+        aTeam = getUniversalTeamShortCode(df['Away Short'])
 
-        algoPrematch(season, psd, hTipCode, aTipCode, tWinLink, scoringTeam, winningBetThreshold)
+        algoPrematch(psd, hTipCode, aTipCode, hTeam, aTeam, tWinLink, scoringTeam, winningBetThreshold)
         returnObj = algoSingleTipoff(psd, tWinLink, tLoseLink, hTipCode, df['Full Hyperlink'].iloc[i])
 
         # with open(predictionSummariesPath, 'w') as writeFile:
@@ -233,7 +231,7 @@ def runAlgoForAllSeasons(seasons, skillDictPath, predictionSummariesPath, algoPr
     print(histogramBinDivisions)
     dsd = resetAndInitializePredictionSummaryDict(histogramBinDivisions, predictionSummariesPath)
     for season in seasons:
-        runAlgoForSeason(season, ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), skillDictPath, predictionSummariesPath, algoPrematch, algoSingleTipoff, winningBetThreshold,
+        runAlgoForSeason(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), skillDictPath, predictionSummariesPath, algoPrematch, algoSingleTipoff, winningBetThreshold,
                           startFromBeginning=True, columnAdds=columnAdds)
         seasonKey += str(season) + '-'
 

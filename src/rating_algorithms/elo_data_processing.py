@@ -8,8 +8,8 @@ from src.rating_algorithms.common_data_processing import beforeMatchPredictions,
 def runEloForSeason(season: str, seasonCsv: str, winningBetThreshold: float=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
     runAlgoForSeason(season, seasonCsv, winningBetThreshold, columnAdds=["Home Elo", "Away Elo"], startFromBeginning=startFromBeginning)
 
-def eloBeforeMatchPredictions(season, psd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD):
-    beforeMatchPredictions(season, psd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, predictionSummaryPath=ENVIRONMENT.ELO_PREDICTION_SUMMARIES_PATH, minimumTipWinPercentage=winningBetThreshold, predictionFunction=eloWinProb)
+def eloBeforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD):
+    beforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionSummaryPath=ENVIRONMENT.ELO_PREDICTION_SUMMARIES_PATH, minimumTipWinPercentage=winningBetThreshold, predictionFunction=eloWinProb)
 
 def runEloForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD):
     runAlgoForAllSeasons(seasons, ENVIRONMENT.PLAYER_ELO_DICT_PATH, ENVIRONMENT.ELO_PREDICTION_SUMMARIES_PATH, eloBeforeMatchPredictions,
