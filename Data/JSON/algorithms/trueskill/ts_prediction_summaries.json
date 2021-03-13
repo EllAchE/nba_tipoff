@@ -26,11 +26,11 @@
             "start": 0.55,
             "end": 0.6,
             "predictionSummaries": {
-                "totalMatchups": 66,
+                "totalMatchups": 67,
                 "tipoffWinsByHigher": 35,
-                "tipoffLossesByHigher": 31,
+                "tipoffLossesByHigher": 32,
                 "winPercentage": 0.5303030303030303,
-                "expectedWinsFromAlgo": 38.0048119052098,
+                "expectedWinsFromAlgo": 38.57455994913477,
                 "expectedWinPercentage": 0.5758304834122697
             }
         },

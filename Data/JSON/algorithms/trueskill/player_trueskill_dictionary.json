@@ -45,11 +45,11 @@
         "predicted losses": 0
     },
     "goberru01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 24.537900436266955,
+        "sigma": 1.539401792105,
+        "appearances": 36,
+        "wins": 19,
+        "losses": 17,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -531,11 +531,11 @@
         "predicted losses": 0
     },
     "greenje02.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 27.602198214319756,
+        "sigma": 4.425599585908924,
+        "appearances": 4,
+        "wins": 3,
+        "losses": 1,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -585,11 +585,11 @@
         "predicted losses": 0
     },
     "wisemja01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 23.65553278192985,
+        "sigma": 2.43992279799218,
+        "appearances": 16,
+        "wins": 7,
+        "losses": 9,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -675,10 +675,10 @@
         "predicted losses": 0
     },
     "achiupr01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
+        "mu": 31.723172706912795,
+        "sigma": 5.872036325922925,
+        "appearances": 2,
+        "wins": 2,
         "losses": 0,
         "predicted wins": 0,
         "predicted losses": 0
@@ -1197,11 +1197,11 @@
         "predicted losses": 0
     },
     "aldrila01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 24.10349590190203,
+        "sigma": 2.4540879941152807,
+        "appearances": 17,
+        "wins": 8,
+        "losses": 9,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -1575,11 +1575,11 @@
         "predicted losses": 0
     },
     "reidna01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 26.84569593615384,
+        "sigma": 2.809891208089397,
+        "appearances": 13,
+        "wins": 9,
+        "losses": 4,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -1827,11 +1827,11 @@
         "predicted losses": 0
     },
     "ibakase01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 24.69794029945285,
+        "sigma": 1.53584811083989,
+        "appearances": 37,
+        "wins": 20,
+        "losses": 17,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -2061,10 +2061,10 @@
         "predicted losses": 0
     },
     "dienggo01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
+        "mu": 30.558492618708474,
+        "sigma": 6.435421367789855,
+        "appearances": 1,
+        "wins": 1,
         "losses": 0,
         "predicted wins": 0,
         "predicted losses": 0
@@ -2448,10 +2448,10 @@
         "predicted losses": 0
     },
     "howardw01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
+        "mu": 33.42331979812933,
+        "sigma": 5.682870687424053,
+        "appearances": 3,
+        "wins": 3,
         "losses": 0,
         "predicted wins": 0,
         "predicted losses": 0
@@ -2493,11 +2493,11 @@
         "predicted losses": 0
     },
     "lenal01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 26.003038106148242,
+        "sigma": 3.7462072834216027,
+        "appearances": 6,
+        "wins": 4,
+        "losses": 2,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -2700,11 +2700,11 @@
         "predicted losses": 0
     },
     "butleji01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
+        "mu": 19.19459476043549,
+        "sigma": 6.364068437681566,
+        "appearances": 1,
         "wins": 0,
-        "losses": 0,
+        "losses": 1,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -3573,11 +3573,11 @@
         "predicted losses": 0
     },
     "clarkbr01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
+        "mu": 20.81662901161773,
+        "sigma": 6.75640938954878,
+        "appearances": 1,
         "wins": 0,
-        "losses": 0,
+        "losses": 1,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -3906,10 +3906,10 @@
         "predicted losses": 0
     },
     "olynyke01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
+        "mu": 30.47690132518147,
+        "sigma": 6.42119142480596,
+        "appearances": 1,
+        "wins": 1,
         "losses": 0,
         "predicted wins": 0,
         "predicted losses": 0
@@ -4347,11 +4347,11 @@
         "predicted losses": 0
     },
     "schrode01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
+        "mu": 20.15454007829171,
+        "sigma": 6.59448792580054,
+        "appearances": 1,
         "wins": 0,
-        "losses": 0,
+        "losses": 1,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -5184,11 +5184,11 @@
         "predicted losses": 0
     },
     "caulewi01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 24.023718755520804,
+        "sigma": 3.8250489020005993,
+        "appearances": 6,
+        "wins": 3,
+        "losses": 3,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -5373,11 +5373,11 @@
         "predicted losses": 0
     },
     "kanteen01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 25.062159248941736,
+        "sigma": 1.815139990960133,
+        "appearances": 23,
+        "wins": 12,
+        "losses": 11,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -5922,11 +5922,11 @@
         "predicted losses": 0
     },
     "vucevni01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 23.907184577457095,
+        "sigma": 1.5686319960084953,
+        "appearances": 35,
+        "wins": 17,
+        "losses": 18,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -7425,11 +7425,11 @@
         "predicted losses": 0
     },
     "lopezro01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 26.174316421239833,
+        "sigma": 2.8379432033771437,
+        "appearances": 9,
+        "wins": 5,
+        "losses": 4,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -7812,11 +7812,11 @@
         "predicted losses": 0
     },
     "hayesja02.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
+        "mu": 18.886227966510642,
+        "sigma": 6.673052535524279,
+        "appearances": 1,
         "wins": 0,
-        "losses": 0,
+        "losses": 1,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -8982,11 +8982,11 @@
         "predicted losses": 0
     },
     "looneke01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 24.657858318638652,
+        "sigma": 2.8182620704226378,
+        "appearances": 10,
+        "wins": 5,
+        "losses": 5,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -9180,11 +9180,11 @@
         "predicted losses": 0
     },
     "davisan02.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 25.630507704774853,
+        "sigma": 2.1035831332727875,
+        "appearances": 22,
+        "wins": 13,
+        "losses": 9,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -10494,11 +10494,11 @@
         "predicted losses": 0
     },
     "zubaciv01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
+        "mu": 20.839233161497706,
+        "sigma": 7.220762300789891,
+        "appearances": 1,
         "wins": 0,
-        "losses": 0,
+        "losses": 1,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -10944,10 +10944,10 @@
         "predicted losses": 0
     },
     "siakapa01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
+        "mu": 34.33381748775374,
+        "sigma": 5.037444311843923,
+        "appearances": 3,
+        "wins": 3,
         "losses": 0,
         "predicted wins": 0,
         "predicted losses": 0
@@ -11232,19 +11232,19 @@
         "predicted losses": 0
     },
     "couside01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 26.774654245892613,
+        "sigma": 2.8771767732517453,
+        "appearances": 11,
+        "wins": 8,
+        "losses": 3,
         "predicted wins": 0,
         "predicted losses": 0
     },
     "washipj01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
+        "mu": 29.353852116614213,
+        "sigma": 6.731899448412367,
+        "appearances": 1,
+        "wins": 1,
         "losses": 0,
         "predicted wins": 0,
         "predicted losses": 0
@@ -11538,11 +11538,11 @@
         "predicted losses": 0
     },
     "lopezbr01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 24.20124802024684,
+        "sigma": 1.5931044605859455,
+        "appearances": 35,
+        "wins": 17,
+        "losses": 18,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -11961,11 +11961,11 @@
         "predicted losses": 0
     },
     "wagnemo01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 24.40391369977217,
+        "sigma": 2.4753390919068323,
+        "appearances": 12,
+        "wins": 6,
+        "losses": 6,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -12951,11 +12951,11 @@
         "predicted losses": 0
     },
     "bazleda01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
+        "mu": 15.911252670735035,
+        "sigma": 5.106567255450617,
+        "appearances": 3,
         "wins": 0,
-        "losses": 0,
+        "losses": 3,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -13311,11 +13311,11 @@
         "predicted losses": 0
     },
     "sabondo01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 25.104157671184577,
+        "sigma": 6.064244474088419,
+        "appearances": 2,
+        "wins": 1,
+        "losses": 1,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -13671,11 +13671,11 @@
         "predicted losses": 0
     },
     "holmeri01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 23.628683321155563,
+        "sigma": 1.9619300331637968,
+        "appearances": 22,
+        "wins": 9,
+        "losses": 13,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -14553,11 +14553,11 @@
         "predicted losses": 0
     },
     "antetgi01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
+        "mu": 19.59964163292228,
+        "sigma": 6.611075472053562,
+        "appearances": 1,
         "wins": 0,
-        "losses": 0,
+        "losses": 1,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -14787,11 +14787,11 @@
         "predicted losses": 0
     },
     "biyombi01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 29.21683416382541,
+        "sigma": 2.328242831331914,
+        "appearances": 17,
+        "wins": 11,
+        "losses": 6,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -15975,11 +15975,11 @@
         "predicted losses": 0
     },
     "drumman01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 22.833789151547048,
+        "sigma": 1.953165763074276,
+        "appearances": 22,
+        "wins": 10,
+        "losses": 12,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -16488,11 +16488,11 @@
         "predicted losses": 0
     },
     "houseda01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 28.26862433343053,
+        "sigma": 4.939895909139094,
+        "appearances": 3,
+        "wins": 2,
+        "losses": 1,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -16686,11 +16686,11 @@
         "predicted losses": 0
     },
     "hernawi01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
+        "mu": 16.28993856511813,
+        "sigma": 5.451998087421554,
+        "appearances": 2,
         "wins": 0,
-        "losses": 0,
+        "losses": 2,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -18585,11 +18585,11 @@
         "predicted losses": 0
     },
     "noelne01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 20.491821785207584,
+        "sigma": 2.7363752362745117,
+        "appearances": 10,
+        "wins": 3,
+        "losses": 7,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -19521,11 +19521,11 @@
         "predicted losses": 0
     },
     "baynear01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 24.243867903935264,
+        "sigma": 1.7262915416615485,
+        "appearances": 27,
+        "wins": 13,
+        "losses": 14,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -19656,11 +19656,11 @@
         "predicted losses": 0
     },
     "stewais01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 23.531099579604454,
+        "sigma": 5.23874095189896,
+        "appearances": 2,
+        "wins": 1,
+        "losses": 1,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -19728,20 +19728,20 @@
         "predicted losses": 0
     },
     "theisda01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 22.55802130180544,
+        "sigma": 2.1704400810014746,
+        "appearances": 17,
+        "wins": 7,
+        "losses": 10,
         "predicted wins": 0,
         "predicted losses": 0
     },
     "embiijo01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 23.142342395320615,
+        "sigma": 1.7682137900870902,
+        "appearances": 30,
+        "wins": 12,
+        "losses": 18,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -19890,11 +19890,11 @@
         "predicted losses": 0
     },
     "tateja01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
+        "mu": 19.349374223621712,
+        "sigma": 6.402692160393629,
+        "appearances": 1,
         "wins": 0,
-        "losses": 0,
+        "losses": 1,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -20295,10 +20295,10 @@
         "predicted losses": 0
     },
     "simmobe01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
+        "mu": 29.72000793346378,
+        "sigma": 6.56718374374708,
+        "appearances": 1,
+        "wins": 1,
         "losses": 0,
         "predicted wins": 0,
         "predicted losses": 0
@@ -20844,11 +20844,11 @@
         "predicted losses": 0
     },
     "gasolma01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 20.843901281559926,
+        "sigma": 2.7994646768319758,
+        "appearances": 11,
+        "wins": 3,
+        "losses": 8,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -20907,11 +20907,11 @@
         "predicted losses": 0
     },
     "tillmxa01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 28.60870732677971,
+        "sigma": 4.421482605599437,
+        "appearances": 4,
+        "wins": 3,
+        "losses": 1,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -20997,11 +20997,11 @@
         "predicted losses": 0
     },
     "zelleco01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 19.38799375203015,
+        "sigma": 2.4293274454673357,
+        "appearances": 15,
+        "wins": 4,
+        "losses": 11,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -21465,11 +21465,11 @@
         "predicted losses": 0
     },
     "woodch01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 27.226705711140145,
+        "sigma": 2.2695264897988214,
+        "appearances": 17,
+        "wins": 9,
+        "losses": 8,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -22122,10 +22122,10 @@
         "predicted losses": 0
     },
     "johnske04.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
+        "mu": 28.091131959137,
+        "sigma": 7.239971283880903,
+        "appearances": 1,
+        "wins": 1,
         "losses": 0,
         "predicted wins": 0,
         "predicted losses": 0
@@ -22779,11 +22779,11 @@
         "predicted losses": 0
     },
     "baglema01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 23.891989771805154,
+        "sigma": 2.61212617246436,
+        "appearances": 13,
+        "wins": 6,
+        "losses": 7,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -23769,11 +23769,11 @@
         "predicted losses": 0
     },
     "anunoog01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 20.83633783678684,
+        "sigma": 4.639660067893883,
+        "appearances": 3,
+        "wins": 1,
+        "losses": 2,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -24966,11 +24966,11 @@
         "predicted losses": 0
     },
     "pattoju01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
+        "mu": 16.256854529725082,
+        "sigma": 5.471555148286489,
+        "appearances": 2,
         "wins": 0,
-        "losses": 0,
+        "losses": 2,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -25065,11 +25065,11 @@
         "predicted losses": 0
     },
     "turnemy01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 24.386737672398436,
+        "sigma": 1.6940860715297208,
+        "appearances": 33,
+        "wins": 16,
+        "losses": 17,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -25488,11 +25488,11 @@
         "predicted losses": 0
     },
     "gaffoda01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 21.0823176794931,
+        "sigma": 2.70398003931584,
+        "appearances": 11,
+        "wins": 3,
+        "losses": 8,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -25731,11 +25731,11 @@
         "predicted losses": 0
     },
     "horfoal01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 26.169610833863604,
+        "sigma": 1.9337131575383226,
+        "appearances": 23,
+        "wins": 13,
+        "losses": 10,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -26658,11 +26658,11 @@
         "predicted losses": 0
     },
     "aytonde01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 23.712395465095312,
+        "sigma": 1.5851797615153482,
+        "appearances": 35,
+        "wins": 17,
+        "losses": 18,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -26712,10 +26712,10 @@
         "predicted losses": 0
     },
     "whiteha01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
+        "mu": 31.74277715258783,
+        "sigma": 6.285778152359771,
+        "appearances": 1,
+        "wins": 1,
         "losses": 0,
         "predicted wins": 0,
         "predicted losses": 0
@@ -27018,11 +27018,11 @@
         "predicted losses": 0
     },
     "davised01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 22.358721435185917,
+        "sigma": 3.372940743602878,
+        "appearances": 7,
+        "wins": 3,
+        "losses": 4,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -27450,11 +27450,11 @@
         "predicted losses": 0
     },
     "bryanth01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 23.577484895504348,
+        "sigma": 3.257214895446238,
+        "appearances": 10,
+        "wins": 5,
+        "losses": 5,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -27495,11 +27495,11 @@
         "predicted losses": 0
     },
     "plumlma01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 26.08603150219288,
+        "sigma": 1.5955637352556475,
+        "appearances": 34,
+        "wins": 20,
+        "losses": 14,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -27765,11 +27765,11 @@
         "predicted losses": 0
     },
     "poeltja01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 21.67632572630404,
+        "sigma": 2.4469239249826615,
+        "appearances": 15,
+        "wins": 5,
+        "losses": 10,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -28296,11 +28296,11 @@
         "predicted losses": 0
     },
     "duranke01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 26.146069983489987,
+        "sigma": 5.288962532444627,
+        "appearances": 2,
+        "wins": 1,
+        "losses": 1,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -28566,11 +28566,11 @@
         "predicted losses": 0
     },
     "cartewe01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 26.222086891635666,
+        "sigma": 2.002340046155629,
+        "appearances": 24,
+        "wins": 13,
+        "losses": 11,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -29169,11 +29169,11 @@
         "predicted losses": 0
     },
     "robinmi01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 25.22331444386666,
+        "sigma": 1.8198865601892935,
+        "appearances": 27,
+        "wins": 16,
+        "losses": 11,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -29952,11 +29952,11 @@
         "predicted losses": 0
     },
     "griffbl01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
+        "mu": 22.29511118273915,
+        "sigma": 7.285296944467999,
+        "appearances": 1,
         "wins": 0,
-        "losses": 0,
+        "losses": 1,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -30357,11 +30357,11 @@
         "predicted losses": 0
     },
     "townska01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 24.80286714728005,
+        "sigma": 2.188128647526878,
+        "appearances": 17,
+        "wins": 8,
+        "losses": 9,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -31095,11 +31095,11 @@
         "predicted losses": 0
     },
     "jokicni01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 27.193270747653816,
+        "sigma": 1.6182151964309157,
+        "appearances": 34,
+        "wins": 20,
+        "losses": 14,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -31491,11 +31491,11 @@
         "predicted losses": 0
     },
     "harremo01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
+        "mu": 19.25818276145898,
+        "sigma": 6.376651204933338,
+        "appearances": 1,
         "wins": 0,
-        "losses": 0,
+        "losses": 1,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -31509,11 +31509,11 @@
         "predicted losses": 0
     },
     "adamsst01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 24.946871359905806,
+        "sigma": 1.599663476834499,
+        "appearances": 34,
+        "wins": 17,
+        "losses": 17,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -31581,11 +31581,11 @@
         "predicted losses": 0
     },
     "poweldw01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 23.576689772740227,
+        "sigma": 3.5310156556027654,
+        "appearances": 7,
+        "wins": 4,
+        "losses": 3,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -32220,11 +32220,11 @@
         "predicted losses": 0
     },
     "valanjo01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 21.99807228262367,
+        "sigma": 1.8761264250600194,
+        "appearances": 25,
+        "wins": 9,
+        "losses": 16,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -32661,11 +32661,11 @@
         "predicted losses": 0
     },
     "nurkiju01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 25.267308215058296,
+        "sigma": 2.8987527099133414,
+        "appearances": 12,
+        "wins": 6,
+        "losses": 6,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -32778,11 +32778,11 @@
         "predicted losses": 0
     },
     "capelca01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 24.450739209038467,
+        "sigma": 1.6051736267110877,
+        "appearances": 32,
+        "wins": 16,
+        "losses": 16,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -33084,11 +33084,11 @@
         "predicted losses": 0
     },
     "mcgeeja01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
+        "mu": 21.031310609449537,
+        "sigma": 6.805549059455357,
+        "appearances": 1,
         "wins": 0,
-        "losses": 0,
+        "losses": 1,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -33588,11 +33588,11 @@
         "predicted losses": 0
     },
     "jordade01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 23.785803592219956,
+        "sigma": 1.7678045820779553,
+        "appearances": 26,
+        "wins": 13,
+        "losses": 13,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -33948,11 +33948,11 @@
         "predicted losses": 0
     },
     "bolbo01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
+        "mu": 17.952715497191484,
+        "sigma": 6.322984930121542,
+        "appearances": 1,
         "wins": 0,
-        "losses": 0,
+        "losses": 1,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -36297,11 +36297,11 @@
         "predicted losses": 0
     },
     "adebaba01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 23.68835852240961,
+        "sigma": 1.6161751673554559,
+        "appearances": 32,
+        "wins": 14,
+        "losses": 18,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -36432,10 +36432,10 @@
         "predicted losses": 0
     },
     "collijo01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
+        "mu": 33.79494662464181,
+        "sigma": 5.346363675881102,
+        "appearances": 4,
+        "wins": 4,
         "losses": 0,
         "predicted wins": 0,
         "predicted losses": 0
@@ -37341,11 +37341,11 @@
         "predicted losses": 0
     },
     "robyis01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 24.616561133125533,
+        "sigma": 2.9934887423247085,
+        "appearances": 10,
+        "wins": 5,
+        "losses": 5,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -38529,11 +38529,11 @@
         "predicted losses": 0
     },
     "allenja01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 22.977067551550554,
+        "sigma": 2.1678658802506123,
+        "appearances": 17,
+        "wins": 7,
+        "losses": 10,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -39096,19 +39096,19 @@
         "predicted losses": 0
     },
     "bouchch01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 24.41074808789008,
+        "sigma": 5.784158798198755,
+        "appearances": 2,
+        "wins": 1,
+        "losses": 1,
         "predicted wins": 0,
         "predicted losses": 0
     },
     "bradlto01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
+        "mu": 32.28284753372366,
+        "sigma": 5.628124240648129,
+        "appearances": 2,
+        "wins": 2,
         "losses": 0,
         "predicted wins": 0,
         "predicted losses": 0
@@ -39627,10 +39627,10 @@
         "predicted losses": 0
     },
     "jonesda03.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
+        "mu": 29.568390348308437,
+        "sigma": 6.608174493999931,
+        "appearances": 1,
+        "wins": 1,
         "losses": 0,
         "predicted wins": 0,
         "predicted losses": 0
@@ -40104,11 +40104,11 @@
         "predicted losses": 0
     },
     "thomptr01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 26.71388597627656,
+        "sigma": 2.1369357196274588,
+        "appearances": 20,
+        "wins": 13,
+        "losses": 7,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -40167,10 +40167,10 @@
         "predicted losses": 0
     },
     "marjabo01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
+        "mu": 30.12580512108637,
+        "sigma": 6.497004433667929,
+        "appearances": 1,
+        "wins": 1,
         "losses": 0,
         "predicted wins": 0,
         "predicted losses": 0
@@ -40185,11 +40185,11 @@
         "predicted losses": 0
     },
     "toscaju01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 24.785450314957597,
+        "sigma": 2.949698027301623,
+        "appearances": 10,
+        "wins": 6,
+        "losses": 4,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -40239,11 +40239,11 @@
         "predicted losses": 0
     },
     "porzikr01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
-        "losses": 0,
+        "mu": 23.784434658617272,
+        "sigma": 2.0873982065817995,
+        "appearances": 19,
+        "wins": 8,
+        "losses": 11,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -40437,12 +40437,13 @@
         "predicted losses": 0
     },
     "sextoco01.html": {
-        "mu": 25,
-        "sigma": 8.333333333333334,
-        "appearances": 0,
-        "wins": 0,
+        "mu": 30.11397619308776,
+        "sigma": 6.7067461506901775,
+        "appearances": 1,
+        "wins": 1,
         "losses": 0,
         "predicted wins": 0,
         "predicted losses": 0
-    }
+    },
+    "lastGameCode": "202103110SAC"
 }

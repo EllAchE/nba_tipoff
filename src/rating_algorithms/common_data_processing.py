@@ -79,8 +79,8 @@ def addSummaryMathToAlgoSummary(dsd):
             print('No matchups for bin', histogramBin['start'], 'to', histogramBin['end'])
     return dsd
 
-def runAlgoForSeason(season: str, seasonCsv: str, dsd, skillDictPath: str, predictionSummariesPath: str, algoPrematch, algoSingleTipoff, winningBetThreshold: float,
-                      histogramBinDivisions, columnAdds=None, startFromBeginning=False):
+def runAlgoForSeason(season: str, seasonCsv: str, skillDictPath: str, predictionSummariesPath: str, algoPrematch, algoSingleTipoff, winningBetThreshold: float,
+                      columnAdds=None, startFromBeginning=False):
     df = pd.read_csv(seasonCsv)
     # df = df[df['Home Tipper'].notnull()] # filters invalid rows
     if columnAdds is not None:
@@ -97,21 +97,25 @@ def runAlgoForSeason(season: str, seasonCsv: str, dsd, skillDictPath: str, predi
     if startFromBeginning:
         i = 0
     else:
-        i = colLen - 1
-        lastGameCode = psd['lastGameCode']
-        while df.iloc[i]['Game Code'] != lastGameCode:
-            i -= 1
-        i += 1
+        try:
+            i = colLen - 1
+            lastGameCode = psd['lastGameCode']
+            while df.iloc[i]['Game Code'] != lastGameCode:
+                i -= 1
+            i += 1
+        except:
+            print('errror finding lastGameCode, starting from 0')
+            i = 0
 
     while i < colLen:
         if df['Home Tipper'].iloc[i] != df['Home Tipper'].iloc[i]:
             i += 1
             continue
         hTip = df['Home Tipper'].iloc[i]
-        tWinner = df['Tipoff Winner'].iloc[i]
+        tWinner = df['Tip Winner'].iloc[i]
         aTip = df['Away Tipper'].iloc[i]
-        tWinLink = df['Tipoff Winner Link'].iloc[i]
-        tLoseLink = df['Tipoff Loser Link'].iloc[i]
+        tWinLink = df['Tip Winner Link'].iloc[i]
+        tLoseLink = df['Tip Loser Link'].iloc[i]
         if tWinner == hTip:
             hTipCode = tWinLink[11:]
             aTipCode = tLoseLink[11:]
@@ -120,8 +124,8 @@ def runAlgoForSeason(season: str, seasonCsv: str, dsd, skillDictPath: str, predi
             aTipCode = tWinLink[11:]
         else:
             raise ValueError('no match for winner')
-        test = df['First Scoring Team'].iloc[i]
-        print(test)
+        with open(predictionSummariesPath) as file:
+            dsd = json.load(file)
 
         algoPrematch(season, psd, dsd, hTipCode, aTipCode, tWinLink, df['First Scoring Team'].iloc[i],
                      winningBetThreshold)

@@ -45,7 +45,7 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 
 # oneSeasonFromScratch(2021)
 # updateCurrentSeasonRawGameData()
-updateTrueSkillDictionaryFromLastGame()
+# updateTrueSkillDictionaryFromLastGame()
 # calculateTrueSkillDictionaryFromZero()
 
 # getAllExpectedStarters()
