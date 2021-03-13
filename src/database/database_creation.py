@@ -30,8 +30,10 @@ def resetAndInitializePredictionSummaryDict(histogramBinDivisions, path):
             "tipoffLossesByHigher": 0,
             "tipWinnerScores": 0,
             "winPercentage": 0,
-            "expectedWinsFromAlgo": 0,
+            "expectedTipWinsFromAlgo": 0,
             "higherOddsScoresFirst": 0,
+            "winningBets": 0,
+            "losingBets": 0,
         }
         intervalList.append({
             "start": histogramBinDivisions[i],
@@ -49,7 +51,7 @@ def resetAndInitializePredictionSummaryDict(histogramBinDivisions, path):
         "seasons": None,
         "winPercentage": 0,
         "correctTipoffPredictionPercentage": 0,
-        "expectedWinsFromAlgo": 0,
+        "expectedTipWinsFromAlgo": 0,
         "predictionAverage": 0,
         "histogramDivisions": intervalList,
     }

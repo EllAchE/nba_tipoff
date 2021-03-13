@@ -16,7 +16,7 @@ def runTSForSeason(season: str, seasonCsv: str, winningBetThreshold: float=ENVIR
 def trueskillBeforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam,
         winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
     beforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionSummaryPath=ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH,
-            minimumTipWinPercentage=winningBetThreshold, predictionFunction=trueSkillWinProb)
+            minimumTipWinPercentage=winningBetThreshold, predictionFunction=trueSkillWinProb, minimumAppearances=ENVIRONMENT.MIN_TS_APPEARANCES)
 
 def runTSForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
     runAlgoForAllSeasons(seasons, ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH, trueskillBeforeMatchPredictions, trueskillUpdateDataSingleTipoff,

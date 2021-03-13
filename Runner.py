@@ -35,17 +35,17 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # backlogtodo import decimal module or similar https://docs.python.org/3/library/decimal.html
 # todo look for when there is a big gap between the exchanges (not necessarily arbitrage) and just determine which is worse at their job. Take one side, not both, of the bets.
 # backlogtodo change this to update just the current season
+
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
-
 # getAllGameData()
-
-# oneSeasonFromScratch(2021)
 # updateCurrentSeasonRawGameData()
 # updateTrueSkillDictionaryFromLastGame()
-# calculateGlickoDictionaryFromZero()
+# oneSeasonFromScratch(2021)
 
-oneSeasonFromScratch(2021)
+# todo look at first 100 and last 100 games (or similar) of player performance vs. overall
+
+calculateGlickoDictionaryFromZero()
 
 # getAllExpectedStarters()
 

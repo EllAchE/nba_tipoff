@@ -177,6 +177,8 @@ def convertBballRefTeamShortCodeToNBA(shortCode: str):
         return 'BKN'
     if shortCode == 'CHO':
         return 'CHA'
+    if shortCode == 'CHH':
+        return 'CHA'
     return shortCode
 
 def findPlayerFullFromLastGivenPossibleFullNames(playerLastName, playerList):

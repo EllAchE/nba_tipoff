@@ -2,7 +2,6 @@ import json
 import pandas as pd
 
 import ENVIRONMENT
-from src.database.database_access import getUniversalTeamShortCode
 from src.database.database_creation import resetAndInitializePredictionSummaryDict
 
 def preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
@@ -23,7 +22,7 @@ def preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, homeOdds, homeP
             dsd["winningBets"] += 1
         else:
             dsd["losingBets"] += 1
-        dsd['expectedWinsFromAlgo'] += homeOdds
+        dsd['expectedTipWinsFromAlgo'] += homeOdds
     elif (1 - homeOdds) > winningBetThreshold:
         if tipWinnerCode[11:] == awayPlayerCode:
             dsd['correctTipoffPredictions'] += 1
@@ -37,7 +36,7 @@ def preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, homeOdds, homeP
             dsd["winningBets"] += 1
         else:
             dsd['losingBets'] += 1
-        dsd['expectedWinsFromAlgo'] += (1 - homeOdds)
+        dsd['expectedTipWinsFromAlgo'] += (1 - homeOdds)
     else:
         print('no bet, odds were not good enough')
 
@@ -50,18 +49,31 @@ def histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePla
 
     # divisions are based on the probability for the more likely player
     greaterOdds = homeOdds if homeOdds > 1-homeOdds else 1-homeOdds
-    if greaterOdds < minTipWinOdds:
-        return None
     homeWinsTip = True if tipWinnerCode[11:] == homePlayerCode else False
     oddsBelongToHome = True if homeOdds > 1-homeOdds else False
     homeScoresFirst = True if homePlayerTeam == scoringTeam else False
+
     for item in dsd['histogramDivisions']:
         if item['start'] < greaterOdds and item['end'] >= greaterOdds: # <= on greater prevents allows even odds bets. Setting a min appearances here would catch the unknown preds and stop them skewing
             subItem=item['predictionSummaries']
             subItem['totalMatchups'] += 1
-            subItem['expectedWinsFromAlgo'] += greaterOdds
-            if oddsBelongToHome and homeScoresFirst:
-                subItem['higherOddsScoresFirst'] += 1
+            subItem['expectedTipWinsFromAlgo'] += greaterOdds
+
+            if greaterOdds > minTipWinOdds:
+                if homeScoresFirst and oddsBelongToHome:
+                    subItem['winningBets'] += 1
+                elif not homeScoresFirst and not oddsBelongToHome:
+                    subItem['winningBets'] += 1
+                else:
+                    subItem['losingBets'] += 1
+
+            if oddsBelongToHome:
+                if homeScoresFirst:
+                    subItem['higherOddsScoresFirst'] += 1
+            else:
+                if not homeScoresFirst:
+                     subItem['higherOddsScoresFirst'] += 1
+
             if homeWinsTip:
                 if homeScoresFirst:
                     subItem['tipWinnerScores'] += 1
@@ -77,18 +89,19 @@ def histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePla
                 else:
                     subItem['tipoffLossesByHigher'] += 1
 
-                item['predictionSummaries'] = subItem
+            item['predictionSummaries'] = subItem
 
     with open(predictionSummaryPath, 'w') as saveDictFile:
         json.dump(dsd, saveDictFile)
 
 def beforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam,
-                           minimumTipWinPercentage, predictionFunction, predictionSummaryPath):
+                           minimumTipWinPercentage, predictionFunction, predictionSummaryPath, minimumAppearances):
     homeOdds = predictionFunction(homePlayerCode, awayPlayerCode, psd=psd)
 
-    histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homeTeam, scoringTeam, predictionSummaryPath, minTipWinOdds=minimumTipWinPercentage)
+    if psd[homePlayerCode]['appearances'] > minimumAppearances and psd[awayPlayerCode]['appearances'] > minimumAppearances:
+        histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homeTeam, scoringTeam, predictionSummaryPath, minTipWinOdds=minimumTipWinPercentage)
 
-    if psd[homePlayerCode]['appearances'] > minimumTipWinPercentage and psd[awayPlayerCode]['appearances'] > minimumTipWinPercentage:
+    if psd[homePlayerCode]['appearances'] > minimumAppearances and psd[awayPlayerCode]['appearances'] > minimumAppearances:
         preMatchPredictionsNoBinning(awayPlayerCode, awayTeam, homeOdds, homePlayerCode, homeTeam, scoringTeam,
                                      tipWinnerCode, minimumTipWinPercentage, predictionSummaryPath)
     else:
@@ -101,7 +114,6 @@ def addSummaryMathToAlgoSummary(predictionSummariesPath):
     dsd["trueskillConstants"] = {
         "sigma": ENVIRONMENT.BASE_TS_SIGMA,
         "mu": ENVIRONMENT.BASE_TS_MU,
-        "rd": ENVIRONMENT.BASE_TS_RD,
         "tau": ENVIRONMENT.BASE_TS_TAU,
         "beta": ENVIRONMENT.BASE_TS_BETA,
         "minAppearances": ENVIRONMENT.MIN_TS_APPEARANCES,
@@ -129,7 +141,7 @@ def addSummaryMathToAlgoSummary(predictionSummariesPath):
     for histogramBin in dsd['histogramDivisions']:
         if histogramBin['predictionSummaries']['totalMatchups'] > 0:
             histogramBin['predictionSummaries']['winPercentage'] = histogramBin['predictionSummaries']['tipoffWinsByHigher'] / histogramBin['predictionSummaries']['totalMatchups']
-            histogramBin['predictionSummaries']['expectedWinPercentage'] = histogramBin['predictionSummaries']['expectedWinsFromAlgo'] / histogramBin['predictionSummaries']['totalMatchups']
+            histogramBin['predictionSummaries']['expectedWinPercentage'] = histogramBin['predictionSummaries']['expectedTipWinsFromAlgo'] / histogramBin['predictionSummaries']['totalMatchups']
             histogramBin['predictionSummaries']['tipWinnerScoresPercentage'] = histogramBin['predictionSummaries']['tipWinnerScores'] / histogramBin['predictionSummaries']['totalMatchups']
         else:
             print('No matchups for bin', histogramBin['start'], 'to', histogramBin['end'])
@@ -187,8 +199,8 @@ def runAlgoForSeason(seasonCsv: str, skillDictPath: str, predictionSummariesPath
             dsd = json.load(file)
 
         scoringTeam = df['First Scoring Team'].iloc[i]
-        hTeam = getUniversalTeamShortCode(df['Home Short'])
-        aTeam = getUniversalTeamShortCode(df['Away Short'])
+        hTeam = df['Home Short'].iloc[i]
+        aTeam = df['Away Short'].iloc[i]
 
         algoPrematch(psd, hTipCode, aTipCode, hTeam, aTeam, tWinLink, scoringTeam, winningBetThreshold)
         returnObj = algoSingleTipoff(psd, tWinLink, tLoseLink, hTipCode, df['Full Hyperlink'].iloc[i])
