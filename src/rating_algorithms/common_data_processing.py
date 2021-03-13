@@ -112,10 +112,10 @@ def runAlgoForSeason(season: str, seasonCsv: str, skillDictPath: str, prediction
             i += 1
             continue
         hTip = df['Home Tipper'].iloc[i]
-        tWinner = df['Tip Winner'].iloc[i]
+        tWinner = df['Tipoff Winner'].iloc[i]
         aTip = df['Away Tipper'].iloc[i]
-        tWinLink = df['Tip Winner Link'].iloc[i]
-        tLoseLink = df['Tip Loser Link'].iloc[i]
+        tWinLink = df['Tipoff Winner Link'].iloc[i]
+        tLoseLink = df['Tipoff Loser Link'].iloc[i]
         if tWinner == hTip:
             hTipCode = tWinLink[11:]
             aTipCode = tLoseLink[11:]
