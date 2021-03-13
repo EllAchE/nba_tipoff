@@ -31,6 +31,7 @@ def resetAndInitializePredictionSummaryDict(histogramBinDivisions, path):
             "tipWinnerScores": 0,
             "winPercentage": 0,
             "expectedWinsFromAlgo": 0,
+            "higherOddsScoresFirst": 0,
         }
         intervalList.append({
             "start": histogramBinDivisions[i],

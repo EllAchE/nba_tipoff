@@ -60,6 +60,8 @@ def histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePla
             subItem=item['predictionSummaries']
             subItem['totalMatchups'] += 1
             subItem['expectedWinsFromAlgo'] += greaterOdds
+            if oddsBelongToHome and homeScoresFirst:
+                subItem['higherOddsScoresFirst'] += 1
             if homeWinsTip:
                 if homeScoresFirst:
                     subItem['tipWinnerScores'] += 1
@@ -76,10 +78,6 @@ def histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePla
                     subItem['tipoffLossesByHigher'] += 1
 
                 item['predictionSummaries'] = subItem
-            if homeWinsTip and not homeScoresFirst:
-                print('case')
-            elif not homeWinsTip and homeScoresFirst:
-                print('case')
 
     with open(predictionSummaryPath, 'w') as saveDictFile:
         json.dump(dsd, saveDictFile)
