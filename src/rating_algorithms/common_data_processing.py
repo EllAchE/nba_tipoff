@@ -79,8 +79,8 @@ def addSummaryMathToAlgoSummary(dsd):
             print('No matchups for bin', histogramBin['start'], 'to', histogramBin['end'])
     return dsd
 
-def runAlgoForSeason(season: str, dsd, skillDictPath: str, predictionSummariesPath: str, algoPrematch, algoSingleTipoff, winningBetThreshold: float,
-                     seasonCsv: str, histogramBinDivisions, columnAdds=None, startFromBeginning=False):
+def runAlgoForSeason(season: str, seasonCsv: str, dsd, skillDictPath: str, predictionSummariesPath: str, algoPrematch, algoSingleTipoff, winningBetThreshold: float,
+                      histogramBinDivisions, columnAdds=None, startFromBeginning=False):
     df = pd.read_csv(seasonCsv)
     # df = df[df['Home Tipper'].notnull()] # filters invalid rows
     if columnAdds is not None:

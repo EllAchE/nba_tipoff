@@ -71,11 +71,13 @@ def conditionalDataChecks(homeTeam, awayTeam, tipper1, tipper2, tipper1Link, tip
         awayTipper = tipper2
         homeTipperLink = tipper1Link
         awayTipperLink = tipper2Link
-    else:
+    elif awayTeam in getPlayerTeamInSeasonFromBballRefLink(tipper1Link, season):
         homeTipper = tipper2
         awayTipper = tipper1
         homeTipperLink = tipper2Link
         awayTipperLink = tipper1Link
+    else:
+        raise ValueError("Bad Game Data or Player DB")
 
     if homeTeam in getPlayerTeamInSeasonFromBballRefLink(possessionGainingPlayerLink, season):
         possessionGainingTeam = homeTeam
@@ -84,25 +86,31 @@ def conditionalDataChecks(homeTeam, awayTeam, tipper1, tipper2, tipper1Link, tip
         tipLoser = awayTipper
         tipWinnerLink = homeTipperLink
         tipLoserLink = awayTipperLink
-    else:
+    elif awayTeam in getPlayerTeamInSeasonFromBballRefLink(possessionGainingPlayerLink, season):
         possessionGainingTeam = awayTeam
         possessionLosingTeam = homeTeam
         tipWinner = awayTipper
         tipLoser = homeTipper
         tipWinnerLink = awayTipperLink
         tipLoserLink = homeTipperLink
+    else:
+        raise ValueError("Bad Game Data or Player DB")
 
     if homeTeam in getPlayerTeamInSeasonFromBballRefLink(firstScoringPlayerLink, season):
         firstScoringTeam = homeTeam
         scoredUponTeam = awayTeam
-    else:
+    elif homeTeam in getPlayerTeamInSeasonFromBballRefLink(firstScoringPlayerLink, season):
         firstScoringTeam = awayTeam
         scoredUponTeam = homeTeam
+    else:
+        raise ValueError("Bad Game Data or Player DB")
 
     if possessionGainingTeam == firstScoringTeam:
         tipWinScore = 1
-    else:
+    elif possessionLosingTeam == firstScoringTeam:
         tipWinScore = 0
+    else:
+        raise ValueError("Bad Game Data or Player DB")
 
     return homeTipper, awayTipper, homeTipperLink, awayTipperLink, possessionGainingTeam, possessionLosingTeam, tipWinner,\
            tipLoser, tipWinnerLink, tipLoserLink, firstScoringTeam, scoredUponTeam, tipWinScore
