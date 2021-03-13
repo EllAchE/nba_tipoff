@@ -36,6 +36,7 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # todo fix dk to accept player bets only
 # todo combine the two below methods
 
+# todo when there is a big gap between the exchanges
 # todo change this to update just the current season
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
@@ -49,13 +50,15 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # getAllExpectedStarters()
 
 # getAllOddsAndDisplayByEv(getFanduel=True, getDk=True, getBovada=True, getMgm=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)
-getAllOddsAndDisplayByEv(getFanduel=True)
+getAllOddsAndDisplayByEv(getFanduelToday=True)
 getAllOddsAndDisplayByEv(getMgm=True)
 getAllOddsAndDisplayByEv(getDk=True)#, getBovada=True)
 getAllOddsAndDisplayByEv(getBovada=True)
-getAllOddsAndDisplayByEv(getUnibet=True, getPointsBet=True, getBarstool=True)
+getAllOddsAndDisplayByEv(getUnibet=True)
+getAllOddsAndDisplayByEv(getPointsBet=True)
+getAllOddsAndDisplayByEv(getBarstool=True)
 
-# getDailyOdds('NOP', 'MIN', '+130')
+getDailyOdds('DEN', 'MEM', '-111')
 '''
 Existing apis etc.:
 

@@ -4,7 +4,7 @@ from src.live_data.live_odds_retrieval import getExpectedTipper
 
 class GameOdds:
     def __init__(self, gameDict, teamOnly=False, playersOnly=False):
-        self.awayPlayerFloorOdds = self.homePlayerFloorOdds = self.awayPlayerFloorOdds = self.homePlayerFloorOdds = self.awayPlayerFloorOdds = self.kellyBet = self.awayTeamFirstQuarterOdds = None
+        self.awayPlayerFloorOdds = self.homePlayerFloorOdds = self.awayPlayerFloorOdds = self.homePlayerFloorOdds = self.awayPlayerFloorOdds = self.kellyBet = self.homeTeamFirstQuarterOdds = self.awayTeamFirstQuarterOdds = None
         self.home = gameDict['home']
         self.away = gameDict['away']
         self.gameDatetime = gameDict['gameDatetime']
@@ -27,7 +27,9 @@ class GameOdds:
 
         if not teamOnly:
             if(len(self.homePlayerOddsList) < 5 or len(self.homePlayerOddsList) > 6):
-                print("fewer than five players for game", self.gameCode, 'odds will be None')
+                print("fewer than five home players for game", self.gameCode, 'odds will be None')
+            elif(len(self.awayPlayerOddsList) < 5 or len(self.awayPlayerOddsList) > 6):
+                print("fewer than five home players for game", self.gameCode, 'odds will be None')
             else:
                 try:
                     self.homePlayerFloorOdds = convertPlayerLinesToSingleLine(self.homePlayerOddsList)

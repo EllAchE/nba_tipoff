@@ -68,11 +68,6 @@ def teamCodeToSlugName(team_code, team_dict=None, json_path=None):
 
     raise ValueError('no matching team for abbreviation')
 
-def fanduelOdds():
-    # https://sportsbook.fanduel.com/cache/psevent/UK/1/false/958472.3.json
-    # Rohit has this partly in typescript already
-    pass
-
 def bovadaTeamOdds(allTeamBets):
     scoreFirstBetsSingleTeam = list()
     gameIdSet = set()
@@ -305,8 +300,14 @@ def getAmericanOddsFanduel(currentpriceup, currentpricedown):
     else:
         raise ValueError('fanduel odds messed up')
 
-def fanduelOdds():
-    #currentDate = datetime.today().strftime('%Y-%m-%d')
+def fanduelOddsToday():
+    return _fanduelOddsAll()
+
+def fanduelOddsTomorrow():
+    return _fanduelOddsAll(today=False)
+
+def _fanduelOddsAll(today=True):
+    currentDate = datetime.today().strftime('%Y-%m-%d')
     gamesResponse = requests.get("https://sportsbook.fanduel.com/cache/psmg/UK/63747.3.json").json()
     teamSet = set()
 
@@ -316,16 +317,16 @@ def fanduelOdds():
     listOfGames = gamesResponse['events']
 
     for game in listOfGames:
-        #if game['tsstart'][:10] == currentDate:
-        gameIdSet.add(game['idfoevent'])
+        if game['tsstart'][:10] == currentDate and today:
+            gameIdSet.add(game['idfoevent'])
+        elif game['tsstart'][:10] != currentDate and not today:
+            gameIdSet.add(game['idfoevent'])
 
     allEventMatch = None
     for gameId in gameIdSet:
         gameResponse = requests.get('https://sportsbook.fanduel.com/cache/psevent/UK/1/false/{}.json'.format(gameId)).json()
         print('running for fanduel game', gameResponse['externaldescription'])
         sleepChecker(iterations=1, baseTime=2, randomMultiplier=8)
-        # if gameResponse['islive']:
-        #     continue
         # todo test the start time to ignore ongoing games
         for eventMarketGroup in gameResponse['eventmarketgroups']:
             if eventMarketGroup['name'] == 'All':
@@ -399,18 +400,23 @@ def fanduelOdds():
             "awayTeamFourthQuarterOdds": away4Odds,
         })
 
-    playerTeamDict = {}
-    for team in teamSet:
-        playerTeamDict[team] = []
-    for rawLine in unassignedPlayerOddsList:
-        playerLine = addTeamToUnknownPlayerLine(rawLine)
-        playerTeamDict[playerLine['team']] += [playerLine]
+        playerTeamDict = {}
+        for team in teamSet:
+            playerTeamDict[team] = []
+        for rawLine in unassignedPlayerOddsList:
+            playerLine = addTeamToUnknownPlayerLine(rawLine)
+            playerTeamDict[playerLine['team']] += [playerLine]
 
-    for gameLine in quarterOddsList:
-        gameLine["homePlayerFirstQuarterOdds"] = playerTeamDict[gameLine["home"]]
-        gameLine["awayPlayerFirstQuarterOdds"] = playerTeamDict[gameLine["away"]]
+        for gameLine in quarterOddsList:
+            gameLine["homePlayerFirstQuarterOdds"] = playerTeamDict[gameLine["home"]]
+            gameLine["awayPlayerFirstQuarterOdds"] = playerTeamDict[gameLine["away"]]
 
-    return quarterOddsList
+        quarterOddsListWithAtLeastOneSetOfOdds = list()
+        for gameLine in quarterOddsList:
+            if (len(gameLine['homePlayerFirstQuarterOdds']) > 4 and len(gameLine['homePlayerFirstQuarterOdds']) > 4) or gameLine['homeTeamFirstQuarterOdds'] is not None:
+                quarterOddsListWithAtLeastOneSetOfOdds.append(gameLine)
+
+    return quarterOddsListWithAtLeastOneSetOfOdds
 
 def mgmOdds():
     # https://sports.co.betmgm.com/en/sports/events/minnesota-timberwolves-at-san-antonio-spurs-11101908?market=10000
@@ -501,14 +507,19 @@ def pointsBetOdds():
                     else:
                         raise ValueError("player didn't match either team, or teams are misformatted/don't match universal team code", player)
 
-                gameDictList.append({
+                gameDict = {
                     'exchange': 'pointsBet',
                     "home": homeTeam,
                     "away": awayTeam,
                     "isFirstFieldGoal": True,
                     "homePlayerFirstQuarterOdds": homePlayerList,
                     "awayPlayerFirstQuarterOdds": awayPlayerList
-                })
+                }
+
+                if len(gameDict['homePlayerFirstQuarterOdds']) < 5 or len(gameDict['awayPlayerFirstQuarterOdds']) < 5:
+                    print("not enough players in list")
+                else:
+                    gameDictList.append(gameDict)
             else:
                 # print("no first basket market found for game", awayTeam, "@", homeTeam)
                 pass

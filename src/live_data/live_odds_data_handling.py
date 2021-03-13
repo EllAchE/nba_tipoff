@@ -6,7 +6,7 @@ from src.classes.FanduelGameOdds import FanduelGameOdds
 from src.classes.GameOdds import GameOdds
 from src.database.database_access import getUniversalPlayerName
 from src.live_data.live_odds_retrieval import draftKingsOdds, mgmOdds, bovadaOdds, pointsBetOdds, unibetOdds, \
-    barstoolOdds, fanduelOdds
+    barstoolOdds, fanduelOddsToday, fanduelOddsTomorrow
 from src.odds_and_statistics.odds_calculator import americanToDecimal
 
 
@@ -95,11 +95,17 @@ def createOptimalPlayerSpreadObject(gameOddsObjList):
     return optimalSpreadsList
 
 
-def createAllOddsDict(getDk=False, getFanduel=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False, includeOptimalPlayerSpread=False):
+def createAllOddsDict(getDk=False, getFanduelToday=False, getFanduelTomorrow=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False, includeOptimalPlayerSpread=False):
     allGameObjList = list()
 
-    if getFanduel:
-        fanduelOddsDicts = createAllOddsDictForExchange(fanduelOdds())
+    if getFanduelToday:
+        fanduelOddsDicts = createAllOddsDictForExchange(fanduelOddsToday())
+        for rawOddsDict in fanduelOddsDicts:
+            gameOddsObj = FanduelGameOdds(rawOddsDict)
+            allGameObjList.append(gameOddsObj)
+
+    if getFanduelTomorrow:
+        fanduelOddsDicts = createAllOddsDictForExchange(fanduelOddsTomorrow())
         for rawOddsDict in fanduelOddsDicts:
             gameOddsObj = FanduelGameOdds(rawOddsDict)
             allGameObjList.append(gameOddsObj)
