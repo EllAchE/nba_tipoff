@@ -131323,6 +131323,20 @@
             ],
             "currentTeam": "CLE"
         },
+        "quinncook": {
+            "possibleTeams": [
+                "LAL",
+                "CLE"
+            ],
+            "currentTeam": "CLE"
+        },
+        "cookqu01.html": {
+            "possibleTeams": [
+                "LAL",
+                "CLE"
+            ],
+            "currentTeam": "CLE"
+        },
         "jamesharden": {
             "possibleTeams": [
                 "HOU",
@@ -131448,6 +131462,20 @@
                 "DET"
             ],
             "currentTeam": "DET"
+        },
+        "brodricthomas": {
+            "possibleTeams": [
+                "HOU",
+                "CLE"
+            ],
+            "currentTeam": "CLE"
+        },
+        "thomabr01.html": {
+            "possibleTeams": [
+                "HOU",
+                "CLE"
+            ],
+            "currentTeam": "CLE"
         },
         "preciousachiuwa": {
             "possibleTeams": [
@@ -132636,18 +132664,6 @@
                 "MIL"
             ],
             "currentTeam": "MIL"
-        },
-        "quinncook": {
-            "possibleTeams": [
-                "LAL"
-            ],
-            "currentTeam": "LAL"
-        },
-        "cookqu01.html": {
-            "possibleTeams": [
-                "LAL"
-            ],
-            "currentTeam": "LAL"
         },
         "tylercook": {
             "possibleTeams": [
@@ -136572,18 +136588,6 @@
                 "BOS"
             ],
             "currentTeam": "BOS"
-        },
-        "brodricthomas": {
-            "possibleTeams": [
-                "HOU"
-            ],
-            "currentTeam": "HOU"
-        },
-        "thomabr01.html": {
-            "possibleTeams": [
-                "HOU"
-            ],
-            "currentTeam": "HOU"
         },
         "mattthomas": {
             "possibleTeams": [

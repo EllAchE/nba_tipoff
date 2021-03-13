@@ -327,7 +327,7 @@ def _fanduelOddsAll(today=True):
         gameResponse = requests.get('https://sportsbook.fanduel.com/cache/psevent/UK/1/false/{}.json'.format(gameId)).json()
         print('running for fanduel game', gameResponse['externaldescription'])
         sleepChecker(iterations=1, baseTime=2, randomMultiplier=8)
-        # todo test the start time to ignore ongoing games
+        # backlogtodo test the start time to ignore ongoing games, not just by date
         for eventMarketGroup in gameResponse['eventmarketgroups']:
             if eventMarketGroup['name'] == 'All':
                 allEventMatch = True

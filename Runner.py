@@ -8,9 +8,9 @@
 # backlogtodo look into multithreading for the multiple algorithm analysis (run the three concurrently)
 # todo TEST optimized player spreads across exchanges (i.e. look at first point on fd, bovada and dk; Need to consider first field goal as well
 # todo add player start percentage to 1st shot summary
-# todo fix fanduel when there are games to fetch data from
-# todo expand to NCAA which is offered on betmgm
-# todo expand to other countries which are offered on betmgm
+# todo replace values passed in the may args algos with ENV vars
+# backlogtodo expand to NCAA which is offered on betmgm
+# backlogtodo expand to other countries which are offered on betmgm
 # backlogtodo write checker for updating all data that may need to be updated
 # backlogtodo write checker for updating only game to game data (not rare breaking things like new players/player team pairs
 # backlogtodo performance improvements, binary search of player db and smaller file size
@@ -32,12 +32,9 @@ from src.rating_algorithms.glicko_data_processing import runGlickoForAllSeasons,
 from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero, updateTrueSkillDictionaryFromLastGame
 
 # todo implement minimum appearance threshold for summary statistics
-# todo import decimal module or similar https://docs.python.org/3/library/decimal.html
-# todo fix dk to accept player bets only
-# todo combine the two below methods
-
-# todo when there is a big gap between the exchanges
-# todo change this to update just the current season
+# backlogtodo import decimal module or similar https://docs.python.org/3/library/decimal.html
+# todo look for when there is a big gap between the exchanges (not necessarily arbitrage) and just determine which is worse at their job. Take one side, not both, of the bets.
+# backlogtodo change this to update just the current season
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
 
@@ -46,7 +43,9 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # oneSeasonFromScratch(2021)
 # updateCurrentSeasonRawGameData()
 # updateTrueSkillDictionaryFromLastGame()
-calculateGlickoDictionaryFromZero()
+# calculateGlickoDictionaryFromZero()
+
+oneSeasonFromScratch(2021)
 
 # getAllExpectedStarters()
 
@@ -95,5 +94,6 @@ https://punter2pro.com/best-sports-arbing-software/
 # backlogtodo account for overrepresentation of playoff teams
 
 # MISC
-# todo investigate adjsuted starting rankings for low appearance playersy, i.e. if we can assume certain/lower mu values for a class of player we can improve our predictions
+# todo investigate adjsuted starting rankings for low appearance players, i.e. if we can assume certain/lower mu values for a class of player we can improve our predictions
+# todo investigate adjusted prediction odds strength for low appearance players
 # backlogtodo (OVERKILL) have scheduler for scraping with randomized twice-a-day fetching and telegram alerts

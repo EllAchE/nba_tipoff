@@ -14,8 +14,12 @@ def preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, homeOdds, homeP
     if homeOdds > winningBetThreshold:
         if tipWinnerCode[11:] == homePlayerCode:
             dsd['correctTipoffPredictions'] += 1
+            if homePlayerTeam == scoringTeam:
+                dsd['tipWinnerScores'] += 1
         else:
             dsd['incorrectTipoffPredictions'] += 1
+            if awayPlayerTeam == scoringTeam:
+                dsd['tipWinnerScores'] += 1
         if homePlayerTeam == scoringTeam:
             dsd["winningBets"] += 1
         else:
@@ -24,8 +28,12 @@ def preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, homeOdds, homeP
     elif (1 - homeOdds) > winningBetThreshold:
         if tipWinnerCode[11:] == awayPlayerCode:
             dsd['correctTipoffPredictions'] += 1
+            if awayPlayerTeam == scoringTeam:
+                dsd['tipWinnerScores'] += 1
         else:
             dsd['incorrectTipoffPredictions'] += 1
+            if homePlayerTeam == scoringTeam:
+                dsd['tipWinnerScores'] += 1
         if awayPlayerTeam == scoringTeam:
             dsd["winningBets"] += 1
         else:
@@ -37,40 +45,54 @@ def preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, homeOdds, homeP
     with open(predictionSummaryPath, 'w') as saveDictFile:
         json.dump(dsd, saveDictFile, indent=4)
 
-def histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, predictionSummaryPath):
+def histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePlayerTeam, scoringTeam, predictionSummaryPath, minTipWinOdds=0.0):
     with open(predictionSummaryPath) as dictFile:
        dsd = json.load(dictFile)
 
     # divisions are based on the probability for the more likely player
     greaterOdds = homeOdds if homeOdds > 1-homeOdds else 1-homeOdds
+    if greaterOdds < minTipWinOdds:
+        return None
+    homeWinsTip = True if tipWinnerCode[11:] == homePlayerCode else False
     oddsBelongToHome = True if homeOdds > 1-homeOdds else False
+    homeScoresFirst = True if homePlayerTeam == scoringTeam else False
     for item in dsd['histogramDivisions']:
-       if item['start'] < greaterOdds and item['end'] >= greaterOdds: # <= on greater prevents allows even odds bets. Setting a min appearances here would catch the unknown preds and stop them skewing
-           subItem=item['predictionSummaries']
-           subItem['totalMatchups'] += 1
-           subItem['expectedWinsFromAlgo'] += greaterOdds
-           if tipWinnerCode[11:] == homePlayerCode:
-               if oddsBelongToHome:
-                   subItem['tipoffWinsByHigher'] += 1
-               else:
-                   subItem['tipoffLossesByHigher'] += 1
-           else:
-               if not oddsBelongToHome:
-                   subItem['tipoffWinsByHigher'] += 1
-               else:
-                   subItem['tipoffLossesByHigher'] += 1
-               item['predictionSummaries'] = subItem
+        if item['start'] < greaterOdds and item['end'] >= greaterOdds: # <= on greater prevents allows even odds bets. Setting a min appearances here would catch the unknown preds and stop them skewing
+            subItem=item['predictionSummaries']
+            subItem['totalMatchups'] += 1
+            subItem['expectedWinsFromAlgo'] += greaterOdds
+            if homeWinsTip:
+                if homeScoresFirst:
+                    subItem['tipWinnerScores'] += 1
+                if oddsBelongToHome:
+                    subItem['tipoffWinsByHigher'] += 1
+                else:
+                    subItem['tipoffLossesByHigher'] += 1
+            else:
+                if not homeScoresFirst:
+                    subItem['tipWinnerScores'] += 1
+                if not oddsBelongToHome:
+                    subItem['tipoffWinsByHigher'] += 1
+                else:
+                    subItem['tipoffLossesByHigher'] += 1
+
+                item['predictionSummaries'] = subItem
+            if homeWinsTip and not homeScoresFirst:
+                print('case')
+            elif not homeWinsTip and homeScoresFirst:
+                print('case')
+
 
     with open(predictionSummaryPath, 'w') as saveDictFile:
         json.dump(dsd, saveDictFile)
 
-def beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam,
+def beforeMatchPredictions(season, psd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam,
                            minimumTipWinPercentage, predictionFunction, predictionSummaryPath):
     homeOdds = predictionFunction(homePlayerCode, awayPlayerCode, psd=psd)
     homePlayerTeam = getPlayerTeamInSeasonFromBballRefLink(homePlayerCode, season, longCode=False)['currentTeam']
     awayPlayerTeam = getPlayerTeamInSeasonFromBballRefLink(awayPlayerCode, season, longCode=False)['currentTeam']
 
-    histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, predictionSummaryPath)
+    histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePlayerTeam, scoringTeam, predictionSummaryPath, minTipWinOdds=minimumTipWinPercentage)
 
     if psd[homePlayerCode]['appearances'] > minimumTipWinPercentage and psd[awayPlayerCode]['appearances'] > minimumTipWinPercentage:
         preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
@@ -89,12 +111,14 @@ def addSummaryMathToAlgoSummary(predictionSummariesPath):
         "tau": ENVIRONMENT.BASE_TS_TAU,
         "beta": ENVIRONMENT.BASE_TS_BETA,
         "minAppearances": ENVIRONMENT.MIN_TS_APPEARANCES,
+        "minTipWinOdds": ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD
     },
     dsd["eloConstants"] = {
         "k_factor": ENVIRONMENT.K_FACTOR,
         "base_elo": ENVIRONMENT.BASE_ELO,
         "base_elo_beta": ENVIRONMENT.BASE_ELO_BETA,
         "minAppearances": ENVIRONMENT.MIN_ELO_APPEARANCES,
+        "minTipWinOdds": ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD
     },
     dsd["glickoConstants"] = {
         "sigma": ENVIRONMENT.BASE_GLICKO_SIGMA,
@@ -102,6 +126,7 @@ def addSummaryMathToAlgoSummary(predictionSummariesPath):
         "tau": ENVIRONMENT.BASE_GLICKO_TAU,
         "phi": ENVIRONMENT.BASE_GLICKO_PHI,
         "minAppearances": ENVIRONMENT.MIN_GLICKO_APPEARANCES,
+        "minTipWinOdds": ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD
     },
     if dsd['winningBets'] + dsd['losingBets'] > 0:
         dsd['correctTipoffPredictionPercentage'] = dsd['correctTipoffPredictions'] / (dsd['correctTipoffPredictions'] + dsd['incorrectTipoffPredictions'])
@@ -111,6 +136,7 @@ def addSummaryMathToAlgoSummary(predictionSummariesPath):
         if histogramBin['predictionSummaries']['totalMatchups'] > 0:
             histogramBin['predictionSummaries']['winPercentage'] = histogramBin['predictionSummaries']['tipoffWinsByHigher'] / histogramBin['predictionSummaries']['totalMatchups']
             histogramBin['predictionSummaries']['expectedWinPercentage'] = histogramBin['predictionSummaries']['expectedWinsFromAlgo'] / histogramBin['predictionSummaries']['totalMatchups']
+            histogramBin['predictionSummaries']['tipWinnerScoresPercentage'] = histogramBin['predictionSummaries']['tipWinnerScores'] / histogramBin['predictionSummaries']['totalMatchups']
         else:
             print('No matchups for bin', histogramBin['start'], 'to', histogramBin['end'])
 
@@ -166,8 +192,9 @@ def runAlgoForSeason(season: str, seasonCsv: str, skillDictPath: str, prediction
         with open(predictionSummariesPath) as file:
             dsd = json.load(file)
 
-        algoPrematch(season, psd, dsd, hTipCode, aTipCode, tWinLink, df['First Scoring Team'].iloc[i],
-                     winningBetThreshold)
+        scoringTeam = df['First Scoring Team'].iloc[i]
+
+        algoPrematch(season, psd, hTipCode, aTipCode, tWinLink, scoringTeam, winningBetThreshold)
         returnObj = algoSingleTipoff(psd, tWinLink, tLoseLink, hTipCode, df['Full Hyperlink'].iloc[i])
 
         # with open(predictionSummariesPath, 'w') as writeFile:

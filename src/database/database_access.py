@@ -210,6 +210,6 @@ def getPlayerTeamInSeasonFromBballRefLink(playerLink, season, longCode=True):
     with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as teamPairs:
         seasons = json.load(teamPairs)
         try:
-            return seasons[str(season)][playerLink]
+            return seasons[str(season)][playerLink]['possibleTeams']
         except:
             raise ValueError("no match found for player", playerLink)

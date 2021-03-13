@@ -412,4 +412,4 @@ def getAllFirstPossessionStatisticsIncrementally(season):
 #     PERIOD_BEGIN = 12
 #     PERIOD_END = 13
 
-# todo VICTOR use this work (specifically the getTipoffLine) to fill in the blanks on the missing games in the csv
+# todo fill in the blanks on the missing games in the csv

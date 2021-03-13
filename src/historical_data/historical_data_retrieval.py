@@ -66,6 +66,7 @@ def getSingleGameHeaders(table_game_strs, table_home_strs, table_away_strs, i):
     return [game_short, game_long, homeStrFull, awayStrFull, homeStrShort, awayStrShort]
 
 def conditionalDataChecks(homeTeam, awayTeam, tipper1, tipper2, tipper1Link, tipper2Link, possessionGainingPlayerLink, firstScoringPlayerLink, season):
+
     if homeTeam in getPlayerTeamInSeasonFromBballRefLink(tipper1Link, season):
         homeTipper = tipper1
         awayTipper = tipper2
@@ -99,7 +100,7 @@ def conditionalDataChecks(homeTeam, awayTeam, tipper1, tipper2, tipper1Link, tip
     if homeTeam in getPlayerTeamInSeasonFromBballRefLink(firstScoringPlayerLink, season):
         firstScoringTeam = homeTeam
         scoredUponTeam = awayTeam
-    elif homeTeam in getPlayerTeamInSeasonFromBballRefLink(firstScoringPlayerLink, season):
+    elif awayTeam in getPlayerTeamInSeasonFromBballRefLink(firstScoringPlayerLink, season):
         firstScoringTeam = awayTeam
         scoredUponTeam = homeTeam
     else:

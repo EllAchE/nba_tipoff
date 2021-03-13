@@ -28,6 +28,7 @@ def resetAndInitializePredictionSummaryDict(histogramBinDivisions, path):
             "totalMatchups": 0,
             "tipoffWinsByHigher": 0,
             "tipoffLossesByHigher": 0,
+            "tipWinnerScores": 0,
             "winPercentage": 0,
             "expectedWinsFromAlgo": 0,
         }
@@ -43,6 +44,7 @@ def resetAndInitializePredictionSummaryDict(histogramBinDivisions, path):
         "totalBets": 0,
         "correctTipoffPredictions": 0,
         "incorrectTipoffPredictions": 0,
+        "tipWinnerScores": 0,
         "seasons": None,
         "winPercentage": 0,
         "correctTipoffPredictionPercentage": 0,
@@ -120,7 +122,7 @@ def saveActivePlayersTeams(start_season: int):
 
 def singleSeasonPlayerTeamPairs(season):
     with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as json_file:
-        seasons = json.load(json_file, indent=4)
+        seasons = json.load(json_file)
 
     season = str(season)
     seasons[season] = {}
@@ -167,7 +169,7 @@ def singleSeasonPlayerTeamPairs(season):
         json.dump(seasons, json_file, indent=4)
 
 
-# todo edit the methods inside here to use append
+# backlogtodo edit the methods inside here to use append
 def updateCurrentSeasonPlayerData():
     createPlayerNameRelationship(ENVIRONMENT.CURRENT_SEASON)
     saveActivePlayersTeams(ENVIRONMENT.CURRENT_SEASON)
@@ -179,7 +181,6 @@ def createPlayerNameRelationship(startSeason: int=1998):
     while startSeason < 2022:
         startSeason, activePlayers = singlePlayerNameRelationshipRequest(activePlayers, startSeason, urlStub)
 
-    # todo for the 3 part jrs., thirds etc. have a reduction/addition to try and mach
     for playerDict in activePlayers:
         if playerDict['fullName'] == "Maxi Kleber":
             playerDict['alternateNames'] += ["Maximilian Kleber"]
