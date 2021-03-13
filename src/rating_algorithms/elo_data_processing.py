@@ -6,10 +6,10 @@ from src.rating_algorithms.common_data_processing import beforeMatchPredictions,
 
 
 def runEloForSeason(season: str, seasonCsv: str, winningBetThreshold: float=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
-    runAlgoForSeason(season, seasonCsv, winningBetThreshold, startFromBeginning=startFromBeginning, columnAdds=["Home Elo", "Away Elo"])
+    runAlgoForSeason(season, seasonCsv, winningBetThreshold, columnAdds=["Home Elo", "Away Elo"], startFromBeginning=startFromBeginning)
 
-def eloBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, histogramBinDivisions, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD):
-    beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, minimumTipWinPercentage=winningBetThreshold, predictionFunction=eloWinProb, histogramBinDivisions=histogramBinDivisions)
+def eloBeforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD):
+    beforeMatchPredictions(season, psd, dsd, homePlayerCode, awayPlayerCode, tipWinnerCode, scoringTeam, minimumTipWinPercentage=winningBetThreshold, predictionFunction=eloWinProb)
 
 def runEloForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD):
     runAlgoForAllSeasons(seasons, ENVIRONMENT.PLAYER_ELO_DICT_PATH, ENVIRONMENT.ELO_PREDICTION_SUMMARIES_PATH, eloBeforeMatchPredictions,

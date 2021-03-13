@@ -1,9 +1,9 @@
 {
-    "winningBets": 60,
-    "losingBets": 67,
+    "winningBets": 0,
+    "losingBets": 0,
     "totalBets": 0,
-    "correctTipoffPredictions": 101,
-    "incorrectTipoffPredictions": 26,
+    "correctTipoffPredictions": 0,
+    "incorrectTipoffPredictions": 0,
     "seasons": "2019-2020-2021-with-odds-0.73",
     "winPercentage": 0.47244094488188976,
     "correctTipoffPredictionPercentage": 0.7952755905511811,

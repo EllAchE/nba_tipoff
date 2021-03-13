@@ -197,8 +197,8 @@ def runAlgoForAllSeasons(seasons, skillDictPath, predictionSummariesPath, algoPr
     print(histogramBinDivisions)
     dsd = resetAndInitializePredictionSummaryDict(histogramBinDivisions)
     for season in seasons:
-        runAlgoForSeason(season, dsd, skillDictPath, predictionSummariesPath, algoPrematch, algoSingleTipoff, winningBetThreshold,
-                         ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), histogramBinDivisions, startFromBeginning=True, columnAdds=columnAdds)
+        runAlgoForSeason(season, ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), skillDictPath, predictionSummariesPath, algoPrematch, algoSingleTipoff, winningBetThreshold,
+                          startFromBeginning=True, columnAdds=columnAdds)
         seasonKey += str(season) + '-'
 
     dsd['seasons'] = seasonKey + 'with-odds-' + str(winningBetThreshold)
