@@ -45,20 +45,21 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 
 # todo look at first 100 and last 100 games (or similar) of player performance vs. overall
 
-calculateGlickoDictionaryFromZero()
+# calculateGlickoDictionaryFromZero()
 
 # getAllExpectedStarters()
 
-# getAllOddsAndDisplayByEv(getFanduel=True, getDk=True, getBovada=True, getMgm=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)
-# getAllOddsAndDisplayByEv(getFanduelToday=True)
+# getAllOddsAndDisplayByEv(getFanduelToday=True, getDk=True, getBovada=True, getMgm=True, includeOptimalPlayerSpread=True, getPointsBet=True, getUnibet=True, getBarstool=True)
+getAllOddsAndDisplayByEv(getFanduelToday=True, includeOptimalPlayerSpread=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)
+# getAllOddsAndDisplayByEv(getFanduelTomorrow=True, getMgm=True)
 # getAllOddsAndDisplayByEv(getMgm=True)
 # getAllOddsAndDisplayByEv(getDk=True)#, getBovada=True)
-# getAllOddsAndDisplayByEv(getBovada=True)
+# getAllOddsAndDisplayByEv(getBovada=True, includeOptimalPlayerSpread=True)
 # getAllOddsAndDisplayByEv(getUnibet=True)
 # getAllOddsAndDisplayByEv(getPointsBet=True)
 # getAllOddsAndDisplayByEv(getBarstool=True)
 #
-# getDailyOdds('DEN', 'MEM', '-111')
+# getDailyOdds('NOP', 'LAC', '-110')
 '''
 Existing apis etc.:
 

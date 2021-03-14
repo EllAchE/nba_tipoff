@@ -179,10 +179,12 @@ def updateCurrentSeasonPlayerData():
 
 def createPlayerNameRelationship(startSeason: int=1998):
     activePlayers = []
+    addedPlayerSet = set()
 
     urlStub = 'https://www.basketball-reference.com/leagues/NBA_{}_per_game.html'
     while startSeason < 2022:
-        startSeason, activePlayers = singlePlayerNameRelationshipRequest(activePlayers, startSeason, urlStub)
+        activePlayers, addedPlayerSet = singlePlayerNameRelationshipRequest(activePlayers, startSeason, urlStub, addedPlayerSet)
+        startSeason += 1
 
     for playerDict in activePlayers:
         if playerDict['fullName'] == "Maxi Kleber":
@@ -203,13 +205,19 @@ def createPlayerNameRelationship(startSeason: int=1998):
             playerDict['alternateNames'] += ["Marvin Bagley"]
         elif playerDict['fullName'] == 'Moritz Wagner':
             playerDict['alternateNames'] += ["Mo Wagner"]
+        elif playerDict['fullName'] == "Larry Nance Jnr":
+            playerDict['alternateNames'] += ["Larry Nance"]
+            playerDict['alternateNames'] += ["Larry Nance Jr."]
+        elif playerDict['fullName'] == "Larry Nance Jr.":
+            playerDict['alternateNames'] += ["Larry Nance"]
+            playerDict['alternateNames'] += ["Larry Nance Jnr"]
 
     with open(ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH, 'w') as json_file:
         json.dump(activePlayers, json_file, indent=4)
 
     print('saved player DB Data')
 
-def singlePlayerNameRelationshipRequest(activePlayers, startSeason, urlStub):
+def singlePlayerNameRelationshipRequest(activePlayers, startSeason, urlStub, addedPlayerSet):
     url = urlStub.format(str(startSeason))
     soup, statusCode = getSoupFromUrl(url, returnStatus=True)
     print("GET request for", startSeason, "players list returned status", statusCode)
@@ -219,6 +227,11 @@ def singlePlayerNameRelationshipRequest(activePlayers, startSeason, urlStub):
         playerNameTag = tag.select('td[data-stat="player"]')[0]
         playerFullName = playerNameTag.contents[0].contents[0]
         playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tagStr).group(0)
+        if playerCode in addedPlayerSet:
+            continue
+        else:
+            addedPlayerSet.add(playerCode)
+
         playerNameWithComma = re.search(r'(?<=csk=")(.*?)(?=")', str(playerNameTag)).group(0)
         universalName = unicodedata.normalize('NFD', playerFullName.replace(".", "")).encode('ascii', 'ignore').decode(
             "utf-8")
@@ -232,8 +245,7 @@ def singlePlayerNameRelationshipRequest(activePlayers, startSeason, urlStub):
             "alternateNames": []
             # "playerNameTag": tagStr
         })
-    startSeason += 1
-    return startSeason, activePlayers
+    return activePlayers, addedPlayerSet
 
 
 # backlogtodo implement binary search

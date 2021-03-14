@@ -221,25 +221,31 @@ def draftKingsOdds():
     allBets = requests.get('https://sportsbook.draftkings.com//sites/US-SB/api/v1/eventgroup/103/full?includePromotions=true&format=json').json()
     offerCategories = allBets['eventGroup']['offerCategories']
 
+    playerProps = gameProps = None
     for category in offerCategories:
         if category['name'] == "Game Props":
            gameProps = category['offerSubcategoryDescriptors']
         if category['name'] == "Player Props":
             playerProps = category['offerSubcategoryDescriptors']
 
-    teamMatch = False
-    playerMatch = False
-    for subCategory in gameProps:
-        if subCategory['name'] == "First Team to Score":
-            firstTeamToScoreLines = subCategory['offerSubcategory']['offers']
-            teamMatch = True
-            break
+    teamMatch = playerMatch = False
+    if gameProps is not None:
+        for subCategory in gameProps:
+            if subCategory['name'] == "First Team to Score":
+                firstTeamToScoreLines = subCategory['offerSubcategory']['offers']
+                teamMatch = True
+                break
+    else:
+        print('no game props found for Draftkings odds')
 
-    for subCategory in playerProps:
-        if subCategory['name'] == "First Field Goal":
-            firstPlayerToScoreLines = subCategory['offerSubcategory']['offers']
-            playerMatch = True
-            break
+    if playerProps is not None:
+        for subCategory in playerProps:
+            if subCategory['name'] == "First Field Goal":
+                firstPlayerToScoreLines = subCategory['offerSubcategory']['offers']
+                playerMatch = True
+                break
+    else:
+        print('no player props found for Draftkings odds')
 
     teamSet = set()
     allGameLines = list()
@@ -416,7 +422,10 @@ def _fanduelOddsAll(today=True):
             if (len(gameLine['homePlayerFirstQuarterOdds']) > 4 and len(gameLine['homePlayerFirstQuarterOdds']) > 4) or gameLine['homeTeamFirstQuarterOdds'] is not None:
                 quarterOddsListWithAtLeastOneSetOfOdds.append(gameLine)
 
-    return quarterOddsListWithAtLeastOneSetOfOdds
+    if len(gameIdSet) == 0:
+        print('No game ids were found on fanduel, make sure you are looking for the proper day (today or tomorrow are your options).')
+    else:
+        return quarterOddsListWithAtLeastOneSetOfOdds
 
 def mgmOdds():
     # https://sports.co.betmgm.com/en/sports/events/minnesota-timberwolves-at-san-antonio-spurs-11101908?market=10000

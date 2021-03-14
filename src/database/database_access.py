@@ -74,6 +74,9 @@ def getUniversalPlayerName(playerInUnknownFormat):
         elif player['fullName'] == playerInUnknownFormat + " Jr.":
             match = True
             break
+        elif player['fullName'] == playerInUnknownFormat + " Jnr":
+            match = True
+            break
         elif player['fullName'] == playerInUnknownFormat + " Sr.":
             match = True
             break
