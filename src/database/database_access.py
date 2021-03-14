@@ -71,6 +71,24 @@ def getUniversalPlayerName(playerInUnknownFormat):
         elif removeAllNonLettersAndLowercase(player['nameWithComma']) == playerLoweredLetterOnly:
             match = True
             break
+        elif player['fullName'] == playerInUnknownFormat + " Jr.":
+            match = True
+            break
+        elif player['fullName'] == playerInUnknownFormat + " Jnr":
+            match = True
+            break
+        elif player['fullName'] == playerInUnknownFormat + " Sr.":
+            match = True
+            break
+        elif player['fullName'] == playerInUnknownFormat + " III":
+            match = True
+            break
+        elif player['fullName'] == playerInUnknownFormat + " IV":
+            match = True
+            break
+        elif player['fullName'] == playerInUnknownFormat + " IV":
+            match = True
+            break
         try:
             if removeAllNonLettersAndLowercase(player['alternateNames'][0]) == undoPlayerCommaReversal:
                 match = True
@@ -89,7 +107,7 @@ def getPlayerCurrentTeam(universalPlayerName): # Returns a list
         playersDict = json.load(playerToTeamDb)
     return playersDict['2021'][universalPlayerName]['currentTeam']
 
-def getUniversalShortCode(teamInUnknownFormat):
+def getUniversalTeamShortCode(teamInUnknownFormat):
     with open(ENVIRONMENT.TEAM_NAMES_PATH) as teamsDb:
         teamsDict = json.load(teamsDb)
 
@@ -152,7 +170,7 @@ def getGameIdFromTeamAndDate(dateStr: str, shortCode: str):
 
 def getGameIdByTeamAndDateFromStaticData(bballRefId: str):
     date, team = getDashDateAndHomeCodeFromGameCode(bballRefId)
-    gameObj = _getGameObjFromDateAndTeamUsingLocalData(date, getUniversalShortCode(team))
+    gameObj = _getGameObjFromDateAndTeamUsingLocalData(date, getUniversalTeamShortCode(team))
     return gameObj.GAME_ID.iloc[0]
 
 def convertBballRefTeamShortCodeToNBA(shortCode: str):
@@ -161,6 +179,8 @@ def convertBballRefTeamShortCodeToNBA(shortCode: str):
     if shortCode == 'BRK':
         return 'BKN'
     if shortCode == 'CHO':
+        return 'CHA'
+    if shortCode == 'CHH':
         return 'CHA'
     return shortCode
 
@@ -188,13 +208,15 @@ def getPlayerTeamFromNbaApi(name):
     # https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/commonplayerinfo.md
     pass
 
-def getPlayerTeamInSeasonFromBballRefLink(playerLink, season, longCode=True):
+def getPlayerTeamInSeasonFromBballRefLink(playerLink, season, longCode=True, returnCurrentTeam=False):
     if longCode:
         playerLink = playerLink[11:]
     # playerName = getUniversalPlayerName(playerLink)
     with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as teamPairs:
         seasons = json.load(teamPairs)
         try:
-            return seasons[str(season)][playerLink]
+            if returnCurrentTeam:
+                return seasons[str(season)][playerLink]['currentTeam']
+            return seasons[str(season)][playerLink]['possibleTeams']
         except:
             raise ValueError("no match found for player", playerLink)

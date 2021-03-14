@@ -33,7 +33,7 @@
     "teamId": 1610612766,
     "abbreviation": "CHA",
     "teamName": "Charlotte Hornets",
-    "alternateAbbreviations": ["CHO"],
+    "alternateAbbreviations": ["CHO", "CHH"],
     "simpleName": "Hornets",
     "location": "Charlotte",
     "slug": "charlotte-hornets",
@@ -202,7 +202,7 @@
   {
     "teamId": 1610612760,
     "abbreviation": "OKC",
-    "alternateAbbreviations": [],
+    "alternateAbbreviations": ["SEA"],
     "teamName": "Oklahoma City Thunder",
     "simpleName": "Thunder",
     "location": "Oklahoma City",

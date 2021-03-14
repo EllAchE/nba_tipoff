@@ -5,6 +5,8 @@ __pycache__/
 
 #Logan custom
 .idea
+Data/ncaahoopR_data-master
+# the ncaa data needs to be downloaded from
 
 #Typescript files
 package-lock.json

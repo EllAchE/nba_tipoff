@@ -5,12 +5,13 @@
 
 import json
 import re
+from datetime import datetime
 
 import requests
 import pandas as pd
 
 import ENVIRONMENT
-from src.database.database_access import getUniversalShortCode, getPlayerCurrentTeam, getUniversalPlayerName
+from src.database.database_access import getUniversalTeamShortCode, getPlayerCurrentTeam, getUniversalPlayerName
 from src.odds_and_statistics.odds_calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb, decimalToAmerican
 from src.utils import getTeamFullFromShort, getSoupFromUrl, sleepChecker
 
@@ -18,7 +19,7 @@ from src.utils import getTeamFullFromShort, getSoupFromUrl, sleepChecker
 def addTeamToUnknownPlayerLine(rawPlayerLine):
     formattedPlayerName = getUniversalPlayerName(rawPlayerLine['player'])
     teamShortCodeBballRefFormat = getPlayerCurrentTeam(formattedPlayerName)
-    teamShortCode = getUniversalShortCode(teamShortCodeBballRefFormat)
+    teamShortCode = getUniversalTeamShortCode(teamShortCodeBballRefFormat)
 
     rawPlayerLine['team'] = teamShortCode
 
@@ -66,11 +67,6 @@ def teamCodeToSlugName(team_code, team_dict=None, json_path=None):
             return team['slug']
 
     raise ValueError('no matching team for abbreviation')
-
-def fanduelOdds():
-    # https://sportsbook.fanduel.com/cache/psevent/UK/1/false/958472.3.json
-    # Rohit has this partly in typescript already
-    pass
 
 def bovadaTeamOdds(allTeamBets):
     scoreFirstBetsSingleTeam = list()
@@ -121,8 +117,8 @@ def bovadaTeamOdds(allTeamBets):
         scoreFirstBetsBothTeamsFormatted.append({
             'exchange': 'bovada',
             "shortTitle": item['shortTitle'],
-            "away": getUniversalShortCode(item['team2id']),
-            "home": getUniversalShortCode(item['team1id']),
+            "away": getUniversalTeamShortCode(item['team2id']),
+            "home": getUniversalTeamShortCode(item['team1id']),
             "awayTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds']),
             "homeTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds']),
             "awayPlayerFirstQuarterOdds": [],
@@ -130,8 +126,8 @@ def bovadaTeamOdds(allTeamBets):
         })
         scoreFirstBetsBothTeamsFormatted.append({
             'exchange': 'bovada',
-            "away": getUniversalShortCode(item['team1id']),
-            "home": getUniversalShortCode(item['team2id']),
+            "away": getUniversalTeamShortCode(item['team1id']),
+            "home": getUniversalTeamShortCode(item['team2id']),
             "shortTitle": item['shortTitle'],
             "awayTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds']),
             "homeTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds']),
@@ -165,13 +161,13 @@ def bovadaPlayerOdds(playerBetGamesList):
                     homePlayerOdds.append({
                         "player": player['player']['name'],
                         "odds": actualOdds,
-                        "team": getUniversalShortCode(homeShort)
+                        "team": getUniversalTeamShortCode(homeShort)
                     })
                 elif player['player']['team']['abbreviation'] == awayShort:
                     awayPlayerOdds.append({
                         "player": player['player']['name'],
                         "odds": actualOdds,
-                        "team": getUniversalShortCode(awayShort)
+                        "team": getUniversalTeamShortCode(awayShort)
                     })
                 else:
                     raise ValueError("Bovada misformattted something in player and team codes")
@@ -225,39 +221,40 @@ def draftKingsOdds():
     allBets = requests.get('https://sportsbook.draftkings.com//sites/US-SB/api/v1/eventgroup/103/full?includePromotions=true&format=json').json()
     offerCategories = allBets['eventGroup']['offerCategories']
 
+    playerProps = gameProps = None
     for category in offerCategories:
         if category['name'] == "Game Props":
            gameProps = category['offerSubcategoryDescriptors']
         if category['name'] == "Player Props":
             playerProps = category['offerSubcategoryDescriptors']
 
-    teamMatch = False
-    playerMatch = False
-    for subCategory in gameProps:
-        if subCategory['name'] == "First Team to Score":
-            firstTeamToScoreLines = subCategory['offerSubcategory']['offers']
-            teamMatch = True
-            break
+    teamMatch = playerMatch = False
+    if gameProps is not None:
+        for subCategory in gameProps:
+            if subCategory['name'] == "First Team to Score":
+                firstTeamToScoreLines = subCategory['offerSubcategory']['offers']
+                teamMatch = True
+                break
+    else:
+        print('no game props found for Draftkings odds')
 
-    for subCategory in playerProps:
-        if subCategory['name'] == "First Field Goal":
-            firstPlayerToScoreLines = subCategory['offerSubcategory']['offers']
-            playerMatch = True
-            break
-
-    if not playerMatch:
-        print('No player odds for draftkings currently')
-    if not teamMatch:
-        print('No team odds for draftkings currently')
+    if playerProps is not None:
+        for subCategory in playerProps:
+            if subCategory['name'] == "First Field Goal":
+                firstPlayerToScoreLines = subCategory['offerSubcategory']['offers']
+                playerMatch = True
+                break
+    else:
+        print('no player props found for Draftkings odds')
 
     teamSet = set()
     allGameLines = list()
     if teamMatch:
         for teamLine in firstTeamToScoreLines:
             outcomes = teamLine[0]['outcomes']
-            team1 = getUniversalShortCode(outcomes[0]['label'])
+            team1 = getUniversalTeamShortCode(outcomes[0]['label'])
             team1Odds = outcomes[0]['oddsAmerican']
-            team2 = getUniversalShortCode(outcomes[1]['label'])
+            team2 = getUniversalTeamShortCode(outcomes[1]['label'])
             team2Odds = outcomes[1]['oddsAmerican']
             teamSet.add(team2)
             teamSet.add(team1)
@@ -271,6 +268,8 @@ def draftKingsOdds():
                 "homePlayerFirstQuarterOdds": [],
                 "awayPlayerFirstQuarterOdds": []
             })
+    else:
+        print('No team odds for draftkings currently')
 
     rawPlayerLines = list()
     if playerMatch:
@@ -281,6 +280,8 @@ def draftKingsOdds():
                     "player": playerOdds['label'],
                     "odds": playerOdds['oddsAmerican']
                 })
+    else:
+        print('No player odds for draftkings currently')
 
     playerTeamDict = {}
     for team in teamSet:
@@ -295,48 +296,140 @@ def draftKingsOdds():
 
     return allGameLines
 
-def fanduelOdds():
-    # export
-    # const
-    # collect = async () = > {
-    #     const
-    # date = new
-    # Date();
-    # let
-    # oddsList: odds[] = [];
-    # const
-    # gamesResponse: GamesResponse = await util.get("https://sportsbook.fanduel.com/cache/psmg/UK/63747.3.json");
-    # const
-    # listOfGames = gamesResponse.events.map((game) = > game.idfoevent);
-    # console.log(listOfGames);
-    #
-    # for (const game of listOfGames) {
-    #     const gameResponse: GameResponse = await util.get(
-    #     `https: // sportsbook.fanduel.com / cache / psevent / UK / 1 / false /${game}.json
-    # `);
-    #
-    # for (const eventMarketGroup of gameResponse.eventmarketgroups) {
-    # for (const market of eventMarketGroup.markets) {
-    # for (const selection of market.selections) {
-    # oddsList.push({
-    # date: date,
-    #       gameCode: getGameCode(new
-    # Date(gameResponse.tsstart), gameResponse.participantshortname_home.split(" ")[0]),
-    # gameDatetime: gameResponse.tsstart,
-    # home: gameResponse.participantshortname_home.split(" ")[0],
-    # away: gameResponse.participantshortname_away.split(" ")[0],
-    # exchange: "fanduel",
-    # betName: market.name,
-    # subBetName: selection.name,
-    # americanOdds: getAmericanOdds(selection.currentpriceup, selection.currentpricedown),
-    # currentPriceUp: selection.currentpriceup,
-    # currentPriceDown: selection.currentpricedown,
-    # });
-    # }
-    # }
-    # }
-    # }
-    pass
+def getAmericanOddsFanduel(currentpriceup, currentpricedown):
+    if currentpriceup is None:
+        return None
+    if currentpriceup >= currentpricedown:
+        return '+' + str((currentpriceup / currentpricedown) * 100)
+    elif currentpriceup < currentpricedown:
+        return str((100 / currentpriceup) * currentpricedown * -1)
+    else:
+        raise ValueError('fanduel odds messed up')
+
+def fanduelOddsToday():
+    return _fanduelOddsAll()
+
+def fanduelOddsTomorrow():
+    return _fanduelOddsAll(today=False)
+
+def _fanduelOddsAll(today=True):
+    currentDate = datetime.today().strftime('%Y-%m-%d')
+    gamesResponse = requests.get("https://sportsbook.fanduel.com/cache/psmg/UK/63747.3.json").json()
+    teamSet = set()
+
+    quarterOddsList = list()
+    unassignedPlayerOddsList = list()
+    gameIdSet = set()
+    listOfGames = gamesResponse['events']
+
+    for game in listOfGames:
+        if game['tsstart'][:10] == currentDate and today:
+            gameIdSet.add(game['idfoevent'])
+        elif game['tsstart'][:10] != currentDate and not today:
+            gameIdSet.add(game['idfoevent'])
+
+    allEventMatch = None
+    for gameId in gameIdSet:
+        gameResponse = requests.get('https://sportsbook.fanduel.com/cache/psevent/UK/1/false/{}.json'.format(gameId)).json()
+        print('running for fanduel game', gameResponse['externaldescription'])
+        sleepChecker(iterations=1, baseTime=2, randomMultiplier=8)
+        # backlogtodo test the start time to ignore ongoing games, not just by date
+        try:
+            for eventMarketGroup in gameResponse['eventmarketgroups']:
+                if eventMarketGroup['name'] == 'All':
+                    allEventMatch = True
+                    break
+        except:
+            print('game', gameResponse['externaldescription'], 'had no matches for eventmarketgroups. Game has likely already started, or is tomorrow.')
+            continue
+
+        teamScoreFirstQuarter1 = teamScoreFirstQuarter2 = teamScoreFirstQuarter3 = teamScoreFirstQuarter4 = playerScoreFirst = None
+        if allEventMatch:
+            for market in eventMarketGroup['markets']:
+                if 'to Score First' in market['name']:
+                    if market['name'] == 'Team to Score First':
+                        teamScoreFirstQuarter1 = market
+                    elif market['name'] == '2nd Quarter Team to Score First':
+                        teamScoreFirstQuarter2 = market
+                    elif market['name'] == '3rd Quarter Team to Score First':
+                        teamScoreFirstQuarter3 = market
+                    elif market['name'] == '4th Quarter Team to Score First':
+                        teamScoreFirstQuarter4 = market
+                elif market['name'] == 'First Basket':
+                    playerScoreFirst = market
+
+        if playerScoreFirst is not None:
+            for selection in playerScoreFirst['selections']:
+                unassignedPlayerOddsList.append({
+                    "player": selection['name'],
+                    "odds": getAmericanOddsFanduel(selection['currentpriceup'], selection['currentpricedown']),
+                })
+        else:
+            print('no player odds for this fanduel game currently')
+
+        home1Odds = away1Odds = home2Odds = away2Odds = home3Odds = away3Odds = home4Odds = away4Odds = None
+        if teamScoreFirstQuarter1 is not None:
+            quarter1home = teamScoreFirstQuarter1['selections'][0] if teamScoreFirstQuarter1['selections'][0]['hadvalue'] == 'H' else teamScoreFirstQuarter1['selections'][1]
+            quarter1away = teamScoreFirstQuarter1['selections'][0] if teamScoreFirstQuarter1['selections'][0]['hadvalue'] == 'A' else teamScoreFirstQuarter1['selections'][1]
+            home1Odds = getAmericanOddsFanduel(quarter1home['currentpriceup'], quarter1home['currentpricedown'])
+            away1Odds = getAmericanOddsFanduel(quarter1away['currentpriceup'], quarter1away['currentpricedown'])
+        else:
+            print('no team odds for this fanduel game currently')
+        if teamScoreFirstQuarter2 is not None:
+            quarter2home = teamScoreFirstQuarter2['selections'][0] if teamScoreFirstQuarter2['selections'][0]['hadvalue'] == 'H' else teamScoreFirstQuarter2['selections'][1]
+            quarter2away = teamScoreFirstQuarter2['selections'][0] if teamScoreFirstQuarter2['selections'][0]['hadvalue'] == 'A' else teamScoreFirstQuarter2['selections'][1]
+            home2Odds = getAmericanOddsFanduel(quarter2home['currentpriceup'], quarter2home['currentpricedown'])
+            away2Odds = getAmericanOddsFanduel(quarter2away['currentpriceup'], quarter2away['currentpricedown'])
+        if teamScoreFirstQuarter3 is not None:
+            quarter3home = teamScoreFirstQuarter3['selections'][0] if teamScoreFirstQuarter3['selections'][0]['hadvalue'] == 'H' else teamScoreFirstQuarter3['selections'][1]
+            quarter3away = teamScoreFirstQuarter3['selections'][0] if teamScoreFirstQuarter3['selections'][0]['hadvalue'] == 'A' else teamScoreFirstQuarter3['selections'][1]
+            home3Odds = getAmericanOddsFanduel(quarter3home['currentpriceup'], quarter3home['currentpricedown'])
+            away3Odds = getAmericanOddsFanduel(quarter3away['currentpriceup'], quarter3away['currentpricedown'])
+        if teamScoreFirstQuarter4 is not None:
+            quarter4home = teamScoreFirstQuarter4['selections'][0] if teamScoreFirstQuarter4['selections'][0]['hadvalue'] == 'H' else teamScoreFirstQuarter4['selections'][1]
+            quarter4away = teamScoreFirstQuarter4['selections'][0] if teamScoreFirstQuarter4['selections'][0]['hadvalue'] == 'A' else teamScoreFirstQuarter4['selections'][1]
+            home4Odds = getAmericanOddsFanduel(quarter4home['currentpriceup'], quarter4home['currentpricedown'])
+            away4Odds = getAmericanOddsFanduel(quarter4away['currentpriceup'], quarter4away['currentpricedown'])
+
+        home = getUniversalTeamShortCode(gameResponse['participantshortname_home'].split(" ")[1])
+        away = getUniversalTeamShortCode(gameResponse['participantshortname_away'].split(" ")[1])
+        teamSet.add(home)
+        teamSet.add(away)
+        quarterOddsList.append({
+            "gameDatetime": gameResponse['tsstart'],
+            "home": home,
+            "away": away,
+            "exchange": "fanduel",
+            "homeTeamFirstQuarterOdds": home1Odds,
+            "awayTeamFirstQuarterOdds": away1Odds,
+            "homeTeamSecondQuarterOdds": home2Odds,
+            "awayTeamSecondQuarterOdds": away2Odds,
+            "homeTeamThirdQuarterOdds": home3Odds,
+            "awayTeamThirdQuarterOdds": away3Odds,
+            "homeTeamFourthQuarterOdds": home4Odds,
+            "awayTeamFourthQuarterOdds": away4Odds,
+        })
+
+        playerTeamDict = {}
+        for team in teamSet:
+            playerTeamDict[team] = []
+        for rawLine in unassignedPlayerOddsList:
+            playerLine = addTeamToUnknownPlayerLine(rawLine)
+            playerTeamDict[playerLine['team']] += [playerLine]
+
+        for gameLine in quarterOddsList:
+            gameLine["homePlayerFirstQuarterOdds"] = playerTeamDict[gameLine["home"]]
+            gameLine["awayPlayerFirstQuarterOdds"] = playerTeamDict[gameLine["away"]]
+
+        quarterOddsListWithAtLeastOneSetOfOdds = list()
+        for gameLine in quarterOddsList:
+            if (len(gameLine['homePlayerFirstQuarterOdds']) > 4 and len(gameLine['homePlayerFirstQuarterOdds']) > 4) or gameLine['homeTeamFirstQuarterOdds'] is not None:
+                quarterOddsListWithAtLeastOneSetOfOdds.append(gameLine)
+
+    if len(gameIdSet) == 0:
+        print('No game ids were found on fanduel, make sure you are looking for the proper day (today or tomorrow are your options).')
+    else:
+        return quarterOddsListWithAtLeastOneSetOfOdds
 
 def mgmOdds():
     # https://sports.co.betmgm.com/en/sports/events/minnesota-timberwolves-at-san-antonio-spurs-11101908?market=10000
@@ -353,11 +446,13 @@ def mgmOdds():
 
     allGameLines = list()
     for index in range(len(gameIDs)):
+        print('Fetching MGM for game', gameIDs[index])
         gameURL = "https://cds-api.co.betmgm.com/bettingoffer/fixture-view?x-bwin-accessid=OTU4NDk3MzEtOTAyNS00MjQzLWIxNWEtNTI2MjdhNWM3Zjk3&lang=en-us&country=US&userCountry=US&subdivision=Texas&offerMapping=All&fixtureIds=" + \
                   gameIDs[index]
         gameResponse = requests.get(gameURL, headers=headers)
         oddsInfo = json.loads(gameResponse.text)['fixture']['games']
-        sleepChecker(iterations=1, printStop=True)
+        sleepChecker(iterations=1)
+
         for odds in oddsInfo:
             if (odds['name']['value'] == "Which team will score the first points?"):
                 team1 = odds['results'][0]['name']['value']
@@ -376,8 +471,8 @@ def mgmOdds():
 
                 allGameLines.append({
                     'exchange': 'mgm',
-                    "home": getUniversalShortCode(team2),
-                    "away": getUniversalShortCode(team1),
+                    "home": getUniversalTeamShortCode(team2),
+                    "away": getUniversalTeamShortCode(team1),
                     "homeTeamFirstQuarterOdds": str(team2Odds),
                     "awayTeamFirstQuarterOdds": str(team1Odds)
                 })
@@ -397,8 +492,8 @@ def pointsBetOdds():
     for event in allGames['events']:
         rawPlayerLines = list()
         eventId = event['key']
-        homeTeam = getUniversalShortCode(event['homeTeam'])
-        awayTeam = getUniversalShortCode(event['awayTeam'])
+        homeTeam = getUniversalTeamShortCode(event['homeTeam'])
+        awayTeam = getUniversalTeamShortCode(event['awayTeam'])
         singleGameUrl = 'https://api-usa.pointsbet.com/api/v2/events/{}'.format(eventId)
         singleGameResponse = requests.get(singleGameUrl).json()
 
@@ -417,7 +512,7 @@ def pointsBetOdds():
                 awayPlayerList = list()
                 for player in rawPlayerLines:
                     universalName = getUniversalPlayerName(player['player'])
-                    player['team'] = getUniversalShortCode(getPlayerCurrentTeam(universalName))
+                    player['team'] = getUniversalTeamShortCode(getPlayerCurrentTeam(universalName))
                     if player['team'] == homeTeam:
                         homePlayerList.append(player)
                     elif player['team'] == awayTeam:
@@ -425,14 +520,19 @@ def pointsBetOdds():
                     else:
                         raise ValueError("player didn't match either team, or teams are misformatted/don't match universal team code", player)
 
-                gameDictList.append({
+                gameDict = {
                     'exchange': 'pointsBet',
                     "home": homeTeam,
                     "away": awayTeam,
                     "isFirstFieldGoal": True,
                     "homePlayerFirstQuarterOdds": homePlayerList,
                     "awayPlayerFirstQuarterOdds": awayPlayerList
-                })
+                }
+
+                if len(gameDict['homePlayerFirstQuarterOdds']) < 5 or len(gameDict['awayPlayerFirstQuarterOdds']) < 5:
+                    print("not enough players in list")
+                else:
+                    gameDictList.append(gameDict)
             else:
                 # print("no first basket market found for game", awayTeam, "@", homeTeam)
                 pass
@@ -459,8 +559,8 @@ def unibetOdds():
         sleepChecker(baseTime=0.5, randomMultiplier=3)
         singleGameResponse = requests.get(singleEventUrlStub.format(str(event[0]))).json()
         allBets = singleGameResponse['betOffers']
-        homeTeam = getUniversalShortCode(event[2])
-        awayTeam = getUniversalShortCode(event[3])
+        homeTeam = getUniversalTeamShortCode(event[2])
+        awayTeam = getUniversalTeamShortCode(event[3])
 
         playerScoreFirstFG = None
         for bet in allBets:
@@ -483,7 +583,7 @@ def unibetOdds():
         awayPlayerLines = list()
         for player in rawPlayerLines:
             universalName = getUniversalPlayerName(player['player'])
-            player['team'] = getUniversalShortCode(getPlayerCurrentTeam(universalName))
+            player['team'] = getUniversalTeamShortCode(getPlayerCurrentTeam(universalName))
             if player['team'] == homeTeam:
                 homePlayerLines.append(player)
             elif player['team'] == awayTeam:
@@ -524,8 +624,8 @@ def barstoolOdds(): #only has player prosp to score (first field goal)
     for event in eventsList:
         sleepChecker(baseTime=0.5, randomMultiplier=2)
         singleGameResponse = requests.get(singleEventUrlStub.format(event['id']), headers={"consumer":"www"}).json()
-        homeTeam = getUniversalShortCode(event['home'])
-        awayTeam = getUniversalShortCode(event['away'])
+        homeTeam = getUniversalTeamShortCode(event['home'])
+        awayTeam = getUniversalTeamShortCode(event['away'])
 
         hasPlayerSpecials = False
         for category in singleGameResponse:
@@ -629,6 +729,7 @@ def getAllExpectedStarters():
         sleepChecker(iterations=5, baseTime=1, randomMultiplier=1)
         getStarters(team)
 
+# backlogtodo confirm a minimum number of appearances
 def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='unspecified exchange'):
     p1 = tipperFromTeam(t1)
     p2 = tipperFromTeam(t2)

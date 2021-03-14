@@ -8,8 +8,9 @@ import numpy as np
 import trueskill
 import ENVIRONMENT
 
-from src.trueskill.trueskill_calc import tipWinProb
 from typing import Any, Optional
+
+from src.rating_algorithms.algorithms import trueSkillWinProb
 
 
 def scoreFirstProb(p1Code: str, p2Code: str, p1isHome: bool, jsonPath: Optional[str] = None, psd=None): # psd: Optional[dict[str, Any]] = None):
@@ -29,7 +30,7 @@ def scoreFirstProb(p1Code: str, p2Code: str, p1isHome: bool, jsonPath: Optional[
     deltaMu = sum(r.mu for r in team1) - sum(r.mu for r in team2)
     sumSigma = sum(r.sigma ** 2 for r in itertools.chain(team1, team2))
     size = len(team1) + len(team2)
-    denom = math.sqrt(size * (ENVIRONMENT.BASE_SIGMA * ENVIRONMENT.BASE_SIGMA) + sumSigma)
+    denom = math.sqrt(size * (ENVIRONMENT.BASE_TS_SIGMA * ENVIRONMENT.BASE_TS_SIGMA) + sumSigma)
     ts = trueskill.global_env()
     res = ts.cdf(deltaMu / denom)
 
@@ -152,7 +153,7 @@ def kellyBetFromAOddsAndScoreProb(scoreProb: float, americanOdds: str, bankroll:
 def checkEvPositiveBackLayAndGetScoreProb(teamOdds: float, teamTipperCode: str, opponentTipperCode: str):
     minWinRate = positiveEvThresholdFromAmerican(teamOdds)
     minLossRate = 1 - minWinRate
-    tipWinOdds = tipWinProb(teamTipperCode, opponentTipperCode)
+    tipWinOdds = trueSkillWinProb(teamTipperCode, opponentTipperCode)
     scoreProb = tipScoreProb(tipWinOdds)
 
     if scoreProb > minWinRate:
@@ -184,7 +185,7 @@ def checkEvPlayerCodesOddsLine(odds: float, p1: str, p2: str):
     return prob
 
 def getScoreProb(teamTipperCode: str, opponentTipperCode: str):
-    tipWinOdds = tipWinProb(teamTipperCode, opponentTipperCode)
+    tipWinOdds = trueSkillWinProb(teamTipperCode, opponentTipperCode)
     return tipScoreProb(tipWinOdds)
 
 # should be [[name, line], [name, line]]

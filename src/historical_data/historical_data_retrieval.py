@@ -1,7 +1,6 @@
 import json
 import csv
 import pandas as pd
-
 import re
 
 # backlogtodo record historical betting lines
@@ -9,6 +8,7 @@ import re
 # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
 # backlogtodo BACKLOG get playbyplay from NCAA for rookie projections
 # https://www.ncaa.com/game/5763659/play-by-play
+#
 import ENVIRONMENT
 from src.database.database_access import getPlayerTeamInSeasonFromBballRefLink
 from src.utils import getSoupFromUrl, \
@@ -66,16 +66,19 @@ def getSingleGameHeaders(table_game_strs, table_home_strs, table_away_strs, i):
     return [game_short, game_long, homeStrFull, awayStrFull, homeStrShort, awayStrShort]
 
 def conditionalDataChecks(homeTeam, awayTeam, tipper1, tipper2, tipper1Link, tipper2Link, possessionGainingPlayerLink, firstScoringPlayerLink, season):
+
     if homeTeam in getPlayerTeamInSeasonFromBballRefLink(tipper1Link, season):
         homeTipper = tipper1
         awayTipper = tipper2
         homeTipperLink = tipper1Link
         awayTipperLink = tipper2Link
-    else:
+    elif awayTeam in getPlayerTeamInSeasonFromBballRefLink(tipper1Link, season):
         homeTipper = tipper2
         awayTipper = tipper1
         homeTipperLink = tipper2Link
         awayTipperLink = tipper1Link
+    else:
+        raise ValueError("Bad Game Data or Player DB")
 
     if homeTeam in getPlayerTeamInSeasonFromBballRefLink(possessionGainingPlayerLink, season):
         possessionGainingTeam = homeTeam
@@ -84,25 +87,31 @@ def conditionalDataChecks(homeTeam, awayTeam, tipper1, tipper2, tipper1Link, tip
         tipLoser = awayTipper
         tipWinnerLink = homeTipperLink
         tipLoserLink = awayTipperLink
-    else:
+    elif awayTeam in getPlayerTeamInSeasonFromBballRefLink(possessionGainingPlayerLink, season):
         possessionGainingTeam = awayTeam
         possessionLosingTeam = homeTeam
         tipWinner = awayTipper
         tipLoser = homeTipper
         tipWinnerLink = awayTipperLink
         tipLoserLink = homeTipperLink
+    else:
+        raise ValueError("Bad Game Data or Player DB")
 
     if homeTeam in getPlayerTeamInSeasonFromBballRefLink(firstScoringPlayerLink, season):
         firstScoringTeam = homeTeam
         scoredUponTeam = awayTeam
-    else:
+    elif awayTeam in getPlayerTeamInSeasonFromBballRefLink(firstScoringPlayerLink, season):
         firstScoringTeam = awayTeam
         scoredUponTeam = homeTeam
+    else:
+        raise ValueError("Bad Game Data or Player DB")
 
     if possessionGainingTeam == firstScoringTeam:
         tipWinScore = 1
-    else:
+    elif possessionLosingTeam == firstScoringTeam:
         tipWinScore = 0
+    else:
+        raise ValueError("Bad Game Data or Player DB")
 
     return homeTipper, awayTipper, homeTipperLink, awayTipperLink, possessionGainingTeam, possessionLosingTeam, tipWinner,\
            tipLoser, tipWinnerLink, tipLoserLink, firstScoringTeam, scoredUponTeam, tipWinScore
@@ -182,7 +191,7 @@ def getOffDefRatings(season=None, savePath=None):
 
     return seasonDict
 
-def updateCurrentSeason(pathToData=ENVIRONMENT.CURRENT_SEASON_CSV, currentSeason=2021):
+def updateCurrentSeasonRawGameData(pathToData=ENVIRONMENT.CURRENT_SEASON_CSV, currentSeason=2021):
     df = pd.read_csv(pathToData)
     appendFile = open(pathToData, 'a')
     indexAfterLastGame = len(df)
@@ -203,8 +212,9 @@ def updateCurrentSeason(pathToData=ENVIRONMENT.CURRENT_SEASON_CSV, currentSeason
             except:
                 break
 
-def oneSeasonFromScratch(season, path):
+def oneSeasonFromScratch(season):
     temp = pd.DataFrame()
+    path =ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(str(season))
     temp.to_csv(path)
     dFile = open(path, 'w')
 

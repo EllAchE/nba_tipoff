@@ -27,8 +27,6 @@ Percentage of first shots made by player overall
 Percentage of first shots taken by particular player
 
 '''
-# todo get historical starting lineups
-# todo split summary data for 2nd, 3rd and 4th quarters
 import json
 
 import requests
@@ -39,7 +37,7 @@ import pandas as pd
 import ENVIRONMENT
 from src.database.database_access import findPlayerFullFromLastGivenPossibleFullNames, getGameIdFromBballRef, \
     getTeamDictionaryFromShortCode, getAllGamesForTeam, getBballRefPlayerName, \
-    getGameIdByTeamAndDateFromStaticData, getUniversalPlayerName, getUniversalShortCode
+    getGameIdByTeamAndDateFromStaticData, getUniversalPlayerName, getUniversalTeamShortCode
 from src.utils import sleepChecker
 
 # backlogTodo different sites may only look at first field goal (NOT FREE THROW) which makes for a weaker correlation
@@ -202,7 +200,6 @@ def saveAllHistoricalStarters():
                 print('some error occured, values will stay as None')
             i += 1
         allGamesDf.to_csv(path, index=False)
-        # todo test this method
 
 def getSingleGameStarters(gameId):
     # https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/gamerotation.md
@@ -229,8 +226,8 @@ def getSingleGameStarters(gameId):
         awayTeamObj = response['resultSets'][1]
         homeTeamObj = response['resultSets'][0]
 
-    homeTeam = getUniversalShortCode(homeTeamObj['rowSet'][0][2] + ' ' + homeTeamObj['rowSet'][0][3])
-    awayTeam = getUniversalShortCode(awayTeamObj['rowSet'][0][2] + ' ' + awayTeamObj['rowSet'][0][3])
+    homeTeam = getUniversalTeamShortCode(homeTeamObj['rowSet'][0][2] + ' ' + homeTeamObj['rowSet'][0][3])
+    awayTeam = getUniversalTeamShortCode(awayTeamObj['rowSet'][0][2] + ' ' + awayTeamObj['rowSet'][0][3])
 
     for playerInOut in homeTeamObj['rowSet']:
         if playerInOut[-5] == 0.0:
@@ -249,7 +246,6 @@ def getSingleGameStarters(gameId):
         awayStarters.append(item)
 
     return homeTeam, homeStarters, awayTeam, awayStarters
-
 
 def getGamePlayersFromId(id):
     playerSet = set()
@@ -318,7 +314,6 @@ def parseDataFromTipoffLine(homeShort, awayShort, content, type, isHome, season)
     tipLoserLink = None
     tipWinnerlink = None
     tipWinnerScores = None
-
 
 def getTipoffLineFromBballRefId(bballRef: str):
     gameId = getGameIdFromBballRef(bballRef)
@@ -417,4 +412,4 @@ def getAllFirstPossessionStatisticsIncrementally(season):
 #     PERIOD_BEGIN = 12
 #     PERIOD_END = 13
 
-# todo VICTOR use this work (specifically the getTipoffLine) to fill in the blanks on the missing games in the csv
+# todo fill in the blanks on the missing games in the csv

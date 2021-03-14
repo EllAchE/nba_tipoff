@@ -1,0 +1,3 @@
+from src.live_data.live_odds_retrieval import getAllExpectedStarters
+
+getAllExpectedStarters()

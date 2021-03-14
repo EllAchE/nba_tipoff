@@ -6,7 +6,7 @@ from src.classes.FanduelGameOdds import FanduelGameOdds
 from src.classes.GameOdds import GameOdds
 from src.database.database_access import getUniversalPlayerName
 from src.live_data.live_odds_retrieval import draftKingsOdds, mgmOdds, bovadaOdds, pointsBetOdds, unibetOdds, \
-    barstoolOdds, fanduelOdds
+    barstoolOdds, fanduelOddsToday, fanduelOddsTomorrow
 from src.odds_and_statistics.odds_calculator import americanToDecimal
 
 
@@ -16,6 +16,15 @@ def makeTeamPlayerLinePairs(playerLines, teamLines):
 def addTeamOnlyToOddsDict(oddsDict, rawOddsDict):
     oddsDict['teamOdds']['homeTeamFirstQuarterOdds'] = rawOddsDict['homeTeamFirstQuarterOdds']
     oddsDict['teamOdds']['awayTeamFirstQuarterOdds'] = rawOddsDict['awayTeamFirstQuarterOdds']
+    try:
+        oddsDict['teamOdds']["homeTeamSecondQuarterOdds"] = rawOddsDict["homeTeamSecondQuarterOdds"]
+        oddsDict['teamOdds']["awayTeamSecondQuarterOdds"] = rawOddsDict["awayTeamSecondQuarterOdds"]
+        oddsDict['teamOdds']["homeTeamThirdQuarterOdds"] = rawOddsDict["homeTeamThirdQuarterOdds"]
+        oddsDict['teamOdds']["awayTeamThirdQuarterOdds"] = rawOddsDict["awayTeamThirdQuarterOdds"]
+        oddsDict['teamOdds']["homeTeamFourthQuarterOdds"] = rawOddsDict["homeTeamFourthQuarterOdds"]
+        oddsDict['teamOdds']["awayTeamFourthQuarterOdds"] = rawOddsDict["awayTeamFourthQuarterOdds"]
+    except:
+        pass
     return oddsDict
 
 def addPlayerOnlyOddsDict(oddsDict, rawOddsDict):
@@ -52,88 +61,108 @@ def createAllOddsDictForExchange(allGameDictsFromExchange, playerOdds=True, team
 def createOptimalPlayerSpreadObject(gameOddsObjList):
     optimalSpreadsList = list()
     emptyOddsDict = createEmptyOddsDict()
-    gameCodeSet = set()
+    gameCodeDict = {}
+
     bestPlayerOddsDict = {}
     for game in gameOddsObjList:
         if game.isTeamOnly:
             continue
-        gameCodeSet.add({"code": game.gameCode, "home": game.home, "away": game.away})
+        gameCodeDict[game.gameCode] = {"home": game.home, "away": game.away}
 
     for game in gameOddsObjList:
-        for line in (game.homePlayerOddsList + game.awayPlayerOddsList):
-            universalName = getUniversalPlayerName(line['player'])
-            try:
-                if americanToDecimal(bestPlayerOddsDict[universalName]['odds']) < americanToDecimal(line['odds']):
-                    bestPlayerOddsDict[universalName]['odds'] = line['odds']
+        try:
+            for line in (game.homePlayerOddsList + game.awayPlayerOddsList):
+                universalName = getUniversalPlayerName(line['player'])
+                try:
+                    if americanToDecimal(bestPlayerOddsDict[universalName]['odds']) < americanToDecimal(line['odds']):
+                        bestPlayerOddsDict[universalName]['odds'] = line['odds']
+                        bestPlayerOddsDict[universalName]['exchange'] = game.exchange
+                except: # backlogtodo shouldn;t use except to see if key is populated
+                    bestPlayerOddsDict[universalName] = line
                     bestPlayerOddsDict[universalName]['exchange'] = game.exchange
-            except: # backlogtodo shouldn;t use except to see if key is populated
-                bestPlayerOddsDict[universalName] = line
-                bestPlayerOddsDict[universalName]['exchange'] = game.exchange
+        except:
+            print(game.gameCode, 'from exchange', game.exchange, 'Not used in optimized player spread. It was misformatted/may have lacked odds.')
 
-    for gameCodeAndTeamNames in gameCodeSet:
+    for gameCodeKey in gameCodeDict:
         tempOddsDict = emptyOddsDict
-        tempOddsDict['gameCode'] = gameCodeAndTeamNames['code']
-        tempOddsDict['home'] = gameCodeAndTeamNames['home']
-        tempOddsDict['away'] = gameCodeAndTeamNames['away']
+        tempOddsDict['gameCode'] = gameCodeKey
+        tempOddsDict['home'] = gameCodeDict[gameCodeKey]['home']
+        tempOddsDict['away'] = gameCodeDict[gameCodeKey]['away']
         tempOddsDict['exchange'] = "OPTIMAL PLAYER SPREAD"
         for key in bestPlayerOddsDict.keys():
             if bestPlayerOddsDict[key]['team'] == tempOddsDict['home']:
-                tempOddsDict['playerOdds']['homePlayerScoreFirstOdds'].append(bestPlayerOddsDict[key])
+                tempOddsDict['playerOdds']['homePlayerFirstQuarterOdds'].append(bestPlayerOddsDict[key])
             elif bestPlayerOddsDict[key]['team'] == tempOddsDict['away']:
-                tempOddsDict['playerOdds']['awayPlayerScoreFirstOdds'].append(bestPlayerOddsDict[key])
+                tempOddsDict['playerOdds']['awayPlayerFirstQuarterOdds'].append(bestPlayerOddsDict[key])
         optimalSpreadsList.append(GameOdds(tempOddsDict, playersOnly=True))
 
     return optimalSpreadsList
 
 
-def createAllOddsDict(getDk=False, getFanduel=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False):
+def createAllOddsDict(getDk=False, getFanduelToday=False, getFanduelTomorrow=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False, includeOptimalPlayerSpread=False):
     allGameObjList = list()
 
-    if getFanduel:
-        dkOddsDicts = createAllOddsDictForExchange(fanduelOdds())
-        for rawOddsDict in dkOddsDicts:
+    if getFanduelToday:
+        fanduelOddsDicts = createAllOddsDictForExchange(fanduelOddsToday())
+        for rawOddsDict in fanduelOddsDicts:
             gameOddsObj = FanduelGameOdds(rawOddsDict)
             allGameObjList.append(gameOddsObj)
+        print('fetched fanduel odds (For Today)', '\n')
+
+    if getFanduelTomorrow:
+        fanduelOddsDicts = createAllOddsDictForExchange(fanduelOddsTomorrow())
+        for rawOddsDict in fanduelOddsDicts:
+            gameOddsObj = FanduelGameOdds(rawOddsDict)
+            allGameObjList.append(gameOddsObj)
+        print('fetched fanduel odds (For Tomorrow)', '\n')
 
     if getDk:
         dkOddsDicts = createAllOddsDictForExchange(draftKingsOdds())
         for rawOddsDict in dkOddsDicts:
             gameOddsObj = GameOdds(rawOddsDict)
             allGameObjList.append(gameOddsObj)
+        print('fetched drafkings odds', '\n')
 
     if getMgm:
         mgmOddsDicts = createAllOddsDictForExchange(mgmOdds(), playerOdds=False)
         for rawOddsDict in mgmOddsDicts:
             gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
             allGameObjList.append(gameOddsObj)
+        print('fetched mgm odds', '\n')
 
     if getBovada:
         bovadaDicts = createAllOddsDictForExchange(bovadaOdds(), playerOdds=False)
         for rawOddsDict in bovadaDicts:
             gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
             allGameObjList.append(gameOddsObj)
+        print('fetched bovada odds', '\n')
 
     if getPointsBet:
         mgmOddsDicts = createAllOddsDictForExchange(pointsBetOdds(), teamOdds=False)
         for rawOddsDict in mgmOddsDicts:
             gameOddsObj = GameOdds(rawOddsDict, playersOnly=True)
             allGameObjList.append(gameOddsObj)
+        print('fetched pointsbet odds', '\n')
 
     if getUnibet:
         unibetOddsDicts = createAllOddsDictForExchange(unibetOdds(), teamOdds=False)
         for rawOddsDict in unibetOddsDicts:
             gameOddsObj = GameOdds(rawOddsDict, playersOnly=True)
             allGameObjList.append(gameOddsObj)
+        print('fetched unibet odds', '\n')
 
     if getBarstool:
         barstoolOddsDicts = createAllOddsDictForExchange(barstoolOdds(), teamOdds=False)
         for rawOddsDict in barstoolOddsDicts:
             gameOddsObj = GameOdds(rawOddsDict, playersOnly=True)
             allGameObjList.append(gameOddsObj)
+        print('fetched barstool odds', '\n')
 
-    optimalPlayerSpreads = createOptimalPlayerSpreadObject(allGameObjList)
-    for obj in optimalPlayerSpreads:
-        allGameObjList.append(obj)
+    if includeOptimalPlayerSpread:
+        optimalPlayerSpreads = createOptimalPlayerSpreadObject(allGameObjList)
+        for obj in optimalPlayerSpreads:
+            allGameObjList.append(obj)
+        print('got optimized player spread', '\n')
 
     return allGameObjList # backlogtodo this dict can be saved for reference for backtesting
 
@@ -149,6 +178,12 @@ def createEmptyOddsDict():
       "teamOdds": {
         "homeTeamFirstQuarterOdds": None,
         "awayTeamFirstQuarterOdds": None,
+        "homeTeamSecondQuarterOdds": None,
+        "awayTeamSecondQuarterOdds": None,
+        "homeTeamThirdQuarterOdds": None,
+        "awayTeamThirdQuarterOdds": None,
+        "homeTeamFourthQuarterOdds": None,
+        "awayTeamFourthQuarterOdds": None,
       },
         "playerOdds": {
         "isFirstFieldGoal": False,

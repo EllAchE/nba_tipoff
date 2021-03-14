@@ -1,60 +1,65 @@
 # backlogtodo find out when the best time for placing bets on various sites is (i.e. when do odds move)
 # backlogtodo next prop - who scores last nba, race to 5 points
-# todo compare top rank vs. bottom rank losses
-# backlogtodo add exchange names to the jsonpickle file name
+# backlogtodo compare top rank vs. bottom rank losses
+# backlogtodo reverse engineer odds from site odds and use that to find mismatches in correlation i.e. last team to score
 # backlogtodo convert from printing desired bets to putting them into a json/csv
-# backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season
+# backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season. This may be solved by just taking the last index of team list, unless
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
-from src.database.database_creation import getAllGameData
-from src.historical_data.historical_data_retrieval import updateCurrentSeason
-from src.historical_data.nba_public import getAllFirstPossessionStatisticsIncrementally, \
+# backlogtodo look into multithreading for the multiple algorithm analysis (run the three concurrently)
+# todo TEST optimized player spreads across exchanges (i.e. look at first point on fd, bovada and dk; Need to consider first field goal as well
+# todo add player start percentage to 1st shot summary
+# todo replace values passed in the may args algos with ENV vars
+# backlogtodo expand to NCAA which is offered on betmgm
+# backlogtodo expand to other countries which are offered on betmgm
+# backlogtodo write checker for updating all data that may need to be updated
+# backlogtodo write checker for updating only game to game data (not rare breaking things like new players/player team pairs
+# backlogtodo performance improvements, binary search of player db and smaller file size
+# backlogtodo performance improvements, use in and index[itemIWant] for C native code performance improvements in numpy
+# backlogtodo update print statements to show more and take up less space
+# backlogtodo combine to update all relevant game dictionaries from last game after fetching new game details
+# More books https://bookies.com/pennsylvania
+import ENVIRONMENT
+from src.database.database_creation import getAllGameData, createPlayerEloDictionary, \
+    createPlayerGlickoDictionary, saveActivePlayersTeams, createPlayerNameRelationship
+from src.historical_data.historical_data_retrieval import updateCurrentSeasonRawGameData, oneSeasonFromScratch
+from src.historical_data.nba_play_by_play_methods import getAllFirstPossessionStatisticsIncrementally, \
     splitAllSeasonsFirstShotDataToMultipleFiles, getSingleGameStarters, saveAllHistoricalStarters
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
-from src.odds_and_statistics.prediction_enhancements import getFirstShotStats, getCurrentSeasonUsageRate
-from src.trueskill.trueskill_calc import updateSkillDictionaryFromZero
+from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalStats, getCurrentSeasonUsageRate
+from src.rating_algorithms.elo_data_processing import runEloForAllSeasons, calculateEloDictionaryFromZero
+from src.rating_algorithms.glicko_data_processing import runGlickoForAllSeasons, calculateGlickoDictionaryFromZero
+from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero, updateTrueSkillDictionaryFromLastGame
 
-# getAllGameData()
-
-# splitAllSeasonsFirstShotDataToMultipleFiles()
+# todo implement minimum appearance threshold for summary statistics
+# backlogtodo import decimal module or similar https://docs.python.org/3/library/decimal.html
+# todo look for when there is a big gap between the exchanges (not necessarily arbitrage) and just determine which is worse at their job. Take one side, not both, of the bets.
+# backlogtodo change this to update just the current season
 
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
+# getAllGameData()
+# updateCurrentSeasonRawGameData()
+# updateTrueSkillDictionaryFromLastGame()
+# oneSeasonFromScratch(2021)
 
-# todo TEST optimized player spreads across exchanges (i.e. look at first point on fd, bovada and dk; Need to consider first field goal as well
-# todo add player start percentage to 1st shot summary (retrieve game rotation stats from NBA API)
-# todo fix fanduel when there are games to fetch data from
-# todo performance improvements, binary search of player db
-# todo performance improvements, backwards count and metadata sto
-# todo use environment rather than hardcoded 2021 for current season
-# todo use environment for storing all paths
-# todo wrap post formatted paths in Path object to be functional for windows (if needed)
+# todo look at first 100 and last 100 games (or similar) of player performance vs. overall
 
-# getCurrentSeasonUsageRate()
+# calculateGlickoDictionaryFromZero()
 
-# updateCurrentSeason()
-updateSkillDictionaryFromZero()
-
-# getFirstShotStats(2021)
-#
 # getAllExpectedStarters()
 
-# getDailyOdds('BOS', 'TOR', '-111')
-# getDailyOdds('PHX', 'GSW', '+116')
-# getDailyOdds('IND', 'DEN', '-111')
-# getDailyOdds('LAC', 'WAS', '+100')
-
-# getAllOddsAndDisplayByEv(getDk=True, getBovada=True, getMgm=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)
-
-#backlogtodo see about optimizing this fetching
-
-# test_bad_data_games = [['199711110MIN', 'MIN', 'SAS'],
-#                        ['199711160SEA', 'SEA', 'MIL'],
-#                        ['199711190LAL', 'LAL', 'MIN'],
-#                        ['201911200TOR', 'TOR', 'ORL'],
-#                        ['201911260DAL', 'DAL', 'LAC']] # Last one is a violation, others are misformatted
-# '199711210SEA', '199711240TOR', '199711270IND', '201911040PHO',
-
+getAllOddsAndDisplayByEv(getFanduelToday=True, getDk=True, getBovada=True, getMgm=True, includeOptimalPlayerSpread=True, getPointsBet=True, getUnibet=True, getBarstool=True)
+# getAllOddsAndDisplayByEv(getFanduelToday=True, includeOptimalPlayerSpread=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)
+# getAllOddsAndDisplayByEv(getFanduelTomorrow=True, getMgm=True)
+# getAllOddsAndDisplayByEv(getMgm=True)
+# getAllOddsAndDisplayByEv(getDk=True)#, getBovada=True)
+# getAllOddsAndDisplayByEv(getBovada=True, includeOptimalPlayerSpread=True)
+# getAllOddsAndDisplayByEv(getUnibet=True)
+# getAllOddsAndDisplayByEv(getPointsBet=True)
+# getAllOddsAndDisplayByEv(getBarstool=True)
+#
+# getDailyOdds('NOP', 'LAC', '-102')
 '''
 Existing apis etc.:
 
@@ -84,13 +89,12 @@ https://www.betburger.com/?sure_bets=1160
 https://punter2pro.com/best-sports-arbing-software/
 '''
 
-# backlogtodo make data overwriting transactional, i.e. locally saved csv could have all or no rows updated, no overwrites and partial
 # backlogtodo set up backtester with assumed odds lines, i.e. assuming we are always offered odds on a team of -110, how would the strat perform? (the default should -110)
-# backlogtodo OVERKILL set up bankroll tracker (with stored values on each site and overall).
+# backlogtodo set up backtester using pickled GameOdds objects
 # backogtodo test if adding in the start of overtime tip performance enhances predictions (may be fatigue facotr/not as good)
 # backlogtodo account for overrepresentation of playoff teams
 
 # MISC
-# todo investigate adjsuted starting rankings for low appearance playersy, i.e. if we can assume certain/lower mu values for a class of player we can improve our predictions
+# todo investigate adjsuted starting rankings for low appearance players, i.e. if we can assume certain/lower mu values for a class of player we can improve our predictions
+# todo investigate adjusted prediction odds strength for low appearance players
 # backlogtodo (OVERKILL) have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
-# backlogtodo see if back to back against same team matters

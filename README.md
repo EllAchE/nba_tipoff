@@ -81,3 +81,6 @@ The "Epics" that are missing
 
 # Picking up from Backlog
 Just search for a todo, they will be in the appropriate file and ideally verbose enough to follow, but ask Logan if not. Most immediate prioirities are live odds fetching and day-of confirmation
+
+# NCAA
+Given my recent discovery that NCAA data could be used for betmgm, I found a great repo with data here: https://github.com/lbenz730/ncaahoopR_data. The dataset is too large for it to be worth adding to githug so save it locally and move it to this path - Data/ncaahoopR_data-master/* if you are going to run analysis on the raw data.

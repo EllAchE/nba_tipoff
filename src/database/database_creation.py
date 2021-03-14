@@ -18,21 +18,50 @@ def concatCsv(save_path: str):
     concattedCsv = pd.concat([pd.read_csv(f) for f in fNames])
     concattedCsv.to_csv(save_path, index=False, encoding='utf-8-sig')
 
-def resetPredictionSummaries(j=ENVIRONMENT.PREDICTION_SUMMARIES_PATH):
-    with open(j) as json_file:
-        d = json.load(json_file)
+def resetAndInitializePredictionSummaryDict(histogramBinDivisions, path):
+    intervalList = list()
+    i = 0
+    lstLen = len(histogramBinDivisions)
 
-    d['winningBets'] = 0
-    d['losingBets'] = 0
-    d['correctTipoffPredictions'] = 0
-    d['incorrectTipoffPredictions'] = 0
+    while i < lstLen - 1:
+        subDsd = {
+            "totalMatchups": 0,
+            "tipoffWinsByHigher": 0,
+            "tipoffLossesByHigher": 0,
+            "tipWinnerScores": 0,
+            "winPercentage": 0,
+            "expectedTipWinsFromAlgo": 0,
+            "higherOddsScoresFirst": 0,
+            "winningBets": 0,
+            "losingBets": 0,
+        }
+        intervalList.append({
+            "start": histogramBinDivisions[i],
+            "end": histogramBinDivisions[i + 1],
+            "predictionSummaries": subDsd
+        })
+        i += 1
+    dsd = {
+        "winningBets": 0,
+        "losingBets": 0,
+        "totalBets": 0,
+        "correctTipoffPredictions": 0,
+        "incorrectTipoffPredictions": 0,
+        "tipWinnerScores": 0,
+        "seasons": None,
+        "winPercentage": 0,
+        "correctTipoffPredictionPercentage": 0,
+        "expectedTipWinsFromAlgo": 0,
+        "predictionAverage": 0,
+        "histogramDivisions": intervalList,
+    }
 
-    with open(j, 'w') as jsonWFile:
-        json.dump(d, jsonWFile, indent=4)
+    with open(path, 'w') as json_file:
+        json.dump(dsd, json_file, indent=4)
 
-    print('reset prediction summaries')
+    return dsd
 
-def createPlayerSkillDictionary():
+def createPlayerEloDictionary(path=ENVIRONMENT.PLAYER_ELO_DICT_PATH):
     with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as playerTeamPairsJson:
         ptp = json.load(playerTeamPairsJson)
 
@@ -44,98 +73,117 @@ def createPlayerSkillDictionary():
                 playerCodes.add(player)
 
         for code in playerCodes:
-            playerSkillDict[code] = {'mu': 25, 'sigma': 25/3, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
+            playerSkillDict[code] = {'elo': ENVIRONMENT.BASE_ELO, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
 
-    with open(ENVIRONMENT.PLAYER_SKILL_DICT_PATH, 'w') as psd:
+    with open(path, 'w') as psd:
         json.dump(playerSkillDict, psd, indent=4)
-        print()
+
+def createPlayerGlickoDictionary(path=ENVIRONMENT.PLAYER_GLICKO_DICT_PATH):
+    with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as playerTeamPairsJson:
+        ptp = json.load(playerTeamPairsJson)
+
+        playerCodes = set()
+        playerSkillDict = {}
+
+        for season in ptp.keys():
+            for player in ptp[season].keys():
+                playerCodes.add(player)
+
+        for code in playerCodes:
+            playerSkillDict[code] = {'mu': ENVIRONMENT.BASE_GLICKO_MU, 'sigma': ENVIRONMENT.BASE_GLICKO_SIGMA, 'phi': ENVIRONMENT.BASE_GLICKO_PHI, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
+
+    with open(path, 'w') as psd:
+        json.dump(playerSkillDict, psd, indent=4)
+
+def createPlayerTrueSkillDictionary(path=ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH):
+    with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as playerTeamPairsJson:
+        ptp = json.load(playerTeamPairsJson)
+
+        playerCodes = set()
+        playerSkillDict = {}
+
+        for season in ptp.keys():
+            for player in ptp[season].keys():
+                playerCodes.add(player)
+
+        for code in playerCodes:
+            playerSkillDict[code] = {'mu': ENVIRONMENT.BASE_TS_MU, 'sigma': ENVIRONMENT.BASE_TS_SIGMA, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
+
+    with open(path, 'w') as psd:
+        json.dump(playerSkillDict, psd, indent=4)
 
 def saveActivePlayersTeams(start_season: int):
     # https://www.basketball-reference.com/leagues/NBA_2021_per_game.html
     seasonsList = list()
-    seasons = {}
-
     while start_season < 2022:
         seasonsList.append(str(start_season))
         start_season += 1
 
     for season in seasonsList:
-        season = str(season)
-        seasons[season] = {}
-        url = 'https://www.basketball-reference.com/leagues/NBA_{}_per_game.html'.format(season)
+        singleSeasonPlayerTeamPairs(season)
+    print('saved seasons Data')
 
-        soup, statusCode = getSoupFromUrl(url, returnStatus=True)
-        print("GET request for season", season, "players list returned status", statusCode)
+def singleSeasonPlayerTeamPairs(season):
+    with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as json_file:
+        seasons = json.load(json_file)
 
-        noTradePlayerTags = soup.find_all('tr', class_="full_table")
-        tradePlayerTags = soup.find_all('tr', class_="italic_text partial_table")
-        noTradeSet = set()
+    season = str(season)
+    seasons[season] = {}
+    url = 'https://www.basketball-reference.com/leagues/NBA_{}_per_game.html'.format(season)
+    soup, statusCode = getSoupFromUrl(url, returnStatus=True)
+    print("GET request for season", season, "players list returned status", statusCode)
 
-        for tag in tradePlayerTags:
-            playerNameTag = tag.select('td[data-stat="player"]')[0]
-            playerFullName = playerNameTag.contents[0].contents[0]
-            playerUniversalName = getUniversalPlayerName(playerFullName)
+    noTradePlayerTags = soup.find_all('tr', class_="full_table")
+    tradePlayerTags = soup.find_all('tr', class_="italic_text partial_table")
+    noTradeSet = set()
+    for tag in tradePlayerTags:
+        playerNameTag = tag.select('td[data-stat="player"]')[0]
+        playerFullName = playerNameTag.contents[0].contents[0]
+        playerUniversalName = getUniversalPlayerName(playerFullName)
 
-            tag = str(tag)
-            playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
-            playerTeam = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
-            if playerCode in noTradeSet:
-                seasons[season][playerUniversalName]['possibleTeams'] += [playerTeam]
-                seasons[season][playerUniversalName]['currentTeam'] = playerTeam
-                seasons[season][playerCode]['possibleTeams'] += [playerTeam]
-                seasons[season][playerCode]['currentTeam'] = playerTeam
-            else:
-                seasons[season][playerUniversalName] = {"possibleTeams": [playerTeam]}
-                seasons[season][playerCode] = {"possibleTeams": [playerTeam]}
-            noTradeSet.add(playerCode)
-        for tag in noTradePlayerTags:
-            playerNameTag = tag.select('td[data-stat="player"]')[0]
-            playerFullName = playerNameTag.contents[0].contents[0]
-            playerUniversalName = getUniversalPlayerName(playerFullName)
-
-            tag = str(tag)
-            playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
-            if playerCode in noTradeSet:
-                continue # skip the trade_players who break the regex
-            playerTeam = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
-            seasons[season][playerUniversalName] = {'possibleTeams': [playerTeam]}
+        tag = str(tag)
+        playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
+        playerTeam = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
+        if playerCode in noTradeSet:
+            seasons[season][playerUniversalName]['possibleTeams'] += [playerTeam]
             seasons[season][playerUniversalName]['currentTeam'] = playerTeam
-            seasons[season][playerCode] = {'possibleTeams': [playerTeam]}
+            seasons[season][playerCode]['possibleTeams'] += [playerTeam]
             seasons[season][playerCode]['currentTeam'] = playerTeam
+        else:
+            seasons[season][playerUniversalName] = {"possibleTeams": [playerTeam]}
+            seasons[season][playerCode] = {"possibleTeams": [playerTeam]}
+        noTradeSet.add(playerCode)
+    for tag in noTradePlayerTags:
+        playerNameTag = tag.select('td[data-stat="player"]')[0]
+        playerFullName = playerNameTag.contents[0].contents[0]
+        playerUniversalName = getUniversalPlayerName(playerFullName)
+
+        tag = str(tag)
+        playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
+        if playerCode in noTradeSet:
+            continue  # skip the trade_players who break the regex
+        playerTeam = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
+        seasons[season][playerUniversalName] = {'possibleTeams': [playerTeam]}
+        seasons[season][playerUniversalName]['currentTeam'] = playerTeam
+        seasons[season][playerCode] = {'possibleTeams': [playerTeam]}
+        seasons[season][playerCode]['currentTeam'] = playerTeam
 
     with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH, 'w') as json_file:
         json.dump(seasons, json_file, indent=4)
 
-    print('saved seasons Data')
 
+# backlogtodo edit the methods inside here to use append
+def updateCurrentSeasonPlayerData():
+    createPlayerNameRelationship(ENVIRONMENT.CURRENT_SEASON)
+    saveActivePlayersTeams(ENVIRONMENT.CURRENT_SEASON)
 
 def createPlayerNameRelationship(startSeason: int=1998):
     activePlayers = []
+    addedPlayerSet = set()
 
     urlStub = 'https://www.basketball-reference.com/leagues/NBA_{}_per_game.html'
     while startSeason < 2022:
-        url = urlStub.format(str(startSeason))
-        soup, statusCode = getSoupFromUrl(url, returnStatus=True)
-        print("GET request for", startSeason, "players list returned status", statusCode)
-        allPlayerTags = soup.find_all('tr', class_="full_table")
-
-        for tag in allPlayerTags:
-            tagStr = str(tag)
-            playerNameTag = tag.select('td[data-stat="player"]')[0]
-            playerFullName = playerNameTag.contents[0].contents[0]
-            playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tagStr).group(0)
-            playerNameWithComma = re.search(r'(?<=csk=")(.*?)(?=")', str(playerNameTag)).group(0)
-            universalName = unicodedata.normalize('NFD', playerFullName.replace(".", "")).encode('ascii', 'ignore').decode("utf-8")
-            universalName = removeAllNonLettersAndLowercase(universalName)
-
-            activePlayers.append({
-                "bballRefCode": playerCode,
-                "fullName": playerFullName,
-                "nameWithComma": playerNameWithComma,
-                "universalName": universalName,
-                "alternateNames": []
-                # "playerNameTag": tagStr
-            })
+        activePlayers, addedPlayerSet = singlePlayerNameRelationshipRequest(activePlayers, startSeason, urlStub, addedPlayerSet)
         startSeason += 1
 
     for playerDict in activePlayers:
@@ -149,11 +197,72 @@ def createPlayerNameRelationship(startSeason: int=1998):
             playerDict['alternateNames'] += ["P.J. Washington Jr."]
         elif playerDict['fullName'] == "Lonnie Walker":
             playerDict['alternateNames'] += ["Lonnie Walker IV"]
+        elif playerDict['fullName'] == "Dennis Smith Jr.":
+            playerDict['alternateNames'] += ["Dennis Smith"]
+        elif playerDict['fullName'] == 'Wendell Carter Jr.':
+            playerDict['alternateNames'] += ['Wendell Carter']
+        elif playerDict['fullName'] == 'Marvin Bagley III':
+            playerDict['alternateNames'] += ["Marvin Bagley"]
+        elif playerDict['fullName'] == 'Moritz Wagner':
+            playerDict['alternateNames'] += ["Mo Wagner"]
+        elif playerDict['fullName'] == "Larry Nance Jnr":
+            playerDict['alternateNames'] += ["Larry Nance"]
+            playerDict['alternateNames'] += ["Larry Nance Jr."]
+        elif playerDict['fullName'] == "Larry Nance Jr.":
+            playerDict['alternateNames'] += ["Larry Nance"]
+            playerDict['alternateNames'] += ["Larry Nance Jnr"]
 
     with open(ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH, 'w') as json_file:
         json.dump(activePlayers, json_file, indent=4)
 
     print('saved player DB Data')
+
+def singlePlayerNameRelationshipRequest(activePlayers, startSeason, urlStub, addedPlayerSet):
+    url = urlStub.format(str(startSeason))
+    soup, statusCode = getSoupFromUrl(url, returnStatus=True)
+    print("GET request for", startSeason, "players list returned status", statusCode)
+    allPlayerTags = soup.find_all('tr', class_="full_table")
+    for tag in allPlayerTags:
+        tagStr = str(tag)
+        playerNameTag = tag.select('td[data-stat="player"]')[0]
+        playerFullName = playerNameTag.contents[0].contents[0]
+        playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tagStr).group(0)
+        if playerCode in addedPlayerSet:
+            continue
+        else:
+            addedPlayerSet.add(playerCode)
+
+        playerNameWithComma = re.search(r'(?<=csk=")(.*?)(?=")', str(playerNameTag)).group(0)
+        universalName = unicodedata.normalize('NFD', playerFullName.replace(".", "")).encode('ascii', 'ignore').decode(
+            "utf-8")
+        universalName = removeAllNonLettersAndLowercase(universalName)
+
+        activePlayers.append({
+            "bballRefCode": playerCode,
+            "fullName": playerFullName,
+            "nameWithComma": playerNameWithComma,
+            "universalName": universalName,
+            "alternateNames": []
+            # "playerNameTag": tagStr
+        })
+    return activePlayers, addedPlayerSet
+
+
+# backlogtodo implement binary search
+def sortPlayerNameRelationships():
+    with open(ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH) as pNameRelationships:
+        pNameList = json.load(pNameRelationships)
+    # https://docs.python.org/3/library/bisect.html
+
+    def sortByUniversalName(x):
+        return x['universalName']
+
+    pNameList.sort(key=sortByUniversalName)
+
+    with open(ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH) as writeFile:
+        json.dump(pNameList, ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH)
+
+    print("Sorted player name relationships")
 
 def getAllGameData():
     shortCodes = ENVIRONMENT.CURRENT_TEAMS

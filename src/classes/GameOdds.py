@@ -4,6 +4,7 @@ from src.live_data.live_odds_retrieval import getExpectedTipper
 
 class GameOdds:
     def __init__(self, gameDict, teamOnly=False, playersOnly=False):
+        self.awayPlayerFloorOdds = self.homePlayerFloorOdds = self.awayPlayerFloorOdds = self.homePlayerFloorOdds = self.awayPlayerFloorOdds = self.kellyBet = self.homeTeamFirstQuarterOdds = self.awayTeamFirstQuarterOdds = None
         self.home = gameDict['home']
         self.away = gameDict['away']
         self.gameDatetime = gameDict['gameDatetime']
@@ -15,8 +16,8 @@ class GameOdds:
         self.gameCode = self.home + " @ " + self.away + " " + self.fetchedDatetime[:10]
 
         if not playersOnly:
-            self.homeTeamFirstQuarterOdds = str(gameDict['teamOdds']['homeTeamFirstQuarterOdds'])
-            self.awayTeamFirsQuarterOdds = str(gameDict['teamOdds']['awayTeamFirstQuarterOdds'])
+            self.homeTeamFirstQuarterOdds = str(gameDict['teamOdds']['homeTeamFirstQuarterOdds']) if gameDict['teamOdds']['homeTeamFirstQuarterOdds'] is not None else None
+            self.awayTeamFirstQuarterOdds = str(gameDict['teamOdds']['awayTeamFirstQuarterOdds']) if gameDict['teamOdds']['awayTeamFirstQuarterOdds'] is not None else None
         if not teamOnly:
             self.homePlayerOddsList = gameDict['playerOdds']['homePlayerFirstQuarterOdds']
             self.awayPlayerOddsList = gameDict['playerOdds']['awayPlayerFirstQuarterOdds']
@@ -24,13 +25,11 @@ class GameOdds:
         if teamOnly and playersOnly:
             raise ValueError("need at least team or player")
 
-        self.homePlayerFloorOdds = None
-        self.awayPlayerFloorOdds = None
         if not teamOnly:
             if(len(self.homePlayerOddsList) < 5 or len(self.homePlayerOddsList) > 6):
-                print("fewer than five players for game", self.gameCode, 'setting odds to -200')
-                self.homePlayerFloorOdds = '-200'
-                self.awayPlayerFloorOdds = '-200'
+                print("fewer than five home players for game", self.gameCode, 'odds will be None')
+            elif(len(self.awayPlayerOddsList) < 5 or len(self.awayPlayerOddsList) > 6):
+                print("fewer than five home players for game", self.gameCode, 'odds will be None')
             else:
                 try:
                     self.homePlayerFloorOdds = convertPlayerLinesToSingleLine(self.homePlayerOddsList)
@@ -40,7 +39,7 @@ class GameOdds:
 
         if teamOnly:
             self.bestHomeOdds = self.homeTeamFirstQuarterOdds
-            self.bestAwayOdds = self.awayTeamFirsQuarterOdds
+            self.bestAwayOdds = self.awayTeamFirstQuarterOdds
         elif playersOnly:
             self.bestHomeOdds = self.homePlayerFloorOdds
             self.bestAwayOdds = self.awayPlayerFloorOdds
@@ -49,10 +48,10 @@ class GameOdds:
             self.bestAwayOdds = self.awayPlayerFloorOdds
         elif self.awayPlayerFloorOdds is None:
             self.bestHomeOdds = self.homeTeamFirstQuarterOdds
-            self.bestAwayOdds = self.awayTeamFirsQuarterOdds
+            self.bestAwayOdds = self.awayTeamFirstQuarterOdds
         else:
             self.bestHomeOdds = returnGreaterOdds(self.homeTeamFirstQuarterOdds, self.homePlayerFloorOdds)
-            self.bestAwayOdds = returnGreaterOdds(self.awayTeamFirsQuarterOdds, self.awayPlayerFloorOdds)
+            self.bestAwayOdds = returnGreaterOdds(self.awayTeamFirstQuarterOdds, self.awayPlayerFloorOdds)
         self.minHomeWinPercentage = positiveEvThresholdFromAmerican(self.bestHomeOdds)
         self.minAwayWinPercentage = positiveEvThresholdFromAmerican(self.bestAwayOdds)
 
@@ -65,14 +64,13 @@ class GameOdds:
         self.awayBestKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.bestAwayOdds)
         self.betOnHome = (self.homeScoreProb > self.minHomeWinPercentage)
         self.betOnAway = (self.awayScoreProb > self.minAwayWinPercentage)
-        self.kellyBet = None
 
-        if not playersOnly:
-            self.homeTeamKellyBet = kellyBetFromAOddsAndScoreProb(self.homeScoreProb, self.homeTeamFirstQuarterOdds)
-            self.awayTeamKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.awayTeamFirsQuarterOdds)
-        elif not teamOnly:
-            self.homePlayersKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.homePlayerFloorOdds)
-            self.awayPlayersKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.awayPlayerFloorOdds)
+        # if not playersOnly and self.homeTeamFirstQuarterOdds is not None:
+        #     self.homeTeamKellyBet = kellyBetFromAOddsAndScoreProb(self.homeScoreProb, self.homeTeamFirstQuarterOdds)
+        #     self.awayTeamKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.awayTeamFirstQuarterOdds)
+        # if not teamOnly: # and self.homePlayerFloorOdds != '-200':
+        #     self.homePlayersKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.homePlayerFloorOdds)
+        #     self.awayPlayersKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.awayPlayerFloorOdds)
 
         if self.homeBestKellyBet > 0:
             self.kellyBet = {"bet": self.homeBestKellyBet, "team": self.home}
@@ -93,11 +91,11 @@ class GameOdds:
                 self.betOnVia = "PLAYERS"
         else:
             self.bestEVFactor = self.awayEVFactor
-            if self.awayTeamFirsQuarterOdds is None:
+            if self.awayTeamFirstQuarterOdds is None:
                 self.betOnVia = "PLAYERS"
             elif self.awayPlayerFloorOdds is None:
                 self.betOnVia = "TEAM"
-            elif self.bestAwayOdds == self.awayTeamFirsQuarterOdds:
+            elif self.bestAwayOdds == self.awayTeamFirstQuarterOdds:
                 self.betOnVia = "TEAM"
             elif self.awayHomeOdds == self.awayPlayerFloorOdds:
                 self.betOnVia = "PLAYERS"
@@ -108,7 +106,7 @@ class GameOdds:
         return "PLAYERS"
 
     def awayLineIsTeam(self):
-        if self.bestAwayOdds == self.awayTeamFirsQuarterOdds:
+        if self.bestAwayOdds == self.awayTeamFirstQuarterOdds:
             return "TEAM"
         return "PLAYERS"
 
