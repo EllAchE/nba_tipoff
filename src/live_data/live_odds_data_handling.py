@@ -91,9 +91,9 @@ def createOptimalPlayerSpreadObject(gameOddsObjList):
         tempOddsDict['exchange'] = "OPTIMAL PLAYER SPREAD"
         for key in bestPlayerOddsDict.keys():
             if bestPlayerOddsDict[key]['team'] == tempOddsDict['home']:
-                tempOddsDict['playerOdds']['homePlayerScoreFirstOdds'].append(bestPlayerOddsDict[key])
+                tempOddsDict['playerOdds']['homePlayerFirstQuarterOdds'].append(bestPlayerOddsDict[key])
             elif bestPlayerOddsDict[key]['team'] == tempOddsDict['away']:
-                tempOddsDict['playerOdds']['awayPlayerScoreFirstOdds'].append(bestPlayerOddsDict[key])
+                tempOddsDict['playerOdds']['awayPlayerFirstQuarterOdds'].append(bestPlayerOddsDict[key])
         optimalSpreadsList.append(GameOdds(tempOddsDict, playersOnly=True))
 
     return optimalSpreadsList

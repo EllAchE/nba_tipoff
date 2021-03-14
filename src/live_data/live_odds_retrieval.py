@@ -334,10 +334,14 @@ def _fanduelOddsAll(today=True):
         print('running for fanduel game', gameResponse['externaldescription'])
         sleepChecker(iterations=1, baseTime=2, randomMultiplier=8)
         # backlogtodo test the start time to ignore ongoing games, not just by date
-        for eventMarketGroup in gameResponse['eventmarketgroups']:
-            if eventMarketGroup['name'] == 'All':
-                allEventMatch = True
-                break
+        try:
+            for eventMarketGroup in gameResponse['eventmarketgroups']:
+                if eventMarketGroup['name'] == 'All':
+                    allEventMatch = True
+                    break
+        except:
+            print('game', gameResponse['externaldescription'], 'had no matches for eventmarketgroups. Game has likely already started, or is tomorrow.')
+            continue
 
         teamScoreFirstQuarter1 = teamScoreFirstQuarter2 = teamScoreFirstQuarter3 = teamScoreFirstQuarter4 = playerScoreFirst = None
         if allEventMatch:

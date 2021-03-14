@@ -49,8 +49,8 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 
 # getAllExpectedStarters()
 
-# getAllOddsAndDisplayByEv(getFanduelToday=True, getDk=True, getBovada=True, getMgm=True, includeOptimalPlayerSpread=True, getPointsBet=True, getUnibet=True, getBarstool=True)
-getAllOddsAndDisplayByEv(getFanduelToday=True, includeOptimalPlayerSpread=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)
+getAllOddsAndDisplayByEv(getFanduelToday=True, getDk=True, getBovada=True, getMgm=True, includeOptimalPlayerSpread=True, getPointsBet=True, getUnibet=True, getBarstool=True)
+# getAllOddsAndDisplayByEv(getFanduelToday=True, includeOptimalPlayerSpread=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)
 # getAllOddsAndDisplayByEv(getFanduelTomorrow=True, getMgm=True)
 # getAllOddsAndDisplayByEv(getMgm=True)
 # getAllOddsAndDisplayByEv(getDk=True)#, getBovada=True)
@@ -59,7 +59,7 @@ getAllOddsAndDisplayByEv(getFanduelToday=True, includeOptimalPlayerSpread=True)#
 # getAllOddsAndDisplayByEv(getPointsBet=True)
 # getAllOddsAndDisplayByEv(getBarstool=True)
 #
-# getDailyOdds('NOP', 'LAC', '-110')
+# getDailyOdds('NOP', 'LAC', '-102')
 '''
 Existing apis etc.:
 
