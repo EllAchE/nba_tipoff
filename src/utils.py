@@ -94,9 +94,12 @@ def getTeamFullFromShort(shortCode):
 def getHomeTeamFromGameCode(game_code: str):
     return game_code[-3:]
 
-def getSoupFromUrl(url: str, returnStatus: bool = False):
-    page = requests.get(url)
-    
+def getSoupFromUrl(url: str, headers=None, returnStatus: bool = False):
+    if headers is not None:
+        page = requests.get(url, headers=headers)
+    else:
+        page = requests.get(url)
+
     if returnStatus:
         return BeautifulSoup(page.content, 'html.parser'), page.status_code
     

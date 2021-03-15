@@ -9,6 +9,7 @@ from datetime import datetime
 
 import requests
 import pandas as pd
+from bs4 import BeautifulSoup
 
 import ENVIRONMENT
 from src.database.database_access import getUniversalTeamShortCode, getPlayerCurrentTeam, getUniversalPlayerName
@@ -682,14 +683,111 @@ def barstoolOdds(): #only has player prosp to score (first field goal)
 
 # Other bookmakers https://the-odds-api.com/sports-odds-data/bookmaker-apis.html
 
-# def betfair_odds():
-#     # https://www.betfair.com/sport/basketball/nba/houston-rockets-oklahoma-city-thunder/30266729
-#     # these are not american odds so will need some new methods for these
-#     # betfair homepage https://www.betfair.com/sport/basketball
-#     # betfair single game page https://www.betfair.com/sport/basketball/nba/miami-heat-golden-state-warriors/30289841
-#     # betfair odds retrieval - have a curl request that gets them based on ids from an api endpoint, however doing so is pointless
-# as you need to scrape the page to get the ids anyways (at least as far as I know)
-#     pass
+def getBetfairCurl(gameIdAndTeamNames):
+    cookies = {
+        'vid': 'e95eec18-e6e8-415d-a45f-c1e71a607cf2',
+        '_gcl_au': '1.1.592435068.1612500111',
+        'PI': '3013',
+        'StickyTags': 'rfr=3013',
+        'TrackingTags': '',
+        'pi': 'partner3013',
+        'rfr': '3013',
+        'storageSSC': 'lsSSC%3D1',
+        'OptanonAlertBoxClosed': '2021-02-05T04:41:58.656Z',
+        'userhistory': '15854612871612500123657|1|N|050221|050221|home|N',
+        'bucket': '3~36~test_search',
+        'bfj': 'US',
+        'bftim': '1612500301477',
+        'bid_pPBFRdxAR61DXgGaYvvIPWQ7pAaq8QQJ': '58495c5b-f347-4bf2-83d3-ac01380c5656',
+        'language': 'en_GB',
+        'bfsd': 'ts=1613143926701|st=rp',
+        'exp': 'sb',
+        '_ga': 'GA1.1.231154474.1613613763',
+        '__cfduid': 'dd15064b1017cbed2bc1dd4fd2f9e4eaf1615598351',
+        'xsrftoken': '1e4dceb0-839a-11eb-b07e-fa163e3cd428',
+        'wsid': '1e4dceb1-839a-11eb-b07e-fa163e3cd428',
+        'betexPtk': 'betexLocale%3Den%7EbetexRegion%3DGBR%7EbetexCurrency%3DGBP',
+        'betexPtkSess': 'betexCurrencySessionCookie%3DGBP%7EbetexLocaleSessionCookie%3Den%7EbetexRegionSessionCookie%3DGBR',
+        'cashoutBetsToken': '',
+        '_ga_K0W97M6SNZ': 'GS1.1.1615793964.4.1.1615793973.51',
+        'OptanonConsent': 'isIABGlobal=false&datestamp=Mon+Mar+15+2021+02%3A39%3A34+GMT-0500+(Central+Daylight+Time)&version=6.6.0&hosts=&consentId=5b83ec42-c520-42d6-af1f-654334a6e758&interactionCount=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0003%3A0%2CC0002%3A0%2CC0004%3A0&geolocation=%3B&AwaitingReconsent=false',
+    }
+
+    headers = {
+        'authority': 'www.betfair.com',
+        'sec-ch-ua': '"Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"',
+        'bf-fp': '908',
+        'sec-ch-ua-mobile': '?0',
+        'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36',
+        'accept': '*/*',
+        'sec-fetch-site': 'same-origin',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-dest': 'empty',
+        'referer': 'https://www.betfair.coms{}'.format(gameIdAndTeamNames),
+        'accept-language': 'en-US,en;q=0.9',
+    }
+
+    params = (
+        ('selectedGroup', '-78637064'),
+        ('action', 'changeMarketGroup'),
+        ('modules', 'marketgroups@1053'),
+        ('lastId', '1056'),
+        ('d18', 'Main'),
+        ('d31', 'Middle'),
+        ('isAjax', 'true'),
+        ('ts', '1615794006588'),
+        ('alt', 'json'),
+        ('xsrftoken', '1e4dceb0-839a-11eb-b07e-fa163e3cd428'),
+    )
+
+    return requests.get('https://www.betfair.com{}'.format(gameIdAndTeamNames),
+                            headers=headers, params=params, cookies=cookies)
+
+    # NB. Original query string below. It seems impossible to parse and
+    # reproduce query strings 100% accurately so the one below is given
+    # in case the reproduced version is not "correct".
+    # response = requests.get('https://www.betfair.com/sport/basketball/nba/milwaukee-bucks-washington-wizards/30352512?selectedGroup=-78637064&action=changeMarketGroup&modules=marketgroups%401053&lastId=1056&d18=Main&d31=Middle&isAjax=true&ts=1615794006588&alt=json&xsrftoken=1e4dceb0-839a-11eb-b07e-fa163e3cd428', headers=headers, cookies=cookies)
+
+
+def betfairOdds():
+    # https://www.betfair.com/sport/basketball/nba/houston-rockets-oklahoma-city-thunder/30266729
+    # betfair homepage https://www.betfair.com/sport/basketball
+    # betfair single game page https://www.betfair.com/sport/basketball/nba/miami-heat-golden-state-warriors/30289841
+    # betfair odds retrieval - have a curl request that gets them based on ids from an api endpoint, however doing so is pointless
+
+    allGameUrl = 'https://www.betfair.com/sport/basketball'
+    headers = {
+        "authority": "www.betfair.com",
+        "sec-ch-ua":"\"Google Chrome\";v=\"89\", \"Chromium\";v=\"89\", \";Not A Brand\";v=\"99\"",
+        "bf-fp":"908",
+        "sec-ch-ua-mobile":"?0",
+        "user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36",
+        "accept":"*/*",
+        "sec-fetch-site":"same-origin",
+        "sec-fetch-mode":"cors",
+        "sec-fetch-dest":"empty",
+        "referer":"https://www.betfair.com/sport/basketball/nba/milwaukee-bucks-washington-wizards/30352512",
+        "accept-language":"en-US,en;q=0.9",
+        "host": "www.betfair.com"
+    }
+
+    soup = getSoupFromUrl(allGameUrl, headers=headers)
+    allLinks = soup.select('a[data-competition="NBA"]')
+    allLinkSet = set()
+
+    # assumes the link has length 8 for its game identifiers
+    for link in allLinks:
+        allLinkSet.add(str(link['href']))
+
+    for link in allLinkSet:
+        page = getBetfairCurl(link)
+        soup = str(page.content)
+
+        test = soup.find_all('a')
+        print(test)
+
+    print('finished fetching betfair data')
+
 
 # def sugarHouseOdds():
 #     # https://www.playsugarhouse.com/?page=sports#event/1007123701

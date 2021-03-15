@@ -30,7 +30,7 @@ from src.historical_data.historical_data_retrieval import updateCurrentSeasonRaw
 from src.historical_data.nba_play_by_play_methods import getAllFirstPossessionStatisticsIncrementally, \
     splitAllSeasonsFirstShotDataToMultipleFiles, getSingleGameStarters, saveAllHistoricalStarters
 from src.live_data.display_bets import getAllOddsAndDisplayByEv, getUniqueOddsAndDisplayByEv
-from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
+from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds, betfairOdds
 from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalStats, getCurrentSeasonUsageRate
 from src.rating_algorithms.elo_data_processing import runEloForAllSeasons, calculateEloDictionaryFromZero
 from src.rating_algorithms.glicko_data_processing import runGlickoForAllSeasons, calculateGlickoDictionaryFromZero
@@ -43,7 +43,9 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # updateTrueSkillDictionaryFromLastGame()
 # oneSeasonFromScratch(2021)
 
-calculateGlickoDictionaryFromZero()
+betfairOdds()
+
+# calculateGlickoDictionaryFromZero()
 # calculateTrueSkillDictionaryFromZero()
 # calculateEloDictionaryFromZero()
 # todo look at first 100 and last 100 games (or similar) of player performance vs. overall
