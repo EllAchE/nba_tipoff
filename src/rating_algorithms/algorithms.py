@@ -81,7 +81,6 @@ def eloRatingPeriod(selfRating: int, gameResults: Any):
     # pass
     pass
 
-# todo this may need to use ENV reset to get adjusted beta values etc.
 def eloWinProb(player1Code: str, player2Code: str, jsonPath: str = ENVIRONMENT.PLAYER_ELO_DICT_PATH, psd: Any = None): #win prob for first player
     if psd is None:
         with open(jsonPath) as json_file:

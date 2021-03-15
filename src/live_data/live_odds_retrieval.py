@@ -211,7 +211,7 @@ def bovadaOdds():
             gameLine["homePlayerFirstQuarterOdds"] = scoreFirstBetsAllPlayersDict[gameLine["home"]]
             gameLine["awayPlayerFirstQuarterOdds"] = scoreFirstBetsAllPlayersDict[gameLine["away"]]
         except:
-            print("no player lines found for game", gameLine)
+            print("no player lines found for bovada game", gameLine)
 
     return scoreFirstBetsBothTeamsFormatted
 
@@ -224,7 +224,7 @@ def draftKingsOdds():
     playerProps = gameProps = None
     for category in offerCategories:
         if category['name'] == "Game Props":
-           gameProps = category['offerSubcategoryDescriptors']
+            gameProps = category['offerSubcategoryDescriptors']
         if category['name'] == "Player Props":
             playerProps = category['offerSubcategoryDescriptors']
 
@@ -258,6 +258,8 @@ def draftKingsOdds():
             team2Odds = outcomes[1]['oddsAmerican']
             teamSet.add(team2)
             teamSet.add(team1)
+
+            print('Adding game', team2, '@', team1, 'from draftkings to list')
 
             allGameLines.append({
                 "exchange": "draftkings",
@@ -496,6 +498,7 @@ def pointsBetOdds():
         awayTeam = getUniversalTeamShortCode(event['awayTeam'])
         singleGameUrl = 'https://api-usa.pointsbet.com/api/v2/events/{}'.format(eventId)
         singleGameResponse = requests.get(singleGameUrl).json()
+        print('retrieved pointsbet data for game', event['awayTeam'], "@", event['homeTeam'])
 
         # assumes just a single game
         for market in singleGameResponse['fixedOddsMarkets']:
@@ -558,9 +561,10 @@ def unibetOdds():
     for event in eventsList:
         sleepChecker(baseTime=0.5, randomMultiplier=3)
         singleGameResponse = requests.get(singleEventUrlStub.format(str(event[0]))).json()
-        allBets = singleGameResponse['betOffers']
         homeTeam = getUniversalTeamShortCode(event[2])
         awayTeam = getUniversalTeamShortCode(event[3])
+        print('retrieved unibet data for game', awayTeam, '@', homeTeam)
+        allBets = singleGameResponse['betOffers']
 
         playerScoreFirstFG = None
         for bet in allBets:
@@ -626,6 +630,7 @@ def barstoolOdds(): #only has player prosp to score (first field goal)
         singleGameResponse = requests.get(singleEventUrlStub.format(event['id']), headers={"consumer":"www"}).json()
         homeTeam = getUniversalTeamShortCode(event['home'])
         awayTeam = getUniversalTeamShortCode(event['away'])
+        print('retrieved barstool data for game', awayTeam, '@', homeTeam)
 
         hasPlayerSpecials = False
         for category in singleGameResponse:

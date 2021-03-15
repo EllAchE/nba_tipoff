@@ -9,8 +9,8 @@ def runGlickoForSeason(season: str, seasonCsv: str, winningBetThreshold: float=E
     runAlgoForSeason(season, seasonCsv, ENVIRONMENT.PLAYER_GLICKO_DICT_PATH, ENVIRONMENT.GLICKO_PREDICTION_SUMMARIES_PATH, glickoBeforeMatchPredictions,
                     glickoUpdateDataSingleTipoff, winningBetThreshold, columnAdds=['Home Glicko Mu', 'Away Glicko Mu', "Home Glicko Sigma", "Away Glicko Sigma", "Home Glicko Phi", "Away Glicko Phi"], startFromBeginning=startFromBeginning)
 
-def glickoBeforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, winningBetThreshold=ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD):
-    beforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionSummaryPath=ENVIRONMENT.GLICKO_PREDICTION_SUMMARIES_PATH,
+def glickoBeforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionArray, actualArray, winningBetThreshold=ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD):
+    beforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionArray, actualArray, predictionSummaryPath=ENVIRONMENT.GLICKO_PREDICTION_SUMMARIES_PATH,
                            minimumTipWinPercentage=winningBetThreshold, predictionFunction=glickoWinProb, minimumAppearances=ENVIRONMENT.MIN_GLICKO_APPEARANCES)
 
 def runGlickoForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD):

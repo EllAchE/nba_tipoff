@@ -1,21 +1,24 @@
 import json
 import pandas as pd
+from sklearn.metrics import log_loss
 
 import ENVIRONMENT
 from src.database.database_creation import resetAndInitializePredictionSummaryDict
 
 def preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, homeOdds, homePlayerCode, homePlayerTeam, scoringTeam,
-                                 tipWinnerCode, winningBetThreshold, predictionSummaryPath):
+                                 tipWinnerCode, winningBetThreshold, predictionSummaryPath, predictionArray, actualArray):
     with open(predictionSummaryPath) as dictFile:
         dsd = json.load(dictFile)
 
     if homeOdds > winningBetThreshold:
         if tipWinnerCode[11:] == homePlayerCode:
             dsd['correctTipoffPredictions'] += 1
+            actualArray.append(1)
             if homePlayerTeam == scoringTeam:
                 dsd['tipWinnerScores'] += 1
         else:
             dsd['incorrectTipoffPredictions'] += 1
+            actualArray.append(0)
             if awayPlayerTeam == scoringTeam:
                 dsd['tipWinnerScores'] += 1
         if homePlayerTeam == scoringTeam:
@@ -23,13 +26,17 @@ def preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, homeOdds, homeP
         else:
             dsd["losingBets"] += 1
         dsd['expectedTipWinsFromAlgo'] += homeOdds
+        predictionArray.append(homeOdds)
+
     elif (1 - homeOdds) > winningBetThreshold:
         if tipWinnerCode[11:] == awayPlayerCode:
             dsd['correctTipoffPredictions'] += 1
+            actualArray.append(1)
             if awayPlayerTeam == scoringTeam:
                 dsd['tipWinnerScores'] += 1
         else:
             dsd['incorrectTipoffPredictions'] += 1
+            actualArray.append(0)
             if homePlayerTeam == scoringTeam:
                 dsd['tipWinnerScores'] += 1
         if awayPlayerTeam == scoringTeam:
@@ -37,13 +44,16 @@ def preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, homeOdds, homeP
         else:
             dsd['losingBets'] += 1
         dsd['expectedTipWinsFromAlgo'] += (1 - homeOdds)
+        predictionArray.append(1-homeOdds)
     else:
         print('no bet, odds were not good enough')
 
     with open(predictionSummaryPath, 'w') as saveDictFile:
         json.dump(dsd, saveDictFile, indent=4)
 
-def histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePlayerTeam, scoringTeam, predictionSummaryPath, minTipWinOdds=0.0):
+    return predictionArray, actualArray
+
+def histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePlayerTeam, scoringTeam, predictionSummaryPath, predictionArray, actualArray, minTipWinOdds=0.0):
     with open(predictionSummaryPath) as dictFile:
        dsd = json.load(dictFile)
 
@@ -52,6 +62,9 @@ def histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePla
     homeWinsTip = True if tipWinnerCode[11:] == homePlayerCode else False
     oddsBelongToHome = True if homeOdds > 1-homeOdds else False
     homeScoresFirst = True if homePlayerTeam == scoringTeam else False
+    greaterOddsWinsTip = 1 if homeWinsTip and oddsBelongToHome else 0
+    predictionArray.append(greaterOdds)
+    actualArray.append(greaterOddsWinsTip)
 
     for item in dsd['histogramDivisions']:
         if item['start'] < greaterOdds and item['end'] >= greaterOdds: # <= on greater prevents allows even odds bets. Setting a min appearances here would catch the unknown preds and stop them skewing
@@ -94,22 +107,32 @@ def histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePla
     with open(predictionSummaryPath, 'w') as saveDictFile:
         json.dump(dsd, saveDictFile)
 
-def beforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam,
+    return predictionArray, actualArray
+
+def beforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionArray, actualArray,
                            minimumTipWinPercentage, predictionFunction, predictionSummaryPath, minimumAppearances):
     homeOdds = predictionFunction(homePlayerCode, awayPlayerCode, psd=psd)
 
     if psd[homePlayerCode]['appearances'] > minimumAppearances and psd[awayPlayerCode]['appearances'] > minimumAppearances:
-        histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homeTeam, scoringTeam, predictionSummaryPath, minTipWinOdds=minimumTipWinPercentage)
-
-    if psd[homePlayerCode]['appearances'] > minimumAppearances and psd[awayPlayerCode]['appearances'] > minimumAppearances:
-        preMatchPredictionsNoBinning(awayPlayerCode, awayTeam, homeOdds, homePlayerCode, homeTeam, scoringTeam,
-                                     tipWinnerCode, minimumTipWinPercentage, predictionSummaryPath)
+        predictionArray, actualArray = histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homeTeam, scoringTeam, predictionSummaryPath,
+                                    predictionArray, actualArray, minTipWinOdds=minimumTipWinPercentage)
     else:
         print('no bet, not enough Data on participants')
 
-def addSummaryMathToAlgoSummary(predictionSummariesPath):
+    # todo prematch no binning also adds to prediction and actual array but does not currently return. Need a separate log loss for bins
+    if psd[homePlayerCode]['appearances'] > minimumAppearances and psd[awayPlayerCode]['appearances'] > minimumAppearances:
+        preMatchPredictionsNoBinning(awayPlayerCode, awayTeam, homeOdds, homePlayerCode, homeTeam, scoringTeam,
+                                     tipWinnerCode, minimumTipWinPercentage, predictionSummaryPath, predictionArray, actualArray)
+    else:
+        print('no bet, not enough Data on participants')
+
+    return predictionArray, actualArray
+
+def addSummaryMathToAlgoSummary(predictionSummariesPath, actualArray, predictionsArray):
     with open(predictionSummariesPath) as wFile:
         dsd = json.load(wFile)
+
+    logLossTotal = log_loss(actualArray, predictionsArray)
 
     dsd["trueskillConstants"] = {
         "sigma": ENVIRONMENT.BASE_TS_SIGMA,
@@ -138,6 +161,7 @@ def addSummaryMathToAlgoSummary(predictionSummariesPath):
         dsd['correctTipoffPredictionPercentage'] = dsd['correctTipoffPredictions'] / (dsd['correctTipoffPredictions'] + dsd['incorrectTipoffPredictions'])
         dsd['betWinPercentage'] = dsd['winningBets'] / (dsd['winningBets'] + dsd['losingBets'])
         dsd['expectedWinsFromTipWinPercentage'] = dsd['correctTipoffPredictionPercentage'] * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1-dsd['correctTipoffPredictionPercentage']) * (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
+        dsd['logLoss'] = logLossTotal
     for histogramBin in dsd['histogramDivisions']:
         if histogramBin['predictionSummaries']['totalMatchups'] > 0:
             histogramBin['predictionSummaries']['tipWinPercentage'] = histogramBin['predictionSummaries']['tipoffWinsByHigher'] / histogramBin['predictionSummaries']['totalMatchups']
@@ -178,6 +202,10 @@ def runAlgoForSeason(seasonCsv: str, skillDictPath: str, predictionSummariesPath
             print('errror finding lastGameCode, starting from 0')
             i = 0
 
+
+    predictionArray = list()
+    actualArray = list()
+
     while i < colLen:
         if df['Home Tipper'].iloc[i] != df['Home Tipper'].iloc[i]:
             i += 1
@@ -203,7 +231,7 @@ def runAlgoForSeason(seasonCsv: str, skillDictPath: str, predictionSummariesPath
         hTeam = df['Home Short'].iloc[i]
         aTeam = df['Away Short'].iloc[i]
 
-        algoPrematch(psd, hTipCode, aTipCode, hTeam, aTeam, tWinLink, scoringTeam, winningBetThreshold)
+        predictionArray, actualArray = algoPrematch(psd, hTipCode, aTipCode, hTeam, aTeam, tWinLink, scoringTeam, winningBetThreshold, predictionArray, actualArray)
         returnObj = algoSingleTipoff(psd, tWinLink, tLoseLink, hTipCode, df['Full Hyperlink'].iloc[i])
 
         # with open(predictionSummariesPath, 'w') as writeFile:
@@ -219,7 +247,7 @@ def runAlgoForSeason(seasonCsv: str, skillDictPath: str, predictionSummariesPath
     #     allKeys = psd.keys()
     #     for key in allKeys:
     #         key['sigma'] += 2
-    #         #todo place where season end sigma is udpated. Can toggle this to different effects
+    #         #todo place where season end sigma is udpated. Can toggle this to varying effect
     #         if key['sigma'] > 8.333333333333334:
     #             key['sigma'] = 8.333333333333334
     #     print("added 2 to all sigmas for new season")

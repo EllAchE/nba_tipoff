@@ -18,23 +18,23 @@
 # backlogtodo update print statements to show more and take up less space
 # backlogtodo combine to update all relevant game dictionaries from last game after fetching new game details
 # More books https://bookies.com/pennsylvania
+# todo implement minimum appearance threshold for summary statistics
+# backlogtodo import decimal module or similar https://docs.python.org/3/library/decimal.html
+# todo look for when there is a big gap between the exchanges (not necessarily arbitrage) and just determine which is worse at their job. Take one side, not both, of the bets.
+# backlogtodo change this to update just the current season
+
 import ENVIRONMENT
 from src.database.database_creation import getAllGameData, createPlayerEloDictionary, \
     createPlayerGlickoDictionary, saveActivePlayersTeams, createPlayerNameRelationship
 from src.historical_data.historical_data_retrieval import updateCurrentSeasonRawGameData, oneSeasonFromScratch
 from src.historical_data.nba_play_by_play_methods import getAllFirstPossessionStatisticsIncrementally, \
     splitAllSeasonsFirstShotDataToMultipleFiles, getSingleGameStarters, saveAllHistoricalStarters
-from src.live_data.display_bets import getAllOddsAndDisplayByEv
+from src.live_data.display_bets import getAllOddsAndDisplayByEv, getUniqueOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds
 from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalStats, getCurrentSeasonUsageRate
 from src.rating_algorithms.elo_data_processing import runEloForAllSeasons, calculateEloDictionaryFromZero
 from src.rating_algorithms.glicko_data_processing import runGlickoForAllSeasons, calculateGlickoDictionaryFromZero
 from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero, updateTrueSkillDictionaryFromLastGame
-
-# todo implement minimum appearance threshold for summary statistics
-# backlogtodo import decimal module or similar https://docs.python.org/3/library/decimal.html
-# todo look for when there is a big gap between the exchanges (not necessarily arbitrage) and just determine which is worse at their job. Take one side, not both, of the bets.
-# backlogtodo change this to update just the current season
 
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
@@ -47,19 +47,17 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 
 # calculateGlickoDictionaryFromZero()
 
-# getAllExpectedStarters()
-
-getAllOddsAndDisplayByEv(getFanduelToday=True, getDk=True, getBovada=True, getMgm=True, includeOptimalPlayerSpread=True, getPointsBet=True, getUnibet=True, getBarstool=True)
+# getAllOddsAndDisplayByEv(getFanduelToday=True, getDk=True, getBovada=True, getMgm=True, getPointsBet=True, getUnibet=True, getBarstool=True)
 # getAllOddsAndDisplayByEv(getFanduelToday=True, includeOptimalPlayerSpread=True)#, getPointsBet=True, getUnibet=True, getBarstool=True)
 # getAllOddsAndDisplayByEv(getFanduelTomorrow=True, getMgm=True)
 # getAllOddsAndDisplayByEv(getMgm=True)
 # getAllOddsAndDisplayByEv(getDk=True)#, getBovada=True)
 # getAllOddsAndDisplayByEv(getBovada=True, includeOptimalPlayerSpread=True)
 # getAllOddsAndDisplayByEv(getUnibet=True)
-# getAllOddsAndDisplayByEv(getPointsBet=True)
-# getAllOddsAndDisplayByEv(getBarstool=True)
+# getUniqueOddsAndDisplayByEv(getBovada=True, getUnibet=True)
+# getAllOddsAndDisplayByEv(getBovada=True, getUnibet=True)
 #
-# getDailyOdds('NOP', 'LAC', '-102')
+# getDailyOdds('SAS', 'PHI', '-110')
 '''
 Existing apis etc.:
 

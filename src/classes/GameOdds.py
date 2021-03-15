@@ -97,7 +97,7 @@ class GameOdds:
                 self.betOnVia = "TEAM"
             elif self.bestAwayOdds == self.awayTeamFirstQuarterOdds:
                 self.betOnVia = "TEAM"
-            elif self.awayHomeOdds == self.awayPlayerFloorOdds:
+            elif self.bestAwayOdds == self.awayPlayerFloorOdds:
                 self.betOnVia = "PLAYERS"
 
     def homeLineIsTeam(self):

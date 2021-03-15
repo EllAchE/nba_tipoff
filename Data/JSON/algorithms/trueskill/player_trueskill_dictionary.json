@@ -5103,10 +5103,10 @@
         "predicted losses": 0
     },
     "jokicni01.html": {
-        "mu": 23.566858692002796,
-        "sigma": 0.8237554788079585,
-        "appearances": 311,
-        "wins": 149,
+        "mu": 23.667759286869696,
+        "sigma": 0.8231274437117091,
+        "appearances": 312,
+        "wins": 150,
         "losses": 162,
         "predicted wins": 0,
         "predicted losses": 0
@@ -5472,10 +5472,10 @@
         "predicted losses": 0
     },
     "jordade01.html": {
-        "mu": 24.99639580783416,
-        "sigma": 0.8321101888254843,
-        "appearances": 755,
-        "wins": 501,
+        "mu": 25.06321929976541,
+        "sigma": 0.832155785812363,
+        "appearances": 756,
+        "wins": 502,
         "losses": 254,
         "predicted wins": 0,
         "predicted losses": 0
@@ -6300,11 +6300,11 @@
         "predicted losses": 0
     },
     "porzikr01.html": {
-        "mu": 24.83854878016647,
-        "sigma": 0.8815173777501424,
-        "appearances": 150,
+        "mu": 24.72315010498676,
+        "sigma": 0.8795345238609148,
+        "appearances": 151,
         "wins": 88,
-        "losses": 62,
+        "losses": 63,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -9594,11 +9594,11 @@
         "predicted losses": 0
     },
     "robyis01.html": {
-        "mu": 24.655802296253412,
-        "sigma": 2.5669907641182084,
-        "appearances": 10,
+        "mu": 23.660625815070947,
+        "sigma": 2.4348839835335343,
+        "appearances": 11,
         "wins": 6,
-        "losses": 4,
+        "losses": 5,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -10692,11 +10692,11 @@
         "predicted losses": 0
     },
     "plumlma01.html": {
-        "mu": 22.94623997550722,
-        "sigma": 0.8297112832653377,
-        "appearances": 291,
+        "mu": 22.879797401123763,
+        "sigma": 0.8298040626176612,
+        "appearances": 292,
         "wins": 124,
-        "losses": 167,
+        "losses": 168,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -12294,10 +12294,10 @@
         "predicted losses": 0
     },
     "holmeri01.html": {
-        "mu": 22.781112814397563,
-        "sigma": 0.9989781124453907,
-        "appearances": 81,
-        "wins": 39,
+        "mu": 22.910133539105736,
+        "sigma": 0.9943654362482572,
+        "appearances": 82,
+        "wins": 40,
         "losses": 42,
         "predicted wins": 0,
         "predicted losses": 0
@@ -14193,11 +14193,11 @@
         "predicted losses": 0
     },
     "zelleco01.html": {
-        "mu": 19.545430758011108,
-        "sigma": 0.8591651349761303,
-        "appearances": 239,
+        "mu": 19.49138124253628,
+        "sigma": 0.859281545184008,
+        "appearances": 240,
         "wins": 67,
-        "losses": 172,
+        "losses": 173,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -14418,11 +14418,11 @@
         "predicted losses": 0
     },
     "capelca01.html": {
-        "mu": 22.938271931451716,
-        "sigma": 0.8272221859499345,
-        "appearances": 313,
+        "mu": 22.84952254214254,
+        "sigma": 0.8268038158769779,
+        "appearances": 314,
         "wins": 147,
-        "losses": 166,
+        "losses": 167,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -22743,10 +22743,10 @@
         "predicted losses": 0
     },
     "lopezbr01.html": {
-        "mu": 26.741164949992438,
-        "sigma": 0.8528329537142333,
-        "appearances": 713,
-        "wins": 445,
+        "mu": 26.78764607054805,
+        "sigma": 0.8533400185176684,
+        "appearances": 714,
+        "wins": 446,
         "losses": 268,
         "predicted wins": 0,
         "predicted losses": 0
@@ -22914,11 +22914,11 @@
         "predicted losses": 0
     },
     "lenal01.html": {
-        "mu": 22.152545564229264,
-        "sigma": 0.8651748132277299,
-        "appearances": 157,
+        "mu": 22.10472221219929,
+        "sigma": 0.865468904808384,
+        "appearances": 158,
         "wins": 69,
-        "losses": 88,
+        "losses": 89,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -25974,11 +25974,11 @@
         "predicted losses": 0
     },
     "turnemy01.html": {
-        "mu": 20.372825779288178,
-        "sigma": 0.8429335577904411,
-        "appearances": 333,
+        "mu": 20.305196364528015,
+        "sigma": 0.8428034853298434,
+        "appearances": 334,
         "wins": 113,
-        "losses": 220,
+        "losses": 221,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -28539,10 +28539,10 @@
         "predicted losses": 0
     },
     "aytonde01.html": {
-        "mu": 22.507739826984714,
-        "sigma": 0.894171876793441,
-        "appearances": 137,
-        "wins": 59,
+        "mu": 22.583758933756393,
+        "sigma": 0.8929929784098094,
+        "appearances": 138,
+        "wins": 60,
         "losses": 78,
         "predicted wins": 0,
         "predicted losses": 0
@@ -29088,10 +29088,10 @@
         "predicted losses": 0
     },
     "townska01.html": {
-        "mu": 24.56428449750294,
-        "sigma": 0.8305711553052691,
-        "appearances": 375,
-        "wins": 191,
+        "mu": 24.608818457161988,
+        "sigma": 0.8314504273348973,
+        "appearances": 376,
+        "wins": 192,
         "losses": 184,
         "predicted wins": 0,
         "predicted losses": 0
@@ -32328,11 +32328,11 @@
         "predicted losses": 0
     },
     "kanteen01.html": {
-        "mu": 20.032643895870063,
-        "sigma": 1.001308055185238,
-        "appearances": 94,
+        "mu": 19.968119980710398,
+        "sigma": 0.9990255562235951,
+        "appearances": 95,
         "wins": 29,
-        "losses": 65,
+        "losses": 66,
         "predicted wins": 0,
         "predicted losses": 0
     },
@@ -34794,10 +34794,10 @@
         "predicted losses": 0
     },
     "noelne01.html": {
-        "mu": 22.40472821328555,
-        "sigma": 0.8503745608161006,
-        "appearances": 175,
-        "wins": 79,
+        "mu": 22.514873340333065,
+        "sigma": 0.84964804606693,
+        "appearances": 176,
+        "wins": 80,
         "losses": 96,
         "predicted wins": 0,
         "predicted losses": 0
@@ -40230,10 +40230,10 @@
         "predicted losses": 0
     },
     "baynear01.html": {
-        "mu": 23.34444392420515,
-        "sigma": 0.8911538484648137,
-        "appearances": 126,
-        "wins": 64,
+        "mu": 23.402554934202804,
+        "sigma": 0.8906758903028174,
+        "appearances": 127,
+        "wins": 65,
         "losses": 62,
         "predicted wins": 0,
         "predicted losses": 0
@@ -40445,5 +40445,5 @@
         "predicted wins": 0,
         "predicted losses": 0
     },
-    "lastGameCode": "202103120LAL"
+    "lastGameCode": "202103130PHO"
 }
