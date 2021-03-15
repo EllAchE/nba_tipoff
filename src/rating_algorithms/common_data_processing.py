@@ -157,11 +157,12 @@ def addSummaryMathToAlgoSummary(predictionSummariesPath, actualArray, prediction
         "minAppearances": ENVIRONMENT.MIN_GLICKO_APPEARANCES,
         "minTipWinOdds": ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD
     },
+
+    dsd['logLoss'] = logLossTotal
     if dsd['winningBets'] + dsd['losingBets'] > 0:
         dsd['correctTipoffPredictionPercentage'] = dsd['correctTipoffPredictions'] / (dsd['correctTipoffPredictions'] + dsd['incorrectTipoffPredictions'])
         dsd['betWinPercentage'] = dsd['winningBets'] / (dsd['winningBets'] + dsd['losingBets'])
         dsd['expectedWinsFromTipWinPercentage'] = dsd['correctTipoffPredictionPercentage'] * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1-dsd['correctTipoffPredictionPercentage']) * (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
-        dsd['logLoss'] = logLossTotal
     for histogramBin in dsd['histogramDivisions']:
         if histogramBin['predictionSummaries']['totalMatchups'] > 0:
             histogramBin['predictionSummaries']['tipWinPercentage'] = histogramBin['predictionSummaries']['tipoffWinsByHigher'] / histogramBin['predictionSummaries']['totalMatchups']
@@ -175,7 +176,7 @@ def addSummaryMathToAlgoSummary(predictionSummariesPath, actualArray, prediction
         json.dump(dsd, wFile, indent=4)
 
 def runAlgoForSeason(seasonCsv: str, skillDictPath: str, predictionSummariesPath: str, algoPrematch, algoSingleTipoff, winningBetThreshold: float,
-                      columnAdds=None, startFromBeginning=False):
+                     predictionArray, actualArray, columnAdds=None, startFromBeginning=False):
     df = pd.read_csv(seasonCsv)
     # df = df[df['Home Tipper'].notnull()] # filters invalid rows
     if columnAdds is not None:
@@ -202,10 +203,6 @@ def runAlgoForSeason(seasonCsv: str, skillDictPath: str, predictionSummariesPath
             print('errror finding lastGameCode, starting from 0')
             i = 0
 
-
-    predictionArray = list()
-    actualArray = list()
-
     while i < colLen:
         if df['Home Tipper'].iloc[i] != df['Home Tipper'].iloc[i]:
             i += 1
@@ -231,7 +228,7 @@ def runAlgoForSeason(seasonCsv: str, skillDictPath: str, predictionSummariesPath
         hTeam = df['Home Short'].iloc[i]
         aTeam = df['Away Short'].iloc[i]
 
-        predictionArray, actualArray = algoPrematch(psd, hTipCode, aTipCode, hTeam, aTeam, tWinLink, scoringTeam, winningBetThreshold, predictionArray, actualArray)
+        predictionArray, actualArray = algoPrematch(psd, hTipCode, aTipCode, hTeam, aTeam, tWinLink, scoringTeam, predictionArray, actualArray, winningBetThreshold)
         returnObj = algoSingleTipoff(psd, tWinLink, tLoseLink, hTipCode, df['Full Hyperlink'].iloc[i])
 
         # with open(predictionSummariesPath, 'w') as writeFile:
@@ -261,7 +258,7 @@ def runAlgoForSeason(seasonCsv: str, skillDictPath: str, predictionSummariesPath
 
     df.to_csv(str(seasonCsv)[:-4] + '-test.csv')
 
-    return winningBets, losingBets
+    return predictionArray, actualArray
 
 def runAlgoForAllSeasons(seasons, skillDictPath, predictionSummariesPath, algoPrematch, algoSingleTipoff, winningBetThreshold, columnAdds=None):
     seasonKey = ''
@@ -269,13 +266,17 @@ def runAlgoForAllSeasons(seasons, skillDictPath, predictionSummariesPath, algoPr
     histogramBinDivisions = [x/100 for x in histogramBinDivisions]
     print(histogramBinDivisions)
     dsd = resetAndInitializePredictionSummaryDict(histogramBinDivisions, predictionSummariesPath)
+
+    predictionArray = list()
+    actualArray = list()
+
     for season in seasons:
-        runAlgoForSeason(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), skillDictPath, predictionSummariesPath, algoPrematch, algoSingleTipoff, winningBetThreshold,
-                          startFromBeginning=True, columnAdds=columnAdds)
+        predictionArray, actualArray = runAlgoForSeason(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), skillDictPath, predictionSummariesPath,
+                algoPrematch, algoSingleTipoff, winningBetThreshold, predictionArray, actualArray, startFromBeginning=True, columnAdds=columnAdds)
         seasonKey += str(season) + '-'
 
     dsd['seasons'] = seasonKey + 'with-odds-' + str(winningBetThreshold)
-    addSummaryMathToAlgoSummary(predictionSummariesPath)
+    addSummaryMathToAlgoSummary(predictionSummariesPath, actualArray, predictionArray)
 
     # with open(predictionSummariesPath, 'w') as predSum:
     #     json.dump(dsd, predSum, indent=4)

@@ -43,6 +43,9 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # updateTrueSkillDictionaryFromLastGame()
 # oneSeasonFromScratch(2021)
 
+calculateGlickoDictionaryFromZero()
+# calculateTrueSkillDictionaryFromZero()
+# calculateEloDictionaryFromZero()
 # todo look at first 100 and last 100 games (or similar) of player performance vs. overall
 
 # calculateGlickoDictionaryFromZero()
