@@ -8,7 +8,8 @@ from src.utils import lowercaseNoSpace
 
 # backlogtodo include nonshooting possessions
 # todo these should be done:
-#    Offensive efficiency, Def E, Percentage of FT & 2s vs. 3s (effective score percentage), usage rate for players
+#    Offensive efficiency, Def E, Percentage of FT & 2s vs. 3s (effective score percentage),
+# backlogtodo  usage rate for players
 
 def getCurrentSeasonUsageRate():
     headers = {
@@ -94,7 +95,6 @@ def _initializeTeamDict(summaryDict, lastSeasonData):
     return summaryDict
 
 def _teamFirstShotStats(game, summaryDict, isFirstFieldGoal=False):
-    # todo add in tip result to quarter data i.e. group quarters 1 and 4 as 'tip wins', 2 & 3 as 'tip losses'
     quarters = ['quarter1', 'quarter2', 'quarter3', 'quarter4']
     for quarter in quarters:
         for event in game[quarter]:
@@ -128,11 +128,11 @@ def _summaryStats(summaryDict):
 
     return summaryDict
 
+# backlogtodo normalize for games started, compare to known player usage rate for a given season
 def _playerFirstShotStats(game, summaryDict, makesOverall, isFirstFieldGoal=False):
     playerHasShotInGame = set()
     quarters = ['quarter1']#, 'quarter2', 'quarter3', 'quarter4']
     # only consider first quarter shots for individual players currently
-    # todo normalize for games started, compare to known player usage rate for a given season
     # todo add favorable/unfavorable tip result to quarter data
 
     def getTotalShots(playerQuarter):

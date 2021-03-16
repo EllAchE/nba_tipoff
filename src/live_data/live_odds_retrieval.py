@@ -398,6 +398,7 @@ def _fanduelOddsAll(today=True):
         away = getUniversalTeamShortCode(gameResponse['participantshortname_away'].split(" ")[1])
         teamSet.add(home)
         teamSet.add(away)
+
         quarterOddsList.append({
             "gameDatetime": gameResponse['tsstart'],
             "home": home,
@@ -418,7 +419,8 @@ def _fanduelOddsAll(today=True):
             playerTeamDict[team] = []
         for rawLine in unassignedPlayerOddsList:
             playerLine = addTeamToUnknownPlayerLine(rawLine)
-            playerTeamDict[playerLine['team']] += [playerLine]
+            team = getUniversalTeamShortCode(playerLine['team'])
+            playerTeamDict[team] += [playerLine]
 
         for gameLine in quarterOddsList:
             gameLine["homePlayerFirstQuarterOdds"] = playerTeamDict[gameLine["home"]]
@@ -437,8 +439,7 @@ def _fanduelOddsAll(today=True):
 def mgmOdds():
     # https://sports.co.betmgm.com/en/sports/events/minnesota-timberwolves-at-san-antonio-spurs-11101908?market=10000
     url = "https://cds-api.co.betmgm.com/bettingoffer/fixtures?x-bwin-accessid=OTU4NDk3MzEtOTAyNS00MjQzLWIxNWEtNTI2MjdhNWM3Zjk3&lang=en-us&country=US&userCountry=US&subdivision=Texas&fixtureTypes=Standard&state=Latest&offerMapping=Filtered&offerCategories=Gridable&fixtureCategories=Gridable,NonGridable,Other&sportIds=7&regionIds=9&competitionIds=6004&skip=0&take=50&sortBy=Tags"
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36'}
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36'}
     response = requests.get(url, headers=headers)
 
     betmgmGames = json.loads(response.text)['fixtures']

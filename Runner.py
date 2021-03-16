@@ -36,14 +36,15 @@ from src.rating_algorithms.elo_data_processing import runEloForAllSeasons, calcu
 from src.rating_algorithms.glicko_data_processing import runGlickoForAllSeasons, calculateGlickoDictionaryFromZero
 from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero, updateTrueSkillDictionaryFromLastGame
 
+# for ml model add - team continuity factor & previous seasons stats
+# todo bug - mgm odds break when positive
+
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
 # getAllGameData()
-# updateCurrentSeasonRawGameData()
-# updateTrueSkillDictionaryFromLastGame()
+updateCurrentSeasonRawGameData()
+updateTrueSkillDictionaryFromLastGame()
 # oneSeasonFromScratch(2021)
-
-betfairOdds()
 
 # calculateGlickoDictionaryFromZero()
 # calculateTrueSkillDictionaryFromZero()

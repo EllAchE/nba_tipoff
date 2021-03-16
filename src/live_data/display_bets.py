@@ -44,7 +44,7 @@ def filterBestByGameCode(oddsObjList):
         singleGameList = list(filter(lambda x: x.gameCode == gameCode, oddsObjList))
         bestPerGameOnly.append(max(singleGameList, key= lambda x: x.bestEVFactor))
 
-    bestPerGameOnly.sort(key=lambda x: x.bestEVFactor, reverse=True)
+    bestPerGameOnly.sort(key=lambda x: x.bestEVFactor)
 
     return bestPerGameOnly
 
@@ -59,7 +59,7 @@ def getAllOddsAndDisplayByEv(getDk=False, getMgm=False, getBovada=False, getPoin
     saveOddsToFile(f'Data/JSON/historical_odds/{d}.json', allGameOddsObjList)
     displayAllBetsByEV(allGameOddsObjList)
 
-# todo bovada breaks this by having unknown ev items
+# todo bovada breaks this by having unknown teams.
 def getUniqueOddsAndDisplayByEv(getDk=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False, getFanduelToday=False, getFanduelTomorrow=False, includeOptimalPlayerSpread=False):
     allGameOddsObjList = createAllOddsDict(getDk=getDk, getMgm=getMgm, getBovada=getBovada, getPointsBet=getPointsBet, getUnibet=getUnibet, getBarstool=getBarstool, getFanduelToday=getFanduelToday, getFanduelTomorrow=getFanduelTomorrow, includeOptimalPlayerSpread=includeOptimalPlayerSpread)
     d = datetime.now().strftime('%Y-%m-%d_%H-%M-%S%p')

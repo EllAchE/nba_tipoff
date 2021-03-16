@@ -53,7 +53,7 @@ def preMatchPredictionsNoBinning(awayPlayerCode, awayPlayerTeam, homeOdds, homeP
 
     return predictionArray, actualArray
 
-def histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePlayerTeam, scoringTeam, predictionSummaryPath, predictionArray, actualArray, minTipWinOdds=0.0):
+def histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePlayerTeam, scoringTeam, predictionSummaryPath, predictionArray, actualArray, histogramPredictionsDict, minTipWinOdds=0.0):
     with open(predictionSummaryPath) as dictFile:
        dsd = json.load(dictFile)
 
@@ -83,6 +83,7 @@ def histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePla
             if oddsBelongToHome:
                 if homeScoresFirst:
                     subItem['higherOddsScoresFirst'] += 1
+                    histogramPredictionsDict[item['start']]["actual"] += 1
             else:
                 if not homeScoresFirst:
                      subItem['higherOddsScoresFirst'] += 1
@@ -109,20 +110,20 @@ def histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePla
 
     return predictionArray, actualArray
 
-def beforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionArray, actualArray,
+def beforeMatchPredictions(psd, hTipCode, aTipCode, hTeam, aTeam, tipWinCode, scoringTeam, predictionArray, actualArray, histogramPredictionsDict,
                            minimumTipWinPercentage, predictionFunction, predictionSummaryPath, minimumAppearances):
-    homeOdds = predictionFunction(homePlayerCode, awayPlayerCode, psd=psd)
+    homeOdds = predictionFunction(hTipCode, aTipCode, psd=psd)
 
-    if psd[homePlayerCode]['appearances'] > minimumAppearances and psd[awayPlayerCode]['appearances'] > minimumAppearances:
-        predictionArray, actualArray = histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homeTeam, scoringTeam, predictionSummaryPath,
-                                    predictionArray, actualArray, minTipWinOdds=minimumTipWinPercentage)
+    if psd[hTipCode]['appearances'] > minimumAppearances and psd[aTipCode]['appearances'] > minimumAppearances:
+        predictionArray, actualArray, histogramPredictionsDict = histogramBinningPredictions(homeOdds, hTipCode, tipWinCode, hTeam, scoringTeam, predictionSummaryPath,
+                                                                   predictionArray, actualArray, histogramPredictionsDict, minTipWinOdds=minimumTipWinPercentage)
     else:
         print('no bet, not enough Data on participants')
 
     # todo prematch no binning also adds to prediction and actual array but does not currently return. Need a separate log loss for bins
-    if psd[homePlayerCode]['appearances'] > minimumAppearances and psd[awayPlayerCode]['appearances'] > minimumAppearances:
-        preMatchPredictionsNoBinning(awayPlayerCode, awayTeam, homeOdds, homePlayerCode, homeTeam, scoringTeam,
-                                     tipWinnerCode, minimumTipWinPercentage, predictionSummaryPath, predictionArray, actualArray)
+    if psd[hTipCode]['appearances'] > minimumAppearances and psd[aTipCode]['appearances'] > minimumAppearances:
+        preMatchPredictionsNoBinning(aTipCode, aTeam, homeOdds, hTipCode, hTeam, scoringTeam,
+                                     tipWinCode, minimumTipWinPercentage, predictionSummaryPath, predictionArray, actualArray)
     else:
         print('no bet, not enough Data on participants')
 
@@ -175,14 +176,12 @@ def addSummaryMathToAlgoSummary(predictionSummariesPath, actualArray, prediction
     with open(predictionSummariesPath, 'w') as wFile:
         json.dump(dsd, wFile, indent=4)
 
-def runAlgoForSeason(seasonCsv: str, skillDictPath: str, predictionSummariesPath: str, algoPrematch, algoSingleTipoff, winningBetThreshold: float,
-                     predictionArray, actualArray, columnAdds=None, startFromBeginning=False):
+def runAlgoForSeason(seasonCsv: str, skillDictPath: str, predictionSummariesPath: str, beforeMatchAlgo, algoSingleTipoff, winningBetThreshold: float,
+                     predictionArray, actualArray, histogramPredictionsDict, columnAdds=None, startFromBeginning=False):
     df = pd.read_csv(seasonCsv)
     # df = df[df['Home Tipper'].notnull()] # filters invalid rows
     if columnAdds is not None:
         df = dfEmptyColumnAdd(df, columnAdds)
-
-    winningBets = losingBets = 0
 
     print('running for season doc', seasonCsv, '\n', '\n')
     colLen = len(df['Game Code'])
@@ -228,11 +227,9 @@ def runAlgoForSeason(seasonCsv: str, skillDictPath: str, predictionSummariesPath
         hTeam = df['Home Short'].iloc[i]
         aTeam = df['Away Short'].iloc[i]
 
-        predictionArray, actualArray = algoPrematch(psd, hTipCode, aTipCode, hTeam, aTeam, tWinLink, scoringTeam, predictionArray, actualArray, winningBetThreshold)
+        predictionArray, actualArray, histogramPredictionsDict = beforeMatchAlgo(psd, hTipCode, aTipCode, hTeam, aTeam, tWinLink, scoringTeam,
+                                                                                 predictionArray, actualArray, histogramPredictionsDict, winningBetThreshold)
         returnObj = algoSingleTipoff(psd, tWinLink, tLoseLink, hTipCode, df['Full Hyperlink'].iloc[i])
-
-        # with open(predictionSummariesPath, 'w') as writeFile:
-        #     json.dump(dsd, writeFile, indent=4)
 
         if columnAdds is not None:
             for key in returnObj.keys():
@@ -258,7 +255,7 @@ def runAlgoForSeason(seasonCsv: str, skillDictPath: str, predictionSummariesPath
 
     df.to_csv(str(seasonCsv)[:-4] + '-test.csv')
 
-    return predictionArray, actualArray
+    return predictionArray, actualArray, histogramPredictionsDict
 
 def runAlgoForAllSeasons(seasons, skillDictPath, predictionSummariesPath, algoPrematch, algoSingleTipoff, winningBetThreshold, columnAdds=None):
     seasonKey = ''
@@ -269,14 +266,18 @@ def runAlgoForAllSeasons(seasons, skillDictPath, predictionSummariesPath, algoPr
 
     predictionArray = list()
     actualArray = list()
+    histogramPredictionsDict = {}
+
+    for bin in dsd['histogramDivisions']:
+        histogramPredictionsDict[bin['start']] = {"actual": [], "predicted": []}
 
     for season in seasons:
-        predictionArray, actualArray = runAlgoForSeason(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), skillDictPath, predictionSummariesPath,
-                algoPrematch, algoSingleTipoff, winningBetThreshold, predictionArray, actualArray, startFromBeginning=True, columnAdds=columnAdds)
+        predictionArray, actualArray, histogramPredictionsDict = runAlgoForSeason(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), skillDictPath, predictionSummariesPath,
+                algoPrematch, algoSingleTipoff, winningBetThreshold, predictionArray, actualArray, histogramPredictionsDict, startFromBeginning=True, columnAdds=columnAdds)
         seasonKey += str(season) + '-'
 
     dsd['seasons'] = seasonKey + 'with-odds-' + str(winningBetThreshold)
-    addSummaryMathToAlgoSummary(predictionSummariesPath, actualArray, predictionArray)
+    addSummaryMathToAlgoSummary(predictionSummariesPath, actualArray, predictionArray, histogramPredictionsDict)
 
     # with open(predictionSummariesPath, 'w') as predSum:
     #     json.dump(dsd, predSum, indent=4)
