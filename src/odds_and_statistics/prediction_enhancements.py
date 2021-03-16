@@ -52,6 +52,7 @@ def getFirstFieldGoalStats(season, isFirstFieldGoal=False):
 
     summaryDict = OrderedDict(sorted(summaryDict.items(), key=sortFunction, reverse=True))
     savePath = ENVIRONMENT.FIRST_FG_SUMMARY_UNFORMATTED_PATH.format(str(season)) if isFirstFieldGoal else ENVIRONMENT.FIRST_POINT_SUMMARY_UNFORMATTED_PATH.format(str(season))
+
     with open(savePath, 'w') as writeFile:
         json.dump(summaryDict, writeFile, indent=4)
     print('first shot statistics compiled. Total makes was counted as', makesOverall)

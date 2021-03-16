@@ -44,7 +44,7 @@ def eloDictionary():
 def glickoMatchWithRawNums(winnerMu: float, winnerSigma: float, winnerPhi: float, loserMu: float, loserSigma: float, loserPhi: float):
     ratingObj1 = glicko2.Rating(mu=winnerMu, phi=winnerPhi, sigma=winnerSigma)
     ratingObj2 = glicko2.Rating(mu=loserMu, phi=loserPhi, sigma=loserSigma)
-    glickoObj = glicko2.Glicko2()
+    glickoObj = glicko2.Glicko2(tau=ENVIRONMENT.BASE_GLICKO_TAU, epsilon=ENVIRONMENT.BASE_GLICKO_EPSILON)
     newRO1, newRO2 = glickoObj.rate_1vs1(ratingObj1, ratingObj2)
     return newRO1.mu, newRO1.sigma, newRO1.phi, newRO2.mu, newRO2.sigma, newRO2.phi
 

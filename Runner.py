@@ -39,15 +39,16 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # for ml model add - team continuity factor & previous seasons stats
 # todo bug - mgm odds break when positive
 
+# calculateEloDictionaryFromZero()
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
 # getAllGameData()
 updateCurrentSeasonRawGameData()
-updateTrueSkillDictionaryFromLastGame()
+# updateTrueSkillDictionaryFromLastGame()
 # oneSeasonFromScratch(2021)
 
 # calculateGlickoDictionaryFromZero()
-# calculateTrueSkillDictionaryFromZero()
+calculateTrueSkillDictionaryFromZero()
 # calculateEloDictionaryFromZero()
 # todo look at first 100 and last 100 games (or similar) of player performance vs. overall
 
