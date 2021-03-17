@@ -1,9 +1,11 @@
 # backlogtodo offensive rebounding/defensive rebounding influence
 # backlogtodo add other stats and run ludwig/ai checker
+import pandas as pd
 import json
 from collections import OrderedDict
 import requests
 import ENVIRONMENT
+from src.database.database_access import getUniversalTeamShortCode
 from src.utils import lowercaseNoSpace
 
 # backlogtodo include nonshooting possessions
@@ -39,14 +41,14 @@ def getFirstFieldGoalStats(season, isFirstFieldGoal=False):
         firstShotsDict = json.load(data)
 
     summaryDict = {}
-    makesOverall = 0
 
     summaryDict = _initializePlayerDict(summaryDict, firstShotsDict)
     summaryDict = _initializeTeamDict(summaryDict, firstShotsDict)
+    seasonData = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
 
     for game in firstShotsDict:
-        summaryDict = _playerFirstShotStats(game, summaryDict, makesOverall, isFirstFieldGoal=isFirstFieldGoal)
-        summaryDict = _teamFirstShotStats(game, summaryDict, isFirstFieldGoal=isFirstFieldGoal)
+        summaryDict = _playerFirstShotStats(game, summaryDict, isFirstFieldGoal=isFirstFieldGoal)
+        summaryDict = _teamFirstShotStats(game, summaryDict, seasonData, isFirstFieldGoal=isFirstFieldGoal)
 
     summaryDict = _summaryStats(summaryDict)
 
@@ -59,7 +61,7 @@ def getFirstFieldGoalStats(season, isFirstFieldGoal=False):
 
     with open(savePath, 'w') as writeFile:
         json.dump(summaryDict, writeFile, indent=4)
-    print('first shot statistics compiled. Total makes was counted as', makesOverall)
+    print('first shot statistics compiled. Total makes was counted as?')
 
 def _initializePlayerDict(summaryDict, lastSeasonData):
     playerSet = set()
@@ -99,12 +101,40 @@ def _initializeTeamDict(summaryDict, lastSeasonData):
                                           'opponentfreethrowmake': 0, 'opponentfreethrowmiss': 0}
     return summaryDict
 
-def _teamFirstShotStats(game, summaryDict, isFirstFieldGoal=False):
+def getTipoffResultFromGameCode(gameCode, seasonData):
+    tipoffLine = seasonData.loc[seasonData['Game Code'] == gameCode].reset_index()
+    win = getUniversalTeamShortCode(tipoffLine['Tip Winning Team'][0])
+    lose = getUniversalTeamShortCode(tipoffLine['Tip Losing Team'][0])
+    return win, lose
+
+def _teamFirstShotStats(game, summaryDict, seasonData, isFirstFieldGoal=False):
+    # todo add favorable/unfavorable tip result to quarter data
     quarters = ['quarter1', 'quarter2', 'quarter3', 'quarter4']
+    try:
+        tipWinTeam, tipLoseTeam = getTipoffResultFromGameCode(game['gameCode'], seasonData)
+        retrievalError = False
+    except:
+        print('failed to get details from gameCode, may be a None line')
+        retrievalError = True
+        teamWonTip = 0.5
+        opponentWonTip = 0.5
+
     for quarter in quarters:
+        isFirstTimeThrough = True
         for event in game[quarter]:
             team = event['team']
             opponent = event['opponentTeam']
+            if isFirstTimeThrough and not retrievalError:
+                teamWonTip = 1 if tipWinTeam == getUniversalTeamShortCode(team) else 0
+                opponentWonTip = 1 if tipWinTeam == getUniversalTeamShortCode(opponent) else 0
+                if quarter == 'quarter1' or quarter == 'quarter4':
+                    summaryDict[team][quarter]["favorableTipResults"] += teamWonTip
+                    summaryDict[opponent][quarter]["favorableTipResults"] += opponentWonTip
+                else:
+                    summaryDict[team][quarter]["favorableTipResults"] += opponentWonTip
+                    summaryDict[opponent][quarter]["favorableTipResults"] += teamWonTip
+                isFirstTimeThrough = False
+
             summaryDict[team][quarter][event['shotType']] += 1
             summaryDict[opponent][quarter][lowercaseNoSpace('opponent' + event['shotType'])] += 1
 
@@ -138,7 +168,6 @@ def _playerFirstShotStats(game, summaryDict, isFirstFieldGoal=False):
     playerHasShotInGame = set()
     quarters = ['quarter1']#, 'quarter2', 'quarter3', 'quarter4']
     # only consider first quarter shots for individual players currently
-    # todo add favorable/unfavorable tip result to quarter data
 
     def getTotalShots(playerQuarter):
         return playerQuarter['FG ATTEMPTS'] + playerQuarter['FREE THROW ATTEMPTS']

@@ -28,6 +28,7 @@ Percentage of first shots taken by particular player
 
 '''
 import json
+import re
 
 import requests
 from nba_api.stats.endpoints import gamerotation, playbyplayv2
@@ -36,7 +37,7 @@ import pandas as pd
 
 import ENVIRONMENT
 from src.database.database_access import findPlayerFullFromLastGivenPossibleFullNames, getGameIdFromBballRef, \
-    getTeamDictionaryFromShortCode, getAllGamesForTeam, getBballRefPlayerName, \
+    getTeamDictionaryFromShortCode, getAllGamesForTeam, \
     getGameIdByTeamAndDateFromStaticData, getUniversalPlayerName, getUniversalTeamShortCode
 from src.utils import sleepChecker
 
@@ -182,7 +183,7 @@ def saveAllHistoricalStarters():
 
         while allGamesDf.iloc[i]['SEASON_ID'] != 22012:
             print("iteration", i, "for team", shortCode)
-            sleepChecker(baseTime=0, randomMultiplier=0.5, iterations=4)
+            sleepChecker(baseTime=0, randomMultiplier=1, iterations=4)
             row = allGamesDf.iloc[i]
             try:
                 homeTeam, homeStarters, awayTeam, awayStarters = getSingleGameStarters(row['GAME_ID'])
@@ -297,10 +298,11 @@ def getFirstScoreLine(gameCode, season):
         firstScoreDict = json.load(sbffg)
     return firstScoreDict[season][gameCode]
 
-def parseDataFromTipoffLine(homeShort, awayShort, content, type, isHome, season):
-    tipper1 = getBballRefPlayerName(None)
-    tipper2 = getBballRefPlayerName(None)
-    possessingPlayer = getBballRefPlayerName(None)
+def parseDataFromTipoffLine(tipoffContent, type, isHome):
+    print(tipoffContent)
+    # tipper1 = getBballRefPlayerName(None)
+    #tipper2 = getBballRefPlayerName(None)
+    #possessingPlayer = getBballRefPlayerName(None)
     homeTipper = None
     awayTipper = None
     firstScoret = None
@@ -319,7 +321,8 @@ def getTipoffLineFromBballRefId(bballRef: str):
     gameId = getGameIdFromBballRef(bballRef)
     pbpDf = getGamePlayByPlay(gameId)
     tipoffContent, type, isHome = getTipoffLine(pbpDf)
-    return tipoffContent
+    parseDataFromTipoffLine(tipoffContent, type, isHome)
+    return tipoffContent, type, isHome
 
 def splitAllSeasonsFirstShotDataToMultipleFiles():
     with open(ENVIRONMENT.ALL_SHOTS_BEFORE_FIRST_FG_PATH) as allDataFile:
@@ -396,6 +399,41 @@ def getAllFirstPossessionStatisticsIncrementally(season):
             json.dump(shotsDict, jsonFile, indent=4)
 
         i += 1
+
+def fillGapsLooper():
+    for year in ENVIRONMENT.ALL_SEASONS_LIST:
+        pathIn = ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(year) #ENVIRONMENT.SEASON_DATA_GAPS
+        pathOut = (ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH[:-4] + "_{}.csv").format(year, "no_gaps") #ENVIRONMENT.SEASON_DATA_GAPS_FILLED
+        print("run for ", year, pathIn, pathOut)
+        fillGaps(year, pathIn, pathOut)
+
+
+def fillGaps(season, pathIn, pathOut):
+    fin = open(pathIn, 'r', encoding='utf8')
+    #fout = open(pathOut, 'w')
+    fout = open('test.txt', 'w', encoding='utf8')
+    count = 0
+    for line in fin:
+        if re.search(',,,,,,,,,,,,', line) is not None:
+            tokenized = line.split(',')
+            gameCode = tokenized[0]
+            #fout.write(str(count) + ', ' + str(tokenized[0]) + ', ' + str(year) + ', ' + str(tokenized[4]) + ', ' + str(tokenized[5]))
+            fout.write(str(count) + ': ' + line)
+            try:
+                tipOffContent, type, isHome = getTipoffLineFromBballRefId(gameCode)
+                fout.write(tipOffContent)
+            except IndexError:
+                fout.write("failed to retrieve for " + gameCode)
+            count += 1
+
+            print(count)
+            sleepChecker(1, 10, 1, True)
+            #print(nba_public.getParticipatingTeamsFromId(nba_public.getGameIdFromBballRef(gameCode)))
+        #else:
+            #fout.write(line)
+            #print(line)
+    fin.close()
+    fout.close()
 
 # class EventMsgType(Enum):
 #     FIELD_GOAL_MADE = 1 #backlogtodo replace above uses of numbers with ENUM values for readability
