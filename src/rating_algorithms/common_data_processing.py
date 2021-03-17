@@ -121,7 +121,6 @@ def beforeMatchPredictions(psd, hTipCode, aTipCode, hTeam, aTeam, tipWinCode, sc
     else:
         print('no bet, not enough Data on participants')
 
-    # todo prematch no binning also adds to prediction and actual array but does not currently return. Need a separate log loss for bins
     if psd[hTipCode]['appearances'] > minimumAppearances and psd[aTipCode]['appearances'] > minimumAppearances:
         preMatchPredictionsNoBinning(aTipCode, aTeam, homeOdds, hTipCode, hTeam, scoringTeam, tipWinCode, minimumTipWinPercentage,
                                      predictionSummaryPath, predictionArray, actualArray)

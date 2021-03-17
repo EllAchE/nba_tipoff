@@ -29,6 +29,10 @@ def getCurrentSeasonUsageRate():
 
     print('saved Player Usage Dictionary')
 
+def getAllSeasonFirstFieldGoalStats(isFirstFieldGoal=False):
+    for season in ENVIRONMENT.SEASONS_SINCE_HORNETS_LIST:
+        getFirstFieldGoalStats(season, isFirstFieldGoal=isFirstFieldGoal)
+
 def getFirstFieldGoalStats(season, isFirstFieldGoal=False):
     stub = ENVIRONMENT.SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH
     with open(stub.format(season)) as data:
@@ -41,7 +45,7 @@ def getFirstFieldGoalStats(season, isFirstFieldGoal=False):
     summaryDict = _initializeTeamDict(summaryDict, firstShotsDict)
 
     for game in firstShotsDict:
-        summaryDict, makesOverall = _playerFirstShotStats(game, summaryDict, makesOverall, isFirstFieldGoal=isFirstFieldGoal)
+        summaryDict = _playerFirstShotStats(game, summaryDict, makesOverall, isFirstFieldGoal=isFirstFieldGoal)
         summaryDict = _teamFirstShotStats(game, summaryDict, isFirstFieldGoal=isFirstFieldGoal)
 
     summaryDict = _summaryStats(summaryDict)
@@ -130,7 +134,7 @@ def _summaryStats(summaryDict):
     return summaryDict
 
 # backlogtodo normalize for games started, compare to known player usage rate for a given season
-def _playerFirstShotStats(game, summaryDict, makesOverall, isFirstFieldGoal=False):
+def _playerFirstShotStats(game, summaryDict, isFirstFieldGoal=False):
     playerHasShotInGame = set()
     quarters = ['quarter1']#, 'quarter2', 'quarter3', 'quarter4']
     # only consider first quarter shots for individual players currently
@@ -164,7 +168,7 @@ def _playerFirstShotStats(game, summaryDict, makesOverall, isFirstFieldGoal=Fals
                 summaryDict[player][quarter]['FREE THROW ATTEMPTS'] += 1
             if not isFirstFieldGoal and 'MAKE' in event['shotType']:
                 break
-    return summaryDict, makesOverall
+    return summaryDict
 
 # Additional variables'
 # Top that are def worht

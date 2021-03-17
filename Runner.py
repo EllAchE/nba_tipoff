@@ -26,7 +26,7 @@
 import ENVIRONMENT
 from src.database.database_creation import getAllGameData, createPlayerEloDictionary, \
     createPlayerGlickoDictionary, saveActivePlayersTeams, createPlayerNameRelationship
-from src.historical_data.historical_data_retrieval import updateCurrentSeasonRawGameData, oneSeasonFromScratch
+from src.historical_data.bball_reference_historical_data import updateCurrentSeasonRawGameData, oneSeasonFromScratch
 from src.historical_data.nba_play_by_play_methods import getAllFirstPossessionStatisticsIncrementally, \
     splitAllSeasonsFirstShotDataToMultipleFiles, getSingleGameStarters, saveAllHistoricalStarters
 from src.live_data.display_bets import getAllOddsAndDisplayByEv, getUniqueOddsAndDisplayByEv
@@ -43,12 +43,12 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
 # getAllGameData()
-updateCurrentSeasonRawGameData()
+# updateCurrentSeasonRawGameData()
 # updateTrueSkillDictionaryFromLastGame()
 # oneSeasonFromScratch(2021)
 
 # calculateGlickoDictionaryFromZero()
-calculateTrueSkillDictionaryFromZero()
+# calculateTrueSkillDictionaryFromZero()
 # calculateEloDictionaryFromZero()
 # todo look at first 100 and last 100 games (or similar) of player performance vs. overall
 
@@ -59,12 +59,12 @@ calculateTrueSkillDictionaryFromZero()
 # getAllOddsAndDisplayByEv(getFanduelTomorrow=True, getMgm=True)
 # getAllOddsAndDisplayByEv(getMgm=True)
 # getAllOddsAndDisplayByEv(getDk=True)#, getBovada=True)
-# getAllOddsAndDisplayByEv(getBovada=True, includeOptimalPlayerSpread=True)
+# getAllOddsAndDisplayByEv(getBovada=True)# includeOptimalPlayerSpread=True)
 # getAllOddsAndDisplayByEv(getUnibet=True)
 # getUniqueOddsAndDisplayByEv(getBovada=True, getUnibet=True)
 # getAllOddsAndDisplayByEv(getBovada=True, getUnibet=True)
 #
-# getDailyOdds('SAS', 'PHI', '-110')
+# getDailyOdds('HOU', 'ATL', '+102')
 '''
 Existing apis etc.:
 
