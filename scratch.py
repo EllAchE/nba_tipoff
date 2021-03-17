@@ -2,3 +2,10 @@ from src.historical_data.nba_play_by_play_methods import fillGapsLooper
 from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalStats
 
 getFirstFieldGoalStats(2014)
+getFirstFieldGoalStats(2015)
+getFirstFieldGoalStats(2016)
+getFirstFieldGoalStats(2017)
+getFirstFieldGoalStats(2018)
+getFirstFieldGoalStats(2019)
+getFirstFieldGoalStats(2020)
+getFirstFieldGoalStats(2021)

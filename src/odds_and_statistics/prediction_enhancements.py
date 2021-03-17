@@ -116,17 +116,20 @@ def _teamFirstShotStats(game, summaryDict, seasonData, isFirstFieldGoal=False):
     except:
         print('failed to get details from gameCode, may be a None line')
         retrievalError = True
-        teamWonTip = 0.5
-        opponentWonTip = 0.5
+
 
     for quarter in quarters:
         isFirstTimeThrough = True
         for event in game[quarter]:
             team = event['team']
             opponent = event['opponentTeam']
-            if isFirstTimeThrough and not retrievalError:
-                teamWonTip = 1 if tipWinTeam == getUniversalTeamShortCode(team) else 0
-                opponentWonTip = 1 if tipWinTeam == getUniversalTeamShortCode(opponent) else 0
+            if isFirstTimeThrough:
+                if not retrievalError:
+                    teamWonTip = 1 if tipWinTeam == getUniversalTeamShortCode(team) else 0
+                    opponentWonTip = 1 if tipWinTeam == getUniversalTeamShortCode(opponent) else 0
+                else:
+                    teamWonTip = 0.5
+                    opponentWonTip = 0.5
                 if quarter == 'quarter1' or quarter == 'quarter4':
                     summaryDict[team][quarter]["favorableTipResults"] += teamWonTip
                     summaryDict[opponent][quarter]["favorableTipResults"] += opponentWonTip
