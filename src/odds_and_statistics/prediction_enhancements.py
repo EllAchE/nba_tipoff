@@ -42,12 +42,12 @@ def getFirstFieldGoalStats(season, isFirstFieldGoal=False):
 
     summaryDict = {}
 
-    summaryDict = _initializePlayerDict(summaryDict, firstShotsDict)
+    # summaryDict = _initializePlayerDict(summaryDict, firstShotsDict)
     summaryDict = _initializeTeamDict(summaryDict, firstShotsDict)
     seasonData = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
 
     for game in firstShotsDict:
-        summaryDict = _playerFirstShotStats(game, summaryDict, isFirstFieldGoal=isFirstFieldGoal)
+        # summaryDict = _playerFirstShotStats(game, summaryDict, isFirstFieldGoal=isFirstFieldGoal)
         summaryDict = _teamFirstShotStats(game, summaryDict, seasonData, isFirstFieldGoal=isFirstFieldGoal)
 
     summaryDict = _summaryStats(summaryDict)

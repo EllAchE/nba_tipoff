@@ -113,7 +113,8 @@ def histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePla
 
 def beforeMatchPredictions(psd, hTipCode, aTipCode, hTeam, aTeam, tipWinCode, scoringTeam, predictionArray, actualArray, histogramPredictionsDict,
                            minimumTipWinPercentage, predictionFunction, predictionSummaryPath, minimumAppearances):
-    homeOdds = predictionFunction(hTipCode, aTipCode, psd=psd)
+    homeTipWinOdds = predictionFunction(hTipCode, aTipCode, psd=psd)
+    homeOdds = None
 
     if psd[hTipCode]['appearances'] > minimumAppearances and psd[aTipCode]['appearances'] > minimumAppearances:
         predictionArray, actualArray, histogramPredictionsDict = histogramBinningPredictions(homeOdds, hTipCode, tipWinCode, hTeam, scoringTeam, predictionSummaryPath,

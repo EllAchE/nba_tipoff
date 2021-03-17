@@ -47,6 +47,8 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # updateTrueSkillDictionaryFromLastGame()
 # oneSeasonFromScratch(2021)
 
+# getAllExpectedStarters()
+
 # calculateGlickoDictionaryFromZero()
 # calculateTrueSkillDictionaryFromZero()
 # calculateEloDictionaryFromZero()
@@ -64,9 +66,9 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # getUniqueOddsAndDisplayByEv(getBovada=True, getUnibet=True)
 # getAllOddsAndDisplayByEv(getBovada=True, getUnibet=True)
 #
-# getDailyOdds('HOU', 'ATL', '+102')
+getDailyOdds('MIA', 'MEM', '-115')
 '''
-Existing apis etc.:
+Existing apis etc.
 
 nba.com:
 https://github.com/bttmly/nba-client-template/blob/master/nba.json

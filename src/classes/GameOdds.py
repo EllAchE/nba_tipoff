@@ -1,5 +1,6 @@
 from src.odds_and_statistics.odds_calculator import convertPlayerLinesToSingleLine, returnGreaterOdds, \
-    positiveEvThresholdFromAmerican, getScoreProb, kellyBetFromAOddsAndScoreProb, getEvMultiplier, getPlayerSpread
+    positiveEvThresholdFromAmerican, kellyBetFromAOddsAndScoreProb, getEvMultiplier, getPlayerSpread, \
+    scoreFirstProb
 from src.live_data.live_odds_retrieval import getExpectedTipper
 
 class GameOdds:
@@ -57,8 +58,8 @@ class GameOdds:
 
         self.expectedHomeTipper = getExpectedTipper(self.home)
         self.expectedAwayTipper = getExpectedTipper(self.away)
-        self.homeScoreProb = getScoreProb(self.expectedHomeTipper, self.expectedAwayTipper)
-        self.awayScoreProb = getScoreProb(self.expectedAwayTipper, self.expectedHomeTipper)
+        self.homeScoreProb = scoreFirstProb(self.expectedHomeTipper, self.expectedAwayTipper)
+        self.awayScoreProb = scoreFirstProb(self.expectedAwayTipper, self.expectedHomeTipper)
 
         self.homeBestKellyBet = kellyBetFromAOddsAndScoreProb(self.homeScoreProb, self.bestHomeOdds)
         self.awayBestKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.bestAwayOdds)

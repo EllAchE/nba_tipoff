@@ -115,6 +115,11 @@ def bovadaTeamOdds(allTeamBets):
 
     scoreFirstBetsBothTeamsFormatted = list()
     for item in scoreFirstBetsBothTeams:
+        # todo look at response when bet DNE
+        if item['team2Odds'] == 1 or item['team1Odds'] == 1:
+            print('invalid odds for bet', item['shortTitle'], '(decimal odds of 1)')
+            continue
+
         scoreFirstBetsBothTeamsFormatted.append({
             'exchange': 'bovada',
             "shortTitle": item['shortTitle'],

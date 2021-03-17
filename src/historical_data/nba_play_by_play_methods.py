@@ -435,6 +435,38 @@ def fillGaps(season, pathIn, pathOut):
     fin.close()
     fout.close()
 
+def teamSummaryDataFromFirstPointData(season):
+    with open(ENVIRONMENT.FIRST_POINT_SUMMARY_UNFORMATTED_PATH.format(season)) as file:
+        fileDict = json.load(file)
+
+    summaryDict = {}
+    for team in fileDict:
+        try:
+            short = getUniversalTeamShortCode(team)
+        except:
+            print('playa')
+            continue
+        summaryDict[short] = {}
+        for quarter in fileDict[team]:
+            rawQData = fileDict[team][quarter]
+            makes = rawQData['2PT MAKE'] + rawQData['3PT MAKE'] + rawQData['FREE THROW MAKE']
+            oMakes = rawQData['opponent2ptmake'] + rawQData['opponent3ptmake'] + rawQData['opponentfreethrowmake']
+            expectedScoreFirstTotal = ENVIRONMENT.TIP_WINNER_SCORE_ODDS * rawQData['favorableTipResults'] + (1 - ENVIRONMENT.TIP_WINNER_SCORE_ODDS) * (oMakes + makes - rawQData['favorableTipResults'])
+            fSPer = makes / (oMakes + makes)
+            eFSPer = expectedScoreFirstTotal / (oMakes + makes)
+
+            summaryDict[short][quarter] = {
+                "total": oMakes + makes,
+                "actualMakes": makes,
+                "expectedMakes": expectedScoreFirstTotal,
+                "actualScoreFirstPercent": fSPer,
+                "expectedScoreFirstPercent": eFSPer,
+                "naiveAdjustmentFactor": fSPer / eFSPer
+            }
+
+    with open(ENVIRONMENT.FIRST_POINT_TEAM_META.format(season), 'w') as wFile:
+        json.dump(summaryDict, wFile, indent=4)
+
 # class EventMsgType(Enum):
 #     FIELD_GOAL_MADE = 1 #backlogtodo replace above uses of numbers with ENUM values for readability
 #     FIELD_GOAL_MISSED = 2

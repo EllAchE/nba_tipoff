@@ -74,6 +74,7 @@ SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH = os.path.abspath('Data/JSON/Public_NBA
 FIRST_FG_SUMMARY_UNFORMATTED_PATH = os.path.abspath('Data/JSON/Public_NBA_API/first_fg_summaries/first_fg_summary_{}.json')
 # FIRST_POINT_SUMMARY_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/first_point_summary.json'))
 FIRST_POINT_SUMMARY_UNFORMATTED_PATH = os.path.abspath('Data/JSON/Public_NBA_API/first_point_summaries/first_point_summary_{}.json')
+FIRST_POINT_TEAM_META = os.path.abspath('Data/JSON/Public_NBA_API/first_point_summaries/first_point_summary_meta_{}.json')
 
 # Raw Data Paths
 PLAYER_TEAM_PAIRS_PATH = Path(os.path.abspath('Data/JSON/player_team_pairs.json'))

@@ -1,7 +1,7 @@
 import ENVIRONMENT
 
 from src.database.database_creation import createPlayerTrueSkillDictionary
-from src.rating_algorithms.algorithms import trueSkillMatchWithRawNums, trueSkillWinProb
+from src.rating_algorithms.algorithms import trueSkillMatchWithRawNums, trueSkillTipWinProb
 from src.rating_algorithms.common_data_processing import beforeMatchPredictions, runAlgoForSeason, runAlgoForAllSeasons
 
 
@@ -16,7 +16,7 @@ def runTSForSeason(seasonCsv: str, winningBetThreshold: float=ENVIRONMENT.GLICKO
 def trueskillBeforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionArray, actualArray, histogramPredictionsDict,
         winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
     return beforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionArray, actualArray, histogramPredictionsDict, predictionSummaryPath=ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH,
-            minimumTipWinPercentage=winningBetThreshold, predictionFunction=trueSkillWinProb, minimumAppearances=ENVIRONMENT.MIN_TS_APPEARANCES)
+                                  minimumTipWinPercentage=winningBetThreshold, predictionFunction=trueSkillTipWinProb, minimumAppearances=ENVIRONMENT.MIN_TS_APPEARANCES)
 
 def runTSForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
     runAlgoForAllSeasons(seasons, ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH, trueskillBeforeMatchPredictions, trueskillUpdateDataSingleTipoff,

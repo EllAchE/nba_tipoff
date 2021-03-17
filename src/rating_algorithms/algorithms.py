@@ -51,7 +51,7 @@ def glickoMatchWithRawNums(winnerMu: float, winnerSigma: float, winnerPhi: float
 # backlogtodo toggle/test the glicko, ts and elo predictions
 # this is going to have to be done with histograms bucketed out to an appropriate size and a minimum
 # todo switch to using elo until logloss can be optimized
-def glickoWinProb(player1Code: str, player2Code: str, jsonPath: str = ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, psd: Any = None): #win prob for first player
+def glickoTipWinProb(player1Code: str, player2Code: str, jsonPath: str = ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, psd: Any = None): #win prob for first player
     if psd is None:
         with open(jsonPath) as json_file:
             psd = json.load(json_file)
@@ -82,7 +82,7 @@ def eloRatingPeriod(selfRating: int, gameResults: Any):
     # pass
     pass
 
-def eloWinProb(player1Code: str, player2Code: str, jsonPath: str = ENVIRONMENT.PLAYER_ELO_DICT_PATH, psd: Any = None): #win prob for first player
+def eloTipWinProb(player1Code: str, player2Code: str, jsonPath: str = ENVIRONMENT.PLAYER_ELO_DICT_PATH, psd: Any = None): #win prob for first player
     if psd is None:
         with open(jsonPath) as json_file:
             psd = json.load(json_file)
@@ -97,12 +97,11 @@ def trueSkillMatchWithRawNums(winnerMu: float, winnerSigma: float, loserMu: floa
         winnerRatingObj, loserRatingObj = trueskill.rate_1vs1(winnerRatingObj, loserRatingObj)
         return winnerRatingObj.mu, winnerRatingObj.sigma, loserRatingObj.mu, loserRatingObj.sigma
 
-def trueSkillWinProb(player1Code: str, player2Code: str, jsonPath: str = ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, psd: Any = None): #win prob for first player
+def trueSkillTipWinProb(player1Code: str, player2Code: str, jsonPath: str = ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH): #win prob for first player
     env = trueskill.TrueSkill(draw_probability=0, backend='scipy', tau=ENVIRONMENT.BASE_TS_TAU, beta=ENVIRONMENT.BASE_TS_BETA)
     env.make_as_global()
-    if psd is None:
-        with open(jsonPath) as json_file:
-            psd = json.load(json_file)
+    with open(jsonPath) as json_file:
+        psd = json.load(json_file)
 
     player1 = trueskill.Rating(psd[player1Code]['mu'], psd[player1Code]['sigma'])
     player2 = trueskill.Rating(psd[player2Code]['mu'], psd[player2Code]['sigma'])

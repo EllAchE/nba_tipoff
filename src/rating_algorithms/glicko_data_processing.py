@@ -1,6 +1,6 @@
 import ENVIRONMENT
 from src.database.database_creation import createPlayerGlickoDictionary
-from src.rating_algorithms.algorithms import glickoWinProb, glickoMatchWithRawNums
+from src.rating_algorithms.algorithms import glickoTipWinProb, glickoMatchWithRawNums
 # https://github.com/ryankirkman/pyglicko2/blob/master/glicko2.py
 from src.rating_algorithms.common_data_processing import beforeMatchPredictions,runAlgoForSeason, runAlgoForAllSeasons
 
@@ -11,7 +11,7 @@ def runGlickoForSeason(season: str, seasonCsv: str, winningBetThreshold: float=E
 
 def glickoBeforeMatchPredictions(psd, hTipCode, aTipCode, hTeam, aTeam, tipWinCode, scoringTeam, predictionArray, actualArray, histogramPredictionsDict, winningBetThreshold=ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD):
     return beforeMatchPredictions(psd, hTipCode, aTipCode, hTeam, aTeam, tipWinCode, scoringTeam, predictionArray, actualArray, histogramPredictionsDict, predictionSummaryPath=ENVIRONMENT.GLICKO_PREDICTION_SUMMARIES_PATH,
-                                  minimumTipWinPercentage=winningBetThreshold, predictionFunction=glickoWinProb, minimumAppearances=ENVIRONMENT.MIN_GLICKO_APPEARANCES)
+                                  minimumTipWinPercentage=winningBetThreshold, predictionFunction=glickoTipWinProb, minimumAppearances=ENVIRONMENT.MIN_GLICKO_APPEARANCES)
 
 def runGlickoForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD):
     runAlgoForAllSeasons(seasons, ENVIRONMENT.PLAYER_GLICKO_DICT_PATH, ENVIRONMENT.GLICKO_PREDICTION_SUMMARIES_PATH, glickoBeforeMatchPredictions,
