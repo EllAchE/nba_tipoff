@@ -9,7 +9,7 @@ HOME_TIP_WIN_ODDS = 0.51615348 # backlogtodo these are slightly deflated due to 
 TIP_WINNER_SCORE_ODDS = 0.65495626 # backlogtodo these are slightly deflated due to 0.5 approximation of empty rows
 # backlogtodo recalculate all of the uncertain data points above. This was originally done with a simple excel function on a fully concatenated csv of all seasons
 # backlogtodo consider weighting for season recency
-BANKROLL = 4600
+BANKROLL = 4500
 REDUCTION_FACTOR = 0.7
 
 # Testing Values
@@ -19,8 +19,7 @@ MIN_APPEARANCES = 15
 # Misc
 LIVE_ODDS_API_1 = '5f92a0468c6f365be7db417f13d52742'
 ALL_SEASONS_LIST = [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
-# ALL_SEASONS_LIST = [2014, 2015, 2016, 2017, 2018] # [1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
-SEASONS_LIST_SINCE_HORNETS = ALL_SEASONS_LIST[14:]
+SEASONS_SINCE_HORNETS_LIST = ALL_SEASONS_LIST[14:]
 CURRENT_SEASON = ALL_SEASONS_LIST[-1]
 CURRENT_TEAMS = ['NOP', 'IND', 'CHI', 'ORL', 'TOR', 'BKN', 'MIL', 'CLE', 'CHA', 'WAS', 'MIA', 'OKC', 'MIN', 'DET', 'PHX', 'NYK',
                 'BOS', 'LAC', 'SAS', 'GSW', 'DAL', 'UTA', 'ATL', 'POR', 'PHI', 'HOU', 'MEM', 'DEN', 'LAL', 'SAC']
@@ -43,9 +42,10 @@ BASE_TS_MU, str(BASE_TS_SIGMA).replace('.', ''), str(BASE_TS_TAU).replace('.', '
 
 # Glicko Base values
 BASE_GLICKO_MU = 1500
-BASE_GLICKO_SIGMA = 0.06
-BASE_GLICKO_PHI = 350
-BASE_GLICKO_TAU = 1.5
+BASE_GLICKO_SIGMA = 0.6
+BASE_GLICKO_PHI = 500
+BASE_GLICKO_TAU = 0.3
+BASE_GLICKO_EPSILON = 0.000001
 MIN_GLICKO_APPEARANCES = MIN_APPEARANCES
 GLICKO_TIPOFF_ODDS_THRESHOLD = TIP_WIN
 PHI_DRIFT = 'NoPhiDrift'

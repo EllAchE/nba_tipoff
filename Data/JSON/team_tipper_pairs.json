@@ -1,8 +1,8 @@
 {
   "pairs": [
     {
-      "playerCode": "capelca01.html",
-      "playerName": "Clint Capela",
+      "playerCode": "collijo01.html",
+      "playerName": "John Collins",
       "team": "ATL"
     },
     {
@@ -21,8 +21,8 @@
       "team": "CHA"
     },
     {
-      "playerCode": "cartewe01.html",
-      "playerName": "Wendell Carter Jr.",
+      "playerCode": "markkla01.html",
+      "playerName": "Lauri Markkanen",
       "team": "CHI"
     },
     {
@@ -81,8 +81,8 @@
       "team": "MEM"
     },
     {
-      "playerCode": "butleji01.html",
-      "playerName": "Jimmy Butler",
+      "playerCode": "adebaba01.html",
+      "playerName": "Bam Adebayo",
       "team": "MIA"
     },
     {
@@ -111,8 +111,8 @@
       "team": "ORL"
     },
     {
-      "playerCode": "embiijo01.html",
-      "playerName": "Joel Embiid",
+      "playerCode": "bradlto01.html",
+      "playerName": "Tony Bradley",
       "team": "PHI"
     },
     {
@@ -146,8 +146,8 @@
       "team": "UTA"
     },
     {
-      "playerCode": "wagnemo01.html",
-      "playerName": "Moritz Wagner",
+      "playerCode": "lenal01.html",
+      "playerName": "Alex Len",
       "team": "WAS"
     }
   ]

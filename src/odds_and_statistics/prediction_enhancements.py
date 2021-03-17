@@ -8,7 +8,8 @@ from src.utils import lowercaseNoSpace
 
 # backlogtodo include nonshooting possessions
 # todo these should be done:
-#    Offensive efficiency, Def E, Percentage of FT & 2s vs. 3s (effective score percentage), usage rate for players
+#    Offensive efficiency, Def E, Percentage of FT & 2s vs. 3s (effective score percentage),
+# backlogtodo  usage rate for players
 
 def getCurrentSeasonUsageRate():
     headers = {
@@ -28,6 +29,10 @@ def getCurrentSeasonUsageRate():
 
     print('saved Player Usage Dictionary')
 
+def getAllSeasonFirstFieldGoalStats(isFirstFieldGoal=False):
+    for season in ENVIRONMENT.SEASONS_SINCE_HORNETS_LIST:
+        getFirstFieldGoalStats(season, isFirstFieldGoal=isFirstFieldGoal)
+
 def getFirstFieldGoalStats(season, isFirstFieldGoal=False):
     stub = ENVIRONMENT.SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH
     with open(stub.format(season)) as data:
@@ -40,7 +45,7 @@ def getFirstFieldGoalStats(season, isFirstFieldGoal=False):
     summaryDict = _initializeTeamDict(summaryDict, firstShotsDict)
 
     for game in firstShotsDict:
-        summaryDict, makesOverall = _playerFirstShotStats(game, summaryDict, makesOverall, isFirstFieldGoal=isFirstFieldGoal)
+        summaryDict = _playerFirstShotStats(game, summaryDict, makesOverall, isFirstFieldGoal=isFirstFieldGoal)
         summaryDict = _teamFirstShotStats(game, summaryDict, isFirstFieldGoal=isFirstFieldGoal)
 
     summaryDict = _summaryStats(summaryDict)
@@ -51,6 +56,7 @@ def getFirstFieldGoalStats(season, isFirstFieldGoal=False):
 
     summaryDict = OrderedDict(sorted(summaryDict.items(), key=sortFunction, reverse=True))
     savePath = ENVIRONMENT.FIRST_FG_SUMMARY_UNFORMATTED_PATH.format(str(season)) if isFirstFieldGoal else ENVIRONMENT.FIRST_POINT_SUMMARY_UNFORMATTED_PATH.format(str(season))
+
     with open(savePath, 'w') as writeFile:
         json.dump(summaryDict, writeFile, indent=4)
     print('first shot statistics compiled. Total makes was counted as', makesOverall)
@@ -94,7 +100,6 @@ def _initializeTeamDict(summaryDict, lastSeasonData):
     return summaryDict
 
 def _teamFirstShotStats(game, summaryDict, isFirstFieldGoal=False):
-    # todo add in tip result to quarter data i.e. group quarters 1 and 4 as 'tip wins', 2 & 3 as 'tip losses'
     quarters = ['quarter1', 'quarter2', 'quarter3', 'quarter4']
     for quarter in quarters:
         for event in game[quarter]:
@@ -128,11 +133,11 @@ def _summaryStats(summaryDict):
 
     return summaryDict
 
-def _playerFirstShotStats(game, summaryDict, makesOverall, isFirstFieldGoal=False):
+# backlogtodo normalize for games started, compare to known player usage rate for a given season
+def _playerFirstShotStats(game, summaryDict, isFirstFieldGoal=False):
     playerHasShotInGame = set()
     quarters = ['quarter1']#, 'quarter2', 'quarter3', 'quarter4']
     # only consider first quarter shots for individual players currently
-    # todo normalize for games started, compare to known player usage rate for a given season
     # todo add favorable/unfavorable tip result to quarter data
 
     def getTotalShots(playerQuarter):
@@ -163,7 +168,7 @@ def _playerFirstShotStats(game, summaryDict, makesOverall, isFirstFieldGoal=Fals
                 summaryDict[player][quarter]['FREE THROW ATTEMPTS'] += 1
             if not isFirstFieldGoal and 'MAKE' in event['shotType']:
                 break
-    return summaryDict, makesOverall
+    return summaryDict
 
 # Additional variables'
 # Top that are def worht

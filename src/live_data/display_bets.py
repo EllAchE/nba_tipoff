@@ -7,14 +7,12 @@ from src.live_data.live_odds_data_handling import createAllOddsDict
 # backlogtodo update player spread calculation to round
 
 
-def displayUniqueBetsByEV(betDict: Any, showAll: bool = True):
-    oddsList = convertDictToGameOddsObjList(betDict)
+def displayUniqueBetsByEV(oddsList, showAll: bool = True):
     filteredOddsList = filterBestByGameCode(oddsList)
     filteredOddsList.sort(key=lambda x: x.bestEVFactor)
     printOddsObjDetails(filteredOddsList, showAll)
 
-def displayUniqueBetsByDatetime(betDict: Any, showAll: bool = True):
-    oddsList = convertDictToGameOddsObjList(betDict)
+def displayUniqueBetsByDatetime(oddsList, showAll: bool = True):
     filteredOddsList = filterBestByGameCode(oddsList)
     filteredOddsList.sort(key=lambda x: x.bestEVFactor)
     filteredOddsList.sort(key=lambda x: x.gameDatetime)
@@ -24,21 +22,19 @@ def displayAllBetsByEV(oddsList: Any, showAll: bool = True): # backlogtodo fix t
     oddsList.sort(key=lambda x: x.bestEVFactor, reverse=True)
     printOddsObjDetails(oddsList, showAll)
 
-def displayAllBetsByDatetime(betDict: Any, showAll: bool = True):
-    oddsList = convertDictToGameOddsObjList(betDict)
+def displayAllBetsByDatetime(oddsList, showAll: bool = True):
     oddsList.sort(key=lambda x: x.bestEVFactor, reverse=True)
     oddsList.sort(key=lambda x: x.gameDatetime)
     printOddsObjDetails(oddsList, showAll)
 
-def displayAllBetsByExchange(betDict: Any, showAll: bool = True):
-    oddsList = convertDictToGameOddsObjList(betDict)
+def displayAllBetsByExchange(oddsList, showAll: bool = True):
     oddsList.sort(key=lambda x: x.bestEVFactor, reverse=True)
     oddsList.sort(key=lambda x: x.gameDatetime)
     oddsList.sort(key=lambda x: x.exchange)
     printOddsObjDetails(oddsList, showAll)
 
-def filterBestByGameCode(oddsObjList: Any) -> Any:
-    bestPerGameOnly = Any()
+def filterBestByGameCode(oddsObjList):
+    bestPerGameOnly = list()
     gameCodes = set()
 
     for gameOdds in oddsObjList:
@@ -46,18 +42,11 @@ def filterBestByGameCode(oddsObjList: Any) -> Any:
 
     for gameCode in gameCodes:
         singleGameList = list(filter(lambda x: x.gameCode == gameCode, oddsObjList))
-        bestPerGameOnly.append(max([x.bestEVFactor for x in singleGameList]))
+        bestPerGameOnly.append(max(singleGameList, key= lambda x: x.bestEVFactor))
+
+    bestPerGameOnly.sort(key=lambda x: x.bestEVFactor)
 
     return bestPerGameOnly
-
-def convertDictToGameOddsObjList(betDict: Any) -> Any:
-    gameOddsObjList = list()
-
-    for game in betDict['games']:
-        oddsObj = GameOdds(game)
-        gameOddsObjList.append(oddsObj)
-
-    return gameOddsObjList
 
 def saveOddsToFile(path, odds):
     with open(path, 'w') as f:
@@ -69,6 +58,13 @@ def getAllOddsAndDisplayByEv(getDk=False, getMgm=False, getBovada=False, getPoin
     d = datetime.now().strftime('%Y-%m-%d_%H-%M-%S%p')
     saveOddsToFile(f'Data/JSON/historical_odds/{d}.json', allGameOddsObjList)
     displayAllBetsByEV(allGameOddsObjList)
+
+# todo bovada breaks this by having unknown teams.
+def getUniqueOddsAndDisplayByEv(getDk=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False, getFanduelToday=False, getFanduelTomorrow=False, includeOptimalPlayerSpread=False):
+    allGameOddsObjList = createAllOddsDict(getDk=getDk, getMgm=getMgm, getBovada=getBovada, getPointsBet=getPointsBet, getUnibet=getUnibet, getBarstool=getBarstool, getFanduelToday=getFanduelToday, getFanduelTomorrow=getFanduelTomorrow, includeOptimalPlayerSpread=includeOptimalPlayerSpread)
+    d = datetime.now().strftime('%Y-%m-%d_%H-%M-%S%p')
+    saveOddsToFile(f'Data/JSON/historical_odds/{d}.json', allGameOddsObjList)
+    displayUniqueBetsByEV(allGameOddsObjList)
 
 def printOddsObjDetails(oddsList: Any, showAll: bool = False, showTeamAndPlayers: bool = False):
     i = 0

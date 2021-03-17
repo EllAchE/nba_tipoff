@@ -44,12 +44,13 @@ def eloDictionary():
 def glickoMatchWithRawNums(winnerMu: float, winnerSigma: float, winnerPhi: float, loserMu: float, loserSigma: float, loserPhi: float):
     ratingObj1 = glicko2.Rating(mu=winnerMu, phi=winnerPhi, sigma=winnerSigma)
     ratingObj2 = glicko2.Rating(mu=loserMu, phi=loserPhi, sigma=loserSigma)
-    glickoObj = glicko2.Glicko2()
+    glickoObj = glicko2.Glicko2(tau=ENVIRONMENT.BASE_GLICKO_TAU, epsilon=ENVIRONMENT.BASE_GLICKO_EPSILON)
     newRO1, newRO2 = glickoObj.rate_1vs1(ratingObj1, ratingObj2)
     return newRO1.mu, newRO1.sigma, newRO1.phi, newRO2.mu, newRO2.sigma, newRO2.phi
 
-# todo toggle/test the glicko, ts and elo predictions
+# backlogtodo toggle/test the glicko, ts and elo predictions
 # this is going to have to be done with histograms bucketed out to an appropriate size and a minimum
+# todo switch to using elo until logloss can be optimized
 def glickoWinProb(player1Code: str, player2Code: str, jsonPath: str = ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, psd: Any = None): #win prob for first player
     if psd is None:
         with open(jsonPath) as json_file:
@@ -81,7 +82,6 @@ def eloRatingPeriod(selfRating: int, gameResults: Any):
     # pass
     pass
 
-# todo this may need to use ENV reset to get adjusted beta values etc.
 def eloWinProb(player1Code: str, player2Code: str, jsonPath: str = ENVIRONMENT.PLAYER_ELO_DICT_PATH, psd: Any = None): #win prob for first player
     if psd is None:
         with open(jsonPath) as json_file:

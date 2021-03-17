@@ -8,10 +8,8 @@ from src.database.database_access import getUniversalPlayerName
 from src.live_data.live_odds_retrieval import draftKingsOdds, mgmOdds, bovadaOdds, pointsBetOdds, unibetOdds, \
     barstoolOdds, fanduelOddsToday, fanduelOddsTomorrow
 from src.odds_and_statistics.odds_calculator import americanToDecimal
+import logging
 
-
-def makeTeamPlayerLinePairs(playerLines, teamLines):
-  pass
 
 def addTeamOnlyToOddsDict(oddsDict, rawOddsDict):
     oddsDict['teamOdds']['homeTeamFirstQuarterOdds'] = rawOddsDict['homeTeamFirstQuarterOdds']
@@ -103,66 +101,93 @@ def createAllOddsDict(getDk=False, getFanduelToday=False, getFanduelTomorrow=Fal
     allGameObjList = list()
 
     if getFanduelToday:
-        fanduelOddsDicts = createAllOddsDictForExchange(fanduelOddsToday())
-        for rawOddsDict in fanduelOddsDicts:
-            gameOddsObj = FanduelGameOdds(rawOddsDict)
-            allGameObjList.append(gameOddsObj)
-        print('fetched fanduel odds (For Today)', '\n')
+        try:
+            fanduelOddsDicts = createAllOddsDictForExchange(fanduelOddsToday())
+            for rawOddsDict in fanduelOddsDicts:
+                gameOddsObj = FanduelGameOdds(rawOddsDict)
+                allGameObjList.append(gameOddsObj)
+            print('fetched fanduel odds (For Today)', '\n')
+        except:
+            logging.exception('breaking error in fanduel odds for today. Debug when time permits')
 
     if getFanduelTomorrow:
-        fanduelOddsDicts = createAllOddsDictForExchange(fanduelOddsTomorrow())
-        for rawOddsDict in fanduelOddsDicts:
-            gameOddsObj = FanduelGameOdds(rawOddsDict)
-            allGameObjList.append(gameOddsObj)
-        print('fetched fanduel odds (For Tomorrow)', '\n')
+        try:
+            fanduelOddsDicts = createAllOddsDictForExchange(fanduelOddsTomorrow())
+            for rawOddsDict in fanduelOddsDicts:
+                gameOddsObj = FanduelGameOdds(rawOddsDict)
+                allGameObjList.append(gameOddsObj)
+            print('fetched fanduel odds (For Tomorrow)', '\n')
+        except:
+            logging.exception('breaking error in fanduel odds for tomorrow. ')
 
     if getDk:
-        dkOddsDicts = createAllOddsDictForExchange(draftKingsOdds())
-        for rawOddsDict in dkOddsDicts:
-            gameOddsObj = GameOdds(rawOddsDict)
-            allGameObjList.append(gameOddsObj)
-        print('fetched drafkings odds', '\n')
+        try:
+            dkOddsDicts = createAllOddsDictForExchange(draftKingsOdds())
+            for rawOddsDict in dkOddsDicts:
+                gameOddsObj = GameOdds(rawOddsDict)
+                allGameObjList.append(gameOddsObj)
+            print('fetched drafkings odds', '\n')
+        except:
+            logging.exception('breaking error fetching draftkings odds.')
 
     if getMgm:
-        mgmOddsDicts = createAllOddsDictForExchange(mgmOdds(), playerOdds=False)
-        for rawOddsDict in mgmOddsDicts:
-            gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
-            allGameObjList.append(gameOddsObj)
-        print('fetched mgm odds', '\n')
+        try:
+            mgmDicts = createAllOddsDictForExchange(mgmOdds(), playerOdds=False)
+            for rawOddsDict in mgmDicts:
+                gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
+                allGameObjList.append(gameOddsObj)
+            print('fetched mgm odds', '\n')
+        except:
+            logging.exception('breaking error fetching mgm odds.')
 
     if getBovada:
-        bovadaDicts = createAllOddsDictForExchange(bovadaOdds(), playerOdds=False)
-        for rawOddsDict in bovadaDicts:
-            gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
-            allGameObjList.append(gameOddsObj)
-        print('fetched bovada odds', '\n')
+        try:
+            bovadaDicts = createAllOddsDictForExchange(bovadaOdds(), playerOdds=False)
+            for rawOddsDict in bovadaDicts:
+                gameOddsObj = GameOdds(rawOddsDict, teamOnly=True)
+                allGameObjList.append(gameOddsObj)
+            print('fetched bovada odds', '\n')
+        except:
+            logging.exception('breaking error fetching bovada odds.')
 
     if getPointsBet:
-        mgmOddsDicts = createAllOddsDictForExchange(pointsBetOdds(), teamOdds=False)
-        for rawOddsDict in mgmOddsDicts:
-            gameOddsObj = GameOdds(rawOddsDict, playersOnly=True)
-            allGameObjList.append(gameOddsObj)
-        print('fetched pointsbet odds', '\n')
+        try:
+            pointsBetDicts = createAllOddsDictForExchange(pointsBetOdds(), teamOdds=False)
+            for rawOddsDict in pointsBetDicts:
+                gameOddsObj = GameOdds(rawOddsDict, playersOnly=True)
+                allGameObjList.append(gameOddsObj)
+            print('fetched pointsbet odds', '\n')
+        except:
+            logging.exception('breaking error fetching pointsbet odds.')
 
     if getUnibet:
-        unibetOddsDicts = createAllOddsDictForExchange(unibetOdds(), teamOdds=False)
-        for rawOddsDict in unibetOddsDicts:
-            gameOddsObj = GameOdds(rawOddsDict, playersOnly=True)
-            allGameObjList.append(gameOddsObj)
-        print('fetched unibet odds', '\n')
+        try:
+            unibetOddsDicts = createAllOddsDictForExchange(unibetOdds(), teamOdds=False)
+            for rawOddsDict in unibetOddsDicts:
+                gameOddsObj = GameOdds(rawOddsDict, playersOnly=True)
+                allGameObjList.append(gameOddsObj)
+            print('fetched unibet odds', '\n')
+        except:
+            logging.exception('breaking error fetching unibet odds.')
 
     if getBarstool:
-        barstoolOddsDicts = createAllOddsDictForExchange(barstoolOdds(), teamOdds=False)
-        for rawOddsDict in barstoolOddsDicts:
-            gameOddsObj = GameOdds(rawOddsDict, playersOnly=True)
-            allGameObjList.append(gameOddsObj)
-        print('fetched barstool odds', '\n')
+        try:
+            barstoolOddsDicts = createAllOddsDictForExchange(barstoolOdds(), teamOdds=False)
+            for rawOddsDict in barstoolOddsDicts:
+                gameOddsObj = GameOdds(rawOddsDict, playersOnly=True)
+                allGameObjList.append(gameOddsObj)
+            print('fetched barstool odds', '\n')
+        except:
+            logging.exception('breaking error fetching barstool odds.')
 
     if includeOptimalPlayerSpread:
-        optimalPlayerSpreads = createOptimalPlayerSpreadObject(allGameObjList)
-        for obj in optimalPlayerSpreads:
-            allGameObjList.append(obj)
-        print('got optimized player spread', '\n')
+        try:
+            optimalPlayerSpreads = createOptimalPlayerSpreadObject(allGameObjList)
+            for obj in optimalPlayerSpreads:
+                allGameObjList.append(obj)
+            print('got optimized player spread', '\n')
+        except:
+            logging.exception('breaking error creating optimal player spread.')
 
     return allGameObjList # backlogtodo this dict can be saved for reference for backtesting
 
