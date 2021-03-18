@@ -8,35 +8,8 @@ import ENVIRONMENT
 from src.utils import getDashDateAndHomeCodeFromGameCode, removeAllNonLettersAndLowercase
 import pandas as pd
 
-def getBballRefPlayerName(playerInUnknownFormat):
-    with open(ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH) as playerDb:
-        playersDict = json.load(playerDb)
-
-    match = False
-    playerLoweredLetterOnly = removeAllNonLettersAndLowercase(playerInUnknownFormat)
-    for player in playersDict:
-        if player['universalName'] == playerLoweredLetterOnly:
-            match = True
-            break
-        elif playerInUnknownFormat in player['alternateNames']:
-            match = True
-            break
-        elif player['fullName'] == playerInUnknownFormat:
-            match = True
-            break
-        elif player['nameWithComma'] == playerInUnknownFormat:
-            match = True
-            break
-        elif player['bballRefCode'] == playerInUnknownFormat:
-            match = True
-            break
-
-    if not match:
-        raise ValueError("player", playerInUnknownFormat, "did not have a match")
-    return player['bballRefCode']
-
 # backlogtodo fix unmatched players in quarter counting
-def getUniversalPlayerName(playerInUnknownFormat):
+def getUniversalPlayerName(playerInUnknownFormat, bballRefName=False):
     with open(ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH) as playerDb:
         playersDict = json.load(playerDb)
 
@@ -100,6 +73,10 @@ def getUniversalPlayerName(playerInUnknownFormat):
         # raise ValueError("player", playerInUnknownFormat, "did not have a match")
         print("player", playerInUnknownFormat, "did not have a match, things may break")
         return playerInUnknownFormat
+
+    if bballRefName:
+        return player['bballRefCode']
+
     return player['universalName']
 
 def getPlayerCurrentTeam(universalPlayerName): # Returns a list

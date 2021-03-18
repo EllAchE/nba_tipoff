@@ -269,7 +269,29 @@ def getTipoffLine(pbpDf: DataFrame, returnIndex: bool = False):
         tipoffContent = tipoffSeries.iloc[0]
         type = 7
 
-    print('Home Desc', tipoffContent.HOMEDESCRIPTION, 'Vis Desc', tipoffContent.VISITORDESCRIPTION, 'Neut Desc', tipoffContent.NEUTRALDESCRIPTION)
+    player1 = tipoffSeries['PLAYER1_NAME'].iloc[0]
+    player1Team = getUniversalTeamShortCode(tipoffSeries['PLAYER1_TEAM_ABBREVIATION'])
+    player2 = tipoffSeries['PLAYER2_NAME'].iloc[0]
+    player2Team = getUniversalTeamShortCode(tipoffSeries['PLAYER2_TEAM_ABBREVIATION'])
+    index = tipoffSeries.index
+
+    lineAfterTipoff = pbpDf.iloc[index + 1]
+    if lineAfterTipoff['HOMEDESCRIPTION'] is not None:
+        if lineAfterTipoff['VISITORDESCRIPTION'] is not None:
+            if "Turnover" in lineAfterTipoff['VISITORDESCRIPTION'] or "MISS" in lineAfterTipoff['VISITORDESCRIPTION']:
+                possessingTeamIsHome = False
+            elif "Turnover" in lineAfterTipoff['HOMEDESCRIPTION'] or "MISS" in lineAfterTipoff['HOMEDESCRIPTION']:
+                possessingTeamIsHome = True
+            else:
+                raise ValueError('no match')
+        elif lineAfterTipoff['HOMEDESCRIPTION'] is not None:
+            possessingTeamIsHome = True
+        else:
+            raise ValueError('no match')
+    elif lineAfterTipoff['VISITORDESCRIPTION'] is not None:
+        possessingTeamIsHome = False
+    else:
+        raise ValueError('no match')
 
     if tipoffContent.HOMEDESCRIPTION is not None:
         content = tipoffContent.HOMEDESCRIPTION
@@ -281,39 +303,20 @@ def getTipoffLine(pbpDf: DataFrame, returnIndex: bool = False):
         raise ValueError('nothing for home or away, neutral said', tipoffContent.NEUTRALDESCRIPTION)
 
     if returnIndex:
-        return content, type, isHome, tipoffContent.index
-    return content, type, isHome
+        return content, type, player1, player2, possessingTeamIsHome, tipoffContent.index
+    return content, type, player1, player1Team, player2, player2Team, possessingTeamIsHome
+# if both, look for turnover or block in the other side
 
 def getFirstScoreLine(gameCode, season):
     with open("Data/JSON/Public_NBA_API/shots_before_first_field_goal") as sbffg:
         firstScoreDict = json.load(sbffg)
     return firstScoreDict[season][gameCode]
 
-def parseDataFromTipoffLine(tipoffContent, type, isHome):
-    print(tipoffContent)
-    # tipper1 = getBballRefPlayerName(None)
-    #tipper2 = getBballRefPlayerName(None)
-    #possessingPlayer = getBballRefPlayerName(None)
-    homeTipper = None
-    awayTipper = None
-    firstScoret = None
-    tipWinningTeam = None
-    tipLosingTeam = None
-    possessingTeam = None
-    firstScoringTeam = None
-    scoredUponTeam = None
-    tipoffWinner = None
-    tipoffLoser = None
-    tipLoserLink = None
-    tipWinnerlink = None
-    tipWinnerScores = None
-
 def getTipoffLineFromBballRefId(bballRef: str):
     gameId = getGameIdFromBballRef(bballRef)
     pbpDf = getGamePlayByPlay(gameId)
-    tipoffContent, type, isHome = getTipoffLine(pbpDf)
-    parseDataFromTipoffLine(tipoffContent, type, isHome)
-    return tipoffContent, type, isHome
+    content, type, player1, player1Team, player2, player2Team, possessingTeamIsHome = getTipoffLine(pbpDf)
+    return content, type, player1, player1Team, player2, player2Team, possessingTeamIsHome
 
 def splitAllSeasonsFirstShotDataToMultipleFiles():
     with open(ENVIRONMENT.ALL_SHOTS_BEFORE_FIRST_FG_PATH) as allDataFile:
@@ -396,21 +399,24 @@ def fillGapsLooper():
 # todo add scheduler
 # todo fill in the blanks on the missing games in the csv
 
-# This needs to come from: Main season CSV - Blank line
+# This needs to come from: Main season CSV - Blank line: Date, home and away
+#
 
-def fillGaps(season, pathIn, pathOut):
-    fin = open(pathIn, 'r', encoding='utf8')
-    #fout = open(pathOut, 'w')
-    fout = open('test.txt', 'w', encoding='utf8')
-    count = 0
-    for line in fin:
-        if re.search(',,,,,,,,,,,,', line) is not None:
+def fillGaps(season):
+    df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
+    seasonLength = len(df['Game Code'])
+
+    i = 0
+    while i < seasonLength:
+        line = seasonLength.iloc[i]
+
+        if re.search(',,,,,,,,,,,,', line) is None:
             tokenized = line.split(',')
             gameCode = tokenized[0]
             #fout.write(str(count) + ', ' + str(tokenized[0]) + ', ' + str(year) + ', ' + str(tokenized[4]) + ', ' + str(tokenized[5]))
             fout.write(str(count) + ': ' + line)
             try:
-                tipOffContent, type, isHome = getTipoffLineFromBballRefId(gameCode)
+                content, type, player1, player1Team, player2, player2Team, possessingTeamIsHome = getTipoffLineFromBballRefId(gameCode)
                 fout.write(tipOffContent)
             except IndexError:
                 fout.write("failed to retrieve for " + gameCode)
