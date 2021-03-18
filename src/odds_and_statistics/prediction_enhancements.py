@@ -31,11 +31,11 @@ def getCurrentSeasonUsageRate():
 
     print('saved Player Usage Dictionary')
 
-def getAllSeasonFirstFieldGoalStats(isFirstFieldGoal=False):
+def getAllSeasonFirstFieldGoalOrFirstPointStats(isFirstFieldGoal=False):
     for season in ENVIRONMENT.SEASONS_SINCE_HORNETS_LIST:
-        getFirstFieldGoalStats(season, isFirstFieldGoal=isFirstFieldGoal)
+        getFirstFieldGoalOrFirstPointStats(season, isFirstFieldGoal=isFirstFieldGoal)
 
-def getFirstFieldGoalStats(season, isFirstFieldGoal=False):
+def getFirstFieldGoalOrFirstPointStats(season, isFirstFieldGoal=False):
     stub = ENVIRONMENT.SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH
     with open(stub.format(season)) as data:
         firstShotsDict = json.load(data)

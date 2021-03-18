@@ -347,6 +347,7 @@ def splitAllSeasonsFirstShotDataToMultipleFiles():
         json.dump(data2021, f2021, indent=4)
 
 # backlogtodo fix this to not break for some specific players and . names, i.e. Nene or W. or Shaw.
+
 def getAllFirstPossessionStatisticsIncrementally(season):
     path = ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH
     path = path.format(season)
@@ -365,7 +366,8 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         i = lastGameIndex + 1
         # backlogtodo figure out why some of these games are breaking. In fetching the data a small number of games were ignored due to failure to return data
     while i < dfLen:
-        with open(ENVIRONMENT.ALL_SHOTS_BEFORE_FIRST_FG_PATH) as sbfs:
+        raise ValueError("This should just be checked before it's run again.")
+        with open(ENVIRONMENT.SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH.format(season)) as sbfs:
             shotsDict = json.load(sbfs)
         seasonShotList = shotsDict[str(season)]
 
@@ -390,7 +392,6 @@ def fillGapsLooper():
         pathOut = (ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH[:-4] + "_{}.csv").format(year, "no_gaps") #ENVIRONMENT.SEASON_DATA_GAPS_FILLED
         print("run for ", year, pathIn, pathOut)
         fillGaps(year, pathIn, pathOut)
-
 
 # todo fill in the blanks on the missing games in the csv
 def fillGaps(season, pathIn, pathOut):

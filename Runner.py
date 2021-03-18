@@ -28,10 +28,11 @@ from src.database.database_creation import getAllGameData, createPlayerEloDictio
     createPlayerGlickoDictionary, saveActivePlayersTeams, createPlayerNameRelationship
 from src.historical_data.bball_reference_historical_data import updateCurrentSeasonRawGameData, oneSeasonFromScratch
 from src.historical_data.nba_play_by_play_methods import getAllFirstPossessionStatisticsIncrementally, \
-    splitAllSeasonsFirstShotDataToMultipleFiles, getSingleGameStarters, saveAllHistoricalStarters
+    splitAllSeasonsFirstShotDataToMultipleFiles, getSingleGameStarters, saveAllHistoricalStarters, \
+    teamSummaryDataFromFirstPointData
 from src.live_data.display_bets import getAllOddsAndDisplayByEv, getUniqueOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import getAllExpectedStarters, getDailyOdds, betfairOdds
-from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalStats, getCurrentSeasonUsageRate
+from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalOrFirstPointStats, getCurrentSeasonUsageRate
 from src.rating_algorithms.elo_data_processing import runEloForAllSeasons, calculateEloDictionaryFromZero
 from src.rating_algorithms.glicko_data_processing import runGlickoForAllSeasons, calculateGlickoDictionaryFromZero
 from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero, updateTrueSkillDictionaryFromLastGame
@@ -39,8 +40,10 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # for ml model add - team continuity factor & previous seasons stats
 # todo bug - mgm odds break when positive
 
-getAllGameData()
+# getAllGameData()
 # getAllFirstPossessionStatisticsIncrementally(2021)
+getFirstFieldGoalOrFirstPointStats(ENVIRONMENT.CURRENT_SEASON)  # Since Hornets became a team
+teamSummaryDataFromFirstPointData(ENVIRONMENT.CURRENT_SEASON)
 
 # calculateEloDictionaryFromZero()
 # createPlayerNameRelationship()
