@@ -20,7 +20,7 @@ from src.rating_algorithms.algorithms import trueSkillTipWinProb
 # def tipScoreProb(tipWinOdds: float, tipWinnerScoresOdds: float = ENVIRONMENT.TIP_WINNER_SCORE_ODDS):
 #     return tipWinOdds * tipWinnerScoresOdds + (1 - tipWinOdds) * (1 - tipWinnerScoresOdds)
 
-# todo allow this to toggle to different algos
+# backlogtodo allow this to toggle to different algos
 def scoreFirstProb(p1Code: str, p2Code: str, jsonPath: Optional[str] = None, psd=None):
     tWinProb = trueSkillTipWinProb(p1Code, p2Code)
     oddsWithObservedTipScore = tWinProb * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1 - tWinProb) * (1 - ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
@@ -33,13 +33,13 @@ def scoreFirstProb(p1Code: str, p2Code: str, jsonPath: Optional[str] = None, psd
     with open(ENVIRONMENT.FIRST_POINT_TEAM_META.format(ENVIRONMENT.CURRENT_SEASON)) as rFile:
         metaFile = json.load(rFile)
 
-    # todo adjust this and backtest for all quarters/seasons
+    # todo backtest for all quarters/seasons and adjust this
     reducedNaiveScoreFirstAdjustment = math.sqrt(metaFile[t1]['quarter1']['naiveAdjustmentFactor']) / math.sqrt(metaFile[t2]['quarter1']['naiveAdjustmentFactor'])
     reducedNaiveScoreFirstAdjustment = math.sqrt(reducedNaiveScoreFirstAdjustment)
 
     totalOdds = oddsWithObservedTipScore * reducedNaiveScoreFirstAdjustment
 
-    # todo the independentVarOdds is probably invalid for joint probabiilty
+    # backlogtodo the independentVarOdds is probably invalid for joint probabiilty
     # if p1isHome:
     #     odds = independentVarOdds(ENVIRONMENT.HOME_SCORE_ODDS, odds)
 

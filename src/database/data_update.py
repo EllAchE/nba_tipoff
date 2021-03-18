@@ -6,11 +6,6 @@ from src.historical_data.nba_play_by_play_methods import getAllFirstPossessionSt
 from src.odds_and_statistics.prediction_enhancements import getCurrentSeasonUsageRate, \
     getAllSeasonFirstFieldGoalOrFirstPointStats, getFirstFieldGoalOrFirstPointStats
 from src.rating_algorithms.trueskill_data_processing import updateTrueSkillDictionaryFromLastGame
-# todo add auto updates to all data, meaning:
-# raw game data
-# first point data
-# rating dictionary
-# players, player team pairs, etc. (triggered on a break)
 
 def updateAllDataLongTermIncluded():
     updateCurrentSeasonRawGameData()

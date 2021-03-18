@@ -6,9 +6,8 @@
 # backlogtodo unsolved edge case: a player is traded then plays against their original team, having both on their record for the season. This may be solved by just taking the last index of team list, unless
 # backlogtodo a solution to the edge case above: use the nba api team fetching for cases when there is a match
 # backlogtodo look into multithreading for the multiple algorithm analysis (run the three concurrently)
-# todo TEST optimized player spreads across exchanges (i.e. look at first point on fd, bovada and dk; Need to consider first field goal as well
-# todo add player start percentage to 1st shot summary
-# todo replace values passed in the may args algos with ENV vars
+# backlogtodo add player start percentage to 1st shot summary
+# backlogtodo replace values passed in the many args algos with ENV vars
 # backlogtodo expand to NCAA which is offered on betmgm
 # backlogtodo expand to other countries which are offered on betmgm
 # backlogtodo write checker for updating all data that may need to be updated
@@ -17,11 +16,11 @@
 # backlogtodo performance improvements, use in and index[itemIWant] for C native code performance improvements in numpy
 # backlogtodo update print statements to show more and take up less space
 # backlogtodo combine to update all relevant game dictionaries from last game after fetching new game details
-# More books https://bookies.com/pennsylvania
-# todo implement minimum appearance threshold for summary statistics
+# More books https://bookies.com/pennsylvania. Already checked these and living in CO there are a bunch of app only options, no idea what they ofer
 # backlogtodo import decimal module or similar https://docs.python.org/3/library/decimal.html
-# todo look for when there is a big gap between the exchanges (not necessarily arbitrage) and just determine which is worse at their job. Take one side, not both, of the bets.
+# backlogtodo look for when there is a big gap between the exchanges (not necessarily arbitrage) and just determine which is worse at their job. Take one side, not both, of the bets.
 # backlogtodo change this to update just the current season
+# todo fix optimized player spreads across exchanges (i.e. look at first point on fd, bovada and dk; Need to consider first field goal as well)
 
 import ENVIRONMENT
 from src.database.database_creation import getAllGameData, createPlayerEloDictionary, \
@@ -38,7 +37,6 @@ from src.rating_algorithms.glicko_data_processing import runGlickoForAllSeasons,
 from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero, updateTrueSkillDictionaryFromLastGame
 
 # for ml model add - team continuity factor & previous seasons stats
-# todo bug - mgm odds break when positive
 
 # getAllGameData()
 # getAllFirstPossessionStatisticsIncrementally(2021)
@@ -58,7 +56,7 @@ teamSummaryDataFromFirstPointData(ENVIRONMENT.CURRENT_SEASON)
 # calculateGlickoDictionaryFromZero()
 # calculateTrueSkillDictionaryFromZero()
 # calculateEloDictionaryFromZero()
-# todo look at first 100 and last 100 games (or similar) of player performance vs. overall
+# backlogtodo look at first 100 and last 100 games (or similar) of player performance vs. overall (on tip)
 
 # calculateGlickoDictionaryFromZero()
 
@@ -110,6 +108,5 @@ https://punter2pro.com/best-sports-arbing-software/
 # backlogtodo account for overrepresentation of playoff teams
 
 # MISC
-# todo investigate adjsuted starting rankings for low appearance players, i.e. if we can assume certain/lower mu values for a class of player we can improve our predictions
-# todo investigate adjusted prediction odds strength for low appearance players
+# backlogtodo investigate adjsuted starting rankings for low appearance players, i.e. if we can assume certain/lower mu values for a class of player we can improve our predictions
 # backlogtodo (OVERKILL) have scheduler for scraping with randomized twice-a-day fetching and telegram alerts

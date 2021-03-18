@@ -50,7 +50,7 @@ def glickoMatchWithRawNums(winnerMu: float, winnerSigma: float, winnerPhi: float
 
 # backlogtodo toggle/test the glicko, ts and elo predictions
 # this is going to have to be done with histograms bucketed out to an appropriate size and a minimum
-# todo switch to using elo until logloss can be optimized
+# todo switch to elo if logloss cannot be better optimized
 def glickoTipWinProb(player1Code: str, player2Code: str, jsonPath: str = ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, psd: Any = None): #win prob for first player
     if psd is None:
         with open(jsonPath) as json_file:

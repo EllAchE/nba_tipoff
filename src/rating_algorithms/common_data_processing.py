@@ -249,7 +249,6 @@ def runAlgoForSeason(seasonCsv: str, skillDictPath: str, predictionSummariesPath
     #     allKeys = psd.keys()
     #     for key in allKeys:
     #         key['sigma'] += 2
-    #         #todo place where season end sigma is udpated. Can toggle this to varying effect
     #         if key['sigma'] > 8.333333333333334:
     #             key['sigma'] = 8.333333333333334
     #     print("added 2 to all sigmas for new season")

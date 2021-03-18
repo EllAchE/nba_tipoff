@@ -393,7 +393,11 @@ def fillGapsLooper():
         print("run for ", year, pathIn, pathOut)
         fillGaps(year, pathIn, pathOut)
 
+# todo add scheduler
 # todo fill in the blanks on the missing games in the csv
+
+# This needs to come from: Main season CSV - Blank line
+
 def fillGaps(season, pathIn, pathOut):
     fin = open(pathIn, 'r', encoding='utf8')
     #fout = open(pathOut, 'w')

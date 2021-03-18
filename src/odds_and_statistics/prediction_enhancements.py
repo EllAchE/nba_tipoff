@@ -117,7 +117,6 @@ def _teamFirstShotStats(game, summaryDict, seasonData, isFirstFieldGoal=False):
         print('failed to get details from gameCode, may be a None line')
         retrievalError = True
 
-
     for quarter in quarters:
         isFirstTimeThrough = True
         for event in game[quarter]:
