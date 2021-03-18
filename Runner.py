@@ -39,6 +39,9 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # for ml model add - team continuity factor & previous seasons stats
 # todo bug - mgm odds break when positive
 
+getAllGameData()
+# getAllFirstPossessionStatisticsIncrementally(2021)
+
 # calculateEloDictionaryFromZero()
 # createPlayerNameRelationship()
 # saveActivePlayersTeams(1998)
@@ -65,6 +68,8 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # getAllOddsAndDisplayByEv(getUnibet=True)
 # getUniqueOddsAndDisplayByEv(getBovada=True, getUnibet=True)
 # getAllOddsAndDisplayByEv(getBovada=True, getUnibet=True)
+#
+
 #
 getDailyOdds('MIA', 'MEM', '-115')
 '''

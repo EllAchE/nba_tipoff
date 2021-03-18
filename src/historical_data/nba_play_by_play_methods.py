@@ -169,16 +169,7 @@ def saveAllHistoricalStarters():
     for shortCode in ENVIRONMENT.CURRENT_TEAMS:
         path = stub.format(shortCode)
         allGamesDf = pd.read_csv(path)
-        allGamesDf['homeStarter1'] = None
-        allGamesDf['homeStarter2'] = None
-        allGamesDf['homeStarter3'] = None
-        allGamesDf['homeStarter4'] = None
-        allGamesDf['homeStarter5'] = None
-        allGamesDf['awayStarter1'] = None
-        allGamesDf['awayStarter2'] = None
-        allGamesDf['awayStarter3'] = None
-        allGamesDf['awayStarter4'] = None
-        allGamesDf['awayStarter5'] = None
+        allGamesDf['homeStarter1'] = allGamesDf['homeStarter2'] = allGamesDf['homeStarter3'] = allGamesDf['homeStarter4'] = allGamesDf['homeStarter5'] = allGamesDf['awayStarter1'] = allGamesDf['awayStarter2'] = allGamesDf['awayStarter3'] = allGamesDf['awayStarter4'] = allGamesDf['awayStarter5'] = None
         i = 0
 
         while allGamesDf.iloc[i]['SEASON_ID'] != 22012:
@@ -340,25 +331,18 @@ def splitAllSeasonsFirstShotDataToMultipleFiles():
 
     with open(stub.format('2014'), 'w') as f2014:
         json.dump(data2014, f2014, indent=4)
-
     with open(stub.format('2015'), 'w') as f2015:
         json.dump(data2015, f2015, indent=4)
-
     with open(stub.format('2016'), 'w') as f2016:
         json.dump(data2016, f2016, indent=4)
-
     with open(stub.format('2017'), 'w') as f2017:
         json.dump(data2017, f2017, indent=4)
-
     with open(stub.format('2018'), 'w') as f2018:
         json.dump(data2018, f2018, indent=4)
-
     with open(stub.format('2019'), 'w') as f2019:
         json.dump(data2019, f2019, indent=4)
-
     with open(stub.format('2020'), 'w') as f2020:
         json.dump(data2020, f2020, indent=4)
-
     with open(stub.format('2021'), 'w') as f2021:
         json.dump(data2021, f2021, indent=4)
 
@@ -408,6 +392,7 @@ def fillGapsLooper():
         fillGaps(year, pathIn, pathOut)
 
 
+# todo fill in the blanks on the missing games in the csv
 def fillGaps(season, pathIn, pathOut):
     fin = open(pathIn, 'r', encoding='utf8')
     #fout = open(pathOut, 'w')
@@ -481,5 +466,3 @@ def teamSummaryDataFromFirstPointData(season):
 #     EJECTION = 11
 #     PERIOD_BEGIN = 12
 #     PERIOD_END = 13
-
-# todo fill in the blanks on the missing games in the csv
