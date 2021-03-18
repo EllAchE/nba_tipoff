@@ -126,6 +126,13 @@ def getEventsBeforeFirstFieldGoalOfQuarter(pbpDf: DataFrame, startIndex: int=0):
             return pbpDf[:(i + 1)]
         i += 1
 
+def getFirstScoreLine(pbpDf: DataFrame):
+    i = 0
+    for item in pbpDf.SCORE:
+        if item is not None:
+            return pbpDf.iloc[i]
+        i += 1
+
 def gameIdToFirstFieldGoalsOfQuarters(id: str):
     pbpDf = playbyplayv2.PlayByPlayV2(game_id=id).get_data_frames()[0]
     indicesOfQuarterStarts = pbpDf.index[pbpDf['EVENTMSGTYPE'] == 12].tolist()
@@ -270,25 +277,32 @@ def getTipoffLine(pbpDf: DataFrame, returnIndex: bool = False):
         type = 7
 
     player1 = tipoffSeries['PLAYER1_NAME'].iloc[0]
-    player1Team = getUniversalTeamShortCode(tipoffSeries['PLAYER1_TEAM_ABBREVIATION'])
+    player1Team = getUniversalTeamShortCode(tipoffSeries['PLAYER1_TEAM_ABBREVIATION'].iloc[0])
     player2 = tipoffSeries['PLAYER2_NAME'].iloc[0]
-    player2Team = getUniversalTeamShortCode(tipoffSeries['PLAYER2_TEAM_ABBREVIATION'])
+    player2Team = getUniversalTeamShortCode(tipoffSeries['PLAYER2_TEAM_ABBREVIATION'].iloc[0])
     index = tipoffSeries.index
 
+    row = getFirstScoreLine(pbpDf)
+    description = row.HOMEDESCRIPTION if row.HOMEDESCRIPTION is not None else row.VISITORDESCRIPTION
+    homeScores = True if row.HOMEDESCRIPTION else False
+    playerLast = getPlayerLastNameFromShotDescription(description)
+    scoringPlayer = row.PLAYER1_NAME if playerLast in row.PLAYER1_NAME else row.PLAYER2_NAME
+
+
     lineAfterTipoff = pbpDf.iloc[index + 1]
-    if lineAfterTipoff['HOMEDESCRIPTION'] is not None:
-        if lineAfterTipoff['VISITORDESCRIPTION'] is not None:
-            if "Turnover" in lineAfterTipoff['VISITORDESCRIPTION'] or "MISS" in lineAfterTipoff['VISITORDESCRIPTION']:
+    if lineAfterTipoff['HOMEDESCRIPTION'].iloc[0] is not None:
+        if lineAfterTipoff['VISITORDESCRIPTION'].iloc[0] is not None:
+            if "Turnover" in lineAfterTipoff['VISITORDESCRIPTION'].iloc[0] or "MISS" in lineAfterTipoff['VISITORDESCRIPTION'].iloc[0]:
                 possessingTeamIsHome = False
-            elif "Turnover" in lineAfterTipoff['HOMEDESCRIPTION'] or "MISS" in lineAfterTipoff['HOMEDESCRIPTION']:
+            elif "Turnover" in lineAfterTipoff['HOMEDESCRIPTION'].iloc[0] or "MISS" in lineAfterTipoff['HOMEDESCRIPTION'].iloc[0]:
                 possessingTeamIsHome = True
             else:
                 raise ValueError('no match')
-        elif lineAfterTipoff['HOMEDESCRIPTION'] is not None:
+        elif lineAfterTipoff['HOMEDESCRIPTION'].iloc[0] is not None:
             possessingTeamIsHome = True
         else:
             raise ValueError('no match')
-    elif lineAfterTipoff['VISITORDESCRIPTION'] is not None:
+    elif lineAfterTipoff['VISITORDESCRIPTION'].iloc[0] is not None:
         possessingTeamIsHome = False
     else:
         raise ValueError('no match')
@@ -303,20 +317,15 @@ def getTipoffLine(pbpDf: DataFrame, returnIndex: bool = False):
         raise ValueError('nothing for home or away, neutral said', tipoffContent.NEUTRALDESCRIPTION)
 
     if returnIndex:
-        return content, type, player1, player2, possessingTeamIsHome, tipoffContent.index
-    return content, type, player1, player1Team, player2, player2Team, possessingTeamIsHome
+        return content, type, player1, player2, possessingTeamIsHome, tipoffContent.index, scoringPlayer, homeScores
+    return content, type, player1, player1Team, player2, player2Team, possessingTeamIsHome, scoringPlayer, homeScores
 # if both, look for turnover or block in the other side
-
-def getFirstScoreLine(gameCode, season):
-    with open("Data/JSON/Public_NBA_API/shots_before_first_field_goal") as sbffg:
-        firstScoreDict = json.load(sbffg)
-    return firstScoreDict[season][gameCode]
 
 def getTipoffLineFromBballRefId(bballRef: str):
     gameId = getGameIdFromBballRef(bballRef)
     pbpDf = getGamePlayByPlay(gameId)
-    content, type, player1, player1Team, player2, player2Team, possessingTeamIsHome = getTipoffLine(pbpDf)
-    return content, type, player1, player1Team, player2, player2Team, possessingTeamIsHome
+    content, type, player1, player1Team, player2, player2Team, possessingTeamIsHome, firstScorer, homeScores = getTipoffLine(pbpDf)
+    return content, type, player1, player1Team, player2, player2Team, possessingTeamIsHome, firstScorer, homeScores
 
 def splitAllSeasonsFirstShotDataToMultipleFiles():
     with open(ENVIRONMENT.ALL_SHOTS_BEFORE_FIRST_FG_PATH) as allDataFile:
@@ -407,29 +416,48 @@ def fillGaps(season):
     seasonLength = len(df['Game Code'])
 
     i = 0
+    gameCodeList = list()
     while i < seasonLength:
         line = seasonLength.iloc[i]
 
-        if re.search(',,,,,,,,,,,,', line) is None:
-            tokenized = line.split(',')
-            gameCode = tokenized[0]
-            #fout.write(str(count) + ', ' + str(tokenized[0]) + ', ' + str(year) + ', ' + str(tokenized[4]) + ', ' + str(tokenized[5]))
-            fout.write(str(count) + ': ' + line)
-            try:
-                content, type, player1, player1Team, player2, player2Team, possessingTeamIsHome = getTipoffLineFromBballRefId(gameCode)
-                fout.write(tipOffContent)
-            except IndexError:
-                fout.write("failed to retrieve for " + gameCode)
-            count += 1
+        if line['Tip Loser'] is None:
+            gameCode = line['Game Code']
+            print(gameCode)
+            gameCodeList.append(gameCode)
 
-            print(count)
-            sleepChecker(1, 10, 1, True)
-            #print(nba_public.getParticipatingTeamsFromId(nba_public.getGameIdFromBballRef(gameCode)))
-        #else:
-            #fout.write(line)
-            #print(line)
-    fin.close()
-    fout.close()
+            homeShort = line['Home Short']
+            awayShort = line['Away Short']
+            content, type, player1, player1Team, player2, player2Team, possessingTeamIsHome, scoringPlayer, homeScores = getTipoffLineFromBballRefId(gameCode)
+
+            sleepChecker(1, 1, 1, True)
+            homeTipper = player1 if player1Team == homeShort else player2
+            awayTipper = player2 if player2Team == awayShort else player1
+            firstScorer = scoringPlayer # todo get this from game data if really needed
+            tipWinningTeam = homeShort if possessingTeamIsHome else awayShort
+            tipLosingTeam = awayShort if possessingTeamIsHome else homeShort
+            # PossessionGainingPlayer = PossessionGainingPlayerLink = None
+            FirstScoringTeam = homeShort if homeScores else awayShort
+            ScoredUponTeam = awayShort if homeScores else homeShort
+            TipWinner = homeTipper if possessingTeamIsHome else awayTipper
+            TipWinnerLink = getUniversalPlayerName(TipWinner, bballRefName=True)
+            TipLoser = awayTipper if possessingTeamIsHome else homeTipper
+            TipLoserLink = getUniversalPlayerName(TipLoser, bballRefName=True)
+            TipWinnerScores = 1 if tipWinningTeam == FirstScoringTeam else 0
+
+            df.iloc[i]["Home Tipper"] = homeTipper
+            df.iloc[i]["Away Tipper"] = awayTipper
+            df.iloc[i]["First Scorer"] = firstScorer
+            df.iloc[i]["Tip Winning Team"] = tipWinningTeam
+            df.iloc[i]["Tip Losing Tema"] = tipLosingTeam
+            df.iloc[i]["First Scoring Team"] = FirstScoringTeam
+            df.iloc[i]["Scored Upon Team"] = ScoredUponTeam
+            df.iloc[i]["Tip Winner"] = TipWinner
+            df.iloc[i]["Tip Winner Link"] = TipWinnerLink
+            df.iloc[i]["Tip Loser"] = TipLoser
+            df.iloc[i]["Tip Loser Link"] = TipLoserLink
+            df.iloc[i]["Tip Winner Scores"] = TipWinnerScores
+
+    df.to_csv('test.csv')
 
 def teamSummaryDataFromFirstPointData(season):
     with open(ENVIRONMENT.FIRST_POINT_SUMMARY_UNFORMATTED_PATH.format(season)) as file:
