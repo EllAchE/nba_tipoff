@@ -3,6 +3,7 @@ from src.odds_and_statistics.odds_calculator import convertPlayerLinesToSingleLi
     scoreFirstProb
 from src.live_data.live_odds_retrieval import getExpectedTipper
 
+# todo add quarters to game response, then use in naiveadjustment factor
 class QuarterOdds:
     def __init__(self, gameDict, teamOnly=False, playersOnly=False, isQuarter1Or4=True):
         self.awayPlayerFloorOdds = self.homePlayerFloorOdds = self.awayPlayerFloorOdds = self.homePlayerFloorOdds = self.awayPlayerFloorOdds = self.kellyBet = self.homeTeamFirstQuarterOdds = self.awayTeamFirstQuarterOdds = None
@@ -16,6 +17,7 @@ class QuarterOdds:
         self.isPlayersOnly = playersOnly
         self.gameCode = self.home + " @ " + self.away + " " + self.gameDatetime
         self.quarter = "QUARTER_1"
+        self.isFullGame = False
 
         if not playersOnly:
             self.homeTeamFirstQuarterOdds = str(gameDict['teamOdds']['homeTeamFirstQuarterOdds']) if gameDict['teamOdds']['homeTeamFirstQuarterOdds'] is not None else None

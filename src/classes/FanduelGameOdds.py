@@ -3,6 +3,7 @@ from src.classes.QuarterOdds import QuarterOdds
 class FanduelGameOdds(QuarterOdds):
     def __init__(self, gameDict, teamOnly=False, playersOnly=False):
         super().__init__(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly)
+        self.isFullGame = True
         self.homeTeamSecondQuarterOdds = gameDict['teamOdds']['homeTeamSecondQuarterOdds']
         self.awayTeamSecondQuarterOdds = gameDict['teamOdds']['awayTeamSecondQuarterOdds']
         self.homeTeamThirdQuarterOdds = gameDict['teamOdds']['homeTeamThirdQuarterOdds']
@@ -16,11 +17,11 @@ class FanduelGameOdds(QuarterOdds):
         gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamThirdQuarterOdds
         gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamThirdQuarterOdds
         self.thirdQuarterGameObj = QuarterOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly, isQuarter1Or4=False)
-        self.secondQuarterGameObj.quarter = "QUARTER_3"
+        self.thirdQuarterGameObj.quarter = "QUARTER_3"
         gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamFourthQuarterOdds
         gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamFourthQuarterOdds
         self.fourthQuarterGameObj = QuarterOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly)
-        self.secondQuarterGameObj.quarter = "QUARTER_4"
+        self.fourthQuarterGameObj.quarter = "QUARTER_4"
 
     def getBetSideOdds(self):
         if self.betOnHome:
