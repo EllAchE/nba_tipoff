@@ -68,9 +68,9 @@ def createSuffix(name: str):
     lasts = normalizedName.split(' ')[1:]
     names = ''.join(lasts)
     second = ""
+
     if len(names) <= 5:
         second += names[:].lower()
-
     else:
         second += names[:5].lower()
 
@@ -130,8 +130,10 @@ def removeAllNonLettersAndLowercase(name):
     return playerLowered.lower()
 
 def lowercaseNoSpace(str):
-    modStr = str.replace(' ', '').lower()
-    return modStr
+    return str.replace(' ', '').lower()
+
+def removeNewLineChars(str):
+    return str.replace('\n', '')
 
 def determineBetterOdds(odds1Str, odds2Str):
     if odds1Str[0] != odds2Str[0]:

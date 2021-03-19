@@ -9,11 +9,12 @@ from datetime import datetime, timedelta
 
 import requests
 import pandas as pd
+from bs4 import BeautifulSoup
 
 import ENVIRONMENT
 from src.database.database_access import getUniversalTeamShortCode, getPlayerCurrentTeam, getUniversalPlayerName
 from src.odds_and_statistics.odds_calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb, decimalToAmerican
-from src.utils import getTeamFullFromShort, getSoupFromUrl, sleepChecker
+from src.utils import getTeamFullFromShort, getSoupFromUrl, sleepChecker, lowercaseNoSpace, removeNewLineChars
 
 
 def addTeamToUnknownPlayerLine(rawPlayerLine):
@@ -329,7 +330,6 @@ def _fanduelOddsAll(today=True):
     gameIdSet = set()
     listOfGames = gamesResponse['events']
 
-    # todo fix this to add a date
     for game in listOfGames:
         if game['tsstart'][:10] == currentDate and today:
             gameIdSet.add(game['idfoevent'])
@@ -750,13 +750,13 @@ def getBetfairCurl(gameIdAndTeamNames):
     return requests.get('https://www.betfair.com{}'.format(gameIdAndTeamNames),
                             headers=headers, params=params, cookies=cookies)
 
+    # the above request generated from an online curl creating tool
     # NB. Original query string below. It seems impossible to parse and
     # reproduce query strings 100% accurately so the one below is given
     # in case the reproduced version is not "correct".
     # response = requests.get('https://www.betfair.com/sport/basketball/nba/milwaukee-bucks-washington-wizards/30352512?selectedGroup=-78637064&action=changeMarketGroup&modules=marketgroups%401053&lastId=1056&d18=Main&d31=Middle&isAjax=true&ts=1615794006588&alt=json&xsrftoken=1e4dceb0-839a-11eb-b07e-fa163e3cd428', headers=headers, cookies=cookies)
 
-# todo add calculations handling for 2nd and third quarter bets
-# todo add betfair odds
+# todo add player teams
 def betfairOdds():
     # https://www.betfair.com/sport/basketball/nba/houston-rockets-oklahoma-city-thunder/30266729
     # betfair homepage https://www.betfair.com/sport/basketball
@@ -787,20 +787,80 @@ def betfairOdds():
     for link in allLinks:
         allLinkSet.add(str(link['href']))
 
+    gameOddsList = list()
     for link in allLinkSet:
         page = getBetfairCurl(link)
-        soup = str(page.content)
+        jsonStuff = json.loads(page.content.decode('utf-8'))
+        htmlStuff = jsonStuff['page']['config']['instructions'][0]['arguments']['html']
+        soup = BeautifulSoup(htmlStuff)
 
-        test = soup.find_all('a')
-        print(test)
+        match = False
+        allTitleSpans = soup.select('span[class="title"]',)
+        for span in allTitleSpans:
+            try:
+                if "Team to Score First" in str(span.contents[0].string):
+                    title = str(span.contents[0].string)
+                    match = True
+                    if "2" in title:
+                        q2 = span
+                    elif "3" in title:
+                        q3 = span
+                    elif "4" in title:
+                        q4 = span
+                    else:
+                        q1 = span
+            except:
+                continue
+
+        if not match:
+            continue
+
+        def singleQuarterSpanNav(quarter):
+            p1 = quarter.parent
+            p2 = p1.parent
+            p3 = p2.parent
+            p4 = p3.parent
+            p5 = p4.parent
+            sibling = p5.contents[3]
+
+            child1 = sibling.ul
+            listOfTeamOdds = child1.contents # two li items
+            teamShort1 = getUniversalTeamShortCode(listOfTeamOdds[1].span.contents[0].string)
+            team1OddsChild = listOfTeamOdds[1].a
+            decimalOdds1 = float(removeNewLineChars(str(team1OddsChild.span.contents[0].string)))
+            teamShort2 = getUniversalTeamShortCode(listOfTeamOdds[3].span.contents[0].string)
+            team2OddsChild = listOfTeamOdds[3].a
+            decimalOdds2 = float(removeNewLineChars(str(team2OddsChild.span.contents[0].string)))
+
+            return {
+                teamShort1: decimalToAmerican(decimalOdds1),
+                teamShort2: decimalToAmerican(decimalOdds2)
+            }
+
+        gameOdds = {}
+        gameOdds['q1'] = singleQuarterSpanNav(q1)
+        gameOdds['q2'] = singleQuarterSpanNav(q2)
+        gameOdds['q3'] = singleQuarterSpanNav(q3)
+        gameOdds['q4'] = singleQuarterSpanNav(q4)
+
+        home, away = gameOdds['q1'].keys()
+        print('successfully retrieved data for game', home, 'vs.', away)
+        gameOddsList.append({
+            "home": home,
+            "away": away,
+            "exchange": "betfair",
+            "homeTeamFirstQuarterOdds": gameOdds['q1'][home],
+            "awayTeamFirstQuarterOdds": gameOdds['q1'][away],
+            "homeTeamSecondQuarterOdds": gameOdds['q2'][home],
+            "awayTeamSecondQuarterOdds": gameOdds['q2'][away],
+            "homeTeamThirdQuarterOdds": gameOdds['q3'][home],
+            "awayTeamThirdQuarterOdds": gameOdds['q3'][away],
+            "homeTeamFourthQuarterOdds": gameOdds['q4'][home],
+            "awayTeamFourthQuarterOdds": gameOdds['q4'][away],
+        })
 
     print('finished fetching betfair data')
-
-
-# def sugarHouseOdds():
-#     # https://www.playsugarhouse.com/?page=sports#event/1007123701
-#     # this is a mirror of pointsbets for specific geos, so backlogged
-#     pass
+    return gameOddsList
 
 # https://www.lineups.com/nba/lineups
 def getStarters(team_code: str, team_dict: dict=None):

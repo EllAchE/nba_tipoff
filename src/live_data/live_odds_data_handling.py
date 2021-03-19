@@ -5,7 +5,7 @@ from src.classes.FanduelGameOdds import FanduelGameOdds
 from src.classes.QuarterOdds import QuarterOdds
 from src.database.database_access import getUniversalPlayerName
 from src.live_data.live_odds_retrieval import draftKingsOdds, mgmOdds, bovadaOdds, pointsBetOdds, unibetOdds, \
-    barstoolOdds, fanduelOddsToday, fanduelOddsTomorrow
+    barstoolOdds, fanduelOddsToday, fanduelOddsTomorrow, betfairOdds
 from src.odds_and_statistics.odds_calculator import americanToDecimal
 import logging
 
@@ -120,25 +120,29 @@ def _addGameOddsObjsToList(allGameObjList, method, exchangeErrorText):
         logging.exception('breaking error in {}.'.format(exchangeErrorText))
     return allGameObjList
 
-def createAllOddsDict(getDraftkings=False, getFanduelToday=False, getFanduelTomorrow=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False, includeOptimalPlayerSpread=False):
+def createAllOddsDict(draftkings=False, fanduelToday=False, fanduelTomorrow=False, mgm=False, bovada=False,
+                      pointsBet=False, unibet=False, barstool=False, betfair=False, includeOptimalPlayerSpread=False):
     allGameObjList = list()
 
-    if getFanduelToday:
+    if fanduelToday:
         allGameObjList = _addFanduelGameOddsObjsToList(allGameObjList, fanduelOddsToday, "fanduel odds for today")
-    if getFanduelTomorrow:
+    if fanduelTomorrow:
         allGameObjList = _addFanduelGameOddsObjsToList(allGameObjList, fanduelOddsTomorrow, "fanduel odds for tomorrow")
-    if getDraftkings:
+    if draftkings:
         allGameObjList = _addGameOddsObjsToList(allGameObjList, draftKingsOdds, "draftkings odds")
-    if getMgm:
+    if mgm:
         allGameObjList = _addGameOddsObjsToList(allGameObjList, mgmOdds, "mgm odds")
-    if getBovada:
+    if bovada:
         allGameObjList = _addGameOddsObjsToList(allGameObjList, bovadaOdds, "bovada odds")
-    if getPointsBet:
+    if pointsBet:
         allGameObjList = _addGameOddsObjsToList(allGameObjList, pointsBetOdds, "pointsbet odds")
-    if getUnibet:
+    if unibet:
         allGameObjList = _addGameOddsObjsToList(allGameObjList, unibetOdds, "unibet odds")
-    if getBarstool:
+    if barstool:
         allGameObjList = _addGameOddsObjsToList(allGameObjList, barstoolOdds, "barstool odds")
+    if betfair:
+        allGameObjList = _addGameOddsObjsToList(allGameObjList, betfairOdds, "barstool odds")
+
 
     if includeOptimalPlayerSpread:
         try:
