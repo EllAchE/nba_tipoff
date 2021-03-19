@@ -9,8 +9,8 @@ from src.rating_algorithms.trueskill_data_processing import updateTrueSkillDicti
 
 def updateAllDataLongTermIncluded():
     updateCurrentSeasonRawGameData()
-    createPlayerNameRelationship(ENVIRONMENT.ALL_SEASONS_LIST[0]) # proxies a database with player names
-    saveActivePlayersTeams(ENVIRONMENT.ALL_SEASONS_LIST[0]) # updates who a player has played for. Does not need to be run often
+    createPlayerNameRelationship(startSeason=ENVIRONMENT.ALL_SEASONS_LIST[0]) # proxies a database with player names
+    saveActivePlayersTeams(start_season=ENVIRONMENT.ALL_SEASONS_LIST[0]) # updates who a player has played for. Does not need to be run often
     getAllGameData() # saves data to Data/CSV/season_summary_data and fetches game headers for every game, basically
     updateTrueSkillDictionaryFromLastGame()
     getAllFirstPossessionStatisticsIncrementally(ENVIRONMENT.CURRENT_SEASON)
@@ -24,3 +24,7 @@ def smallDataUpdate():
     updateCurrentSeasonRawGameData()
     updateTrueSkillDictionaryFromLastGame()
     getAllFirstPossessionStatisticsIncrementally(ENVIRONMENT.CURRENT_SEASON)
+
+def customDataUpdate():
+    createPlayerNameRelationship(startSeason=ENVIRONMENT.ALL_SEASONS_LIST[0]) # proxies a database with player names
+    saveActivePlayersTeams(start_season=ENVIRONMENT.ALL_SEASONS_LIST[0]) # updates who a player has played for. Does not need to be run often

@@ -277,9 +277,9 @@ def getTipoffLine(pbpDf: DataFrame, returnIndex: bool = False):
         type = 7
 
     player1 = tipoffSeries['PLAYER1_NAME'].iloc[0]
-    player1Team = getUniversalTeamShortCode(tipoffSeries['PLAYER1_TEAM_ABBREVIATION'].iloc[0])
+    player1Team = tipoffSeries['PLAYER1_TEAM_ABBREVIATION'].iloc[0]
     player2 = tipoffSeries['PLAYER2_NAME'].iloc[0]
-    player2Team = getUniversalTeamShortCode(tipoffSeries['PLAYER2_TEAM_ABBREVIATION'].iloc[0])
+    player2Team = tipoffSeries['PLAYER2_TEAM_ABBREVIATION'].iloc[0]
     index = tipoffSeries.index
 
     row = getFirstScoreLine(pbpDf)
@@ -405,8 +405,7 @@ def fillGapsLooper():
         print("run for ", year, pathIn, pathOut)
         fillGaps(year, pathIn, pathOut)
 
-# todo add scheduler
-# todo fill in the blanks on the missing games in the csv
+# backlogtodo add scheduler
 
 # This needs to come from: Main season CSV - Blank line: Date, home and away
 #
@@ -418,46 +417,50 @@ def fillGaps(season):
     i = 0
     gameCodeList = list()
     while i < seasonLength:
-        line = seasonLength.iloc[i]
+        line = df.iloc[i]
+        if line.isnull().values.any():
+            try:
+                gameCode = line['Game Code']
+                print(gameCode)
+                gameCodeList.append(gameCode)
 
-        if line['Tip Loser'] is None:
-            gameCode = line['Game Code']
-            print(gameCode)
-            gameCodeList.append(gameCode)
+                homeShort = line['Home Short']
+                awayShort = line['Away Short']
+                content, type, player1, player1Team, player2, player2Team, possessingTeamIsHome, scoringPlayer, homeScores = getTipoffLineFromBballRefId(gameCode)
 
-            homeShort = line['Home Short']
-            awayShort = line['Away Short']
-            content, type, player1, player1Team, player2, player2Team, possessingTeamIsHome, scoringPlayer, homeScores = getTipoffLineFromBballRefId(gameCode)
+                sleepChecker(1, 1, 1, True)
+                homeTipper = player1 if player1Team == homeShort else player2
+                awayTipper = player2 if player2Team == awayShort else player1
+                firstScorer = scoringPlayer
+                tipWinningTeam = homeShort if possessingTeamIsHome else awayShort
+                tipLosingTeam = awayShort if possessingTeamIsHome else homeShort
+                # PossessionGainingPlayer = PossessionGainingPlayerLink = None
+                FirstScoringTeam = homeShort if homeScores else awayShort
+                ScoredUponTeam = awayShort if homeScores else homeShort
+                TipWinner = homeTipper if possessingTeamIsHome else awayTipper
+                TipWinnerLink = getUniversalPlayerName(TipWinner, bballRefName=True)
+                TipLoser = awayTipper if possessingTeamIsHome else homeTipper
+                TipLoserLink = getUniversalPlayerName(TipLoser, bballRefName=True)
+                TipWinnerScores = 1 if tipWinningTeam == FirstScoringTeam else 0
 
-            sleepChecker(1, 1, 1, True)
-            homeTipper = player1 if player1Team == homeShort else player2
-            awayTipper = player2 if player2Team == awayShort else player1
-            firstScorer = scoringPlayer # todo get this from game data if really needed
-            tipWinningTeam = homeShort if possessingTeamIsHome else awayShort
-            tipLosingTeam = awayShort if possessingTeamIsHome else homeShort
-            # PossessionGainingPlayer = PossessionGainingPlayerLink = None
-            FirstScoringTeam = homeShort if homeScores else awayShort
-            ScoredUponTeam = awayShort if homeScores else homeShort
-            TipWinner = homeTipper if possessingTeamIsHome else awayTipper
-            TipWinnerLink = getUniversalPlayerName(TipWinner, bballRefName=True)
-            TipLoser = awayTipper if possessingTeamIsHome else homeTipper
-            TipLoserLink = getUniversalPlayerName(TipLoser, bballRefName=True)
-            TipWinnerScores = 1 if tipWinningTeam == FirstScoringTeam else 0
+                df["Home Tipper"].iloc[i] = homeTipper
+                df["Away Tipper"].iloc[i] = awayTipper
+                df["First Scorer"].iloc[i] = firstScorer
+                df["Tip Winning Team"].iloc[i] = tipWinningTeam
+                df["Tip Losing Team"].iloc[i] = tipLosingTeam
+                df["First Scoring Team"].iloc[i] = FirstScoringTeam
+                df["Scored Upon Team"].iloc[i] = ScoredUponTeam
+                df["Tip Winner"].iloc[i] = TipWinner
+                df["Tip Winner Link"].iloc[i] = TipWinnerLink
+                df["Tip Loser"].iloc[i] = TipLoser
+                df["Tip Loser Link"].iloc[i] = TipLoserLink
+                df["Tip Winner Scores"].iloc[i] = TipWinnerScores
+            except:
+                print("something broke. Decide if it's worth it. Breaking code", line['Game Code'])
+        i += 1
 
-            df.iloc[i]["Home Tipper"] = homeTipper
-            df.iloc[i]["Away Tipper"] = awayTipper
-            df.iloc[i]["First Scorer"] = firstScorer
-            df.iloc[i]["Tip Winning Team"] = tipWinningTeam
-            df.iloc[i]["Tip Losing Tema"] = tipLosingTeam
-            df.iloc[i]["First Scoring Team"] = FirstScoringTeam
-            df.iloc[i]["Scored Upon Team"] = ScoredUponTeam
-            df.iloc[i]["Tip Winner"] = TipWinner
-            df.iloc[i]["Tip Winner Link"] = TipWinnerLink
-            df.iloc[i]["Tip Loser"] = TipLoser
-            df.iloc[i]["Tip Loser Link"] = TipLoserLink
-            df.iloc[i]["Tip Winner Scores"] = TipWinnerScores
-
-    df.to_csv('test.csv')
+    df2 = df[df['Home Tipper'].notnull()]
+    df2.to_csv('test.csv')
 
 def teamSummaryDataFromFirstPointData(season):
     with open(ENVIRONMENT.FIRST_POINT_SUMMARY_UNFORMATTED_PATH.format(season)) as file:

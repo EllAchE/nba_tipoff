@@ -42,8 +42,9 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # getAllFirstPossessionStatisticsIncrementally(2021)
 # getFirstFieldGoalOrFirstPointStats(ENVIRONMENT.CURRENT_SEASON)  # Since Hornets became a team
 # teamSummaryDataFromFirstPointData(ENVIRONMENT.CURRENT_SEASON)
-fillGaps(1998)
-
+# fillGaps(1998)
+# getDailyOdds('ATL', 'OKC', '-105')
+getAllOddsAndDisplayByEv(getMgm=True)
 
 # calculateEloDictionaryFromZero()
 # createPlayerNameRelationship()
@@ -74,7 +75,6 @@ fillGaps(1998)
 #
 
 #
-getDailyOdds('MIA', 'MEM', '-115')
 '''
 Existing apis etc.
 

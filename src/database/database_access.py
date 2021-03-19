@@ -159,6 +159,15 @@ def convertBballRefTeamShortCodeToNBA(shortCode: str):
         return 'CHA'
     if shortCode == 'CHH':
         return 'CHA'
+    if shortCode == 'NJN':
+        print('dangerous return of NJN == BKN')
+        return 'BKN'
+    if shortCode == 'SEA':
+        print('dangrous return of SEA == OKC')
+        return 'OKC'
+    if shortCode == 'VAN':
+        print('dangerous return of VAN == MEM')
+        return 'MEM'
     return shortCode
 
 def findPlayerFullFromLastGivenPossibleFullNames(playerLastName, playerList):

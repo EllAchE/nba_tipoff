@@ -33,11 +33,15 @@ def scoreFirstProb(p1Code: str, p2Code: str, jsonPath: Optional[str] = None, psd
     with open(ENVIRONMENT.FIRST_POINT_TEAM_META.format(ENVIRONMENT.CURRENT_SEASON)) as rFile:
         metaFile = json.load(rFile)
 
-    # todo backtest for all quarters/seasons and adjust this
+    # todo backtest for all quarters/seasons and adjust this. This math doesn't actually make any sense
     reducedNaiveScoreFirstAdjustment = math.sqrt(metaFile[t1]['quarter1']['naiveAdjustmentFactor']) / math.sqrt(metaFile[t2]['quarter1']['naiveAdjustmentFactor'])
     reducedNaiveScoreFirstAdjustment = math.sqrt(reducedNaiveScoreFirstAdjustment)
+    reducedNaiveScoreFirstAdjustment = math.sqrt(reducedNaiveScoreFirstAdjustment)
 
-    totalOdds = oddsWithObservedTipScore * reducedNaiveScoreFirstAdjustment
+    oddsRatio = oddsWithObservedTipScore / (1-oddsWithObservedTipScore) * reducedNaiveScoreFirstAdjustment
+    oddsAfterAdjustment = oddsRatio /(1+oddsRatio)
+
+    totalOdds = oddsAfterAdjustment
 
     # backlogtodo the independentVarOdds is probably invalid for joint probabiilty
     # if p1isHome:
@@ -153,8 +157,7 @@ def kellyBetFromAOddsAndScoreProb(scoreProb: float, americanOdds: str, bankroll:
 def checkEvPositiveBackLayAndGetScoreProb(teamOdds: float, teamTipperCode: str, opponentTipperCode: str):
     minWinRate = positiveEvThresholdFromAmerican(teamOdds)
     minLossRate = 1 - minWinRate
-    tipWinOdds = trueSkillTipWinProb(teamTipperCode, opponentTipperCode)
-    scoreProb = tipScoreProb(tipWinOdds)
+    scoreProb = scoreFirstProb(teamTipperCode, opponentTipperCode)
 
     if scoreProb > minWinRate:
         print('bet on them')

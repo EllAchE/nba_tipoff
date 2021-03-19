@@ -13,9 +13,9 @@ def runTSForSeason(seasonCsv: str, winningBetThreshold: float=ENVIRONMENT.GLICKO
                      columnAdds=['Home TS Mu', 'Away TS Mu', 'Home TS Sigma', 'Away TS Sigma'], startFromBeginning=startFromBeginning)
 
 # backlogtodo setup odds prediction to use Ev or win prob rather than bet threshold
-def trueskillBeforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionArray, actualArray, histogramPredictionsDict,
+def trueskillBeforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionArray=None, actualArray=None, histogramPredictionsDict=None,
         winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
-    return beforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionArray, actualArray, histogramPredictionsDict, predictionSummaryPath=ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH,
+    return beforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionArray=predictionArray, actualArray=actualArray, histogramPredictionsDict=histogramPredictionsDict, predictionSummaryPath=ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH,
                                   minimumTipWinPercentage=winningBetThreshold, predictionFunction=trueSkillTipWinProb, minimumAppearances=ENVIRONMENT.MIN_TS_APPEARANCES)
 
 def runTSForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
