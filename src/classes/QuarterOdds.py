@@ -10,12 +10,13 @@ class QuarterOdds:
         self.home = gameDict['home']
         self.away = gameDict['away']
         self.fetchedDatetime = gameDict['fetchedDatetime']
-        self.gameDatetime = self.fetchedDatetime[:10] if self.gameDatetime is None else gameDict['gameDatetime']
+        self.gameDatetime = gameDict['gameDatetime']
         self.exchange = gameDict['exchange']
         self.marketUrl = gameDict['marketUrl']
         self.isTeamOnly = teamOnly
         self.isPlayersOnly = playersOnly
-        self.gameCode = self.home + " @ " + self.away + " " + self.gameDatetime
+        gameStart = self.fetchedDatetime[:10] if self.gameDatetime is None else self.gameDatetime
+        self.gameCode = self.home + " @ " + self.away + " " + gameStart
         self.quarter = "QUARTER_1"
         self.isFullGame = False
 

@@ -95,25 +95,22 @@ def createOptimalPlayerSpreadObject(gameOddsObjList):
 
     return optimalSpreadsList
 
-def _addGameOddsObjsToList():
-    pass
-
-def _addFanduelGameOddsObjsToList(allGameObjList, method, exchangeErrorText):
+def _addFanduelGameOddsObjsToList(allGameObjList, method, exchangeErrorText, teamOnly=True, playersOnly=False):
     try:
-        fanduelOddsDicts = createAllOddsDictForExchange(method())
+        fanduelOddsDicts = createAllOddsDictForExchange(method(), teamOdds=(not playersOnly), playerOdds=(not teamOnly))
         for rawOddsDict in fanduelOddsDicts:
-            gameOddsObj = FanduelGameOdds(rawOddsDict)
+            gameOddsObj = FanduelGameOdds(rawOddsDict, teamOnly=teamOnly, playersOnly=playersOnly)
             allGameObjList.append(gameOddsObj)
         print('fetched {}'.format(exchangeErrorText), '\n')
     except:
         logging.exception('breaking error in {}.'.format(exchangeErrorText))
     return allGameObjList
 
-def _addGameOddsObjsToList(allGameObjList, method, exchangeErrorText):
+def _addGameOddsObjsToList(allGameObjList, method, exchangeErrorText, teamOnly=True, playersOnly=False):
     try:
-        oddsDicts = createAllOddsDictForExchange(method())
+        oddsDicts = createAllOddsDictForExchange(method(), teamOdds=(not playersOnly), playerOdds=(not teamOnly))
         for rawOddsDict in oddsDicts:
-            gameOddsObj = QuarterOdds(rawOddsDict)
+            gameOddsObj = QuarterOdds(rawOddsDict, teamOnly=teamOnly, playersOnly=playersOnly)
             allGameObjList.append(gameOddsObj)
         print('fetched {}'.format(exchangeErrorText), '\n')
     except:
@@ -125,23 +122,23 @@ def createAllOddsDict(draftkings=False, fanduelToday=False, fanduelTomorrow=Fals
     allGameObjList = list()
 
     if fanduelToday:
-        allGameObjList = _addFanduelGameOddsObjsToList(allGameObjList, fanduelOddsToday, "fanduel odds for today")
+        allGameObjList = _addFanduelGameOddsObjsToList(allGameObjList, fanduelOddsToday, "fanduel odds for today", teamOnly=False, playersOnly=False)
     if fanduelTomorrow:
-        allGameObjList = _addFanduelGameOddsObjsToList(allGameObjList, fanduelOddsTomorrow, "fanduel odds for tomorrow")
+        allGameObjList = _addFanduelGameOddsObjsToList(allGameObjList, fanduelOddsTomorrow, "fanduel odds for tomorrow", teamOnly=False, playersOnly=False)
     if draftkings:
-        allGameObjList = _addGameOddsObjsToList(allGameObjList, draftKingsOdds, "draftkings odds")
+        allGameObjList = _addGameOddsObjsToList(allGameObjList, draftKingsOdds, "draftkings odds", teamOnly=False, playersOnly=False)
     if mgm:
-        allGameObjList = _addGameOddsObjsToList(allGameObjList, mgmOdds, "mgm odds")
+        allGameObjList = _addGameOddsObjsToList(allGameObjList, mgmOdds, "mgm odds", teamOnly=True, playersOnly=False)
     if bovada:
-        allGameObjList = _addGameOddsObjsToList(allGameObjList, bovadaOdds, "bovada odds")
+        allGameObjList = _addGameOddsObjsToList(allGameObjList, bovadaOdds, "bovada odds", teamOnly=False, playersOnly=False)
     if pointsBet:
-        allGameObjList = _addGameOddsObjsToList(allGameObjList, pointsBetOdds, "pointsbet odds")
+        allGameObjList = _addGameOddsObjsToList(allGameObjList, pointsBetOdds, "pointsbet odds", teamOnly=False, playersOnly=True)
     if unibet:
-        allGameObjList = _addGameOddsObjsToList(allGameObjList, unibetOdds, "unibet odds")
+        allGameObjList = _addGameOddsObjsToList(allGameObjList, unibetOdds, "unibet odds", teamOnly=False, playersOnly=True)
     if barstool:
-        allGameObjList = _addGameOddsObjsToList(allGameObjList, barstoolOdds, "barstool odds")
+        allGameObjList = _addGameOddsObjsToList(allGameObjList, barstoolOdds, "barstool odds", teamOnly=False, playersOnly=True)
     if betfair:
-        allGameObjList = _addGameOddsObjsToList(allGameObjList, betfairOdds, "barstool odds")
+        allGameObjList = _addGameOddsObjsToList(allGameObjList, betfairOdds, "barstool odds", teamOnly=True, playersOnly=False)
 
 
     if includeOptimalPlayerSpread:

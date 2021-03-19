@@ -53,15 +53,21 @@ def saveOddsToFile(path, odds):
         f.write(jsonpickle.encode(odds))
         f.close()
 
-def getAllOddsAndDisplayByEv(getDk=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False, getFanduelToday=False, getFanduelTomorrow=False, includeOptimalPlayerSpread=False):
-    allGameOddsObjList = createAllOddsDict(draftkings=getDk, mgm=getMgm, bovada=getBovada, pointsBet=getPointsBet, unibet=getUnibet, barstool=getBarstool, fanduelToday=getFanduelToday, fanduelTomorrow=getFanduelTomorrow, includeOptimalPlayerSpread=includeOptimalPlayerSpread)
+def getAllOddsAndDisplayByExchange(draftkings=False, mgm=False, bovada=False, pointsbet=False, unibet=False, barstool=False, fanduelToday=False, fanduelTomorrow=False, includeOptimalPlayerSpread=False):
+    allGameOddsObjList = createAllOddsDict(draftkings=draftkings, mgm=mgm, bovada=bovada, pointsBet=pointsbet, unibet=unibet, barstool=barstool, fanduelToday=fanduelToday, fanduelTomorrow=fanduelTomorrow, includeOptimalPlayerSpread=includeOptimalPlayerSpread)
+    d = datetime.now().strftime('%Y-%m-%d_%H-%M-%S%p')
+    saveOddsToFile(f'Data/JSON/historical_odds/{d}.json', allGameOddsObjList)
+    displayAllBetsByExchange(allGameOddsObjList)
+
+def getAllOddsAndDisplayByEv(draftkings=False, mgm=False, bovada=False, pointsbet=False, unibet=False, barstool=False, fanduelToday=False, fanduelTomorrow=False, includeOptimalPlayerSpread=False):
+    allGameOddsObjList = createAllOddsDict(draftkings=draftkings, mgm=mgm, bovada=bovada, pointsBet=pointsbet, unibet=unibet, barstool=barstool, fanduelToday=fanduelToday, fanduelTomorrow=fanduelTomorrow, includeOptimalPlayerSpread=includeOptimalPlayerSpread)
     d = datetime.now().strftime('%Y-%m-%d_%H-%M-%S%p')
     saveOddsToFile(f'Data/JSON/historical_odds/{d}.json', allGameOddsObjList)
     displayAllBetsByEV(allGameOddsObjList)
 
 # backlogtodo bovada breaks this by having unknown teams.
-def getUniqueOddsAndDisplayByEv(getDk=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False, getFanduelToday=False, getFanduelTomorrow=False, includeOptimalPlayerSpread=False):
-    allGameOddsObjList = createAllOddsDict(draftkings=getDk, mgm=getMgm, bovada=getBovada, pointsBet=getPointsBet, unibet=getUnibet, barstool=getBarstool, fanduelToday=getFanduelToday, fanduelTomorrow=getFanduelTomorrow, includeOptimalPlayerSpread=includeOptimalPlayerSpread)
+def getUniqueOddsAndDisplayByEv(draftkings=False, mgm=False, bovada=False, pointsbet=False, unibet=False, barstool=False, fanduelToday=False, fanduelTomorrow=False, includeOptimalPlayerSpread=False):
+    allGameOddsObjList = createAllOddsDict(draftkings=draftkings, mgm=mgm, bovada=bovada, pointsBet=pointsbet, unibet=unibet, barstool=barstool, fanduelToday=fanduelToday, fanduelTomorrow=fanduelTomorrow, includeOptimalPlayerSpread=includeOptimalPlayerSpread)
     d = datetime.now().strftime('%Y-%m-%d_%H-%M-%S%p')
     saveOddsToFile(f'Data/JSON/historical_odds/{d}.json', allGameOddsObjList)
     displayUniqueBetsByEV(allGameOddsObjList)
@@ -77,9 +83,7 @@ def printQuarterDetails(g, showTeamAndPlayers, i):
     betOnVia = g.bestBetIsTeamOrPlayers()
     playerSpread = g.bestPlayerSpread()
 
-    if g.isFullGame:
-        print(g.quarter)
-    print(str(i) + '.', g.gameCode, '|| Bet On:', betOn, '|| Via:', betOnVia, '|| Kelly Bet:',
+    print(str(i) + '.', g.gameCode + ' ' + g.quarter, '|| Bet On:', betOn, '|| Via:', betOnVia, '|| Kelly Bet:',
           g.kellyBet, '|| EV Factor:', g.bestEVFactor)  # , '|| Tipoff:', g.gameDatetime)
     print('   Exchange:', g.exchange, '|| Odds as of:', g.fetchedDatetime)  # '|| Market URL:', g.marketUrl,
     print('   || Tippers-H/A', g.expectedHomeTipper + '/' + g.expectedAwayTipper, '|| Odds Home Wins',
@@ -104,6 +108,10 @@ def printQuarterDetails(g, showTeamAndPlayers, i):
             print('Odds on site may not reflect prints here')
         if g.isFirstFieldGoal:
             print('    * This is for first field goal only')
+    if g.isFullGame:
+        if g.quarter == "QUARTER_4":
+            print()
+    else:
         print()
 
 def printFullGameDetails(g, showTeamAndPlayers, i):
@@ -111,7 +119,6 @@ def printFullGameDetails(g, showTeamAndPlayers, i):
     printQuarterDetails(g.secondQuarterGameObj, showTeamAndPlayers, i)
     printQuarterDetails(g.thirdQuarterGameObj, showTeamAndPlayers, i)
     printQuarterDetails(g.fourthQuarterGameObj, showTeamAndPlayers, i)
-    return i + 3
 
 def printOddsObjDetails(oddsList: Any, showAll: bool = False, showTeamAndPlayers: bool = False):
     i = 0
@@ -119,7 +126,7 @@ def printOddsObjDetails(oddsList: Any, showAll: bool = False, showTeamAndPlayers
         if not showAll and not g.betEither():
             continue
         if g.isFullGame:
-            i = printFullGameDetails(g, showTeamAndPlayers, i)
+            printFullGameDetails(g, showTeamAndPlayers, i)
         else:
-            printQuarterDetails(g, showTeamAndPlayers)
+            printQuarterDetails(g, showTeamAndPlayers, i)
         i += 1
