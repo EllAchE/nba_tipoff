@@ -10,7 +10,6 @@ def testGetUniversalPlayerName():
 def testGetPlayerCurrentTeam():
     assert getPlayerCurrentTeam("carislevert") == "IND"
 
-def testGetTeamDictionaryFromShortCode():
+def testGetTeamIDFromShortCode():
     teamDict = getTeamIDFromShortCode("ATL")
     assert teamDict == 1610612737
-

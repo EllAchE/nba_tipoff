@@ -52,9 +52,6 @@ def getAllGamesInSeason(season: int, short_code: str):
     
     return gamesDf[gamesDf.SEASON_ID.str[-4:] == str(season)]
 
-def getGamePlayByPlay(gameId: str):
-    return playbyplayv2.PlayByPlayV2(gameId).get_data_frames()[0]
-
 def getPlayerLastNameFromShotDescription(description: str): # if this need to be fully generic then fetch the playerlast names and do a match on that
     isMiss = "MISS" in description
     splitDescription = description.split(' ')
@@ -87,10 +84,12 @@ def _getSingleQuarterStatistics(shotsBeforeFirstScore: pd.DataFrame):
     for abc in shotsBeforeFirstScore.EVENTNUM:
         row = shotsBeforeFirstScore.iloc[shotIndex]
         description = row.HOMEDESCRIPTION if row.HOMEDESCRIPTION is not None else row.VISITORDESCRIPTION
+
         playerTeam = awayTeam if row.HOMEDESCRIPTION is None else homeTeam
         playerLast = getPlayerLastNameFromShotDescription(description)
         player = findPlayerFullFromLastGivenPossibleFullNames(playerLast, allGamePlayers)
         shotType = getShotTypeFromEventDescription(description)
+
         if playerTeam == homeTeam:
             opponentTeam = awayTeam
         else:
@@ -135,9 +134,7 @@ def getFirstScoreLine(pbpDf: DataFrame):
 def gameIdToFirstFieldGoalsOfQuarters(id: str):
     pbpDf = playbyplayv2.PlayByPlayV2(game_id=id).get_data_frames()[0]
     indicesOfQuarterStarts = pbpDf.index[pbpDf['EVENTMSGTYPE'] == 12].tolist()
-    q2Index = indicesOfQuarterStarts[1]
-    q3Index = indicesOfQuarterStarts[2]
-    q4Index = indicesOfQuarterStarts[3]
+    q2Index, q3Index, q4Index = indicesOfQuarterStarts[1:4]
 
     plays = getEventsBeforeFirstFieldGoalOfQuarter(pbpDf)
     q1Shots = _getAllShotsBeforeFirstFieldGoal(plays)
@@ -159,16 +156,17 @@ def gameIdToFirstShotList(id: str):
     shots = _getAllShotsBeforeFirstFieldGoal(plays)
     return shots
 
-def getParticipatingTeamsFromId(id): # (id: str) -> dict[str, str]:
+def getParticipatingTeamsFromId(id):
     response = gamerotation.GameRotation(game_id=id)
-    awayTeamCity = response.away_team.get_dict()['data'][0][2]
-    awayTeamName = response.away_team.get_dict()['data'][0][3]
-    awayTeamId = response.away_team.get_dict()['data'][0][4]
-    homeTeamCity = response.home_team.get_dict()['data'][0][2]
-    homeTeamName = response.home_team.get_dict()['data'][0][3]
-    homeTeamId = response.home_team.get_dict()['data'][0][4]
-    
-    return {"home": homeTeamCity + ' ' + homeTeamName, "homeId": homeTeamId, "away": awayTeamCity + ' ' + awayTeamName, "awayId": awayTeamId}
+    awayTeamCity, awayTeamName, awayTeamId = response.away_team.get_dict()['data'][0][2:5]
+    homeTeamCity, homeTeamName, homeTeamId = response.home_team.get_dict()['data'][0][2:5]
+
+    return {
+        "home": homeTeamCity + ' ' + homeTeamName,
+        "homeId": homeTeamId,
+        "away": awayTeamCity + ' ' + awayTeamName,
+        "awayId": awayTeamId
+    }
 
 def saveAllHistoricalStarters():
     stub = ENVIRONMENT.GAME_SUMMARY_UNFORMATTED_PATH
@@ -215,14 +213,11 @@ def getSingleGameStarters(gameId):
 
     response = requests.get(url, headers=headers).json()
 
-    homeStartersSet = set()
-    awayStartersSet = set()
+    homeStartersSet = awayStartersSet = set()
     if response['resultSets'][0]['name'] == "AwayTeam":
-        awayTeamObj = response['resultSets'][0]
-        homeTeamObj = response['resultSets'][1]
+        awayTeamObj, homeTeamObj = response['resultSets'][:2]
     else:
-        awayTeamObj = response['resultSets'][1]
-        homeTeamObj = response['resultSets'][0]
+        homeTeamObj, awayTeamObj = response['resultSets'][:2]
 
     homeTeam = getUniversalTeamShortCode(homeTeamObj['rowSet'][0][2] + ' ' + homeTeamObj['rowSet'][0][3])
     awayTeam = getUniversalTeamShortCode(awayTeamObj['rowSet'][0][2] + ' ' + awayTeamObj['rowSet'][0][3])
@@ -236,8 +231,7 @@ def getSingleGameStarters(gameId):
             name = playerInOut[5] + ' ' + playerInOut[6]
             awayStartersSet.add(getUniversalPlayerName(name))
 
-    homeStarters = list()
-    awayStarters = list()
+    homeStarters = awayStarters = list()
     for item in homeStartersSet:
         homeStarters.append(item)
     for item in awayStartersSet:
@@ -287,7 +281,7 @@ def getTipoffLine(pbpDf: DataFrame, returnIndex: bool = False):
     playerLast = getPlayerLastNameFromShotDescription(description)
     scoringPlayer = row.PLAYER1_NAME if playerLast in row.PLAYER1_NAME else row.PLAYER2_NAME
 
-
+    # if both, look for turnover or miss in one side
     lineAfterTipoff = pbpDf.iloc[index + 1]
     if lineAfterTipoff['HOMEDESCRIPTION'].iloc[0] is not None:
         if lineAfterTipoff['VISITORDESCRIPTION'].iloc[0] is not None:
@@ -308,17 +302,17 @@ def getTipoffLine(pbpDf: DataFrame, returnIndex: bool = False):
 
     if tipoffContent.HOMEDESCRIPTION is not None:
         content = tipoffContent.HOMEDESCRIPTION
-        isHome = True
     elif tipoffContent.VISITORDESCRIPTION is not None:
         content = tipoffContent.VISITORDESCRIPTION
-        isHome = False
     else:
         raise ValueError('nothing for home or away, neutral said', tipoffContent.NEUTRALDESCRIPTION)
 
     if returnIndex:
         return content, type, player1, player2, possessingTeamIsHome, tipoffContent.index, scoringPlayer, homeScores
     return content, type, player1, player1Team, player2, player2Team, possessingTeamIsHome, scoringPlayer, homeScores
-# if both, look for turnover or block in the other side
+
+def getGamePlayByPlay(gameId: str):
+    return playbyplayv2.PlayByPlayV2(gameId).get_data_frames()[0]
 
 def getTipoffLineFromBballRefId(bballRef: str):
     gameId = getGameIdFromBballRef(bballRef)
@@ -331,40 +325,16 @@ def splitAllSeasonsFirstShotDataToMultipleFiles():
         allDataDict = json.load(allDataFile)
 
     stub = ENVIRONMENT.SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH
-    data2014 = allDataDict['2014']
-    data2015 = allDataDict['2015']
-    data2016 = allDataDict['2016']
-    data2017 = allDataDict['2017']
-    data2018 = allDataDict['2018']
-    data2019 = allDataDict['2019']
-    data2020 = allDataDict['2020']
-    data2021 = allDataDict['2021']
+    seasonList = ENVIRONMENT.SEASONS_SINCE_HORNETS_LIST
 
-    with open(stub.format('2014'), 'w') as f2014:
-        json.dump(data2014, f2014, indent=4)
-    with open(stub.format('2015'), 'w') as f2015:
-        json.dump(data2015, f2015, indent=4)
-    with open(stub.format('2016'), 'w') as f2016:
-        json.dump(data2016, f2016, indent=4)
-    with open(stub.format('2017'), 'w') as f2017:
-        json.dump(data2017, f2017, indent=4)
-    with open(stub.format('2018'), 'w') as f2018:
-        json.dump(data2018, f2018, indent=4)
-    with open(stub.format('2019'), 'w') as f2019:
-        json.dump(data2019, f2019, indent=4)
-    with open(stub.format('2020'), 'w') as f2020:
-        json.dump(data2020, f2020, indent=4)
-    with open(stub.format('2021'), 'w') as f2021:
-        json.dump(data2021, f2021, indent=4)
+    for year in seasonList:
+        yearStr = str(year)
+        with open(stub.format(yearStr), 'w') as f2014:
+            json.dump(allDataDict[yearStr], f2014, indent=4)
 
 # backlogtodo fix this to not break for some specific players and . names, i.e. Nene or W. or Shaw.
-
 def getAllFirstPossessionStatisticsIncrementally(season):
-    path = ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH
-    path = path.format(season)
-    df = pd.read_csv(path)
-    i = 0
-    dfLen = len(df.index)
+    df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
 
     with open(ENVIRONMENT.ALL_SHOTS_BEFORE_FIRST_FG_PATH) as sbfs:
         shotsDict = json.load(sbfs)
@@ -376,7 +346,7 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         lastGameIndex = df[df['Game Code'] == lastGameCode].index.values[0]
         i = lastGameIndex + 1
         # backlogtodo figure out why some of these games are breaking. In fetching the data a small number of games were ignored due to failure to return data
-    while i < dfLen:
+    for i in range(i, (len(df.index) - 1)):
         raise ValueError("This should just be checked before it's run again.")
         with open(ENVIRONMENT.SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH.format(season)) as sbfs:
             shotsDict = json.load(sbfs)
@@ -395,8 +365,6 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         with open(ENVIRONMENT.ALL_SHOTS_BEFORE_FIRST_FG_PATH, 'w') as jsonFile:
             json.dump(shotsDict, jsonFile, indent=4)
 
-        i += 1
-
 def fillGapsLooper():
     for year in ENVIRONMENT.ALL_SEASONS_LIST:
         pathIn = ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(year) #ENVIRONMENT.SEASON_DATA_GAPS
@@ -411,11 +379,9 @@ def fillGapsLooper():
 
 def fillGaps(season):
     df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
-    seasonLength = len(df['Game Code'])
-
-    i = 0
     gameCodeList = list()
-    while i < seasonLength:
+
+    for i in range(0, (len(df['Game Code']) - 1)):
         line = df.iloc[i]
         if line.isnull().values.any():
             try:
@@ -456,7 +422,6 @@ def fillGaps(season):
                 df["Tip Winner Scores"].iloc[i] = TipWinnerScores
             except:
                 print("something broke. Decide if it's worth it. Breaking code", line['Game Code'])
-        i += 1
 
     df2 = df[df['Home Tipper'].notnull()]
     df2.to_csv('test.csv')

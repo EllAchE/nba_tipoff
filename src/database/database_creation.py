@@ -127,21 +127,20 @@ def _singleSeasonPlayerTeamPairs(season):
     noTradeSet = set()
     for tag in tradePlayerTags:
         playerNameTag = tag.select('td[data-stat="player"]')[0]
-        playerFullName = playerNameTag.contents[0].contents[0]
-        playerUniversalName = getUniversalPlayerName(playerFullName)
+        playerUniversalName = getUniversalPlayerName(playerNameTag.contents[0].contents[0])
 
         tag = str(tag)
         playerCode = re.search(r'(?<=\"/players/./)(.*?)(?=\")', tag).group(0)
         playerTeam = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
         if playerCode in noTradeSet:
+            seasons[season][playerUniversalName]['currentTeam'] = seasons[season][playerCode]['currentTeam'] = playerTeam
             seasons[season][playerUniversalName]['possibleTeams'] += [playerTeam]
-            seasons[season][playerUniversalName]['currentTeam'] = playerTeam
             seasons[season][playerCode]['possibleTeams'] += [playerTeam]
-            seasons[season][playerCode]['currentTeam'] = playerTeam
         else:
             seasons[season][playerUniversalName] = {"possibleTeams": [playerTeam]}
             seasons[season][playerCode] = {"possibleTeams": [playerTeam]}
         noTradeSet.add(playerCode)
+
     for tag in noTradePlayerTags:
         playerNameTag = tag.select('td[data-stat="player"]')[0]
         playerFullName = playerNameTag.contents[0].contents[0]
@@ -152,19 +151,14 @@ def _singleSeasonPlayerTeamPairs(season):
         if playerCode in noTradeSet:
             continue  # skip the trade_players who break the regex
         playerTeam = re.search(r'(?<=<a href="/teams/)(.*?)(?=/)', tag).group(0)
-        seasons[season][playerUniversalName] = {'possibleTeams': [playerTeam]}
-        seasons[season][playerUniversalName]['currentTeam'] = playerTeam
-        seasons[season][playerCode] = {'possibleTeams': [playerTeam]}
-        seasons[season][playerCode]['currentTeam'] = playerTeam
+        seasons[season][playerUniversalName] = seasons[season][playerCode] = {'possibleTeams': [playerTeam]}
+        seasons[season][playerUniversalName]['currentTeam'] = seasons[season][playerCode]['currentTeam'] = playerTeam
 
     with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH, 'w') as json_file:
         json.dump(seasons, json_file, indent=4)
 
+# backlogtodo find a faster way to replace messed up player names
 # backlogtodo edit the methods inside here to use append (i.e. don't overwrite each time, just start from the end)
-def updateCurrentSeasonPlayerData():
-    createPlayerNameRelationship(ENVIRONMENT.CURRENT_SEASON)
-    saveActivePlayersTeams(ENVIRONMENT.CURRENT_SEASON)
-
 def createPlayerNameRelationship(startSeason: int=1998):
     activePlayers = []
     addedPlayerSet = set()
@@ -206,7 +200,6 @@ def _misformattedNameAdjustment(activePlayers):
             playerDict['alternateNames'] += ["Larry Nance"]
             playerDict['alternateNames'] += ["Larry Nance Jnr"]
     return activePlayers
-
 
 def singlePlayerNameRelationshipRequest(activePlayers, startSeason, addedPlayerSet):
     url = 'https://www.basketball-reference.com/leagues/NBA_{}_per_game.html'.format(str(startSeason))

@@ -7,6 +7,10 @@ from src.odds_and_statistics.prediction_enhancements import getCurrentSeasonUsag
     getFirstFieldGoalOrFirstPointStats
 from src.rating_algorithms.trueskill_data_processing import updateTrueSkillDictionaryFromLastGame
 
+def updateCurrentSeasonPlayerData():
+    createPlayerNameRelationship(ENVIRONMENT.CURRENT_SEASON)
+    saveActivePlayersTeams(ENVIRONMENT.CURRENT_SEASON)
+
 def updateAllDataLongTermIncluded():
     updateCurrentSeasonRawGameData()
     createPlayerNameRelationship(startSeason=ENVIRONMENT.ALL_SEASONS_LIST[0]) # proxies a database with player names
