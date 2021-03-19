@@ -1,11 +1,9 @@
 '''
 Methods to look at betting lines and see if they are worth it
 '''
-import itertools
 import json
 import math
 import numpy as np
-import trueskill
 import ENVIRONMENT
 
 from typing import Any, Optional
@@ -96,7 +94,7 @@ def sysEMainDiagonalVarsNeg1Fill(argsList, amtToWin: float = 1, amtToLose: Optio
         multiplier = amtToLose/cost
         return playerSpread * multiplier
 
-def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float=ENVIRONMENT.REDUCTION_FACTOR, winAmt: float = 1, bankroll: Optional[float] = None): # assumes binary outcome, requires dollar value
+def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float= ENVIRONMENT.REDUCTION_FACTOR, winAmt: float = 1, bankroll: Optional[float] = None): # assumes binary outcome, requires dollar value
     kellyRatio = (winOdds / lossAmt - (1 - winOdds) / winAmt) * reductionFactor
 
     if bankroll is None:

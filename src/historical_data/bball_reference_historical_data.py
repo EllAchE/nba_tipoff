@@ -214,7 +214,7 @@ def updateCurrentSeasonRawGameData(pathToData=ENVIRONMENT.CURRENT_SEASON_CSV, cu
 
 def oneSeasonFromScratch(season):
     temp = pd.DataFrame()
-    path =ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(str(season))
+    path = ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(str(season))
     temp.to_csv(path)
     dFile = open(path, 'w')
 

@@ -4,7 +4,7 @@ from src.database.database_creation import saveActivePlayersTeams, getAllGameDat
 from src.historical_data.nba_play_by_play_methods import getAllFirstPossessionStatisticsIncrementally, \
     teamSummaryDataFromFirstPointData, saveAllHistoricalStarters
 from src.odds_and_statistics.prediction_enhancements import getCurrentSeasonUsageRate, \
-    getAllSeasonFirstFieldGoalOrFirstPointStats, getFirstFieldGoalOrFirstPointStats
+    getFirstFieldGoalOrFirstPointStats
 from src.rating_algorithms.trueskill_data_processing import updateTrueSkillDictionaryFromLastGame
 
 def updateAllDataLongTermIncluded():

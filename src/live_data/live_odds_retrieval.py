@@ -9,7 +9,6 @@ from datetime import datetime
 
 import requests
 import pandas as pd
-from bs4 import BeautifulSoup
 
 import ENVIRONMENT
 from src.database.database_access import getUniversalTeamShortCode, getPlayerCurrentTeam, getUniversalPlayerName

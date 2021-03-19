@@ -5,7 +5,7 @@ from src.rating_algorithms.common_data_processing import beforeMatchPredictions,
     runAlgoForSeason, runAlgoForAllSeasons
 
 
-def runEloForSeason(season: str, seasonCsv: str, winningBetThreshold: float=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
+def runEloForSeason(season: str, seasonCsv: str, winningBetThreshold: float= ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
     runAlgoForSeason(season, seasonCsv, winningBetThreshold, columnAdds=["Home Elo", "Away Elo"], startFromBeginning=startFromBeginning)
 
 def eloBeforeMatchPredictions(psd, hTipCode, aTipCode, hTeam, aTeam, tWinLink, scoringTeam, predictionArray, actualArray, histogramPredictionsDict, winningBetThreshold=ENVIRONMENT.ELO_TIPOFF_ODDS_THRESHOLD):

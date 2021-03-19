@@ -39,7 +39,7 @@ import pandas as pd
 
 import ENVIRONMENT
 from src.database.database_access import findPlayerFullFromLastGivenPossibleFullNames, getGameIdFromBballRef, \
-    getTeamDictionaryFromShortCode, getAllGamesForTeam, getBballRefPlayerName, \
+    getTeamIDFromShortCode, getAllGamesForTeam, getBballRefPlayerName, \
     getGameIdByTeamAndDateFromStaticData, getUniversalPlayerName, getUniversalTeamShortCode
 from src.utils import sleepChecker
 
@@ -51,7 +51,7 @@ DataFrame = Any
 
 def getAllGamesInSeason(season: int, short_code: str):
     season -= 1
-    teamId = getTeamDictionaryFromShortCode(short_code)
+    teamId = getTeamIDFromShortCode(short_code)
     gamesDf = getAllGamesForTeam(teamId)
 
     return gamesDf[gamesDf.SEASON_ID.str[-4:] == str(season)]

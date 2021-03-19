@@ -1,6 +1,6 @@
 import json
 
-from nba_api.stats.endpoints import CommonPlayerInfo
+from nba_api.stats.endpoints import CommonPlayerInfo, leaguegamefinder
 from nba_api.stats.static import teams
 from nba_api.stats.static.players import find_players_by_full_name
 
@@ -49,14 +49,14 @@ def getUniversalPlayerName(playerInUnknownFormat, bballRefName=False):
             match = True
         elif player['fullName'] == playerInUnknownFormat + " IV":
             match = True
-        if match:
-            break
+
         try:
             if removeAllNonLettersAndLowercase(player['alternateNames'][0]) == undoPlayerCommaReversal:
                 match = True
-                break
         except:
             pass
+        if match:
+            break
 
     if not match:
         # raise ValueError("player", playerInUnknownFormat, "did not have a match")
@@ -81,24 +81,19 @@ def getUniversalTeamShortCode(teamInUnknownFormat):
         splitTeamList = teamInUnknownFormat.split(' ')
         if team['teamName'] == teamInUnknownFormat:
             match = True
-            break
         elif len(splitTeamList[-1]) > 3 and splitTeamList[-1] in team['teamName']: # make sure it's not a short code before looking in
             match = True
-            break
         elif team['simpleName'] == teamInUnknownFormat:
             match = True
-            break
         elif team['location'] == teamInUnknownFormat:
             match = True
-            break
         elif teamInUnknownFormat in team['alternateAbbreviations']:
             match = True
-            break
         elif team['abbreviation'] == teamInUnknownFormat:
             match = True
-            break
         elif team['bovadaId'] == teamInUnknownFormat:
             match = True
+        if match:
             break
     # Often format is "LA Clippers" or "DEN Nuggets" or "Nuggets"
 
@@ -106,7 +101,7 @@ def getUniversalTeamShortCode(teamInUnknownFormat):
         raise ValueError("team", teamInUnknownFormat, "did not have a match")
     return team['abbreviation']
 
-def getTeamDictionaryFromShortCode(shortCode: str):
+def getTeamIDFromShortCode(shortCode: str):
     shortCode = convertBballRefTeamShortCodeToNBA(shortCode)
     nbaTeams = teams.get_teams()
     teamDict = [team for team in nbaTeams if team['abbreviation'] == shortCode][0]
@@ -117,12 +112,6 @@ def _getGameObjFromDateAndTeamUsingLocalData(dateStr: str, shortCode: str):
     filePath = filePath.format(shortCode)
     gameData = pd.read_csv(filePath)
     return gameData[gameData['GAME_DATE'] == dateStr]
-
-# game date format is YYYY-MM-DD
-def _getGameObjFromDateAndTeam(dateStr: str, shortCode: str):
-    teamId = getTeamDictionaryFromShortCode(shortCode)
-    allGames = getAllGamesForTeam(teamId)
-    return allGames[allGames.GAME_DATE == str(dateStr)]
 
 def getGameIdFromTeamAndDate(dateStr: str, shortCode: str):
     gameObj = _getGameObjFromDateAndTeam(dateStr, shortCode)
@@ -138,15 +127,13 @@ def convertBballRefTeamShortCodeToNBA(shortCode: str):
         return 'PHX'
     if shortCode == 'BRK':
         return 'BKN'
-    if shortCode == 'CHO':
-        return 'CHA'
-    if shortCode == 'CHH':
+    if shortCode == 'CHO' or shortCode == 'CHH':
         return 'CHA'
     if shortCode == 'NJN':
         print('dangerous return of NJN == BKN')
         return 'BKN'
     if shortCode == 'SEA':
-        print('dangrous return of SEA == OKC')
+        print('dangerous return of SEA == OKC')
         return 'OKC'
     if shortCode == 'VAN':
         print('dangerous return of VAN == MEM')
@@ -173,14 +160,10 @@ def getPlayerTeamFromFullName(name):
     abbreviation = playerData['TEAM_ABBREVIATION'].iloc[0] # index of this if list is 19 (20th item)
     return abbreviation
 
-def getPlayerTeamFromNbaApi(name):
-    # https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/commonplayerinfo.md
-    pass
-
 def getPlayerTeamInSeasonFromBballRefLink(playerLink, season, longCode=True, returnCurrentTeam=False):
     if longCode:
         playerLink = playerLink[11:]
-    # playerName = getUniversalPlayerName(playerLink)
+
     with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as teamPairs:
         seasons = json.load(teamPairs)
         try:
@@ -189,3 +172,13 @@ def getPlayerTeamInSeasonFromBballRefLink(playerLink, season, longCode=True, ret
             return seasons[str(season)][playerLink]['possibleTeams']
         except:
             raise ValueError("no match found for player", playerLink)
+
+def getAllGamesForTeam(team_id: str):
+    gamefinder = leaguegamefinder.LeagueGameFinder(team_id_nullable=team_id)
+    return gamefinder.get_data_frames()[0]
+
+# game date format is YYYY-MM-DD
+def _getGameObjFromDateAndTeam(dateStr: str, shortCode: str):
+    teamId = getTeamIDFromShortCode(shortCode)
+    allGames = getAllGamesForTeam(teamId)
+    return allGames[allGames.GAME_DATE == str(dateStr)]

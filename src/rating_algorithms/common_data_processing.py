@@ -163,7 +163,7 @@ def addSummaryMathToAlgoSummary(predictionSummariesPath, actualArray, prediction
     if dsd['winningBets'] + dsd['losingBets'] > 0:
         dsd['correctTipoffPredictionPercentage'] = dsd['correctTipoffPredictions'] / (dsd['correctTipoffPredictions'] + dsd['incorrectTipoffPredictions'])
         dsd['betWinPercentage'] = dsd['winningBets'] / (dsd['winningBets'] + dsd['losingBets'])
-        dsd['expectedWinsFromTipWinPercentage'] = dsd['correctTipoffPredictionPercentage'] * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1-dsd['correctTipoffPredictionPercentage']) * (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
+        dsd['expectedWinsFromTipWinPercentage'] = dsd['correctTipoffPredictionPercentage'] * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1 - dsd['correctTipoffPredictionPercentage']) * (1 - ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
     for histogramBin in dsd['histogramDivisions']:
         if histogramBin['predictionSummaries']['totalMatchups'] > 0:
             histogramBin['predictionSummaries']['tipWinPercentage'] = histogramBin['predictionSummaries']['tipoffWinsByHigher'] / histogramBin['predictionSummaries']['totalMatchups']
@@ -285,8 +285,9 @@ def runAlgoForAllSeasons(seasons, skillDictPath, predictionSummariesPath, algoPr
         histogramPredictionsDict[str(bin['start'])] = {"actual": [], "predicted": []}
 
     for season in seasons:
-        predictionArray, actualArray, histogramPredictionsDict = runAlgoForSeason(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), skillDictPath, predictionSummariesPath,
-                algoPrematch, algoSingleTipoff, winningBetThreshold, predictionArray, actualArray, histogramPredictionsDict, startFromBeginning=True, columnAdds=columnAdds)
+        predictionArray, actualArray, histogramPredictionsDict = runAlgoForSeason(
+            ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), skillDictPath, predictionSummariesPath,
+            algoPrematch, algoSingleTipoff, winningBetThreshold, predictionArray, actualArray, histogramPredictionsDict, startFromBeginning=True, columnAdds=columnAdds)
         seasonKey += str(season) + '-'
 
     dsd['seasons'] = seasonKey + 'with-odds-' + str(winningBetThreshold)

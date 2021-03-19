@@ -1,7 +1,3 @@
-import ENVIRONMENT
 from src.database.data_update import customDataUpdate
-from src.historical_data.nba_play_by_play_methods import fillGapsLooper, teamSummaryDataFromFirstPointData
-from src.odds_and_statistics.odds_calculator import independentVarOdds, scoreFirstProb
-from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalOrFirstPointStats
 
 customDataUpdate()

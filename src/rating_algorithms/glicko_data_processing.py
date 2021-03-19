@@ -5,9 +5,9 @@ from src.rating_algorithms.algorithms import glickoTipWinProb, glickoMatchWithRa
 from src.rating_algorithms.common_data_processing import beforeMatchPredictions,runAlgoForSeason, runAlgoForAllSeasons
 
 
-def runGlickoForSeason(season: str, seasonCsv: str, winningBetThreshold: float=ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
+def runGlickoForSeason(season: str, seasonCsv: str, winningBetThreshold: float= ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
     runAlgoForSeason(season, seasonCsv, ENVIRONMENT.PLAYER_GLICKO_DICT_PATH, ENVIRONMENT.GLICKO_PREDICTION_SUMMARIES_PATH, glickoBeforeMatchPredictions,
-                    glickoUpdateDataSingleTipoff, winningBetThreshold, columnAdds=['Home Glicko Mu', 'Away Glicko Mu', "Home Glicko Sigma", "Away Glicko Sigma", "Home Glicko Phi", "Away Glicko Phi"], startFromBeginning=startFromBeginning)
+                     glickoUpdateDataSingleTipoff, winningBetThreshold, columnAdds=['Home Glicko Mu', 'Away Glicko Mu', "Home Glicko Sigma", "Away Glicko Sigma", "Home Glicko Phi", "Away Glicko Phi"], startFromBeginning=startFromBeginning)
 
 def glickoBeforeMatchPredictions(psd, hTipCode, aTipCode, hTeam, aTeam, tipWinCode, scoringTeam, predictionArray, actualArray, histogramPredictionsDict, winningBetThreshold=ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD):
     return beforeMatchPredictions(psd, hTipCode, aTipCode, hTeam, aTeam, tipWinCode, scoringTeam, predictionArray, actualArray, histogramPredictionsDict, predictionSummaryPath=ENVIRONMENT.GLICKO_PREDICTION_SUMMARIES_PATH,

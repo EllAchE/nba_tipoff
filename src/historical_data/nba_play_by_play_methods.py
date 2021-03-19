@@ -28,17 +28,16 @@ Percentage of first shots taken by particular player
 
 '''
 import json
-import re
 
 import requests
-from nba_api.stats.endpoints import gamerotation, playbyplayv2, leaguegamefinder
+from nba_api.stats.endpoints import gamerotation, playbyplayv2
 from typing import Any
 import pandas as pd
 
 import ENVIRONMENT
 from src.database.database_access import findPlayerFullFromLastGivenPossibleFullNames, getGameIdFromBballRef, \
-    getTeamDictionaryFromShortCode, getAllGamesForTeam, \
-    getGameIdByTeamAndDateFromStaticData, getUniversalPlayerName, getUniversalTeamShortCode
+    getTeamIDFromShortCode, getGameIdByTeamAndDateFromStaticData, getUniversalPlayerName, \
+    getUniversalTeamShortCode, getAllGamesForTeam
 from src.utils import sleepChecker
 
 # backlogTodo different sites may only look at first field goal (NOT FREE THROW) which makes for a weaker correlation
@@ -48,7 +47,7 @@ DataFrame = Any
 
 def getAllGamesInSeason(season: int, short_code: str):
     season -= 1
-    teamId = getTeamDictionaryFromShortCode(short_code)
+    teamId = getTeamIDFromShortCode(short_code)
     gamesDf = getAllGamesForTeam(teamId)
     
     return gamesDf[gamesDf.SEASON_ID.str[-4:] == str(season)]
@@ -493,10 +492,6 @@ def teamSummaryDataFromFirstPointData(season):
 
     with open(ENVIRONMENT.FIRST_POINT_TEAM_META.format(season), 'w') as wFile:
         json.dump(summaryDict, wFile, indent=4)
-
-def getAllGamesForTeam(team_id: str):
-    gamefinder = leaguegamefinder.LeagueGameFinder(team_id_nullable=team_id)
-    return gamefinder.get_data_frames()[0]
 
 # class EventMsgType(Enum):
 #     FIELD_GOAL_MADE = 1 #backlogtodo replace above uses of numbers with ENUM values for readability

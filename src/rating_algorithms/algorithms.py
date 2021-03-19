@@ -70,7 +70,7 @@ def eloMatchWithRawNums(winnerElo: int, loserElo: int):
     updatedWinnerElo, updatedLoserElo = eloObj.rate_1vs1(winnerElo, loserElo)
     return updatedWinnerElo, updatedLoserElo
 
-def _eloGlobalConstants(k:int=ENVIRONMENT.K_FACTOR, baseElo=ENVIRONMENT.BASE_ELO, beta=ENVIRONMENT.BASE_ELO_BETA):
+def _eloGlobalConstants(k:int= ENVIRONMENT.K_FACTOR, baseElo=ENVIRONMENT.BASE_ELO, beta=ENVIRONMENT.BASE_ELO_BETA):
     elo.setup(k_factor=k, initial=baseElo, beta=beta)
     print('Set k, base Elo and beta to', k, baseElo, beta)
 

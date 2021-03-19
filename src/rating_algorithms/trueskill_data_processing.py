@@ -7,14 +7,14 @@ from src.rating_algorithms.common_data_processing import beforeMatchPredictions,
 
 # backlogtodo optimize trueskill, glicko etc. for rapid iteration
 # backlogtodo refactor equations here to be generic
-def runTSForSeason(seasonCsv: str, winningBetThreshold: float=ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
+def runTSForSeason(seasonCsv: str, winningBetThreshold: float= ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
     runAlgoForSeason(seasonCsv, ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH,
                      trueskillBeforeMatchPredictions, trueskillUpdateDataSingleTipoff, winningBetThreshold,
                      columnAdds=['Home TS Mu', 'Away TS Mu', 'Home TS Sigma', 'Away TS Sigma'], startFromBeginning=startFromBeginning)
 
 # backlogtodo setup odds prediction to use Ev or win prob rather than bet threshold
 def trueskillBeforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionArray=None, actualArray=None, histogramPredictionsDict=None,
-        winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
+                                    winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
     return beforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionArray=predictionArray, actualArray=actualArray, histogramPredictionsDict=histogramPredictionsDict, predictionSummaryPath=ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH,
                                   minimumTipWinPercentage=winningBetThreshold, predictionFunction=trueSkillTipWinProb, minimumAppearances=ENVIRONMENT.MIN_TS_APPEARANCES)
 
