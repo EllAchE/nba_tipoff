@@ -404,9 +404,8 @@ def _fanduelOddsAll(today=True):
         teamSet.add(home)
         teamSet.add(away)
 
-        gameDatetime = currentDate if today else (datetime.strptime(currentDate, '%Y-%m-%d') + timedelta(days=1)).strftime('%Y-%m-%d')
         quarterOddsList.append({
-            "gameDatetime": gameDatetime,
+            "gameDatetime": gameResponse['tsstart'],
             "home": home,
             "away": away,
             "exchange": "fanduel",

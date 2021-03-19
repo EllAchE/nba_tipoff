@@ -4,18 +4,18 @@ from src.odds_and_statistics.odds_calculator import convertPlayerLinesToSingleLi
 from src.live_data.live_odds_retrieval import getExpectedTipper
 
 class GameOdds:
-    def __init__(self, gameDict, teamOnly=False, playersOnly=False):
+    def __init__(self, gameDict, teamOnly=False, playersOnly=False, isQuarter1Or4=True):
         self.awayPlayerFloorOdds = self.homePlayerFloorOdds = self.awayPlayerFloorOdds = self.homePlayerFloorOdds = self.awayPlayerFloorOdds = self.kellyBet = self.homeTeamFirstQuarterOdds = self.awayTeamFirstQuarterOdds = None
         self.home = gameDict['home']
         self.away = gameDict['away']
-        self.gameDatetime = gameDict['gameDatetime']
+        self.fetchedDatetime = gameDict['fetchedDatetime']
+        self.gameDatetime = self.fetchedDatetime[:10] if self.gameDatetime is None else gameDict['gameDatetime']
         self.exchange = gameDict['exchange']
         self.marketUrl = gameDict['marketUrl']
-        self.fetchedDatetime = gameDict['fetchedDatetime']
         self.isTeamOnly = teamOnly
         self.isPlayersOnly = playersOnly
-        gameDatetime = self.fetchedDatetime[:10] if self.gameDatetime is None else self.gameDatetime
-        self.gameCode = self.home + " @ " + self.away + " " + gameDatetime
+        self.gameCode = self.home + " @ " + self.away + " " + self.gameDatetime
+        self.quarter = "QUARTER_1"
 
         if not playersOnly:
             self.homeTeamFirstQuarterOdds = str(gameDict['teamOdds']['homeTeamFirstQuarterOdds']) if gameDict['teamOdds']['homeTeamFirstQuarterOdds'] is not None else None
@@ -59,8 +59,8 @@ class GameOdds:
 
         self.expectedHomeTipper = getExpectedTipper(self.home)
         self.expectedAwayTipper = getExpectedTipper(self.away)
-        self.homeScoreProb = scoreFirstProb(self.expectedHomeTipper, self.expectedAwayTipper)
-        self.awayScoreProb = scoreFirstProb(self.expectedAwayTipper, self.expectedHomeTipper)
+        self.homeScoreProb = scoreFirstProb(self.expectedHomeTipper, self.expectedAwayTipper, isQuarter1Or4)
+        self.awayScoreProb = scoreFirstProb(self.expectedAwayTipper, self.expectedHomeTipper, isQuarter1Or4)
 
         self.homeBestKellyBet = kellyBetFromAOddsAndScoreProb(self.homeScoreProb, self.bestHomeOdds)
         self.awayBestKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.bestAwayOdds)

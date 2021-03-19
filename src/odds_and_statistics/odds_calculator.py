@@ -19,7 +19,11 @@ from src.rating_algorithms.algorithms import trueSkillTipWinProb
 #     return tipWinOdds * tipWinnerScoresOdds + (1 - tipWinOdds) * (1 - tipWinnerScoresOdds)
 
 # backlogtodo allow this to toggle to different algos
-def scoreFirstProb(p1Code: str, p2Code: str, jsonPath: Optional[str] = None, psd=None):
+def scoreFirstProb(p1Code: str, p2Code: str, jsonPath: Optional[str] = None, psd=None, isQuarter1or4=True):
+    if not isQuarter1or4:
+        temp = p2Code
+        p2Code = p1Code
+        p1Code = temp
     tWinProb = trueSkillTipWinProb(p1Code, p2Code)
     oddsWithObservedTipScore = tWinProb * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1 - tWinProb) * (1 - ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
 
