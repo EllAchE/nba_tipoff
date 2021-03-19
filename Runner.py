@@ -45,6 +45,7 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # fillGaps(1998)
 # getDailyOdds('ATL', 'OKC', '-105')
 getAllOddsAndDisplayByEv(getMgm=True)
+# todo add unit tests
 
 # calculateEloDictionaryFromZero()
 # createPlayerNameRelationship()

@@ -61,7 +61,7 @@ def resetAndInitializePredictionSummaryDict(histogramBinDivisions, path):
 
     return dsd
 
-def createPlayerEloDictionary(path=ENVIRONMENT.PLAYER_ELO_DICT_PATH):
+def _createPlayerDictionary(path, playerDetailsFunction):
     with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as playerTeamPairsJson:
         ptp = json.load(playerTeamPairsJson)
 
@@ -72,45 +72,34 @@ def createPlayerEloDictionary(path=ENVIRONMENT.PLAYER_ELO_DICT_PATH):
             for player in ptp[season].keys():
                 playerCodes.add(player)
 
-        for code in playerCodes:
-            playerSkillDict[code] = {'elo': ENVIRONMENT.BASE_ELO, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
+        playerSkillDictPopulated = playerDetailsFunction(playerCodes, playerSkillDict)
 
     with open(path, 'w') as psd:
-        json.dump(playerSkillDict, psd, indent=4)
+        json.dump(playerSkillDictPopulated, psd, indent=4)
 
-def createPlayerGlickoDictionary(path=ENVIRONMENT.PLAYER_GLICKO_DICT_PATH):
-    with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as playerTeamPairsJson:
-        ptp = json.load(playerTeamPairsJson)
+def createPlayerEloDictionary():
+    _createPlayerDictionary(ENVIRONMENT.PLAYER_ELO_DICT_PATH, _eloPlayerDetailsFunction)
 
-        playerCodes = set()
-        playerSkillDict = {}
+def createPlayerGlickoDictionary():
+    _createPlayerDictionary(ENVIRONMENT.PLAYER_GLICKO_DICT_PATH, _glickoPlayerDetailsFunction)
 
-        for season in ptp.keys():
-            for player in ptp[season].keys():
-                playerCodes.add(player)
+def createPlayerTrueSkillDictionary():
+    _createPlayerDictionary(ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, _trueSkillPlayerDetailsFunction)
 
-        for code in playerCodes:
-            playerSkillDict[code] = {'mu': ENVIRONMENT.BASE_GLICKO_MU, 'sigma': ENVIRONMENT.BASE_GLICKO_SIGMA, 'phi': ENVIRONMENT.BASE_GLICKO_PHI, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
+def _eloPlayerDetailsFunction(playerCodes, playerSkillDict):
+    for code in playerCodes:
+        playerSkillDict[code] = {'elo': ENVIRONMENT.BASE_ELO, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
+    return playerSkillDict
 
-    with open(path, 'w') as psd:
-        json.dump(playerSkillDict, psd, indent=4)
+def _glickoPlayerDetailsFunction(playerCodes, playerSkillDict):
+    for code in playerCodes:
+        playerSkillDict[code] = {'mu': ENVIRONMENT.BASE_GLICKO_MU, 'sigma': ENVIRONMENT.BASE_GLICKO_SIGMA, 'phi': ENVIRONMENT.BASE_GLICKO_PHI, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
+    return playerSkillDict
 
-def createPlayerTrueSkillDictionary(path=ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH):
-    with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as playerTeamPairsJson:
-        ptp = json.load(playerTeamPairsJson)
-
-        playerCodes = set()
-        playerSkillDict = {}
-
-        for season in ptp.keys():
-            for player in ptp[season].keys():
-                playerCodes.add(player)
-
-        for code in playerCodes:
-            playerSkillDict[code] = {'mu': ENVIRONMENT.BASE_TS_MU, 'sigma': ENVIRONMENT.BASE_TS_SIGMA, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
-
-    with open(path, 'w') as psd:
-        json.dump(playerSkillDict, psd, indent=4)
+def _trueSkillPlayerDetailsFunction(playerCodes, playerSkillDict):
+    for code in playerCodes:
+        playerSkillDict[code] = {'mu': ENVIRONMENT.BASE_TS_MU, 'sigma': ENVIRONMENT.BASE_TS_SIGMA, 'appearances': 0, 'wins': 0, 'losses': 0, 'predicted wins': 0, 'predicted losses': 0}
+    return playerSkillDict
 
 def saveActivePlayersTeams(start_season: int):
     # https://www.basketball-reference.com/leagues/NBA_2021_per_game.html
@@ -120,10 +109,10 @@ def saveActivePlayersTeams(start_season: int):
         start_season += 1
 
     for season in seasonsList:
-        singleSeasonPlayerTeamPairs(season)
+        _singleSeasonPlayerTeamPairs(season)
     print('saved seasons Data')
 
-def singleSeasonPlayerTeamPairs(season):
+def _singleSeasonPlayerTeamPairs(season):
     with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH) as json_file:
         seasons = json.load(json_file)
 
@@ -171,8 +160,7 @@ def singleSeasonPlayerTeamPairs(season):
     with open(ENVIRONMENT.PLAYER_TEAM_PAIRS_PATH, 'w') as json_file:
         json.dump(seasons, json_file, indent=4)
 
-
-# backlogtodo edit the methods inside here to use append
+# backlogtodo edit the methods inside here to use append (i.e. don't overwrite each time, just start from the end)
 def updateCurrentSeasonPlayerData():
     createPlayerNameRelationship(ENVIRONMENT.CURRENT_SEASON)
     saveActivePlayersTeams(ENVIRONMENT.CURRENT_SEASON)
@@ -181,11 +169,17 @@ def createPlayerNameRelationship(startSeason: int=1998):
     activePlayers = []
     addedPlayerSet = set()
 
-    urlStub = 'https://www.basketball-reference.com/leagues/NBA_{}_per_game.html'
     while startSeason < 2022:
-        activePlayers, addedPlayerSet = singlePlayerNameRelationshipRequest(activePlayers, startSeason, urlStub, addedPlayerSet)
+        activePlayers, addedPlayerSet = singlePlayerNameRelationshipRequest(activePlayers, startSeason, addedPlayerSet)
         startSeason += 1
 
+    activePlayers = _misformattedNameAdjustment(activePlayers)
+
+    with open(ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH, 'w') as json_file:
+        json.dump(activePlayers, json_file, indent=4)
+    print('saved player DB Data')
+
+def _misformattedNameAdjustment(activePlayers):
     for playerDict in activePlayers:
         if playerDict['fullName'] == "Maxi Kleber":
             playerDict['alternateNames'] += ["Maximilian Kleber"]
@@ -211,16 +205,14 @@ def createPlayerNameRelationship(startSeason: int=1998):
         elif playerDict['fullName'] == "Larry Nance Jr.":
             playerDict['alternateNames'] += ["Larry Nance"]
             playerDict['alternateNames'] += ["Larry Nance Jnr"]
+    return activePlayers
 
-    with open(ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH, 'w') as json_file:
-        json.dump(activePlayers, json_file, indent=4)
 
-    print('saved player DB Data')
-
-def singlePlayerNameRelationshipRequest(activePlayers, startSeason, urlStub, addedPlayerSet):
-    url = urlStub.format(str(startSeason))
+def singlePlayerNameRelationshipRequest(activePlayers, startSeason, addedPlayerSet):
+    url = 'https://www.basketball-reference.com/leagues/NBA_{}_per_game.html'.format(str(startSeason))
     soup, statusCode = getSoupFromUrl(url, returnStatus=True)
     print("GET request for", startSeason, "players list returned status", statusCode)
+
     allPlayerTags = soup.find_all('tr', class_="full_table")
     for tag in allPlayerTags:
         tagStr = str(tag)
@@ -243,16 +235,15 @@ def singlePlayerNameRelationshipRequest(activePlayers, startSeason, urlStub, add
             "nameWithComma": playerNameWithComma,
             "universalName": universalName,
             "alternateNames": []
-            # "playerNameTag": tagStr
         })
     return activePlayers, addedPlayerSet
 
 
 # backlogtodo implement binary search
+# https://docs.python.org/3/library/bisect.html
 def sortPlayerNameRelationships():
     with open(ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH) as pNameRelationships:
         pNameList = json.load(pNameRelationships)
-    # https://docs.python.org/3/library/bisect.html
 
     def sortByUniversalName(x):
         return x['universalName']
@@ -260,19 +251,17 @@ def sortPlayerNameRelationships():
     pNameList.sort(key=sortByUniversalName)
 
     with open(ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH) as writeFile:
-        json.dump(pNameList, ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH)
+        json.dump(pNameList, writeFile)
 
     print("Sorted player name relationships")
 
 def getAllGameData():
-    shortCodes = ENVIRONMENT.CURRENT_TEAMS
-    shortCodes.sort()
+    shortCodes = ENVIRONMENT.CURRENT_TEAMS.sort()
     nbaTeams = teams.get_teams()
     teamDicts = [team for team in nbaTeams if team['abbreviation'] in shortCodes]
 
     def extractId(x):
         return x['id']
-
     teamIds = map(extractId, teamDicts)
 
     teamGameList = list()
@@ -281,12 +270,11 @@ def getAllGameData():
         gamefinder = leaguegamefinder.LeagueGameFinder(team_id_nullable=id)
         teamGameList.append(gamefinder.get_data_frames()[0])
 
-    basePath = ENVIRONMENT.GAME_SUMMARY_UNFORMATTED_PATH
     for teamDf in teamGameList:
         teamName = teamDf.iloc[0]["TEAM_ABBREVIATION"]
-        teamDf.to_csv(basePath.format(teamName))
+        teamDf.to_csv(ENVIRONMENT.GAME_SUMMARY_UNFORMATTED_PATH.format(teamName))
         print("saved data for", teamName)
 
-    print("extracted the game data")
+    print("extracted game data for all teams", nbaTeams)
 
     return teamIds

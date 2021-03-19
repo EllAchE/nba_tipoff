@@ -1,6 +1,6 @@
 import json
 
-from nba_api.stats.endpoints import CommonPlayerInfo, leaguegamefinder
+from nba_api.stats.endpoints import CommonPlayerInfo
 from nba_api.stats.static import teams
 from nba_api.stats.static.players import find_players_by_full_name
 
@@ -13,7 +13,6 @@ def getUniversalPlayerName(playerInUnknownFormat, bballRefName=False):
     with open(ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH) as playerDb:
         playersDict = json.load(playerDb)
 
-    match = False
     playerLoweredLetterOnly = removeAllNonLettersAndLowercase(playerInUnknownFormat)
     undoPlayerCommaReversal = None
 
@@ -22,45 +21,35 @@ def getUniversalPlayerName(playerInUnknownFormat, bballRefName=False):
         undoPlayerCommaReversal = tail + head
         undoPlayerCommaReversal = removeAllNonLettersAndLowercase(undoPlayerCommaReversal)
 
+    match = False
     for player in playersDict:
         if player['bballRefCode'] == playerInUnknownFormat:
             match = True
-            break
         elif playerInUnknownFormat in player['alternateNames']:
             match = True
-            break
         elif player['fullName'] == playerInUnknownFormat:
             match = True
-            break
         elif player['nameWithComma'] == playerInUnknownFormat:
             match = True
-            break
         elif player['universalName'] == playerLoweredLetterOnly:
             match = True
-            break
         elif player['universalName'] == undoPlayerCommaReversal:
             match = True
-            break
         elif removeAllNonLettersAndLowercase(player['nameWithComma']) == playerLoweredLetterOnly:
             match = True
-            break
         elif player['fullName'] == playerInUnknownFormat + " Jr.":
             match = True
-            break
         elif player['fullName'] == playerInUnknownFormat + " Jnr":
             match = True
-            break
         elif player['fullName'] == playerInUnknownFormat + " Sr.":
             match = True
-            break
         elif player['fullName'] == playerInUnknownFormat + " III":
             match = True
-            break
         elif player['fullName'] == playerInUnknownFormat + " IV":
             match = True
-            break
         elif player['fullName'] == playerInUnknownFormat + " IV":
             match = True
+        if match:
             break
         try:
             if removeAllNonLettersAndLowercase(player['alternateNames'][0]) == undoPlayerCommaReversal:
@@ -76,7 +65,6 @@ def getUniversalPlayerName(playerInUnknownFormat, bballRefName=False):
 
     if bballRefName:
         return player['bballRefCode']
-
     return player['universalName']
 
 def getPlayerCurrentTeam(universalPlayerName): # Returns a list
@@ -103,8 +91,6 @@ def getUniversalTeamShortCode(teamInUnknownFormat):
         elif team['location'] == teamInUnknownFormat:
             match = True
             break
-        # elif team['slug'] == teamInUnknownFormat:
-        #     break
         elif teamInUnknownFormat in team['alternateAbbreviations']:
             match = True
             break
@@ -115,6 +101,7 @@ def getUniversalTeamShortCode(teamInUnknownFormat):
             match = True
             break
     # Often format is "LA Clippers" or "DEN Nuggets" or "Nuggets"
+
     if not match:
         raise ValueError("team", teamInUnknownFormat, "did not have a match")
     return team['abbreviation']
@@ -124,10 +111,6 @@ def getTeamDictionaryFromShortCode(shortCode: str):
     nbaTeams = teams.get_teams()
     teamDict = [team for team in nbaTeams if team['abbreviation'] == shortCode][0]
     return teamDict['id']
-
-def getAllGamesForTeam(team_id: str):
-    gamefinder = leaguegamefinder.LeagueGameFinder(team_id_nullable=team_id)
-    return gamefinder.get_data_frames()[0]
 
 def _getGameObjFromDateAndTeamUsingLocalData(dateStr: str, shortCode: str):
     filePath = ENVIRONMENT.GAME_SUMMARY_UNFORMATTED_PATH

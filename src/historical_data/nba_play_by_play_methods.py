@@ -31,7 +31,7 @@ import json
 import re
 
 import requests
-from nba_api.stats.endpoints import gamerotation, playbyplayv2
+from nba_api.stats.endpoints import gamerotation, playbyplayv2, leaguegamefinder
 from typing import Any
 import pandas as pd
 
@@ -493,6 +493,10 @@ def teamSummaryDataFromFirstPointData(season):
 
     with open(ENVIRONMENT.FIRST_POINT_TEAM_META.format(season), 'w') as wFile:
         json.dump(summaryDict, wFile, indent=4)
+
+def getAllGamesForTeam(team_id: str):
+    gamefinder = leaguegamefinder.LeagueGameFinder(team_id_nullable=team_id)
+    return gamefinder.get_data_frames()[0]
 
 # class EventMsgType(Enum):
 #     FIELD_GOAL_MADE = 1 #backlogtodo replace above uses of numbers with ENUM values for readability
