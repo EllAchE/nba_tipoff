@@ -3,7 +3,7 @@ from src.odds_and_statistics.odds_calculator import convertPlayerLinesToSingleLi
     scoreFirstProb
 from src.live_data.live_odds_retrieval import getExpectedTipper
 
-class GameOdds:
+class QuarterOdds:
     def __init__(self, gameDict, teamOnly=False, playersOnly=False, isQuarter1Or4=True):
         self.awayPlayerFloorOdds = self.homePlayerFloorOdds = self.awayPlayerFloorOdds = self.homePlayerFloorOdds = self.awayPlayerFloorOdds = self.kellyBet = self.homeTeamFirstQuarterOdds = self.awayTeamFirstQuarterOdds = None
         self.home = gameDict['home']

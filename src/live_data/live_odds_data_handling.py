@@ -2,7 +2,7 @@
 from datetime import datetime
 
 from src.classes.FanduelGameOdds import FanduelGameOdds
-from src.classes.GameOdds import GameOdds
+from src.classes.QuarterOdds import QuarterOdds
 from src.database.database_access import getUniversalPlayerName
 from src.live_data.live_odds_retrieval import draftKingsOdds, mgmOdds, bovadaOdds, pointsBetOdds, unibetOdds, \
     barstoolOdds, fanduelOddsToday, fanduelOddsTomorrow
@@ -91,7 +91,7 @@ def createOptimalPlayerSpreadObject(gameOddsObjList):
                 tempOddsDict['playerOdds']['homePlayerFirstQuarterOdds'].append(bestPlayerOddsDict[key])
             elif bestPlayerOddsDict[key]['team'] == tempOddsDict['away']:
                 tempOddsDict['playerOdds']['awayPlayerFirstQuarterOdds'].append(bestPlayerOddsDict[key])
-        optimalSpreadsList.append(GameOdds(tempOddsDict, playersOnly=True))
+        optimalSpreadsList.append(QuarterOdds(tempOddsDict, playersOnly=True))
 
     return optimalSpreadsList
 
@@ -113,7 +113,7 @@ def _addGameOddsObjsToList(allGameObjList, method, exchangeErrorText):
     try:
         oddsDicts = createAllOddsDictForExchange(method())
         for rawOddsDict in oddsDicts:
-            gameOddsObj = GameOdds(rawOddsDict)
+            gameOddsObj = QuarterOdds(rawOddsDict)
             allGameObjList.append(gameOddsObj)
         print('fetched {}'.format(exchangeErrorText), '\n')
     except:

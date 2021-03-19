@@ -2,7 +2,7 @@ from typing import Any
 from datetime import datetime
 import jsonpickle
 
-from src.classes.GameOdds import GameOdds
+from src.classes.QuarterOdds import QuarterOdds
 from src.live_data.live_odds_data_handling import createAllOddsDict
 # backlogtodo update player spread calculation to round
 

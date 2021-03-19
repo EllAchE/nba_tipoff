@@ -1,6 +1,6 @@
-from src.classes.GameOdds import GameOdds
+from src.classes.QuarterOdds import QuarterOdds
 
-class FanduelGameOdds(GameOdds):
+class FanduelGameOdds(QuarterOdds):
     def __init__(self, gameDict, teamOnly=False, playersOnly=False):
         super().__init__(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly)
         self.homeTeamSecondQuarterOdds = gameDict['teamOdds']['homeTeamSecondQuarterOdds']
@@ -11,17 +11,16 @@ class FanduelGameOdds(GameOdds):
         self.awayTeamFourthQuarterOdds = gameDict['teamOdds']['awayTeamFourthQuarterOdds']
         gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamSecondQuarterOdds
         gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamSecondQuarterOdds
-        self.secondQuarterGameObj = GameOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly, isQuarter1Or4=False)
+        self.secondQuarterGameObj = QuarterOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly, isQuarter1Or4=False)
         self.secondQuarterGameObj.quarter = "QUARTER_2"
         gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamThirdQuarterOdds
         gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamThirdQuarterOdds
-        self.thirdQuarterGameObj = GameOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly, isQuarter1Or4=False)
+        self.thirdQuarterGameObj = QuarterOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly, isQuarter1Or4=False)
         self.secondQuarterGameObj.quarter = "QUARTER_3"
         gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamFourthQuarterOdds
         gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamFourthQuarterOdds
-        self.fourthQuarterGameObj = GameOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly)
+        self.fourthQuarterGameObj = QuarterOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly)
         self.secondQuarterGameObj.quarter = "QUARTER_4"
-
 
     def getBetSideOdds(self):
         if self.betOnHome:
