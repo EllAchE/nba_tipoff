@@ -109,7 +109,7 @@ def getDashDateAndHomeCodeFromGameCode(game_code: str):
     return getDashDateFromGameCode(game_code), getHomeTeamFromGameCode(game_code)
 
 def sleepChecker(iterations: int = 3, baseTime: int = 2, randomMultiplier: int = 3, printStop: bool = False):
-    with open(os.path.abspath('sleep_counter.json')) as sc:
+    with open(ENVIRONMENT.SLEEP_CHECKER_PATH) as sc:
         SLEEP_COUNTER = json.load(sc)
 
     SLEEP_COUNTER['counter'] += 1
@@ -119,7 +119,7 @@ def sleepChecker(iterations: int = 3, baseTime: int = 2, randomMultiplier: int =
         time.sleep(baseTime + random.random() * randomMultiplier)
         SLEEP_COUNTER['counter'] = 0
 
-    with open('sleep_counter.json', 'w') as sc:
+    with open(ENVIRONMENT.SLEEP_CHECKER_PATH, 'w') as sc:
         json.dump(SLEEP_COUNTER, sc, indent=4)
 
 def removeAllNonLettersAndLowercase(name):
@@ -135,19 +135,11 @@ def lowercaseNoSpace(str):
 
 def determineBetterOdds(odds1Str, odds2Str):
     if odds1Str[0] != odds2Str[0]:
-        if odds1Str == '+':
-            return odds1Str
-        else:
-            return odds2Str
-
-    if odds1Str[0] == '+':
-        if odds1Str[1:] >= odds2Str[1:]:
-            return odds1Str
-        else:
-            return odds2Str
+        oddsStr = odds1Str if odds1Str == '+' else odds2Str
+    elif odds1Str[0] == '+':
+        oddsStr = odds1Str if odds1Str[1:] >= odds2Str[1:] else odds2Str
+    elif odds1Str[0] == '-':
+        oddsStr = odds1Str if odds1Str[1:] <= odds2Str[1:] else odds2Str
     else:
-        if odds1Str[1:] <= odds2Str[1:]:
-            return odds1Str
-        else:
-            return odds2Str
-    raise ValueError('shouldn\'t reach here, cehck odds formatting')
+        raise ValueError('shouldn\'t reach here, check odds formatting')
+    return oddsStr

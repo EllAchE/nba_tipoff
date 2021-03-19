@@ -5,7 +5,7 @@
 
 import json
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import requests
 import pandas as pd
@@ -329,6 +329,7 @@ def _fanduelOddsAll(today=True):
     gameIdSet = set()
     listOfGames = gamesResponse['events']
 
+    # todo fix this to add a date
     for game in listOfGames:
         if game['tsstart'][:10] == currentDate and today:
             gameIdSet.add(game['idfoevent'])
@@ -403,8 +404,9 @@ def _fanduelOddsAll(today=True):
         teamSet.add(home)
         teamSet.add(away)
 
+        gameDatetime = currentDate if today else (datetime.strptime(currentDate, '%Y-%m-%d') + timedelta(days=1)).strftime('%Y-%m-%d')
         quarterOddsList.append({
-            "gameDatetime": gameResponse['tsstart'],
+            "gameDatetime": gameDatetime,
             "home": home,
             "away": away,
             "exchange": "fanduel",

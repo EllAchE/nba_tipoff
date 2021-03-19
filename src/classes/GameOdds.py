@@ -14,7 +14,8 @@ class GameOdds:
         self.fetchedDatetime = gameDict['fetchedDatetime']
         self.isTeamOnly = teamOnly
         self.isPlayersOnly = playersOnly
-        self.gameCode = self.home + " @ " + self.away + " " + self.fetchedDatetime[:10]
+        gameDatetime = self.fetchedDatetime[:10] if self.gameDatetime is None else self.gameDatetime
+        self.gameCode = self.home + " @ " + self.away + " " + gameDatetime
 
         if not playersOnly:
             self.homeTeamFirstQuarterOdds = str(gameDict['teamOdds']['homeTeamFirstQuarterOdds']) if gameDict['teamOdds']['homeTeamFirstQuarterOdds'] is not None else None
