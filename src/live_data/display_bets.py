@@ -54,14 +54,14 @@ def saveOddsToFile(path, odds):
         f.close()
 
 def getAllOddsAndDisplayByEv(getDk=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False, getFanduelToday=False, getFanduelTomorrow=False, includeOptimalPlayerSpread=False):
-    allGameOddsObjList = createAllOddsDict(getDk=getDk, getMgm=getMgm, getBovada=getBovada, getPointsBet=getPointsBet, getUnibet=getUnibet, getBarstool=getBarstool, getFanduelToday=getFanduelToday, getFanduelTomorrow=getFanduelTomorrow, includeOptimalPlayerSpread=includeOptimalPlayerSpread)
+    allGameOddsObjList = createAllOddsDict(getDraftkings=getDk, getMgm=getMgm, getBovada=getBovada, getPointsBet=getPointsBet, getUnibet=getUnibet, getBarstool=getBarstool, getFanduelToday=getFanduelToday, getFanduelTomorrow=getFanduelTomorrow, includeOptimalPlayerSpread=includeOptimalPlayerSpread)
     d = datetime.now().strftime('%Y-%m-%d_%H-%M-%S%p')
     saveOddsToFile(f'Data/JSON/historical_odds/{d}.json', allGameOddsObjList)
     displayAllBetsByEV(allGameOddsObjList)
 
 # backlogtodo bovada breaks this by having unknown teams.
 def getUniqueOddsAndDisplayByEv(getDk=False, getMgm=False, getBovada=False, getPointsBet=False, getUnibet=False, getBarstool=False, getFanduelToday=False, getFanduelTomorrow=False, includeOptimalPlayerSpread=False):
-    allGameOddsObjList = createAllOddsDict(getDk=getDk, getMgm=getMgm, getBovada=getBovada, getPointsBet=getPointsBet, getUnibet=getUnibet, getBarstool=getBarstool, getFanduelToday=getFanduelToday, getFanduelTomorrow=getFanduelTomorrow, includeOptimalPlayerSpread=includeOptimalPlayerSpread)
+    allGameOddsObjList = createAllOddsDict(getDraftkings=getDk, getMgm=getMgm, getBovada=getBovada, getPointsBet=getPointsBet, getUnibet=getUnibet, getBarstool=getBarstool, getFanduelToday=getFanduelToday, getFanduelTomorrow=getFanduelTomorrow, includeOptimalPlayerSpread=includeOptimalPlayerSpread)
     d = datetime.now().strftime('%Y-%m-%d_%H-%M-%S%p')
     saveOddsToFile(f'Data/JSON/historical_odds/{d}.json', allGameOddsObjList)
     displayUniqueBetsByEV(allGameOddsObjList)
