@@ -197,6 +197,8 @@ def _misformattedNameAdjustment(activePlayers):
             playerDict['alternateNames'] += ["Bradley Wanamaker"]
         elif playerDict['fullName'] == 'Juan Toscano-Anderson':
             playerDict['alternateNames'] += ['Juan Anderson']
+        elif playerDict['fullName'] == "Isaac Austin":
+            playerDict['alternateNames'] += ["Ike Austin"]
         elif playerDict['fullName'] == "Larry Nance Jnr":
             playerDict['alternateNames'] += ["Larry Nance"]
             playerDict['alternateNames'] += ["Larry Nance Jr."]
@@ -275,3 +277,19 @@ def getAllGameData():
     print("extracted game data for all teams", nbaTeams)
 
     return teamIds
+
+
+import ENVIRONMENT
+import pandas as pd
+
+# def addExtraUrlToPlayerLinks():
+#     for season in ENVIRONMENT.ALL_SEASONS_LIST:
+#         df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
+#         for i in range(0, len(df['Game Code']) - 1):
+#             temp = df['Tip Winner Link'].iloc[i]
+#             if "/players/" not in temp:
+#                 df.at[i, 'Tip Winner Link'] = "/players/" + temp[0] + "/" + temp
+#                 temp2 = df['Tip Loser Link'].iloc[i]
+#                 df.at[i, 'Tip Loser Link'] = "/players/" + temp2[0] + "/" + temp2
+#
+#         df.to_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
