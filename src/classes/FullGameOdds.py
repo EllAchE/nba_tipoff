@@ -1,6 +1,7 @@
 from src.classes.QuarterOdds import QuarterOdds
 
-class FanduelGameOdds(QuarterOdds):
+# todo add quarters to game response, then use in naiveadjustment factor
+class FullGameOdds(QuarterOdds):
     def __init__(self, gameDict, teamOnly=False, playersOnly=False):
         super().__init__(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly)
         self.isFullGame = True

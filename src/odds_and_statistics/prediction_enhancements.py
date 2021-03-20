@@ -108,7 +108,6 @@ def getTipoffResultFromGameCode(gameCode, seasonData):
     return win, lose
 
 def _teamFirstShotStats(game, summaryDict, seasonData, isFirstFieldGoal=False):
-    # todo add favorable/unfavorable tip result to quarter data
     quarters = ['quarter1', 'quarter2', 'quarter3', 'quarter4']
     try:
         tipWinTeam, tipLoseTeam = getTipoffResultFromGameCode(game['gameCode'], seasonData)
@@ -166,6 +165,7 @@ def _summaryStats(summaryDict):
     return summaryDict
 
 # backlogtodo normalize for games started, compare to known player usage rate for a given season
+# todo add favorable/unfavorable tip result to player quarter data
 def _playerFirstShotStats(game, summaryDict, isFirstFieldGoal=False):
     playerHasShotInGame = set()
     quarters = ['quarter1']#, 'quarter2', 'quarter3', 'quarter4']

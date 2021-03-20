@@ -1,7 +1,7 @@
 # assume odds look like - {team1: odds, team2: odds}, {playerName: odds}
 from datetime import datetime
 
-from src.classes.FanduelGameOdds import FanduelGameOdds
+from src.classes.FullGameOdds import FullGameOdds
 from src.classes.QuarterOdds import QuarterOdds
 from src.database.database_access import getUniversalPlayerName
 from src.live_data.live_odds_retrieval import draftKingsOdds, mgmOdds, bovadaOdds, pointsBetOdds, unibetOdds, \
@@ -95,18 +95,18 @@ def createOptimalPlayerSpreadObject(gameOddsObjList):
 
     return optimalSpreadsList
 
-def _addFanduelGameOddsObjsToList(allGameObjList, method, exchangeErrorText, teamOnly=True, playersOnly=False):
+def _addFullGameOddsObjsToList(allGameObjList, method, exchangeErrorText, teamOnly=True, playersOnly=False):
     try:
-        fanduelOddsDicts = createAllOddsDictForExchange(method(), teamOdds=(not playersOnly), playerOdds=(not teamOnly))
-        for rawOddsDict in fanduelOddsDicts:
-            gameOddsObj = FanduelGameOdds(rawOddsDict, teamOnly=teamOnly, playersOnly=playersOnly)
+        oddsDicts = createAllOddsDictForExchange(method(), teamOdds=(not playersOnly), playerOdds=(not teamOnly))
+        for rawOddsDict in oddsDicts:
+            gameOddsObj = FullGameOdds(rawOddsDict, teamOnly=teamOnly, playersOnly=playersOnly)
             allGameObjList.append(gameOddsObj)
         print('fetched {}'.format(exchangeErrorText), '\n')
     except:
         logging.exception('breaking error in {}.'.format(exchangeErrorText))
     return allGameObjList
 
-def _addGameOddsObjsToList(allGameObjList, method, exchangeErrorText, teamOnly=True, playersOnly=False):
+def _addSingleQuarterOddsObjsToList(allGameObjList, method, exchangeErrorText, teamOnly=True, playersOnly=False):
     try:
         oddsDicts = createAllOddsDictForExchange(method(), teamOdds=(not playersOnly), playerOdds=(not teamOnly))
         for rawOddsDict in oddsDicts:
@@ -122,24 +122,23 @@ def createAllOddsDict(draftkings=False, fanduelToday=False, fanduelTomorrow=Fals
     allGameObjList = list()
 
     if fanduelToday:
-        allGameObjList = _addFanduelGameOddsObjsToList(allGameObjList, fanduelOddsToday, "fanduel odds for today", teamOnly=False, playersOnly=False)
+        allGameObjList = _addFullGameOddsObjsToList(allGameObjList, fanduelOddsToday, "fanduel odds for today", teamOnly=False, playersOnly=False)
     if fanduelTomorrow:
-        allGameObjList = _addFanduelGameOddsObjsToList(allGameObjList, fanduelOddsTomorrow, "fanduel odds for tomorrow", teamOnly=False, playersOnly=False)
-    if draftkings:
-        allGameObjList = _addGameOddsObjsToList(allGameObjList, draftKingsOdds, "draftkings odds", teamOnly=False, playersOnly=False)
-    if mgm:
-        allGameObjList = _addGameOddsObjsToList(allGameObjList, mgmOdds, "mgm odds", teamOnly=True, playersOnly=False)
-    if bovada:
-        allGameObjList = _addGameOddsObjsToList(allGameObjList, bovadaOdds, "bovada odds", teamOnly=False, playersOnly=False)
-    if pointsBet:
-        allGameObjList = _addGameOddsObjsToList(allGameObjList, pointsBetOdds, "pointsbet odds", teamOnly=False, playersOnly=True)
-    if unibet:
-        allGameObjList = _addGameOddsObjsToList(allGameObjList, unibetOdds, "unibet odds", teamOnly=False, playersOnly=True)
-    if barstool:
-        allGameObjList = _addGameOddsObjsToList(allGameObjList, barstoolOdds, "barstool odds", teamOnly=False, playersOnly=True)
+        allGameObjList = _addFullGameOddsObjsToList(allGameObjList, fanduelOddsTomorrow, "fanduel odds for tomorrow", teamOnly=False, playersOnly=False)
     if betfair:
-        allGameObjList = _addGameOddsObjsToList(allGameObjList, betfairOdds, "barstool odds", teamOnly=True, playersOnly=False)
-
+        allGameObjList = _addFullGameOddsObjsToList(allGameObjList, betfairOdds, "betfair odds", teamOnly=True, playersOnly=False)
+    if draftkings:
+        allGameObjList = _addSingleQuarterOddsObjsToList(allGameObjList, draftKingsOdds, "draftkings odds", teamOnly=False, playersOnly=False)
+    if mgm:
+        allGameObjList = _addSingleQuarterOddsObjsToList(allGameObjList, mgmOdds, "mgm odds", teamOnly=True, playersOnly=False)
+    if bovada:
+        allGameObjList = _addSingleQuarterOddsObjsToList(allGameObjList, bovadaOdds, "bovada odds", teamOnly=False, playersOnly=False)
+    if pointsBet:
+        allGameObjList = _addSingleQuarterOddsObjsToList(allGameObjList, pointsBetOdds, "pointsbet odds", teamOnly=False, playersOnly=True)
+    if unibet:
+        allGameObjList = _addSingleQuarterOddsObjsToList(allGameObjList, unibetOdds, "unibet odds", teamOnly=False, playersOnly=True)
+    if barstool:
+        allGameObjList = _addSingleQuarterOddsObjsToList(allGameObjList, barstoolOdds, "barstool odds", teamOnly=False, playersOnly=True)
 
     if includeOptimalPlayerSpread:
         try:
