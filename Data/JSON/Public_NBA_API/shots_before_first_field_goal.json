@@ -45493,83 +45493,111 @@
         ]
     },
     {
-        "gameCode": "202103160POR",
+        "gameCode": "202103170DAL",
         "quarter1": [
             {
                 "shotIndex": 0,
-                "team": "Portland Trail Blazers",
-                "player": "Robert Covington",
-                "opponentTeam": "New Orleans Pelicans",
-                "shotType": "3PT MISS"
-            },
-            {
-                "shotIndex": 1,
-                "team": "New Orleans Pelicans",
-                "player": "Lonzo Ball",
-                "opponentTeam": "Portland Trail Blazers",
-                "shotType": "3PT MAKE"
+                "team": "LA Clippers Clippers",
+                "player": "Marcus Morris Sr.",
+                "opponentTeam": "Dallas Mavericks",
+                "shotType": "2PT MAKE"
             }
         ],
         "quarter2": [
             {
                 "shotIndex": 0,
-                "team": "New Orleans Pelicans",
-                "player": "Nickeil Alexander-Walker",
-                "opponentTeam": "Portland Trail Blazers",
-                "shotType": "2PT MISS"
-            },
-            {
-                "shotIndex": 1,
-                "team": "Portland Trail Blazers",
-                "player": "CJ McCollum",
-                "opponentTeam": "New Orleans Pelicans",
-                "shotType": "2PT MISS"
-            },
-            {
-                "shotIndex": 2,
-                "team": "New Orleans Pelicans",
-                "player": "Zion Williamson",
-                "opponentTeam": "Portland Trail Blazers",
+                "team": "Dallas Mavericks",
+                "player": "Luka Doncic",
+                "opponentTeam": "LA Clippers Clippers",
                 "shotType": "2PT MAKE"
             }
         ],
         "quarter3": [
             {
                 "shotIndex": 0,
-                "team": "New Orleans Pelicans",
-                "player": "Eric Bledsoe",
-                "opponentTeam": "Portland Trail Blazers",
+                "team": "Dallas Mavericks",
+                "player": "Josh Richardson",
+                "opponentTeam": "LA Clippers Clippers",
                 "shotType": "3PT MISS"
             },
             {
                 "shotIndex": 1,
-                "team": "Portland Trail Blazers",
-                "player": "CJ McCollum",
-                "opponentTeam": "New Orleans Pelicans",
+                "team": "Dallas Mavericks",
+                "player": "Luka Doncic",
+                "opponentTeam": "LA Clippers Clippers",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Dallas Mavericks",
+                "player": "Luka Doncic",
+                "opponentTeam": "LA Clippers Clippers",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 3,
+                "team": "LA Clippers Clippers",
+                "player": "Kawhi Leonard",
+                "opponentTeam": "Dallas Mavericks",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 4,
+                "team": "Dallas Mavericks",
+                "player": "Kristaps Porzingis",
+                "opponentTeam": "LA Clippers Clippers",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 5,
+                "team": "LA Clippers Clippers",
+                "player": "Marcus Morris Sr.",
+                "opponentTeam": "Dallas Mavericks",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 6,
+                "team": "LA Clippers Clippers",
+                "player": "Marcus Morris Sr.",
+                "opponentTeam": "Dallas Mavericks",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 7,
+                "team": "LA Clippers Clippers",
+                "player": "Kawhi Leonard",
+                "opponentTeam": "Dallas Mavericks",
                 "shotType": "2PT MAKE"
             }
         ],
         "quarter4": [
             {
                 "shotIndex": 0,
-                "team": "Portland Trail Blazers",
-                "player": "CJ McCollum",
-                "opponentTeam": "New Orleans Pelicans",
-                "shotType": "3PT MISS"
+                "team": "LA Clippers Clippers",
+                "player": "Paul George",
+                "opponentTeam": "Dallas Mavericks",
+                "shotType": "2PT MISS"
             },
             {
                 "shotIndex": 1,
-                "team": "Portland Trail Blazers",
-                "player": "Gary Trent Jr.",
-                "opponentTeam": "New Orleans Pelicans",
+                "team": "Dallas Mavericks",
+                "player": "Jalen Brunson",
+                "opponentTeam": "LA Clippers Clippers",
                 "shotType": "3PT MISS"
             },
             {
                 "shotIndex": 2,
-                "team": "New Orleans Pelicans",
-                "player": "Josh Hart",
-                "opponentTeam": "Portland Trail Blazers",
-                "shotType": "2PT MAKE"
+                "team": "LA Clippers Clippers",
+                "player": "Paul George",
+                "opponentTeam": "Dallas Mavericks",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Dallas Mavericks",
+                "player": "Jalen Brunson",
+                "opponentTeam": "LA Clippers Clippers",
+                "shotType": "3PT MAKE"
             }
         ]
     }

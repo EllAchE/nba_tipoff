@@ -26,6 +26,7 @@ def updateAllDataLongTermIncluded():
     saveAllHistoricalStarters()
     getCurrentSeasonUsageRate()
 
+# todo hook up trueskill from last game
 def smallDataUpdate():
     # updateCurrentSeasonRawGameData()
     # calculateTrueSkillDictionaryFromZero()

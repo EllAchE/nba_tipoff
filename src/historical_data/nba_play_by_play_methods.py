@@ -338,10 +338,9 @@ def getAllFirstPossessionStatisticsIncrementally(season):
 
     with open(ENVIRONMENT.ALL_SHOTS_BEFORE_FIRST_FG_PATH) as sbfs:
         seasonShotsList1 = json.load(sbfs)
-    seasonShotList = seasonShotsList1[str(season)]
 
-    if len(seasonShotList) > 0:
-        lastGame = seasonShotList[-1]
+    if len(seasonShotsList1) > 0:
+        lastGame = seasonShotsList1[-1]
         lastGameCode = lastGame['gameCode']
         lastGameIndex = df[df['Game Code'] == lastGameCode].index.values[0]
         i = lastGameIndex + 1
