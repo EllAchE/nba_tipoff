@@ -199,6 +199,8 @@ def _misformattedNameAdjustment(activePlayers):
             playerDict['alternateNames'] += ['Juan Anderson']
         elif playerDict['fullName'] == "Isaac Austin":
             playerDict['alternateNames'] += ["Ike Austin"]
+        elif playerDict['universalName'] == "omerask":
+            playerDict['alternateNames'] += ['OMer Asik']
         elif playerDict['fullName'] == "Danny Schayes":
             playerDict['alternateNames'] += ["Dan Schayes"]
         elif playerDict['fullName'] == "Mike Sweetney":
@@ -295,5 +297,15 @@ def addExtraUrlToPlayerLinks():
                 df.at[i, 'Tip Winner Link'] = "/players/" + temp[0] + "/" + temp
                 temp2 = df['Tip Loser Link'].iloc[i]
                 df.at[i, 'Tip Loser Link'] = "/players/" + temp2[0] + "/" + temp2
+
+        df.to_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), index=False)
+
+def removeExtraIndex():
+    for season in [1998]:
+        df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), index_col=0)
+        df.to_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), index=False)
+        df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), index_col=0)
+        df.to_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), index=False)
+
 
         df.to_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), index=False)
