@@ -38,7 +38,7 @@ def scoreFirstProb(p1Code: str, p2Code: str, jsonPath: Optional[str] = None, psd
     # todo backtest for all quarters/seasons and adjust this. This math doesn't actually make any sense
     reducedNaiveScoreFirstAdjustment = math.sqrt(metaFile[t1]['quarter1']['naiveAdjustmentFactor']) / math.sqrt(metaFile[t2]['quarter1']['naiveAdjustmentFactor'])
     reducedNaiveScoreFirstAdjustment = math.sqrt(reducedNaiveScoreFirstAdjustment)
-    reducedNaiveScoreFirstAdjustment = math.sqrt(reducedNaiveScoreFirstAdjustment)
+    # reducedNaiveScoreFirstAdjustment = math.sqrt(reducedNaiveScoreFirstAdjustment)
 
     oddsRatio = oddsWithObservedTipScore / (1-oddsWithObservedTipScore) * reducedNaiveScoreFirstAdjustment
     oddsAfterAdjustment = oddsRatio /(1+oddsRatio)

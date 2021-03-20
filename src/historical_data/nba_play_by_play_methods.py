@@ -424,7 +424,7 @@ def fillGaps(season):
                 print("something broke. Decide if it's worth it. Breaking code", line['Game Code'])
 
     df2 = df[df['Home Tipper'].notnull()]
-    df2.to_csv('test.csv')
+    df2.to_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
 
 def teamSummaryDataFromFirstPointData(season):
     with open(ENVIRONMENT.FIRST_POINT_SUMMARY_UNFORMATTED_PATH.format(season)) as file:

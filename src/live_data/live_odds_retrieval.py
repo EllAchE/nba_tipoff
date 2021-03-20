@@ -475,7 +475,7 @@ def mgmOdds():
                 team2 = odds['results'][1]['name']['value']
                 team2Odds = odds['results'][1]['americanOdds']
                 if team2Odds > 0:
-                    team2Odds = '+' + str(team1Odds)
+                    team2Odds = '+' + str(team2Odds)
                 else:
                     team2Odds = str(team2Odds)
 
