@@ -14,17 +14,17 @@ class FullGameOdds(QuarterOdds):
         teamOnly = True
 
         gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamSecondQuarterOdds
-        gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamSecondQuarterOdds
+        gameDict['teamOdds']['awayTeamFirstQuarterOdds'] = self.awayTeamSecondQuarterOdds
         self.secondQuarterGameObj = QuarterOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly, isQuarter1Or4=False)
         self.secondQuarterGameObj.quarter = "QUARTER_2"
         self.secondQuarterGameObj.isFullGame = True
         gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamThirdQuarterOdds
-        gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamThirdQuarterOdds
+        gameDict['teamOdds']['awayTeamFirstQuarterOdds'] = self.awayTeamThirdQuarterOdds
         self.thirdQuarterGameObj = QuarterOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly, isQuarter1Or4=False)
         self.thirdQuarterGameObj.quarter = "QUARTER_3"
         self.thirdQuarterGameObj.isFullGame = True
         gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamFourthQuarterOdds
-        gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamFourthQuarterOdds
+        gameDict['teamOdds']['awayTeamFirstQuarterOdds'] = self.awayTeamFourthQuarterOdds
         self.fourthQuarterGameObj = QuarterOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly)
         self.fourthQuarterGameObj.quarter = "QUARTER_4"
         self.fourthQuarterGameObj.isFullGame = True
