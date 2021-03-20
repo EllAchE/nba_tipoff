@@ -1,0 +1,7 @@
+Evaluation metrics:
+Score first predictions overall
+Tipoff winner predictions
+Score given tipoff win
+Score given tipoff loss
+Across all quarters
+At different tiers of expected wins
