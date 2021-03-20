@@ -337,8 +337,8 @@ def getAllFirstPossessionStatisticsIncrementally(season):
     df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
 
     with open(ENVIRONMENT.ALL_SHOTS_BEFORE_FIRST_FG_PATH) as sbfs:
-        shotsDict = json.load(sbfs)
-    seasonShotList = shotsDict[str(season)]
+        seasonShotsList1 = json.load(sbfs)
+    seasonShotList = seasonShotsList1[str(season)]
 
     if len(seasonShotList) > 0:
         lastGame = seasonShotList[-1]
@@ -347,10 +347,9 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         i = lastGameIndex + 1
         # backlogtodo figure out why some of these games are breaking. In fetching the data a small number of games were ignored due to failure to return data
     for i in range(i, (len(df.index) - 1)):
-        raise ValueError("This should just be checked before it's run again.")
         with open(ENVIRONMENT.SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH.format(season)) as sbfs:
-            shotsDict = json.load(sbfs)
-        seasonShotList = shotsDict[str(season)]
+            seasonShotsList2 = json.load(sbfs)
+        # seasonShotList = shotsDict[str(season)]
 
         bballRefId = df.iloc[i]["Game Code"]
         print('running for ', bballRefId)
@@ -358,12 +357,12 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         gameId = '00' + str(getGameIdByTeamAndDateFromStaticData(bballRefId))
         q1Shots, q2Shots, q3Shots, q4Shots = gameIdToFirstFieldGoalsOfQuarters(gameId)
         gameStatistics = _getFirstShotStatistics(q1Shots, q2Shots, q3Shots, q4Shots, bballRefId)
-        seasonShotList.append(gameStatistics)
+        seasonShotsList2.append(gameStatistics)
         sleepChecker(iterations=1, baseTime=10, randomMultiplier=1)
 
-        shotsDict[str(season)] = seasonShotList
+        # shotsDict[str(season)] = seasonShotList
         with open(ENVIRONMENT.ALL_SHOTS_BEFORE_FIRST_FG_PATH, 'w') as jsonFile:
-            json.dump(shotsDict, jsonFile, indent=4)
+            json.dump(seasonShotsList2, jsonFile, indent=4)
 
 def fillGapsLooper():
     for year in ENVIRONMENT.ALL_SEASONS_LIST:
