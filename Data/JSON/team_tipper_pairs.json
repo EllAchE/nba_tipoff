@@ -1,8 +1,8 @@
 {
   "pairs": [
     {
-      "playerCode": "collijo01.html",
-      "playerName": "John Collins",
+      "playerCode": "capelca01.html",
+      "playerName": "Clint Capela",
       "team": "ATL"
     },
     {
@@ -46,13 +46,13 @@
       "team": "DET"
     },
     {
-      "playerCode": "wisemja01.html",
-      "playerName": "James Wiseman",
+      "playerCode": "looneke01.html",
+      "playerName": "Kevon Looney",
       "team": "GSW"
     },
     {
-      "playerCode": "pattoju01.html",
-      "playerName": "PJ Tucker",
+      "playerCode": "woodch01.html",
+      "playerName": "CHristian Wood",
       "team": "HOU"
     },
     {
@@ -66,8 +66,8 @@
       "team": "IND"
     },
     {
-      "playerCode": "ibakase01.html",
-      "playerName": "Serge Ibaka",
+      "playerCode": "zubaciv01.html",
+      "playerName": "Ivica Zubac",
       "team": "LAC"
     },
     {
@@ -101,8 +101,8 @@
       "team": "NOP"
     },
     {
-      "playerCode": "horfoal01.html",
-      "playerName": "Al Horford",
+      "playerCode": "robyis01.html",
+      "playerName": "Isaiah Roby",
       "team": "OKC"
     },
     {
@@ -136,8 +136,8 @@
       "team": "SAS"
     },
     {
-      "playerCode": "baynear01.html",
-      "playerName": "Aron Baynes",
+      "playerCode": "bouchch01.html",
+      "playerName": "Chris Boucher",
       "team": "TOR"
     },
     {

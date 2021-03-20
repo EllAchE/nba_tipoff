@@ -2,23 +2,22 @@ import json
 import csv
 import pandas as pd
 import re
+import ENVIRONMENT
+from src.database.database_access import getPlayerTeamInSeasonFromBballRefLink
+from src.utils import getSoupFromUrl, \
+    sleepChecker
 
 # backlogtodo record historical betting lines
 # backlogtodo try to find data source for historical betting lines
 # https://widgets.digitalsportstech.com/api/gp?sb=bovada&tz=-5&gameId=in,135430
 # backlogtodo BACKLOG get playbyplay from NCAA for rookie projections
 # https://www.ncaa.com/game/5763659/play-by-play
-#
-import ENVIRONMENT
-from src.database.database_access import getPlayerTeamInSeasonFromBballRefLink
-from src.utils import getSoupFromUrl, \
-    sleepChecker
 
 def getSingleSeasonGameHeaders(season):
     normalMonths = ["october", "november", "december", "january", "february", "march", "april", "may", "june"]
     months2020 = ["october-2019", "november", "december", "january", "february", "march", "july", "august",
                    "september", "october-2020"]
-    months2021 = ["december", "january", "february", "march"]  # may be a shortened season
+    months2021 = ["december", "january", "february", "march", "april", "may"]  # todo this may need to be moved slowly
 
     seasonGames = list()
     if season == 2020:
@@ -68,34 +67,30 @@ def getSingleGameHeaders(table_game_strs, table_home_strs, table_away_strs, i):
 def conditionalDataChecks(homeTeam, awayTeam, tipper1, tipper2, tipper1Link, tipper2Link, possessionGainingPlayerLink, firstScoringPlayerLink, season):
 
     if homeTeam in getPlayerTeamInSeasonFromBballRefLink(tipper1Link, season):
-        homeTipper = tipper1
-        awayTipper = tipper2
-        homeTipperLink = tipper1Link
-        awayTipperLink = tipper2Link
+        set1isHome = True
     elif awayTeam in getPlayerTeamInSeasonFromBballRefLink(tipper1Link, season):
-        homeTipper = tipper2
-        awayTipper = tipper1
-        homeTipperLink = tipper2Link
-        awayTipperLink = tipper1Link
+        set1isHome = False
     else:
         raise ValueError("Bad Game Data or Player DB")
 
+    homeTipper = tipper1 if set1isHome else tipper2
+    awayTipper = tipper2 if set1isHome else tipper1
+    homeTipperLink = tipper1Link if set1isHome else tipper2Link
+    awayTipperLink = tipper2Link if set1isHome else tipper1Link
+
     if homeTeam in getPlayerTeamInSeasonFromBballRefLink(possessionGainingPlayerLink, season):
-        possessionGainingTeam = homeTeam
-        possessionLosingTeam = awayTeam
-        tipWinner = homeTipper
-        tipLoser = awayTipper
-        tipWinnerLink = homeTipperLink
-        tipLoserLink = awayTipperLink
+        homeWinsTip = True
     elif awayTeam in getPlayerTeamInSeasonFromBballRefLink(possessionGainingPlayerLink, season):
-        possessionGainingTeam = awayTeam
-        possessionLosingTeam = homeTeam
-        tipWinner = awayTipper
-        tipLoser = homeTipper
-        tipWinnerLink = awayTipperLink
-        tipLoserLink = homeTipperLink
+        homeWinsTip = False
     else:
         raise ValueError("Bad Game Data or Player DB")
+
+    possessionGainingTeam = homeTeam if homeWinsTip else awayTeam
+    possessionLosingTeam = awayTeam if homeWinsTip else homeTeam
+    tipWinner = homeTipper if homeWinsTip else awayTipper
+    tipLoser = awayTipper if homeWinsTip else homeTipper
+    tipWinnerLink = homeTipperLink if homeWinsTip else awayTipperLink
+    tipLoserLink = awayTipperLink if homeWinsTip else homeTipperLink
 
     if homeTeam in getPlayerTeamInSeasonFromBballRefLink(firstScoringPlayerLink, season):
         firstScoringTeam = homeTeam
@@ -154,43 +149,6 @@ def getTipWinnerAndFirstScore(gameLink, season, homeTeam, awayTeam):
     except:
         return [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
 
-
-def getSingleTeamOffDefData(row, season):
-    defRate = row.contents[-1].contents[0]
-    offRate = row.contents[-2].contents[0]
-    orr = row.contents[5].contents[0]
-    drr = row.contents[6].contents[0]
-    rebr = row.contents[7].contents[0]
-    effectiveFg = row.contents[8].contents[0]
-    teamName = row.contents[1].contents[0].contents[0]
-
-    return teamName, {"team": teamName, "orr": orr, "drr": drr, "rebr": rebr, "eff_fg": effectiveFg, "offRate": offRate, "def_rate": defRate, "season": season}
-
-
-def getOffDefRatings(season=None, savePath=None):
-    if season is not None:
-        url = 'http://www.espn.com/nba/hollinger/teamstats/_/year/'.format(season)
-    else:
-        url = 'http://www.espn.com/nba/hollinger/teamstats'
-        season = 2021
-    # http://www.espn.com/nba/hollinger/teamstats/_/year/2020
-    soup, statusCode = getSoupFromUrl(url, returnStatus=True)
-    print('GET to', url, 'returned status', statusCode)
-
-    seasonDict = {}
-    seasonDict['season'] = season
-    rows = soup.select('tr[class*="row team-"]')
-
-    for row in rows:
-        teamName, teamStats = getSingleTeamOffDefData(row, season)
-        seasonDict[teamName] = teamStats
-
-    if savePath is not None:
-        with open(savePath, 'w') as jsonF:
-            json.dump(seasonDict, jsonF, indent=4)
-
-    return seasonDict
-
 def updateCurrentSeasonRawGameData(pathToData=ENVIRONMENT.CURRENT_SEASON_CSV, currentSeason=2021):
     df = pd.read_csv(pathToData)
     appendFile = open(pathToData, 'a')
@@ -214,7 +172,7 @@ def updateCurrentSeasonRawGameData(pathToData=ENVIRONMENT.CURRENT_SEASON_CSV, cu
 
 def oneSeasonFromScratch(season):
     temp = pd.DataFrame()
-    path =ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(str(season))
+    path = ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(str(season))
     temp.to_csv(path)
     dFile = open(path, 'w')
 

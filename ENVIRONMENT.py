@@ -9,7 +9,7 @@ HOME_TIP_WIN_ODDS = 0.51615348 # backlogtodo these are slightly deflated due to 
 TIP_WINNER_SCORE_ODDS = 0.65495626 # backlogtodo these are slightly deflated due to 0.5 approximation of empty rows
 # backlogtodo recalculate all of the uncertain data points above. This was originally done with a simple excel function on a fully concatenated csv of all seasons
 # backlogtodo consider weighting for season recency
-BANKROLL = 4500
+BANKROLL = 3500
 REDUCTION_FACTOR = 0.7
 
 # Testing Values
@@ -74,6 +74,7 @@ SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH = os.path.abspath('Data/JSON/Public_NBA
 FIRST_FG_SUMMARY_UNFORMATTED_PATH = os.path.abspath('Data/JSON/Public_NBA_API/first_fg_summaries/first_fg_summary_{}.json')
 # FIRST_POINT_SUMMARY_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/first_point_summary.json'))
 FIRST_POINT_SUMMARY_UNFORMATTED_PATH = os.path.abspath('Data/JSON/Public_NBA_API/first_point_summaries/first_point_summary_{}.json')
+FIRST_POINT_TEAM_META = os.path.abspath('Data/JSON/Public_NBA_API/first_point_summaries/first_point_summary_meta_{}.json')
 
 # Raw Data Paths
 PLAYER_TEAM_PAIRS_PATH = Path(os.path.abspath('Data/JSON/player_team_pairs.json'))
@@ -84,6 +85,7 @@ BET_HISTORY_PATH = Path(os.path.abspath("Data/CSV/bet_history.csv"))
 GAME_SUMMARY_UNFORMATTED_PATH = os.path.abspath('Data/CSV/season_summary_data/{}_allgames.csv')
 TEAM_TIPPER_PAIRS_PATH = Path(os.path.abspath('Data/JSON/team_tipper_pairs.json'))
 PLAYER_USAGE_PATH = Path(os.path.abspath("Data/JSON/player_usage.json"))
+SLEEP_CHECKER_PATH = Path(os.path.abspath('misc/sleep_counter.json'))
 
 # NCAA Raw Data
 NCAA_DATA_FOLDER = Path(os.path.abspath('Data/ncaahoopR_data-master'))

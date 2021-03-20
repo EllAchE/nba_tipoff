@@ -1,3 +1,0 @@
-from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero
-
-calculateTrueSkillDictionaryFromZero()

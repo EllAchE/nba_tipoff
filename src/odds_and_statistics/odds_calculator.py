@@ -1,47 +1,56 @@
 '''
 Methods to look at betting lines and see if they are worth it
 '''
-import itertools
 import json
 import math
 import numpy as np
-import trueskill
 import ENVIRONMENT
 
 from typing import Any, Optional
 
-from src.rating_algorithms.algorithms import trueSkillWinProb
+from src.database.database_access import getUniversalPlayerName, getPlayerCurrentTeam, getUniversalTeamShortCode
+from src.rating_algorithms.algorithms import trueSkillTipWinProb
 
+# def getScoreProb(teamTipperCode: str, opponentTipperCode: str):
+#     tipWinOdds = trueSkillTipWinProb(teamTipperCode, opponentTipperCode)
+#     return tipScoreProb(tipWinOdds)
+#
+# def tipScoreProb(tipWinOdds: float, tipWinnerScoresOdds: float = ENVIRONMENT.TIP_WINNER_SCORE_ODDS):
+#     return tipWinOdds * tipWinnerScoresOdds + (1 - tipWinOdds) * (1 - tipWinnerScoresOdds)
 
-def scoreFirstProb(p1Code: str, p2Code: str, p1isHome: bool, jsonPath: Optional[str] = None, psd=None): # psd: Optional[dict[str, Any]] = None):
-    if psd is None and jsonPath:
-        with open(jsonPath) as jsonFile:
-            psd = json.load(jsonFile)
+# backlogtodo allow this to toggle to different algos
+def scoreFirstProb(p1Code: str, p2Code: str, jsonPath: Optional[str] = None, psd=None, isQuarter1or4=True):
+    if not isQuarter1or4:
+        temp = p2Code
+        p2Code = p1Code
+        p1Code = temp
+    tWinProb = trueSkillTipWinProb(p1Code, p2Code)
+    oddsWithObservedTipScore = tWinProb * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1 - tWinProb) * (1 - ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
 
-    if psd is None:
-        raise Exception('psd is None')
+    p1 = getUniversalPlayerName(p1Code)
+    t1 = getUniversalTeamShortCode(getPlayerCurrentTeam(p1))
+    p2 = getUniversalPlayerName(p2Code)
+    t2 = getUniversalTeamShortCode(getPlayerCurrentTeam(p2))
 
-    player1 = trueskill.Rating(psd[p1Code]["mu"], psd[p1Code]["sigma"])
-    player2 = trueskill.Rating(psd[p2Code]["mu"], psd[p2Code]["sigma"])
-    
-    team1 = [player1]
-    team2 = [player2]
+    with open(ENVIRONMENT.FIRST_POINT_TEAM_META.format(ENVIRONMENT.CURRENT_SEASON)) as rFile:
+        metaFile = json.load(rFile)
 
-    deltaMu = sum(r.mu for r in team1) - sum(r.mu for r in team2)
-    sumSigma = sum(r.sigma ** 2 for r in itertools.chain(team1, team2))
-    size = len(team1) + len(team2)
-    denom = math.sqrt(size * (ENVIRONMENT.BASE_TS_SIGMA * ENVIRONMENT.BASE_TS_SIGMA) + sumSigma)
-    ts = trueskill.global_env()
-    res = ts.cdf(deltaMu / denom)
+    # todo backtest for all quarters/seasons and adjust this. This math doesn't actually make any sense
+    reducedNaiveScoreFirstAdjustment = math.sqrt(metaFile[t1]['quarter1']['naiveAdjustmentFactor']) / math.sqrt(metaFile[t2]['quarter1']['naiveAdjustmentFactor'])
+    reducedNaiveScoreFirstAdjustment = math.sqrt(reducedNaiveScoreFirstAdjustment)
+    # reducedNaiveScoreFirstAdjustment = math.sqrt(reducedNaiveScoreFirstAdjustment)
 
-    odds = res * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1-res) * (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
-    
-    if p1isHome:
-        odds = independentVarOdds(ENVIRONMENT.HOME_SCORE_ODDS, odds)
+    oddsRatio = oddsWithObservedTipScore / (1-oddsWithObservedTipScore) * reducedNaiveScoreFirstAdjustment
+    oddsAfterAdjustment = oddsRatio /(1+oddsRatio)
 
-    # print('odds', p1Code, 'beats', p2Code, 'are', odds)
-    return odds
+    totalOdds = oddsAfterAdjustment
 
+    # backlogtodo the independentVarOdds is probably invalid for joint probabiilty
+    # if p1isHome:
+    #     odds = independentVarOdds(ENVIRONMENT.HOME_SCORE_ODDS, odds)
+
+    # print('odds team of', p1Code, 'scores before team of', p2Code, 'are', totalOdds)
+    return totalOdds
 
 def getPlayerSpread(oddsLine, winProb: float, playerSpreadAsSingleAOdds: str):
     oddsOnly = list()
@@ -89,7 +98,7 @@ def sysEMainDiagonalVarsNeg1Fill(argsList, amtToWin: float = 1, amtToLose: Optio
         multiplier = amtToLose/cost
         return playerSpread * multiplier
 
-def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float=ENVIRONMENT.REDUCTION_FACTOR, winAmt: float = 1, bankroll: Optional[float] = None): # assumes binary outcome, requires dollar value
+def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float= ENVIRONMENT.REDUCTION_FACTOR, winAmt: float = 1, bankroll: Optional[float] = None): # assumes binary outcome, requires dollar value
     kellyRatio = (winOdds / lossAmt - (1 - winOdds) / winAmt) * reductionFactor
 
     if bankroll is None:
@@ -143,9 +152,6 @@ def americanToDecimal(americanOdds: Any):
     odds = positiveEvThresholdFromAmerican(americanOdds)
     return 1 / odds
 
-def tipScoreProb(tipWinOdds: float, tipWinnerScoresOdds: float = ENVIRONMENT.TIP_WINNER_SCORE_ODDS):
-    return tipWinOdds * tipWinnerScoresOdds + (1 - tipWinOdds) * (1 - tipWinnerScoresOdds)
-
 def kellyBetFromAOddsAndScoreProb(scoreProb: float, americanOdds: str, bankroll: int = ENVIRONMENT.BANKROLL):
     loss_amt = costFor1(americanOdds)
     return kellyBetReduced(loss_amt, scoreProb, bankroll=bankroll)
@@ -153,8 +159,7 @@ def kellyBetFromAOddsAndScoreProb(scoreProb: float, americanOdds: str, bankroll:
 def checkEvPositiveBackLayAndGetScoreProb(teamOdds: float, teamTipperCode: str, opponentTipperCode: str):
     minWinRate = positiveEvThresholdFromAmerican(teamOdds)
     minLossRate = 1 - minWinRate
-    tipWinOdds = trueSkillWinProb(teamTipperCode, opponentTipperCode)
-    scoreProb = tipScoreProb(tipWinOdds)
+    scoreProb = scoreFirstProb(teamTipperCode, opponentTipperCode)
 
     if scoreProb > minWinRate:
         print('bet on them')
@@ -174,7 +179,7 @@ def checkEvPositive(teamOdds: float, scoreProb: float):
         return False
 
 def checkEvPlayerCodesOddsLine(odds: float, p1: str, p2: str):
-    prob = getScoreProb(p1, p2)
+    prob = scoreFirstProb(p1, p2)
     bet = checkEvPositive(odds, prob)
     
     if bet:
@@ -183,10 +188,6 @@ def checkEvPlayerCodesOddsLine(odds: float, p1: str, p2: str):
         print("don't bet")
     
     return prob
-
-def getScoreProb(teamTipperCode: str, opponentTipperCode: str):
-    tipWinOdds = trueSkillWinProb(teamTipperCode, opponentTipperCode)
-    return tipScoreProb(tipWinOdds)
 
 # should be [[name, line], [name, line]]
 def convertPlayerLinesToSingleLine(playerOddsList):
@@ -224,7 +225,7 @@ def returnGreaterOdds(odds1: float, odds2: float):
         return odds2
     return odds1
 
-def independentVarOdds(*args: Any):
+def independentVarOdds(*args: float):
     totalOdds = args[0]/(1-args[0])
     for odds in args[1:]:
         totalOdds = totalOdds * odds/(1-odds)

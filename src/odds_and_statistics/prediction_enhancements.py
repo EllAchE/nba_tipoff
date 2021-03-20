@@ -31,23 +31,23 @@ def getCurrentSeasonUsageRate():
 
     print('saved Player Usage Dictionary')
 
-def getAllSeasonFirstFieldGoalStats(isFirstFieldGoal=False):
+def getAllSeasonFirstFieldGoalOrFirstPointStats(isFirstFieldGoal=False):
     for season in ENVIRONMENT.SEASONS_SINCE_HORNETS_LIST:
-        getFirstFieldGoalStats(season, isFirstFieldGoal=isFirstFieldGoal)
+        getFirstFieldGoalOrFirstPointStats(season, isFirstFieldGoal=isFirstFieldGoal)
 
-def getFirstFieldGoalStats(season, isFirstFieldGoal=False):
+def getFirstFieldGoalOrFirstPointStats(season, isFirstFieldGoal=False):
     stub = ENVIRONMENT.SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH
     with open(stub.format(season)) as data:
         firstShotsDict = json.load(data)
 
     summaryDict = {}
 
-    summaryDict = _initializePlayerDict(summaryDict, firstShotsDict)
+    # summaryDict = _initializePlayerDict(summaryDict, firstShotsDict)
     summaryDict = _initializeTeamDict(summaryDict, firstShotsDict)
     seasonData = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
 
     for game in firstShotsDict:
-        summaryDict = _playerFirstShotStats(game, summaryDict, isFirstFieldGoal=isFirstFieldGoal)
+        # summaryDict = _playerFirstShotStats(game, summaryDict, isFirstFieldGoal=isFirstFieldGoal)
         summaryDict = _teamFirstShotStats(game, summaryDict, seasonData, isFirstFieldGoal=isFirstFieldGoal)
 
     summaryDict = _summaryStats(summaryDict)
@@ -108,7 +108,6 @@ def getTipoffResultFromGameCode(gameCode, seasonData):
     return win, lose
 
 def _teamFirstShotStats(game, summaryDict, seasonData, isFirstFieldGoal=False):
-    # todo add favorable/unfavorable tip result to quarter data
     quarters = ['quarter1', 'quarter2', 'quarter3', 'quarter4']
     try:
         tipWinTeam, tipLoseTeam = getTipoffResultFromGameCode(game['gameCode'], seasonData)
@@ -116,17 +115,19 @@ def _teamFirstShotStats(game, summaryDict, seasonData, isFirstFieldGoal=False):
     except:
         print('failed to get details from gameCode, may be a None line')
         retrievalError = True
-        teamWonTip = 0.5
-        opponentWonTip = 0.5
 
     for quarter in quarters:
         isFirstTimeThrough = True
         for event in game[quarter]:
             team = event['team']
             opponent = event['opponentTeam']
-            if isFirstTimeThrough and not retrievalError:
-                teamWonTip = 1 if tipWinTeam == getUniversalTeamShortCode(team) else 0
-                opponentWonTip = 1 if tipWinTeam == getUniversalTeamShortCode(opponent) else 0
+            if isFirstTimeThrough:
+                if not retrievalError:
+                    teamWonTip = 1 if tipWinTeam == getUniversalTeamShortCode(team) else 0
+                    opponentWonTip = 1 if tipWinTeam == getUniversalTeamShortCode(opponent) else 0
+                else:
+                    teamWonTip = 0.5
+                    opponentWonTip = 0.5
                 if quarter == 'quarter1' or quarter == 'quarter4':
                     summaryDict[team][quarter]["favorableTipResults"] += teamWonTip
                     summaryDict[opponent][quarter]["favorableTipResults"] += opponentWonTip
@@ -164,6 +165,7 @@ def _summaryStats(summaryDict):
     return summaryDict
 
 # backlogtodo normalize for games started, compare to known player usage rate for a given season
+# todo add favorable/unfavorable tip result to player quarter data
 def _playerFirstShotStats(game, summaryDict, isFirstFieldGoal=False):
     playerHasShotInGame = set()
     quarters = ['quarter1']#, 'quarter2', 'quarter3', 'quarter4']
