@@ -404,8 +404,10 @@ def fillGaps(season):
                 ScoredUponTeam = awayShort if homeScores else homeShort
                 TipWinner = homeTipper if possessingTeamIsHome else awayTipper
                 TipWinnerLink = getUniversalPlayerName(TipWinner, bballRefName=True)
+                TipWinnerLink = "/players/" + TipWinnerLink[0] + "/" + TipWinnerLink
                 TipLoser = awayTipper if possessingTeamIsHome else homeTipper
                 TipLoserLink = getUniversalPlayerName(TipLoser, bballRefName=True)
+                TipLoserLink = "/players/" + TipLoserLink[0] + "/" + TipLoserLink
                 TipWinnerScores = 1 if tipWinningTeam == FirstScoringTeam else 0
 
                 df["Home Tipper"].iloc[i] = homeTipper

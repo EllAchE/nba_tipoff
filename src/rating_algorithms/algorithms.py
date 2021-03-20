@@ -61,9 +61,6 @@ def glickoTipWinProb(player1Code: str, player2Code: str, jsonPath: str = ENVIRON
     player2 = glicko2.Rating(mu=psd[player2Code]['mu'], phi=psd[player2Code]['phi'], sigma=psd[player2Code]['sigma'])
     return glickoObj.expect_score(player1, player2, glickoObj.reduce_impact(player1))
 
-def glickoRatingPeriod():
-    pass
-
 # backlogtodo possibly creating a new Elo object here repeatedly is inefficient
 def eloMatchWithRawNums(winnerElo: int, loserElo: int):
     eloObj = elo.Elo()

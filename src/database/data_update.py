@@ -5,7 +5,9 @@ from src.historical_data.nba_play_by_play_methods import getAllFirstPossessionSt
     teamSummaryDataFromFirstPointData, saveAllHistoricalStarters
 from src.odds_and_statistics.prediction_enhancements import getCurrentSeasonUsageRate, \
     getFirstFieldGoalOrFirstPointStats
-from src.rating_algorithms.trueskill_data_processing import updateTrueSkillDictionaryFromLastGame
+from src.rating_algorithms.trueskill_data_processing import updateTrueSkillDictionaryFromLastGame, \
+    calculateTrueSkillDictionaryFromZero
+
 
 def updateCurrentSeasonPlayerData():
     createPlayerNameRelationship(ENVIRONMENT.CURRENT_SEASON)
@@ -26,8 +28,10 @@ def updateAllDataLongTermIncluded():
 
 def smallDataUpdate():
     updateCurrentSeasonRawGameData()
-    updateTrueSkillDictionaryFromLastGame()
+    calculateTrueSkillDictionaryFromZero()
     getAllFirstPossessionStatisticsIncrementally(ENVIRONMENT.CURRENT_SEASON)
+    getFirstFieldGoalOrFirstPointStats(ENVIRONMENT.CURRENT_SEASON) # Since Hornets became a team
+    teamSummaryDataFromFirstPointData(ENVIRONMENT.CURRENT_SEASON)
 
 def customDataUpdate():
     createPlayerNameRelationship(startSeason=ENVIRONMENT.ALL_SEASONS_LIST[0]) # proxies a database with player names
