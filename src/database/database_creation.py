@@ -295,6 +295,31 @@ def addExtraUrlToPlayerLinks():
                 df.at[i, 'Tip Loser Link'] = "/players/" + temp2[0] + "/" + temp2
 
         df.to_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), index=False)
+
+def addSeasonLongData():
+    # off eff
+    # def eff
+    # FT percent
+    # 2pt per
+    # 3pt per
+    # TO Rate
+    # Naive Q1 rating
+    pass
+
+def addIncrementalData():
+    # gamesPlayed
+    # Tipper Lifetime Apperances
+    # Elo
+    # Glicko
+    # Trueskill
+    pass
+
+
+def addAdditionalMlColumnsSingleSeason(season):
+    df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
+    for i in range(0, len(df.index) - 1):
+        row = df.iloc[i]
+
 #
 # def removeExtraIndex():
 #     for season in ENVIRONMENT.ALL_SEASONS_LIST:

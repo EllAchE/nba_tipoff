@@ -1,85 +1,7 @@
 {
-    "Oklahoma City Thunder": {
-        "quarter1": {
-            "favorableTipResults": 52.5,
-            "2PT MAKE": 49,
-            "3PT MAKE": 5,
-            "FREE THROW MAKE": 8,
-            "FG ATTEMPTS": 111,
-            "2PT MISS": 48,
-            "3PT MISS": 9,
-            "FREE THROW MISS": 1,
-            "FREE THROW ATTEMPTS": 9,
-            "opponentFgAttempts": 90,
-            "opponentFtAttempts": 1,
-            "opponent2ptmake": 29,
-            "opponent2ptmiss": 36,
-            "opponent3ptmake": 9,
-            "opponent3ptmiss": 16,
-            "opponentfreethrowmake": 1,
-            "opponentfreethrowmiss": 0
-        },
-        "quarter2": {
-            "favorableTipResults": 48.5,
-            "2PT MAKE": 33,
-            "3PT MAKE": 9,
-            "FREE THROW MAKE": 10,
-            "FG ATTEMPTS": 106,
-            "2PT MISS": 50,
-            "3PT MISS": 14,
-            "FREE THROW MISS": 5,
-            "FREE THROW ATTEMPTS": 15,
-            "opponentFgAttempts": 105,
-            "opponentFtAttempts": 11,
-            "opponent2ptmake": 30,
-            "opponent2ptmiss": 45,
-            "opponent3ptmake": 8,
-            "opponent3ptmiss": 22,
-            "opponentfreethrowmake": 11,
-            "opponentfreethrowmiss": 0
-        },
-        "quarter3": {
-            "favorableTipResults": 48.5,
-            "2PT MAKE": 37,
-            "3PT MAKE": 5,
-            "FREE THROW MAKE": 6,
-            "FG ATTEMPTS": 102,
-            "2PT MISS": 44,
-            "3PT MISS": 16,
-            "FREE THROW MISS": 2,
-            "FREE THROW ATTEMPTS": 8,
-            "opponentFgAttempts": 103,
-            "opponentFtAttempts": 15,
-            "opponent2ptmake": 33,
-            "opponent2ptmiss": 45,
-            "opponent3ptmake": 9,
-            "opponent3ptmiss": 16,
-            "opponentfreethrowmake": 11,
-            "opponentfreethrowmiss": 4
-        },
-        "quarter4": {
-            "favorableTipResults": 52.5,
-            "2PT MAKE": 33,
-            "3PT MAKE": 8,
-            "FREE THROW MAKE": 12,
-            "FG ATTEMPTS": 97,
-            "2PT MISS": 39,
-            "3PT MISS": 17,
-            "FREE THROW MISS": 6,
-            "FREE THROW ATTEMPTS": 18,
-            "opponentFgAttempts": 84,
-            "opponentFtAttempts": 13,
-            "opponent2ptmake": 28,
-            "opponent2ptmiss": 32,
-            "opponent3ptmake": 11,
-            "opponent3ptmiss": 13,
-            "opponentfreethrowmake": 9,
-            "opponentfreethrowmiss": 4
-        }
-    },
     "San Antonio Spurs": {
         "quarter1": {
-            "favorableTipResults": 61.0,
+            "favorableTipResults": 61,
             "2PT MAKE": 43,
             "3PT MAKE": 11,
             "FREE THROW MAKE": 3,
@@ -98,7 +20,7 @@
             "opponentfreethrowmiss": 0
         },
         "quarter2": {
-            "favorableTipResults": 43.0,
+            "favorableTipResults": 43,
             "2PT MAKE": 43,
             "3PT MAKE": 9,
             "FREE THROW MAKE": 6,
@@ -117,7 +39,7 @@
             "opponentfreethrowmiss": 1
         },
         "quarter3": {
-            "favorableTipResults": 43.0,
+            "favorableTipResults": 43,
             "2PT MAKE": 40,
             "3PT MAKE": 5,
             "FREE THROW MAKE": 8,
@@ -136,7 +58,7 @@
             "opponentfreethrowmiss": 6
         },
         "quarter4": {
-            "favorableTipResults": 61.0,
+            "favorableTipResults": 61,
             "2PT MAKE": 34,
             "3PT MAKE": 15,
             "FREE THROW MAKE": 10,
@@ -155,9 +77,87 @@
             "opponentfreethrowmiss": 3
         }
     },
+    "Oklahoma City Thunder": {
+        "quarter1": {
+            "favorableTipResults": 51,
+            "2PT MAKE": 49,
+            "3PT MAKE": 5,
+            "FREE THROW MAKE": 8,
+            "FG ATTEMPTS": 111,
+            "2PT MISS": 48,
+            "3PT MISS": 9,
+            "FREE THROW MISS": 1,
+            "FREE THROW ATTEMPTS": 9,
+            "opponentFgAttempts": 90,
+            "opponentFtAttempts": 1,
+            "opponent2ptmake": 29,
+            "opponent2ptmiss": 36,
+            "opponent3ptmake": 9,
+            "opponent3ptmiss": 16,
+            "opponentfreethrowmake": 1,
+            "opponentfreethrowmiss": 0
+        },
+        "quarter2": {
+            "favorableTipResults": 50,
+            "2PT MAKE": 33,
+            "3PT MAKE": 9,
+            "FREE THROW MAKE": 10,
+            "FG ATTEMPTS": 106,
+            "2PT MISS": 50,
+            "3PT MISS": 14,
+            "FREE THROW MISS": 5,
+            "FREE THROW ATTEMPTS": 15,
+            "opponentFgAttempts": 105,
+            "opponentFtAttempts": 11,
+            "opponent2ptmake": 30,
+            "opponent2ptmiss": 45,
+            "opponent3ptmake": 8,
+            "opponent3ptmiss": 22,
+            "opponentfreethrowmake": 11,
+            "opponentfreethrowmiss": 0
+        },
+        "quarter3": {
+            "favorableTipResults": 50,
+            "2PT MAKE": 37,
+            "3PT MAKE": 5,
+            "FREE THROW MAKE": 6,
+            "FG ATTEMPTS": 102,
+            "2PT MISS": 44,
+            "3PT MISS": 16,
+            "FREE THROW MISS": 2,
+            "FREE THROW ATTEMPTS": 8,
+            "opponentFgAttempts": 103,
+            "opponentFtAttempts": 15,
+            "opponent2ptmake": 33,
+            "opponent2ptmiss": 45,
+            "opponent3ptmake": 9,
+            "opponent3ptmiss": 16,
+            "opponentfreethrowmake": 11,
+            "opponentfreethrowmiss": 4
+        },
+        "quarter4": {
+            "favorableTipResults": 51,
+            "2PT MAKE": 33,
+            "3PT MAKE": 8,
+            "FREE THROW MAKE": 12,
+            "FG ATTEMPTS": 97,
+            "2PT MISS": 39,
+            "3PT MISS": 17,
+            "FREE THROW MISS": 6,
+            "FREE THROW ATTEMPTS": 18,
+            "opponentFgAttempts": 84,
+            "opponentFtAttempts": 13,
+            "opponent2ptmake": 28,
+            "opponent2ptmiss": 32,
+            "opponent3ptmake": 11,
+            "opponent3ptmiss": 13,
+            "opponentfreethrowmake": 9,
+            "opponentfreethrowmiss": 4
+        }
+    },
     "Brooklyn Nets": {
         "quarter1": {
-            "favorableTipResults": 52.5,
+            "favorableTipResults": 53,
             "2PT MAKE": 43,
             "3PT MAKE": 9,
             "FREE THROW MAKE": 5,
@@ -176,7 +176,7 @@
             "opponentfreethrowmiss": 0
         },
         "quarter2": {
-            "favorableTipResults": 39.5,
+            "favorableTipResults": 39,
             "2PT MAKE": 25,
             "3PT MAKE": 9,
             "FREE THROW MAKE": 5,
@@ -195,7 +195,7 @@
             "opponentfreethrowmiss": 1
         },
         "quarter3": {
-            "favorableTipResults": 39.5,
+            "favorableTipResults": 39,
             "2PT MAKE": 28,
             "3PT MAKE": 10,
             "FREE THROW MAKE": 8,
@@ -214,7 +214,7 @@
             "opponentfreethrowmiss": 3
         },
         "quarter4": {
-            "favorableTipResults": 52.5,
+            "favorableTipResults": 53,
             "2PT MAKE": 31,
             "3PT MAKE": 13,
             "FREE THROW MAKE": 11,
@@ -235,7 +235,7 @@
     },
     "Dallas Mavericks": {
         "quarter1": {
-            "favorableTipResults": 57.0,
+            "favorableTipResults": 58,
             "2PT MAKE": 46,
             "3PT MAKE": 5,
             "FREE THROW MAKE": 5,
@@ -254,7 +254,7 @@
             "opponentfreethrowmiss": 0
         },
         "quarter2": {
-            "favorableTipResults": 31.0,
+            "favorableTipResults": 30,
             "2PT MAKE": 31,
             "3PT MAKE": 8,
             "FREE THROW MAKE": 5,
@@ -273,7 +273,7 @@
             "opponentfreethrowmiss": 5
         },
         "quarter3": {
-            "favorableTipResults": 31.0,
+            "favorableTipResults": 30,
             "2PT MAKE": 24,
             "3PT MAKE": 9,
             "FREE THROW MAKE": 2,
@@ -292,7 +292,7 @@
             "opponentfreethrowmiss": 4
         },
         "quarter4": {
-            "favorableTipResults": 57.0,
+            "favorableTipResults": 58,
             "2PT MAKE": 29,
             "3PT MAKE": 7,
             "FREE THROW MAKE": 9,
@@ -313,7 +313,7 @@
     },
     "Miami Heat": {
         "quarter1": {
-            "favorableTipResults": 65.5,
+            "favorableTipResults": 65,
             "2PT MAKE": 46,
             "3PT MAKE": 3,
             "FREE THROW MAKE": 3,
@@ -332,7 +332,7 @@
             "opponentfreethrowmiss": 3
         },
         "quarter2": {
-            "favorableTipResults": 34.5,
+            "favorableTipResults": 35,
             "2PT MAKE": 32,
             "3PT MAKE": 11,
             "FREE THROW MAKE": 11,
@@ -351,7 +351,7 @@
             "opponentfreethrowmiss": 6
         },
         "quarter3": {
-            "favorableTipResults": 34.5,
+            "favorableTipResults": 35,
             "2PT MAKE": 29,
             "3PT MAKE": 6,
             "FREE THROW MAKE": 9,
@@ -370,7 +370,7 @@
             "opponentfreethrowmiss": 5
         },
         "quarter4": {
-            "favorableTipResults": 65.5,
+            "favorableTipResults": 65,
             "2PT MAKE": 37,
             "3PT MAKE": 11,
             "FREE THROW MAKE": 6,
@@ -389,87 +389,9 @@
             "opponentfreethrowmiss": 5
         }
     },
-    "L.A. Clippers Clippers": {
-        "quarter1": {
-            "favorableTipResults": 68.5,
-            "2PT MAKE": 44,
-            "3PT MAKE": 4,
-            "FREE THROW MAKE": 8,
-            "FG ATTEMPTS": 108,
-            "2PT MISS": 41,
-            "3PT MISS": 19,
-            "FREE THROW MISS": 2,
-            "FREE THROW ATTEMPTS": 10,
-            "opponentFgAttempts": 93,
-            "opponentFtAttempts": 5,
-            "opponent2ptmake": 27,
-            "opponent2ptmiss": 46,
-            "opponent3ptmake": 9,
-            "opponent3ptmiss": 11,
-            "opponentfreethrowmake": 3,
-            "opponentfreethrowmiss": 2
-        },
-        "quarter2": {
-            "favorableTipResults": 26.5,
-            "2PT MAKE": 14,
-            "3PT MAKE": 12,
-            "FREE THROW MAKE": 10,
-            "FG ATTEMPTS": 84,
-            "2PT MISS": 40,
-            "3PT MISS": 18,
-            "FREE THROW MISS": 1,
-            "FREE THROW ATTEMPTS": 11,
-            "opponentFgAttempts": 124,
-            "opponentFtAttempts": 13,
-            "opponent2ptmake": 37,
-            "opponent2ptmiss": 61,
-            "opponent3ptmake": 12,
-            "opponent3ptmiss": 14,
-            "opponentfreethrowmake": 10,
-            "opponentfreethrowmiss": 3
-        },
-        "quarter3": {
-            "favorableTipResults": 26.5,
-            "2PT MAKE": 34,
-            "3PT MAKE": 11,
-            "FREE THROW MAKE": 6,
-            "FG ATTEMPTS": 92,
-            "2PT MISS": 34,
-            "3PT MISS": 13,
-            "FREE THROW MISS": 0,
-            "FREE THROW ATTEMPTS": 6,
-            "opponentFgAttempts": 83,
-            "opponentFtAttempts": 12,
-            "opponent2ptmake": 32,
-            "opponent2ptmiss": 30,
-            "opponent3ptmake": 2,
-            "opponent3ptmiss": 19,
-            "opponentfreethrowmake": 10,
-            "opponentfreethrowmiss": 2
-        },
-        "quarter4": {
-            "favorableTipResults": 68.5,
-            "2PT MAKE": 33,
-            "3PT MAKE": 6,
-            "FREE THROW MAKE": 12,
-            "FG ATTEMPTS": 79,
-            "2PT MISS": 27,
-            "3PT MISS": 13,
-            "FREE THROW MISS": 13,
-            "FREE THROW ATTEMPTS": 25,
-            "opponentFgAttempts": 72,
-            "opponentFtAttempts": 9,
-            "opponent2ptmake": 30,
-            "opponent2ptmiss": 23,
-            "opponent3ptmake": 7,
-            "opponent3ptmiss": 12,
-            "opponentfreethrowmake": 7,
-            "opponentfreethrowmiss": 2
-        }
-    },
     "Washington Wizards": {
         "quarter1": {
-            "favorableTipResults": 51.5,
+            "favorableTipResults": 52,
             "2PT MAKE": 41,
             "3PT MAKE": 7,
             "FREE THROW MAKE": 2,
@@ -488,7 +410,7 @@
             "opponentfreethrowmiss": 5
         },
         "quarter2": {
-            "favorableTipResults": 40.5,
+            "favorableTipResults": 40,
             "2PT MAKE": 41,
             "3PT MAKE": 2,
             "FREE THROW MAKE": 6,
@@ -507,7 +429,7 @@
             "opponentfreethrowmiss": 2
         },
         "quarter3": {
-            "favorableTipResults": 40.5,
+            "favorableTipResults": 40,
             "2PT MAKE": 38,
             "3PT MAKE": 3,
             "FREE THROW MAKE": 8,
@@ -526,7 +448,7 @@
             "opponentfreethrowmiss": 2
         },
         "quarter4": {
-            "favorableTipResults": 51.5,
+            "favorableTipResults": 52,
             "2PT MAKE": 30,
             "3PT MAKE": 8,
             "FREE THROW MAKE": 8,
@@ -543,6 +465,162 @@
             "opponent3ptmiss": 14,
             "opponentfreethrowmake": 7,
             "opponentfreethrowmiss": 4
+        }
+    },
+    "L.A. Clippers Clippers": {
+        "quarter1": {
+            "favorableTipResults": 67,
+            "2PT MAKE": 44,
+            "3PT MAKE": 4,
+            "FREE THROW MAKE": 8,
+            "FG ATTEMPTS": 108,
+            "2PT MISS": 41,
+            "3PT MISS": 19,
+            "FREE THROW MISS": 2,
+            "FREE THROW ATTEMPTS": 10,
+            "opponentFgAttempts": 93,
+            "opponentFtAttempts": 5,
+            "opponent2ptmake": 27,
+            "opponent2ptmiss": 46,
+            "opponent3ptmake": 9,
+            "opponent3ptmiss": 11,
+            "opponentfreethrowmake": 3,
+            "opponentfreethrowmiss": 2
+        },
+        "quarter2": {
+            "favorableTipResults": 28,
+            "2PT MAKE": 14,
+            "3PT MAKE": 12,
+            "FREE THROW MAKE": 10,
+            "FG ATTEMPTS": 84,
+            "2PT MISS": 40,
+            "3PT MISS": 18,
+            "FREE THROW MISS": 1,
+            "FREE THROW ATTEMPTS": 11,
+            "opponentFgAttempts": 124,
+            "opponentFtAttempts": 13,
+            "opponent2ptmake": 37,
+            "opponent2ptmiss": 61,
+            "opponent3ptmake": 12,
+            "opponent3ptmiss": 14,
+            "opponentfreethrowmake": 10,
+            "opponentfreethrowmiss": 3
+        },
+        "quarter3": {
+            "favorableTipResults": 28,
+            "2PT MAKE": 34,
+            "3PT MAKE": 11,
+            "FREE THROW MAKE": 6,
+            "FG ATTEMPTS": 92,
+            "2PT MISS": 34,
+            "3PT MISS": 13,
+            "FREE THROW MISS": 0,
+            "FREE THROW ATTEMPTS": 6,
+            "opponentFgAttempts": 83,
+            "opponentFtAttempts": 12,
+            "opponent2ptmake": 32,
+            "opponent2ptmiss": 30,
+            "opponent3ptmake": 2,
+            "opponent3ptmiss": 19,
+            "opponentfreethrowmake": 10,
+            "opponentfreethrowmiss": 2
+        },
+        "quarter4": {
+            "favorableTipResults": 67,
+            "2PT MAKE": 33,
+            "3PT MAKE": 6,
+            "FREE THROW MAKE": 12,
+            "FG ATTEMPTS": 79,
+            "2PT MISS": 27,
+            "3PT MISS": 13,
+            "FREE THROW MISS": 13,
+            "FREE THROW ATTEMPTS": 25,
+            "opponentFgAttempts": 72,
+            "opponentFtAttempts": 9,
+            "opponent2ptmake": 30,
+            "opponent2ptmiss": 23,
+            "opponent3ptmake": 7,
+            "opponent3ptmiss": 12,
+            "opponentfreethrowmake": 7,
+            "opponentfreethrowmiss": 2
+        }
+    },
+    "Golden State Warriors": {
+        "quarter1": {
+            "favorableTipResults": 45,
+            "2PT MAKE": 40,
+            "3PT MAKE": 6,
+            "FREE THROW MAKE": 2,
+            "FG ATTEMPTS": 88,
+            "2PT MISS": 37,
+            "3PT MISS": 5,
+            "FREE THROW MISS": 0,
+            "FREE THROW ATTEMPTS": 2,
+            "opponentFgAttempts": 65,
+            "opponentFtAttempts": 8,
+            "opponent2ptmake": 34,
+            "opponent2ptmiss": 25,
+            "opponent3ptmake": 0,
+            "opponent3ptmiss": 6,
+            "opponentfreethrowmake": 7,
+            "opponentfreethrowmiss": 1
+        },
+        "quarter2": {
+            "favorableTipResults": 44,
+            "2PT MAKE": 26,
+            "3PT MAKE": 6,
+            "FREE THROW MAKE": 9,
+            "FG ATTEMPTS": 84,
+            "2PT MISS": 43,
+            "3PT MISS": 9,
+            "FREE THROW MISS": 2,
+            "FREE THROW ATTEMPTS": 11,
+            "opponentFgAttempts": 84,
+            "opponentFtAttempts": 18,
+            "opponent2ptmake": 27,
+            "opponent2ptmiss": 37,
+            "opponent3ptmake": 7,
+            "opponent3ptmiss": 13,
+            "opponentfreethrowmake": 14,
+            "opponentfreethrowmiss": 4
+        },
+        "quarter3": {
+            "favorableTipResults": 44,
+            "2PT MAKE": 28,
+            "3PT MAKE": 9,
+            "FREE THROW MAKE": 9,
+            "FG ATTEMPTS": 78,
+            "2PT MISS": 27,
+            "3PT MISS": 14,
+            "FREE THROW MISS": 1,
+            "FREE THROW ATTEMPTS": 10,
+            "opponentFgAttempts": 85,
+            "opponentFtAttempts": 10,
+            "opponent2ptmake": 32,
+            "opponent2ptmiss": 43,
+            "opponent3ptmake": 4,
+            "opponent3ptmiss": 6,
+            "opponentfreethrowmake": 7,
+            "opponentfreethrowmiss": 3
+        },
+        "quarter4": {
+            "favorableTipResults": 45,
+            "2PT MAKE": 25,
+            "3PT MAKE": 16,
+            "FREE THROW MAKE": 10,
+            "FG ATTEMPTS": 76,
+            "2PT MISS": 19,
+            "3PT MISS": 16,
+            "FREE THROW MISS": 9,
+            "FREE THROW ATTEMPTS": 19,
+            "opponentFgAttempts": 65,
+            "opponentFtAttempts": 13,
+            "opponent2ptmake": 27,
+            "opponent2ptmiss": 25,
+            "opponent3ptmake": 5,
+            "opponent3ptmiss": 8,
+            "opponentfreethrowmake": 6,
+            "opponentfreethrowmiss": 7
         }
     },
     "New York Knicks": {
@@ -623,87 +701,9 @@
             "opponentfreethrowmiss": 2
         }
     },
-    "Golden State Warriors": {
-        "quarter1": {
-            "favorableTipResults": 44.0,
-            "2PT MAKE": 40,
-            "3PT MAKE": 6,
-            "FREE THROW MAKE": 2,
-            "FG ATTEMPTS": 88,
-            "2PT MISS": 37,
-            "3PT MISS": 5,
-            "FREE THROW MISS": 0,
-            "FREE THROW ATTEMPTS": 2,
-            "opponentFgAttempts": 65,
-            "opponentFtAttempts": 8,
-            "opponent2ptmake": 34,
-            "opponent2ptmiss": 25,
-            "opponent3ptmake": 0,
-            "opponent3ptmiss": 6,
-            "opponentfreethrowmake": 7,
-            "opponentfreethrowmiss": 1
-        },
-        "quarter2": {
-            "favorableTipResults": 45.0,
-            "2PT MAKE": 26,
-            "3PT MAKE": 6,
-            "FREE THROW MAKE": 9,
-            "FG ATTEMPTS": 84,
-            "2PT MISS": 43,
-            "3PT MISS": 9,
-            "FREE THROW MISS": 2,
-            "FREE THROW ATTEMPTS": 11,
-            "opponentFgAttempts": 84,
-            "opponentFtAttempts": 18,
-            "opponent2ptmake": 27,
-            "opponent2ptmiss": 37,
-            "opponent3ptmake": 7,
-            "opponent3ptmiss": 13,
-            "opponentfreethrowmake": 14,
-            "opponentfreethrowmiss": 4
-        },
-        "quarter3": {
-            "favorableTipResults": 45.0,
-            "2PT MAKE": 28,
-            "3PT MAKE": 9,
-            "FREE THROW MAKE": 9,
-            "FG ATTEMPTS": 78,
-            "2PT MISS": 27,
-            "3PT MISS": 14,
-            "FREE THROW MISS": 1,
-            "FREE THROW ATTEMPTS": 10,
-            "opponentFgAttempts": 85,
-            "opponentFtAttempts": 10,
-            "opponent2ptmake": 32,
-            "opponent2ptmiss": 43,
-            "opponent3ptmake": 4,
-            "opponent3ptmiss": 6,
-            "opponentfreethrowmake": 7,
-            "opponentfreethrowmiss": 3
-        },
-        "quarter4": {
-            "favorableTipResults": 44.0,
-            "2PT MAKE": 25,
-            "3PT MAKE": 16,
-            "FREE THROW MAKE": 10,
-            "FG ATTEMPTS": 76,
-            "2PT MISS": 19,
-            "3PT MISS": 16,
-            "FREE THROW MISS": 9,
-            "FREE THROW ATTEMPTS": 19,
-            "opponentFgAttempts": 65,
-            "opponentFtAttempts": 13,
-            "opponent2ptmake": 27,
-            "opponent2ptmiss": 25,
-            "opponent3ptmake": 5,
-            "opponent3ptmiss": 8,
-            "opponentfreethrowmake": 6,
-            "opponentfreethrowmiss": 7
-        }
-    },
     "Toronto Raptors": {
         "quarter1": {
-            "favorableTipResults": 42.0,
+            "favorableTipResults": 42,
             "2PT MAKE": 34,
             "3PT MAKE": 9,
             "FREE THROW MAKE": 5,
@@ -722,7 +722,7 @@
             "opponentfreethrowmiss": 3
         },
         "quarter2": {
-            "favorableTipResults": 46.0,
+            "favorableTipResults": 46,
             "2PT MAKE": 28,
             "3PT MAKE": 9,
             "FREE THROW MAKE": 14,
@@ -741,7 +741,7 @@
             "opponentfreethrowmiss": 1
         },
         "quarter3": {
-            "favorableTipResults": 46.0,
+            "favorableTipResults": 46,
             "2PT MAKE": 23,
             "3PT MAKE": 12,
             "FREE THROW MAKE": 5,
@@ -760,7 +760,7 @@
             "opponentfreethrowmiss": 1
         },
         "quarter4": {
-            "favorableTipResults": 42.0,
+            "favorableTipResults": 42,
             "2PT MAKE": 31,
             "3PT MAKE": 4,
             "FREE THROW MAKE": 5,
@@ -781,7 +781,7 @@
     },
     "Indiana Pacers": {
         "quarter1": {
-            "favorableTipResults": 44.0,
+            "favorableTipResults": 44,
             "2PT MAKE": 37,
             "3PT MAKE": 5,
             "FREE THROW MAKE": 1,
@@ -800,7 +800,7 @@
             "opponentfreethrowmiss": 1
         },
         "quarter2": {
-            "favorableTipResults": 54.0,
+            "favorableTipResults": 54,
             "2PT MAKE": 30,
             "3PT MAKE": 5,
             "FREE THROW MAKE": 16,
@@ -819,7 +819,7 @@
             "opponentfreethrowmiss": 1
         },
         "quarter3": {
-            "favorableTipResults": 54.0,
+            "favorableTipResults": 54,
             "2PT MAKE": 33,
             "3PT MAKE": 11,
             "FREE THROW MAKE": 11,
@@ -838,7 +838,7 @@
             "opponentfreethrowmiss": 1
         },
         "quarter4": {
-            "favorableTipResults": 44.0,
+            "favorableTipResults": 44,
             "2PT MAKE": 29,
             "3PT MAKE": 10,
             "FREE THROW MAKE": 5,
@@ -859,7 +859,7 @@
     },
     "Memphis Grizzlies": {
         "quarter1": {
-            "favorableTipResults": 55.5,
+            "favorableTipResults": 56,
             "2PT MAKE": 40,
             "3PT MAKE": 1,
             "FREE THROW MAKE": 3,
@@ -878,7 +878,7 @@
             "opponentfreethrowmiss": 2
         },
         "quarter2": {
-            "favorableTipResults": 33.5,
+            "favorableTipResults": 33,
             "2PT MAKE": 37,
             "3PT MAKE": 3,
             "FREE THROW MAKE": 6,
@@ -897,7 +897,7 @@
             "opponentfreethrowmiss": 2
         },
         "quarter3": {
-            "favorableTipResults": 33.5,
+            "favorableTipResults": 33,
             "2PT MAKE": 37,
             "3PT MAKE": 3,
             "FREE THROW MAKE": 3,
@@ -916,7 +916,7 @@
             "opponentfreethrowmiss": 1
         },
         "quarter4": {
-            "favorableTipResults": 55.5,
+            "favorableTipResults": 56,
             "2PT MAKE": 39,
             "3PT MAKE": 4,
             "FREE THROW MAKE": 6,
@@ -935,87 +935,9 @@
             "opponentfreethrowmiss": 3
         }
     },
-    "Portland Trail Blazers": {
-        "quarter1": {
-            "favorableTipResults": 34.5,
-            "2PT MAKE": 32,
-            "3PT MAKE": 8,
-            "FREE THROW MAKE": 7,
-            "FG ATTEMPTS": 90,
-            "2PT MISS": 45,
-            "3PT MISS": 5,
-            "FREE THROW MISS": 0,
-            "FREE THROW ATTEMPTS": 7,
-            "opponentFgAttempts": 101,
-            "opponentFtAttempts": 5,
-            "opponent2ptmake": 42,
-            "opponent2ptmiss": 50,
-            "opponent3ptmake": 3,
-            "opponent3ptmiss": 6,
-            "opponentfreethrowmake": 1,
-            "opponentfreethrowmiss": 4
-        },
-        "quarter2": {
-            "favorableTipResults": 58.5,
-            "2PT MAKE": 28,
-            "3PT MAKE": 18,
-            "FREE THROW MAKE": 2,
-            "FG ATTEMPTS": 107,
-            "2PT MISS": 42,
-            "3PT MISS": 19,
-            "FREE THROW MISS": 3,
-            "FREE THROW ATTEMPTS": 5,
-            "opponentFgAttempts": 80,
-            "opponentFtAttempts": 11,
-            "opponent2ptmake": 33,
-            "opponent2ptmiss": 34,
-            "opponent3ptmake": 4,
-            "opponent3ptmiss": 9,
-            "opponentfreethrowmake": 8,
-            "opponentfreethrowmiss": 3
-        },
-        "quarter3": {
-            "favorableTipResults": 58.5,
-            "2PT MAKE": 27,
-            "3PT MAKE": 9,
-            "FREE THROW MAKE": 9,
-            "FG ATTEMPTS": 86,
-            "2PT MISS": 39,
-            "3PT MISS": 11,
-            "FREE THROW MISS": 5,
-            "FREE THROW ATTEMPTS": 14,
-            "opponentFgAttempts": 81,
-            "opponentFtAttempts": 5,
-            "opponent2ptmake": 37,
-            "opponent2ptmiss": 33,
-            "opponent3ptmake": 6,
-            "opponent3ptmiss": 5,
-            "opponentfreethrowmake": 5,
-            "opponentfreethrowmiss": 0
-        },
-        "quarter4": {
-            "favorableTipResults": 34.5,
-            "2PT MAKE": 22,
-            "3PT MAKE": 14,
-            "FREE THROW MAKE": 3,
-            "FG ATTEMPTS": 75,
-            "2PT MISS": 31,
-            "3PT MISS": 8,
-            "FREE THROW MISS": 1,
-            "FREE THROW ATTEMPTS": 4,
-            "opponentFgAttempts": 108,
-            "opponentFtAttempts": 14,
-            "opponent2ptmake": 34,
-            "opponent2ptmiss": 51,
-            "opponent3ptmake": 10,
-            "opponent3ptmiss": 13,
-            "opponentfreethrowmake": 10,
-            "opponentfreethrowmiss": 4
-        }
-    },
     "Houston Rockets": {
         "quarter1": {
-            "favorableTipResults": 56.5,
+            "favorableTipResults": 57,
             "2PT MAKE": 37,
             "3PT MAKE": 3,
             "FREE THROW MAKE": 3,
@@ -1034,7 +956,7 @@
             "opponentfreethrowmiss": 4
         },
         "quarter2": {
-            "favorableTipResults": 30.5,
+            "favorableTipResults": 30,
             "2PT MAKE": 25,
             "3PT MAKE": 7,
             "FREE THROW MAKE": 8,
@@ -1053,7 +975,7 @@
             "opponentfreethrowmiss": 6
         },
         "quarter3": {
-            "favorableTipResults": 30.5,
+            "favorableTipResults": 30,
             "2PT MAKE": 27,
             "3PT MAKE": 8,
             "FREE THROW MAKE": 5,
@@ -1072,7 +994,7 @@
             "opponentfreethrowmiss": 5
         },
         "quarter4": {
-            "favorableTipResults": 56.5,
+            "favorableTipResults": 57,
             "2PT MAKE": 28,
             "3PT MAKE": 12,
             "FREE THROW MAKE": 5,
@@ -1091,9 +1013,87 @@
             "opponentfreethrowmiss": 3
         }
     },
+    "Portland Trail Blazers": {
+        "quarter1": {
+            "favorableTipResults": 35,
+            "2PT MAKE": 32,
+            "3PT MAKE": 8,
+            "FREE THROW MAKE": 7,
+            "FG ATTEMPTS": 90,
+            "2PT MISS": 45,
+            "3PT MISS": 5,
+            "FREE THROW MISS": 0,
+            "FREE THROW ATTEMPTS": 7,
+            "opponentFgAttempts": 101,
+            "opponentFtAttempts": 5,
+            "opponent2ptmake": 42,
+            "opponent2ptmiss": 50,
+            "opponent3ptmake": 3,
+            "opponent3ptmiss": 6,
+            "opponentfreethrowmake": 1,
+            "opponentfreethrowmiss": 4
+        },
+        "quarter2": {
+            "favorableTipResults": 58,
+            "2PT MAKE": 28,
+            "3PT MAKE": 18,
+            "FREE THROW MAKE": 2,
+            "FG ATTEMPTS": 107,
+            "2PT MISS": 42,
+            "3PT MISS": 19,
+            "FREE THROW MISS": 3,
+            "FREE THROW ATTEMPTS": 5,
+            "opponentFgAttempts": 80,
+            "opponentFtAttempts": 11,
+            "opponent2ptmake": 33,
+            "opponent2ptmiss": 34,
+            "opponent3ptmake": 4,
+            "opponent3ptmiss": 9,
+            "opponentfreethrowmake": 8,
+            "opponentfreethrowmiss": 3
+        },
+        "quarter3": {
+            "favorableTipResults": 58,
+            "2PT MAKE": 27,
+            "3PT MAKE": 9,
+            "FREE THROW MAKE": 9,
+            "FG ATTEMPTS": 86,
+            "2PT MISS": 39,
+            "3PT MISS": 11,
+            "FREE THROW MISS": 5,
+            "FREE THROW ATTEMPTS": 14,
+            "opponentFgAttempts": 81,
+            "opponentFtAttempts": 5,
+            "opponent2ptmake": 37,
+            "opponent2ptmiss": 33,
+            "opponent3ptmake": 6,
+            "opponent3ptmiss": 5,
+            "opponentfreethrowmake": 5,
+            "opponentfreethrowmiss": 0
+        },
+        "quarter4": {
+            "favorableTipResults": 35,
+            "2PT MAKE": 22,
+            "3PT MAKE": 14,
+            "FREE THROW MAKE": 3,
+            "FG ATTEMPTS": 75,
+            "2PT MISS": 31,
+            "3PT MISS": 8,
+            "FREE THROW MISS": 1,
+            "FREE THROW ATTEMPTS": 4,
+            "opponentFgAttempts": 108,
+            "opponentFtAttempts": 14,
+            "opponent2ptmake": 34,
+            "opponent2ptmiss": 51,
+            "opponent3ptmake": 10,
+            "opponent3ptmiss": 13,
+            "opponentfreethrowmake": 10,
+            "opponentfreethrowmiss": 4
+        }
+    },
     "Chicago Bulls": {
         "quarter1": {
-            "favorableTipResults": 53.5,
+            "favorableTipResults": 53,
             "2PT MAKE": 37,
             "3PT MAKE": 1,
             "FREE THROW MAKE": 7,
@@ -1112,7 +1112,7 @@
             "opponentfreethrowmiss": 1
         },
         "quarter2": {
-            "favorableTipResults": 33.5,
+            "favorableTipResults": 34,
             "2PT MAKE": 27,
             "3PT MAKE": 5,
             "FREE THROW MAKE": 8,
@@ -1131,7 +1131,7 @@
             "opponentfreethrowmiss": 2
         },
         "quarter3": {
-            "favorableTipResults": 33.5,
+            "favorableTipResults": 34,
             "2PT MAKE": 38,
             "3PT MAKE": 3,
             "FREE THROW MAKE": 6,
@@ -1150,7 +1150,7 @@
             "opponentfreethrowmiss": 0
         },
         "quarter4": {
-            "favorableTipResults": 53.5,
+            "favorableTipResults": 53,
             "2PT MAKE": 29,
             "3PT MAKE": 9,
             "FREE THROW MAKE": 8,
@@ -1169,87 +1169,9 @@
             "opponentfreethrowmiss": 3
         }
     },
-    "Detroit Pistons": {
-        "quarter1": {
-            "favorableTipResults": 52.5,
-            "2PT MAKE": 37,
-            "3PT MAKE": 0,
-            "FREE THROW MAKE": 2,
-            "FG ATTEMPTS": 106,
-            "2PT MISS": 56,
-            "3PT MISS": 13,
-            "FREE THROW MISS": 3,
-            "FREE THROW ATTEMPTS": 5,
-            "opponentFgAttempts": 82,
-            "opponentFtAttempts": 10,
-            "opponent2ptmake": 30,
-            "opponent2ptmiss": 36,
-            "opponent3ptmake": 7,
-            "opponent3ptmiss": 9,
-            "opponentfreethrowmake": 6,
-            "opponentfreethrowmiss": 4
-        },
-        "quarter2": {
-            "favorableTipResults": 29.5,
-            "2PT MAKE": 29,
-            "3PT MAKE": 8,
-            "FREE THROW MAKE": 9,
-            "FG ATTEMPTS": 70,
-            "2PT MISS": 30,
-            "3PT MISS": 3,
-            "FREE THROW MISS": 6,
-            "FREE THROW ATTEMPTS": 15,
-            "opponentFgAttempts": 90,
-            "opponentFtAttempts": 14,
-            "opponent2ptmake": 22,
-            "opponent2ptmiss": 45,
-            "opponent3ptmake": 5,
-            "opponent3ptmiss": 18,
-            "opponentfreethrowmake": 9,
-            "opponentfreethrowmiss": 5
-        },
-        "quarter3": {
-            "favorableTipResults": 29.5,
-            "2PT MAKE": 24,
-            "3PT MAKE": 3,
-            "FREE THROW MAKE": 10,
-            "FG ATTEMPTS": 53,
-            "2PT MISS": 17,
-            "3PT MISS": 9,
-            "FREE THROW MISS": 8,
-            "FREE THROW ATTEMPTS": 18,
-            "opponentFgAttempts": 75,
-            "opponentFtAttempts": 9,
-            "opponent2ptmake": 33,
-            "opponent2ptmiss": 25,
-            "opponent3ptmake": 6,
-            "opponent3ptmiss": 11,
-            "opponentfreethrowmake": 6,
-            "opponentfreethrowmiss": 3
-        },
-        "quarter4": {
-            "favorableTipResults": 52.5,
-            "2PT MAKE": 24,
-            "3PT MAKE": 4,
-            "FREE THROW MAKE": 8,
-            "FG ATTEMPTS": 73,
-            "2PT MISS": 39,
-            "3PT MISS": 6,
-            "FREE THROW MISS": 3,
-            "FREE THROW ATTEMPTS": 11,
-            "opponentFgAttempts": 84,
-            "opponentFtAttempts": 11,
-            "opponent2ptmake": 31,
-            "opponent2ptmiss": 32,
-            "opponent3ptmake": 6,
-            "opponent3ptmiss": 15,
-            "opponentfreethrowmake": 9,
-            "opponentfreethrowmiss": 2
-        }
-    },
     "Charlotte Bobcats": {
         "quarter1": {
-            "favorableTipResults": 27.5,
+            "favorableTipResults": 27,
             "2PT MAKE": 33,
             "3PT MAKE": 4,
             "FREE THROW MAKE": 6,
@@ -1268,7 +1190,7 @@
             "opponentfreethrowmiss": 0
         },
         "quarter2": {
-            "favorableTipResults": 57.5,
+            "favorableTipResults": 58,
             "2PT MAKE": 22,
             "3PT MAKE": 7,
             "FREE THROW MAKE": 9,
@@ -1287,7 +1209,7 @@
             "opponentfreethrowmiss": 6
         },
         "quarter3": {
-            "favorableTipResults": 57.5,
+            "favorableTipResults": 58,
             "2PT MAKE": 34,
             "3PT MAKE": 5,
             "FREE THROW MAKE": 6,
@@ -1306,7 +1228,7 @@
             "opponentfreethrowmiss": 2
         },
         "quarter4": {
-            "favorableTipResults": 27.5,
+            "favorableTipResults": 27,
             "2PT MAKE": 26,
             "3PT MAKE": 7,
             "FREE THROW MAKE": 7,
@@ -1325,9 +1247,87 @@
             "opponentfreethrowmiss": 1
         }
     },
+    "Detroit Pistons": {
+        "quarter1": {
+            "favorableTipResults": 53,
+            "2PT MAKE": 37,
+            "3PT MAKE": 0,
+            "FREE THROW MAKE": 2,
+            "FG ATTEMPTS": 106,
+            "2PT MISS": 56,
+            "3PT MISS": 13,
+            "FREE THROW MISS": 3,
+            "FREE THROW ATTEMPTS": 5,
+            "opponentFgAttempts": 82,
+            "opponentFtAttempts": 10,
+            "opponent2ptmake": 30,
+            "opponent2ptmiss": 36,
+            "opponent3ptmake": 7,
+            "opponent3ptmiss": 9,
+            "opponentfreethrowmake": 6,
+            "opponentfreethrowmiss": 4
+        },
+        "quarter2": {
+            "favorableTipResults": 29,
+            "2PT MAKE": 29,
+            "3PT MAKE": 8,
+            "FREE THROW MAKE": 9,
+            "FG ATTEMPTS": 70,
+            "2PT MISS": 30,
+            "3PT MISS": 3,
+            "FREE THROW MISS": 6,
+            "FREE THROW ATTEMPTS": 15,
+            "opponentFgAttempts": 90,
+            "opponentFtAttempts": 14,
+            "opponent2ptmake": 22,
+            "opponent2ptmiss": 45,
+            "opponent3ptmake": 5,
+            "opponent3ptmiss": 18,
+            "opponentfreethrowmake": 9,
+            "opponentfreethrowmiss": 5
+        },
+        "quarter3": {
+            "favorableTipResults": 29,
+            "2PT MAKE": 24,
+            "3PT MAKE": 3,
+            "FREE THROW MAKE": 10,
+            "FG ATTEMPTS": 53,
+            "2PT MISS": 17,
+            "3PT MISS": 9,
+            "FREE THROW MISS": 8,
+            "FREE THROW ATTEMPTS": 18,
+            "opponentFgAttempts": 75,
+            "opponentFtAttempts": 9,
+            "opponent2ptmake": 33,
+            "opponent2ptmiss": 25,
+            "opponent3ptmake": 6,
+            "opponent3ptmiss": 11,
+            "opponentfreethrowmake": 6,
+            "opponentfreethrowmiss": 3
+        },
+        "quarter4": {
+            "favorableTipResults": 53,
+            "2PT MAKE": 24,
+            "3PT MAKE": 4,
+            "FREE THROW MAKE": 8,
+            "FG ATTEMPTS": 73,
+            "2PT MISS": 39,
+            "3PT MISS": 6,
+            "FREE THROW MISS": 3,
+            "FREE THROW ATTEMPTS": 11,
+            "opponentFgAttempts": 84,
+            "opponentFtAttempts": 11,
+            "opponent2ptmake": 31,
+            "opponent2ptmiss": 32,
+            "opponent3ptmake": 6,
+            "opponent3ptmiss": 15,
+            "opponentfreethrowmake": 9,
+            "opponentfreethrowmiss": 2
+        }
+    },
     "Philadelphia 76ers": {
         "quarter1": {
-            "favorableTipResults": 22.5,
+            "favorableTipResults": 22,
             "2PT MAKE": 28,
             "3PT MAKE": 9,
             "FREE THROW MAKE": 6,
@@ -1346,7 +1346,7 @@
             "opponentfreethrowmiss": 0
         },
         "quarter2": {
-            "favorableTipResults": 59.5,
+            "favorableTipResults": 60,
             "2PT MAKE": 21,
             "3PT MAKE": 12,
             "FREE THROW MAKE": 10,
@@ -1365,7 +1365,7 @@
             "opponentfreethrowmiss": 2
         },
         "quarter3": {
-            "favorableTipResults": 59.5,
+            "favorableTipResults": 60,
             "2PT MAKE": 30,
             "3PT MAKE": 5,
             "FREE THROW MAKE": 4,
@@ -1384,7 +1384,7 @@
             "opponentfreethrowmiss": 2
         },
         "quarter4": {
-            "favorableTipResults": 22.5,
+            "favorableTipResults": 22,
             "2PT MAKE": 31,
             "3PT MAKE": 3,
             "FREE THROW MAKE": 5,
@@ -1405,7 +1405,7 @@
     },
     "Utah Jazz": {
         "quarter1": {
-            "favorableTipResults": 40.5,
+            "favorableTipResults": 40,
             "2PT MAKE": 30,
             "3PT MAKE": 6,
             "FREE THROW MAKE": 6,
@@ -1424,7 +1424,7 @@
             "opponentfreethrowmiss": 0
         },
         "quarter2": {
-            "favorableTipResults": 41.5,
+            "favorableTipResults": 42,
             "2PT MAKE": 28,
             "3PT MAKE": 4,
             "FREE THROW MAKE": 7,
@@ -1443,7 +1443,7 @@
             "opponentfreethrowmiss": 0
         },
         "quarter3": {
-            "favorableTipResults": 41.5,
+            "favorableTipResults": 42,
             "2PT MAKE": 25,
             "3PT MAKE": 6,
             "FREE THROW MAKE": 6,
@@ -1462,7 +1462,7 @@
             "opponentfreethrowmiss": 3
         },
         "quarter4": {
-            "favorableTipResults": 40.5,
+            "favorableTipResults": 40,
             "2PT MAKE": 26,
             "3PT MAKE": 4,
             "FREE THROW MAKE": 7,
@@ -1481,9 +1481,87 @@
             "opponentfreethrowmiss": 3
         }
     },
+    "L.A. Lakers Lakers": {
+        "quarter1": {
+            "favorableTipResults": 44,
+            "2PT MAKE": 27,
+            "3PT MAKE": 8,
+            "FREE THROW MAKE": 2,
+            "FG ATTEMPTS": 85,
+            "2PT MISS": 32,
+            "3PT MISS": 18,
+            "FREE THROW MISS": 1,
+            "FREE THROW ATTEMPTS": 3,
+            "opponentFgAttempts": 93,
+            "opponentFtAttempts": 6,
+            "opponent2ptmake": 33,
+            "opponent2ptmiss": 38,
+            "opponent3ptmake": 6,
+            "opponent3ptmiss": 16,
+            "opponentfreethrowmake": 6,
+            "opponentfreethrowmiss": 0
+        },
+        "quarter2": {
+            "favorableTipResults": 38,
+            "2PT MAKE": 21,
+            "3PT MAKE": 10,
+            "FREE THROW MAKE": 5,
+            "FG ATTEMPTS": 67,
+            "2PT MISS": 22,
+            "3PT MISS": 14,
+            "FREE THROW MISS": 3,
+            "FREE THROW ATTEMPTS": 8,
+            "opponentFgAttempts": 77,
+            "opponentFtAttempts": 9,
+            "opponent2ptmake": 31,
+            "opponent2ptmiss": 31,
+            "opponent3ptmake": 9,
+            "opponent3ptmiss": 6,
+            "opponentfreethrowmake": 6,
+            "opponentfreethrowmiss": 3
+        },
+        "quarter3": {
+            "favorableTipResults": 38,
+            "2PT MAKE": 26,
+            "3PT MAKE": 4,
+            "FREE THROW MAKE": 5,
+            "FG ATTEMPTS": 78,
+            "2PT MISS": 32,
+            "3PT MISS": 16,
+            "FREE THROW MISS": 2,
+            "FREE THROW ATTEMPTS": 7,
+            "opponentFgAttempts": 90,
+            "opponentFtAttempts": 3,
+            "opponent2ptmake": 38,
+            "opponent2ptmiss": 38,
+            "opponent3ptmake": 6,
+            "opponent3ptmiss": 8,
+            "opponentfreethrowmake": 3,
+            "opponentfreethrowmiss": 0
+        },
+        "quarter4": {
+            "favorableTipResults": 44,
+            "2PT MAKE": 29,
+            "3PT MAKE": 12,
+            "FREE THROW MAKE": 2,
+            "FG ATTEMPTS": 93,
+            "2PT MISS": 30,
+            "3PT MISS": 22,
+            "FREE THROW MISS": 0,
+            "FREE THROW ATTEMPTS": 2,
+            "opponentFgAttempts": 66,
+            "opponentFtAttempts": 6,
+            "opponent2ptmake": 24,
+            "opponent2ptmiss": 22,
+            "opponent3ptmake": 9,
+            "opponent3ptmiss": 11,
+            "opponentfreethrowmake": 6,
+            "opponentfreethrowmiss": 0
+        }
+    },
     "Atlanta Hawks": {
         "quarter1": {
-            "favorableTipResults": 30.0,
+            "favorableTipResults": 31,
             "2PT MAKE": 29,
             "3PT MAKE": 6,
             "FREE THROW MAKE": 3,
@@ -1502,7 +1580,7 @@
             "opponentfreethrowmiss": 4
         },
         "quarter2": {
-            "favorableTipResults": 58.0,
+            "favorableTipResults": 57,
             "2PT MAKE": 30,
             "3PT MAKE": 8,
             "FREE THROW MAKE": 6,
@@ -1521,7 +1599,7 @@
             "opponentfreethrowmiss": 0
         },
         "quarter3": {
-            "favorableTipResults": 58.0,
+            "favorableTipResults": 57,
             "2PT MAKE": 40,
             "3PT MAKE": 10,
             "FREE THROW MAKE": 5,
@@ -1540,7 +1618,7 @@
             "opponentfreethrowmiss": 2
         },
         "quarter4": {
-            "favorableTipResults": 30.0,
+            "favorableTipResults": 31,
             "2PT MAKE": 25,
             "3PT MAKE": 7,
             "FREE THROW MAKE": 8,
@@ -1637,165 +1715,9 @@
             "opponentfreethrowmiss": 3
         }
     },
-    "L.A. Lakers Lakers": {
-        "quarter1": {
-            "favorableTipResults": 44.5,
-            "2PT MAKE": 27,
-            "3PT MAKE": 8,
-            "FREE THROW MAKE": 2,
-            "FG ATTEMPTS": 85,
-            "2PT MISS": 32,
-            "3PT MISS": 18,
-            "FREE THROW MISS": 1,
-            "FREE THROW ATTEMPTS": 3,
-            "opponentFgAttempts": 93,
-            "opponentFtAttempts": 6,
-            "opponent2ptmake": 33,
-            "opponent2ptmiss": 38,
-            "opponent3ptmake": 6,
-            "opponent3ptmiss": 16,
-            "opponentfreethrowmake": 6,
-            "opponentfreethrowmiss": 0
-        },
-        "quarter2": {
-            "favorableTipResults": 37.5,
-            "2PT MAKE": 21,
-            "3PT MAKE": 10,
-            "FREE THROW MAKE": 5,
-            "FG ATTEMPTS": 67,
-            "2PT MISS": 22,
-            "3PT MISS": 14,
-            "FREE THROW MISS": 3,
-            "FREE THROW ATTEMPTS": 8,
-            "opponentFgAttempts": 77,
-            "opponentFtAttempts": 9,
-            "opponent2ptmake": 31,
-            "opponent2ptmiss": 31,
-            "opponent3ptmake": 9,
-            "opponent3ptmiss": 6,
-            "opponentfreethrowmake": 6,
-            "opponentfreethrowmiss": 3
-        },
-        "quarter3": {
-            "favorableTipResults": 37.5,
-            "2PT MAKE": 26,
-            "3PT MAKE": 4,
-            "FREE THROW MAKE": 5,
-            "FG ATTEMPTS": 78,
-            "2PT MISS": 32,
-            "3PT MISS": 16,
-            "FREE THROW MISS": 2,
-            "FREE THROW ATTEMPTS": 7,
-            "opponentFgAttempts": 90,
-            "opponentFtAttempts": 3,
-            "opponent2ptmake": 38,
-            "opponent2ptmiss": 38,
-            "opponent3ptmake": 6,
-            "opponent3ptmiss": 8,
-            "opponentfreethrowmake": 3,
-            "opponentfreethrowmiss": 0
-        },
-        "quarter4": {
-            "favorableTipResults": 44.5,
-            "2PT MAKE": 29,
-            "3PT MAKE": 12,
-            "FREE THROW MAKE": 2,
-            "FG ATTEMPTS": 93,
-            "2PT MISS": 30,
-            "3PT MISS": 22,
-            "FREE THROW MISS": 0,
-            "FREE THROW ATTEMPTS": 2,
-            "opponentFgAttempts": 66,
-            "opponentFtAttempts": 6,
-            "opponent2ptmake": 24,
-            "opponent2ptmiss": 22,
-            "opponent3ptmake": 9,
-            "opponent3ptmiss": 11,
-            "opponentfreethrowmake": 6,
-            "opponentfreethrowmiss": 0
-        }
-    },
-    "Sacramento Kings": {
-        "quarter1": {
-            "favorableTipResults": 31.0,
-            "2PT MAKE": 28,
-            "3PT MAKE": 5,
-            "FREE THROW MAKE": 4,
-            "FG ATTEMPTS": 87,
-            "2PT MISS": 42,
-            "3PT MISS": 12,
-            "FREE THROW MISS": 5,
-            "FREE THROW ATTEMPTS": 9,
-            "opponentFgAttempts": 95,
-            "opponentFtAttempts": 3,
-            "opponent2ptmake": 37,
-            "opponent2ptmiss": 42,
-            "opponent3ptmake": 5,
-            "opponent3ptmiss": 11,
-            "opponentfreethrowmake": 3,
-            "opponentfreethrowmiss": 0
-        },
-        "quarter2": {
-            "favorableTipResults": 51.0,
-            "2PT MAKE": 30,
-            "3PT MAKE": 6,
-            "FREE THROW MAKE": 5,
-            "FG ATTEMPTS": 94,
-            "2PT MISS": 48,
-            "3PT MISS": 10,
-            "FREE THROW MISS": 0,
-            "FREE THROW ATTEMPTS": 5,
-            "opponentFgAttempts": 72,
-            "opponentFtAttempts": 13,
-            "opponent2ptmake": 27,
-            "opponent2ptmiss": 28,
-            "opponent3ptmake": 7,
-            "opponent3ptmiss": 10,
-            "opponentfreethrowmake": 7,
-            "opponentfreethrowmiss": 6
-        },
-        "quarter3": {
-            "favorableTipResults": 51.0,
-            "2PT MAKE": 29,
-            "3PT MAKE": 4,
-            "FREE THROW MAKE": 9,
-            "FG ATTEMPTS": 71,
-            "2PT MISS": 34,
-            "3PT MISS": 4,
-            "FREE THROW MISS": 0,
-            "FREE THROW ATTEMPTS": 9,
-            "opponentFgAttempts": 56,
-            "opponentFtAttempts": 12,
-            "opponent2ptmake": 20,
-            "opponent2ptmiss": 19,
-            "opponent3ptmake": 11,
-            "opponent3ptmiss": 6,
-            "opponentfreethrowmake": 9,
-            "opponentfreethrowmiss": 3
-        },
-        "quarter4": {
-            "favorableTipResults": 31.0,
-            "2PT MAKE": 28,
-            "3PT MAKE": 4,
-            "FREE THROW MAKE": 4,
-            "FG ATTEMPTS": 77,
-            "2PT MISS": 31,
-            "3PT MISS": 14,
-            "FREE THROW MISS": 6,
-            "FREE THROW ATTEMPTS": 10,
-            "opponentFgAttempts": 91,
-            "opponentFtAttempts": 7,
-            "opponent2ptmake": 32,
-            "opponent2ptmiss": 36,
-            "opponent3ptmake": 10,
-            "opponent3ptmiss": 13,
-            "opponentfreethrowmake": 4,
-            "opponentfreethrowmiss": 3
-        }
-    },
     "Milwaukee Bucks": {
         "quarter1": {
-            "favorableTipResults": 34.0,
+            "favorableTipResults": 35,
             "2PT MAKE": 28,
             "3PT MAKE": 5,
             "FREE THROW MAKE": 3,
@@ -1814,7 +1736,7 @@
             "opponentfreethrowmiss": 0
         },
         "quarter2": {
-            "favorableTipResults": 48.0,
+            "favorableTipResults": 47,
             "2PT MAKE": 30,
             "3PT MAKE": 6,
             "FREE THROW MAKE": 10,
@@ -1833,7 +1755,7 @@
             "opponentfreethrowmiss": 4
         },
         "quarter3": {
-            "favorableTipResults": 48.0,
+            "favorableTipResults": 47,
             "2PT MAKE": 23,
             "3PT MAKE": 11,
             "FREE THROW MAKE": 4,
@@ -1852,7 +1774,7 @@
             "opponentfreethrowmiss": 5
         },
         "quarter4": {
-            "favorableTipResults": 34.0,
+            "favorableTipResults": 35,
             "2PT MAKE": 38,
             "3PT MAKE": 6,
             "FREE THROW MAKE": 5,
@@ -1869,6 +1791,162 @@
             "opponent3ptmiss": 12,
             "opponentfreethrowmake": 6,
             "opponentfreethrowmiss": 3
+        }
+    },
+    "Sacramento Kings": {
+        "quarter1": {
+            "favorableTipResults": 31,
+            "2PT MAKE": 28,
+            "3PT MAKE": 5,
+            "FREE THROW MAKE": 4,
+            "FG ATTEMPTS": 87,
+            "2PT MISS": 42,
+            "3PT MISS": 12,
+            "FREE THROW MISS": 5,
+            "FREE THROW ATTEMPTS": 9,
+            "opponentFgAttempts": 95,
+            "opponentFtAttempts": 3,
+            "opponent2ptmake": 37,
+            "opponent2ptmiss": 42,
+            "opponent3ptmake": 5,
+            "opponent3ptmiss": 11,
+            "opponentfreethrowmake": 3,
+            "opponentfreethrowmiss": 0
+        },
+        "quarter2": {
+            "favorableTipResults": 51,
+            "2PT MAKE": 30,
+            "3PT MAKE": 6,
+            "FREE THROW MAKE": 5,
+            "FG ATTEMPTS": 94,
+            "2PT MISS": 48,
+            "3PT MISS": 10,
+            "FREE THROW MISS": 0,
+            "FREE THROW ATTEMPTS": 5,
+            "opponentFgAttempts": 72,
+            "opponentFtAttempts": 13,
+            "opponent2ptmake": 27,
+            "opponent2ptmiss": 28,
+            "opponent3ptmake": 7,
+            "opponent3ptmiss": 10,
+            "opponentfreethrowmake": 7,
+            "opponentfreethrowmiss": 6
+        },
+        "quarter3": {
+            "favorableTipResults": 51,
+            "2PT MAKE": 29,
+            "3PT MAKE": 4,
+            "FREE THROW MAKE": 9,
+            "FG ATTEMPTS": 71,
+            "2PT MISS": 34,
+            "3PT MISS": 4,
+            "FREE THROW MISS": 0,
+            "FREE THROW ATTEMPTS": 9,
+            "opponentFgAttempts": 56,
+            "opponentFtAttempts": 12,
+            "opponent2ptmake": 20,
+            "opponent2ptmiss": 19,
+            "opponent3ptmake": 11,
+            "opponent3ptmiss": 6,
+            "opponentfreethrowmake": 9,
+            "opponentfreethrowmiss": 3
+        },
+        "quarter4": {
+            "favorableTipResults": 31,
+            "2PT MAKE": 28,
+            "3PT MAKE": 4,
+            "FREE THROW MAKE": 4,
+            "FG ATTEMPTS": 77,
+            "2PT MISS": 31,
+            "3PT MISS": 14,
+            "FREE THROW MISS": 6,
+            "FREE THROW ATTEMPTS": 10,
+            "opponentFgAttempts": 91,
+            "opponentFtAttempts": 7,
+            "opponent2ptmake": 32,
+            "opponent2ptmiss": 36,
+            "opponent3ptmake": 10,
+            "opponent3ptmiss": 13,
+            "opponentfreethrowmake": 4,
+            "opponentfreethrowmiss": 3
+        }
+    },
+    "Boston Celtics": {
+        "quarter1": {
+            "favorableTipResults": 35,
+            "2PT MAKE": 27,
+            "3PT MAKE": 5,
+            "FREE THROW MAKE": 4,
+            "FG ATTEMPTS": 76,
+            "2PT MISS": 34,
+            "3PT MISS": 10,
+            "FREE THROW MISS": 0,
+            "FREE THROW ATTEMPTS": 4,
+            "opponentFgAttempts": 88,
+            "opponentFtAttempts": 5,
+            "opponent2ptmake": 39,
+            "opponent2ptmiss": 35,
+            "opponent3ptmake": 3,
+            "opponent3ptmiss": 11,
+            "opponentfreethrowmake": 4,
+            "opponentfreethrowmiss": 1
+        },
+        "quarter2": {
+            "favorableTipResults": 47,
+            "2PT MAKE": 30,
+            "3PT MAKE": 6,
+            "FREE THROW MAKE": 7,
+            "FG ATTEMPTS": 84,
+            "2PT MISS": 34,
+            "3PT MISS": 14,
+            "FREE THROW MISS": 2,
+            "FREE THROW ATTEMPTS": 9,
+            "opponentFgAttempts": 79,
+            "opponentFtAttempts": 4,
+            "opponent2ptmake": 30,
+            "opponent2ptmiss": 33,
+            "opponent3ptmake": 6,
+            "opponent3ptmiss": 10,
+            "opponentfreethrowmake": 3,
+            "opponentfreethrowmiss": 1
+        },
+        "quarter3": {
+            "favorableTipResults": 47,
+            "2PT MAKE": 37,
+            "3PT MAKE": 5,
+            "FREE THROW MAKE": 3,
+            "FG ATTEMPTS": 93,
+            "2PT MISS": 39,
+            "3PT MISS": 12,
+            "FREE THROW MISS": 0,
+            "FREE THROW ATTEMPTS": 3,
+            "opponentFgAttempts": 82,
+            "opponentFtAttempts": 7,
+            "opponent2ptmake": 23,
+            "opponent2ptmiss": 44,
+            "opponent3ptmake": 8,
+            "opponent3ptmiss": 7,
+            "opponentfreethrowmake": 6,
+            "opponentfreethrowmiss": 1
+        },
+        "quarter4": {
+            "favorableTipResults": 35,
+            "2PT MAKE": 22,
+            "3PT MAKE": 3,
+            "FREE THROW MAKE": 7,
+            "FG ATTEMPTS": 75,
+            "2PT MISS": 34,
+            "3PT MISS": 16,
+            "FREE THROW MISS": 2,
+            "FREE THROW ATTEMPTS": 9,
+            "opponentFgAttempts": 86,
+            "opponentFtAttempts": 10,
+            "opponent2ptmake": 34,
+            "opponent2ptmiss": 32,
+            "opponent3ptmake": 8,
+            "opponent3ptmiss": 12,
+            "opponentfreethrowmake": 8,
+            "opponentfreethrowmiss": 2
         }
     },
     "Orlando Magic": {
@@ -1951,7 +2029,7 @@
     },
     "New Orleans Pelicans": {
         "quarter1": {
-            "favorableTipResults": 34.0,
+            "favorableTipResults": 34,
             "2PT MAKE": 27,
             "3PT MAKE": 5,
             "FREE THROW MAKE": 3,
@@ -1970,7 +2048,7 @@
             "opponentfreethrowmiss": 4
         },
         "quarter2": {
-            "favorableTipResults": 48.0,
+            "favorableTipResults": 48,
             "2PT MAKE": 38,
             "3PT MAKE": 5,
             "FREE THROW MAKE": 6,
@@ -1989,7 +2067,7 @@
             "opponentfreethrowmiss": 6
         },
         "quarter3": {
-            "favorableTipResults": 48.0,
+            "favorableTipResults": 48,
             "2PT MAKE": 29,
             "3PT MAKE": 4,
             "FREE THROW MAKE": 8,
@@ -2008,7 +2086,7 @@
             "opponentfreethrowmiss": 1
         },
         "quarter4": {
-            "favorableTipResults": 34.0,
+            "favorableTipResults": 34,
             "2PT MAKE": 28,
             "3PT MAKE": 5,
             "FREE THROW MAKE": 6,
@@ -2025,84 +2103,6 @@
             "opponent3ptmiss": 18,
             "opponentfreethrowmake": 7,
             "opponentfreethrowmiss": 6
-        }
-    },
-    "Boston Celtics": {
-        "quarter1": {
-            "favorableTipResults": 36.0,
-            "2PT MAKE": 27,
-            "3PT MAKE": 5,
-            "FREE THROW MAKE": 4,
-            "FG ATTEMPTS": 76,
-            "2PT MISS": 34,
-            "3PT MISS": 10,
-            "FREE THROW MISS": 0,
-            "FREE THROW ATTEMPTS": 4,
-            "opponentFgAttempts": 88,
-            "opponentFtAttempts": 5,
-            "opponent2ptmake": 39,
-            "opponent2ptmiss": 35,
-            "opponent3ptmake": 3,
-            "opponent3ptmiss": 11,
-            "opponentfreethrowmake": 4,
-            "opponentfreethrowmiss": 1
-        },
-        "quarter2": {
-            "favorableTipResults": 46.0,
-            "2PT MAKE": 30,
-            "3PT MAKE": 6,
-            "FREE THROW MAKE": 7,
-            "FG ATTEMPTS": 84,
-            "2PT MISS": 34,
-            "3PT MISS": 14,
-            "FREE THROW MISS": 2,
-            "FREE THROW ATTEMPTS": 9,
-            "opponentFgAttempts": 79,
-            "opponentFtAttempts": 4,
-            "opponent2ptmake": 30,
-            "opponent2ptmiss": 33,
-            "opponent3ptmake": 6,
-            "opponent3ptmiss": 10,
-            "opponentfreethrowmake": 3,
-            "opponentfreethrowmiss": 1
-        },
-        "quarter3": {
-            "favorableTipResults": 46.0,
-            "2PT MAKE": 37,
-            "3PT MAKE": 5,
-            "FREE THROW MAKE": 3,
-            "FG ATTEMPTS": 93,
-            "2PT MISS": 39,
-            "3PT MISS": 12,
-            "FREE THROW MISS": 0,
-            "FREE THROW ATTEMPTS": 3,
-            "opponentFgAttempts": 82,
-            "opponentFtAttempts": 7,
-            "opponent2ptmake": 23,
-            "opponent2ptmiss": 44,
-            "opponent3ptmake": 8,
-            "opponent3ptmiss": 7,
-            "opponentfreethrowmake": 6,
-            "opponentfreethrowmiss": 1
-        },
-        "quarter4": {
-            "favorableTipResults": 36.0,
-            "2PT MAKE": 22,
-            "3PT MAKE": 3,
-            "FREE THROW MAKE": 7,
-            "FG ATTEMPTS": 75,
-            "2PT MISS": 34,
-            "3PT MISS": 16,
-            "FREE THROW MISS": 2,
-            "FREE THROW ATTEMPTS": 9,
-            "opponentFgAttempts": 86,
-            "opponentFtAttempts": 10,
-            "opponent2ptmake": 34,
-            "opponent2ptmiss": 32,
-            "opponent3ptmake": 8,
-            "opponent3ptmiss": 12,
-            "opponentfreethrowmake": 8,
-            "opponentfreethrowmiss": 2
         }
     },
     "Minnesota Timberwolves": {
@@ -2185,7 +2185,7 @@
     },
     "Cleveland Cavaliers": {
         "quarter1": {
-            "favorableTipResults": 36.5,
+            "favorableTipResults": 37,
             "2PT MAKE": 25,
             "3PT MAKE": 5,
             "FREE THROW MAKE": 2,
@@ -2204,7 +2204,7 @@
             "opponentfreethrowmiss": 2
         },
         "quarter2": {
-            "favorableTipResults": 44.5,
+            "favorableTipResults": 44,
             "2PT MAKE": 33,
             "3PT MAKE": 4,
             "FREE THROW MAKE": 4,
@@ -2223,7 +2223,7 @@
             "opponentfreethrowmiss": 3
         },
         "quarter3": {
-            "favorableTipResults": 44.5,
+            "favorableTipResults": 44,
             "2PT MAKE": 29,
             "3PT MAKE": 8,
             "FREE THROW MAKE": 5,
@@ -2242,7 +2242,7 @@
             "opponentfreethrowmiss": 4
         },
         "quarter4": {
-            "favorableTipResults": 36.5,
+            "favorableTipResults": 37,
             "2PT MAKE": 34,
             "3PT MAKE": 9,
             "FREE THROW MAKE": 2,
@@ -2263,7 +2263,7 @@
     },
     "Denver Nuggets": {
         "quarter1": {
-            "favorableTipResults": 37.5,
+            "favorableTipResults": 37,
             "2PT MAKE": 18,
             "3PT MAKE": 8,
             "FREE THROW MAKE": 4,
@@ -2282,7 +2282,7 @@
             "opponentfreethrowmiss": 2
         },
         "quarter2": {
-            "favorableTipResults": 43.5,
+            "favorableTipResults": 44,
             "2PT MAKE": 22,
             "3PT MAKE": 9,
             "FREE THROW MAKE": 12,
@@ -2301,7 +2301,7 @@
             "opponentfreethrowmiss": 1
         },
         "quarter3": {
-            "favorableTipResults": 43.5,
+            "favorableTipResults": 44,
             "2PT MAKE": 23,
             "3PT MAKE": 8,
             "FREE THROW MAKE": 5,
@@ -2320,7 +2320,7 @@
             "opponentfreethrowmiss": 1
         },
         "quarter4": {
-            "favorableTipResults": 37.5,
+            "favorableTipResults": 37,
             "2PT MAKE": 25,
             "3PT MAKE": 9,
             "FREE THROW MAKE": 4,

@@ -249,14 +249,6 @@ def runAlgoForSeason(seasonCsv: str, skillDictPath: str, predictionSummariesPath
 
         i += 1
 
-    # if startFromBeginning:
-    #     allKeys = psd.keys()
-    #     for key in allKeys:
-    #         key['sigma'] += 2
-    #         if key['sigma'] > 8.333333333333334:
-    #             key['sigma'] = 8.333333333333334
-    #     print("added 2 to all sigmas for new season")
-
     psd['lastGameCode'] = df.iloc[-1]['Game Code']
     with open(skillDictPath, 'w') as write_file:
         json.dump(psd, write_file, indent=4)
@@ -265,7 +257,7 @@ def runAlgoForSeason(seasonCsv: str, skillDictPath: str, predictionSummariesPath
         with open(predictionSummariesPath, 'w') as write_file:
             json.dump(dsd, write_file, indent=4)
 
-    df.to_csv(str(seasonCsv)[:-4] + '-test.csv')
+    df.to_csv(str(seasonCsv)[:-4] + '-calculated-values.csv')
 
     if predictionArray is not None and actualArray is not None and histogramPredictionsDict is not None:
         return predictionArray, actualArray, histogramPredictionsDict
