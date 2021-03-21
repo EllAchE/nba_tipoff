@@ -57,6 +57,8 @@ def glickoUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, gam
         awaySigma = loserOgSigma
         homePhi = winnerOgPhi
         awayPhi = loserOgPhi
+        #homeAppearances = winnerAppearances
+        #awayAppearances = loserAppearances
     elif homePlayerCode == loserCode:
         homeMu = loserOgMu
         homeSigma = loserOgSigma
@@ -64,9 +66,13 @@ def glickoUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, gam
         awaySigma = winnerOgSigma
         homePhi = loserOgPhi
         awayPhi = winnerOgPhi
+        #awayAppearances = winnerAppearances
+        #homeAppearances = loserAppearances
+    else:
+        raise ValueError('neither code matches')
 
     return {'Home Glicko Mu': homeMu, 'Away Glicko Mu': awayMu, "Home Glicko Sigma": homeSigma, "Away Glicko Sigma": awaySigma,
-            "Home Glicko Phi": homePhi, "Away Glicko Phi": awayPhi}
+            "Home Glicko Phi": homePhi, "Away Glicko Phi": awayPhi}#, "Home Lifetime Apperances": homeAppearances, "Away Lifetime Appearances": awayAppearances}
 
 def calculateGlickoDictionaryFromZero():
     createPlayerGlickoDictionary() # clears the stored values,

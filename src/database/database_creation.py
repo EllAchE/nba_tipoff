@@ -307,13 +307,40 @@ def addSeasonLongData():
     pass
 
 def addIncrementalData():
-    # gamesPlayed
-    # Tipper Lifetime Apperances
-    # Elo
-    # Glicko
-    # Trueskill
+    # gamesPlayed -x
+    # Tipper Lifetime Appearances
+    # Elo - x
+    # Glicko - x
+    # Trueskill - x
+    # current naive Q1 rating
+    # Tip Wins
+    # Tip Losses
+    # Mid season naive Q1 rating
     pass
 
+
+def addGamesPlayed(df):
+    teamSet = set()
+    teamDict = {}
+    df["Home Games Played"] = df["Away Games Played"] = 0
+    for i in range(0, len(df.index) - 1):
+        row = df.iloc[i]
+        home = row['Home']
+        away = row['Away']
+        if home not in teamSet:
+            teamSet.add(home)
+            teamDict[home] = 0
+        if away not in teamSet:
+            teamSet.add(away)
+            teamDict[away] = 0
+
+        teamDict[home] += 1
+        teamDict[away] += 1
+        df.at[i, "Home Games Played"] = teamDict[home]
+        df.at[i, "Away Games Played"] = teamDict[away]
+
+def addResult():
+    pass
 
 def addAdditionalMlColumnsSingleSeason(season):
     df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))

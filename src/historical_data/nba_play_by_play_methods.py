@@ -28,12 +28,10 @@ Percentage of first shots taken by particular player
 
 '''
 import json
-
 import requests
 from nba_api.stats.endpoints import gamerotation, playbyplayv2
 from typing import Any
 import pandas as pd
-
 import ENVIRONMENT
 from src.database.database_access import findPlayerFullFromLastGivenPossibleFullNames, getGameIdFromBballRef, \
     getTeamIDFromShortCode, getGameIdByTeamAndDateFromStaticData, getUniversalPlayerName, \
@@ -44,7 +42,6 @@ from src.utils import sleepChecker
 # backlogTODO: Writing type stubs for pandas' DataFrame is too cumbersome, so we use this instead.
 # Eventually, we should replace that with real type stubs for DataFrame.
 DataFrame = Any
-
 def getAllGamesInSeason(season: int, short_code: str):
     season -= 1
     teamId = getTeamIDFromShortCode(short_code)
@@ -55,21 +52,15 @@ def getAllGamesInSeason(season: int, short_code: str):
 def getPlayerLastNameFromShotDescription(description: str): # if this need to be fully generic then fetch the playerlast names and do a match on that
     isMiss = "MISS" in description
     splitDescription = description.split(' ')
-    
-    if isMiss:
-        return splitDescription[1]
-    else:
-        return splitDescription[0]
+    return splitDescription[1] if isMiss else splitDescription[0]
 
 def getShotTypeFromEventDescription(description: str):
     isMiss = "MISS" if "MISS" in description or "BLOCK" in description else "MAKE"
     
     if "3PT" in description:
         return "3PT " + isMiss
-    
     if "Free Throw" in description:
         return "FREE THROW " + isMiss
-    
     return "2PT " + isMiss
 
 def _getSingleQuarterStatistics(shotsBeforeFirstScore: pd.DataFrame):
@@ -86,14 +77,10 @@ def _getSingleQuarterStatistics(shotsBeforeFirstScore: pd.DataFrame):
         description = row.HOMEDESCRIPTION if row.HOMEDESCRIPTION is not None else row.VISITORDESCRIPTION
 
         playerTeam = awayTeam if row.HOMEDESCRIPTION is None else homeTeam
+        opponentTeam = awayTeam if playerTeam == homeTeam else homeTeam
         playerLast = getPlayerLastNameFromShotDescription(description)
         player = findPlayerFullFromLastGivenPossibleFullNames(playerLast, allGamePlayers)
-        shotType = getShotTypeFromEventDescription(description)
-
-        if playerTeam == homeTeam:
-            opponentTeam = awayTeam
-        else:
-            opponentTeam = homeTeam
+        shotType = getShotTypeFromEventDescription(description) # todo this may be interpreting blocks as shots
 
         dataList.append({"shotIndex": shotIndex, "team": playerTeam, "player": player, "opponentTeam": opponentTeam, "shotType": shotType}) # free throws should be considered a collective shot, not individual
         shotIndex += 1
@@ -363,18 +350,7 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         with open(ENVIRONMENT.ALL_SHOTS_BEFORE_FIRST_FG_PATH, 'w') as jsonFile:
             json.dump(seasonShotsList2, jsonFile, indent=4)
 
-def fillGapsLooper():
-    for year in ENVIRONMENT.ALL_SEASONS_LIST:
-        pathIn = ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(year) #ENVIRONMENT.SEASON_DATA_GAPS
-        pathOut = (ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH[:-4] + "_{}.csv").format(year, "no_gaps") #ENVIRONMENT.SEASON_DATA_GAPS_FILLED
-        print("run for ", year, pathIn, pathOut)
-        fillGaps(year, pathIn, pathOut)
-
 # backlogtodo add scheduler
-
-# This needs to come from: Main season CSV - Blank line: Date, home and away
-#
-
 def fillGaps(season):
     df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
     gameCodeList = list()

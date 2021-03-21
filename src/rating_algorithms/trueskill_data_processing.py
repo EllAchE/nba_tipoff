@@ -55,13 +55,28 @@ def trueskillUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, 
         homeSigma = winnerOgSigma
         awayMu = loserOgMu
         awaySigma = loserOgSigma
+        homeAppearances = winnerAppearances - 1
+        awayAppearances = loserAppearances - 1
+        homeWins = winnerWinCount - 1
+        homeLosses = psd[winnerCode]["losses"]
+        awayWins = psd[loserCode]["wins"]
+        awayLosses = loserLosses
     elif homePlayerCode == loserCode:
         homeMu = loserOgMu
         homeSigma = loserOgSigma
         awayMu = winnerOgMu
         awaySigma = winnerOgSigma
+        awayAppearances = winnerAppearances
+        homeAppearances = loserAppearances
+        awayWins = winnerWinCount - 1
+        awayLosses = psd[winnerCode]["losses"]
+        homeWins = psd[loserCode]["wins"]
+        homeLosses = loserLosses
+    else:
+        raise ValueError('neither code matches')
 
-    return {"Home TS Mu": homeMu, "Home TS Sigma":homeSigma, "Away TS Mu": awayMu, "Away TS Sigma": awaySigma}
+    return {"Home TS Mu": homeMu, "Home TS Sigma": homeSigma, "Away TS Mu": awayMu, "Away TS Sigma": awaySigma, "Home Lifetime Apperances": homeAppearances, "Away Lifetime Appearances": awayAppearances,
+            "Home Tipper Wins": homeWins, "Home Tipper Losses": homeLosses, "Away Tipper Wins": awayWins, "Away Tipper Losses": awayLosses}
 
 def calculateTrueSkillDictionaryFromZero():
     createPlayerTrueSkillDictionary() # clears the stored values,
