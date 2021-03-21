@@ -81,3 +81,5 @@ https://punter2pro.com/best-sports-arbing-software/
 # todo investigate adjsuted starting rankings for low appearance players, i.e. if we can assume certain/lower mu values for a class of player we can improve our predictions
 # todo investigate adjusted prediction odds strength for low appearance players
 # backlogtodo (OVERKILL) have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
+
+# backlogtodo use this win prob/other win prob estimates over the course of a game to see if odds are mismatched https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/winprobabilitypbp.md

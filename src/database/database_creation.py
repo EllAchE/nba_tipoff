@@ -1,15 +1,14 @@
 import glob
 import json
 import unicodedata
-
 import pandas as pd
 import re
 
-from nba_api.stats.endpoints import leaguegamefinder
+from nba_api.stats.endpoints import leaguegamefinder, TeamEstimatedMetrics, teamestimatedmetrics
 from nba_api.stats.static import teams
 
 import ENVIRONMENT
-from src.database.database_access import getUniversalPlayerName
+from src.database.database_access import getUniversalPlayerName, getUniversalTeamShortCode
 from src.utils import getSoupFromUrl, removeAllNonLettersAndLowercase, sleepChecker
 
 
@@ -296,6 +295,26 @@ def addExtraUrlToPlayerLinks():
 
         df.to_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), index=False)
 
+def getShotBreakdownForTeams():
+    # shot pt https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/leaguedashteamptshot.md
+    # percentages https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/teamyearbyyearstats.md
+    pass
+
+def getAdvancedMetricsForTeams(season):
+    # all https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/teamdashboardbyteamperformance.md
+    # data split out by things like all star break etc. https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/teamdashboardbygeneralsplits.md
+    # advanced i.e. TOV PCT https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/teamestimatedmetrics.md
+    data = TeamEstimatedMetrics(season=season).get_data_frames()[0]
+    result = data.to_json(orient="index")
+    parsed = json.loads(result)
+    newDict = {}
+    for key in parsed.keys():
+        obj = parsed[key]
+        name = obj["TEAM_NAME"]
+        newDict[getUniversalTeamShortCode(name)] = parsed[key]
+    with open('test.json', 'w') as wFile:
+        json.dump(newDict, wFile, indent=4)
+
 def addSeasonLongData():
     # off eff
     # def eff
@@ -307,40 +326,51 @@ def addSeasonLongData():
     pass
 
 def addIncrementalData():
-    # gamesPlayed -x
-    # Tipper Lifetime Appearances
+    # gamesPlayed - x
+    # Tipper Lifetime Appearances - x
     # Elo - x
     # Glicko - x
     # Trueskill - x
-    # current naive Q1 rating
-    # Tip Wins
-    # Tip Losses
-    # Mid season naive Q1 rating
+    # current naive Q1 rating - x
+    # Tip Wins - x
+    # Tip Losses - x
+    # Mid season naive Q1 rating - x
     pass
 
 
-def addGamesPlayed(df):
+def addGamesPlayedAndNaiveAdjustment(df): # Games Played, naive adjustment
     teamSet = set()
     teamDict = {}
     df["Home Games Played"] = df["Away Games Played"] = 0
     for i in range(0, len(df.index) - 1):
         row = df.iloc[i]
-        home = row['Home']
-        away = row['Away']
+        home = row['Home Short']
+        away = row['Away Short']
         if home not in teamSet:
             teamSet.add(home)
-            teamDict[home] = 0
+            teamDict[home]["gp"] = 0
+            teamDict[home]['expectedScores'] = 0
         if away not in teamSet:
             teamSet.add(away)
-            teamDict[away] = 0
+            teamDict[away]["gp"] = 0
+            teamDict[away]['expectedScores'] = 0
 
-        teamDict[home] += 1
-        teamDict[away] += 1
-        df.at[i, "Home Games Played"] = teamDict[home]
-        df.at[i, "Away Games Played"] = teamDict[away]
+        teamDict[home]['gp'] += 1
+        teamDict[away]['gp'] += 1
+        df.at[i, "Home Games Played"] = teamDict[home]['gp']
+        df.at[i, "Away Games Played"] = teamDict[away]['gp']
 
-def addResult():
-    pass
+        teamDict[home]['expectedScores'] += ENVIRONMENT.TIP_WINNER_SCORE_ODDS if row['Tip Winning Team'] == home else (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
+        teamDict[away]['expectedScores'] += ENVIRONMENT.TIP_WINNER_SCORE_ODDS if row['Tip Winning Team'] == away else (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
+        teamDict[home]['actualScores'] += 1 if row['First Scoring Team'] == home else 0
+        teamDict[away]['actualScores'] += 1 if row['First Scoring Team'] == away else 0
+        df.at[i, "Current Home Naive Adjustment"] = teamDict[home]['expectedScores'] / teamDict[home]['actualScores']
+        df.at[i, "Current Away Naive Adjustment"] = teamDict[away]['expectedScores'] / teamDict[away]['actualScores']
+
+        if teamDict[home]['gp'] == 34:
+            teamDict[home]['midSeasonAdjFactor'] = teamDict[home]['expectedScores'] / teamDict[home]['actualScores']
+        if teamDict[away]['gp'] == 34:
+            teamDict[away]['midSeasonAdjFactor'] = teamDict[away]['expectedScores'] / teamDict[away]['actualScores']
 
 def addAdditionalMlColumnsSingleSeason(season):
     df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))

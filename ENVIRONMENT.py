@@ -55,6 +55,7 @@ PLAYER_GLICKO_DICT_PATH = Path(os.path.abspath('Data/JSON/algorithms/glicko/play
 SEASON_CSV_UNFORMATTED_PATH = os.path.abspath('Data/CSV/season_data/tipoff_and_first_score_details_{}_season.csv')
 GLICKO_PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/algorithms/glicko/summaries/glicko_prediction_summaries_{}_{}_{}_{}_{}_{}_{}_{}.json'.format(
 BASE_GLICKO_MU, str(BASE_GLICKO_SIGMA).replace('.', ''), BASE_GLICKO_PHI, str(BASE_GLICKO_TAU).replace('.', ''), MIN_GLICKO_APPEARANCES, GLICKO_TIPOFF_ODDS_THRESHOLD, PHI_DRIFT, ALL_SEASONS_LIST)))
+ADVANCED_TEAMS_METRICS_UNFORMATTED = Path(os.path.abspath('Data/JSON/'))
 
 # Elo Base values
 K_FACTOR = 10
@@ -68,18 +69,21 @@ ELO_PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/algorithms/elo/s
 K_FACTOR, BASE_ELO, BASE_ELO_BETA, MIN_ELO_APPEARANCES, ELO_TIPOFF_ODDS_THRESHOLD, ALL_SEASONS_LIST)))
 
 # Calculated Value Paths
-ALL_SHOTS_BEFORE_FIRST_FG_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/shots_before_first_field_goal.json'))
-SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH = os.path.abspath('Data/JSON/Public_NBA_API/first_shots_data/{}_data.json')
-# FIRST_FG_SUMMARY_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/first_fg_summaries/first_fg_summary.json'))
-FIRST_FG_SUMMARY_UNFORMATTED_PATH = os.path.abspath('Data/JSON/Public_NBA_API/first_fg_summaries/first_fg_summary_{}.json')
-# FIRST_POINT_SUMMARY_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/first_point_summary.json'))
-FIRST_POINT_SUMMARY_UNFORMATTED_PATH = os.path.abspath('Data/JSON/Public_NBA_API/first_point_summaries/first_point_summary_{}.json')
-FIRST_POINT_TEAM_META = os.path.abspath('Data/JSON/Public_NBA_API/first_point_summaries/first_point_summary_meta_{}.json')
+ALL_SHOTS_BEFORE_FIRST_FG_PATH = Path(os.path.abspath('Data/JSON/first_shots_data/shots_before_first_field_goal.json'))
+SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH = os.path.abspath('Data/JSON/first_shots_data/first_shots_raw/{}_data.json')
+# FIRST_FG_SUMMARY_PATH = Path(os.path.abspath('Data/JSON/first_shots_raw/first_fg_summaries/first_fg_summary.json'))
+FIRST_FG_SUMMARY_UNFORMATTED_PATH = os.path.abspath(
+    'Data/JSON/first_shots_data/first_fg_summaries/first_fg_summary_{}.json')
+# FIRST_POINT_SUMMARY_PATH = Path(os.path.abspath('Data/JSON/first_shots_raw/first_point_summary.json'))
+FIRST_POINT_SUMMARY_UNFORMATTED_PATH = os.path.abspath(
+    'Data/JSON/first_shots_data/first_point_summaries/first_point_summary_{}.json')
+FIRST_POINT_TEAM_META = os.path.abspath(
+    'Data/JSON/first_shots_data/first_point_summaries/first_point_summary_meta_{}.json')
 
 # Raw Data Paths
 PLAYER_TEAM_PAIRS_PATH = Path(os.path.abspath('Data/JSON/player_team_pairs.json'))
 CURRENT_SEASON_CSV = Path(os.path.abspath('Data/CSV/season_data/tipoff_and_first_score_details_{}_season.csv'.format(CURRENT_SEASON)))
-TEAM_NAMES_PATH = Path(os.path.abspath('Data/JSON/Public_NBA_API/teams.json'))
+TEAM_NAMES_PATH = Path(os.path.abspath('Data/JSON/teams.json'))
 PLAYER_NAME_RELATIONSHIPS_PATH = Path(os.path.abspath('Data/JSON/player_name_relationships.json'))
 BET_HISTORY_PATH = Path(os.path.abspath("Data/CSV/bet_history.csv"))
 GAME_SUMMARY_UNFORMATTED_PATH = os.path.abspath('Data/CSV/season_summary_data/{}_allgames.csv')
