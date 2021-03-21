@@ -9,8 +9,6 @@ from src.database.database_access import getUniversalTeamShortCode
 from src.utils import lowercaseNoSpace
 
 # backlogtodo include nonshooting possessions
-# todo these should be done:
-#    Offensive efficiency, Def E, Percentage of FT & 2s vs. 3s (effective score percentage),
 # backlogtodo  usage rate for players
 
 def getCurrentSeasonUsageRate():

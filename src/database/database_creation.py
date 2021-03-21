@@ -295,10 +295,7 @@ def addExtraUrlToPlayerLinks():
 
         df.to_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), index=False)
 
-def getShotBreakdownForTeams(season): # season must be in 2014-15 format
-    # shot pt https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/leaguedashteamptshot.md
-    # percentages https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/teamyearbyyearstats.md
-    data = LeagueDashTeamPtShot(season=season).get_data_frames()[0]
+def saveNbaApiDataframeAsJson(data, path):
     result = data.to_json(orient="index")
     parsed = json.loads(result)
     newDict = {}
@@ -306,25 +303,25 @@ def getShotBreakdownForTeams(season): # season must be in 2014-15 format
         obj = parsed[key]
         name = obj["TEAM_NAME"]
         newDict[getUniversalTeamShortCode(name)] = parsed[key]
-    with open(ENVIRONMENT.SHOT_BREAKDOWN_TEAMS_UNFORMATTED.format(season), 'w') as wFile:
+    with open(path, 'w') as wFile:
         json.dump(newDict, wFile, indent=4)
+
+def getShotBreakdownForTeams(season): # season must be in 2014-15 format
+    # shot pt https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/leaguedashteamptshot.md
+    # percentages https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/teamyearbyyearstats.md
+    data = LeagueDashTeamPtShot(season=season).get_data_frames()[0]
+    path = ENVIRONMENT.SHOT_BREAKDOWN_TEAMS_UNFORMATTED.format(season)
+    saveNbaApiDataframeAsJson(data, path)
 
 def getAdvancedMetricsForTeams(season):
     # all https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/teamdashboardbyteamperformance.md
     # data split out by things like all star break etc. https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/teamdashboardbygeneralsplits.md
     # advanced i.e. TOV PCT https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/teamestimatedmetrics.md
     data = TeamEstimatedMetrics(season=season).get_data_frames()[0]
-    result = data.to_json(orient="index")
-    parsed = json.loads(result)
-    newDict = {}
-    for key in parsed.keys():
-        obj = parsed[key]
-        name = obj["TEAM_NAME"]
-        newDict[getUniversalTeamShortCode(name)] = parsed[key]
-    with open(ENVIRONMENT.ADVANCED_TEAMS_METRICS_UNFORMATTED.format(season), 'w') as wFile:
-        json.dump(newDict, wFile, indent=4)
+    path = ENVIRONMENT.ADVANCED_TEAMS_METRICS_UNFORMATTED.format(season)
+    saveNbaApiDataframeAsJson(data, path)
 
-def addSeasonLongData():
+def addSeasonLongData(df, season):
     # off eff - x
     # def eff - x
     # FT percent - x
@@ -332,25 +329,39 @@ def addSeasonLongData():
     # 3pt per - x
     # TO Rate - x
     # Naive Q1 rating - x
-    pass
+    with open(ENVIRONMENT.ADVANCED_TEAMS_METRICS_UNFORMATTED.format(season)) as rFile:
+        advancedMetrics = json.load(rFile)
+    with open(ENVIRONMENT.SHOT_BREAKDOWN_TEAMS_UNFORMATTED.format(season)) as rFile:
+        shotBreakdown = json.load(rFile)
 
-def addIncrementalData():
-    # gamesPlayed - x
-    # Tipper Lifetime Appearances - x
-    # Elo - x
-    # Glicko - x
-    # Trueskill - x
-    # current naive Q1 rating - x
-    # Tip Wins - x
-    # Tip Losses - x
-    # Mid season naive Q1 rating - x
-    pass
+    advancedMetricsKeyList = ['W_PCT', 'E_OFF_RATING', 'E_DEF_RATING', 'E_OREB_PCT', 'E_DREB_PCT', 'E_REB_PCT', 'E_TM_TOV_PCT', 'W_PCT_RANK', 'E_OFF_RATING_RANK',
+                              'E_DEF_RATING_RANK', 'E_OREB_PCT_RANK', 'E_REB_PCT_RANK', 'E_TM_TOV_PCT']
+    shotBreakdownKeyList = ['FG_PCT', 'FG2_PCT', 'FG3_PCT', 'FG2A_FREQUENCY', 'FG3_FREQUENCY']
+    for item in advancedMetricsKeyList:
+        df["HOME_" + str(item)] = None
+        df["AWAY_" + str(item)] = None
+    for i in range(0, len(df.index) - 1):
+        row = df.iloc[i]
+        home = row['Home Short']
+        away = row['Away Short']
 
+        for item in advancedMetricsKeyList:
+            homeKey = "HOME_" + item
+            awayKey = "AWAY_" + item
+            df.at[i, homeKey] = advancedMetrics[home][item]
+            df.at[i, awayKey] = advancedMetrics[away][item]
+        for item in shotBreakdownKeyList:
+            homeKey = "HOME_" + item
+            awayKey = "AWAY_" + item
+            df.at[i, homeKey] = shotBreakdown[home][item]
+            df.at[i, awayKey] = shotBreakdown[away][item]
+    return df
 
 def addGamesPlayedAndNaiveAdjustment(df): # Games Played, naive adjustment
     teamSet = set()
     teamDict = {}
-    df["Home Games Played"] = df["Away Games Played"] = 0
+    df["Home Games Played"] = df["Away Games Played"] = df["Current Home Naive Adjustment"] = df["Current Away Naive Adjustment"] \
+        = df["Mid Season Home Naive Adjustment"] = df["Mid Season Away Naive Adjustment"] = df["Season Long Home Naive Adjustment"] = df["Season Long Away Naive Adjustment"] = None
     for i in range(0, len(df.index) - 1):
         row = df.iloc[i]
         home = row['Home Short']
@@ -376,11 +387,29 @@ def addGamesPlayedAndNaiveAdjustment(df): # Games Played, naive adjustment
         df.at[i, "Current Home Naive Adjustment"] = teamDict[home]['expectedScores'] / teamDict[home]['actualScores']
         df.at[i, "Current Away Naive Adjustment"] = teamDict[away]['expectedScores'] / teamDict[away]['actualScores']
 
-        if teamDict[home]['gp'] == 34:
+        if teamDict[home]['gp'] == 40:
             teamDict[home]['midSeasonAdjFactor'] = teamDict[home]['expectedScores'] / teamDict[home]['actualScores']
-        if teamDict[away]['gp'] == 34:
+        if teamDict[away]['gp'] == 40:
             teamDict[away]['midSeasonAdjFactor'] = teamDict[away]['expectedScores'] / teamDict[away]['actualScores']
 
+    for i in range(0, len(df.index) - 1):
+        df.at[i, "Mid Season Home Naive Adjustment"] = teamDict[home]['midSeasonAdjFactor']
+        df.at[i, "Mid Season Away Naive Adjustment"] = teamDict[home]['midSeasonAdjFactor']
+        df.at[i, "Season Long Home Naive Adjustment"] = teamDict[home]['expectedScores'] / teamDict[home]['actualScores']
+        df.at[i, "Season Long Away Naive Adjustment"] = teamDict[away]['expectedScores'] / teamDict[away]['actualScores']
+        # todo this is going to bias playoff teams downwards as they'll play other good teams (though not too significantly)
+    return df
+
+# def missing stuff(): # this happens in the predictions runner
+    # gamesPlayed - x
+    # Tipper Lifetime Appearances - x
+    # Elo - x
+    # Glicko - x
+    # Trueskill - x
+    # current naive Q1 rating - x
+    # Tip Wins - x
+    # Tip Losses - x
+    # Mid season naive Q1 rating - x
 def addAdditionalMlColumnsSingleSeason(season):
     df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
     for i in range(0, len(df.index) - 1):
