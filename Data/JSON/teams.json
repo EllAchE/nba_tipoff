@@ -202,12 +202,22 @@
   {
     "teamId": 1610612760,
     "abbreviation": "OKC",
-    "alternateAbbreviations": ["SEA"],
+    "alternateAbbreviations": [],
     "teamName": "Oklahoma City Thunder",
     "simpleName": "Thunder",
     "location": "Oklahoma City",
     "slug": "oklahoma-city-thunder",
     "bovadaId": "2119"
+  },
+  {
+    "teamId": 1610612760,
+    "abbreviation": "SEA",
+    "alternateAbbreviations": ["SEA"],
+    "teamName": "Seattle SuperSonics",
+    "simpleName": "SuperSonics",
+    "location": "Seattle",
+    "slug": "oklahoma-city-thunder",
+    "bovadaId": ""
   },
   {
     "teamId": 1610612753,

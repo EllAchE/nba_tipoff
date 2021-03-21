@@ -4,7 +4,7 @@ import unicodedata
 import pandas as pd
 import re
 
-from nba_api.stats.endpoints import leaguegamefinder, TeamEstimatedMetrics, teamestimatedmetrics
+from nba_api.stats.endpoints import leaguegamefinder, TeamEstimatedMetrics, teamestimatedmetrics, LeagueDashTeamPtShot
 from nba_api.stats.static import teams
 
 import ENVIRONMENT
@@ -295,10 +295,19 @@ def addExtraUrlToPlayerLinks():
 
         df.to_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), index=False)
 
-def getShotBreakdownForTeams():
+def getShotBreakdownForTeams(season): # season must be in 2014-15 format
     # shot pt https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/leaguedashteamptshot.md
     # percentages https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/teamyearbyyearstats.md
-    pass
+    data = LeagueDashTeamPtShot(season=season).get_data_frames()[0]
+    result = data.to_json(orient="index")
+    parsed = json.loads(result)
+    newDict = {}
+    for key in parsed.keys():
+        obj = parsed[key]
+        name = obj["TEAM_NAME"]
+        newDict[getUniversalTeamShortCode(name)] = parsed[key]
+    with open(ENVIRONMENT.SHOT_BREAKDOWN_TEAMS_UNFORMATTED.format(season), 'w') as wFile:
+        json.dump(newDict, wFile, indent=4)
 
 def getAdvancedMetricsForTeams(season):
     # all https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/teamdashboardbyteamperformance.md
@@ -312,17 +321,17 @@ def getAdvancedMetricsForTeams(season):
         obj = parsed[key]
         name = obj["TEAM_NAME"]
         newDict[getUniversalTeamShortCode(name)] = parsed[key]
-    with open('test.json', 'w') as wFile:
+    with open(ENVIRONMENT.ADVANCED_TEAMS_METRICS_UNFORMATTED.format(season), 'w') as wFile:
         json.dump(newDict, wFile, indent=4)
 
 def addSeasonLongData():
-    # off eff
-    # def eff
-    # FT percent
-    # 2pt per
-    # 3pt per
-    # TO Rate
-    # Naive Q1 rating
+    # off eff - x
+    # def eff - x
+    # FT percent - x
+    # 2pt per - x
+    # 3pt per - x
+    # TO Rate - x
+    # Naive Q1 rating - x
     pass
 
 def addIncrementalData():
