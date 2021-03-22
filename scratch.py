@@ -20,19 +20,22 @@ from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalOrF
 # teamSummaryDataFromFirstPointData(2019)
 # teamSummaryDataFromFirstPointData(2020)
 # teamSummaryDataFromFirstPointData(2021)
+from src.odds_and_statistics.xgboost_impl import XGBoost
 from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero
 
 # calculateTrueSkillDictionaryFromZero()
 
-# addAdditionalMlColumnsSingleSeason(2013)
-# addAdditionalMlColumnsSingleSeason(2014)
-# addAdditionalMlColumnsSingleSeason(2015)
-# addAdditionalMlColumnsSingleSeason(2016)
-# addAdditionalMlColumnsSingleSeason(2017)
-# addAdditionalMlColumnsSingleSeason(2018)
-# addAdditionalMlColumnsSingleSeason(2019)
-# addAdditionalMlColumnsSingleSeason(2020)
+addAdditionalMlColumnsSingleSeason(2013)
+addAdditionalMlColumnsSingleSeason(2014)
+addAdditionalMlColumnsSingleSeason(2015)
+addAdditionalMlColumnsSingleSeason(2016)
+addAdditionalMlColumnsSingleSeason(2017)
+addAdditionalMlColumnsSingleSeason(2018)
+addAdditionalMlColumnsSingleSeason(2019)
+addAdditionalMlColumnsSingleSeason(2020)
 # getDailyOdds('CLE', 'TOR', '-107')
 # smallDataUpdate()
 # getAllOddsAndDisplayByEv(fanduelToday=True)
 # updateCurrentSeasonRawGameData()
+
+# XGBoost(2020)

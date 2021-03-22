@@ -363,13 +363,13 @@ def addSeasonLongData(df, season):
 def addGamesPlayedAndNaiveAdjustment(df): # Games Played, naive adjustment
     teamSet = set()
     teamDict = {}
-    df["Home Games Played"] = df["Away Games Played"] = df["Current Home Naive Adjustment"] = df["Current Away Naive Adjustment"] = df["Home Team Scores"] \
+    df["Home Games Played"] = df["Away Games Played"] = df["Current Home Naive Adjustment"] = df["Current Away Naive Adjustment"] = df["Home Scores"] \
         = df["Mid Season Home Naive Adjustment"] = df["Mid Season Away Naive Adjustment"] = df["Season Long Home Naive Adjustment"] = df["Season Long Away Naive Adjustment"] = None
     for i in range(0, len(df.index) - 1):
         row = df.iloc[i]
         home = getUniversalTeamShortCode(row['Home Short'])
         away = getUniversalTeamShortCode(row['Away Short'])
-        homeScores = 1 if row['Home Short'] == row['Home'] else 0
+        homeScores = True if row['Home Short'] == row['Home'] else False
         df.at[i, "Home Scores"] = homeScores
         if home not in teamSet:
             teamSet.add(home)
