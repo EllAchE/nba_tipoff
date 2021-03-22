@@ -369,7 +369,7 @@ def addGamesPlayedAndNaiveAdjustment(df): # Games Played, naive adjustment
         row = df.iloc[i]
         home = getUniversalTeamShortCode(row['Home Short'])
         away = getUniversalTeamShortCode(row['Away Short'])
-        homeScores = True if row['Home Short'] == row['Home'] else False
+        homeScores = True if row['First Scoring Team'] == getUniversalTeamShortCode(row['Home']) else False
         df.at[i, "Home Scores"] = homeScores
         if home not in teamSet:
             teamSet.add(home)
@@ -428,6 +428,7 @@ def addAdditionalMlColumnsSingleSeason(season):
     seasonTitle = str(season) + "-" + str(numberBack)
 
     df.to_csv(ENVIRONMENT.SEASON_CSV_ML_COLS_UNFORMATTED_PATH.format(seasonTitle), index=False)
+    print('ml columns added to dataset for season', season)
 
 #
 # def removeExtraIndex():
