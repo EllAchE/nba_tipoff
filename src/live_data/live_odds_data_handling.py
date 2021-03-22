@@ -128,6 +128,7 @@ def createAllOddsDict(draftkings=False, fanduelToday=False, fanduelTomorrow=Fals
     if betfair:
         allGameObjList = _addFullGameOddsObjsToList(allGameObjList, betfairOdds, "betfair odds", teamOnly=True, playersOnly=False)
     if draftkings:
+        # todo hacked this to be team only
         allGameObjList = _addSingleQuarterOddsObjsToList(allGameObjList, draftKingsOdds, "draftkings odds", teamOnly=False, playersOnly=False)
     if mgm:
         allGameObjList = _addSingleQuarterOddsObjsToList(allGameObjList, mgmOdds, "mgm odds", teamOnly=True, playersOnly=False)

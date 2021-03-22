@@ -28,7 +28,7 @@ def updateAllDataLongTermIncluded():
 
 # todo hook up trueskill from last game
 def smallDataUpdate():
-    # updateCurrentSeasonRawGameData()
+    updateCurrentSeasonRawGameData()
     # calculateTrueSkillDictionaryFromZero()
     getAllFirstPossessionStatisticsIncrementally(ENVIRONMENT.CURRENT_SEASON)
     getFirstFieldGoalOrFirstPointStats(ENVIRONMENT.CURRENT_SEASON) # Since Hornets became a team

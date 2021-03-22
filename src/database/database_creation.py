@@ -204,6 +204,8 @@ def _misformattedNameAdjustment(activePlayers):
             playerDict['alternateNames'] += ["Dan Schayes"]
         elif playerDict['fullName'] == "Mike Sweetney":
             playerDict['alternateNames'] += ["Michael Sweetney"]
+        elif playerDict['fullName'] == "Aleksej Polusevski":
+            playerDict['alternateNames'] += ['Pokuševski, Aleksej']
         elif playerDict['fullName'] == "Larry Nance Jnr":
             playerDict['alternateNames'] += ["Larry Nance"]
             playerDict['alternateNames'] += ["Larry Nance Jr."]
@@ -329,21 +331,22 @@ def addSeasonLongData(df, season):
     # 3pt per - x
     # TO Rate - x
     # Naive Q1 rating - x
-    with open(ENVIRONMENT.ADVANCED_TEAMS_METRICS_UNFORMATTED.format(season)) as rFile:
+    seasonNbaComFormat = str(season) + '-' + str((season + 1) % 100)
+    with open(ENVIRONMENT.ADVANCED_TEAMS_METRICS_UNFORMATTED.format(seasonNbaComFormat)) as rFile:
         advancedMetrics = json.load(rFile)
-    with open(ENVIRONMENT.SHOT_BREAKDOWN_TEAMS_UNFORMATTED.format(season)) as rFile:
+    with open(ENVIRONMENT.SHOT_BREAKDOWN_TEAMS_UNFORMATTED.format(seasonNbaComFormat)) as rFile:
         shotBreakdown = json.load(rFile)
 
     advancedMetricsKeyList = ['W_PCT', 'E_OFF_RATING', 'E_DEF_RATING', 'E_OREB_PCT', 'E_DREB_PCT', 'E_REB_PCT', 'E_TM_TOV_PCT', 'W_PCT_RANK', 'E_OFF_RATING_RANK',
                               'E_DEF_RATING_RANK', 'E_OREB_PCT_RANK', 'E_REB_PCT_RANK', 'E_TM_TOV_PCT']
-    shotBreakdownKeyList = ['FG_PCT', 'FG2_PCT', 'FG3_PCT', 'FG2A_FREQUENCY', 'FG3_FREQUENCY']
+    shotBreakdownKeyList = ['FG_PCT', 'FG2_PCT', 'FG3_PCT', 'FG2A_FREQUENCY', 'FG3A_FREQUENCY']
     for item in advancedMetricsKeyList:
         df["HOME_" + str(item)] = None
         df["AWAY_" + str(item)] = None
     for i in range(0, len(df.index) - 1):
         row = df.iloc[i]
-        home = row['Home Short']
-        away = row['Away Short']
+        home = getUniversalTeamShortCode(row['Home Short'])
+        away = getUniversalTeamShortCode(row['Away Short'])
 
         for item in advancedMetricsKeyList:
             homeKey = "HOME_" + item
@@ -368,12 +371,16 @@ def addGamesPlayedAndNaiveAdjustment(df): # Games Played, naive adjustment
         away = row['Away Short']
         if home not in teamSet:
             teamSet.add(home)
+            teamDict[home] = {}
             teamDict[home]["gp"] = 0
-            teamDict[home]['expectedScores'] = 0
+            teamDict[home]['expectedScores'] = teamDict[home]['actualScores'] = 0
+            teamDict[home]['midSeasonAdjFactor'] = None
         if away not in teamSet:
             teamSet.add(away)
+            teamDict[away] = {}
             teamDict[away]["gp"] = 0
-            teamDict[away]['expectedScores'] = 0
+            teamDict[away]['expectedScores'] = teamDict[away]['actualScores'] = 0
+            teamDict[away]['midSeasonAdjFactor'] = None
 
         teamDict[home]['gp'] += 1
         teamDict[away]['gp'] += 1
@@ -384,19 +391,19 @@ def addGamesPlayedAndNaiveAdjustment(df): # Games Played, naive adjustment
         teamDict[away]['expectedScores'] += ENVIRONMENT.TIP_WINNER_SCORE_ODDS if row['Tip Winning Team'] == away else (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
         teamDict[home]['actualScores'] += 1 if row['First Scoring Team'] == home else 0
         teamDict[away]['actualScores'] += 1 if row['First Scoring Team'] == away else 0
-        df.at[i, "Current Home Naive Adjustment"] = teamDict[home]['expectedScores'] / teamDict[home]['actualScores']
-        df.at[i, "Current Away Naive Adjustment"] = teamDict[away]['expectedScores'] / teamDict[away]['actualScores']
+        df.at[i, "Current Home Naive Adjustment"] = teamDict[home]['actualScores'] / teamDict[home]['expectedScores']
+        df.at[i, "Current Away Naive Adjustment"] = teamDict[away]['actualScores'] / teamDict[away]['expectedScores']
 
         if teamDict[home]['gp'] == 40:
-            teamDict[home]['midSeasonAdjFactor'] = teamDict[home]['expectedScores'] / teamDict[home]['actualScores']
+            teamDict[home]['midSeasonAdjFactor'] = teamDict[home]['actualScores'] / teamDict[home]['expectedScores']
         if teamDict[away]['gp'] == 40:
-            teamDict[away]['midSeasonAdjFactor'] = teamDict[away]['expectedScores'] / teamDict[away]['actualScores']
+            teamDict[away]['midSeasonAdjFactor'] = teamDict[away]['actualScores'] / teamDict[away]['expectedScores']
 
     for i in range(0, len(df.index) - 1):
         df.at[i, "Mid Season Home Naive Adjustment"] = teamDict[home]['midSeasonAdjFactor']
         df.at[i, "Mid Season Away Naive Adjustment"] = teamDict[home]['midSeasonAdjFactor']
-        df.at[i, "Season Long Home Naive Adjustment"] = teamDict[home]['expectedScores'] / teamDict[home]['actualScores']
-        df.at[i, "Season Long Away Naive Adjustment"] = teamDict[away]['expectedScores'] / teamDict[away]['actualScores']
+        df.at[i, "Season Long Home Naive Adjustment"] = teamDict[home]['actualScores'] / teamDict[home]['expectedScores']
+        df.at[i, "Season Long Away Naive Adjustment"] = teamDict[away]['actualScores'] / teamDict[away]['expectedScores']
         # todo this is going to bias playoff teams downwards as they'll play other good teams (though not too significantly)
     return df
 
@@ -412,8 +419,11 @@ def addGamesPlayedAndNaiveAdjustment(df): # Games Played, naive adjustment
     # Mid season naive Q1 rating - x
 def addAdditionalMlColumnsSingleSeason(season):
     df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
-    for i in range(0, len(df.index) - 1):
-        row = df.iloc[i]
+
+    df = addGamesPlayedAndNaiveAdjustment(df)
+    df = addSeasonLongData(df, season)
+
+    df.to_csv(ENVIRONMENT.SEASON_CSV_ML_COLS_UNFORMATTED_PATH.format(season), index=False)
 
 #
 # def removeExtraIndex():

@@ -57,6 +57,7 @@ GLICKO_PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/algorithms/gl
 BASE_GLICKO_MU, str(BASE_GLICKO_SIGMA).replace('.', ''), BASE_GLICKO_PHI, str(BASE_GLICKO_TAU).replace('.', ''), MIN_GLICKO_APPEARANCES, GLICKO_TIPOFF_ODDS_THRESHOLD, PHI_DRIFT, ALL_SEASONS_LIST)))
 ADVANCED_TEAMS_METRICS_UNFORMATTED = os.path.abspath('Data/JSON/team_metrics/advanced/{}_advanced_metrics.json')
 SHOT_BREAKDOWN_TEAMS_UNFORMATTED = os.path.abspath('Data/JSON/team_metrics/shot_breakdown/{}_shot_breakdown.json')
+SEASON_CSV_ML_COLS_UNFORMATTED_PATH = os.path.abspath('Data/CSV/ml_columns/{}_ml_columns.csv')
 
 # Elo Base values
 K_FACTOR = 10
