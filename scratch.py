@@ -9,6 +9,7 @@ from src.historical_data.nba_play_by_play_methods import fillGaps, teamSummaryDa
     getAllFirstPossessionStatisticsIncrementally
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import betfairOdds, getDailyOdds
+from src.odds_and_statistics.odds_calculator import kellyBetReduced
 from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalOrFirstPointStats
 
 # teamSummaryDataFromFirstPointData(2014)
@@ -23,14 +24,16 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 
 # calculateTrueSkillDictionaryFromZero()
 
-addAdditionalMlColumnsSingleSeason(2013)
-addAdditionalMlColumnsSingleSeason(2014)
-addAdditionalMlColumnsSingleSeason(2015)
-addAdditionalMlColumnsSingleSeason(2016)
-addAdditionalMlColumnsSingleSeason(2017)
-addAdditionalMlColumnsSingleSeason(2018)
-addAdditionalMlColumnsSingleSeason(2019)
-addAdditionalMlColumnsSingleSeason(2020)
+print(kellyBetReduced(lossAmt=1, winOdds=0.624, winAmt=1))
+
+# addAdditionalMlColumnsSingleSeason(2013)
+# addAdditionalMlColumnsSingleSeason(2014)
+# addAdditionalMlColumnsSingleSeason(2015)
+# addAdditionalMlColumnsSingleSeason(2016)
+# addAdditionalMlColumnsSingleSeason(2017)
+# addAdditionalMlColumnsSingleSeason(2018)
+# addAdditionalMlColumnsSingleSeason(2019)
+# addAdditionalMlColumnsSingleSeason(2020)
 # getDailyOdds('CLE', 'TOR', '-107')
 # smallDataUpdate()
 # getAllOddsAndDisplayByEv(fanduelToday=True)
