@@ -24,8 +24,6 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 
 # calculateTrueSkillDictionaryFromZero()
 
-print(kellyBetReduced(lossAmt=1, winOdds=0.624, winAmt=1))
-
 # addAdditionalMlColumnsSingleSeason(2013)
 # addAdditionalMlColumnsSingleSeason(2014)
 # addAdditionalMlColumnsSingleSeason(2015)
