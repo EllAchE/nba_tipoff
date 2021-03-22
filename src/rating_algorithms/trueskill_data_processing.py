@@ -7,25 +7,25 @@ from src.rating_algorithms.common_data_processing import beforeMatchPredictions,
 
 # backlogtodo optimize trueskill, glicko etc. for rapid iteration
 # backlogtodo refactor equations here to be generic
-def runTSForSeason(seasonCsv: str, winningBetThreshold: float= ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
+def runTrueSkillForSeason(seasonCsv: str, winningBetThreshold: float= ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
     runAlgoForSeason(seasonCsv, ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH,
-                     trueskillBeforeMatchPredictions, trueskillUpdateDataSingleTipoff, winningBetThreshold,
+                     trueSkillBeforeMatchPredictions, trueSkillUpdateDataSingleTipoff, winningBetThreshold,
                      columnAdds=['Home TS Mu', 'Away TS Mu', 'Home TS Sigma', 'Away TS Sigma', 'Home Lifetime Appearances',
                                  'Away Lifetime Appearances', 'Home Tipper Wins', 'Away Tipper Wins', 'Home Tipper Losses', 'Away Tipper Losses'], startFromBeginning=startFromBeginning)
 
 
 # backlogtodo setup odds prediction to use Ev or win prob rather than bet threshold
-def trueskillBeforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionArray=None, actualArray=None, histogramPredictionsDict=None,
+def trueSkillBeforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionArray=None, actualArray=None, histogramPredictionsDict=None,
                                     winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
     return beforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionArray=predictionArray, actualArray=actualArray, histogramPredictionsDict=histogramPredictionsDict, predictionSummaryPath=ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH,
                                   minimumTipWinPercentage=winningBetThreshold, predictionFunction=trueSkillTipWinProb, minimumAppearances=ENVIRONMENT.MIN_TS_APPEARANCES)
 
 def runTSForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
-    runAlgoForAllSeasons(seasons, ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH, trueskillBeforeMatchPredictions, trueskillUpdateDataSingleTipoff,
+    runAlgoForAllSeasons(seasons, ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH, trueSkillBeforeMatchPredictions, trueSkillUpdateDataSingleTipoff,
                          winningBetThreshold, columnAdds=['Home TS Mu', 'Away TS Mu', 'Home TS Sigma', 'Away TS Sigma', 'Home Lifetime Appearances',
                                  'Away Lifetime Appearances', 'Home Tipper Wins', 'Away Tipper Wins', 'Home Tipper Losses', 'Away Tipper Losses'])
 
-def trueskillUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, game_code=None):
+def trueSkillUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, game_code=None):
     if game_code:
         print(game_code)
     winnerCode = winnerCode[11:]
@@ -79,7 +79,7 @@ def trueskillUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, 
     else:
         raise ValueError('neither code matches')
 
-    return {"Home TS Mu": homeMu, "Home TS Sigma": homeSigma, "Away TS Mu": awayMu, "Away TS Sigma": awaySigma, "Home Lifetime Apperances": homeAppearances, "Away Lifetime Appearances": awayAppearances,
+    return {"Home TS Mu": homeMu, "Home TS Sigma": homeSigma, "Away TS Mu": awayMu, "Away TS Sigma": awaySigma, "Home Lifetime Appearances": homeAppearances, "Away Lifetime Appearances": awayAppearances,
             "Home Tipper Wins": homeWins, "Home Tipper Losses": homeLosses, "Away Tipper Wins": awayWins, "Away Tipper Losses": awayLosses}
 
 def calculateTrueSkillDictionaryFromZero():
@@ -88,6 +88,6 @@ def calculateTrueSkillDictionaryFromZero():
     print("\n", "trueskill dictionary updated for seasons", ENVIRONMENT.ALL_SEASONS_LIST, "\n")
 
 def updateTrueSkillDictionaryFromLastGame():
-    runTSForSeason(ENVIRONMENT.CURRENT_SEASON_CSV, winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False)
+    runTrueSkillForSeason(ENVIRONMENT.CURRENT_SEASON_CSV, winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False)
     print("\n", "trueskill dictionary updated from last game", "\n")
 

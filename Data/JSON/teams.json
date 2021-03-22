@@ -182,7 +182,7 @@
   {
     "teamId": 1610612740,
     "abbreviation": "NOP",
-    "alternateAbbreviations": ["NO"],
+    "alternateAbbreviations": ["NO", "NOH"],
     "teamName": "New Orleans Pelicans",
     "simpleName": "Pelicans",
     "location": "New Orleans",

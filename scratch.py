@@ -23,7 +23,14 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 
 # calculateTrueSkillDictionaryFromZero()
 
+addAdditionalMlColumnsSingleSeason(2013)
+addAdditionalMlColumnsSingleSeason(2014)
 addAdditionalMlColumnsSingleSeason(2015)
+addAdditionalMlColumnsSingleSeason(2016)
+addAdditionalMlColumnsSingleSeason(2017)
+addAdditionalMlColumnsSingleSeason(2018)
+addAdditionalMlColumnsSingleSeason(2019)
+addAdditionalMlColumnsSingleSeason(2020)
 # getDailyOdds('CLE', 'TOR', '-107')
 # smallDataUpdate()
 # getAllOddsAndDisplayByEv(fanduelToday=True)
