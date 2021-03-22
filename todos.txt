@@ -6,6 +6,9 @@ Score given tipoff loss
 Across all quarters
 At different tiers of expected wins
 
+# todo the data in 1/0 may need one hot encoding
+# todo may need to handle the missing values (proabbly just ignroe those cols)
+# todo try setting none rather than zero for lower appearances
 # backlogtodo find out when the best time for placing bets on various sites is (i.e. when do odds move)
 # backlogtodo next prop - who scores last nba, race to 5 points
 # backlogtodo compare top rank vs. bottom rank losses

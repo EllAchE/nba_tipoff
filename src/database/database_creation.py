@@ -363,12 +363,14 @@ def addSeasonLongData(df, season):
 def addGamesPlayedAndNaiveAdjustment(df): # Games Played, naive adjustment
     teamSet = set()
     teamDict = {}
-    df["Home Games Played"] = df["Away Games Played"] = df["Current Home Naive Adjustment"] = df["Current Away Naive Adjustment"] \
+    df["Home Games Played"] = df["Away Games Played"] = df["Current Home Naive Adjustment"] = df["Current Away Naive Adjustment"] = df["Home Team Scores"] \
         = df["Mid Season Home Naive Adjustment"] = df["Mid Season Away Naive Adjustment"] = df["Season Long Home Naive Adjustment"] = df["Season Long Away Naive Adjustment"] = None
     for i in range(0, len(df.index) - 1):
         row = df.iloc[i]
         home = getUniversalTeamShortCode(row['Home Short'])
         away = getUniversalTeamShortCode(row['Away Short'])
+        homeScores = 1 if row['Home Short'] == row['Home'] else 0
+        df.at[i, "Home Scores"] = homeScores
         if home not in teamSet:
             teamSet.add(home)
             teamDict[home] = {}
@@ -422,8 +424,10 @@ def addAdditionalMlColumnsSingleSeason(season):
 
     df = addGamesPlayedAndNaiveAdjustment(df)
     df = addSeasonLongData(df, season)
+    numberBack = (season % 100) + 1
+    seasonTitle = str(season) + "-" + str(numberBack)
 
-    df.to_csv(ENVIRONMENT.SEASON_CSV_ML_COLS_UNFORMATTED_PATH.format(season), index=False)
+    df.to_csv(ENVIRONMENT.SEASON_CSV_ML_COLS_UNFORMATTED_PATH.format(seasonTitle), index=False)
 
 #
 # def removeExtraIndex():
