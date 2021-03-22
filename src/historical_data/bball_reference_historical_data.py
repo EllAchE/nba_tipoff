@@ -17,7 +17,7 @@ def getSingleSeasonGameHeaders(season):
     normalMonths = ["october", "november", "december", "january", "february", "march", "april", "may", "june"]
     months2020 = ["october-2019", "november", "december", "january", "february", "march", "july", "august",
                    "september", "october-2020"]
-    months2021 = ["december", "january", "february", "march", "april", "may"]  # todo this may need to be moved slowly
+    months2021 = ["december", "january", "february", "march", "april", "may"]
 
     seasonGames = list()
     if season == 2020:

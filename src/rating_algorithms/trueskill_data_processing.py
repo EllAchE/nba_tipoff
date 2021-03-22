@@ -10,7 +10,9 @@ from src.rating_algorithms.common_data_processing import beforeMatchPredictions,
 def runTSForSeason(seasonCsv: str, winningBetThreshold: float= ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
     runAlgoForSeason(seasonCsv, ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH,
                      trueskillBeforeMatchPredictions, trueskillUpdateDataSingleTipoff, winningBetThreshold,
-                     columnAdds=['Home TS Mu', 'Away TS Mu', 'Home TS Sigma', 'Away TS Sigma'], startFromBeginning=startFromBeginning)
+                     columnAdds=['Home TS Mu', 'Away TS Mu', 'Home TS Sigma', 'Away TS Sigma', 'Home Lifetime Appearances',
+                                 'Away Lifetime Appearances', 'Home Tipper Wins', 'Away Tipper Wins', 'Home Tipper Losses', 'Away Tipper Losses'], startFromBeginning=startFromBeginning)
+
 
 # backlogtodo setup odds prediction to use Ev or win prob rather than bet threshold
 def trueskillBeforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionArray=None, actualArray=None, histogramPredictionsDict=None,
@@ -20,7 +22,8 @@ def trueskillBeforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTea
 
 def runTSForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
     runAlgoForAllSeasons(seasons, ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH, trueskillBeforeMatchPredictions, trueskillUpdateDataSingleTipoff,
-                         winningBetThreshold, columnAdds=['Home TS Mu', 'Away TS Mu', 'Home TS Sigma', 'Away TS Sigma'])
+                         winningBetThreshold, columnAdds=['Home TS Mu', 'Away TS Mu', 'Home TS Sigma', 'Away TS Sigma', 'Home Lifetime Appearances',
+                                 'Away Lifetime Appearances', 'Home Tipper Wins', 'Away Tipper Wins', 'Home Tipper Losses', 'Away Tipper Losses'])
 
 def trueskillUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, game_code=None):
     if game_code:
@@ -50,6 +53,7 @@ def trueskillUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, 
     print('Winner:', winnerCode, 'trueskill increased', winnerMu - winnerOgMu, 'to', winnerMu, '. Sigma is now', winnerSigma, '. W:', winnerWinCount, 'L', winnerAppearances - winnerWinCount)
     print('Loser:', loserCode, 'trueskill decreased', loserMu - loserOgMu, 'to', loserMu, '. Sigma is now', loserSigma, '. W:', loserAppearances - loserLosses, 'L', loserLosses)
 
+    #todo refactor repeated code out of algo methods
     if homePlayerCode == winnerCode:
         homeMu = winnerOgMu
         homeSigma = winnerOgSigma

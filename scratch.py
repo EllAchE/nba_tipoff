@@ -19,9 +19,11 @@ from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalOrF
 # teamSummaryDataFromFirstPointData(2019)
 # teamSummaryDataFromFirstPointData(2020)
 # teamSummaryDataFromFirstPointData(2021)
+from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero
+
+# calculateTrueSkillDictionaryFromZero()
 
 addAdditionalMlColumnsSingleSeason(2015)
-
 # getDailyOdds('CLE', 'TOR', '-107')
 # smallDataUpdate()
 # getAllOddsAndDisplayByEv(fanduelToday=True)

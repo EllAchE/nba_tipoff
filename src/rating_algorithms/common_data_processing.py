@@ -292,5 +292,5 @@ def runAlgoForAllSeasons(seasons, skillDictPath, predictionSummariesPath, algoPr
 
 def dfEmptyColumnAdd(df, columns):
     for column in columns:
-        df[column] = None
+        df[column] = 0
     return df

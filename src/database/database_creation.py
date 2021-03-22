@@ -404,7 +404,7 @@ def addGamesPlayedAndNaiveAdjustment(df): # Games Played, naive adjustment
         df.at[i, "Mid Season Away Naive Adjustment"] = teamDict[home]['midSeasonAdjFactor']
         df.at[i, "Season Long Home Naive Adjustment"] = teamDict[home]['actualScores'] / teamDict[home]['expectedScores']
         df.at[i, "Season Long Away Naive Adjustment"] = teamDict[away]['actualScores'] / teamDict[away]['expectedScores']
-        # todo this is going to bias playoff teams downwards as they'll play other good teams (though not too significantly)
+        # backlogtodo this is going to bias playoff teams downwards as they'll play other good teams (though not too significantly)
     return df
 
 # def missing stuff(): # this happens in the predictions runner
@@ -418,7 +418,7 @@ def addGamesPlayedAndNaiveAdjustment(df): # Games Played, naive adjustment
     # Tip Losses - x
     # Mid season naive Q1 rating - x
 def addAdditionalMlColumnsSingleSeason(season):
-    df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
+    df = pd.read_csv(ENVIRONMENT.SEASON_CSV_CALCULATED_VALUES_UNFORMATTED_PATH.format(season))
 
     df = addGamesPlayedAndNaiveAdjustment(df)
     df = addSeasonLongData(df, season)

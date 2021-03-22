@@ -58,6 +58,7 @@ BASE_GLICKO_MU, str(BASE_GLICKO_SIGMA).replace('.', ''), BASE_GLICKO_PHI, str(BA
 ADVANCED_TEAMS_METRICS_UNFORMATTED = os.path.abspath('Data/JSON/team_metrics/advanced/{}_advanced_metrics.json')
 SHOT_BREAKDOWN_TEAMS_UNFORMATTED = os.path.abspath('Data/JSON/team_metrics/shot_breakdown/{}_shot_breakdown.json')
 SEASON_CSV_ML_COLS_UNFORMATTED_PATH = os.path.abspath('Data/CSV/ml_columns/{}_ml_columns.csv')
+SEASON_CSV_CALCULATED_VALUES_UNFORMATTED_PATH = os.path.abspath('Data/CSV/season_data/tipoff_and_first_score_details_{}_season-calculated-values.csv')
 
 # Elo Base values
 K_FACTOR = 10
