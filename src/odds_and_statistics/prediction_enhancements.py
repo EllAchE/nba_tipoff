@@ -121,8 +121,8 @@ def _teamFirstShotStats(game, summaryDict, seasonData, isFirstFieldGoal=False):
             opponent = event['opponentTeam']
             if isFirstTimeThrough:
                 if not retrievalError:
-                    teamWonTip = 1 if tipWinTeam == getUniversalTeamShortCode(team) else 0
-                    opponentWonTip = 1 if tipWinTeam == getUniversalTeamShortCode(opponent) else 0
+                    teamWonTip = True if tipWinTeam == getUniversalTeamShortCode(team) else False
+                    opponentWonTip = True if tipWinTeam == getUniversalTeamShortCode(opponent) else False
                 else:
                     teamWonTip = 0.5
                     opponentWonTip = 0.5

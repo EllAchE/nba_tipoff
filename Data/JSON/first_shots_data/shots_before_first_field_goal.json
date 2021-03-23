@@ -45493,111 +45493,97 @@
         ]
     },
     {
-        "gameCode": "202103170DAL",
+        "gameCode": "202103170DET",
         "quarter1": [
             {
                 "shotIndex": 0,
-                "team": "LA Clippers Clippers",
-                "player": "Marcus Morris Sr.",
-                "opponentTeam": "Dallas Mavericks",
+                "team": "Detroit Pistons",
+                "player": "Jerami Grant",
+                "opponentTeam": "Toronto Raptors",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Toronto Raptors",
+                "player": "Pascal Siakam",
+                "opponentTeam": "Detroit Pistons",
                 "shotType": "2PT MAKE"
             }
         ],
         "quarter2": [
             {
                 "shotIndex": 0,
-                "team": "Dallas Mavericks",
-                "player": "Luka Doncic",
-                "opponentTeam": "LA Clippers Clippers",
-                "shotType": "2PT MAKE"
+                "team": "Toronto Raptors",
+                "player": "Matt Thomas",
+                "opponentTeam": "Detroit Pistons",
+                "shotType": "3PT MAKE"
             }
         ],
         "quarter3": [
             {
                 "shotIndex": 0,
-                "team": "Dallas Mavericks",
-                "player": "Josh Richardson",
-                "opponentTeam": "LA Clippers Clippers",
-                "shotType": "3PT MISS"
+                "team": "Toronto Raptors",
+                "player": "Pascal Siakam",
+                "opponentTeam": "Detroit Pistons",
+                "shotType": "2PT MISS"
             },
             {
                 "shotIndex": 1,
-                "team": "Dallas Mavericks",
-                "player": "Luka Doncic",
-                "opponentTeam": "LA Clippers Clippers",
+                "team": "Toronto Raptors",
+                "player": "Pascal Siakam",
+                "opponentTeam": "Detroit Pistons",
                 "shotType": "FREE THROW MAKE"
             },
             {
                 "shotIndex": 2,
-                "team": "Dallas Mavericks",
-                "player": "Luka Doncic",
-                "opponentTeam": "LA Clippers Clippers",
-                "shotType": "FREE THROW MAKE"
+                "team": "Toronto Raptors",
+                "player": "Pascal Siakam",
+                "opponentTeam": "Detroit Pistons",
+                "shotType": "FREE THROW MISS"
             },
             {
                 "shotIndex": 3,
-                "team": "LA Clippers Clippers",
-                "player": "Kawhi Leonard",
-                "opponentTeam": "Dallas Mavericks",
-                "shotType": "2PT MISS"
+                "team": "Detroit Pistons",
+                "player": "Saddiq Bey",
+                "opponentTeam": "Toronto Raptors",
+                "shotType": "FREE THROW MAKE"
             },
             {
                 "shotIndex": 4,
-                "team": "Dallas Mavericks",
-                "player": "Kristaps Porzingis",
-                "opponentTeam": "LA Clippers Clippers",
-                "shotType": "2PT MISS"
+                "team": "Detroit Pistons",
+                "player": "Saddiq Bey",
+                "opponentTeam": "Toronto Raptors",
+                "shotType": "FREE THROW MAKE"
             },
             {
                 "shotIndex": 5,
-                "team": "LA Clippers Clippers",
-                "player": "Marcus Morris Sr.",
-                "opponentTeam": "Dallas Mavericks",
-                "shotType": "3PT MISS"
-            },
-            {
-                "shotIndex": 6,
-                "team": "LA Clippers Clippers",
-                "player": "Marcus Morris Sr.",
-                "opponentTeam": "Dallas Mavericks",
-                "shotType": "3PT MISS"
-            },
-            {
-                "shotIndex": 7,
-                "team": "LA Clippers Clippers",
-                "player": "Kawhi Leonard",
-                "opponentTeam": "Dallas Mavericks",
+                "team": "Toronto Raptors",
+                "player": "Pascal Siakam",
+                "opponentTeam": "Detroit Pistons",
                 "shotType": "2PT MAKE"
             }
         ],
         "quarter4": [
             {
                 "shotIndex": 0,
-                "team": "LA Clippers Clippers",
-                "player": "Paul George",
-                "opponentTeam": "Dallas Mavericks",
+                "team": "Detroit Pistons",
+                "player": "Mason Plumlee",
+                "opponentTeam": "Toronto Raptors",
                 "shotType": "2PT MISS"
             },
             {
                 "shotIndex": 1,
-                "team": "Dallas Mavericks",
-                "player": "Jalen Brunson",
-                "opponentTeam": "LA Clippers Clippers",
-                "shotType": "3PT MISS"
+                "team": "Toronto Raptors",
+                "player": "Kyle Lowry",
+                "opponentTeam": "Detroit Pistons",
+                "shotType": "2PT MISS"
             },
             {
                 "shotIndex": 2,
-                "team": "LA Clippers Clippers",
-                "player": "Paul George",
-                "opponentTeam": "Dallas Mavericks",
-                "shotType": "3PT MISS"
-            },
-            {
-                "shotIndex": 3,
-                "team": "Dallas Mavericks",
-                "player": "Jalen Brunson",
-                "opponentTeam": "LA Clippers Clippers",
-                "shotType": "3PT MAKE"
+                "team": "Detroit Pistons",
+                "player": "Sekou Doumbouya",
+                "opponentTeam": "Toronto Raptors",
+                "shotType": "2PT MAKE"
             }
         ]
     }

@@ -25,8 +25,6 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 
 # calculateTrueSkillDictionaryFromZero()
 
-concatCsv('all_ml_cols.csv', ENVIRONMENT.ML_COLS_FOLDER_PATH)
-
 # addAdditionalMlColumnsSingleSeason(2013)
 # addAdditionalMlColumnsSingleSeason(2014)
 # addAdditionalMlColumnsSingleSeason(2015)
@@ -35,6 +33,9 @@ concatCsv('all_ml_cols.csv', ENVIRONMENT.ML_COLS_FOLDER_PATH)
 # addAdditionalMlColumnsSingleSeason(2018)
 # addAdditionalMlColumnsSingleSeason(2019)
 # addAdditionalMlColumnsSingleSeason(2020)
+
+concatCsv('all_ml_cols.csv', ENVIRONMENT.ML_COLS_FOLDER_PATH)
+
 # getDailyOdds('CLE', 'TOR', '-107')
 # smallDataUpdate()
 # getAllOddsAndDisplayByEv(fanduelToday=True)

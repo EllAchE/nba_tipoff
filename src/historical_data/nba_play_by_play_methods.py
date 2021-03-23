@@ -323,7 +323,7 @@ def splitAllSeasonsFirstShotDataToMultipleFiles():
 def getAllFirstPossessionStatisticsIncrementally(season):
     df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
 
-    with open(ENVIRONMENT.ALL_SHOTS_BEFORE_FIRST_FG_PATH) as sbfs:
+    with open(ENVIRONMENT.SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH.format(season)) as sbfs:
         seasonShotsList1 = json.load(sbfs)
 
     if len(seasonShotsList1) > 0:
@@ -347,7 +347,7 @@ def getAllFirstPossessionStatisticsIncrementally(season):
         sleepChecker(iterations=1, baseTime=10, randomMultiplier=1)
 
         # shotsDict[str(season)] = seasonShotList
-        with open(ENVIRONMENT.ALL_SHOTS_BEFORE_FIRST_FG_PATH, 'w') as jsonFile:
+        with open(ENVIRONMENT.SINGLE_SEASON_SHOTS_BEFORE_FIRST_FG_PATH.format(season), 'w') as jsonFile:
             json.dump(seasonShotsList2, jsonFile, indent=4)
 
 # backlogtodo add scheduler

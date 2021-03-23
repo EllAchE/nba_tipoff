@@ -131309,6 +131309,12 @@
         }
     },
     "2021": {
+        "alensmailagic": {
+            "possibleTeams": [
+                "GSW"
+            ],
+            "currentTeam": "GSW"
+           }
         "jarrettallen": {
             "possibleTeams": [
                 "BRK",

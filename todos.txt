@@ -6,6 +6,7 @@ Score given tipoff loss
 Across all quarters
 At different tiers of expected wins
 
+# todo separate team and player odds
 # todo the data in 1/0 may need one hot encoding
 # todo may need to handle the missing values (proabbly just ignroe those cols)
 # todo try setting none rather than zero for lower appearances

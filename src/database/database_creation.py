@@ -261,7 +261,7 @@ def sortPlayerNameRelationships():
     print("Sorted player name relationships")
 
 def getAllGameData():
-    shortCodes = ENVIRONMENT.CURRENT_TEAMS.sort()
+    shortCodes = ENVIRONMENT.CURRENT_TEAMS
     nbaTeams = teams.get_teams()
     teamDicts = [team for team in nbaTeams if team['abbreviation'] in shortCodes]
 
@@ -362,13 +362,13 @@ def addSeasonLongData(df, season):
 def addGamesPlayedAndNaiveAdjustment(df): # Games Played, naive adjustment
     teamSet = set()
     teamDict = {}
-    df["Home Games Played"] = df["Away Games Played"] = df["Current Home Naive Adjustment"] = df["Current Away Naive Adjustment"] = df["Home Scores"] \
-        = df["Mid Season Home Naive Adjustment"] = df["Mid Season Away Naive Adjustment"] = df["Season Long Home Naive Adjustment"] = df["Season Long Away Naive Adjustment"] = None
+    df["Home Games Played"] = df["Away Games Played"] = df["Cur_H_N_Adj"] = df["Cur_A_N_Adj"] = df["Home Scores"] \
+        = df["Mid_H_N_Adj"] = df["Mid_A_N_Adj"] = df["Full_H_N_Adj"] = df["Full_A_N_Adj"] = None
     for i in range(0, len(df.index)):
         row = df.iloc[i]
         home = getUniversalTeamShortCode(row['Home Short'])
         away = getUniversalTeamShortCode(row['Away Short'])
-        homeScores = 1 if row['First Scoring Team'] == getUniversalTeamShortCode(row['Home']) else 0
+        homeScores = True if row['First Scoring Team'] == getUniversalTeamShortCode(row['Home']) else False
         df.at[i, "Home Scores"] = homeScores
         if home not in teamSet:
             teamSet.add(home)
@@ -390,10 +390,10 @@ def addGamesPlayedAndNaiveAdjustment(df): # Games Played, naive adjustment
 
         teamDict[home]['expectedScores'] += ENVIRONMENT.TIP_WINNER_SCORE_ODDS if row['Tip Winning Team'] == home else (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
         teamDict[away]['expectedScores'] += ENVIRONMENT.TIP_WINNER_SCORE_ODDS if row['Tip Winning Team'] == away else (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
-        teamDict[home]['actualScores'] += 1 if row['First Scoring Team'] == home else 0
-        teamDict[away]['actualScores'] += 1 if row['First Scoring Team'] == away else 0
-        df.at[i, "Current Home Naive Adjustment"] = teamDict[home]['actualScores'] / teamDict[home]['expectedScores']
-        df.at[i, "Current Away Naive Adjustment"] = teamDict[away]['actualScores'] / teamDict[away]['expectedScores']
+        teamDict[home]['actualScores'] += True if row['First Scoring Team'] == home else False
+        teamDict[away]['actualScores'] += True if row['First Scoring Team'] == away else False
+        df.at[i, "Cur_H_N_Adj"] = teamDict[home]['actualScores'] / teamDict[home]['expectedScores']
+        df.at[i, "Cur_A_N_Adj"] = teamDict[away]['actualScores'] / teamDict[away]['expectedScores']
 
         if teamDict[home]['gp'] == 40:
             teamDict[home]['midSeasonAdjFactor'] = teamDict[home]['actualScores'] / teamDict[home]['expectedScores']
@@ -401,10 +401,10 @@ def addGamesPlayedAndNaiveAdjustment(df): # Games Played, naive adjustment
             teamDict[away]['midSeasonAdjFactor'] = teamDict[away]['actualScores'] / teamDict[away]['expectedScores']
 
     for i in range(0, len(df.index) - 1):
-        df.at[i, "Mid Season Home Naive Adjustment"] = teamDict[getUniversalTeamShortCode(df.iloc[i]["Home"])]['midSeasonAdjFactor']
-        df.at[i, "Mid Season Away Naive Adjustment"] = teamDict[getUniversalTeamShortCode(df.iloc[i]["Away"])]['midSeasonAdjFactor']
-        df.at[i, "Season Long Home Naive Adjustment"] = teamDict[getUniversalTeamShortCode(df.iloc[i]["Home"])]['actualScores'] / teamDict[getUniversalTeamShortCode(df.iloc[i]["Home"])]['expectedScores']
-        df.at[i, "Season Long Away Naive Adjustment"] = teamDict[getUniversalTeamShortCode(df.iloc[i]["Away"])]['actualScores'] / teamDict[getUniversalTeamShortCode(df.iloc[i]["Away"])]['expectedScores']
+        df.at[i, "Mid_H_N_Adj"] = teamDict[getUniversalTeamShortCode(df.iloc[i]["Home"])]['midSeasonAdjFactor']
+        df.at[i, "Mid_A_N_Adj"] = teamDict[getUniversalTeamShortCode(df.iloc[i]["Away"])]['midSeasonAdjFactor']
+        df.at[i, "Full_H_N_Adj"] = teamDict[getUniversalTeamShortCode(df.iloc[i]["Home"])]['actualScores'] / teamDict[getUniversalTeamShortCode(df.iloc[i]["Home"])]['expectedScores']
+        df.at[i, "Full_A_N_Adj"] = teamDict[getUniversalTeamShortCode(df.iloc[i]["Away"])]['actualScores'] / teamDict[getUniversalTeamShortCode(df.iloc[i]["Away"])]['expectedScores']
         # backlogtodo this is going to bias playoff teams downwards as they'll play other good teams (though not too significantly)
     return df
 
