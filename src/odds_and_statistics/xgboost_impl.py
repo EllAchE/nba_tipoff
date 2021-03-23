@@ -33,7 +33,7 @@ def XGBoost(season):
     xgClassifier = xgb.XGBClassifier(objective='binary:logistic', colsample_bytree=0.3, max_depth=5, alpha=10, n_estimators=10)
 
     xgClassifier.fit(xTrain, yTrain)
-    predictions = xgClassifier.predict(xTest)
+    predictions = xgClassifier.predict_proba(xTest)
     lenPred = len(predictions)
     totalMiss = 0
     for i in range(0, lenPred-1):

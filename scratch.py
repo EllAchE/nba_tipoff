@@ -3,7 +3,7 @@ from src.database.data_update import customDataUpdate, smallDataUpdate
 
 # customDataUpdate()
 from src.database.database_creation import addExtraUrlToPlayerLinks, getAdvancedMetricsForTeams, \
-    getShotBreakdownForTeams, addAdditionalMlColumnsSingleSeason
+    getShotBreakdownForTeams, addAdditionalMlColumnsSingleSeason, concatCsv
 from src.historical_data.bball_reference_historical_data import updateCurrentSeasonRawGameData
 from src.historical_data.nba_play_by_play_methods import fillGaps, teamSummaryDataFromFirstPointData, \
     getAllFirstPossessionStatisticsIncrementally
@@ -24,6 +24,8 @@ from src.odds_and_statistics.xgboost_impl import XGBoost
 from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero
 
 # calculateTrueSkillDictionaryFromZero()
+
+concatCsv('all_ml_cols.csv', ENVIRONMENT.ML_COLS_FOLDER_PATH)
 
 # addAdditionalMlColumnsSingleSeason(2013)
 # addAdditionalMlColumnsSingleSeason(2014)

@@ -11,11 +11,10 @@ import ENVIRONMENT
 from src.database.database_access import getUniversalPlayerName, getUniversalTeamShortCode
 from src.utils import getSoupFromUrl, removeAllNonLettersAndLowercase, sleepChecker
 
-
-def concatCsv(save_path: str):
-    fNames = [i for i in glob.glob('CSV/*.csv')]
+def concatCsv(savePath: str, readFolder: str):
+    fNames = [i for i in glob.glob('{}/*.csv'.format(readFolder))]
     concattedCsv = pd.concat([pd.read_csv(f) for f in fNames])
-    concattedCsv.to_csv(save_path, index=False, encoding='utf-8-sig')
+    concattedCsv.to_csv(savePath, index=False, encoding='utf-8-sig')
 
 def resetAndInitializePredictionSummaryDict(histogramBinDivisions, path):
     intervalList = list()
@@ -343,7 +342,7 @@ def addSeasonLongData(df, season):
     for item in advancedMetricsKeyList:
         df["HOME_" + str(item)] = None
         df["AWAY_" + str(item)] = None
-    for i in range(0, len(df.index) - 1):
+    for i in range(0, len(df.index)):
         row = df.iloc[i]
         home = getUniversalTeamShortCode(row['Home Short'])
         away = getUniversalTeamShortCode(row['Away Short'])
@@ -365,11 +364,11 @@ def addGamesPlayedAndNaiveAdjustment(df): # Games Played, naive adjustment
     teamDict = {}
     df["Home Games Played"] = df["Away Games Played"] = df["Current Home Naive Adjustment"] = df["Current Away Naive Adjustment"] = df["Home Scores"] \
         = df["Mid Season Home Naive Adjustment"] = df["Mid Season Away Naive Adjustment"] = df["Season Long Home Naive Adjustment"] = df["Season Long Away Naive Adjustment"] = None
-    for i in range(0, len(df.index) - 1):
+    for i in range(0, len(df.index)):
         row = df.iloc[i]
         home = getUniversalTeamShortCode(row['Home Short'])
         away = getUniversalTeamShortCode(row['Away Short'])
-        homeScores = True if row['First Scoring Team'] == getUniversalTeamShortCode(row['Home']) else False
+        homeScores = 1 if row['First Scoring Team'] == getUniversalTeamShortCode(row['Home']) else 0
         df.at[i, "Home Scores"] = homeScores
         if home not in teamSet:
             teamSet.add(home)

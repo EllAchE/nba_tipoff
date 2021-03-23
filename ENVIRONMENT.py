@@ -9,7 +9,7 @@ HOME_TIP_WIN_ODDS = 0.51615348 # backlogtodo these are slightly deflated due to 
 TIP_WINNER_SCORE_ODDS = 0.65495626 # backlogtodo these are slightly deflated due to 0.5 approximation of empty rows
 # backlogtodo recalculate all of the uncertain data points above. This was originally done with a simple excel function on a fully concatenated csv of all seasons
 # backlogtodo consider weighting for season recency
-BANKROLL = 3500
+BANKROLL = 3000
 REDUCTION_FACTOR = 0.7
 
 # Testing Values
@@ -93,6 +93,7 @@ GAME_SUMMARY_UNFORMATTED_PATH = os.path.abspath('Data/CSV/season_summary_data/{}
 TEAM_TIPPER_PAIRS_PATH = Path(os.path.abspath('Data/JSON/team_tipper_pairs.json'))
 PLAYER_USAGE_PATH = Path(os.path.abspath("Data/JSON/player_usage.json"))
 SLEEP_CHECKER_PATH = Path(os.path.abspath('misc/sleep_counter.json'))
+ML_COLS_FOLDER_PATH = os.path.abspath('Data/CSV/ml_columns')
 
 # NCAA Raw Data
 NCAA_DATA_FOLDER = Path(os.path.abspath('Data/ncaahoopR_data-master'))
