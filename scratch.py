@@ -21,10 +21,13 @@ from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalOrF
 # teamSummaryDataFromFirstPointData(2020)
 # teamSummaryDataFromFirstPointData(2021)
 from src.odds_and_statistics.xgboost_impl import XGBoost
+from src.rating_algorithms.elo_data_processing import calculateEloDictionaryFromZero
+from src.rating_algorithms.glicko_data_processing import calculateGlickoDictionaryFromZero
 from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero
 
-# calculateTrueSkillDictionaryFromZero()
-
+calculateTrueSkillDictionaryFromZero()
+calculateGlickoDictionaryFromZero()
+calculateEloDictionaryFromZero()
 # addAdditionalMlColumnsSingleSeason(2013)
 # addAdditionalMlColumnsSingleSeason(2014)
 # addAdditionalMlColumnsSingleSeason(2015)
@@ -36,8 +39,8 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 
 # concatCsv('all_ml_cols.csv', ENVIRONMENT.ML_COLS_FOLDER_PATH)
 
-getDailyOdds('GSW', 'PHI', '-100')
-getAllOddsAndDisplayByEv(bovada=True)
+# getDailyOdds('GSW', 'PHI', '-100')
+# getAllOddsAndDisplayByEv(bovada=True)
 # smallDataUpdate()
 # getAllOddsAndDisplayByEv(fanduelToday=True)
 # updateCurrentSeasonRawGameData()

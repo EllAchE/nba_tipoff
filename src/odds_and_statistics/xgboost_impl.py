@@ -60,7 +60,7 @@ def XGBoost(season):
     xTrain, xTest, yTrain, yTest = train_test_split(x, y, test_size=0.2, random_state=123)
     xgClassifier = xgb.XGBClassifier(objective='binary:logistic', colsample_bytree=0.3, max_depth=5, alpha=10, n_estimators=10)
 
-    xgClassifier.fit(xTrain, yTrain)
+    xgClassifier.fit(xTrain, yTrain, verbose=1)
     predictions = xgClassifier.predict_proba(xTest)
 
     lenPred = len(predictions)

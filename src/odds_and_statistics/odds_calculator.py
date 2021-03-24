@@ -22,7 +22,7 @@ from src.rating_algorithms.algorithms import trueSkillTipWinProb
 from src.utils import removeAllNonLettersAndLowercase
 
 
-def scoreFirstProb(p1Code: str, p2Code: str, jsonPath: Optional[str] = None, psd=None, quarter=True):
+def scoreFirstProb(p1Code: str, p2Code: str, quarter, jsonPath: Optional[str] = None, psd=None):
     if quarter == "QUARTER_2" or quarter == "QUARTER_3":
         temp = p2Code
         p2Code = p1Code
@@ -184,7 +184,7 @@ def checkEvPositive(teamOdds: float, scoreProb: float):
         return False
 
 def checkEvPlayerCodesOddsLine(odds: float, p1: str, p2: str):
-    prob = scoreFirstProb(p1, p2)
+    prob = scoreFirstProb(p1, p2, quarter="QUARTER_1")
     bet = checkEvPositive(odds, prob)
     
     if bet:
