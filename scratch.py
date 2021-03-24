@@ -34,11 +34,12 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # addAdditionalMlColumnsSingleSeason(2019)
 # addAdditionalMlColumnsSingleSeason(2020)
 
-concatCsv('all_ml_cols.csv', ENVIRONMENT.ML_COLS_FOLDER_PATH)
+# concatCsv('all_ml_cols.csv', ENVIRONMENT.ML_COLS_FOLDER_PATH)
 
-# getDailyOdds('CLE', 'TOR', '-107')
+getDailyOdds('GSW', 'PHI', '-100')
+getAllOddsAndDisplayByEv(bovada=True)
 # smallDataUpdate()
 # getAllOddsAndDisplayByEv(fanduelToday=True)
 # updateCurrentSeasonRawGameData()
-
-XGBoost(2020)
+#
+# XGBoost(2020)
