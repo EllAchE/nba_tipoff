@@ -12,7 +12,7 @@ alwaysDropList = ['Game Code', 'Full Hyperlink', 'Home', 'Away', 'Home Short', '
                     'Tip Winning Team', 'Tip Losing Team', 'Possession Gaining Player', 'Possession Gaining Player Link', 'First Scoring Team',
                     'Scored Upon Team', 'Tip Winner', 'Tip Winner Link', 'Tip Loser', 'Tip Loser Link', 'Tip Winner Scores', 'Home Scores',
                     'Home Tipper Wins', 'Away Tipper Wins']
-
+# These columns in the dataframe will be ignored
 gamesPlayed =['Home Games Played', 'Away Games Played']
 algos =['Home TS Sigma', 'Away TS Sigma']
 custom = ['Full_A_N_Adj', 'Full_H_N_Adj', 'Mid_A_N_Adj', 'Mid_H_N_Adj']

@@ -257,7 +257,7 @@ def runAlgoForSeason(seasonCsv: str, skillDictPath: str, predictionSummariesPath
         with open(predictionSummariesPath, 'w') as write_file:
             json.dump(dsd, write_file, indent=4)
 
-    df.to_csv(str(seasonCsv)[:-4] + '-calculated-values.csv', index=False)
+    df.to_csv(seasonCsv)
 
     if predictionArray is not None and actualArray is not None and histogramPredictionsDict is not None:
         return predictionArray, actualArray, histogramPredictionsDict

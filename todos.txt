@@ -6,10 +6,7 @@ Score given tipoff loss
 Across all quarters
 At different tiers of expected wins
 
-# todo separate team and player odds
-# todo the data in 1/0 may need one hot encoding
-# todo may need to handle the missing values (proabbly just ignroe those cols)
-# todo try setting none rather than zero for lower appearances
+# backlogtodo separate team and player odds
 # backlogtodo find out when the best time for placing bets on various sites is (i.e. when do odds move)
 # backlogtodo next prop - who scores last nba, race to 5 points
 # backlogtodo compare top rank vs. bottom rank losses
@@ -47,7 +44,7 @@ from src.rating_algorithms.glicko_data_processing import runGlickoForAllSeasons,
 from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero, updateTrueSkillDictionaryFromLastGame
 
 # for ml model add - team continuity factor & previous seasons stats
-# todo look at first 100 and last 100 games (or similar) of player performance vs. overall
+# backlogtodo look at first 100 and last 100 games (or similar) of player performance vs. overall
 Existing apis etc.:
 
 nba.com:
@@ -82,7 +79,7 @@ https://punter2pro.com/best-sports-arbing-software/
 # backlogtodo account for overrepresentation of playoff teams
 
 # MISC
-# todo investigate adjsuted starting rankings and prediction odds strength for low appearance players, i.e. if we can assume certain/lower mu values for a class of player we can improve our predictions
+# backlogtodo investigate adjsuted starting rankings and prediction odds strength for low appearance players, i.e. if we can assume certain/lower mu values for a class of player we can improve our predictions
 # backlogtodo (OVERKILL) have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
 
 # backlogtodo use this win prob/other win prob estimates over the course of a game to see if odds are mismatched https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/winprobabilitypbp.md
