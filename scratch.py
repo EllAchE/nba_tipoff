@@ -25,9 +25,9 @@ from src.rating_algorithms.elo_data_processing import calculateEloDictionaryFrom
 from src.rating_algorithms.glicko_data_processing import calculateGlickoDictionaryFromZero
 from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero
 
-calculateTrueSkillDictionaryFromZero()
-calculateGlickoDictionaryFromZero()
-calculateEloDictionaryFromZero()
+# calculateTrueSkillDictionaryFromZero()
+# calculateGlickoDictionaryFromZero()
+# calculateEloDictionaryFromZero()
 # addAdditionalMlColumnsSingleSeason(2013)
 # addAdditionalMlColumnsSingleSeason(2014)
 # addAdditionalMlColumnsSingleSeason(2015)
@@ -45,4 +45,4 @@ calculateEloDictionaryFromZero()
 # getAllOddsAndDisplayByEv(fanduelToday=True)
 # updateCurrentSeasonRawGameData()
 #
-# XGBoost(2020)
+XGBoost(2020)

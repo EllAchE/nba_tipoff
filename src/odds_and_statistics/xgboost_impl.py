@@ -53,16 +53,14 @@ def getXGBoostVariablesSeason(season):
     print('x columns', x.columns)
     return x, y
 
-def XGBoost(season):
-    # https://www.datacamp.com/community/tutorials/xgboost-in-python
-    x, y = getXGBoostVariablesALlML()
-    dataDMatrix = xgb.DMatrix(data=x, label=y, enable_categorical=True)
+def createClassifierAndReturnAssociatedData(x, y):
     xTrain, xTest, yTrain, yTest = train_test_split(x, y, test_size=0.2, random_state=123)
     xgClassifier = xgb.XGBClassifier(objective='binary:logistic', colsample_bytree=0.3, max_depth=5, alpha=10, n_estimators=10)
-
-    xgClassifier.fit(xTrain, yTrain, verbose=1)
+    xgClassifier.fit(xTrain, yTrain, verbose=1, eval_metric='logloss')
     predictions = xgClassifier.predict_proba(xTest)
+    return xgClassifier, predictions, xTrain, xTest, yTrain, yTest
 
+def customEvaluationMetrics(predictions, yTest):
     lenPred = len(predictions)
     totalMiss = 0
     expectedTotal = 0
@@ -77,23 +75,39 @@ def XGBoost(season):
         actualTotal += yTest.iloc[i]
         expectedTotal += predictions[i][1]
 
+    logLoss = log_loss(yTest, predictions)
+
     print("Difference", totalMiss/lenPred)
     print('Expected', expectedTotal)
     print('Actual', actualTotal)
     print('bias?', expectedTotal/actualTotal)
-    logLoss = log_loss(yTest, predictions)
-    print("logLoss with base XGBoost is", logLoss)
+    print("logLoss is", logLoss)
 
+def crossValidation(dataDMatrix, hyperParams):
+    crossValidationResults = xgb.cv(params=hyperParams, dtrain=dataDMatrix, nfold=3, num_boost_round=50, early_stopping_rounds=10,
+                                    metrics="log_loss", as_pandas=True, seed=123)
+
+    print('Cross Validation head')
+    print(crossValidationResults.head(5))
+    print('Cross Validation tail')
+    print(crossValidationResults.tail(5))
+
+def XGBoost(season=None):
+    # https://www.datacamp.com/community/tutorials/xgboost-in-python
     hyperParams = {"objective": "binary:logistic", 'colsample_bytree': 0.3, 'learning_rate': 0.1,
               'max_depth': 5, 'alpha': 10}
 
-    crossValidationResults = xgb.cv(params=hyperParams, dtrain=dataDMatrix, nfold=3, num_boost_round=50, early_stopping_rounds=10,
-                                    metrics="logloss", as_pandas=True, seed=123)
-    print('head')
-    print(crossValidationResults.head(10))
-    print('tail')
-    print(crossValidationResults.tail(10))
+    x, y = getXGBoostVariablesALlML() if season is None else getXGBoostVariablesSeason(season)
+    dataDMatrix = xgb.DMatrix(data=x, label=y, enable_categorical=True)
+    xgClassifier, predictions, xTrain, xTest, yTrain, yTest = createClassifierAndReturnAssociatedData(x, y)
 
+    customEvaluationMetrics(predictions, yTest)
+    crossValidation(dataDMatrix, hyperParams)
+
+    gridSearchParams(xgClassifier, x, y)
+    trainAndPlotVisualizations(dataDMatrix, hyperParams, xgClassifier)
+
+def trainAndPlotVisualizations(dataDMatrix, hyperParams, xgClassifier=None):
     xgTrained = xgb.train(params=hyperParams, dtrain=dataDMatrix, num_boost_round=10)
     xgb.plot_tree(xgTrained,num_trees=0)
     plt.rcParams['figure.figsize'] = [50, 10]
@@ -103,18 +117,25 @@ def XGBoost(season):
     plt.rcParams['figure.figsize'] = [50,50]
     plt.show()
 
-    plt.bar(range(len(xgClassifier.feature_importances_)), xgClassifier.feature_importances_)
-    plt.show()
+    if xgClassifier is not None:
+        plt.bar(range(len(xgClassifier.feature_importances_)), xgClassifier.feature_importances_)
+        plt.show()
 
-    #
-    # cv_results = xgb.cv(dtrain=dataDMatrix, params=params, nfold=3, num_boost_round=50, early_stopping_rounds=10, metrics="log_loss", as_pandas=True, seed=123)
-
-def gridSearchParams(estimator):
+def gridSearchParams(estimator, x, y):
     # https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/
     paramTest1 = {
-        'max_depth': range(4,10,1),
-        'min_child_weight': range(2,6,1)
+        'max_depth': range(4, 10, 1),
+        'min_child_weight': range(2, 6, 1),
+        'alpha': range(5, 15, 1),
+        'learning_rate': [0.1, 0.2]
     }
+    # learning rate
+    #    'gamma':
+    #    'min_child_weight':
+    # https://xgboost.readthedocs.io/en/latest/python/python_api.html search classifer
+    # params defaults https://xgboost.readthedocs.io/en/latest/parameter.html
+    #}
 
-    gridSearchEstimator = GridSearchCV(estimator=estimator, )
-    gridSearchEstimator.grid_scores_, gridSearchEstimator.best_params_, gridSearchEstimator.best_score_
+    gridSearchEstimator = GridSearchCV(estimator=estimator, param_grid=paramTest1)
+    gridSearchEstimator.fit(x, y)
+    print('line', gridSearchEstimator.best_params_, gridSearchEstimator.best_score_)
