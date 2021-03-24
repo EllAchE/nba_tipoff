@@ -83,12 +83,19 @@ def printQuarterDetails(g, showTeamAndPlayers, i):
     betOnVia = g.bestBetIsTeamOrPlayers()
     playerSpread = g.bestPlayerSpread()
 
-    print(str(i) + '.', g.gameCode + ' ' + g.quarter, '|| Bet On:', betOn, '|| Via:', betOnVia, '|| Kelly Bet:',
-          g.kellyBet, '|| EV Factor:', g.bestEVFactor)  # , '|| Tipoff:', g.gameDatetime)
-    print('   Exchange:', g.exchange, '|| Odds as of:', g.fetchedDatetime)  # '|| Market URL:', g.marketUrl,
-    print('   || Tippers-H/A', g.expectedHomeTipper + '/' + g.expectedAwayTipper, '|| Odds Home Wins',
-          floatHomeScoreProb,
-          '|| Min Odds:', floatMinBetOdds, '|| Home Line:', g.bestHomeOdds, '|| Away Line:', g.bestAwayOdds)
+    if not g.isFullGame:
+        print(str(i) + '.', g.gameCode + ' ' + g.quarter, '|| Bet On:', betOn, '|| Via:', betOnVia, '|| Kelly Bet:',
+              g.kellyBet, '|| EV Factor:', g.bestEVFactor)  # , '|| Tipoff:', g.gameDatetime)
+        print('   Exchange:', g.exchange, '|| Odds as of:', g.fetchedDatetime)  # '|| Market URL:', g.marketUrl,
+        print('   || Tippers-H/A', g.expectedHomeTipper + '/' + g.expectedAwayTipper, '|| Odds Home Wins',
+              floatHomeScoreProb,
+              '|| Min Odds:', floatMinBetOdds, '|| Home Line:', g.bestHomeOdds, '|| Away Line:', g.bestAwayOdds)
+    elif g.isFullGame and g.quarter == "QUARTER_1":
+        print(str(i) + '.', g.gameCode, 'Full Game Results', 'Exchange:', g.exchange, '|| Odds as of:', g.fetchedDatetime)
+        print('   || Tippers-H/A', g.expectedHomeTipper + '/' + g.expectedAwayTipper, '|| Odds Home Wins',
+              floatHomeScoreProb, '|| Min Odds:', floatMinBetOdds)
+    else:
+        print('   ', g.quarter, '|| Bet On:', betOn, '|| Via:', betOnVia, '|| Kelly Bet:', g.kellyBet, '|| EV Factor:', g.bestEVFactor, '|| Home Line:', g.bestHomeOdds, '|| Away Line:', g.bestAwayOdds)
 
     if showTeamAndPlayers:  # Assumes this is only set this way if both exist
         print('kelly bet home team odds', g.homeTeamKellyBet)
@@ -116,9 +123,9 @@ def printQuarterDetails(g, showTeamAndPlayers, i):
 
 def printFullGameDetails(g, showTeamAndPlayers, i):
     printQuarterDetails(g, showTeamAndPlayers, i)
-    print("QUARTER_2", g.secondQuarterGameObj.bestHomeOdds, g.secondQuarterGameObj.bestAwayOdds)
-    print("QUARTER_3", g.thirdQuarterGameObj.bestHomeOdds, g.thirdQuarterGameObj.bestAwayOdds)
-    print("QUARTER_4", g.fourthQuarterGameObj.bestHomeOdds, g.fourthQuarterGameObj.bestAwayOdds)
+    printQuarterDetails(g.secondQuarterGameObj, showTeamAndPlayers, i)
+    printQuarterDetails(g.thirdQuarterGameObj, showTeamAndPlayers, i)
+    printQuarterDetails(g.fourthQuarterGameObj, showTeamAndPlayers, i)
 
     # printQuarterDetails(g.thirdQuarterGameObj, showTeamAndPlayers, i)
     # printQuarterDetails(g.fourthQuarterGameObj, showTeamAndPlayers, i)

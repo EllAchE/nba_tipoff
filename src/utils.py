@@ -130,6 +130,7 @@ def removeAllNonLettersAndLowercase(name):
     playerLowered = playerLowered.replace('.', '')
     playerLowered = playerLowered.replace('-', '')
     playerLowered = playerLowered.replace('\'', '')
+    playerLowered = playerLowered.replace('_', '')
     return playerLowered.lower()
 
 def lowercaseNoSpace(str):

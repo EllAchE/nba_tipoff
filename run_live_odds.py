@@ -2,7 +2,6 @@ from src.live_data.display_bets import getAllOddsAndDisplayByEv, getUniqueOddsAn
 
 # getAllOddsAndDisplayByEv(fanduelTomorrow=True)
 # getAllOddsAndDisplayByEv(bovada=True)
-# todo fix q3 error fixing in betfair
 # getAllOddsAndDisplayByEv(betfair=True)
 getAllOddsAndDisplayByEv(fanduelToday=True, mgm=True, draftkings=True, pointsbet=True, unibet=True, barstool=True, includeOptimalPlayerSpread=True)
 # getAllOddsAndDisplayByEv(getFanduelToday=True, getMgm=True) #, getPointsBet=True, getUnibet=True, getBarstool=True)

@@ -80,7 +80,7 @@ def _getSingleQuarterStatistics(shotsBeforeFirstScore: pd.DataFrame):
         opponentTeam = awayTeam if playerTeam == homeTeam else homeTeam
         playerLast = getPlayerLastNameFromShotDescription(description)
         player = findPlayerFullFromLastGivenPossibleFullNames(playerLast, allGamePlayers)
-        shotType = getShotTypeFromEventDescription(description) # todo this may be interpreting blocks as shots
+        shotType = getShotTypeFromEventDescription(description) # backlogtodo this may be interpreting blocks as shots
 
         dataList.append({"shotIndex": shotIndex, "team": playerTeam, "player": player, "opponentTeam": opponentTeam, "shotType": shotType}) # free throws should be considered a collective shot, not individual
         shotIndex += 1

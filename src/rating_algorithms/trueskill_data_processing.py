@@ -53,7 +53,7 @@ def trueSkillUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, 
     print('Winner:', winnerCode, 'trueskill increased', winnerMu - winnerOgMu, 'to', winnerMu, '. Sigma is now', winnerSigma, '. W:', winnerWinCount, 'L', winnerAppearances - winnerWinCount)
     print('Loser:', loserCode, 'trueskill decreased', loserMu - loserOgMu, 'to', loserMu, '. Sigma is now', loserSigma, '. W:', loserAppearances - loserLosses, 'L', loserLosses)
 
-    #todo refactor repeated code out of algo methods
+    # backlogtodo refactor repeated code out of algo methods
     if homePlayerCode == winnerCode:
         homeMu = winnerOgMu
         homeSigma = winnerOgSigma

@@ -755,7 +755,7 @@ def getBetfairCurl(gameIdAndTeamNames):
     # in case the reproduced version is not "correct".
     # response = requests.get('https://www.betfair.com/sport/basketball/nba/milwaukee-bucks-washington-wizards/30352512?selectedGroup=-78637064&action=changeMarketGroup&modules=marketgroups%401053&lastId=1056&d18=Main&d31=Middle&isAjax=true&ts=1615794006588&alt=json&xsrftoken=1e4dceb0-839a-11eb-b07e-fa163e3cd428', headers=headers, cookies=cookies)
 
-# todo add player score first odds retrieval
+# backlogtodo add player score first odds retrieval
 def betfairOdds():
     # https://www.betfair.com/sport/basketball/nba/houston-rockets-oklahoma-city-thunder/30266729
     # betfair homepage https://www.betfair.com/sport/basketball

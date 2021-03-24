@@ -1,6 +1,5 @@
 from src.classes.QuarterOdds import QuarterOdds
 
-# todo add quarters to game response, then use in naiveadjustment factor
 class FullGameOdds(QuarterOdds):
     def __init__(self, gameDict, teamOnly=False, playersOnly=False):
         super().__init__(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly)
@@ -15,12 +14,12 @@ class FullGameOdds(QuarterOdds):
 
         gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamSecondQuarterOdds
         gameDict['teamOdds']['awayTeamFirstQuarterOdds'] = self.awayTeamSecondQuarterOdds
-        self.secondQuarterGameObj = QuarterOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly, isQuarter1Or4=False)
+        self.secondQuarterGameObj = QuarterOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly)
         self.secondQuarterGameObj.quarter = "QUARTER_2"
         self.secondQuarterGameObj.isFullGame = True
         gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamThirdQuarterOdds
         gameDict['teamOdds']['awayTeamFirstQuarterOdds'] = self.awayTeamThirdQuarterOdds
-        self.thirdQuarterGameObj = QuarterOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly, isQuarter1Or4=False)
+        self.thirdQuarterGameObj = QuarterOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly)
         self.thirdQuarterGameObj.quarter = "QUARTER_3"
         self.thirdQuarterGameObj.isFullGame = True
         gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamFourthQuarterOdds

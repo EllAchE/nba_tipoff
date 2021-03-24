@@ -19,8 +19,11 @@ from src.rating_algorithms.algorithms import trueSkillTipWinProb
 #     return tipWinOdds * tipWinnerScoresOdds + (1 - tipWinOdds) * (1 - tipWinnerScoresOdds)
 
 # backlogtodo allow this to toggle to different algos
-def scoreFirstProb(p1Code: str, p2Code: str, jsonPath: Optional[str] = None, psd=None, isQuarter1or4=True):
-    if not isQuarter1or4:
+from src.utils import removeAllNonLettersAndLowercase
+
+
+def scoreFirstProb(p1Code: str, p2Code: str, jsonPath: Optional[str] = None, psd=None, quarter=True):
+    if quarter == "QUARTER_2" or quarter == "QUARTER_3":
         temp = p2Code
         p2Code = p1Code
         p1Code = temp
@@ -36,7 +39,8 @@ def scoreFirstProb(p1Code: str, p2Code: str, jsonPath: Optional[str] = None, psd
         metaFile = json.load(rFile)
 
     # todo backtest for all quarters/seasons and adjust this. This math doesn't actually make any sense
-    reducedNaiveScoreFirstAdjustment = math.sqrt(metaFile[t1]['quarter1']['naiveAdjustmentFactor']) / math.sqrt(metaFile[t2]['quarter1']['naiveAdjustmentFactor'])
+    quarterLowercased = removeAllNonLettersAndLowercase(quarter)
+    reducedNaiveScoreFirstAdjustment = math.sqrt(metaFile[t1][quarterLowercased]['naiveAdjustmentFactor']) / math.sqrt(metaFile[t2][quarterLowercased]['naiveAdjustmentFactor'])
     reducedNaiveScoreFirstAdjustment = math.sqrt(reducedNaiveScoreFirstAdjustment)
     # reducedNaiveScoreFirstAdjustment = math.sqrt(reducedNaiveScoreFirstAdjustment)
 
