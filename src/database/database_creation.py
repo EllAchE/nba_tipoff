@@ -447,6 +447,7 @@ def addAdditionalMlColumnsSingleSeason(season):
 
     df = addGamesPlayedAndNaiveAdjustment(df)
     df = addSeasonLongData(df, season)
+    df = columnSummaryValuesAddedToMl(df)
     numberBack = (season % 100) + 1
     seasonTitle = str(season) + "-" + str(numberBack)
 
@@ -457,14 +458,17 @@ def columnSummaryValuesAddedToMl(df):
     df['Elo Difference'] = df['Home Elo'] - df['Away Elo']
     df['TrueSkill Difference'] = df['Home TS Mu'] - df['Away TS Mu']
     df['Glicko Difference'] = df['Home Glicko Mu'] - df['Away Glicko Mu']
-    df['Combined_N_Adj'] = df['H_N_Abj'] / df['A_N_Adj']
+    df['Combined_Cur_N_Adj'] = df['Combined_Mid_N_Adj'] = df['Combined_Full_N_Adj'] = None
 
     for i in range(0, len(df.index)):
         df.at[i, "Elo Tip Win Prob"] = eloWinProbFromRawElo(df['Home Elo'].iloc[i], df['Away Elo'].iloc[i])
         df.at[i, "Glicko Tip Win Prob"] = glickoWinProbFromMuPhiSigma(df['Home Glicko Mu'].iloc[i], df['Home Glicko Phi'].iloc[i], df['Home Glicko Sigma'].iloc[i], df['Away Glicko Mu'].iloc[i], df['Away Glicko Phi'].iloc[i], df['Away Glicko Sigma'].iloc[i])
         df.at[i, "TrueSkill Tip Win Prob"] = trueSkillTipWinFromMuAndSigma(df['Home TS Mu'].iloc[i], df['Home TS Sigma'].iloc[i], df['Away TS Mu'].iloc[i], df['Away TS Sigma'].iloc[i])
+        df.at[i, 'Combined_Cur_N_Adj'] = df['Cur_H_N_Adj'].iloc[i] / df['Cur_A_N_Adj'].iloc[i] if df['Cur_A_N_Adj'].iloc[i] != 0 and df['Cur_A_N_Adj'].iloc[i] is not None else 0
+        df.at[i, 'Combined_Mid_N_Adj'] = df['Mid_H_N_Adj'].iloc[i] / df['Mid_A_N_Adj'].iloc[i] if df['Mid_A_N_Adj'].iloc[i] != 0 and df['Mid_A_N_Adj'].iloc[i] is not None else 0
+        df.at[i, 'Combined_Full_N_Adj'] = df['Full_H_N_Adj'].iloc[i] / df['Full_A_N_Adj'].iloc[i] if df['Full_A_N_Adj'].iloc[i] != 0 and df['Full_A_N_Adj'].iloc[i] is not None else 0
 
-    print('ml summary columns added')
+    return df
 
 # def removeExtraIndex():
 #     for season in ENVIRONMENT.ALL_SEASONS_LIST:

@@ -15,24 +15,20 @@ alwaysDropList = ['Game Code', 'Full Hyperlink', 'Home', 'Away', 'Home Short', '
                     'Scored Upon Team', 'Tip Winner', 'Tip Winner Link', 'Tip Loser', 'Tip Loser Link', 'Tip Winner Scores', 'Home Scores',
                     'Home Tipper Wins', 'Away Tipper Wins']
 # These columns in the dataframe will be ignored
-gamesPlayed = ['Home Games Played'] #['Home Games Played', 'Away Games Played']
-algos = ['Home TS Mu', 'Away TS Mu', 'Home TS Sigma', 'Away TS Sigma', 'Home Glicko Mu', 'Away Glicko Mu', 'Home Glicko Phi', 'Away Glicko Phi', 'Home Glicko Phi', 'Home Glicko Sigma', 'Away Glicko Sigma']
-custom = ['Full_A_N_Adj', 'Full_H_N_Adj', 'Mid_A_N_Adj', 'Mid_H_N_Adj']
+gamesPlayed = ['Home Games Played', 'Away Games Played']
+algos = ['Home TS Mu', 'Away TS Mu', 'Home TS Sigma', 'Away TS Sigma', 'Home Glicko Mu', 'Away Glicko Mu', 'Home Glicko Phi', 'Away Glicko Phi', 'Home Glicko Phi', 'Home Glicko Sigma', 'Away Glicko Sigma', 'Home Elo', 'Away Elo']
+metaAlgos = ['Glicko Tip Win Prob', 'Glicko Difference', 'Elo Difference', 'TrueSkill Difference']
+custom = ['Full_A_N_Adj', 'Full_H_N_Adj', 'Mid_A_N_Adj', 'Mid_H_N_Adj', 'Combined_Full_N_Adj']
 fg = ['HOME_FG2A_FREQUENCY', 'AWAY_FG2A_FREQUENCY', 'HOME_FG_PCT', 'AWAY_FG_PCT']
 rebounds = ['HOME_E_OREB_PCT', 'AWAY_E_OREB_PCT', 'AWAY_E_REB_PCT_RANK', 'HOME_E_REB_PCT_RANK', ]
-advancedMetrics = []#['AWAY_E_OFF_RATING', 'HOME_E_OFF_RATING', 'AWAY_E_OFF_RATING_RANK', 'HOME_E_OFF_RATING_RANK', 'AWAY_E_DEF_RATING_RANK', 'HOME_E_DEF_RATING_RANK', 'AWAY_E_DEF_RATING', 'HOME_E_DEF_RATING']
+advancedMetrics = ['AWAY_E_OFF_RATING', 'HOME_E_OFF_RATING', 'AWAY_E_OFF_RATING_RANK', 'HOME_E_OFF_RATING_RANK', 'AWAY_E_DEF_RATING_RANK', 'HOME_E_DEF_RATING_RANK', 'AWAY_E_DEF_RATING', 'HOME_E_DEF_RATING']
 wins = ['HOME_W_PCT_RANK', 'AWAY_W_PCT_RANK']
 turnovers = ['AWAY_E_TM_TOV_PCT', 'HOME_E_TM_TOV_PCT']
 tips = ['Away Lifetime Appearances', 'Home Lifetime Appearances', 'Away Tipper Losses', 'Home Tipper Losses']
 temp = ['HOME_W_PCT', 'AWAY_W_PCT', 'HOME_E_DREB_PCT', 'AWAY_E_DREB_PCT', 'HOME_E_REB_PCT', 'AWAY_E_REB_PCT', 'HOME_E_OREB_PCT_RANK', 'AWAY_E_OREB_PCT_RANK', 'HOME_FG2_PCT', 'AWAY_FG2_PCT', 'HOME_FG3_PCT', 'AWAY_FG3_PCT', 'HOME_FG3A_FREQUENCY', 'AWAY_FG3A_FREQUENCY']
 
-testDropList = gamesPlayed + algos + custom + fg + rebounds + advancedMetrics + wins + turnovers + tips + temp
-
+testDropList = gamesPlayed + algos + custom + fg + rebounds + advancedMetrics + wins + turnovers + tips + temp + metaAlgos
 dropList = alwaysDropList + testDropList
-
-
-# def specifyMLColumns(df):
-#     return df
 
 def getXGBoostVariablesALlML():
     with open('all_ml_cols.csv') as rFile:
@@ -55,9 +51,9 @@ def getXGBoostVariablesSeason(season):
     print('x columns', x.columns)
     return x, y
 
-def createClassifierAndReturnAssociatedData(x, y):
+def createClassifierAndReturnAssociatedData(x, y, params):
     xTrain, xTest, yTrain, yTest = train_test_split(x, y, test_size=0.2, random_state=123)
-    xgClassifier = xgb.XGBClassifier(objective='binary:logistic', colsample_bytree=0.3, max_depth=5, alpha=10, n_estimators=10)
+    xgClassifier = xgb.XGBClassifier(objective='binary:logistic', colsample_bytree=params['colsample_bytree'], max_depth=params['max_depth'], alpha=params['alpha'], n_estimators=10)
     xgClassifier.fit(xTrain, yTrain, verbose=1, eval_metric='logloss')
     predictions = xgClassifier.predict_proba(xTest)
     return xgClassifier, predictions, xTrain, xTest, yTrain, yTest
@@ -88,7 +84,6 @@ def customEvaluationMetrics(predictions, yTest):
 def crossValidation(dataDMatrix, hyperParams):
     crossValidationResults = xgb.cv(params=hyperParams, dtrain=dataDMatrix, nfold=3, num_boost_round=50, early_stopping_rounds=10,
                                     metrics="logloss", as_pandas=True, seed=123)
-
     print('Cross Validation head')
     print(crossValidationResults.head(5))
     print('Cross Validation tail')
@@ -97,11 +92,11 @@ def crossValidation(dataDMatrix, hyperParams):
 def XGBoost(season=None):
     # https://www.datacamp.com/community/tutorials/xgboost-in-python
     hyperParams = {"objective": "binary:logistic", 'colsample_bytree': 0.3, 'learning_rate': 0.1,
-              'max_depth': 5, 'alpha': 10}
+              'max_depth': 7, 'alpha': 5}
 
     x, y = getXGBoostVariablesALlML() if season is None else getXGBoostVariablesSeason(season)
     dataDMatrix = xgb.DMatrix(data=x, label=y, enable_categorical=True)
-    xgClassifier, predictions, xTrain, xTest, yTrain, yTest = createClassifierAndReturnAssociatedData(x, y)
+    xgClassifier, predictions, xTrain, xTest, yTrain, yTest = createClassifierAndReturnAssociatedData(x, y, hyperParams)
 
     customEvaluationMetrics(predictions, yTest)
     crossValidation(dataDMatrix, hyperParams)

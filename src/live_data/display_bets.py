@@ -83,8 +83,8 @@ def printQuarterDetails(g, showTeamAndPlayers, i):
     betOnVia = g.bestBetIsTeamOrPlayers()
     playerSpread = g.bestPlayerSpread()
 
-    if g.kellyBet != "NA":
-        pKellyBet = "{:.3f}".format(float(g.kellyBet)) # todo fix this formatting
+    if g.kellyBet is not None:
+        pKellyBet = "{:.3f}".format(float(g.kellyBet['bet']), 'on', g.kellyBet['team']) # todo fix this formatting
     else:
         pKellyBet = "NA"
     pEVFactor = "{:.3f}".format(float(g.bestEVFactor))
@@ -101,7 +101,7 @@ def printQuarterDetails(g, showTeamAndPlayers, i):
         print('   || Tippers-H/A', g.expectedHomeTipper + '/' + g.expectedAwayTipper, '|| Odds Home Wins',
               floatHomeScoreProb, '|| Min Odds:', floatMinBetOdds)
     if g.isFullGame:
-        print('   ', g.quarter, '|| Bet On:', betOn, '|| Via:', betOnVia, '|| Kelly Bet:', pKellyBet, '|| EV Factor:', pEVFactor, '|| Home Line:', "{:.1f}".format(g.bestHomeOdds), '|| Away Line:', "{:.1f}".format(g.bestAwayOdds))
+        print('   ', g.quarter, '|| Bet On:', betOn, '|| Via:', betOnVia, '|| Kelly Bet:', pKellyBet, '|| EV Factor:', pEVFactor, '|| Home Line:', "{:.1f}".format(float(g.bestHomeOdds)), '|| Away Line:', "{:.1f}".format(float(g.bestAwayOdds)))
 
     if showTeamAndPlayers:  # Assumes this is only set this way if both exist
         print('kelly bet home team odds', g.homeTeamKellyBet)

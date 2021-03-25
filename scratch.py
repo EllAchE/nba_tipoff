@@ -38,9 +38,8 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # addAdditionalMlColumnsSingleSeason(2018)
 # addAdditionalMlColumnsSingleSeason(2019)
 # addAdditionalMlColumnsSingleSeason(2020)
-# concatCsv('all_ml_cols.csv', 'Data/CSV/ml_columns')
 
-# concatCsv('all_ml_cols.csv', ENVIRONMENT.ML_COLS_FOLDER_PATH)
+concatCsv('all_ml_cols.csv', ENVIRONMENT.ML_COLS_FOLDER_PATH)
 
 # getDailyOdds('GSW', 'PHI', '-100')
 # getAllOddsAndDisplayByEv(bovada=True)
@@ -48,5 +47,11 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # getAllOddsAndDisplayByEv(fanduelToday=True)
 # updateCurrentSeasonRawGameData()
 #
-# XGBoost(2020)
-getPlusMinusForTeams(2020)
+XGBoost(2020)
+# getPlusMinusForTeams(2020)
+# addAdditionalMlColumnsSingleSeason(2013)
+# addAdditionalMlColumnsSingleSeason(2016)
+# addAdditionalMlColumnsSingleSeason(2017)
+# addAdditionalMlColumnsSingleSeason(2018)
+# addAdditionalMlColumnsSingleSeason(2019)
+# addAdditionalMlColumnsSingleSeason(2020)

@@ -47,7 +47,6 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # backlogtodo look at first 100 and last 100 games (or similar) of player performance vs. overall
 Existing apis etc.:
 
-# todo add calculated tip win prob from elo, trueskill, glicko to ML columns
 # todo add elo/glicko etc. difference
 
 nba.com:
