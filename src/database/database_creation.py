@@ -419,7 +419,7 @@ def addGamesPlayedAndNaiveAdjustment(df): # Games Played, naive adjustment
     # Tip Losses - x
     # Mid season naive Q1 rating - x
 def addAdditionalMlColumnsSingleSeason(season):
-    df = pd.read_csv(ENVIRONMENT.SEASON_CSV_CALCULATED_VALUES_UNFORMATTED_PATH.format(season))
+    df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
 
     df = addGamesPlayedAndNaiveAdjustment(df)
     df = addSeasonLongData(df, season)

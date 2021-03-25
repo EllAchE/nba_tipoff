@@ -1,4 +1,6 @@
 # https://xgboost.readthedocs.io/en/latest/
+import warnings
+
 import xgboost as xgb
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import log_loss
@@ -85,7 +87,7 @@ def customEvaluationMetrics(predictions, yTest):
 
 def crossValidation(dataDMatrix, hyperParams):
     crossValidationResults = xgb.cv(params=hyperParams, dtrain=dataDMatrix, nfold=3, num_boost_round=50, early_stopping_rounds=10,
-                                    metrics="log_loss", as_pandas=True, seed=123)
+                                    metrics="logloss", as_pandas=True, seed=123)
 
     print('Cross Validation head')
     print(crossValidationResults.head(5))
@@ -122,6 +124,7 @@ def trainAndPlotVisualizations(dataDMatrix, hyperParams, xgClassifier=None):
         plt.show()
 
 def gridSearchParams(estimator, x, y):
+    warnings.filterwarnings("ignore")
     # https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/
     paramTest1 = {
         'max_depth': range(4, 10, 1),

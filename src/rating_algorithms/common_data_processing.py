@@ -61,7 +61,7 @@ def histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePla
     greaterOdds = homeOdds if homeOdds > 1-homeOdds else 1-homeOdds
     homeWinsTip = True if tipWinnerCode[11:] == homePlayerCode else False
     oddsBelongToHome = True if homeOdds > 1-homeOdds else False
-    homeScoresFirst = True if homePlayerTeam == scoringTeam else False
+    homeScoresFirst = 1 if homePlayerTeam == scoringTeam else 0
     greaterOddsWinsTip = True if (homeWinsTip and oddsBelongToHome) or (not homeWinsTip and not oddsBelongToHome) else False
     predictionArray.append(greaterOdds)
     actualArray.append(greaterOddsWinsTip)

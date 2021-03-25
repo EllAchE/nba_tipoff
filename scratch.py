@@ -36,6 +36,7 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # addAdditionalMlColumnsSingleSeason(2018)
 # addAdditionalMlColumnsSingleSeason(2019)
 # addAdditionalMlColumnsSingleSeason(2020)
+# concatCsv('all_ml_cols.csv', 'Data/CSV/ml_columns')
 
 # concatCsv('all_ml_cols.csv', ENVIRONMENT.ML_COLS_FOLDER_PATH)
 
