@@ -157,7 +157,7 @@ def americanToDecimal(americanOdds: Any):
     odds = positiveEvThresholdFromAmerican(americanOdds)
     return 1 / odds
 
-def kellyBetFromAOddsAndScoreProb(scoreProb: float, americanOdds: str, bankroll: int = ENVIRONMENT.BANKROLL):
+def kellyBetFromAOddsAndScoreProb(scoreProb: float, americanOdds: str, bankroll: int=ENVIRONMENT.BANKROLL):
     loss_amt = costFor1(americanOdds)
     return kellyBetReduced(loss_amt, scoreProb, bankroll=bankroll)
 
