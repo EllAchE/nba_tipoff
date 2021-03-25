@@ -15,12 +15,12 @@ alwaysDropList = ['Game Code', 'Full Hyperlink', 'Home', 'Away', 'Home Short', '
                     'Scored Upon Team', 'Tip Winner', 'Tip Winner Link', 'Tip Loser', 'Tip Loser Link', 'Tip Winner Scores', 'Home Scores',
                     'Home Tipper Wins', 'Away Tipper Wins']
 # These columns in the dataframe will be ignored
-gamesPlayed =['Home Games Played', 'Away Games Played']
-algos =['Home TS Sigma', 'Away TS Sigma']
+gamesPlayed = ['Home Games Played'] #['Home Games Played', 'Away Games Played']
+algos = ['Home TS Mu', 'Away TS Mu', 'Home TS Sigma', 'Away TS Sigma', 'Home Glicko Mu', 'Away Glicko Mu', 'Home Glicko Phi', 'Away Glicko Phi', 'Home Glicko Phi', 'Home Glicko Sigma', 'Away Glicko Sigma']
 custom = ['Full_A_N_Adj', 'Full_H_N_Adj', 'Mid_A_N_Adj', 'Mid_H_N_Adj']
 fg = ['HOME_FG2A_FREQUENCY', 'AWAY_FG2A_FREQUENCY', 'HOME_FG_PCT', 'AWAY_FG_PCT']
 rebounds = ['HOME_E_OREB_PCT', 'AWAY_E_OREB_PCT', 'AWAY_E_REB_PCT_RANK', 'HOME_E_REB_PCT_RANK', ]
-advancedMetrics = ['AWAY_E_OFF_RATING', 'HOME_E_OFF_RATING', 'AWAY_E_OFF_RATING_RANK', 'HOME_E_OFF_RATING_RANK', 'AWAY_E_DEF_RATING_RANK', 'HOME_E_DEF_RATING_RANK', 'AWAY_E_DEF_RATING', 'HOME_E_DEF_RATING']
+advancedMetrics = []#['AWAY_E_OFF_RATING', 'HOME_E_OFF_RATING', 'AWAY_E_OFF_RATING_RANK', 'HOME_E_OFF_RATING_RANK', 'AWAY_E_DEF_RATING_RANK', 'HOME_E_DEF_RATING_RANK', 'AWAY_E_DEF_RATING', 'HOME_E_DEF_RATING']
 wins = ['HOME_W_PCT_RANK', 'AWAY_W_PCT_RANK']
 turnovers = ['AWAY_E_TM_TOV_PCT', 'HOME_E_TM_TOV_PCT']
 tips = ['Away Lifetime Appearances', 'Home Lifetime Appearances', 'Away Tipper Losses', 'Home Tipper Losses']
@@ -106,7 +106,7 @@ def XGBoost(season=None):
     customEvaluationMetrics(predictions, yTest)
     crossValidation(dataDMatrix, hyperParams)
 
-    gridSearchParams(xgClassifier, x, y)
+    # gridSearchParams(xgClassifier, x, y)
     trainAndPlotVisualizations(dataDMatrix, hyperParams, xgClassifier)
 
 def trainAndPlotVisualizations(dataDMatrix, hyperParams, xgClassifier=None):

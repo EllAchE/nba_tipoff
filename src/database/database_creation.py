@@ -4,12 +4,16 @@ import unicodedata
 import pandas as pd
 import re
 
-from nba_api.stats.endpoints import leaguegamefinder, TeamEstimatedMetrics, teamestimatedmetrics, LeagueDashTeamPtShot
+from nba_api.stats.endpoints import leaguegamefinder, TeamEstimatedMetrics, teamestimatedmetrics, LeagueDashTeamPtShot, \
+    TeamDashboardByGameSplits
 from nba_api.stats.static import teams
 
 import ENVIRONMENT
 from src.database.database_access import getUniversalPlayerName, getUniversalTeamShortCode
-from src.utils import getSoupFromUrl, removeAllNonLettersAndLowercase, sleepChecker
+from src.rating_algorithms.algorithms import glickoTipWinProb, eloTipWinProb, trueSkillTipWinProb, \
+    trueSkillTipWinFromMuAndSigma, eloWinProbFromRawElo, glickoWinProbFromMuPhiSigma
+from src.utils import getSoupFromUrl, removeAllNonLettersAndLowercase, sleepChecker, customNbaSeasonFormatting
+
 
 def concatCsv(savePath: str, readFolder: str):
     fNames = [i for i in glob.glob('{}/*.csv'.format(readFolder))]
@@ -314,6 +318,26 @@ def getShotBreakdownForTeams(season): # season must be in 2014-15 format
     path = ENVIRONMENT.SHOT_BREAKDOWN_TEAMS_UNFORMATTED.format(season)
     saveNbaApiDataframeAsJson(data, path)
 
+def getPlusMinusForTeams(season):
+    seasonStr = customNbaSeasonFormatting(season)
+    teamPlusMinusDict = {}
+    with open(ENVIRONMENT.TEAM_NAMES_PATH) as teamsFiles:
+        teamData = json.load(teamsFiles)
+    for team in teamData:
+        data = TeamDashboardByGameSplits(team_id=team["teamId"], season=seasonStr).get_data_frames()[2]
+        print('running for team', team['abbreviation'])
+        sleepChecker(1, 10, 1)
+        teamPlusMinusDict[team['abbreviation']] = {}
+        teamPlusMinusDict[team['abbreviation']]['quarter1'] = data['PLUS_MINUS'][0]
+        teamPlusMinusDict[team['abbreviation']]['quarter2'] = data['PLUS_MINUS'][1]
+        teamPlusMinusDict[team['abbreviation']]['quarter3'] = data['PLUS_MINUS'][2]
+        teamPlusMinusDict[team['abbreviation']]['quarter4'] = data['PLUS_MINUS'][3]
+
+    with open(ENVIRONMENT.PLUS_MINUS_TEAMS_UNFORMATTED.format(season), 'w') as saveFile:
+        json.dump(teamPlusMinusDict, saveFile)
+    print('saved plus minus data')
+
+
 def getAdvancedMetricsForTeams(season):
     # all https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/teamdashboardbyteamperformance.md
     # data split out by things like all star break etc. https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/teamdashboardbygeneralsplits.md
@@ -429,7 +453,19 @@ def addAdditionalMlColumnsSingleSeason(season):
     df.to_csv(ENVIRONMENT.SEASON_CSV_ML_COLS_UNFORMATTED_PATH.format(seasonTitle), index=False)
     print('ml columns added to dataset for season', season)
 
-#
+def columnSummaryValuesAddedToMl(df):
+    df['Elo Difference'] = df['Home Elo'] - df['Away Elo']
+    df['TrueSkill Difference'] = df['Home TS Mu'] - df['Away TS Mu']
+    df['Glicko Difference'] = df['Home Glicko Mu'] - df['Away Glicko Mu']
+    df['Combined_N_Adj'] = df['H_N_Abj'] / df['A_N_Adj']
+
+    for i in range(0, len(df.index)):
+        df.at[i, "Elo Tip Win Prob"] = eloWinProbFromRawElo(df['Home Elo'].iloc[i], df['Away Elo'].iloc[i])
+        df.at[i, "Glicko Tip Win Prob"] = glickoWinProbFromMuPhiSigma(df['Home Glicko Mu'].iloc[i], df['Home Glicko Phi'].iloc[i], df['Home Glicko Sigma'].iloc[i], df['Away Glicko Mu'].iloc[i], df['Away Glicko Phi'].iloc[i], df['Away Glicko Sigma'].iloc[i])
+        df.at[i, "TrueSkill Tip Win Prob"] = trueSkillTipWinFromMuAndSigma(df['Home TS Mu'].iloc[i], df['Home TS Sigma'].iloc[i], df['Away TS Mu'].iloc[i], df['Away TS Sigma'].iloc[i])
+
+    print('ml summary columns added')
+
 # def removeExtraIndex():
 #     for season in ENVIRONMENT.ALL_SEASONS_LIST:
 #         df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), index_col=0)

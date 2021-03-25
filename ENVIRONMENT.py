@@ -55,10 +55,12 @@ PLAYER_GLICKO_DICT_PATH = Path(os.path.abspath('Data/JSON/algorithms/glicko/play
 SEASON_CSV_UNFORMATTED_PATH = os.path.abspath('Data/CSV/season_data/tipoff_and_first_score_details_{}_season.csv')
 GLICKO_PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/algorithms/glicko/summaries/glicko_prediction_summaries_{}_{}_{}_{}_{}_{}_{}_{}.json'.format(
 BASE_GLICKO_MU, str(BASE_GLICKO_SIGMA).replace('.', ''), BASE_GLICKO_PHI, str(BASE_GLICKO_TAU).replace('.', ''), MIN_GLICKO_APPEARANCES, GLICKO_TIPOFF_ODDS_THRESHOLD, PHI_DRIFT, ALL_SEASONS_LIST)))
-ADVANCED_TEAMS_METRICS_UNFORMATTED = os.path.abspath('Data/JSON/team_metrics/advanced/{}_advanced_metrics.json')
-SHOT_BREAKDOWN_TEAMS_UNFORMATTED = os.path.abspath('Data/JSON/team_metrics/shot_breakdown/{}_shot_breakdown.json')
 SEASON_CSV_ML_COLS_UNFORMATTED_PATH = os.path.abspath('Data/CSV/ml_columns/{}_ml_columns.csv')
 SEASON_CSV_CALCULATED_VALUES_UNFORMATTED_PATH = os.path.abspath('Data/CSV/season_data/tipoff_and_first_score_details_{}_season-calculated-values.csv')
+
+ADVANCED_TEAMS_METRICS_UNFORMATTED = os.path.abspath('Data/JSON/team_metrics/advanced/{}_advanced_metrics.json')
+SHOT_BREAKDOWN_TEAMS_UNFORMATTED = os.path.abspath('Data/JSON/team_metrics/shot_breakdown/{}_shot_breakdown.json')
+PLUS_MINUS_TEAMS_UNFORMATTED = os.path.abspath('Data/JSON/team_metrics/plus_minus/{}_plus_minus.json')
 
 # Elo Base values
 K_FACTOR = 10

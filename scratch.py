@@ -1,9 +1,11 @@
+from nba_api.stats.endpoints import TeamDashboardByGameSplits
+
 import ENVIRONMENT
 from src.database.data_update import customDataUpdate, smallDataUpdate
 
 # customDataUpdate()
 from src.database.database_creation import addExtraUrlToPlayerLinks, getAdvancedMetricsForTeams, \
-    getShotBreakdownForTeams, addAdditionalMlColumnsSingleSeason, concatCsv
+    getShotBreakdownForTeams, addAdditionalMlColumnsSingleSeason, concatCsv, getPlusMinusForTeams
 from src.historical_data.bball_reference_historical_data import updateCurrentSeasonRawGameData
 from src.historical_data.nba_play_by_play_methods import fillGaps, teamSummaryDataFromFirstPointData, \
     getAllFirstPossessionStatisticsIncrementally
@@ -46,4 +48,5 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # getAllOddsAndDisplayByEv(fanduelToday=True)
 # updateCurrentSeasonRawGameData()
 #
-XGBoost(2020)
+# XGBoost(2020)
+getPlusMinusForTeams(2020)

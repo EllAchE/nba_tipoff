@@ -56,9 +56,19 @@ def glickoTipWinProb(player1Code: str, player2Code: str, jsonPath: str = ENVIRON
         with open(jsonPath) as json_file:
             psd = json.load(json_file)
 
+    player1Mu = psd[player1Code]['mu']
+    player1Phi = psd[player1Code]['sigma']
+    player1Sigma = psd[player1Code]['phi']
+    player2Mu = psd[player2Code]['mu']
+    player2Phi = psd[player2Code]['sigma']
+    player2Sigma = psd[player2Code]['phi']
+
+    return glickoWinProbFromMuPhiSigma(player1Mu, player1Phi, player1Sigma, player2Mu, player2Phi, player2Sigma)
+
+def glickoWinProbFromMuPhiSigma(player1Mu, player1Phi, player1Sigma, player2Mu, player2Phi, player2Sigma):
     glickoObj = glicko2.Glicko2()
-    player1 = glicko2.Rating(mu=psd[player1Code]['mu'], phi=psd[player1Code]['phi'], sigma=psd[player1Code]['sigma'])
-    player2 = glicko2.Rating(mu=psd[player2Code]['mu'], phi=psd[player2Code]['phi'], sigma=psd[player2Code]['sigma'])
+    player1 = glicko2.Rating(mu=player1Mu, phi=player1Phi, sigma=player1Sigma)
+    player2 = glicko2.Rating(mu=player2Mu, phi=player2Phi, sigma=player2Sigma)
     return glickoObj.expect_score(player1, player2, glickoObj.reduce_impact(player1))
 
 # backlogtodo possibly creating a new Elo object here repeatedly is inefficient
@@ -85,6 +95,9 @@ def eloTipWinProb(player1Code: str, player2Code: str, jsonPath: str = ENVIRONMEN
             psd = json.load(json_file)
     elo1 = psd[player1Code]['elo']
     elo2 = psd[player2Code]['elo']
+    return eloWinProbFromRawElo(elo1, elo2)
+
+def eloWinProbFromRawElo(elo1, elo2):
     eloObj = elo.Elo()
     return eloObj.expect(elo1, elo2)
 
@@ -101,8 +114,17 @@ def trueSkillTipWinProb(player1Code: str, player2Code: str, psd=None): #win prob
         with open(ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH) as json_file:
             psd = json.load(json_file)
 
-    player1 = trueskill.Rating(psd[player1Code]['mu'], psd[player1Code]['sigma'])
-    player2 = trueskill.Rating(psd[player2Code]['mu'], psd[player2Code]['sigma'])
+    player1Mu = psd[player1Code]['mu']
+    player1Sigma = psd[player1Code]['sigma']
+    player2Mu = psd[player2Code]['mu']
+    player2Sigma = psd[player2Code]['sigma']
+
+    return trueSkillTipWinFromMuAndSigma(player1Mu, player1Sigma, player2Mu, player2Sigma)
+
+
+def trueSkillTipWinFromMuAndSigma(player1Mu, player1Sigma, player2Mu, player2Sigma):
+    player1 = trueskill.Rating(player1Mu, player1Sigma)
+    player2 = trueskill.Rating(player2Mu, player2Sigma)
     team1 = [player1]
     team2 = [player2]
 
@@ -114,6 +136,7 @@ def trueSkillTipWinProb(player1Code: str, player2Code: str, psd=None): #win prob
     res = ts.cdf(delta_mu / denom)
     # print('odds', player1_code, 'beats', player2_code, 'are', res)
     return res
+
 
 def machineLearning():
     pass
