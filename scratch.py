@@ -1,7 +1,7 @@
 from nba_api.stats.endpoints import TeamDashboardByGameSplits
 
 import ENVIRONMENT
-from src.database.data_update import customDataUpdate, smallDataUpdate
+from src.database.data_update import customDataUpdate, smallDataUpdate, updateLongTermData
 
 # customDataUpdate()
 from src.database.database_creation import addExtraUrlToPlayerLinks, getAdvancedMetricsForTeams, \
@@ -39,15 +39,15 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 # addAdditionalMlColumnsSingleSeason(2019)
 # addAdditionalMlColumnsSingleSeason(2020)
 
-concatCsv('all_ml_cols.csv', ENVIRONMENT.ML_COLS_FOLDER_PATH)
+# concatCsv('all_ml_cols.csv', ENVIRONMENT.ML_COLS_FOLDER_PATH)
 
-# getDailyOdds('GSW', 'PHI', '-100')
+# getDailyOdds('GSW', 'CHI', '-120')
 # getAllOddsAndDisplayByEv(bovada=True)
 # smallDataUpdate()
 # getAllOddsAndDisplayByEv(fanduelToday=True)
 # updateCurrentSeasonRawGameData()
 #
-XGBoost(2020)
+# XGBoost(2020)
 # getPlusMinusForTeams(2020)
 # addAdditionalMlColumnsSingleSeason(2013)
 # addAdditionalMlColumnsSingleSeason(2016)
@@ -55,3 +55,5 @@ XGBoost(2020)
 # addAdditionalMlColumnsSingleSeason(2018)
 # addAdditionalMlColumnsSingleSeason(2019)
 # addAdditionalMlColumnsSingleSeason(2020)
+
+updateLongTermData()

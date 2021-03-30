@@ -26,11 +26,15 @@ def updateAllDataLongTermIncluded():
     saveAllHistoricalStarters()
     getCurrentSeasonUsageRate()
 
+def updateLongTermData():
+    createPlayerNameRelationship(startSeason=ENVIRONMENT.ALL_SEASONS_LIST[0]) # proxies a database with player names
+    saveActivePlayersTeams(start_season=ENVIRONMENT.ALL_SEASONS_LIST[0]) # updates who a player has played for. Does not need to be run often
+
 # backlogtodo hook up trueskill from last game
 def smallDataUpdate():
     updateCurrentSeasonRawGameData()
-    # calculateTrueSkillDictionaryFromZero()
-    updateTrueSkillDictionaryFromLastGame()
+    calculateTrueSkillDictionaryFromZero()
+    # updateTrueSkillDictionaryFromLastGame()
     getAllGameData()
     getAllFirstPossessionStatisticsIncrementally(ENVIRONMENT.CURRENT_SEASON)
     getFirstFieldGoalOrFirstPointStats(ENVIRONMENT.CURRENT_SEASON) # Since Hornets became a team
