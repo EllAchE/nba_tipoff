@@ -215,6 +215,8 @@ def _misformattedNameAdjustment(activePlayers):
         elif playerDict['fullName'] == "Larry Nance Jr.":
             playerDict['alternateNames'] += ["Larry Nance"]
             playerDict['alternateNames'] += ["Larry Nance Jnr"]
+        elif playerDict['fullName'] == "Svi Mykhailiuk":
+            playerDict['alternateNames'] += ['Sviatoslav Mykhailiuk']
     return activePlayers
 
 def singlePlayerNameRelationshipRequest(activePlayers, startSeason, addedPlayerSet):

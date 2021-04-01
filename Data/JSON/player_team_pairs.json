@@ -124305,7 +124305,7 @@
             ],
             "currentTeam": "MIN"
         },
-        "garytrent": {
+        "garytrentjr": {
             "possibleTeams": [
                 "POR"
             ],
@@ -131946,6 +131946,13 @@
             ],
             "currentTeam": "TOR"
         },
+                "garytrentjr": {
+            "possibleTeams": [
+                "POR",
+                "TOR"
+            ],
+            "currentTeam": "TOR"
+        },
         "trentga02.html": {
             "possibleTeams": [
                 "POR",
@@ -133407,9 +133414,9 @@
         },
         "andredrummond": {
             "possibleTeams": [
-                "CLE"
+                "CLE", "LAL"
             ],
-            "currentTeam": "CLE"
+            "currentTeam": "LAL"
         },
         "drumman01.html": {
             "possibleTeams": [

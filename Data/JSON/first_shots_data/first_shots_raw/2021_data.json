@@ -53981,5 +53981,1768 @@
                 "shotType": "3PT MAKE"
             }
         ]
+    },
+    {
+        "gameCode": "202103270SAC",
+        "quarter1": [
+            {
+                "shotIndex": 0,
+                "team": "Cleveland Cavaliers",
+                "player": "Isaac Okoro",
+                "opponentTeam": "Sacramento Kings",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Cleveland Cavaliers",
+                "player": "Larry Nance Jr.",
+                "opponentTeam": "Sacramento Kings",
+                "shotType": "FREE THROW MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Cleveland Cavaliers",
+                "player": "Larry Nance Jr.",
+                "opponentTeam": "Sacramento Kings",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Cleveland Cavaliers",
+                "player": "Collin Sexton",
+                "opponentTeam": "Sacramento Kings",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter2": [
+            {
+                "shotIndex": 0,
+                "team": "Sacramento Kings",
+                "player": "Richaun Holmes",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Cleveland Cavaliers",
+                "player": "Dean Wade",
+                "opponentTeam": "Sacramento Kings",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Sacramento Kings",
+                "player": "Tyrese Haliburton",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Cleveland Cavaliers",
+                "player": "Lamar Stevens",
+                "opponentTeam": "Sacramento Kings",
+                "shotType": "3PT MAKE"
+            }
+        ],
+        "quarter3": [
+            {
+                "shotIndex": 0,
+                "team": "Cleveland Cavaliers",
+                "player": "Collin Sexton",
+                "opponentTeam": "Sacramento Kings",
+                "shotType": "FREE THROW MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Cleveland Cavaliers",
+                "player": "Collin Sexton",
+                "opponentTeam": "Sacramento Kings",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Sacramento Kings",
+                "player": "Buddy Hield",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Cleveland Cavaliers",
+                "player": "Collin Sexton",
+                "opponentTeam": "Sacramento Kings",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter4": [
+            {
+                "shotIndex": 0,
+                "team": "Sacramento Kings",
+                "player": "Richaun Holmes",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Cleveland Cavaliers",
+                "player": "Damyean Dotson",
+                "opponentTeam": "Sacramento Kings",
+                "shotType": "3PT MAKE"
+            }
+        ]
+    },
+    {
+        "gameCode": "202103280CHO",
+        "quarter1": [
+            {
+                "shotIndex": 0,
+                "team": "Phoenix Suns",
+                "player": "Devin Booker",
+                "opponentTeam": "Charlotte Hornets",
+                "shotType": "3PT MAKE"
+            }
+        ],
+        "quarter2": [
+            {
+                "shotIndex": 0,
+                "team": "Charlotte Hornets",
+                "player": "Mikal Bridges",
+                "opponentTeam": "Phoenix Suns",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Phoenix Suns",
+                "player": "Cameron Johnson",
+                "opponentTeam": "Charlotte Hornets",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Charlotte Hornets",
+                "player": "Cody Zeller",
+                "opponentTeam": "Phoenix Suns",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter3": [
+            {
+                "shotIndex": 0,
+                "team": "Charlotte Hornets",
+                "player": "P.J. Washington",
+                "opponentTeam": "Phoenix Suns",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Phoenix Suns",
+                "player": "Jae Crowder",
+                "opponentTeam": "Charlotte Hornets",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Phoenix Suns",
+                "player": "Chris Paul",
+                "opponentTeam": "Charlotte Hornets",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter4": [
+            {
+                "shotIndex": 0,
+                "team": "Phoenix Suns",
+                "player": "Torrey Craig",
+                "opponentTeam": "Charlotte Hornets",
+                "shotType": "3PT MAKE"
+            }
+        ]
+    },
+    {
+        "gameCode": "202103280TOR",
+        "quarter1": [
+            {
+                "shotIndex": 0,
+                "team": "Portland Trail Blazers",
+                "player": "Robert Covington",
+                "opponentTeam": "Toronto Raptors",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Toronto Raptors",
+                "player": "Pascal Siakam",
+                "opponentTeam": "Portland Trail Blazers",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Portland Trail Blazers",
+                "player": "Damian Lillard",
+                "opponentTeam": "Toronto Raptors",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Toronto Raptors",
+                "player": "Gary Trent Jr.",
+                "opponentTeam": "Portland Trail Blazers",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 4,
+                "team": "Toronto Raptors",
+                "player": "Gary Trent Jr.",
+                "opponentTeam": "Portland Trail Blazers",
+                "shotType": "FREE THROW MISS"
+            },
+            {
+                "shotIndex": 5,
+                "team": "Portland Trail Blazers",
+                "player": "Damian Lillard",
+                "opponentTeam": "Toronto Raptors",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter2": [
+            {
+                "shotIndex": 0,
+                "team": "Toronto Raptors",
+                "player": "Chris Boucher",
+                "opponentTeam": "Portland Trail Blazers",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter3": [
+            {
+                "shotIndex": 0,
+                "team": "Toronto Raptors",
+                "player": "Gary Trent Jr.",
+                "opponentTeam": "Portland Trail Blazers",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Portland Trail Blazers",
+                "player": "Robert Covington",
+                "opponentTeam": "Toronto Raptors",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Portland Trail Blazers",
+                "player": "Robert Covington",
+                "opponentTeam": "Toronto Raptors",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Portland Trail Blazers",
+                "player": "Jusuf Nurkic",
+                "opponentTeam": "Toronto Raptors",
+                "shotType": "FREE THROW MISS"
+            },
+            {
+                "shotIndex": 4,
+                "team": "Portland Trail Blazers",
+                "player": "Jusuf Nurkic",
+                "opponentTeam": "Toronto Raptors",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 5,
+                "team": "Portland Trail Blazers",
+                "player": "Robert Covington",
+                "opponentTeam": "Toronto Raptors",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 6,
+                "team": "Toronto Raptors",
+                "player": "Aron Baynes",
+                "opponentTeam": "Portland Trail Blazers",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 7,
+                "team": "Portland Trail Blazers",
+                "player": "Damian Lillard",
+                "opponentTeam": "Toronto Raptors",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 8,
+                "team": "Toronto Raptors",
+                "player": "Gary Trent Jr.",
+                "opponentTeam": "Portland Trail Blazers",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 9,
+                "team": "Portland Trail Blazers",
+                "player": "CJ McCollum",
+                "opponentTeam": "Toronto Raptors",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter4": [
+            {
+                "shotIndex": 0,
+                "team": "Portland Trail Blazers",
+                "player": "Anfernee Simons",
+                "opponentTeam": "Toronto Raptors",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Portland Trail Blazers",
+                "player": "Anfernee Simons",
+                "opponentTeam": "Toronto Raptors",
+                "shotType": "3PT MAKE"
+            }
+        ]
+    },
+    {
+        "gameCode": "202103280DEN",
+        "quarter1": [
+            {
+                "shotIndex": 0,
+                "team": "Denver Nuggets",
+                "player": "Michael Porter Jr.",
+                "opponentTeam": "Atlanta Hawks",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter2": [
+            {
+                "shotIndex": 0,
+                "team": "Denver Nuggets",
+                "player": "Paul Millsap",
+                "opponentTeam": "Atlanta Hawks",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter3": [
+            {
+                "shotIndex": 0,
+                "team": "Denver Nuggets",
+                "player": "Aaron Gordon",
+                "opponentTeam": "Atlanta Hawks",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter4": [
+            {
+                "shotIndex": 0,
+                "team": "Denver Nuggets",
+                "player": "JaMychal Green",
+                "opponentTeam": "Atlanta Hawks",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Denver Nuggets",
+                "player": "JaMychal Green",
+                "opponentTeam": "Atlanta Hawks",
+                "shotType": "FREE THROW MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Atlanta Hawks",
+                "player": "S.",
+                "opponentTeam": "Denver Nuggets",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Denver Nuggets",
+                "player": "Jamal Murray",
+                "opponentTeam": "Atlanta Hawks",
+                "shotType": "2PT MAKE"
+            }
+        ]
+    },
+    {
+        "gameCode": "202103280LAL",
+        "quarter1": [
+            {
+                "shotIndex": 0,
+                "team": "L.A. Lakers Lakers",
+                "player": "Marc Gasol",
+                "opponentTeam": "Orlando Magic",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Orlando Magic",
+                "player": "James Ennis III",
+                "opponentTeam": "L.A. Lakers Lakers",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "L.A. Lakers Lakers",
+                "player": "Markieff Morris",
+                "opponentTeam": "Orlando Magic",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Orlando Magic",
+                "player": "Dwayne Bacon",
+                "opponentTeam": "L.A. Lakers Lakers",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter2": [
+            {
+                "shotIndex": 0,
+                "team": "Orlando Magic",
+                "player": "Mo Bamba",
+                "opponentTeam": "L.A. Lakers Lakers",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Orlando Magic",
+                "player": "Mo Bamba",
+                "opponentTeam": "L.A. Lakers Lakers",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 2,
+                "team": "L.A. Lakers Lakers",
+                "player": "Alex Caruso",
+                "opponentTeam": "Orlando Magic",
+                "shotType": "3PT MAKE"
+            }
+        ],
+        "quarter3": [
+            {
+                "shotIndex": 0,
+                "team": "L.A. Lakers Lakers",
+                "player": "Markieff Morris",
+                "opponentTeam": "Orlando Magic",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "L.A. Lakers Lakers",
+                "player": "Kyle Kuzma",
+                "opponentTeam": "Orlando Magic",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Orlando Magic",
+                "player": "James Ennis III",
+                "opponentTeam": "L.A. Lakers Lakers",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "L.A. Lakers Lakers",
+                "player": "Marc Gasol",
+                "opponentTeam": "Orlando Magic",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 4,
+                "team": "Orlando Magic",
+                "player": "Dwayne Bacon",
+                "opponentTeam": "L.A. Lakers Lakers",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 5,
+                "team": "L.A. Lakers Lakers",
+                "player": "Markieff Morris",
+                "opponentTeam": "Orlando Magic",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 6,
+                "team": "Orlando Magic",
+                "player": "Chuma Okeke",
+                "opponentTeam": "L.A. Lakers Lakers",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 7,
+                "team": "L.A. Lakers Lakers",
+                "player": "Dennis Schroder",
+                "opponentTeam": "Orlando Magic",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 8,
+                "team": "Orlando Magic",
+                "player": "Dwayne Bacon",
+                "opponentTeam": "L.A. Lakers Lakers",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter4": [
+            {
+                "shotIndex": 0,
+                "team": "L.A. Lakers Lakers",
+                "player": "Kyle Kuzma",
+                "opponentTeam": "Orlando Magic",
+                "shotType": "3PT MAKE"
+            }
+        ]
+    },
+    {
+        "gameCode": "202103290WAS",
+        "quarter1": [
+            {
+                "shotIndex": 0,
+                "team": "Indiana Pacers",
+                "player": "Domantas Sabonis",
+                "opponentTeam": "Washington Wizards",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Washington Wizards",
+                "player": "Rui Hachimura",
+                "opponentTeam": "Indiana Pacers",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Indiana Pacers",
+                "player": "Justin Holiday",
+                "opponentTeam": "Washington Wizards",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Washington Wizards",
+                "player": "Alex Len",
+                "opponentTeam": "Indiana Pacers",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter2": [
+            {
+                "shotIndex": 0,
+                "team": "Washington Wizards",
+                "player": "Russell Westbrook",
+                "opponentTeam": "Indiana Pacers",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Washington Wizards",
+                "player": "Russell Westbrook",
+                "opponentTeam": "Indiana Pacers",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Washington Wizards",
+                "player": "Daniel Gafford",
+                "opponentTeam": "Indiana Pacers",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Washington Wizards",
+                "player": "Daniel Gafford",
+                "opponentTeam": "Indiana Pacers",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter3": [
+            {
+                "shotIndex": 0,
+                "team": "Washington Wizards",
+                "player": "Rui Hachimura",
+                "opponentTeam": "Indiana Pacers",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Washington Wizards",
+                "player": "Rui Hachimura",
+                "opponentTeam": "Indiana Pacers",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter4": [
+            {
+                "shotIndex": 0,
+                "team": "Indiana Pacers",
+                "player": "Caris LeVert",
+                "opponentTeam": "Washington Wizards",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Washington Wizards",
+                "player": "Chandler Hutchison",
+                "opponentTeam": "Indiana Pacers",
+                "shotType": "2PT MAKE"
+            }
+        ]
+    },
+    {
+        "gameCode": "202103290BOS",
+        "quarter1": [
+            {
+                "shotIndex": 0,
+                "team": "New Orleans Pelicans",
+                "player": "Nickeil Alexander-Walker",
+                "opponentTeam": "Boston Celtics",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Boston Celtics",
+                "player": "Jayson Tatum",
+                "opponentTeam": "New Orleans Pelicans",
+                "shotType": "3PT MAKE"
+            }
+        ],
+        "quarter2": [
+            {
+                "shotIndex": 0,
+                "team": "Boston Celtics",
+                "player": "Evan Fournier",
+                "opponentTeam": "New Orleans Pelicans",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "New Orleans Pelicans",
+                "player": "Zion Williamson",
+                "opponentTeam": "Boston Celtics",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter3": [
+            {
+                "shotIndex": 0,
+                "team": "Boston Celtics",
+                "player": "Robert Williams III",
+                "opponentTeam": "New Orleans Pelicans",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Boston Celtics",
+                "player": "Marcus Smart",
+                "opponentTeam": "New Orleans Pelicans",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Boston Celtics",
+                "player": "Marcus Smart",
+                "opponentTeam": "New Orleans Pelicans",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter4": [
+            {
+                "shotIndex": 0,
+                "team": "New Orleans Pelicans",
+                "player": "Zion Williamson",
+                "opponentTeam": "Boston Celtics",
+                "shotType": "2PT MAKE"
+            }
+        ]
+    },
+    {
+        "gameCode": "202103290BRK",
+        "quarter1": [
+            {
+                "shotIndex": 0,
+                "team": "Minnesota Timberwolves",
+                "player": "Anthony Edwards",
+                "opponentTeam": "Brooklyn Nets",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter2": [
+            {
+                "shotIndex": 0,
+                "team": "Brooklyn Nets",
+                "player": "Jeff Green",
+                "opponentTeam": "Minnesota Timberwolves",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter3": [
+            {
+                "shotIndex": 0,
+                "team": "Brooklyn Nets",
+                "player": "Kyrie Irving",
+                "opponentTeam": "Minnesota Timberwolves",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Brooklyn Nets",
+                "player": "DeAndre Jordan",
+                "opponentTeam": "Minnesota Timberwolves",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter4": [
+            {
+                "shotIndex": 0,
+                "team": "Minnesota Timberwolves",
+                "player": "Jarrett Culver",
+                "opponentTeam": "Brooklyn Nets",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Brooklyn Nets",
+                "player": "James Harden",
+                "opponentTeam": "Minnesota Timberwolves",
+                "shotType": "3PT MAKE"
+            }
+        ]
+    },
+    {
+        "gameCode": "202103290NYK",
+        "quarter1": [
+            {
+                "shotIndex": 0,
+                "team": "Miami Heat",
+                "player": "Jimmy Butler",
+                "opponentTeam": "New York Knicks",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Miami Heat",
+                "player": "Duncan Robinson",
+                "opponentTeam": "New York Knicks",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "New York Knicks",
+                "player": "Julius Randle",
+                "opponentTeam": "Miami Heat",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Miami Heat",
+                "player": "Bam Adebayo",
+                "opponentTeam": "New York Knicks",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter2": [
+            {
+                "shotIndex": 0,
+                "team": "New York Knicks",
+                "player": "Immanuel Quickley",
+                "opponentTeam": "Miami Heat",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "New York Knicks",
+                "player": "Derrick Rose",
+                "opponentTeam": "Miami Heat",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Miami Heat",
+                "player": "Andre Iguodala",
+                "opponentTeam": "New York Knicks",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter3": [
+            {
+                "shotIndex": 0,
+                "team": "New York Knicks",
+                "player": "RJ Barrett",
+                "opponentTeam": "Miami Heat",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Miami Heat",
+                "player": "Jimmy Butler",
+                "opponentTeam": "New York Knicks",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "New York Knicks",
+                "player": "Julius Randle",
+                "opponentTeam": "Miami Heat",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Miami Heat",
+                "player": "Jimmy Butler",
+                "opponentTeam": "New York Knicks",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter4": [
+            {
+                "shotIndex": 0,
+                "team": "Miami Heat",
+                "player": "Gabe Vincent",
+                "opponentTeam": "New York Knicks",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Miami Heat",
+                "player": "Bam Adebayo",
+                "opponentTeam": "New York Knicks",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Miami Heat",
+                "player": "Duncan Robinson",
+                "opponentTeam": "New York Knicks",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Miami Heat",
+                "player": "Tyler Herro",
+                "opponentTeam": "New York Knicks",
+                "shotType": "3PT MAKE"
+            }
+        ]
+    },
+    {
+        "gameCode": "202103290DET",
+        "quarter1": [
+            {
+                "shotIndex": 0,
+                "team": "Detroit Pistons",
+                "player": "Saben Lee",
+                "opponentTeam": "Toronto Raptors",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter2": [
+            {
+                "shotIndex": 0,
+                "team": "Toronto Raptors",
+                "player": "Chris Boucher",
+                "opponentTeam": "Detroit Pistons",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Detroit Pistons",
+                "player": "Frank Jackson",
+                "opponentTeam": "Toronto Raptors",
+                "shotType": "3PT MAKE"
+            }
+        ],
+        "quarter3": [
+            {
+                "shotIndex": 0,
+                "team": "Toronto Raptors",
+                "player": "Gary Trent Jr.",
+                "opponentTeam": "Detroit Pistons",
+                "shotType": "3PT MAKE"
+            }
+        ],
+        "quarter4": [
+            {
+                "shotIndex": 0,
+                "team": "Detroit Pistons",
+                "player": "Frank Jackson",
+                "opponentTeam": "Toronto Raptors",
+                "shotType": "2PT MAKE"
+            }
+        ]
+    },
+    {
+        "gameCode": "202103290HOU",
+        "quarter1": [
+            {
+                "shotIndex": 0,
+                "team": "Memphis Grizzlies",
+                "player": "Jonas Valanciunas",
+                "opponentTeam": "Houston Rockets",
+                "shotType": "FREE THROW MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Memphis Grizzlies",
+                "player": "Jonas Valanciunas",
+                "opponentTeam": "Houston Rockets",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Houston Rockets",
+                "player": "Jae'Sean Tate",
+                "opponentTeam": "Memphis Grizzlies",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter2": [
+            {
+                "shotIndex": 0,
+                "team": "Houston Rockets",
+                "player": "Sterling Brown",
+                "opponentTeam": "Memphis Grizzlies",
+                "shotType": "3PT MAKE"
+            }
+        ],
+        "quarter3": [
+            {
+                "shotIndex": 0,
+                "team": "Houston Rockets",
+                "player": "Jae'Sean Tate",
+                "opponentTeam": "Memphis Grizzlies",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Houston Rockets",
+                "player": "Jae'Sean Tate",
+                "opponentTeam": "Memphis Grizzlies",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Houston Rockets",
+                "player": "John Wall",
+                "opponentTeam": "Memphis Grizzlies",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Memphis Grizzlies",
+                "player": "Jonas Valanciunas",
+                "opponentTeam": "Houston Rockets",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter4": [
+            {
+                "shotIndex": 0,
+                "team": "Memphis Grizzlies",
+                "player": "De'Anthony Melton",
+                "opponentTeam": "Houston Rockets",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Houston Rockets",
+                "player": "Avery Bradley",
+                "opponentTeam": "Memphis Grizzlies",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Houston Rockets",
+                "player": "D.J. Wilson",
+                "opponentTeam": "Memphis Grizzlies",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Memphis Grizzlies",
+                "player": "Tyus Jones",
+                "opponentTeam": "Houston Rockets",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 4,
+                "team": "Houston Rockets",
+                "player": "Sterling Brown",
+                "opponentTeam": "Memphis Grizzlies",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 5,
+                "team": "Houston Rockets",
+                "player": "Kenyon Martin Jr.",
+                "opponentTeam": "Memphis Grizzlies",
+                "shotType": "2PT MAKE"
+            }
+        ]
+    },
+    {
+        "gameCode": "202103290OKC",
+        "quarter1": [
+            {
+                "shotIndex": 0,
+                "team": "Oklahoma City Thunder",
+                "player": "Moses Brown",
+                "opponentTeam": "Dallas Mavericks",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Oklahoma City Thunder",
+                "player": "Aleksej Pokusevski",
+                "opponentTeam": "Dallas Mavericks",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Dallas Mavericks",
+                "player": "Kristaps Porzingis",
+                "opponentTeam": "Oklahoma City Thunder",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Oklahoma City Thunder",
+                "player": "Moses Brown",
+                "opponentTeam": "Dallas Mavericks",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 4,
+                "team": "Dallas Mavericks",
+                "player": "Luka Doncic",
+                "opponentTeam": "Oklahoma City Thunder",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 5,
+                "team": "Oklahoma City Thunder",
+                "player": "Theo Maledon",
+                "opponentTeam": "Dallas Mavericks",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 6,
+                "team": "Oklahoma City Thunder",
+                "player": "Moses Brown",
+                "opponentTeam": "Dallas Mavericks",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 7,
+                "team": "Dallas Mavericks",
+                "player": "Kristaps Porzingis",
+                "opponentTeam": "Oklahoma City Thunder",
+                "shotType": "3PT MAKE"
+            }
+        ],
+        "quarter2": [
+            {
+                "shotIndex": 0,
+                "team": "Oklahoma City Thunder",
+                "player": "Kenrich Williams",
+                "opponentTeam": "Dallas Mavericks",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Oklahoma City Thunder",
+                "player": "Kenrich Williams",
+                "opponentTeam": "Dallas Mavericks",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter3": [
+            {
+                "shotIndex": 0,
+                "team": "Oklahoma City Thunder",
+                "player": "Aleksej Pokusevski",
+                "opponentTeam": "Dallas Mavericks",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter4": [
+            {
+                "shotIndex": 0,
+                "team": "Dallas Mavericks",
+                "player": "Luka Doncic",
+                "opponentTeam": "Oklahoma City Thunder",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Dallas Mavericks",
+                "player": "Nicolo Melli",
+                "opponentTeam": "Oklahoma City Thunder",
+                "shotType": "2PT MAKE"
+            }
+        ]
+    },
+    {
+        "gameCode": "202103290SAS",
+        "quarter1": [
+            {
+                "shotIndex": 0,
+                "team": "San Antonio Spurs",
+                "player": "DeMar DeRozan",
+                "opponentTeam": "Sacramento Kings",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Sacramento Kings",
+                "player": "De'Aaron Fox",
+                "opponentTeam": "San Antonio Spurs",
+                "shotType": "3PT MAKE"
+            }
+        ],
+        "quarter2": [
+            {
+                "shotIndex": 0,
+                "team": "Sacramento Kings",
+                "player": "Maurice Harkless",
+                "opponentTeam": "San Antonio Spurs",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter3": [
+            {
+                "shotIndex": 0,
+                "team": "Sacramento Kings",
+                "player": "Harrison Barnes",
+                "opponentTeam": "San Antonio Spurs",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "San Antonio Spurs",
+                "player": "Dejounte Murray",
+                "opponentTeam": "Sacramento Kings",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Sacramento Kings",
+                "player": "Tyrese Haliburton",
+                "opponentTeam": "San Antonio Spurs",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter4": [
+            {
+                "shotIndex": 0,
+                "team": "San Antonio Spurs",
+                "player": "Patty Mills",
+                "opponentTeam": "Sacramento Kings",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Sacramento Kings",
+                "player": "Terence Davis",
+                "opponentTeam": "San Antonio Spurs",
+                "shotType": "2PT MAKE"
+            }
+        ]
+    },
+    {
+        "gameCode": "202103290UTA",
+        "quarter1": [
+            {
+                "shotIndex": 0,
+                "team": "Utah Jazz",
+                "player": "Rudy Gobert",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Utah Jazz",
+                "player": "Rudy Gobert",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "FREE THROW MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Cleveland Cavaliers",
+                "player": "Isaac Okoro",
+                "opponentTeam": "Utah Jazz",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Utah Jazz",
+                "player": "Mike Conley",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 4,
+                "team": "Cleveland Cavaliers",
+                "player": "Dean Wade",
+                "opponentTeam": "Utah Jazz",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 5,
+                "team": "Utah Jazz",
+                "player": "Mike Conley",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 6,
+                "team": "Utah Jazz",
+                "player": "Mike Conley",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 7,
+                "team": "Cleveland Cavaliers",
+                "player": "Collin Sexton",
+                "opponentTeam": "Utah Jazz",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 8,
+                "team": "Utah Jazz",
+                "player": "Rudy Gobert",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 9,
+                "team": "Cleveland Cavaliers",
+                "player": "Isaac Okoro",
+                "opponentTeam": "Utah Jazz",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 10,
+                "team": "Utah Jazz",
+                "player": "Royce O'Neale",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 11,
+                "team": "Cleveland Cavaliers",
+                "player": "Darius Garland",
+                "opponentTeam": "Utah Jazz",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 12,
+                "team": "Utah Jazz",
+                "player": "Mike Conley",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 13,
+                "team": "Cleveland Cavaliers",
+                "player": "Isaac Okoro",
+                "opponentTeam": "Utah Jazz",
+                "shotType": "FREE THROW MISS"
+            },
+            {
+                "shotIndex": 14,
+                "team": "Cleveland Cavaliers",
+                "player": "Isaac Okoro",
+                "opponentTeam": "Utah Jazz",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 15,
+                "team": "Utah Jazz",
+                "player": "Donovan Mitchell",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "3PT MAKE"
+            }
+        ],
+        "quarter2": [
+            {
+                "shotIndex": 0,
+                "team": "Utah Jazz",
+                "player": "Jordan Clarkson",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Cleveland Cavaliers",
+                "player": "Matt Thomas",
+                "opponentTeam": "Utah Jazz",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Utah Jazz",
+                "player": "Mike Conley",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Utah Jazz",
+                "player": "Joe Ingles",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 4,
+                "team": "Utah Jazz",
+                "player": "Joe Ingles",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "FREE THROW MISS"
+            },
+            {
+                "shotIndex": 5,
+                "team": "Utah Jazz",
+                "player": "Rudy Gobert",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 6,
+                "team": "Utah Jazz",
+                "player": "Georges Niang",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "3PT MAKE"
+            }
+        ],
+        "quarter3": [
+            {
+                "shotIndex": 0,
+                "team": "Utah Jazz",
+                "player": "Mike Conley",
+                "opponentTeam": "Cleveland Cavaliers",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter4": [
+            {
+                "shotIndex": 0,
+                "team": "Cleveland Cavaliers",
+                "player": "Matt Thomas",
+                "opponentTeam": "Utah Jazz",
+                "shotType": "2PT MAKE"
+            }
+        ]
+    },
+    {
+        "gameCode": "202103290GSW",
+        "quarter1": [
+            {
+                "shotIndex": 0,
+                "team": "Golden State Warriors",
+                "player": "Stephen Curry",
+                "opponentTeam": "Chicago Bulls",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Chicago Bulls",
+                "player": "Patrick Williams",
+                "opponentTeam": "Golden State Warriors",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter2": [
+            {
+                "shotIndex": 0,
+                "team": "Chicago Bulls",
+                "player": "Lauri Markkanen",
+                "opponentTeam": "Golden State Warriors",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter3": [
+            {
+                "shotIndex": 0,
+                "team": "Chicago Bulls",
+                "player": "Thaddeus Young",
+                "opponentTeam": "Golden State Warriors",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Golden State Warriors",
+                "player": "Kelly Oubre Jr.",
+                "opponentTeam": "Chicago Bulls",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Chicago Bulls",
+                "player": "Zach LaVine",
+                "opponentTeam": "Golden State Warriors",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter4": [
+            {
+                "shotIndex": 0,
+                "team": "Chicago Bulls",
+                "player": "Lauri Markkanen",
+                "opponentTeam": "Golden State Warriors",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Golden State Warriors",
+                "player": "Kent Bazemore",
+                "opponentTeam": "Chicago Bulls",
+                "shotType": "3PT MAKE"
+            }
+        ]
+    },
+    {
+        "gameCode": "202103290LAC",
+        "quarter1": [
+            {
+                "shotIndex": 0,
+                "team": "Milwaukee Bucks",
+                "player": "Giannis Antetokounmpo",
+                "opponentTeam": "LA Clippers Clippers",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter2": [
+            {
+                "shotIndex": 0,
+                "team": "Milwaukee Bucks",
+                "player": "Giannis Antetokounmpo",
+                "opponentTeam": "LA Clippers Clippers",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Milwaukee Bucks",
+                "player": "Bryn Forbes",
+                "opponentTeam": "LA Clippers Clippers",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "LA Clippers Clippers",
+                "player": "Marcus Morris Sr.",
+                "opponentTeam": "Milwaukee Bucks",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "LA Clippers Clippers",
+                "player": "Terance Mann",
+                "opponentTeam": "Milwaukee Bucks",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter3": [
+            {
+                "shotIndex": 0,
+                "team": "Milwaukee Bucks",
+                "player": "Giannis Antetokounmpo",
+                "opponentTeam": "LA Clippers Clippers",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Milwaukee Bucks",
+                "player": "Giannis Antetokounmpo",
+                "opponentTeam": "LA Clippers Clippers",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 2,
+                "team": "LA Clippers Clippers",
+                "player": "Reggie Jackson",
+                "opponentTeam": "Milwaukee Bucks",
+                "shotType": "3PT MAKE"
+            }
+        ],
+        "quarter4": [
+            {
+                "shotIndex": 0,
+                "team": "Milwaukee Bucks",
+                "player": "Bryn Forbes",
+                "opponentTeam": "LA Clippers Clippers",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Milwaukee Bucks",
+                "player": "Donte DiVincenzo",
+                "opponentTeam": "LA Clippers Clippers",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "LA Clippers Clippers",
+                "player": "Marcus Morris Sr.",
+                "opponentTeam": "Milwaukee Bucks",
+                "shotType": "3PT MAKE"
+            }
+        ]
+    },
+    {
+        "gameCode": "202103300WAS",
+        "quarter1": [
+            {
+                "shotIndex": 0,
+                "team": "Charlotte Hornets",
+                "player": "Gordon Hayward",
+                "opponentTeam": "Washington Wizards",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Washington Wizards",
+                "player": "Rui Hachimura",
+                "opponentTeam": "Charlotte Hornets",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter2": [
+            {
+                "shotIndex": 0,
+                "team": "Washington Wizards",
+                "player": "Russell Westbrook",
+                "opponentTeam": "Charlotte Hornets",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Charlotte Hornets",
+                "player": "P.J. Washington",
+                "opponentTeam": "Washington Wizards",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Washington Wizards",
+                "player": "Deni Avdija",
+                "opponentTeam": "Charlotte Hornets",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Washington Wizards",
+                "player": "Robin Lopez",
+                "opponentTeam": "Charlotte Hornets",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter3": [
+            {
+                "shotIndex": 0,
+                "team": "Washington Wizards",
+                "player": "Rui Hachimura",
+                "opponentTeam": "Charlotte Hornets",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Charlotte Hornets",
+                "player": "Terry Rozier",
+                "opponentTeam": "Washington Wizards",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Charlotte Hornets",
+                "player": "Bismack Biyombo",
+                "opponentTeam": "Washington Wizards",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter4": [
+            {
+                "shotIndex": 0,
+                "team": "Washington Wizards",
+                "player": "Garrison Mathews",
+                "opponentTeam": "Charlotte Hornets",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Charlotte Hornets",
+                "player": "Devonte' Graham",
+                "opponentTeam": "Washington Wizards",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Washington Wizards",
+                "player": "Russell Westbrook",
+                "opponentTeam": "Charlotte Hornets",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Charlotte Hornets",
+                "player": "Cody Martin",
+                "opponentTeam": "Washington Wizards",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 4,
+                "team": "Charlotte Hornets",
+                "player": "Cody Martin",
+                "opponentTeam": "Washington Wizards",
+                "shotType": "2PT MAKE"
+            }
+        ]
+    },
+    {
+        "gameCode": "202103300DEN",
+        "quarter1": [
+            {
+                "shotIndex": 0,
+                "team": "Denver Nuggets",
+                "player": "Jamal Murray",
+                "opponentTeam": "Philadelphia 76ers",
+                "shotType": "3PT MAKE"
+            }
+        ],
+        "quarter2": [
+            {
+                "shotIndex": 0,
+                "team": "Philadelphia 76ers",
+                "player": "Shake Milton",
+                "opponentTeam": "Denver Nuggets",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter3": [
+            {
+                "shotIndex": 0,
+                "team": "Philadelphia 76ers",
+                "player": "Dwight Howard",
+                "opponentTeam": "Denver Nuggets",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Denver Nuggets",
+                "player": "Nikola Jokic",
+                "opponentTeam": "Philadelphia 76ers",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Denver Nuggets",
+                "player": "Nikola Jokic",
+                "opponentTeam": "Philadelphia 76ers",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter4": [
+            {
+                "shotIndex": 0,
+                "team": "Denver Nuggets",
+                "player": "Jamal Murray",
+                "opponentTeam": "Philadelphia 76ers",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Philadelphia 76ers",
+                "player": "Furkan Korkmaz",
+                "opponentTeam": "Denver Nuggets",
+                "shotType": "3PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "Denver Nuggets",
+                "player": "Jamal Murray",
+                "opponentTeam": "Philadelphia 76ers",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 3,
+                "team": "Denver Nuggets",
+                "player": "PJ Dozier",
+                "opponentTeam": "Philadelphia 76ers",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 4,
+                "team": "Denver Nuggets",
+                "player": "Paul Millsap",
+                "opponentTeam": "Philadelphia 76ers",
+                "shotType": "2PT MAKE"
+            }
+        ]
+    },
+    {
+        "gameCode": "202103300LAC",
+        "quarter1": [
+            {
+                "shotIndex": 0,
+                "team": "LA Clippers Clippers",
+                "player": "Luke Kennard",
+                "opponentTeam": "Orlando Magic",
+                "shotType": "3PT MAKE"
+            }
+        ],
+        "quarter2": [
+            {
+                "shotIndex": 0,
+                "team": "Orlando Magic",
+                "player": "Terrence Ross",
+                "opponentTeam": "LA Clippers Clippers",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Orlando Magic",
+                "player": "Terrence Ross",
+                "opponentTeam": "LA Clippers Clippers",
+                "shotType": "FREE THROW MAKE"
+            },
+            {
+                "shotIndex": 2,
+                "team": "LA Clippers Clippers",
+                "player": "Ivica Zubac",
+                "opponentTeam": "Orlando Magic",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter3": [
+            {
+                "shotIndex": 0,
+                "team": "Orlando Magic",
+                "player": "James Ennis III",
+                "opponentTeam": "LA Clippers Clippers",
+                "shotType": "2PT MAKE"
+            }
+        ],
+        "quarter4": [
+            {
+                "shotIndex": 0,
+                "team": "LA Clippers Clippers",
+                "player": "Terance Mann",
+                "opponentTeam": "Orlando Magic",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 1,
+                "team": "Orlando Magic",
+                "player": "Otto Porter Jr.",
+                "opponentTeam": "LA Clippers Clippers",
+                "shotType": "2PT MISS"
+            },
+            {
+                "shotIndex": 2,
+                "team": "LA Clippers Clippers",
+                "player": "Reggie Jackson",
+                "opponentTeam": "Orlando Magic",
+                "shotType": "2PT MAKE"
+            }
+        ]
     }
 ]
