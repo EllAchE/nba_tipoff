@@ -102,6 +102,11 @@ def sysEMainDiagonalVarsNeg1Fill(argsList, amtToWin: float = 1, amtToLose: Optio
         multiplier = amtToLose/cost
         return playerSpread * multiplier
 
+def arbitrageLines(bet1, bet2):
+    ratios = np.array(sysEMainDiagonalVarsNeg1Fill([costFor1(bet1), costFor1(bet2)]))
+    ratios = ratios / max(ratios) * 100
+    print('On Bet 1 ratio is', str(ratios[0]) + '.', 'For Bet 2', str(ratios[1]))
+
 def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float=ENVIRONMENT.REDUCTION_FACTOR, winAmt: float=1, bankroll: Optional[float] = None): # assumes binary outcome, requires dollar value
     # kellyRatio = (winOdds / lossAmt - (1 - winOdds) / winAmt) * 1
     kellyRatio = (winOdds - ((1 - winOdds) / (winAmt/lossAmt))) * reductionFactor

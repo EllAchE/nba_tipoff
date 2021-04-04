@@ -8,7 +8,7 @@ from src.historical_data.nba_play_by_play_methods import fillGaps, teamSummaryDa
     getAllFirstPossessionStatisticsIncrementally
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import betfairOdds, getDailyOdds
-from src.odds_and_statistics.odds_calculator import kellyBetReduced
+from src.odds_and_statistics.odds_calculator import kellyBetReduced, arbitrageLines
 from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalOrFirstPointStats
 
 # teamSummaryDataFromFirstPointData(2014)
@@ -38,7 +38,9 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 
 # concatCsv('all_ml_cols.csv', ENVIRONMENT.ML_COLS_FOLDER_PATH)
 
-getDailyOdds('UTA', 'MEM', '-125')
+arbitrageLines('+132', '-125')
+
+#getDailyOdds('CLE', 'MIA', '-125')
 # getAllOddsAndDisplayByEv(bovada=True)
 # smallDataUpdate()
 # getAllOddsAndDisplayByEv(fanduelToday=True)

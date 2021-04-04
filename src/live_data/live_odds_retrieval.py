@@ -265,7 +265,7 @@ def draftKingsOdds():
             teamSet.add(team2)
             teamSet.add(team1)
 
-            print('Adding game', team2, '@', team1, 'from draftkings to list')
+            print('Adding game', team1, '@', team2, 'from draftkings to list')
 
             allGameLines.append({
                 "exchange": "draftkings",
@@ -296,7 +296,10 @@ def draftKingsOdds():
         playerTeamDict[team] = []
     for rawLine in rawPlayerLines:
         playerLine = addTeamToUnknownPlayerLine(rawLine)
-        playerTeamDict[playerLine['team']] += [playerLine]
+        try:
+            playerTeamDict[playerLine['team']] += [playerLine]
+        except:
+            print('player', playerLine, 'had a team error. Perhaps they were traded?')
 
     for gameLine in allGameLines:
         gameLine["homePlayerFirstQuarterOdds"] = playerTeamDict[gameLine["home"]]
@@ -425,7 +428,10 @@ def _fanduelOddsAll(today=True):
         for rawLine in unassignedPlayerOddsList:
             playerLine = addTeamToUnknownPlayerLine(rawLine)
             team = getUniversalTeamShortCode(playerLine['team'])
-            playerTeamDict[team] += [playerLine]
+            try:
+                playerTeamDict[team] += [playerLine]
+            except:
+                print('player', playerLine, 'had a team error. Perhaps they were traded?')
 
         for gameLine in quarterOddsList:
             gameLine["homePlayerFirstQuarterOdds"] = playerTeamDict[gameLine["home"]]
