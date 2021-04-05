@@ -1,3 +1,4 @@
+import json
 from typing import Any
 from datetime import datetime
 import jsonpickle
@@ -48,10 +49,25 @@ def filterBestByGameCode(oddsObjList):
 
     return bestPerGameOnly
 
-def saveOddsToFile(path, odds):
+def saveOddsToFile(path, allGameOddsObjList, includeGameSummaryJson=True):
     with open(path, 'w') as f:
-        f.write(jsonpickle.encode(odds))
+        f.write(jsonpickle.encode(allGameOddsObjList))
         f.close()
+
+    if includeGameSummaryJson:
+        oddsDict = {}
+        teamSet = set()
+        for game in allGameOddsObjList:
+            if game.home not in teamSet:
+                teamSet.add(game.home)
+                oddsDict[game.home] = {}
+            if game.away not in teamSet:
+                teamSet.add(game.away)
+                oddsDict[game.away] = {}
+            oddsDict[game.home][game.exchange] = game.bestHomeOdds
+            oddsDict[game.away][game.exchange] = game.bestAwayOdds
+        with open('tempGameOdds.json') as tempF:
+            json.dump(oddsDict, tempF) # todo test the game summary
 
 def getAllOddsAndDisplayByExchange(draftkings=False, mgm=False, bovada=False, pointsbet=False, unibet=False, barstool=False, fanduelToday=False, fanduelTomorrow=False, betfair=False, includeOptimalPlayerSpread=False):
     allGameOddsObjList = createAllOddsDict(draftkings=draftkings, mgm=mgm, bovada=bovada, pointsBet=pointsbet, unibet=unibet, barstool=barstool, fanduelToday=fanduelToday, fanduelTomorrow=fanduelTomorrow, betfair=betfair, includeOptimalPlayerSpread=includeOptimalPlayerSpread)

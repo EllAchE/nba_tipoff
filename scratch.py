@@ -24,6 +24,8 @@ from src.rating_algorithms.elo_data_processing import calculateEloDictionaryFrom
 from src.rating_algorithms.glicko_data_processing import calculateGlickoDictionaryFromZero
 from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero
 
+arbitrageLines('+122', '-114')
+
 # calculateTrueSkillDictionaryFromZero()
 # calculateGlickoDictionaryFromZero()
 # calculateEloDictionaryFromZero()
@@ -38,9 +40,8 @@ from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDi
 
 # concatCsv('all_ml_cols.csv', ENVIRONMENT.ML_COLS_FOLDER_PATH)
 
-arbitrageLines('+132', '-125')
 
-#getDailyOdds('CLE', 'MIA', '-125')
+getDailyOdds('BKN', 'NYK', '+104')
 # getAllOddsAndDisplayByEv(bovada=True)
 # smallDataUpdate()
 # getAllOddsAndDisplayByEv(fanduelToday=True)
