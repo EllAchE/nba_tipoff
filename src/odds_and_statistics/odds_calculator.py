@@ -106,6 +106,7 @@ def arbitrageLines(bet1, bet2):
     ratios = np.array(sysEMainDiagonalVarsNeg1Fill([costFor1(bet1), costFor1(bet2)]))
     ratios = ratios / max(ratios) * 100
     print('On Bet 1 ratio is', str(ratios[0]) + '.', 'For Bet 2', str(ratios[1]))
+    return ratios
 
 def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float=ENVIRONMENT.REDUCTION_FACTOR, winAmt: float=1, bankroll: Optional[float] = None): # assumes binary outcome, requires dollar value
     # kellyRatio = (winOdds / lossAmt - (1 - winOdds) / winAmt) * 1
@@ -228,7 +229,7 @@ def convertPlayerLinesToSingleLine(playerOddsList):
     #     else:
     #         print('$' + str(t_cost) + " for TEAM is a better deal than $" + str(total) + ' for its players.')
 
-def returnGreaterOdds(odds1: float, odds2: float):
+def returnGreaterOdds(odds1: str, odds2: str):
     odds1Cost = costFor100(odds1)
     odds2Cost = costFor100(odds2)
     if odds1Cost > odds2Cost:
@@ -240,6 +241,32 @@ def independentVarOdds(*args: float):
     for odds in args[1:]:
         totalOdds = totalOdds * odds/(1-odds)
     return totalOdds/(1 + totalOdds)
+
+def getBestOddsFromSetOfExchangeKeys(singleTeamOdds):
+    oddsList = list()
+    for key in singleTeamOdds.keys():
+        oddsList.append(singleTeamOdds[key])
+
+    if len(oddsList) > 1:
+        for i in range(0, len(oddsList)):
+            odds = returnGreaterOdds(oddsList[i])
+    return odds
+
+def checkForArbitrage(jsonPath='tempGameOdds.json'):
+    with open(jsonPath) as tempOdds:
+        oddsDict = json.load(tempOdds)
+
+    for game in oddsDict['games']:
+        split = game.split('-')
+        team1 = split[0]
+        team2 = split[1]
+
+        bestTeam1Odds = getBestOddsFromSetOfExchangeKeys(team1)
+        bestTeam2Odds = getBestOddsFromSetOfExchangeKeys(team2)
+        ratios = arbitrageLines(bestTeam1Odds, bestTeam2Odds)
+
+        if ratios[0] + ratios[1] > 200:
+            print('arbitrage for game', game)
 
 # def assessAllBets(betDict):
 #     oddsObjList = list()

@@ -19,12 +19,8 @@ from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalOrF
 # teamSummaryDataFromFirstPointData(2019)
 # teamSummaryDataFromFirstPointData(2020)
 # teamSummaryDataFromFirstPointData(2021)
-from src.odds_and_statistics.xgboost_impl import XGBoost
-from src.rating_algorithms.elo_data_processing import calculateEloDictionaryFromZero
-from src.rating_algorithms.glicko_data_processing import calculateGlickoDictionaryFromZero
-from src.rating_algorithms.trueskill_data_processing import calculateTrueSkillDictionaryFromZero
 
-arbitrageLines('+122', '-114')
+arbitrageLines('-122', '-114')
 
 # calculateTrueSkillDictionaryFromZero()
 # calculateGlickoDictionaryFromZero()
@@ -41,7 +37,7 @@ arbitrageLines('+122', '-114')
 # concatCsv('all_ml_cols.csv', ENVIRONMENT.ML_COLS_FOLDER_PATH)
 
 
-getDailyOdds('BKN', 'NYK', '+104')
+getDailyOdds('BKN', 'NYK', '+101')
 # getAllOddsAndDisplayByEv(bovada=True)
 # smallDataUpdate()
 # getAllOddsAndDisplayByEv(fanduelToday=True)
