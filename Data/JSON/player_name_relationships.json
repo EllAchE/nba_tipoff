@@ -123,7 +123,9 @@
         "fullName": "Isaac Austin",
         "nameWithComma": "Austin,Isaac",
         "universalName": "isaacaustin",
-        "alternateNames": []
+        "alternateNames": [
+            "Ike Austin"
+        ]
     },
     {
         "bballRefCode": "bakervi01.html",
@@ -2426,7 +2428,9 @@
         "fullName": "Danny Schayes",
         "nameWithComma": "Schayes,Danny",
         "universalName": "dannyschayes",
-        "alternateNames": []
+        "alternateNames": [
+            "Dan Schayes"
+        ]
     },
     {
         "bballRefCode": "schrede01.html",
@@ -6003,7 +6007,9 @@
         "fullName": "Mike Sweetney",
         "nameWithComma": "Sweetney,Mike",
         "universalName": "mikesweetney",
-        "alternateNames": []
+        "alternateNames": [
+            "Michael Sweetney"
+        ]
     },
     {
         "bballRefCode": "udokaim01.html",
@@ -9020,7 +9026,9 @@
         "fullName": "\u00d6mer A\u015f\u0131k",
         "nameWithComma": "A\u015f\u0131k,\u00d6mer",
         "universalName": "omerask",
-        "alternateNames": []
+        "alternateNames": [
+            "OMer Asik"
+        ]
     },
     {
         "bballRefCode": "babbilu01.html",
@@ -10798,7 +10806,7 @@
         "fullName": "Tim Hardaway Jr.",
         "nameWithComma": "Hardaway,Tim",
         "universalName": "timhardawayjr",
-        "alternateNames": []
+        "alternateNames": ["timhardaway"]
     },
     {
         "bballRefCode": "harriel01.html",
@@ -14178,7 +14186,7 @@
         "fullName": "Sviatoslav Mykhailiuk",
         "nameWithComma": "Mykhailiuk,Sviatoslav",
         "universalName": "sviatoslavmykhailiuk",
-        "alternateNames": []
+        "alternateNames": ["Svi Mykhailiuk"]
     },
     {
         "bballRefCode": "okoboel01.html",
@@ -14350,7 +14358,9 @@
         "fullName": "Brad Wanamaker",
         "nameWithComma": "Wanamaker,Brad",
         "universalName": "bradwanamaker",
-        "alternateNames": ["Bradley Wanamaker"]
+        "alternateNames": [
+            "Bradley Wanamaker"
+        ]
     },
     {
         "bballRefCode": "washbju01.html",
@@ -15143,7 +15153,9 @@
         "fullName": "Juan Toscano-Anderson",
         "nameWithComma": "Toscano-Anderson,Juan",
         "universalName": "juantoscanoanderson",
-        "alternateNames": ["Juan Anderson"]
+        "alternateNames": [
+            "Juan Anderson"
+        ]
     },
     {
         "bballRefCode": "tuckera01.html",
@@ -15316,6 +15328,13 @@
         "alternateNames": []
     },
     {
+        "bballRefCode": "darlina01.html",
+        "fullName": "Nate Darling",
+        "nameWithComma": "Darling,Nate",
+        "universalName": "natedarling",
+        "alternateNames": []
+    },
+    {
         "bballRefCode": "diakima01.html",
         "fullName": "Mamadi Diakite",
         "nameWithComma": "Diakite,Mamadi",
@@ -15484,6 +15503,13 @@
         "alternateNames": []
     },
     {
+        "bballRefCode": "magnawi01.html",
+        "fullName": "Will Magnay",
+        "nameWithComma": "Magnay,Will",
+        "universalName": "willmagnay",
+        "alternateNames": []
+    },
+    {
         "bballRefCode": "maledth01.html",
         "fullName": "Th\u00e9o Maledon",
         "nameWithComma": "Maledon,Th\u00e9o",
@@ -15621,6 +15647,13 @@
         "fullName": "Aleksej Pokusevski",
         "nameWithComma": "Pokusevski,Aleksej",
         "universalName": "aleksejpokusevski",
+        "alternateNames": ["Aleksej Pokuševski"]
+    },
+    {
+        "bballRefCode": "portejo01.html",
+        "fullName": "Jontay Porter",
+        "nameWithComma": "Porter,Jontay",
+        "universalName": "jontayporter",
         "alternateNames": []
     },
     {

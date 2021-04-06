@@ -1,6 +1,5 @@
 from src.classes.QuarterOdds import QuarterOdds
 
-# todo add quarters to game response, then use in naiveadjustment factor
 class FullGameOdds(QuarterOdds):
     def __init__(self, gameDict, teamOnly=False, playersOnly=False):
         super().__init__(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly)
@@ -14,17 +13,17 @@ class FullGameOdds(QuarterOdds):
         teamOnly = True
 
         gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamSecondQuarterOdds
-        gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamSecondQuarterOdds
-        self.secondQuarterGameObj = QuarterOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly, isQuarter1Or4=False)
+        gameDict['teamOdds']['awayTeamFirstQuarterOdds'] = self.awayTeamSecondQuarterOdds
+        self.secondQuarterGameObj = QuarterOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly)
         self.secondQuarterGameObj.quarter = "QUARTER_2"
         self.secondQuarterGameObj.isFullGame = True
         gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamThirdQuarterOdds
-        gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamThirdQuarterOdds
-        self.thirdQuarterGameObj = QuarterOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly, isQuarter1Or4=False)
+        gameDict['teamOdds']['awayTeamFirstQuarterOdds'] = self.awayTeamThirdQuarterOdds
+        self.thirdQuarterGameObj = QuarterOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly)
         self.thirdQuarterGameObj.quarter = "QUARTER_3"
         self.thirdQuarterGameObj.isFullGame = True
         gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamFourthQuarterOdds
-        gameDict['teamOdds']['homeTeamFirstQuarterOdds'] = self.homeTeamFourthQuarterOdds
+        gameDict['teamOdds']['awayTeamFirstQuarterOdds'] = self.awayTeamFourthQuarterOdds
         self.fourthQuarterGameObj = QuarterOdds(gameDict=gameDict, teamOnly=teamOnly, playersOnly=playersOnly)
         self.fourthQuarterGameObj.quarter = "QUARTER_4"
         self.fourthQuarterGameObj.isFullGame = True

@@ -1,22 +1,24 @@
 import glob
 import json
 import unicodedata
-
 import pandas as pd
 import re
 
-from nba_api.stats.endpoints import leaguegamefinder
+from nba_api.stats.endpoints import leaguegamefinder, TeamEstimatedMetrics, teamestimatedmetrics, LeagueDashTeamPtShot, \
+    TeamDashboardByGameSplits
 from nba_api.stats.static import teams
 
 import ENVIRONMENT
-from src.database.database_access import getUniversalPlayerName
-from src.utils import getSoupFromUrl, removeAllNonLettersAndLowercase, sleepChecker
+from src.database.database_access import getUniversalPlayerName, getUniversalTeamShortCode
+from src.rating_algorithms.algorithms import glickoTipWinProb, eloTipWinProb, trueSkillTipWinProb, \
+    trueSkillTipWinFromMuAndSigma, eloWinProbFromRawElo, glickoWinProbFromMuPhiSigma
+from src.utils import getSoupFromUrl, removeAllNonLettersAndLowercase, sleepChecker, customNbaSeasonFormatting
 
 
-def concatCsv(save_path: str):
-    fNames = [i for i in glob.glob('CSV/*.csv')]
+def concatCsv(savePath: str, readFolder: str):
+    fNames = [i for i in glob.glob('{}/*.csv'.format(readFolder))]
     concattedCsv = pd.concat([pd.read_csv(f) for f in fNames])
-    concattedCsv.to_csv(save_path, index=False, encoding='utf-8-sig')
+    concattedCsv.to_csv(savePath, index=False, encoding='utf-8-sig')
 
 def resetAndInitializePredictionSummaryDict(histogramBinDivisions, path):
     intervalList = list()
@@ -197,12 +199,24 @@ def _misformattedNameAdjustment(activePlayers):
             playerDict['alternateNames'] += ["Bradley Wanamaker"]
         elif playerDict['fullName'] == 'Juan Toscano-Anderson':
             playerDict['alternateNames'] += ['Juan Anderson']
+        elif playerDict['fullName'] == "Isaac Austin":
+            playerDict['alternateNames'] += ["Ike Austin"]
+        elif playerDict['universalName'] == "omerask":
+            playerDict['alternateNames'] += ['OMer Asik']
+        elif playerDict['fullName'] == "Danny Schayes":
+            playerDict['alternateNames'] += ["Dan Schayes"]
+        elif playerDict['fullName'] == "Mike Sweetney":
+            playerDict['alternateNames'] += ["Michael Sweetney"]
+        elif playerDict['fullName'] == "Aleksej Polusevski":
+            playerDict['alternateNames'] += ['Pokuševski, Aleksej']
         elif playerDict['fullName'] == "Larry Nance Jnr":
             playerDict['alternateNames'] += ["Larry Nance"]
             playerDict['alternateNames'] += ["Larry Nance Jr."]
         elif playerDict['fullName'] == "Larry Nance Jr.":
             playerDict['alternateNames'] += ["Larry Nance"]
             playerDict['alternateNames'] += ["Larry Nance Jnr"]
+        elif playerDict['fullName'] == "Svi Mykhailiuk":
+            playerDict['alternateNames'] += ['Sviatoslav Mykhailiuk']
     return activePlayers
 
 def singlePlayerNameRelationshipRequest(activePlayers, startSeason, addedPlayerSet):
@@ -253,7 +267,7 @@ def sortPlayerNameRelationships():
     print("Sorted player name relationships")
 
 def getAllGameData():
-    shortCodes = ENVIRONMENT.CURRENT_TEAMS.sort()
+    shortCodes = ENVIRONMENT.CURRENT_TEAMS
     nbaTeams = teams.get_teams()
     teamDicts = [team for team in nbaTeams if team['abbreviation'] in shortCodes]
 
@@ -269,9 +283,199 @@ def getAllGameData():
 
     for teamDf in teamGameList:
         teamName = teamDf.iloc[0]["TEAM_ABBREVIATION"]
-        teamDf.to_csv(ENVIRONMENT.GAME_SUMMARY_UNFORMATTED_PATH.format(teamName))
+        teamDf.to_csv(ENVIRONMENT.GAME_SUMMARY_UNFORMATTED_PATH.format(teamName), index=False)
         print("saved data for", teamName)
 
     print("extracted game data for all teams", nbaTeams)
 
     return teamIds
+
+def addExtraUrlToPlayerLinks():
+    for season in [2008, 2009]:
+        df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
+        for i in range(0, len(df['Game Code']) - 1):
+            temp = df['Tip Winner Link'].iloc[i]
+            if "/players/" not in temp:
+                df.at[i, 'Tip Winner Link'] = "/players/" + temp[0] + "/" + temp
+                temp2 = df['Tip Loser Link'].iloc[i]
+                df.at[i, 'Tip Loser Link'] = "/players/" + temp2[0] + "/" + temp2
+
+        df.to_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), index=False)
+
+def saveNbaApiDataframeAsJson(data, path):
+    result = data.to_json(orient="index")
+    parsed = json.loads(result)
+    newDict = {}
+    for key in parsed.keys():
+        obj = parsed[key]
+        name = obj["TEAM_NAME"]
+        newDict[getUniversalTeamShortCode(name)] = parsed[key]
+    with open(path, 'w') as wFile:
+        json.dump(newDict, wFile, indent=4)
+
+def getShotBreakdownForTeams(season): # season must be in 2014-15 format
+    # shot pt https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/leaguedashteamptshot.md
+    # percentages https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/teamyearbyyearstats.md
+    data = LeagueDashTeamPtShot(season=season).get_data_frames()[0]
+    path = ENVIRONMENT.SHOT_BREAKDOWN_TEAMS_UNFORMATTED.format(season)
+    saveNbaApiDataframeAsJson(data, path)
+
+def getPlusMinusForTeams(season):
+    seasonStr = customNbaSeasonFormatting(season)
+    teamPlusMinusDict = {}
+    with open(ENVIRONMENT.TEAM_NAMES_PATH) as teamsFiles:
+        teamData = json.load(teamsFiles)
+    for team in teamData:
+        data = TeamDashboardByGameSplits(team_id=team["teamId"], season=seasonStr).get_data_frames()[2]
+        print('running for team', team['abbreviation'])
+        sleepChecker(1, 10, 1)
+        teamPlusMinusDict[team['abbreviation']] = {}
+        teamPlusMinusDict[team['abbreviation']]['quarter1'] = data['PLUS_MINUS'][0]
+        teamPlusMinusDict[team['abbreviation']]['quarter2'] = data['PLUS_MINUS'][1]
+        teamPlusMinusDict[team['abbreviation']]['quarter3'] = data['PLUS_MINUS'][2]
+        teamPlusMinusDict[team['abbreviation']]['quarter4'] = data['PLUS_MINUS'][3]
+
+    with open(ENVIRONMENT.PLUS_MINUS_TEAMS_UNFORMATTED.format(season), 'w') as saveFile:
+        json.dump(teamPlusMinusDict, saveFile)
+    print('saved plus minus data')
+
+
+def getAdvancedMetricsForTeams(season):
+    # all https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/teamdashboardbyteamperformance.md
+    # data split out by things like all star break etc. https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/teamdashboardbygeneralsplits.md
+    # advanced i.e. TOV PCT https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/teamestimatedmetrics.md
+    data = TeamEstimatedMetrics(season=season).get_data_frames()[0]
+    path = ENVIRONMENT.ADVANCED_TEAMS_METRICS_UNFORMATTED.format(season)
+    saveNbaApiDataframeAsJson(data, path)
+
+def addSeasonLongData(df, season):
+    # off eff - x
+    # def eff - x
+    # FT percent - x
+    # 2pt per - x
+    # 3pt per - x
+    # TO Rate - x
+    # Naive Q1 rating - x
+    seasonNbaComFormat = str(season) + '-' + str((season + 1) % 100)
+    with open(ENVIRONMENT.ADVANCED_TEAMS_METRICS_UNFORMATTED.format(seasonNbaComFormat)) as rFile:
+        advancedMetrics = json.load(rFile)
+    with open(ENVIRONMENT.SHOT_BREAKDOWN_TEAMS_UNFORMATTED.format(seasonNbaComFormat)) as rFile:
+        shotBreakdown = json.load(rFile)
+
+    advancedMetricsKeyList = ['W_PCT', 'E_OFF_RATING', 'E_DEF_RATING', 'E_OREB_PCT', 'E_DREB_PCT', 'E_REB_PCT', 'E_TM_TOV_PCT', 'W_PCT_RANK', 'E_OFF_RATING_RANK',
+                              'E_DEF_RATING_RANK', 'E_OREB_PCT_RANK', 'E_REB_PCT_RANK', 'E_TM_TOV_PCT']
+    shotBreakdownKeyList = ['FG_PCT', 'FG2_PCT', 'FG3_PCT', 'FG2A_FREQUENCY', 'FG3A_FREQUENCY']
+    for item in advancedMetricsKeyList:
+        df["HOME_" + str(item)] = None
+        df["AWAY_" + str(item)] = None
+    for i in range(0, len(df.index)):
+        row = df.iloc[i]
+        home = getUniversalTeamShortCode(row['Home Short'])
+        away = getUniversalTeamShortCode(row['Away Short'])
+
+        for item in advancedMetricsKeyList:
+            homeKey = "HOME_" + item
+            awayKey = "AWAY_" + item
+            df.at[i, homeKey] = advancedMetrics[home][item]
+            df.at[i, awayKey] = advancedMetrics[away][item]
+        for item in shotBreakdownKeyList:
+            homeKey = "HOME_" + item
+            awayKey = "AWAY_" + item
+            df.at[i, homeKey] = shotBreakdown[home][item]
+            df.at[i, awayKey] = shotBreakdown[away][item]
+    return df
+
+def addGamesPlayedAndNaiveAdjustment(df): # Games Played, naive adjustment
+    teamSet = set()
+    teamDict = {}
+    df["Home Games Played"] = df["Away Games Played"] = df["Cur_H_N_Adj"] = df["Cur_A_N_Adj"] = df["Home Scores"] \
+        = df["Mid_H_N_Adj"] = df["Mid_A_N_Adj"] = df["Full_H_N_Adj"] = df["Full_A_N_Adj"] = None
+    for i in range(0, len(df.index)):
+        row = df.iloc[i]
+        home = getUniversalTeamShortCode(row['Home Short'])
+        away = getUniversalTeamShortCode(row['Away Short'])
+        homeScores = True if row['First Scoring Team'] == getUniversalTeamShortCode(row['Home']) else False
+        df.at[i, "Home Scores"] = homeScores
+        if home not in teamSet:
+            teamSet.add(home)
+            teamDict[home] = {}
+            teamDict[home]["gp"] = 0
+            teamDict[home]['expectedScores'] = teamDict[home]['actualScores'] = 0
+            teamDict[home]['midSeasonAdjFactor'] = None
+        if away not in teamSet:
+            teamSet.add(away)
+            teamDict[away] = {}
+            teamDict[away]["gp"] = 0
+            teamDict[away]['expectedScores'] = teamDict[away]['actualScores'] = 0
+            teamDict[away]['midSeasonAdjFactor'] = None
+
+        teamDict[home]['gp'] += 1
+        teamDict[away]['gp'] += 1
+        df.at[i, "Home Games Played"] = teamDict[home]['gp']
+        df.at[i, "Away Games Played"] = teamDict[away]['gp']
+
+        teamDict[home]['expectedScores'] += ENVIRONMENT.TIP_WINNER_SCORE_ODDS if row['Tip Winning Team'] == home else (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
+        teamDict[away]['expectedScores'] += ENVIRONMENT.TIP_WINNER_SCORE_ODDS if row['Tip Winning Team'] == away else (1-ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
+        teamDict[home]['actualScores'] += True if row['First Scoring Team'] == home else False
+        teamDict[away]['actualScores'] += True if row['First Scoring Team'] == away else False
+        df.at[i, "Cur_H_N_Adj"] = teamDict[home]['actualScores'] / teamDict[home]['expectedScores']
+        df.at[i, "Cur_A_N_Adj"] = teamDict[away]['actualScores'] / teamDict[away]['expectedScores']
+
+        if teamDict[home]['gp'] == 40:
+            teamDict[home]['midSeasonAdjFactor'] = teamDict[home]['actualScores'] / teamDict[home]['expectedScores']
+        if teamDict[away]['gp'] == 40:
+            teamDict[away]['midSeasonAdjFactor'] = teamDict[away]['actualScores'] / teamDict[away]['expectedScores']
+
+    for i in range(0, len(df.index) - 1):
+        df.at[i, "Mid_H_N_Adj"] = teamDict[getUniversalTeamShortCode(df.iloc[i]["Home"])]['midSeasonAdjFactor']
+        df.at[i, "Mid_A_N_Adj"] = teamDict[getUniversalTeamShortCode(df.iloc[i]["Away"])]['midSeasonAdjFactor']
+        df.at[i, "Full_H_N_Adj"] = teamDict[getUniversalTeamShortCode(df.iloc[i]["Home"])]['actualScores'] / teamDict[getUniversalTeamShortCode(df.iloc[i]["Home"])]['expectedScores']
+        df.at[i, "Full_A_N_Adj"] = teamDict[getUniversalTeamShortCode(df.iloc[i]["Away"])]['actualScores'] / teamDict[getUniversalTeamShortCode(df.iloc[i]["Away"])]['expectedScores']
+        # backlogtodo this is going to bias playoff teams downwards as they'll play other good teams (though not too significantly)
+    return df
+
+# def missing stuff(): # this happens in the predictions runner
+    # gamesPlayed - x
+    # Tipper Lifetime Appearances - x
+    # Elo - x
+    # Glicko - x
+    # Trueskill - x
+    # current naive Q1 rating - x
+    # Tip Wins - x
+    # Tip Losses - x
+    # Mid season naive Q1 rating - x
+def addAdditionalMlColumnsSingleSeason(season):
+    df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
+
+    df = addGamesPlayedAndNaiveAdjustment(df)
+    df = addSeasonLongData(df, season)
+    df = columnSummaryValuesAddedToMl(df)
+    numberBack = (season % 100) + 1
+    seasonTitle = str(season) + "-" + str(numberBack)
+
+    df.to_csv(ENVIRONMENT.SEASON_CSV_ML_COLS_UNFORMATTED_PATH.format(seasonTitle), index=False)
+    print('ml columns added to dataset for season', season)
+
+def columnSummaryValuesAddedToMl(df):
+    df['Elo Difference'] = df['Home Elo'] - df['Away Elo']
+    df['TrueSkill Difference'] = df['Home TS Mu'] - df['Away TS Mu']
+    df['Glicko Difference'] = df['Home Glicko Mu'] - df['Away Glicko Mu']
+    df['Combined_Cur_N_Adj'] = df['Combined_Mid_N_Adj'] = df['Combined_Full_N_Adj'] = None
+
+    for i in range(0, len(df.index)):
+        df.at[i, "Elo Tip Win Prob"] = eloWinProbFromRawElo(df['Home Elo'].iloc[i], df['Away Elo'].iloc[i])
+        df.at[i, "Glicko Tip Win Prob"] = glickoWinProbFromMuPhiSigma(df['Home Glicko Mu'].iloc[i], df['Home Glicko Phi'].iloc[i], df['Home Glicko Sigma'].iloc[i], df['Away Glicko Mu'].iloc[i], df['Away Glicko Phi'].iloc[i], df['Away Glicko Sigma'].iloc[i])
+        df.at[i, "TrueSkill Tip Win Prob"] = trueSkillTipWinFromMuAndSigma(df['Home TS Mu'].iloc[i], df['Home TS Sigma'].iloc[i], df['Away TS Mu'].iloc[i], df['Away TS Sigma'].iloc[i])
+        df.at[i, 'Combined_Cur_N_Adj'] = df['Cur_H_N_Adj'].iloc[i] / df['Cur_A_N_Adj'].iloc[i] if df['Cur_A_N_Adj'].iloc[i] != 0 and df['Cur_A_N_Adj'].iloc[i] is not None else 0
+        df.at[i, 'Combined_Mid_N_Adj'] = df['Mid_H_N_Adj'].iloc[i] / df['Mid_A_N_Adj'].iloc[i] if df['Mid_A_N_Adj'].iloc[i] != 0 and df['Mid_A_N_Adj'].iloc[i] is not None else 0
+        df.at[i, 'Combined_Full_N_Adj'] = df['Full_H_N_Adj'].iloc[i] / df['Full_A_N_Adj'].iloc[i] if df['Full_A_N_Adj'].iloc[i] != 0 and df['Full_A_N_Adj'].iloc[i] is not None else 0
+
+    return df
+
+# def removeExtraIndex():
+#     for season in ENVIRONMENT.ALL_SEASONS_LIST:
+#         df = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), index_col=0)
+#         df.to_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), index=False)
+#         # df2 = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), index_col=0)
+#         # df2.to_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), index=False)
+

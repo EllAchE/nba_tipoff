@@ -9,8 +9,6 @@ from src.database.database_access import getUniversalTeamShortCode
 from src.utils import lowercaseNoSpace
 
 # backlogtodo include nonshooting possessions
-# todo these should be done:
-#    Offensive efficiency, Def E, Percentage of FT & 2s vs. 3s (effective score percentage),
 # backlogtodo  usage rate for players
 
 def getCurrentSeasonUsageRate():
@@ -123,8 +121,8 @@ def _teamFirstShotStats(game, summaryDict, seasonData, isFirstFieldGoal=False):
             opponent = event['opponentTeam']
             if isFirstTimeThrough:
                 if not retrievalError:
-                    teamWonTip = 1 if tipWinTeam == getUniversalTeamShortCode(team) else 0
-                    opponentWonTip = 1 if tipWinTeam == getUniversalTeamShortCode(opponent) else 0
+                    teamWonTip = True if tipWinTeam == getUniversalTeamShortCode(team) else False
+                    opponentWonTip = True if tipWinTeam == getUniversalTeamShortCode(opponent) else False
                 else:
                     teamWonTip = 0.5
                     opponentWonTip = 0.5
@@ -165,7 +163,7 @@ def _summaryStats(summaryDict):
     return summaryDict
 
 # backlogtodo normalize for games started, compare to known player usage rate for a given season
-# todo add favorable/unfavorable tip result to player quarter data
+# backlogtodo add favorable/unfavorable tip result to player quarter data
 def _playerFirstShotStats(game, summaryDict, isFirstFieldGoal=False):
     playerHasShotInGame = set()
     quarters = ['quarter1']#, 'quarter2', 'quarter3', 'quarter4']

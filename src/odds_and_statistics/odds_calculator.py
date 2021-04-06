@@ -19,8 +19,11 @@ from src.rating_algorithms.algorithms import trueSkillTipWinProb
 #     return tipWinOdds * tipWinnerScoresOdds + (1 - tipWinOdds) * (1 - tipWinnerScoresOdds)
 
 # backlogtodo allow this to toggle to different algos
-def scoreFirstProb(p1Code: str, p2Code: str, jsonPath: Optional[str] = None, psd=None, isQuarter1or4=True):
-    if not isQuarter1or4:
+from src.utils import removeAllNonLettersAndLowercase
+
+
+def scoreFirstProb(p1Code: str, p2Code: str, quarter, jsonPath: Optional[str] = None, psd=None):
+    if quarter == "QUARTER_2" or quarter == "QUARTER_3":
         temp = p2Code
         p2Code = p1Code
         p1Code = temp
@@ -36,7 +39,8 @@ def scoreFirstProb(p1Code: str, p2Code: str, jsonPath: Optional[str] = None, psd
         metaFile = json.load(rFile)
 
     # todo backtest for all quarters/seasons and adjust this. This math doesn't actually make any sense
-    reducedNaiveScoreFirstAdjustment = math.sqrt(metaFile[t1]['quarter1']['naiveAdjustmentFactor']) / math.sqrt(metaFile[t2]['quarter1']['naiveAdjustmentFactor'])
+    quarterLowercased = removeAllNonLettersAndLowercase(quarter)
+    reducedNaiveScoreFirstAdjustment = math.sqrt(metaFile[t1][quarterLowercased]['naiveAdjustmentFactor']) / math.sqrt(metaFile[t2][quarterLowercased]['naiveAdjustmentFactor'])
     reducedNaiveScoreFirstAdjustment = math.sqrt(reducedNaiveScoreFirstAdjustment)
     # reducedNaiveScoreFirstAdjustment = math.sqrt(reducedNaiveScoreFirstAdjustment)
 
@@ -98,8 +102,15 @@ def sysEMainDiagonalVarsNeg1Fill(argsList, amtToWin: float = 1, amtToLose: Optio
         multiplier = amtToLose/cost
         return playerSpread * multiplier
 
-def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float= ENVIRONMENT.REDUCTION_FACTOR, winAmt: float = 1, bankroll: Optional[float] = None): # assumes binary outcome, requires dollar value
-    kellyRatio = (winOdds / lossAmt - (1 - winOdds) / winAmt) * reductionFactor
+def arbitrageLines(bet1, bet2):
+    ratios = np.array(sysEMainDiagonalVarsNeg1Fill([costFor1(bet1), costFor1(bet2)]))
+    ratios = ratios / max(ratios) * 100
+    print('On Bet 1 ratio is', str(ratios[0]) + '.', 'For Bet 2', str(ratios[1]))
+    return ratios
+
+def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float=ENVIRONMENT.REDUCTION_FACTOR, winAmt: float=1, bankroll: Optional[float] = None): # assumes binary outcome, requires dollar value
+    # kellyRatio = (winOdds / lossAmt - (1 - winOdds) / winAmt) * 1
+    kellyRatio = (winOdds - ((1 - winOdds) / (winAmt/lossAmt))) * reductionFactor
 
     if bankroll is None:
         return kellyRatio
@@ -152,7 +163,7 @@ def americanToDecimal(americanOdds: Any):
     odds = positiveEvThresholdFromAmerican(americanOdds)
     return 1 / odds
 
-def kellyBetFromAOddsAndScoreProb(scoreProb: float, americanOdds: str, bankroll: int = ENVIRONMENT.BANKROLL):
+def kellyBetFromAOddsAndScoreProb(scoreProb: float, americanOdds: str, bankroll: int=ENVIRONMENT.BANKROLL):
     loss_amt = costFor1(americanOdds)
     return kellyBetReduced(loss_amt, scoreProb, bankroll=bankroll)
 
@@ -179,7 +190,7 @@ def checkEvPositive(teamOdds: float, scoreProb: float):
         return False
 
 def checkEvPlayerCodesOddsLine(odds: float, p1: str, p2: str):
-    prob = scoreFirstProb(p1, p2)
+    prob = scoreFirstProb(p1, p2, quarter="QUARTER_1")
     bet = checkEvPositive(odds, prob)
     
     if bet:
@@ -218,7 +229,7 @@ def convertPlayerLinesToSingleLine(playerOddsList):
     #     else:
     #         print('$' + str(t_cost) + " for TEAM is a better deal than $" + str(total) + ' for its players.')
 
-def returnGreaterOdds(odds1: float, odds2: float):
+def returnGreaterOdds(odds1: str, odds2: str):
     odds1Cost = costFor100(odds1)
     odds2Cost = costFor100(odds2)
     if odds1Cost > odds2Cost:
@@ -230,6 +241,32 @@ def independentVarOdds(*args: float):
     for odds in args[1:]:
         totalOdds = totalOdds * odds/(1-odds)
     return totalOdds/(1 + totalOdds)
+
+def getBestOddsFromSetOfExchangeKeys(singleTeamOdds):
+    oddsList = list()
+    for key in singleTeamOdds.keys():
+        oddsList.append(singleTeamOdds[key])
+
+    if len(oddsList) > 1:
+        for i in range(0, len(oddsList)):
+            odds = returnGreaterOdds(oddsList[i])
+    return odds
+
+def checkForArbitrage(jsonPath='tempGameOdds.json'):
+    with open(jsonPath) as tempOdds:
+        oddsDict = json.load(tempOdds)
+
+    for game in oddsDict['games']:
+        split = game.split('-')
+        team1 = split[0]
+        team2 = split[1]
+
+        bestTeam1Odds = getBestOddsFromSetOfExchangeKeys(team1)
+        bestTeam2Odds = getBestOddsFromSetOfExchangeKeys(team2)
+        ratios = arbitrageLines(bestTeam1Odds, bestTeam2Odds)
+
+        if ratios[0] + ratios[1] > 200:
+            print('arbitrage for game', game)
 
 # def assessAllBets(betDict):
 #     oddsObjList = list()

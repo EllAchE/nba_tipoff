@@ -4,7 +4,7 @@ from src.odds_and_statistics.odds_calculator import convertPlayerLinesToSingleLi
 from src.live_data.live_odds_retrieval import getExpectedTipper
 
 class QuarterOdds:
-    def __init__(self, gameDict, teamOnly=False, playersOnly=False, isQuarter1Or4=True):
+    def __init__(self, gameDict, teamOnly=False, playersOnly=False):
         self.awayPlayerFloorOdds = self.homePlayerFloorOdds = self.awayPlayerFloorOdds = self.homePlayerFloorOdds = self.awayPlayerFloorOdds = self.kellyBet = self.homeTeamFirstQuarterOdds = self.awayTeamFirstQuarterOdds = None
         self.home = gameDict['home']
         self.away = gameDict['away']
@@ -61,8 +61,8 @@ class QuarterOdds:
 
         self.expectedHomeTipper = getExpectedTipper(self.home)
         self.expectedAwayTipper = getExpectedTipper(self.away)
-        self.homeScoreProb = scoreFirstProb(self.expectedHomeTipper, self.expectedAwayTipper, isQuarter1Or4)
-        self.awayScoreProb = scoreFirstProb(self.expectedAwayTipper, self.expectedHomeTipper, isQuarter1Or4)
+        self.homeScoreProb = scoreFirstProb(self.expectedHomeTipper, self.expectedAwayTipper, self.quarter)
+        self.awayScoreProb = scoreFirstProb(self.expectedAwayTipper, self.expectedHomeTipper, self.quarter)
 
         self.homeBestKellyBet = kellyBetFromAOddsAndScoreProb(self.homeScoreProb, self.bestHomeOdds)
         self.awayBestKellyBet = kellyBetFromAOddsAndScoreProb(self.awayScoreProb, self.bestAwayOdds)

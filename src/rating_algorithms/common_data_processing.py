@@ -61,8 +61,8 @@ def histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePla
     greaterOdds = homeOdds if homeOdds > 1-homeOdds else 1-homeOdds
     homeWinsTip = True if tipWinnerCode[11:] == homePlayerCode else False
     oddsBelongToHome = True if homeOdds > 1-homeOdds else False
-    homeScoresFirst = True if homePlayerTeam == scoringTeam else False
-    greaterOddsWinsTip = 1 if (homeWinsTip and oddsBelongToHome) or (not homeWinsTip and not oddsBelongToHome) else 0
+    homeScoresFirst = 1 if homePlayerTeam == scoringTeam else 0
+    greaterOddsWinsTip = True if (homeWinsTip and oddsBelongToHome) or (not homeWinsTip and not oddsBelongToHome) else False
     predictionArray.append(greaterOdds)
     actualArray.append(greaterOddsWinsTip)
 
@@ -245,17 +245,9 @@ def runAlgoForSeason(seasonCsv: str, skillDictPath: str, predictionSummariesPath
 
         if columnAdds is not None:
             for key in returnObj.keys():
-                df[key] = returnObj[key]
+                df[key].iloc[i] = returnObj[key]
 
         i += 1
-
-    # if startFromBeginning:
-    #     allKeys = psd.keys()
-    #     for key in allKeys:
-    #         key['sigma'] += 2
-    #         if key['sigma'] > 8.333333333333334:
-    #             key['sigma'] = 8.333333333333334
-    #     print("added 2 to all sigmas for new season")
 
     psd['lastGameCode'] = df.iloc[-1]['Game Code']
     with open(skillDictPath, 'w') as write_file:
@@ -265,7 +257,7 @@ def runAlgoForSeason(seasonCsv: str, skillDictPath: str, predictionSummariesPath
         with open(predictionSummariesPath, 'w') as write_file:
             json.dump(dsd, write_file, indent=4)
 
-    df.to_csv(str(seasonCsv)[:-4] + '-test.csv')
+    df.to_csv(seasonCsv, index=False)
 
     if predictionArray is not None and actualArray is not None and histogramPredictionsDict is not None:
         return predictionArray, actualArray, histogramPredictionsDict
@@ -300,5 +292,5 @@ def runAlgoForAllSeasons(seasons, skillDictPath, predictionSummariesPath, algoPr
 
 def dfEmptyColumnAdd(df, columns):
     for column in columns:
-        df[column] = None
+        df[column] = 0
     return df

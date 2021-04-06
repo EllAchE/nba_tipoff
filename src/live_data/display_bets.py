@@ -1,3 +1,4 @@
+import json
 from typing import Any
 from datetime import datetime
 import jsonpickle
@@ -48,10 +49,28 @@ def filterBestByGameCode(oddsObjList):
 
     return bestPerGameOnly
 
-def saveOddsToFile(path, odds):
+def saveOddsToFile(path, allGameOddsObjList, includeGameSummaryJson=True):
     with open(path, 'w') as f:
-        f.write(jsonpickle.encode(odds))
+        f.write(jsonpickle.encode(allGameOddsObjList))
         f.close()
+
+    if includeGameSummaryJson:
+        oddsDict = {}
+        oddsDict['games'] = []
+        teamSet = set()
+        for game in allGameOddsObjList:
+            if game.home not in teamSet:
+                teamSet.add(game.home)
+                oddsDict[game.home] = {}
+            if game.away not in teamSet:
+                teamSet.add(game.away)
+                oddsDict[game.away] = {}
+            oddsDict[game.home][game.exchange] = game.bestHomeOdds
+            oddsDict[game.away][game.exchange] = game.bestAwayOdds
+            sortGameCode = [game.home, game.away].sort()
+            oddsDict['games'] += sortGameCode[0] + " " + sortGameCode[1]
+        with open('tempGameOdds.json') as tempF:
+            json.dump(oddsDict, tempF) # todo test the game summary
 
 def getAllOddsAndDisplayByExchange(draftkings=False, mgm=False, bovada=False, pointsbet=False, unibet=False, barstool=False, fanduelToday=False, fanduelTomorrow=False, betfair=False, includeOptimalPlayerSpread=False):
     allGameOddsObjList = createAllOddsDict(draftkings=draftkings, mgm=mgm, bovada=bovada, pointsBet=pointsbet, unibet=unibet, barstool=barstool, fanduelToday=fanduelToday, fanduelTomorrow=fanduelTomorrow, betfair=betfair, includeOptimalPlayerSpread=includeOptimalPlayerSpread)
@@ -83,12 +102,25 @@ def printQuarterDetails(g, showTeamAndPlayers, i):
     betOnVia = g.bestBetIsTeamOrPlayers()
     playerSpread = g.bestPlayerSpread()
 
-    print(str(i) + '.', g.gameCode + ' ' + g.quarter, '|| Bet On:', betOn, '|| Via:', betOnVia, '|| Kelly Bet:',
-          g.kellyBet, '|| EV Factor:', g.bestEVFactor)  # , '|| Tipoff:', g.gameDatetime)
-    print('   Exchange:', g.exchange, '|| Odds as of:', g.fetchedDatetime)  # '|| Market URL:', g.marketUrl,
-    print('   || Tippers-H/A', g.expectedHomeTipper + '/' + g.expectedAwayTipper, '|| Odds Home Wins',
-          floatHomeScoreProb,
-          '|| Min Odds:', floatMinBetOdds, '|| Home Line:', g.bestHomeOdds, '|| Away Line:', g.bestAwayOdds)
+    if g.kellyBet is not None:
+        pKellyBet = "{:.3f}".format(float(g.kellyBet['bet']), 'on', g.kellyBet['team']) # todo fix this formatting
+    else:
+        pKellyBet = "NA"
+    pEVFactor = "{:.3f}".format(float(g.bestEVFactor))
+
+    if not g.isFullGame:
+        print(str(i) + '.', g.gameCode + ' ' + g.quarter, '|| Bet On:', betOn, '|| Via:', betOnVia, '|| Kelly Bet:',
+              pKellyBet, '|| EV Factor:', pEVFactor)  # , '|| Tipoff:', g.gameDatetime)
+        print('   Exchange:', g.exchange, '|| Odds as of:', g.fetchedDatetime)  # '|| Market URL:', g.marketUrl,
+        print('   || Tippers-H/A', g.expectedHomeTipper + '/' + g.expectedAwayTipper, '|| Odds Home Wins',
+              floatHomeScoreProb,
+              '|| Min Odds:', floatMinBetOdds, '|| Home Line:', g.bestHomeOdds, '|| Away Line:', g.bestAwayOdds)
+    elif g.isFullGame and g.quarter == "QUARTER_1":
+        print(str(i) + '.', g.gameCode, 'Full Game Results', 'Exchange:', g.exchange, '|| Odds as of:', g.fetchedDatetime)
+        print('   || Tippers-H/A', g.expectedHomeTipper + '/' + g.expectedAwayTipper, '|| Odds Home Wins',
+              floatHomeScoreProb, '|| Min Odds:', floatMinBetOdds)
+    if g.isFullGame:
+        print('   ', g.quarter, '|| Bet On:', betOn, '|| Via:', betOnVia, '|| Kelly Bet:', pKellyBet, '|| EV Factor:', pEVFactor, '|| Home Line:', "{:.1f}".format(float(g.bestHomeOdds)), '|| Away Line:', "{:.1f}".format(float(g.bestAwayOdds)))
 
     if showTeamAndPlayers:  # Assumes this is only set this way if both exist
         print('kelly bet home team odds', g.homeTeamKellyBet)
@@ -116,9 +148,9 @@ def printQuarterDetails(g, showTeamAndPlayers, i):
 
 def printFullGameDetails(g, showTeamAndPlayers, i):
     printQuarterDetails(g, showTeamAndPlayers, i)
-    print("QUARTER_2", g.secondQuarterGameObj.bestHomeOdds, g.secondQuarterGameObj.bestAwayOdds)
-    print("QUARTER_3", g.thirdQuarterGameObj.bestHomeOdds, g.thirdQuarterGameObj.bestAwayOdds)
-    print("QUARTER_4", g.fourthQuarterGameObj.bestHomeOdds, g.fourthQuarterGameObj.bestAwayOdds)
+    printQuarterDetails(g.secondQuarterGameObj, showTeamAndPlayers, i)
+    printQuarterDetails(g.thirdQuarterGameObj, showTeamAndPlayers, i)
+    printQuarterDetails(g.fourthQuarterGameObj, showTeamAndPlayers, i)
 
     # printQuarterDetails(g.thirdQuarterGameObj, showTeamAndPlayers, i)
     # printQuarterDetails(g.fourthQuarterGameObj, showTeamAndPlayers, i)

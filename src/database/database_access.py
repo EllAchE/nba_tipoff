@@ -47,7 +47,15 @@ def getUniversalPlayerName(playerInUnknownFormat, bballRefName=False):
             match = True
         elif player['fullName'] == playerInUnknownFormat + " IV":
             match = True
-        elif player['fullName'] == playerInUnknownFormat + " IV":
+        elif player['fullName'] + " Jr." == playerInUnknownFormat:
+            match = True
+        elif player['fullName'] + " Jnr" == playerInUnknownFormat:
+            match = True
+        elif player['fullName'] + " Sr." == playerInUnknownFormat:
+            match = True
+        elif player['fullName'] + " III" == playerInUnknownFormat:
+            match = True
+        elif player['fullName'] + " IV" == playerInUnknownFormat:
             match = True
 
         try:

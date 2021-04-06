@@ -10,6 +10,9 @@ from bs4 import BeautifulSoup
 
 import ENVIRONMENT
 
+def customNbaSeasonFormatting(season):
+    intAdd = season % 100 + 1
+    return str(season) + '-' + str(intAdd)
 
 def addSlugToNames():
     with open(ENVIRONMENT.TEAM_NAMES_PATH) as dat_file:
@@ -127,6 +130,7 @@ def removeAllNonLettersAndLowercase(name):
     playerLowered = playerLowered.replace('.', '')
     playerLowered = playerLowered.replace('-', '')
     playerLowered = playerLowered.replace('\'', '')
+    playerLowered = playerLowered.replace('_', '')
     return playerLowered.lower()
 
 def lowercaseNoSpace(str):

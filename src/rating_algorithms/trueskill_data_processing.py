@@ -7,22 +7,25 @@ from src.rating_algorithms.common_data_processing import beforeMatchPredictions,
 
 # backlogtodo optimize trueskill, glicko etc. for rapid iteration
 # backlogtodo refactor equations here to be generic
-def runTSForSeason(seasonCsv: str, winningBetThreshold: float= ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
+def runTrueSkillForSeason(seasonCsv: str, winningBetThreshold: float= ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):
     runAlgoForSeason(seasonCsv, ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH,
-                     trueskillBeforeMatchPredictions, trueskillUpdateDataSingleTipoff, winningBetThreshold,
-                     columnAdds=['Home TS Mu', 'Away TS Mu', 'Home TS Sigma', 'Away TS Sigma'], startFromBeginning=startFromBeginning)
+                     trueSkillBeforeMatchPredictions, trueSkillUpdateDataSingleTipoff, winningBetThreshold,
+                     columnAdds=['Home TS Mu', 'Away TS Mu', 'Home TS Sigma', 'Away TS Sigma', 'Home Lifetime Appearances',
+                                 'Away Lifetime Appearances', 'Home Tipper Wins', 'Away Tipper Wins', 'Home Tipper Losses', 'Away Tipper Losses'], startFromBeginning=startFromBeginning)
+
 
 # backlogtodo setup odds prediction to use Ev or win prob rather than bet threshold
-def trueskillBeforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionArray=None, actualArray=None, histogramPredictionsDict=None,
+def trueSkillBeforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionArray=None, actualArray=None, histogramPredictionsDict=None,
                                     winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
     return beforeMatchPredictions(psd, homePlayerCode, awayPlayerCode, homeTeam, awayTeam, tipWinnerCode, scoringTeam, predictionArray=predictionArray, actualArray=actualArray, histogramPredictionsDict=histogramPredictionsDict, predictionSummaryPath=ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH,
                                   minimumTipWinPercentage=winningBetThreshold, predictionFunction=trueSkillTipWinProb, minimumAppearances=ENVIRONMENT.MIN_TS_APPEARANCES)
 
 def runTSForAllSeasons(seasons, winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD):
-    runAlgoForAllSeasons(seasons, ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH, trueskillBeforeMatchPredictions, trueskillUpdateDataSingleTipoff,
-                         winningBetThreshold, columnAdds=['Home TS Mu', 'Away TS Mu', 'Home TS Sigma', 'Away TS Sigma'])
+    runAlgoForAllSeasons(seasons, ENVIRONMENT.PLAYER_TRUESKILL_DICT_PATH, ENVIRONMENT.TS_PREDICTION_SUMMARIES_PATH, trueSkillBeforeMatchPredictions, trueSkillUpdateDataSingleTipoff,
+                         winningBetThreshold, columnAdds=['Home TS Mu', 'Away TS Mu', 'Home TS Sigma', 'Away TS Sigma', 'Home Lifetime Appearances',
+                                 'Away Lifetime Appearances', 'Home Tipper Wins', 'Away Tipper Wins', 'Home Tipper Losses', 'Away Tipper Losses'])
 
-def trueskillUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, game_code=None):
+def trueSkillUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, game_code=None):
     if game_code:
         print(game_code)
     winnerCode = winnerCode[11:]
@@ -50,18 +53,34 @@ def trueskillUpdateDataSingleTipoff(psd, winnerCode, loserCode, homePlayerCode, 
     print('Winner:', winnerCode, 'trueskill increased', winnerMu - winnerOgMu, 'to', winnerMu, '. Sigma is now', winnerSigma, '. W:', winnerWinCount, 'L', winnerAppearances - winnerWinCount)
     print('Loser:', loserCode, 'trueskill decreased', loserMu - loserOgMu, 'to', loserMu, '. Sigma is now', loserSigma, '. W:', loserAppearances - loserLosses, 'L', loserLosses)
 
+    # backlogtodo refactor repeated code out of algo methods
     if homePlayerCode == winnerCode:
         homeMu = winnerOgMu
         homeSigma = winnerOgSigma
         awayMu = loserOgMu
         awaySigma = loserOgSigma
+        homeAppearances = winnerAppearances - 1
+        awayAppearances = loserAppearances - 1
+        homeWins = winnerWinCount - 1
+        homeLosses = psd[winnerCode]["losses"]
+        awayWins = psd[loserCode]["wins"]
+        awayLosses = loserLosses
     elif homePlayerCode == loserCode:
         homeMu = loserOgMu
         homeSigma = loserOgSigma
         awayMu = winnerOgMu
         awaySigma = winnerOgSigma
+        awayAppearances = winnerAppearances
+        homeAppearances = loserAppearances
+        awayWins = winnerWinCount - 1
+        awayLosses = psd[winnerCode]["losses"]
+        homeWins = psd[loserCode]["wins"]
+        homeLosses = loserLosses
+    else:
+        raise ValueError('neither code matches')
 
-    return {"Home TS Mu": homeMu, "Home TS Sigma":homeSigma, "Away TS Mu": awayMu, "Away TS Sigma": awaySigma}
+    return {"Home TS Mu": homeMu, "Home TS Sigma": homeSigma, "Away TS Mu": awayMu, "Away TS Sigma": awaySigma, "Home Lifetime Appearances": homeAppearances, "Away Lifetime Appearances": awayAppearances,
+            "Home Tipper Wins": homeWins, "Home Tipper Losses": homeLosses, "Away Tipper Wins": awayWins, "Away Tipper Losses": awayLosses}
 
 def calculateTrueSkillDictionaryFromZero():
     createPlayerTrueSkillDictionary() # clears the stored values,
@@ -69,6 +88,6 @@ def calculateTrueSkillDictionaryFromZero():
     print("\n", "trueskill dictionary updated for seasons", ENVIRONMENT.ALL_SEASONS_LIST, "\n")
 
 def updateTrueSkillDictionaryFromLastGame():
-    runTSForSeason(ENVIRONMENT.CURRENT_SEASON_CSV, winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False)
+    runTrueSkillForSeason(ENVIRONMENT.CURRENT_SEASON_CSV, winningBetThreshold=ENVIRONMENT.TS_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False)
     print("\n", "trueskill dictionary updated from last game", "\n")
 

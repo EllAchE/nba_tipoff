@@ -258,14 +258,14 @@ def draftKingsOdds():
     if teamMatch:
         for teamLine in firstTeamToScoreLines:
             outcomes = teamLine[0]['outcomes']
-            team1 = getUniversalTeamShortCode(outcomes[0]['label'])
-            team1Odds = outcomes[0]['oddsAmerican']
-            team2 = getUniversalTeamShortCode(outcomes[1]['label'])
-            team2Odds = outcomes[1]['oddsAmerican']
+            team1 = getUniversalTeamShortCode(outcomes[1]['label'])
+            team1Odds = outcomes[1]['oddsAmerican']
+            team2 = getUniversalTeamShortCode(outcomes[0]['label'])
+            team2Odds = outcomes[0]['oddsAmerican']
             teamSet.add(team2)
             teamSet.add(team1)
 
-            print('Adding game', team2, '@', team1, 'from draftkings to list')
+            print('Adding game', team1, '@', team2, 'from draftkings to list')
 
             allGameLines.append({
                 "exchange": "draftkings",
@@ -296,7 +296,10 @@ def draftKingsOdds():
         playerTeamDict[team] = []
     for rawLine in rawPlayerLines:
         playerLine = addTeamToUnknownPlayerLine(rawLine)
-        playerTeamDict[playerLine['team']] += [playerLine]
+        try:
+            playerTeamDict[playerLine['team']] += [playerLine]
+        except:
+            print('player', playerLine, 'had a team error. Perhaps they were traded?')
 
     for gameLine in allGameLines:
         gameLine["homePlayerFirstQuarterOdds"] = playerTeamDict[gameLine["home"]]
@@ -423,9 +426,12 @@ def _fanduelOddsAll(today=True):
         for team in teamSet:
             playerTeamDict[team] = []
         for rawLine in unassignedPlayerOddsList:
-            playerLine = addTeamToUnknownPlayerLine(rawLine)
-            team = getUniversalTeamShortCode(playerLine['team'])
-            playerTeamDict[team] += [playerLine]
+            try:
+                playerLine = addTeamToUnknownPlayerLine(rawLine)
+                team = getUniversalTeamShortCode(playerLine['team']) # todo test the expanded exception handling here, and implement in other methods too
+                playerTeamDict[team] += [playerLine]
+            except:
+                print('player', playerLine, 'had a team error. Perhaps they were traded?')
 
         for gameLine in quarterOddsList:
             gameLine["homePlayerFirstQuarterOdds"] = playerTeamDict[gameLine["home"]]
@@ -435,9 +441,8 @@ def _fanduelOddsAll(today=True):
         for gameLine in quarterOddsList:
             if (len(gameLine['homePlayerFirstQuarterOdds']) > 4 and len(gameLine['homePlayerFirstQuarterOdds']) > 4) or gameLine['homeTeamFirstQuarterOdds'] is not None:
                 quarterOddsListWithAtLeastOneSetOfOdds.append(gameLine)
-
     if len(gameIdSet) == 0:
-        print('No game ids were found on fanduel, make sure you are looking for the proper day (today or tomorrow are your options).')
+        print('No game ids were found on fanduel, make sure you are looking for a valid day (today or tomorrow).')
     else:
         return quarterOddsListWithAtLeastOneSetOfOdds
 
@@ -755,7 +760,7 @@ def getBetfairCurl(gameIdAndTeamNames):
     # in case the reproduced version is not "correct".
     # response = requests.get('https://www.betfair.com/sport/basketball/nba/milwaukee-bucks-washington-wizards/30352512?selectedGroup=-78637064&action=changeMarketGroup&modules=marketgroups%401053&lastId=1056&d18=Main&d31=Middle&isAjax=true&ts=1615794006588&alt=json&xsrftoken=1e4dceb0-839a-11eb-b07e-fa163e3cd428', headers=headers, cookies=cookies)
 
-# todo add player score first odds retrieval
+# backlogtodo add player score first odds retrieval
 def betfairOdds():
     # https://www.betfair.com/sport/basketball/nba/houston-rockets-oklahoma-city-thunder/30266729
     # betfair homepage https://www.betfair.com/sport/basketball
@@ -898,6 +903,24 @@ def getAllExpectedStarters():
     for team in teamList:
         sleepChecker(iterations=5, baseTime=1, randomMultiplier=1)
         getStarters(team)
+
+def rotoWireStarters():
+    url = 'https://www.rotowire.com/basketball/nba-lineups.php'
+    soup = getSoupFromUrl(url)
+    allHomeDivs = soup.select('div[class="lineup__list is-home"]')
+    allAwayDivs = soup.select('div[class="lineup__list is-visit"]')
+
+    def getTeamForLineup(teamDiv):
+        p1 = teamDiv.parent
+        p2 = p1.parent
+        sibling = p2.contents[0]
+        home = sibling.select('a[class="lineup__team is-visit"]')
+        away = sibling.select('a[class="lineup__team is-home"]')
+        homeTeam = home.select('div[class="lineup__abbr"]').contents[0]
+        awayTeam = away.select('div[class="lineup__abbr"]').contents[0]
+        return getUniversalTeamShortCode(str(homeTeam)), getUniversalTeamShortCode(str(awayTeam))
+
+
 
 # backlogtodo confirm a minimum number of appearances
 def getDailyOdds(t1: str, t2: str, aOdds: str = '-110', exchange: str ='unspecified exchange'):
