@@ -262,7 +262,7 @@ def sortPlayerNameRelationships():
     pNameList.sort(key=sortByUniversalName)
 
     with open(ENVIRONMENT.PLAYER_NAME_RELATIONSHIPS_PATH) as writeFile:
-        json.dump(pNameList, writeFile)
+        json.dump(pNameList, writeFile, indent=4)
 
     print("Sorted player name relationships")
 
@@ -336,7 +336,7 @@ def getPlusMinusForTeams(season):
         teamPlusMinusDict[team['abbreviation']]['quarter4'] = data['PLUS_MINUS'][3]
 
     with open(ENVIRONMENT.PLUS_MINUS_TEAMS_UNFORMATTED.format(season), 'w') as saveFile:
-        json.dump(teamPlusMinusDict, saveFile)
+        json.dump(teamPlusMinusDict, saveFile, indent=4)
     print('saved plus minus data')
 
 

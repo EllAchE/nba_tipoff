@@ -8,7 +8,9 @@ from src.historical_data.nba_play_by_play_methods import fillGaps, teamSummaryDa
     getAllFirstPossessionStatisticsIncrementally
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import betfairOdds, getDailyOdds
-from src.odds_and_statistics.odds_calculator import kellyBetReduced, arbitrageLines
+from src.odds_and_statistics.odds_calculator import kellyBetReduced, getArbitrageRatiosTwoLines, \
+    sysEMainDiagonalVarsNeg1Fill, \
+    americanToDecimal, costFor1, americanToRatio, checkForArbitrageAnyNumberOfLines, checkForArbitrageInRetrievedOdds
 from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalOrFirstPointStats
 
 # teamSummaryDataFromFirstPointData(2014)
@@ -20,7 +22,6 @@ from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalOrF
 # teamSummaryDataFromFirstPointData(2020)
 # teamSummaryDataFromFirstPointData(2021)
 
-arbitrageLines('-122', '-114')
 
 # calculateTrueSkillDictionaryFromZero()
 # calculateGlickoDictionaryFromZero()
@@ -34,10 +35,13 @@ arbitrageLines('-122', '-114')
 # addAdditionalMlColumnsSingleSeason(2019)
 # addAdditionalMlColumnsSingleSeason(2020)
 
+# getArbitrageRatiosTwoLines('-110', '+134', printResult=True)
+
 # concatCsv('all_ml_cols.csv', ENVIRONMENT.ML_COLS_FOLDER_PATH)
 
+checkForArbitrageInRetrievedOdds()
 
-getDailyOdds('BKN', 'NYK', '+101')
+getDailyOdds('NOP', 'PHI', '-120')
 # getAllOddsAndDisplayByEv(bovada=True)
 # smallDataUpdate()
 # getAllOddsAndDisplayByEv(fanduelToday=True)

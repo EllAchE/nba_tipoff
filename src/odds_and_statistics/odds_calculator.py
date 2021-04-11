@@ -102,11 +102,27 @@ def sysEMainDiagonalVarsNeg1Fill(argsList, amtToWin: float = 1, amtToLose: Optio
         multiplier = amtToLose/cost
         return playerSpread * multiplier
 
-def arbitrageLines(bet1, bet2):
+def getArbitrageRatiosTwoLines(bet1, bet2, printResult=False):
     ratios = np.array(sysEMainDiagonalVarsNeg1Fill([costFor1(bet1), costFor1(bet2)]))
     ratios = ratios / max(ratios) * 100
-    print('On Bet 1 ratio is', str(ratios[0]) + '.', 'For Bet 2', str(ratios[1]))
+    if printResult:
+        print('On Bet 1 ratio is', str(ratios[0]) + '.', 'For Bet 2', str(ratios[1]))
     return ratios
+
+def checkForArbitrageAnyNumberOfLines(*args, printResult=False):
+    decimalOddsArgList = list(map(americanToRatio, args))
+    ratios = np.array(sysEMainDiagonalVarsNeg1Fill(decimalOddsArgList))
+    if ratios[0] < 0:
+        if printResult:
+            print('No arbitrage')
+    else:
+        ratios = ratios / max(ratios) * 100
+        if printResult:
+            i = 0
+            for line in ratios:
+                i += 1
+                print('For bet', i, 'ratio is', line)
+        return ratios
 
 def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float=ENVIRONMENT.REDUCTION_FACTOR, winAmt: float=1, bankroll: Optional[float] = None): # assumes binary outcome, requires dollar value
     # kellyRatio = (winOdds / lossAmt - (1 - winOdds) / winAmt) * 1
@@ -159,6 +175,9 @@ def decimalToAmerican(decOdds: float): # http://www.betsmart.co/odds-conversion-
     else:
         return '-' + str(100 / (decOdds - 1))
 
+def americanToRatio(x):
+    return americanToDecimal(x) - 1
+
 def americanToDecimal(americanOdds: Any):
     odds = positiveEvThresholdFromAmerican(americanOdds)
     return 1 / odds
@@ -206,9 +225,6 @@ def convertPlayerLinesToSingleLine(playerOddsList):
     i = 0
     costsAsAOdds = [playerOddsList[0]['odds'], playerOddsList[1]['odds'], playerOddsList[2]['odds'], playerOddsList[3]['odds'], playerOddsList[4]['odds']]
 
-    def americanToRatio(x):
-        return americanToDecimal(x) - 1
-
     costsAsRatios = map(americanToRatio, costsAsAOdds)
     costs = sysEMainDiagonalVarsNeg1Fill(list(costsAsRatios), amtToWin=100)
 
@@ -242,31 +258,37 @@ def independentVarOdds(*args: float):
         totalOdds = totalOdds * odds/(1-odds)
     return totalOdds/(1 + totalOdds)
 
-def getBestOddsFromSetOfExchangeKeys(singleTeamOdds):
-    oddsList = list()
-    for key in singleTeamOdds.keys():
-        oddsList.append(singleTeamOdds[key])
+def getBestOddsFromSetOfExchangeKeys(team, singleTeamOdds):
+    firstLoop = True
+    for key in singleTeamOdds[team].keys():
+        if firstLoop:
+            odds = singleTeamOdds[team][key]
+            firstLoop = False
+            returnKey = key
+        else:
+            ogOdds = odds
+            odds = returnGreaterOdds(odds, singleTeamOdds[team][key])
+            if ogOdds != odds:
+                returnKey = key
+    return odds, returnKey
 
-    if len(oddsList) > 1:
-        for i in range(0, len(oddsList)):
-            odds = returnGreaterOdds(oddsList[i])
-    return odds
-
-def checkForArbitrage(jsonPath='tempGameOdds.json'):
+def checkForArbitrageInRetrievedOdds(jsonPath='tempGameOdds.json'):
     with open(jsonPath) as tempOdds:
         oddsDict = json.load(tempOdds)
 
     for game in oddsDict['games']:
-        split = game.split('-')
+        split = game.split(' ')
         team1 = split[0]
         team2 = split[1]
 
-        bestTeam1Odds = getBestOddsFromSetOfExchangeKeys(team1)
-        bestTeam2Odds = getBestOddsFromSetOfExchangeKeys(team2)
-        ratios = arbitrageLines(bestTeam1Odds, bestTeam2Odds)
+        bestTeam1Odds, exchange1 = getBestOddsFromSetOfExchangeKeys(team1, oddsDict)
+        bestTeam2Odds, exchange2 = getBestOddsFromSetOfExchangeKeys(team2, oddsDict)
+        ratios = getArbitrageRatiosTwoLines(bestTeam1Odds, bestTeam2Odds)
 
         if ratios[0] + ratios[1] > 200:
             print('arbitrage for game', game)
+            print(team1, 'odds are', bestTeam1Odds, 'on exchange', exchange1, 'ratio is', ratios[1])
+            print(team2, 'odds are', bestTeam2Odds, 'on exchange', exchange2, 'ratio is', ratios[0])
 
 # def assessAllBets(betDict):
 #     oddsObjList = list()

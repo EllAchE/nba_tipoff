@@ -107,7 +107,7 @@ def histogramBinningPredictions(homeOdds, homePlayerCode, tipWinnerCode, homePla
             item['predictionSummaries'] = subItem
 
     with open(predictionSummaryPath, 'w') as saveDictFile:
-        json.dump(dsd, saveDictFile)
+        json.dump(dsd, saveDictFile, indent=4)
 
     return predictionArray, actualArray, histogramPredictionsDict
 
