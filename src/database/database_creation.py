@@ -181,6 +181,8 @@ def _misformattedNameAdjustment(activePlayers):
             playerDict['alternateNames'] += ["Maximilian Kleber"]
         elif playerDict['fullName'] == "Garrison Mathews":
             playerDict['alternateNames'] += ["Garison Matthew"]
+        elif playerDict['fullName'] == "Maurice Harkless":
+            playerDict['alternateNames'] += ["Moe Harkless"]
         elif playerDict['fullName'] == "Danuel House":
             playerDict['alternateNames'] += ["Danuel House Jr."]
         elif playerDict['fullName'] == "P.J. Washington":
