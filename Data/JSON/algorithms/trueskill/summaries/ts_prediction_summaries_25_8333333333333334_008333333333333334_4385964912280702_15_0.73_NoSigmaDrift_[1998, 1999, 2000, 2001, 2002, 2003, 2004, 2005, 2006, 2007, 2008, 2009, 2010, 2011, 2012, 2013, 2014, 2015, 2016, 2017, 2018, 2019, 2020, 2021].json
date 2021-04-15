@@ -1,134 +1,134 @@
 {
-    "winningBets": 3172,
-    "losingBets": 2140,
+    "winningBets": 3173,
+    "losingBets": 2142,
     "totalBets": 0,
-    "correctTipoffPredictions": 3960,
-    "incorrectTipoffPredictions": 1352,
-    "tipWinnerScores": 3524,
+    "correctTipoffPredictions": 3961,
+    "incorrectTipoffPredictions": 1354,
+    "tipWinnerScores": 3527,
     "seasons": null,
     "winPercentage": 0,
-    "correctTipoffPredictionPercentage": 0.7454819277108434,
-    "expectedTipWinsFromAlgo": 4257.048041185758,
+    "correctTipoffPredictionPercentage": 0.7452492944496707,
+    "expectedTipWinsFromAlgo": 4259.302497942529,
     "predictionAverage": 0,
     "histogramDivisions": [
         {
             "start": 0.5,
             "end": 0.55,
             "predictionSummaries": {
-                "totalMatchups": 4499,
-                "tipoffWinsByHigher": 2338,
-                "tipoffLossesByHigher": 2161,
-                "tipWinnerScores": 2876,
+                "totalMatchups": 4507,
+                "tipoffWinsByHigher": 2345,
+                "tipoffLossesByHigher": 2162,
+                "tipWinnerScores": 2883,
                 "winPercentage": 0,
-                "expectedTipWinsFromAlgo": 2362.3712529075806,
-                "higherOddsScoresFirst": 2283,
+                "expectedTipWinsFromAlgo": 2366.578940023562,
+                "higherOddsScoresFirst": 2289,
                 "winningBets": 0,
                 "losingBets": 0,
-                "tipWinPercentage": 0.5196710380084463,
-                "expectedTipWinPercentage": 0.5250880757740788,
-                "tipWinnerScoresPercentage": 0.6392531673705267,
+                "tipWinPercentage": 0.5203017528289328,
+                "expectedTipWinPercentage": 0.5250896250329625,
+                "tipWinnerScoresPercentage": 0.6396716219214555,
                 "betWinPercentage": 0.0,
-                "logLoss": 0.6920354098299794
+                "logLoss": 0.6919579244037938
             }
         },
         {
             "start": 0.55,
             "end": 0.6,
             "predictionSummaries": {
-                "totalMatchups": 4340,
-                "tipoffWinsByHigher": 2389,
-                "tipoffLossesByHigher": 1951,
-                "tipWinnerScores": 2811,
+                "totalMatchups": 4349,
+                "tipoffWinsByHigher": 2394,
+                "tipoffLossesByHigher": 1955,
+                "tipWinnerScores": 2818,
                 "winPercentage": 0,
-                "expectedTipWinsFromAlgo": 2493.558154124187,
-                "higherOddsScoresFirst": 2302,
+                "expectedTipWinsFromAlgo": 2498.7049679335823,
+                "higherOddsScoresFirst": 2307,
                 "winningBets": 0,
                 "losingBets": 0,
-                "tipWinPercentage": 0.5504608294930876,
-                "expectedTipWinPercentage": 0.5745525700746974,
-                "tipWinnerScoresPercentage": 0.6476958525345622,
+                "tipWinPercentage": 0.5504713727293631,
+                "expectedTipWinPercentage": 0.5745470149306926,
+                "tipWinnerScoresPercentage": 0.6479650494366521,
                 "betWinPercentage": 0.0,
-                "logLoss": 0.6892292048443583
+                "logLoss": 0.6892194951659125
             }
         },
         {
             "start": 0.6,
             "end": 0.65,
             "predictionSummaries": {
-                "totalMatchups": 4176,
-                "tipoffWinsByHigher": 2549,
-                "tipoffLossesByHigher": 1627,
-                "tipWinnerScores": 2657,
+                "totalMatchups": 4181,
+                "tipoffWinsByHigher": 2553,
+                "tipoffLossesByHigher": 1628,
+                "tipWinnerScores": 2659,
                 "winPercentage": 0,
-                "expectedTipWinsFromAlgo": 2609.0847224533277,
-                "higherOddsScoresFirst": 2226,
+                "expectedTipWinsFromAlgo": 2612.167411091836,
+                "higherOddsScoresFirst": 2229,
                 "winningBets": 0,
                 "losingBets": 0,
-                "tipWinPercentage": 0.6103927203065134,
-                "expectedTipWinPercentage": 0.624780824342272,
-                "tipWinnerScoresPercentage": 0.6362547892720306,
+                "tipWinPercentage": 0.6106194690265486,
+                "expectedTipWinPercentage": 0.6247709665371529,
+                "tipWinnerScoresPercentage": 0.635972255441282,
                 "betWinPercentage": 0.0,
-                "logLoss": 0.6691852715413591
+                "logLoss": 0.6690413169370605
             }
         },
         {
             "start": 0.65,
             "end": 0.7,
             "predictionSummaries": {
-                "totalMatchups": 3546,
+                "totalMatchups": 3547,
                 "tipoffWinsByHigher": 2326,
-                "tipoffLossesByHigher": 1220,
+                "tipoffLossesByHigher": 1221,
                 "tipWinnerScores": 2261,
                 "winPercentage": 0,
-                "expectedTipWinsFromAlgo": 2390.830431391667,
-                "higherOddsScoresFirst": 1959,
+                "expectedTipWinsFromAlgo": 2391.481034978567,
+                "higherOddsScoresFirst": 1960,
                 "winningBets": 0,
                 "losingBets": 0,
-                "tipWinPercentage": 0.6559503666102651,
-                "expectedTipWinPercentage": 0.6742330601781351,
-                "tipWinnerScoresPercentage": 0.637619853355894,
+                "tipWinPercentage": 0.6557654355793628,
+                "expectedTipWinPercentage": 0.6742263983587727,
+                "tipWinnerScoresPercentage": 0.6374400902170848,
                 "betWinPercentage": 0.0,
-                "logLoss": 0.6435787527077363
+                "logLoss": 0.6436936736639368
             }
         },
         {
             "start": 0.7,
             "end": 0.75,
             "predictionSummaries": {
-                "totalMatchups": 2766,
-                "tipoffWinsByHigher": 1907,
-                "tipoffLossesByHigher": 859,
-                "tipWinnerScores": 1812,
+                "totalMatchups": 2771,
+                "tipoffWinsByHigher": 1910,
+                "tipoffLossesByHigher": 861,
+                "tipWinnerScores": 1817,
                 "winPercentage": 0,
-                "expectedTipWinsFromAlgo": 2002.2799649721699,
-                "higherOddsScoresFirst": 1597,
+                "expectedTipWinsFromAlgo": 2005.9048675933382,
+                "higherOddsScoresFirst": 1600,
                 "winningBets": 604,
-                "losingBets": 428,
-                "tipWinPercentage": 0.6894432393347795,
-                "expectedTipWinPercentage": 0.7238900813348409,
-                "tipWinnerScoresPercentage": 0.6550976138828634,
-                "betWinPercentage": 0.21836587129428778,
-                "logLoss": 0.6230898353777453
+                "losingBets": 430,
+                "tipWinPercentage": 0.6892818477084085,
+                "expectedTipWinPercentage": 0.7238920489329983,
+                "tipWinnerScoresPercentage": 0.6557199566943341,
+                "betWinPercentage": 0.217971851317214,
+                "logLoss": 0.6233100580868132
             }
         },
         {
             "start": 0.75,
             "end": 0.8,
             "predictionSummaries": {
-                "totalMatchups": 2020,
-                "tipoffWinsByHigher": 1467,
+                "totalMatchups": 2021,
+                "tipoffWinsByHigher": 1468,
                 "tipoffLossesByHigher": 553,
-                "tipWinnerScores": 1347,
+                "tipWinnerScores": 1348,
                 "winPercentage": 0,
-                "expectedTipWinsFromAlgo": 1561.4245725151156,
-                "higherOddsScoresFirst": 1182,
-                "winningBets": 1182,
+                "expectedTipWinsFromAlgo": 1562.1942013708224,
+                "higherOddsScoresFirst": 1183,
+                "winningBets": 1183,
                 "losingBets": 838,
-                "tipWinPercentage": 0.7262376237623762,
-                "expectedTipWinPercentage": 0.7729824616411464,
-                "tipWinnerScoresPercentage": 0.6668316831683169,
-                "betWinPercentage": 0.5851485148514851,
-                "logLoss": 0.5928725071669523
+                "tipWinPercentage": 0.7263730826323602,
+                "expectedTipWinPercentage": 0.7729808022616638,
+                "tipWinnerScoresPercentage": 0.6669965363681346,
+                "betWinPercentage": 0.5853537852548244,
+                "logLoss": 0.5927087951880924
             }
         },
         {
@@ -212,7 +212,7 @@
             }
         }
     ],
-    "logLoss": 0.637293588657842,
+    "logLoss": 0.6373518306691974,
     "trueskillConstants": [
         {
             "sigma": 8.333333333333334,
@@ -242,6 +242,6 @@
             "minTipWinOdds": 0.73
         }
     ],
-    "betWinPercentage": 0.5971385542168675,
-    "expectedWinsFromTipWinPercentage": 0.5760779228313253
+    "betWinPercentage": 0.5969896519285043,
+    "expectedWinsFromTipWinPercentage": 0.5760058268711195
 }

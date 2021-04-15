@@ -67,10 +67,12 @@ def saveOddsToFile(path, allGameOddsObjList, includeGameSummaryJson=True):
                 oddsDict[game.away] = {}
             oddsDict[game.home][game.exchange] = game.bestHomeOdds
             oddsDict[game.away][game.exchange] = game.bestAwayOdds
-            sortGameCode = [game.home, game.away].sort()
-            oddsDict['games'] += sortGameCode[0] + " " + sortGameCode[1]
-        with open('tempGameOdds.json') as tempF:
-            json.dump(oddsDict, tempF) # todo test the game summary
+            sortGameCode = [game.home, game.away]
+            sortGameCode.sort()
+            if sortGameCode[0] + " " + sortGameCode[1] not in oddsDict['games']:
+                oddsDict['games'] += [sortGameCode[0] + " " + sortGameCode[1]]
+        with open('tempGameOdds.json', 'w') as tempF:
+            json.dump(oddsDict, tempF, indent=4) # todo test the game summary
 
 def getAllOddsAndDisplayByExchange(draftkings=False, mgm=False, bovada=False, pointsbet=False, unibet=False, barstool=False, fanduelToday=False, fanduelTomorrow=False, betfair=False, includeOptimalPlayerSpread=False):
     allGameOddsObjList = createAllOddsDict(draftkings=draftkings, mgm=mgm, bovada=bovada, pointsBet=pointsbet, unibet=unibet, barstool=barstool, fanduelToday=fanduelToday, fanduelTomorrow=fanduelTomorrow, betfair=betfair, includeOptimalPlayerSpread=includeOptimalPlayerSpread)
