@@ -287,7 +287,6 @@ def checkForArbitrageInRetrievedOdds(jsonPath='tempGameOdds.json'):
         bestTeam2Odds, exchange2 = getBestOddsFromSetOfExchangeKeys(team2, oddsDict)
         try:
             ratios = getArbitrageRatiosTwoLines(bestTeam1Odds, bestTeam2Odds)
-
             if ratios[0] + ratios[1] > 200:
                 print('arbitrage for game', game)
                 print(team1, 'odds are', bestTeam1Odds, 'on exchange', exchange1, 'ratio is', ratios[1])
