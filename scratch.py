@@ -41,7 +41,7 @@ from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalOrF
 
 checkForArbitrageInRetrievedOdds()
 
-getDailyOdds('NOP', 'PHI', '-120')
+getDailyOdds('SAS', 'TOR', '-106')
 # getAllOddsAndDisplayByEv(bovada=True)
 # smallDataUpdate()
 # getAllOddsAndDisplayByEv(fanduelToday=True)

@@ -1,1022 +1,1022 @@
 {
     "LAC": {
         "quarter1": {
-            "total": 58,
-            "actualMakes": 36,
-            "expectedMakes": 28.380174959999998,
-            "actualScoreFirstPercent": 0.6206896551724138,
-            "expectedScoreFirstPercent": 0.4893133613793103,
-            "naiveAdjustmentFactor": 1.2684911227904567
+            "total": 60,
+            "actualMakes": 37,
+            "expectedMakes": 29.68208748,
+            "actualScoreFirstPercent": 0.6166666666666667,
+            "expectedScoreFirstPercent": 0.494701458,
+            "naiveAdjustmentFactor": 1.2465430547946086
         },
         "quarter2": {
-            "total": 58,
+            "total": 60,
             "actualMakes": 30,
-            "expectedMakes": 29.619825040000002,
-            "actualScoreFirstPercent": 0.5172413793103449,
-            "expectedScoreFirstPercent": 0.5106866386206896,
-            "naiveAdjustmentFactor": 1.0128351521147272
+            "expectedMakes": 30.31791252,
+            "actualScoreFirstPercent": 0.5,
+            "expectedScoreFirstPercent": 0.505298542,
+            "naiveAdjustmentFactor": 0.989514036634604
         },
         "quarter3": {
-            "total": 58,
+            "total": 60,
             "actualMakes": 26,
-            "expectedMakes": 29.619825040000002,
-            "actualScoreFirstPercent": 0.4482758620689655,
-            "expectedScoreFirstPercent": 0.5106866386206896,
-            "naiveAdjustmentFactor": 0.8777904651660968
+            "expectedMakes": 30.31791252,
+            "actualScoreFirstPercent": 0.43333333333333335,
+            "expectedScoreFirstPercent": 0.505298542,
+            "naiveAdjustmentFactor": 0.8575788317499902
         },
         "quarter4": {
-            "total": 58,
-            "actualMakes": 26,
-            "expectedMakes": 28.380174959999998,
-            "actualScoreFirstPercent": 0.4482758620689655,
-            "expectedScoreFirstPercent": 0.4893133613793103,
-            "naiveAdjustmentFactor": 0.9161324775708853
+            "total": 60,
+            "actualMakes": 28,
+            "expectedMakes": 29.68208748,
+            "actualScoreFirstPercent": 0.4666666666666667,
+            "expectedScoreFirstPercent": 0.494701458,
+            "naiveAdjustmentFactor": 0.943329879304028
         }
     },
     "DEN": {
         "quarter1": {
-            "total": 52,
-            "actualMakes": 35,
-            "expectedMakes": 27.08469382,
-            "actualScoreFirstPercent": 0.6730769230769231,
-            "expectedScoreFirstPercent": 0.5208594965384615,
-            "naiveAdjustmentFactor": 1.292242778618939
+            "total": 54,
+            "actualMakes": 36,
+            "expectedMakes": 28.43060634,
+            "actualScoreFirstPercent": 0.6666666666666666,
+            "expectedScoreFirstPercent": 0.52649271,
+            "naiveAdjustmentFactor": 1.2662410210136938
         },
         "quarter2": {
-            "total": 52,
-            "actualMakes": 24,
-            "expectedMakes": 24.91530618,
-            "actualScoreFirstPercent": 0.46153846153846156,
-            "expectedScoreFirstPercent": 0.47914050346153847,
-            "naiveAdjustmentFactor": 0.9632632979347157
-        },
-        "quarter3": {
-            "total": 52,
-            "actualMakes": 29,
-            "expectedMakes": 24.91530618,
-            "actualScoreFirstPercent": 0.5576923076923077,
-            "expectedScoreFirstPercent": 0.47914050346153847,
-            "naiveAdjustmentFactor": 1.1639431516711147
-        },
-        "quarter4": {
-            "total": 52,
-            "actualMakes": 25,
-            "expectedMakes": 27.08469382,
-            "actualScoreFirstPercent": 0.4807692307692308,
-            "expectedScoreFirstPercent": 0.5208594965384615,
-            "naiveAdjustmentFactor": 0.9230305561563849
-        }
-    },
-    "MIA": {
-        "quarter1": {
-            "total": 55,
-            "actualMakes": 33,
-            "expectedMakes": 29.66938764,
-            "actualScoreFirstPercent": 0.6,
-            "expectedScoreFirstPercent": 0.5394434116363637,
-            "naiveAdjustmentFactor": 1.1122575363001324
-        },
-        "quarter2": {
-            "total": 55,
-            "actualMakes": 23,
-            "expectedMakes": 25.33061236,
-            "actualScoreFirstPercent": 0.41818181818181815,
-            "expectedScoreFirstPercent": 0.4605565883636364,
-            "naiveAdjustmentFactor": 0.9079922614235607
-        },
-        "quarter3": {
-            "total": 55,
+            "total": 54,
             "actualMakes": 26,
-            "expectedMakes": 25.33061236,
-            "actualScoreFirstPercent": 0.4727272727272727,
-            "expectedScoreFirstPercent": 0.4605565883636364,
-            "naiveAdjustmentFactor": 1.0264260346527208
+            "expectedMakes": 25.569393660000003,
+            "actualScoreFirstPercent": 0.48148148148148145,
+            "expectedScoreFirstPercent": 0.4735072900000001,
+            "naiveAdjustmentFactor": 1.0168406942192618
+        },
+        "quarter3": {
+            "total": 54,
+            "actualMakes": 31,
+            "expectedMakes": 25.569393660000003,
+            "actualScoreFirstPercent": 0.5740740740740741,
+            "expectedScoreFirstPercent": 0.4735072900000001,
+            "naiveAdjustmentFactor": 1.21238698156912
         },
         "quarter4": {
-            "total": 55,
-            "actualMakes": 31,
-            "expectedMakes": 29.66938764,
-            "actualScoreFirstPercent": 0.5636363636363636,
-            "expectedScoreFirstPercent": 0.5394434116363637,
-            "naiveAdjustmentFactor": 1.0448479886455788
+            "total": 54,
+            "actualMakes": 26,
+            "expectedMakes": 28.43060634,
+            "actualScoreFirstPercent": 0.48148148148148145,
+            "expectedScoreFirstPercent": 0.52649271,
+            "naiveAdjustmentFactor": 0.9145074040654456
         }
     },
     "NOP": {
         "quarter1": {
-            "total": 52,
-            "actualMakes": 31,
-            "expectedMakes": 29.40903772,
-            "actualScoreFirstPercent": 0.5961538461538461,
-            "expectedScoreFirstPercent": 0.5655584176923077,
-            "naiveAdjustmentFactor": 1.0540977333276715
-        },
-        "quarter2": {
-            "total": 52,
-            "actualMakes": 26,
-            "expectedMakes": 22.59096228,
-            "actualScoreFirstPercent": 0.5,
-            "expectedScoreFirstPercent": 0.4344415823076923,
-            "naiveAdjustmentFactor": 1.1509027228564785
-        },
-        "quarter3": {
-            "total": 52,
-            "actualMakes": 20,
-            "expectedMakes": 22.59096228,
-            "actualScoreFirstPercent": 0.38461538461538464,
-            "expectedScoreFirstPercent": 0.4344415823076923,
-            "naiveAdjustmentFactor": 0.8853097868126758
-        },
-        "quarter4": {
-            "total": 52,
-            "actualMakes": 37,
-            "expectedMakes": 29.40903772,
-            "actualScoreFirstPercent": 0.7115384615384616,
-            "expectedScoreFirstPercent": 0.5655584176923077,
-            "naiveAdjustmentFactor": 1.2581166494556082
-        }
-    },
-    "BOS": {
-        "quarter1": {
-            "total": 53,
-            "actualMakes": 30,
-            "expectedMakes": 25.41530618,
-            "actualScoreFirstPercent": 0.5660377358490566,
-            "expectedScoreFirstPercent": 0.47953407886792454,
-            "naiveAdjustmentFactor": 1.1803910520506662
-        },
-        "quarter2": {
-            "total": 53,
-            "actualMakes": 24,
-            "expectedMakes": 27.58469382,
-            "actualScoreFirstPercent": 0.4528301886792453,
-            "expectedScoreFirstPercent": 0.5204659211320755,
-            "naiveAdjustmentFactor": 0.8700477212692151
-        },
-        "quarter3": {
-            "total": 53,
-            "actualMakes": 24,
-            "expectedMakes": 27.58469382,
-            "actualScoreFirstPercent": 0.4528301886792453,
-            "expectedScoreFirstPercent": 0.5204659211320755,
-            "naiveAdjustmentFactor": 0.8700477212692151
-        },
-        "quarter4": {
-            "total": 53,
-            "actualMakes": 23,
-            "expectedMakes": 25.41530618,
-            "actualScoreFirstPercent": 0.4339622641509434,
-            "expectedScoreFirstPercent": 0.47953407886792454,
-            "naiveAdjustmentFactor": 0.9049664732388442
-        }
-    },
-    "WAS": {
-        "quarter1": {
-            "total": 53,
-            "actualMakes": 29,
-            "expectedMakes": 24.485568620000002,
-            "actualScoreFirstPercent": 0.5471698113207547,
-            "expectedScoreFirstPercent": 0.46199186075471704,
-            "naiveAdjustmentFactor": 1.1843711065101659
-        },
-        "quarter2": {
-            "total": 53,
-            "actualMakes": 27,
-            "expectedMakes": 28.514431379999998,
-            "actualScoreFirstPercent": 0.5094339622641509,
-            "expectedScoreFirstPercent": 0.538008139245283,
-            "naiveAdjustmentFactor": 0.946888950376818
-        },
-        "quarter3": {
-            "total": 53,
-            "actualMakes": 27,
-            "expectedMakes": 28.514431379999998,
-            "actualScoreFirstPercent": 0.5094339622641509,
-            "expectedScoreFirstPercent": 0.538008139245283,
-            "naiveAdjustmentFactor": 0.946888950376818
-        },
-        "quarter4": {
-            "total": 53,
-            "actualMakes": 24,
-            "expectedMakes": 24.485568620000002,
-            "actualScoreFirstPercent": 0.4528301886792453,
-            "expectedScoreFirstPercent": 0.46199186075471704,
-            "naiveAdjustmentFactor": 0.9801691915946201
-        }
-    },
-    "DAL": {
-        "quarter1": {
-            "total": 53,
-            "actualMakes": 29,
-            "expectedMakes": 25.57026244,
-            "actualScoreFirstPercent": 0.5471698113207547,
-            "expectedScoreFirstPercent": 0.48245778188679245,
-            "naiveAdjustmentFactor": 1.134129931910077
-        },
-        "quarter2": {
-            "total": 53,
+            "total": 54,
             "actualMakes": 32,
-            "expectedMakes": 27.42973756,
-            "actualScoreFirstPercent": 0.6037735849056604,
-            "expectedScoreFirstPercent": 0.5175422181132076,
-            "naiveAdjustmentFactor": 1.1666170676989882
-        },
-        "quarter3": {
-            "total": 53,
-            "actualMakes": 28,
-            "expectedMakes": 27.42973756,
-            "actualScoreFirstPercent": 0.5283018867924528,
-            "expectedScoreFirstPercent": 0.5175422181132076,
-            "naiveAdjustmentFactor": 1.0207899342366147
-        },
-        "quarter4": {
-            "total": 53,
-            "actualMakes": 29,
-            "expectedMakes": 25.57026244,
-            "actualScoreFirstPercent": 0.5471698113207547,
-            "expectedScoreFirstPercent": 0.48245778188679245,
-            "naiveAdjustmentFactor": 1.134129931910077
-        }
-    },
-    "MIL": {
-        "quarter1": {
-            "total": 52,
-            "actualMakes": 28,
-            "expectedMakes": 28.78921268,
-            "actualScoreFirstPercent": 0.5384615384615384,
-            "expectedScoreFirstPercent": 0.5536387053846153,
-            "naiveAdjustmentFactor": 0.9725865139567269
+            "expectedMakes": 30.81495024,
+            "actualScoreFirstPercent": 0.5925925925925926,
+            "expectedScoreFirstPercent": 0.5706472266666667,
+            "naiveAdjustmentFactor": 1.038456974642838
         },
         "quarter2": {
-            "total": 52,
-            "actualMakes": 26,
-            "expectedMakes": 23.21078732,
-            "actualScoreFirstPercent": 0.5,
-            "expectedScoreFirstPercent": 0.44636129461538465,
-            "naiveAdjustmentFactor": 1.1201688095085263
+            "total": 54,
+            "actualMakes": 28,
+            "expectedMakes": 23.18504976,
+            "actualScoreFirstPercent": 0.5185185185185185,
+            "expectedScoreFirstPercent": 0.4293527733333333,
+            "naiveAdjustmentFactor": 1.207674785684825
         },
         "quarter3": {
-            "total": 52,
-            "actualMakes": 26,
-            "expectedMakes": 23.21078732,
-            "actualScoreFirstPercent": 0.5,
-            "expectedScoreFirstPercent": 0.44636129461538465,
-            "naiveAdjustmentFactor": 1.1201688095085263
+            "total": 54,
+            "actualMakes": 21,
+            "expectedMakes": 23.18504976,
+            "actualScoreFirstPercent": 0.3888888888888889,
+            "expectedScoreFirstPercent": 0.4293527733333333,
+            "naiveAdjustmentFactor": 0.9057560892636187
         },
         "quarter4": {
-            "total": 52,
+            "total": 54,
+            "actualMakes": 39,
+            "expectedMakes": 30.81495024,
+            "actualScoreFirstPercent": 0.7222222222222222,
+            "expectedScoreFirstPercent": 0.5706472266666667,
+            "naiveAdjustmentFactor": 1.2656194378459589
+        }
+    },
+    "MIA": {
+        "quarter1": {
+            "total": 57,
+            "actualMakes": 34,
+            "expectedMakes": 30.725387639999997,
+            "actualScoreFirstPercent": 0.5964912280701754,
+            "expectedScoreFirstPercent": 0.5390418884210526,
+            "naiveAdjustmentFactor": 1.1065767631109373
+        },
+        "quarter2": {
+            "total": 57,
+            "actualMakes": 24,
+            "expectedMakes": 26.27461236,
+            "actualScoreFirstPercent": 0.42105263157894735,
+            "expectedScoreFirstPercent": 0.46095811157894734,
+            "naiveAdjustmentFactor": 0.9134292704746872
+        },
+        "quarter3": {
+            "total": 57,
             "actualMakes": 26,
-            "expectedMakes": 28.78921268,
-            "actualScoreFirstPercent": 0.5,
-            "expectedScoreFirstPercent": 0.5536387053846153,
-            "naiveAdjustmentFactor": 0.9031160486741037
+            "expectedMakes": 26.27461236,
+            "actualScoreFirstPercent": 0.45614035087719296,
+            "expectedScoreFirstPercent": 0.46095811157894734,
+            "naiveAdjustmentFactor": 0.9895483763475779
+        },
+        "quarter4": {
+            "total": 57,
+            "actualMakes": 32,
+            "expectedMakes": 30.725387639999997,
+            "actualScoreFirstPercent": 0.5614035087719298,
+            "expectedScoreFirstPercent": 0.5390418884210526,
+            "naiveAdjustmentFactor": 1.0414840123397056
         }
     },
     "CHI": {
         "quarter1": {
-            "total": 51,
-            "actualMakes": 29,
-            "expectedMakes": 23.64052488,
-            "actualScoreFirstPercent": 0.5686274509803921,
-            "expectedScoreFirstPercent": 0.46353970352941176,
-            "naiveAdjustmentFactor": 1.226707111927711
-        },
-        "quarter2": {
-            "total": 51,
-            "actualMakes": 27,
-            "expectedMakes": 27.35947512,
-            "actualScoreFirstPercent": 0.5294117647058824,
-            "expectedScoreFirstPercent": 0.5364602964705882,
-            "naiveAdjustmentFactor": 0.9868610374130599
-        },
-        "quarter3": {
-            "total": 51,
-            "actualMakes": 28,
-            "expectedMakes": 27.35947512,
-            "actualScoreFirstPercent": 0.5490196078431373,
-            "expectedScoreFirstPercent": 0.5364602964705882,
-            "naiveAdjustmentFactor": 1.023411446206136
-        },
-        "quarter4": {
-            "total": 51,
-            "actualMakes": 22,
-            "expectedMakes": 23.64052488,
-            "actualScoreFirstPercent": 0.43137254901960786,
-            "expectedScoreFirstPercent": 0.46353970352941176,
-            "naiveAdjustmentFactor": 0.930605395255505
-        }
-    },
-    "PHI": {
-        "quarter1": {
-            "total": 52,
-            "actualMakes": 29,
-            "expectedMakes": 27.239650079999997,
-            "actualScoreFirstPercent": 0.5576923076923077,
-            "expectedScoreFirstPercent": 0.5238394246153846,
-            "naiveAdjustmentFactor": 1.064624542342873
-        },
-        "quarter2": {
-            "total": 52,
+            "total": 53,
             "actualMakes": 31,
-            "expectedMakes": 24.76034992,
-            "actualScoreFirstPercent": 0.5961538461538461,
-            "expectedScoreFirstPercent": 0.47616057538461537,
-            "naiveAdjustmentFactor": 1.252001692228104
-        },
-        "quarter3": {
-            "total": 52,
-            "actualMakes": 26,
-            "expectedMakes": 24.76034992,
-            "actualScoreFirstPercent": 0.5,
-            "expectedScoreFirstPercent": 0.47616057538461537,
-            "naiveAdjustmentFactor": 1.0500659354171196
-        },
-        "quarter4": {
-            "total": 52,
-            "actualMakes": 29,
-            "expectedMakes": 27.239650079999997,
-            "actualScoreFirstPercent": 0.5576923076923077,
-            "expectedScoreFirstPercent": 0.5238394246153846,
-            "naiveAdjustmentFactor": 1.064624542342873
-        }
-    },
-    "SAC": {
-        "quarter1": {
-            "total": 53,
-            "actualMakes": 27,
-            "expectedMakes": 27.2747813,
-            "actualScoreFirstPercent": 0.5094339622641509,
-            "expectedScoreFirstPercent": 0.5146185150943396,
-            "naiveAdjustmentFactor": 0.9899254444251033
+            "expectedMakes": 24.27461236,
+            "actualScoreFirstPercent": 0.5849056603773585,
+            "expectedScoreFirstPercent": 0.4580115539622641,
+            "naiveAdjustmentFactor": 1.2770543784700008
         },
         "quarter2": {
             "total": 53,
-            "actualMakes": 20,
-            "expectedMakes": 25.7252187,
-            "actualScoreFirstPercent": 0.37735849056603776,
-            "expectedScoreFirstPercent": 0.48538148490566035,
-            "naiveAdjustmentFactor": 0.777447229243575
+            "actualMakes": 28,
+            "expectedMakes": 28.725387639999997,
+            "actualScoreFirstPercent": 0.5283018867924528,
+            "expectedScoreFirstPercent": 0.5419884460377358,
+            "naiveAdjustmentFactor": 0.9747475073586163
         },
         "quarter3": {
             "total": 53,
-            "actualMakes": 25,
-            "expectedMakes": 25.7252187,
-            "actualScoreFirstPercent": 0.4716981132075472,
-            "expectedScoreFirstPercent": 0.48538148490566035,
-            "naiveAdjustmentFactor": 0.9718090365544687
+            "actualMakes": 29,
+            "expectedMakes": 28.725387639999997,
+            "actualScoreFirstPercent": 0.5471698113207547,
+            "expectedScoreFirstPercent": 0.5419884460377358,
+            "naiveAdjustmentFactor": 1.0095599183357096
         },
         "quarter4": {
             "total": 53,
+            "actualMakes": 22,
+            "expectedMakes": 24.27461236,
+            "actualScoreFirstPercent": 0.41509433962264153,
+            "expectedScoreFirstPercent": 0.4580115539622641,
+            "naiveAdjustmentFactor": 0.9062966556883878
+        }
+    },
+    "DAL": {
+        "quarter1": {
+            "total": 55,
+            "actualMakes": 30,
+            "expectedMakes": 26.22834992,
+            "actualScoreFirstPercent": 0.5454545454545454,
+            "expectedScoreFirstPercent": 0.47687908945454544,
+            "naiveAdjustmentFactor": 1.143800509429836
+        },
+        "quarter2": {
+            "total": 55,
+            "actualMakes": 33,
+            "expectedMakes": 28.77165008,
+            "actualScoreFirstPercent": 0.6,
+            "expectedScoreFirstPercent": 0.5231209105454545,
+            "naiveAdjustmentFactor": 1.1469623712315078
+        },
+        "quarter3": {
+            "total": 55,
+            "actualMakes": 30,
+            "expectedMakes": 28.77165008,
+            "actualScoreFirstPercent": 0.5454545454545454,
+            "expectedScoreFirstPercent": 0.5231209105454545,
+            "naiveAdjustmentFactor": 1.042693064755916
+        },
+        "quarter4": {
+            "total": 55,
+            "actualMakes": 30,
+            "expectedMakes": 26.22834992,
+            "actualScoreFirstPercent": 0.5454545454545454,
+            "expectedScoreFirstPercent": 0.47687908945454544,
+            "naiveAdjustmentFactor": 1.143800509429836
+        }
+    },
+    "WAS": {
+        "quarter1": {
+            "total": 54,
+            "actualMakes": 30,
+            "expectedMakes": 24.77461236,
+            "actualScoreFirstPercent": 0.5555555555555556,
+            "expectedScoreFirstPercent": 0.45878911777777776,
+            "naiveAdjustmentFactor": 1.2109170292584148
+        },
+        "quarter2": {
+            "total": 54,
+            "actualMakes": 28,
+            "expectedMakes": 29.22538764,
+            "actualScoreFirstPercent": 0.5185185185185185,
+            "expectedScoreFirstPercent": 0.5412108822222222,
+            "naiveAdjustmentFactor": 0.958071124493047
+        },
+        "quarter3": {
+            "total": 54,
+            "actualMakes": 28,
+            "expectedMakes": 29.22538764,
+            "actualScoreFirstPercent": 0.5185185185185185,
+            "expectedScoreFirstPercent": 0.5412108822222222,
+            "naiveAdjustmentFactor": 0.958071124493047
+        },
+        "quarter4": {
+            "total": 54,
+            "actualMakes": 25,
+            "expectedMakes": 24.77461236,
+            "actualScoreFirstPercent": 0.46296296296296297,
+            "expectedScoreFirstPercent": 0.45878911777777776,
+            "naiveAdjustmentFactor": 1.0090975243820122
+        }
+    },
+    "BOS": {
+        "quarter1": {
+            "total": 54,
+            "actualMakes": 30,
+            "expectedMakes": 25.72834992,
+            "actualScoreFirstPercent": 0.5555555555555556,
+            "expectedScoreFirstPercent": 0.4764509244444444,
+            "naiveAdjustmentFactor": 1.1660289172559575
+        },
+        "quarter2": {
+            "total": 54,
             "actualMakes": 24,
-            "expectedMakes": 27.2747813,
-            "actualScoreFirstPercent": 0.4528301886792453,
-            "expectedScoreFirstPercent": 0.5146185150943396,
-            "naiveAdjustmentFactor": 0.8799337283778697
+            "expectedMakes": 28.27165008,
+            "actualScoreFirstPercent": 0.4444444444444444,
+            "expectedScoreFirstPercent": 0.5235490755555555,
+            "naiveAdjustmentFactor": 0.8489069414798021
+        },
+        "quarter3": {
+            "total": 54,
+            "actualMakes": 24,
+            "expectedMakes": 28.27165008,
+            "actualScoreFirstPercent": 0.4444444444444444,
+            "expectedScoreFirstPercent": 0.5235490755555555,
+            "naiveAdjustmentFactor": 0.8489069414798021
+        },
+        "quarter4": {
+            "total": 54,
+            "actualMakes": 24,
+            "expectedMakes": 25.72834992,
+            "actualScoreFirstPercent": 0.4444444444444444,
+            "expectedScoreFirstPercent": 0.4764509244444444,
+            "naiveAdjustmentFactor": 0.932823133804766
+        }
+    },
+    "MIL": {
+        "quarter1": {
+            "total": 53,
+            "actualMakes": 29,
+            "expectedMakes": 29.202256419999998,
+            "actualScoreFirstPercent": 0.5471698113207547,
+            "expectedScoreFirstPercent": 0.5509859701886792,
+            "naiveAdjustmentFactor": 0.9930739454824635
+        },
+        "quarter2": {
+            "total": 53,
+            "actualMakes": 27,
+            "expectedMakes": 23.797743580000002,
+            "actualScoreFirstPercent": 0.5094339622641509,
+            "expectedScoreFirstPercent": 0.4490140298113208,
+            "naiveAdjustmentFactor": 1.13456134650897
+        },
+        "quarter3": {
+            "total": 53,
+            "actualMakes": 26,
+            "expectedMakes": 23.797743580000002,
+            "actualScoreFirstPercent": 0.49056603773584906,
+            "expectedScoreFirstPercent": 0.4490140298113208,
+            "naiveAdjustmentFactor": 1.0925405558975267
+        },
+        "quarter4": {
+            "total": 53,
+            "actualMakes": 27,
+            "expectedMakes": 29.202256419999998,
+            "actualScoreFirstPercent": 0.5094339622641509,
+            "expectedScoreFirstPercent": 0.5509859701886792,
+            "naiveAdjustmentFactor": 0.9245860871733281
         }
     },
     "BKN": {
         "quarter1": {
-            "total": 52,
-            "actualMakes": 26,
-            "expectedMakes": 26.0,
-            "actualScoreFirstPercent": 0.5,
-            "expectedScoreFirstPercent": 0.5,
-            "naiveAdjustmentFactor": 1.0
+            "total": 53,
+            "actualMakes": 27,
+            "expectedMakes": 26.65895626,
+            "actualScoreFirstPercent": 0.5094339622641509,
+            "expectedScoreFirstPercent": 0.5029991747169811,
+            "naiveAdjustmentFactor": 1.0127928391747172
         },
         "quarter2": {
-            "total": 52,
-            "actualMakes": 21,
-            "expectedMakes": 26.0,
-            "actualScoreFirstPercent": 0.40384615384615385,
-            "expectedScoreFirstPercent": 0.5,
-            "naiveAdjustmentFactor": 0.8076923076923077
+            "total": 53,
+            "actualMakes": 22,
+            "expectedMakes": 26.34104374,
+            "actualScoreFirstPercent": 0.41509433962264153,
+            "expectedScoreFirstPercent": 0.49700082528301887,
+            "naiveAdjustmentFactor": 0.8351984916448874
         },
         "quarter3": {
-            "total": 52,
+            "total": 53,
             "actualMakes": 31,
-            "expectedMakes": 26.0,
-            "actualScoreFirstPercent": 0.5961538461538461,
-            "expectedScoreFirstPercent": 0.5,
-            "naiveAdjustmentFactor": 1.1923076923076923
+            "expectedMakes": 26.34104374,
+            "actualScoreFirstPercent": 0.5849056603773585,
+            "expectedScoreFirstPercent": 0.49700082528301887,
+            "naiveAdjustmentFactor": 1.1768706018632502
         },
         "quarter4": {
-            "total": 52,
-            "actualMakes": 31,
-            "expectedMakes": 26.0,
-            "actualScoreFirstPercent": 0.5961538461538461,
-            "expectedScoreFirstPercent": 0.5,
-            "naiveAdjustmentFactor": 1.1923076923076923
+            "total": 53,
+            "actualMakes": 32,
+            "expectedMakes": 26.65895626,
+            "actualScoreFirstPercent": 0.6037735849056604,
+            "expectedScoreFirstPercent": 0.5029991747169811,
+            "naiveAdjustmentFactor": 1.2003470686515167
         }
     },
-    "ORL": {
+    "PHI": {
         "quarter1": {
-            "total": 51,
-            "actualMakes": 27,
-            "expectedMakes": 21.93600602,
-            "actualScoreFirstPercent": 0.5294117647058824,
-            "expectedScoreFirstPercent": 0.43011776509803923,
-            "naiveAdjustmentFactor": 1.2308530538960893
+            "total": 53,
+            "actualMakes": 29,
+            "expectedMakes": 27.93060634,
+            "actualScoreFirstPercent": 0.5471698113207547,
+            "expectedScoreFirstPercent": 0.5269925724528302,
+            "naiveAdjustmentFactor": 1.0382875203990292
         },
         "quarter2": {
-            "total": 51,
-            "actualMakes": 33,
-            "expectedMakes": 29.06399398,
-            "actualScoreFirstPercent": 0.6470588235294118,
-            "expectedScoreFirstPercent": 0.5698822349019608,
-            "naiveAdjustmentFactor": 1.1354255035529017
+            "total": 53,
+            "actualMakes": 31,
+            "expectedMakes": 25.069393660000003,
+            "actualScoreFirstPercent": 0.5849056603773585,
+            "expectedScoreFirstPercent": 0.47300742754716985,
+            "naiveAdjustmentFactor": 1.2365676019305845
         },
         "quarter3": {
-            "total": 51,
-            "actualMakes": 28,
-            "expectedMakes": 29.06399398,
-            "actualScoreFirstPercent": 0.5490196078431373,
-            "expectedScoreFirstPercent": 0.5698822349019608,
-            "naiveAdjustmentFactor": 0.9633913363479166
+            "total": 53,
+            "actualMakes": 26,
+            "expectedMakes": 25.069393660000003,
+            "actualScoreFirstPercent": 0.49056603773584906,
+            "expectedScoreFirstPercent": 0.47300742754716985,
+            "naiveAdjustmentFactor": 1.0371212145224258
         },
         "quarter4": {
-            "total": 51,
-            "actualMakes": 24,
-            "expectedMakes": 21.93600602,
-            "actualScoreFirstPercent": 0.47058823529411764,
-            "expectedScoreFirstPercent": 0.43011776509803923,
-            "naiveAdjustmentFactor": 1.0940916034631905
+            "total": 53,
+            "actualMakes": 29,
+            "expectedMakes": 27.93060634,
+            "actualScoreFirstPercent": 0.5471698113207547,
+            "expectedScoreFirstPercent": 0.5269925724528302,
+            "naiveAdjustmentFactor": 1.0382875203990292
         }
     },
     "NYK": {
         "quarter1": {
+            "total": 55,
+            "actualMakes": 29,
+            "expectedMakes": 26.86417496,
+            "actualScoreFirstPercent": 0.5272727272727272,
+            "expectedScoreFirstPercent": 0.48843954472727275,
+            "naiveAdjustmentFactor": 1.0795045834528765
+        },
+        "quarter2": {
+            "total": 55,
+            "actualMakes": 24,
+            "expectedMakes": 28.13582504,
+            "actualScoreFirstPercent": 0.43636363636363634,
+            "expectedScoreFirstPercent": 0.5115604552727273,
+            "naiveAdjustmentFactor": 0.8530050199658192
+        },
+        "quarter3": {
+            "total": 55,
+            "actualMakes": 27,
+            "expectedMakes": 28.13582504,
+            "actualScoreFirstPercent": 0.4909090909090909,
+            "expectedScoreFirstPercent": 0.5115604552727273,
+            "naiveAdjustmentFactor": 0.9596306474615467
+        },
+        "quarter4": {
+            "total": 55,
+            "actualMakes": 35,
+            "expectedMakes": 26.86417496,
+            "actualScoreFirstPercent": 0.6363636363636364,
+            "expectedScoreFirstPercent": 0.48843954472727275,
+            "naiveAdjustmentFactor": 1.3028503593396787
+        }
+    },
+    "SAC": {
+        "quarter1": {
+            "total": 54,
+            "actualMakes": 27,
+            "expectedMakes": 27.63582504,
+            "actualScoreFirstPercent": 0.5,
+            "expectedScoreFirstPercent": 0.5117745377777778,
+            "naiveAdjustmentFactor": 0.9769927245132103
+        },
+        "quarter2": {
+            "total": 54,
+            "actualMakes": 20,
+            "expectedMakes": 26.36417496,
+            "actualScoreFirstPercent": 0.37037037037037035,
+            "expectedScoreFirstPercent": 0.48822546222222224,
+            "naiveAdjustmentFactor": 0.7586051917173288
+        },
+        "quarter3": {
+            "total": 54,
+            "actualMakes": 26,
+            "expectedMakes": 26.36417496,
+            "actualScoreFirstPercent": 0.48148148148148145,
+            "expectedScoreFirstPercent": 0.48822546222222224,
+            "naiveAdjustmentFactor": 0.9861867492325274
+        },
+        "quarter4": {
+            "total": 54,
+            "actualMakes": 24,
+            "expectedMakes": 27.63582504,
+            "actualScoreFirstPercent": 0.4444444444444444,
+            "expectedScoreFirstPercent": 0.5117745377777778,
+            "naiveAdjustmentFactor": 0.8684379773450758
+        }
+    },
+    "ORL": {
+        "quarter1": {
             "total": 53,
             "actualMakes": 28,
-            "expectedMakes": 25.7252187,
+            "expectedMakes": 23.161918540000002,
             "actualScoreFirstPercent": 0.5283018867924528,
-            "expectedScoreFirstPercent": 0.48538148490566035,
-            "naiveAdjustmentFactor": 1.0884261209410049
+            "expectedScoreFirstPercent": 0.4370173309433963,
+            "naiveAdjustmentFactor": 1.2088808598322613
         },
         "quarter2": {
             "total": 53,
-            "actualMakes": 22,
-            "expectedMakes": 27.2747813,
-            "actualScoreFirstPercent": 0.41509433962264153,
-            "expectedScoreFirstPercent": 0.5146185150943396,
-            "naiveAdjustmentFactor": 0.8066059176797139
+            "actualMakes": 33,
+            "expectedMakes": 29.838081459999998,
+            "actualScoreFirstPercent": 0.6226415094339622,
+            "expectedScoreFirstPercent": 0.5629826690566038,
+            "naiveAdjustmentFactor": 1.1059692307710456
         },
         "quarter3": {
             "total": 53,
-            "actualMakes": 26,
-            "expectedMakes": 27.2747813,
-            "actualScoreFirstPercent": 0.49056603773584906,
-            "expectedScoreFirstPercent": 0.5146185150943396,
-            "naiveAdjustmentFactor": 0.9532615390760255
-        },
-        "quarter4": {
-            "total": 53,
-            "actualMakes": 34,
-            "expectedMakes": 25.7252187,
-            "actualScoreFirstPercent": 0.6415094339622641,
-            "expectedScoreFirstPercent": 0.48538148490566035,
-            "naiveAdjustmentFactor": 1.3216602897140772
-        }
-    },
-    "MIN": {
-        "quarter1": {
-            "total": 53,
-            "actualMakes": 26,
-            "expectedMakes": 26.190087480000003,
-            "actualScoreFirstPercent": 0.49056603773584906,
-            "expectedScoreFirstPercent": 0.4941525939622642,
-            "naiveAdjustmentFactor": 0.9927420066792384
-        },
-        "quarter2": {
-            "total": 53,
-            "actualMakes": 24,
-            "expectedMakes": 26.809912519999997,
-            "actualScoreFirstPercent": 0.4528301886792453,
-            "expectedScoreFirstPercent": 0.5058474060377358,
-            "naiveAdjustmentFactor": 0.8951912835260531
-        },
-        "quarter3": {
-            "total": 53,
-            "actualMakes": 26,
-            "expectedMakes": 26.809912519999997,
-            "actualScoreFirstPercent": 0.49056603773584906,
-            "expectedScoreFirstPercent": 0.5058474060377358,
-            "naiveAdjustmentFactor": 0.9697905571532243
-        },
-        "quarter4": {
-            "total": 53,
-            "actualMakes": 27,
-            "expectedMakes": 26.190087480000003,
-            "actualScoreFirstPercent": 0.5094339622641509,
-            "expectedScoreFirstPercent": 0.4941525939622642,
-            "naiveAdjustmentFactor": 1.0309243915515167
-        }
-    },
-    "CLE": {
-        "quarter1": {
-            "total": 51,
             "actualMakes": 29,
-            "expectedMakes": 30.148687799999998,
-            "actualScoreFirstPercent": 0.5686274509803921,
-            "expectedScoreFirstPercent": 0.5911507411764706,
-            "naiveAdjustmentFactor": 0.9618992439199957
-        },
-        "quarter2": {
-            "total": 51,
-            "actualMakes": 24,
-            "expectedMakes": 20.851312200000002,
-            "actualScoreFirstPercent": 0.47058823529411764,
-            "expectedScoreFirstPercent": 0.40884925882352946,
-            "naiveAdjustmentFactor": 1.1510066977942999
-        },
-        "quarter3": {
-            "total": 51,
-            "actualMakes": 23,
-            "expectedMakes": 20.851312200000002,
-            "actualScoreFirstPercent": 0.45098039215686275,
-            "expectedScoreFirstPercent": 0.40884925882352946,
-            "naiveAdjustmentFactor": 1.103048085386204
+            "expectedMakes": 29.838081459999998,
+            "actualScoreFirstPercent": 0.5471698113207547,
+            "expectedScoreFirstPercent": 0.5629826690566038,
+            "naiveAdjustmentFactor": 0.9719123543139493
         },
         "quarter4": {
-            "total": 51,
-            "actualMakes": 31,
-            "expectedMakes": 30.148687799999998,
-            "actualScoreFirstPercent": 0.6078431372549019,
-            "expectedScoreFirstPercent": 0.5911507411764706,
-            "naiveAdjustmentFactor": 1.0282371228110299
+            "total": 53,
+            "actualMakes": 25,
+            "expectedMakes": 23.161918540000002,
+            "actualScoreFirstPercent": 0.4716981132075472,
+            "expectedScoreFirstPercent": 0.4370173309433963,
+            "naiveAdjustmentFactor": 1.079357910564519
         }
     },
     "OKC": {
         "quarter1": {
-            "total": 53,
-            "actualMakes": 24,
-            "expectedMakes": 27.2747813,
-            "actualScoreFirstPercent": 0.4528301886792453,
-            "expectedScoreFirstPercent": 0.5146185150943396,
-            "naiveAdjustmentFactor": 0.8799337283778697
+            "total": 54,
+            "actualMakes": 25,
+            "expectedMakes": 27.95373756,
+            "actualScoreFirstPercent": 0.46296296296296297,
+            "expectedScoreFirstPercent": 0.5176618066666667,
+            "naiveAdjustmentFactor": 0.8943347896266075
         },
         "quarter2": {
-            "total": 53,
+            "total": 54,
             "actualMakes": 25,
-            "expectedMakes": 25.7252187,
-            "actualScoreFirstPercent": 0.4716981132075472,
-            "expectedScoreFirstPercent": 0.48538148490566035,
-            "naiveAdjustmentFactor": 0.9718090365544687
+            "expectedMakes": 26.04626244,
+            "actualScoreFirstPercent": 0.46296296296296297,
+            "expectedScoreFirstPercent": 0.48233819333333333,
+            "naiveAdjustmentFactor": 0.9598306113051666
         },
         "quarter3": {
-            "total": 53,
+            "total": 54,
             "actualMakes": 27,
-            "expectedMakes": 25.7252187,
-            "actualScoreFirstPercent": 0.5094339622641509,
-            "expectedScoreFirstPercent": 0.48538148490566035,
-            "naiveAdjustmentFactor": 1.0495537594788262
+            "expectedMakes": 26.04626244,
+            "actualScoreFirstPercent": 0.5,
+            "expectedScoreFirstPercent": 0.48233819333333333,
+            "naiveAdjustmentFactor": 1.0366170602095799
         },
         "quarter4": {
-            "total": 53,
+            "total": 54,
             "actualMakes": 17,
-            "expectedMakes": 27.2747813,
-            "actualScoreFirstPercent": 0.32075471698113206,
-            "expectedScoreFirstPercent": 0.5146185150943396,
-            "naiveAdjustmentFactor": 0.6232863909343244
-        }
-    },
-    "UTA": {
-        "quarter1": {
-            "total": 53,
-            "actualMakes": 25,
-            "expectedMakes": 27.58469382,
-            "actualScoreFirstPercent": 0.4716981132075472,
-            "expectedScoreFirstPercent": 0.5204659211320755,
-            "naiveAdjustmentFactor": 0.9062997096554324
-        },
-        "quarter2": {
-            "total": 53,
-            "actualMakes": 25,
-            "expectedMakes": 25.41530618,
-            "actualScoreFirstPercent": 0.4716981132075472,
-            "expectedScoreFirstPercent": 0.47953407886792454,
-            "naiveAdjustmentFactor": 0.9836592100422219
-        },
-        "quarter3": {
-            "total": 53,
-            "actualMakes": 30,
-            "expectedMakes": 25.41530618,
-            "actualScoreFirstPercent": 0.5660377358490566,
-            "expectedScoreFirstPercent": 0.47953407886792454,
-            "naiveAdjustmentFactor": 1.1803910520506662
-        },
-        "quarter4": {
-            "total": 53,
-            "actualMakes": 28,
-            "expectedMakes": 27.58469382,
-            "actualScoreFirstPercent": 0.5283018867924528,
-            "expectedScoreFirstPercent": 0.5204659211320755,
-            "naiveAdjustmentFactor": 1.0150556748140842
+            "expectedMakes": 27.95373756,
+            "actualScoreFirstPercent": 0.3148148148148148,
+            "expectedScoreFirstPercent": 0.5176618066666667,
+            "naiveAdjustmentFactor": 0.6081476569460932
         }
     },
     "LAL": {
         "quarter1": {
+            "total": 54,
+            "actualMakes": 26,
+            "expectedMakes": 27.95373756,
+            "actualScoreFirstPercent": 0.48148148148148145,
+            "expectedScoreFirstPercent": 0.5176618066666667,
+            "naiveAdjustmentFactor": 0.9301081812116718
+        },
+        "quarter2": {
+            "total": 54,
+            "actualMakes": 28,
+            "expectedMakes": 26.04626244,
+            "actualScoreFirstPercent": 0.5185185185185185,
+            "expectedScoreFirstPercent": 0.48233819333333333,
+            "naiveAdjustmentFactor": 1.0750102846617866
+        },
+        "quarter3": {
+            "total": 54,
+            "actualMakes": 28,
+            "expectedMakes": 26.04626244,
+            "actualScoreFirstPercent": 0.5185185185185185,
+            "expectedScoreFirstPercent": 0.48233819333333333,
+            "naiveAdjustmentFactor": 1.0750102846617866
+        },
+        "quarter4": {
+            "total": 54,
+            "actualMakes": 32,
+            "expectedMakes": 27.95373756,
+            "actualScoreFirstPercent": 0.5925925925925926,
+            "expectedScoreFirstPercent": 0.5176618066666667,
+            "naiveAdjustmentFactor": 1.1447485307220575
+        }
+    },
+    "CLE": {
+        "quarter1": {
             "total": 52,
-            "actualMakes": 24,
-            "expectedMakes": 26.92973756,
-            "actualScoreFirstPercent": 0.46153846153846156,
-            "expectedScoreFirstPercent": 0.5178795684615385,
-            "naiveAdjustmentFactor": 0.8912080909265274
+            "actualMakes": 30,
+            "expectedMakes": 30.60973154,
+            "actualScoreFirstPercent": 0.5769230769230769,
+            "expectedScoreFirstPercent": 0.5886486834615384,
+            "naiveAdjustmentFactor": 0.9800804675727646
         },
         "quarter2": {
             "total": 52,
-            "actualMakes": 28,
-            "expectedMakes": 25.07026244,
-            "actualScoreFirstPercent": 0.5384615384615384,
-            "expectedScoreFirstPercent": 0.48212043153846157,
-            "naiveAdjustmentFactor": 1.1168610646582444
+            "actualMakes": 24,
+            "expectedMakes": 21.39026846,
+            "actualScoreFirstPercent": 0.46153846153846156,
+            "expectedScoreFirstPercent": 0.4113513165384616,
+            "naiveAdjustmentFactor": 1.1220055533608764
         },
         "quarter3": {
             "total": 52,
-            "actualMakes": 27,
-            "expectedMakes": 25.07026244,
-            "actualScoreFirstPercent": 0.5192307692307693,
-            "expectedScoreFirstPercent": 0.48212043153846157,
-            "naiveAdjustmentFactor": 1.0769731694918787
+            "actualMakes": 23,
+            "expectedMakes": 21.39026846,
+            "actualScoreFirstPercent": 0.4423076923076923,
+            "expectedScoreFirstPercent": 0.4113513165384616,
+            "naiveAdjustmentFactor": 1.0752553219708396
         },
         "quarter4": {
             "total": 52,
             "actualMakes": 31,
-            "expectedMakes": 26.92973756,
+            "expectedMakes": 30.60973154,
             "actualScoreFirstPercent": 0.5961538461538461,
-            "expectedScoreFirstPercent": 0.5178795684615385,
-            "naiveAdjustmentFactor": 1.151143784113431
-        }
-    },
-    "GSW": {
-        "quarter1": {
-            "total": 51,
-            "actualMakes": 26,
-            "expectedMakes": 26.11982504,
-            "actualScoreFirstPercent": 0.5098039215686274,
-            "expectedScoreFirstPercent": 0.5121534321568627,
-            "naiveAdjustmentFactor": 0.995412486882416
-        },
-        "quarter2": {
-            "total": 51,
-            "actualMakes": 15,
-            "expectedMakes": 24.880174959999998,
-            "actualScoreFirstPercent": 0.29411764705882354,
-            "expectedScoreFirstPercent": 0.48784656784313724,
-            "naiveAdjustmentFactor": 0.6028896510621644
-        },
-        "quarter3": {
-            "total": 51,
-            "actualMakes": 23,
-            "expectedMakes": 24.880174959999998,
-            "actualScoreFirstPercent": 0.45098039215686275,
-            "expectedScoreFirstPercent": 0.48784656784313724,
-            "naiveAdjustmentFactor": 0.9244307982953188
-        },
-        "quarter4": {
-            "total": 51,
-            "actualMakes": 22,
-            "expectedMakes": 26.11982504,
-            "actualScoreFirstPercent": 0.43137254901960786,
-            "expectedScoreFirstPercent": 0.5121534321568627,
-            "naiveAdjustmentFactor": 0.8422721042851213
+            "expectedScoreFirstPercent": 0.5886486834615384,
+            "naiveAdjustmentFactor": 1.012749816491857
         }
     },
     "PHX": {
         "quarter1": {
-            "total": 52,
-            "actualMakes": 25,
-            "expectedMakes": 27.85947512,
-            "actualScoreFirstPercent": 0.4807692307692308,
-            "expectedScoreFirstPercent": 0.5357591369230769,
-            "naiveAdjustmentFactor": 0.8973607683675557
+            "total": 54,
+            "actualMakes": 27,
+            "expectedMakes": 28.90747512,
+            "actualScoreFirstPercent": 0.5,
+            "expectedScoreFirstPercent": 0.5353236133333333,
+            "naiveAdjustmentFactor": 0.9340144681580893
         },
         "quarter2": {
-            "total": 52,
-            "actualMakes": 34,
-            "expectedMakes": 24.14052488,
-            "actualScoreFirstPercent": 0.6538461538461539,
-            "expectedScoreFirstPercent": 0.4642408630769231,
-            "naiveAdjustmentFactor": 1.4084200807153286
+            "total": 54,
+            "actualMakes": 35,
+            "expectedMakes": 25.09252488,
+            "actualScoreFirstPercent": 0.6481481481481481,
+            "expectedScoreFirstPercent": 0.46467638666666666,
+            "naiveAdjustmentFactor": 1.3948377123219176
         },
         "quarter3": {
-            "total": 52,
-            "actualMakes": 28,
-            "expectedMakes": 24.14052488,
-            "actualScoreFirstPercent": 0.5384615384615384,
-            "expectedScoreFirstPercent": 0.4642408630769231,
-            "naiveAdjustmentFactor": 1.1598753605890941
+            "total": 54,
+            "actualMakes": 29,
+            "expectedMakes": 25.09252488,
+            "actualScoreFirstPercent": 0.5370370370370371,
+            "expectedScoreFirstPercent": 0.46467638666666666,
+            "naiveAdjustmentFactor": 1.1557226759238748
         },
         "quarter4": {
-            "total": 52,
-            "actualMakes": 33,
-            "expectedMakes": 27.85947512,
-            "actualScoreFirstPercent": 0.6346153846153846,
-            "expectedScoreFirstPercent": 0.5357591369230769,
-            "naiveAdjustmentFactor": 1.1845162142451735
+            "total": 54,
+            "actualMakes": 35,
+            "expectedMakes": 28.90747512,
+            "actualScoreFirstPercent": 0.6481481481481481,
+            "expectedScoreFirstPercent": 0.5353236133333333,
+            "naiveAdjustmentFactor": 1.2107594957604861
         }
     },
-    "SAS": {
+    "MIN": {
         "quarter1": {
-            "total": 50,
-            "actualMakes": 23,
-            "expectedMakes": 24.53513122,
-            "actualScoreFirstPercent": 0.46,
-            "expectedScoreFirstPercent": 0.4907026244,
-            "naiveAdjustmentFactor": 0.9374313018245191
+            "total": 55,
+            "actualMakes": 26,
+            "expectedMakes": 27.18208748,
+            "actualScoreFirstPercent": 0.4727272727272727,
+            "expectedScoreFirstPercent": 0.49421977236363634,
+            "naiveAdjustmentFactor": 0.9565122626851321
         },
         "quarter2": {
-            "total": 50,
-            "actualMakes": 28,
-            "expectedMakes": 25.46486878,
-            "actualScoreFirstPercent": 0.56,
-            "expectedScoreFirstPercent": 0.5092973756,
-            "naiveAdjustmentFactor": 1.0995540657170433
+            "total": 55,
+            "actualMakes": 25,
+            "expectedMakes": 27.81791252,
+            "actualScoreFirstPercent": 0.45454545454545453,
+            "expectedScoreFirstPercent": 0.5057802276363637,
+            "naiveAdjustmentFactor": 0.8987015104755243
         },
         "quarter3": {
-            "total": 50,
-            "actualMakes": 24,
-            "expectedMakes": 25.46486878,
-            "actualScoreFirstPercent": 0.48,
-            "expectedScoreFirstPercent": 0.5092973756,
-            "naiveAdjustmentFactor": 0.9424749134717513
+            "total": 55,
+            "actualMakes": 27,
+            "expectedMakes": 27.81791252,
+            "actualScoreFirstPercent": 0.4909090909090909,
+            "expectedScoreFirstPercent": 0.5057802276363637,
+            "naiveAdjustmentFactor": 0.9705976313135662
         },
         "quarter4": {
-            "total": 50,
+            "total": 55,
+            "actualMakes": 28,
+            "expectedMakes": 27.18208748,
+            "actualScoreFirstPercent": 0.509090909090909,
+            "expectedScoreFirstPercent": 0.49421977236363634,
+            "naiveAdjustmentFactor": 1.0300901290455269
+        }
+    },
+    "GSW": {
+        "quarter1": {
+            "total": 52,
             "actualMakes": 27,
-            "expectedMakes": 24.53513122,
-            "actualScoreFirstPercent": 0.54,
-            "expectedScoreFirstPercent": 0.4907026244,
-            "naiveAdjustmentFactor": 1.1004628325766093
+            "expectedMakes": 26.476868780000004,
+            "actualScoreFirstPercent": 0.5192307692307693,
+            "expectedScoreFirstPercent": 0.5091705534615385,
+            "naiveAdjustmentFactor": 1.0197580470842973
+        },
+        "quarter2": {
+            "total": 52,
+            "actualMakes": 15,
+            "expectedMakes": 25.523131220000003,
+            "actualScoreFirstPercent": 0.28846153846153844,
+            "expectedScoreFirstPercent": 0.4908294465384616,
+            "naiveAdjustmentFactor": 0.5877021855471225
+        },
+        "quarter3": {
+            "total": 52,
+            "actualMakes": 23,
+            "expectedMakes": 25.523131220000003,
+            "actualScoreFirstPercent": 0.4423076923076923,
+            "expectedScoreFirstPercent": 0.4908294465384616,
+            "naiveAdjustmentFactor": 0.9011433511722546
+        },
+        "quarter4": {
+            "total": 52,
+            "actualMakes": 22,
+            "expectedMakes": 26.476868780000004,
+            "actualScoreFirstPercent": 0.4230769230769231,
+            "expectedScoreFirstPercent": 0.5091705534615385,
+            "naiveAdjustmentFactor": 0.8309139642909088
+        }
+    },
+    "UTA": {
+        "quarter1": {
+            "total": 55,
+            "actualMakes": 25,
+            "expectedMakes": 28.61269382,
+            "actualScoreFirstPercent": 0.45454545454545453,
+            "expectedScoreFirstPercent": 0.5202307967272727,
+            "naiveAdjustmentFactor": 0.8737380743411597
+        },
+        "quarter2": {
+            "total": 55,
+            "actualMakes": 26,
+            "expectedMakes": 26.38730618,
+            "actualScoreFirstPercent": 0.4727272727272727,
+            "expectedScoreFirstPercent": 0.47976920327272726,
+            "naiveAdjustmentFactor": 0.9853222539141356
+        },
+        "quarter3": {
+            "total": 55,
+            "actualMakes": 31,
+            "expectedMakes": 26.38730618,
+            "actualScoreFirstPercent": 0.5636363636363636,
+            "expectedScoreFirstPercent": 0.47976920327272726,
+            "naiveAdjustmentFactor": 1.174807302743777
+        },
+        "quarter4": {
+            "total": 55,
+            "actualMakes": 29,
+            "expectedMakes": 28.61269382,
+            "actualScoreFirstPercent": 0.5272727272727272,
+            "expectedScoreFirstPercent": 0.5202307967272727,
+            "naiveAdjustmentFactor": 1.0135361662357452
         }
     },
     "TOR": {
         "quarter1": {
-            "total": 53,
-            "actualMakes": 25,
-            "expectedMakes": 25.41530618,
-            "actualScoreFirstPercent": 0.4716981132075472,
-            "expectedScoreFirstPercent": 0.47953407886792454,
-            "naiveAdjustmentFactor": 0.9836592100422219
+            "total": 55,
+            "actualMakes": 26,
+            "expectedMakes": 26.069393660000003,
+            "actualScoreFirstPercent": 0.4727272727272727,
+            "expectedScoreFirstPercent": 0.47398897563636366,
+            "naiveAdjustmentFactor": 0.9973381176062227
         },
         "quarter2": {
-            "total": 53,
+            "total": 55,
             "actualMakes": 24,
-            "expectedMakes": 27.58469382,
-            "actualScoreFirstPercent": 0.4528301886792453,
-            "expectedScoreFirstPercent": 0.5204659211320755,
-            "naiveAdjustmentFactor": 0.8700477212692151
+            "expectedMakes": 28.93060634,
+            "actualScoreFirstPercent": 0.43636363636363634,
+            "expectedScoreFirstPercent": 0.5260110243636363,
+            "naiveAdjustmentFactor": 0.8295712754148934
         },
         "quarter3": {
-            "total": 53,
-            "actualMakes": 24,
-            "expectedMakes": 27.58469382,
-            "actualScoreFirstPercent": 0.4528301886792453,
-            "expectedScoreFirstPercent": 0.5204659211320755,
-            "naiveAdjustmentFactor": 0.8700477212692151
+            "total": 55,
+            "actualMakes": 26,
+            "expectedMakes": 28.93060634,
+            "actualScoreFirstPercent": 0.4727272727272727,
+            "expectedScoreFirstPercent": 0.5260110243636363,
+            "naiveAdjustmentFactor": 0.8987022150328011
         },
         "quarter4": {
-            "total": 53,
-            "actualMakes": 19,
-            "expectedMakes": 25.41530618,
-            "actualScoreFirstPercent": 0.3584905660377358,
-            "expectedScoreFirstPercent": 0.47953407886792454,
-            "naiveAdjustmentFactor": 0.7475809996320886
+            "total": 55,
+            "actualMakes": 20,
+            "expectedMakes": 26.069393660000003,
+            "actualScoreFirstPercent": 0.36363636363636365,
+            "expectedScoreFirstPercent": 0.47398897563636366,
+            "naiveAdjustmentFactor": 0.7671831673894022
         }
     },
-    "MEM": {
+    "SAS": {
         "quarter1": {
             "total": 52,
-            "actualMakes": 23,
-            "expectedMakes": 25.380174959999998,
-            "actualScoreFirstPercent": 0.4423076923076923,
-            "expectedScoreFirstPercent": 0.48808028769230766,
-            "naiveAdjustmentFactor": 0.9062191271828806
+            "actualMakes": 24,
+            "expectedMakes": 25.523131220000003,
+            "actualScoreFirstPercent": 0.46153846153846156,
+            "expectedScoreFirstPercent": 0.4908294465384616,
+            "naiveAdjustmentFactor": 0.9403234968753962
         },
         "quarter2": {
             "total": 52,
             "actualMakes": 30,
-            "expectedMakes": 26.619825040000002,
+            "expectedMakes": 26.476868780000004,
             "actualScoreFirstPercent": 0.5769230769230769,
-            "expectedScoreFirstPercent": 0.5119197123076924,
-            "naiveAdjustmentFactor": 1.1269796084279595
+            "expectedScoreFirstPercent": 0.5091705534615385,
+            "naiveAdjustmentFactor": 1.13306449676033
         },
         "quarter3": {
             "total": 52,
-            "actualMakes": 26,
-            "expectedMakes": 26.619825040000002,
-            "actualScoreFirstPercent": 0.5,
-            "expectedScoreFirstPercent": 0.5119197123076924,
-            "naiveAdjustmentFactor": 0.976715660637565
+            "actualMakes": 25,
+            "expectedMakes": 26.476868780000004,
+            "actualScoreFirstPercent": 0.4807692307692308,
+            "expectedScoreFirstPercent": 0.5091705534615385,
+            "naiveAdjustmentFactor": 0.9442204139669419
         },
         "quarter4": {
             "total": 52,
-            "actualMakes": 14,
-            "expectedMakes": 25.380174959999998,
-            "actualScoreFirstPercent": 0.2692307692307692,
-            "expectedScoreFirstPercent": 0.48808028769230766,
-            "naiveAdjustmentFactor": 0.5516116426330577
+            "actualMakes": 28,
+            "expectedMakes": 25.523131220000003,
+            "actualScoreFirstPercent": 0.5384615384615384,
+            "expectedScoreFirstPercent": 0.4908294465384616,
+            "naiveAdjustmentFactor": 1.0970440796879621
+        }
+    },
+    "MEM": {
+        "quarter1": {
+            "total": 54,
+            "actualMakes": 23,
+            "expectedMakes": 26.36417496,
+            "actualScoreFirstPercent": 0.42592592592592593,
+            "expectedScoreFirstPercent": 0.48822546222222224,
+            "naiveAdjustmentFactor": 0.8723959704749281
+        },
+        "quarter2": {
+            "total": 54,
+            "actualMakes": 31,
+            "expectedMakes": 27.63582504,
+            "actualScoreFirstPercent": 0.5740740740740741,
+            "expectedScoreFirstPercent": 0.5117745377777778,
+            "naiveAdjustmentFactor": 1.1217323874040561
+        },
+        "quarter3": {
+            "total": 54,
+            "actualMakes": 28,
+            "expectedMakes": 27.63582504,
+            "actualScoreFirstPercent": 0.5185185185185185,
+            "expectedScoreFirstPercent": 0.5117745377777778,
+            "naiveAdjustmentFactor": 1.0131776402359216
+        },
+        "quarter4": {
+            "total": 54,
+            "actualMakes": 15,
+            "expectedMakes": 26.36417496,
+            "actualScoreFirstPercent": 0.2777777777777778,
+            "expectedScoreFirstPercent": 0.48822546222222224,
+            "naiveAdjustmentFactor": 0.5689538937879967
         }
     },
     "DET": {
         "quarter1": {
-            "total": 52,
-            "actualMakes": 19,
-            "expectedMakes": 24.76034992,
-            "actualScoreFirstPercent": 0.36538461538461536,
-            "expectedScoreFirstPercent": 0.47616057538461537,
-            "naiveAdjustmentFactor": 0.7673558758817411
+            "total": 54,
+            "actualMakes": 20,
+            "expectedMakes": 25.72834992,
+            "actualScoreFirstPercent": 0.37037037037037035,
+            "expectedScoreFirstPercent": 0.4764509244444444,
+            "naiveAdjustmentFactor": 0.7773526115039716
         },
         "quarter2": {
-            "total": 52,
-            "actualMakes": 26,
-            "expectedMakes": 27.239650079999997,
-            "actualScoreFirstPercent": 0.5,
-            "expectedScoreFirstPercent": 0.5238394246153846,
-            "naiveAdjustmentFactor": 0.9544909689970585
+            "total": 54,
+            "actualMakes": 28,
+            "expectedMakes": 28.27165008,
+            "actualScoreFirstPercent": 0.5185185185185185,
+            "expectedScoreFirstPercent": 0.5235490755555555,
+            "naiveAdjustmentFactor": 0.9903914317264357
         },
         "quarter3": {
-            "total": 52,
-            "actualMakes": 24,
-            "expectedMakes": 27.239650079999997,
-            "actualScoreFirstPercent": 0.46153846153846156,
-            "expectedScoreFirstPercent": 0.5238394246153846,
-            "naiveAdjustmentFactor": 0.8810685867665156
+            "total": 54,
+            "actualMakes": 26,
+            "expectedMakes": 28.27165008,
+            "actualScoreFirstPercent": 0.48148148148148145,
+            "expectedScoreFirstPercent": 0.5235490755555555,
+            "naiveAdjustmentFactor": 0.9196491866031189
         },
         "quarter4": {
-            "total": 52,
+            "total": 54,
             "actualMakes": 25,
-            "expectedMakes": 24.76034992,
-            "actualScoreFirstPercent": 0.4807692307692308,
-            "expectedScoreFirstPercent": 0.47616057538461537,
-            "naiveAdjustmentFactor": 1.0096787840549226
+            "expectedMakes": 25.72834992,
+            "actualScoreFirstPercent": 0.46296296296296297,
+            "expectedScoreFirstPercent": 0.4764509244444444,
+            "naiveAdjustmentFactor": 0.9716907643799646
         }
     },
     "HOU": {
         "quarter1": {
-            "total": 53,
+            "total": 54,
             "actualMakes": 20,
-            "expectedMakes": 27.119825040000002,
-            "actualScoreFirstPercent": 0.37735849056603776,
-            "expectedScoreFirstPercent": 0.5116948120754717,
-            "naiveAdjustmentFactor": 0.7374678844904524
+            "expectedMakes": 27.476868780000004,
+            "actualScoreFirstPercent": 0.37037037037037035,
+            "expectedScoreFirstPercent": 0.5088309033333334,
+            "naiveAdjustmentFactor": 0.7278849770013713
         },
         "quarter2": {
-            "total": 53,
-            "actualMakes": 27,
-            "expectedMakes": 25.880174959999998,
-            "actualScoreFirstPercent": 0.5094339622641509,
-            "expectedScoreFirstPercent": 0.48830518792452826,
-            "naiveAdjustmentFactor": 1.0432696085606372
+            "total": 54,
+            "actualMakes": 28,
+            "expectedMakes": 26.523131220000003,
+            "actualScoreFirstPercent": 0.5185185185185185,
+            "expectedScoreFirstPercent": 0.49116909666666675,
+            "naiveAdjustmentFactor": 1.0556822936081676
         },
         "quarter3": {
-            "total": 53,
-            "actualMakes": 24,
-            "expectedMakes": 25.880174959999998,
-            "actualScoreFirstPercent": 0.4528301886792453,
-            "expectedScoreFirstPercent": 0.48830518792452826,
-            "naiveAdjustmentFactor": 0.9273507631650107
+            "total": 54,
+            "actualMakes": 25,
+            "expectedMakes": 26.523131220000003,
+            "actualScoreFirstPercent": 0.46296296296296297,
+            "expectedScoreFirstPercent": 0.49116909666666675,
+            "naiveAdjustmentFactor": 0.9425734764358639
         },
         "quarter4": {
-            "total": 53,
+            "total": 54,
             "actualMakes": 28,
-            "expectedMakes": 27.119825040000002,
-            "actualScoreFirstPercent": 0.5283018867924528,
-            "expectedScoreFirstPercent": 0.5116948120754717,
-            "naiveAdjustmentFactor": 1.0324550382866333
-        }
-    },
-    "CHA": {
-        "quarter1": {
-            "total": 49,
-            "actualMakes": 21,
-            "expectedMakes": 22.485568620000002,
-            "actualScoreFirstPercent": 0.42857142857142855,
-            "expectedScoreFirstPercent": 0.45888915551020415,
-            "naiveAdjustmentFactor": 0.9339323525632947
-        },
-        "quarter2": {
-            "total": 49,
-            "actualMakes": 28,
-            "expectedMakes": 26.51443138,
-            "actualScoreFirstPercent": 0.5714285714285714,
-            "expectedScoreFirstPercent": 0.541110844489796,
-            "naiveAdjustmentFactor": 1.0560286810872577
-        },
-        "quarter3": {
-            "total": 49,
-            "actualMakes": 26,
-            "expectedMakes": 26.51443138,
-            "actualScoreFirstPercent": 0.5306122448979592,
-            "expectedScoreFirstPercent": 0.541110844489796,
-            "naiveAdjustmentFactor": 0.9805980610095965
-        },
-        "quarter4": {
-            "total": 49,
-            "actualMakes": 22,
-            "expectedMakes": 22.485568620000002,
-            "actualScoreFirstPercent": 0.4489795918367347,
-            "expectedScoreFirstPercent": 0.45888915551020415,
-            "naiveAdjustmentFactor": 0.9784053217329755
+            "expectedMakes": 27.476868780000004,
+            "actualScoreFirstPercent": 0.5185185185185185,
+            "expectedScoreFirstPercent": 0.5088309033333334,
+            "naiveAdjustmentFactor": 1.0190389678019198
         }
     },
     "ATL": {
         "quarter1": {
-            "total": 52,
-            "actualMakes": 21,
-            "expectedMakes": 24.91530618,
-            "actualScoreFirstPercent": 0.40384615384615385,
-            "expectedScoreFirstPercent": 0.47914050346153847,
-            "naiveAdjustmentFactor": 0.8428553856928761
+            "total": 54,
+            "actualMakes": 22,
+            "expectedMakes": 26.205218700000003,
+            "actualScoreFirstPercent": 0.4074074074074074,
+            "expectedScoreFirstPercent": 0.48528182777777784,
+            "naiveAdjustmentFactor": 0.8395274335184234
         },
         "quarter2": {
-            "total": 52,
-            "actualMakes": 26,
-            "expectedMakes": 27.08469382,
+            "total": 54,
+            "actualMakes": 27,
+            "expectedMakes": 27.794781300000004,
             "actualScoreFirstPercent": 0.5,
-            "expectedScoreFirstPercent": 0.5208594965384615,
-            "naiveAdjustmentFactor": 0.9599517784026402
+            "expectedScoreFirstPercent": 0.5147181722222223,
+            "naiveAdjustmentFactor": 0.9714053767352362
         },
         "quarter3": {
-            "total": 52,
+            "total": 54,
             "actualMakes": 32,
-            "expectedMakes": 27.08469382,
-            "actualScoreFirstPercent": 0.6153846153846154,
-            "expectedScoreFirstPercent": 0.5208594965384615,
-            "naiveAdjustmentFactor": 1.1814791118801726
+            "expectedMakes": 27.794781300000004,
+            "actualScoreFirstPercent": 0.5925925925925926,
+            "expectedScoreFirstPercent": 0.5147181722222223,
+            "naiveAdjustmentFactor": 1.1512952613158354
         },
         "quarter4": {
-            "total": 52,
-            "actualMakes": 28,
-            "expectedMakes": 24.91530618,
-            "actualScoreFirstPercent": 0.5384615384615384,
-            "expectedScoreFirstPercent": 0.47914050346153847,
-            "naiveAdjustmentFactor": 1.1238071809238348
+            "total": 54,
+            "actualMakes": 29,
+            "expectedMakes": 26.205218700000003,
+            "actualScoreFirstPercent": 0.5370370370370371,
+            "expectedScoreFirstPercent": 0.48528182777777784,
+            "naiveAdjustmentFactor": 1.106649798728831
         }
     },
     "IND": {
         "quarter1": {
+            "total": 53,
+            "actualMakes": 19,
+            "expectedMakes": 24.115656100000002,
+            "actualScoreFirstPercent": 0.3584905660377358,
+            "expectedScoreFirstPercent": 0.45501237924528304,
+            "naiveAdjustmentFactor": 0.7878699182478389
+        },
+        "quarter2": {
+            "total": 53,
+            "actualMakes": 28,
+            "expectedMakes": 28.884343899999998,
+            "actualScoreFirstPercent": 0.5283018867924528,
+            "expectedScoreFirstPercent": 0.544987620754717,
+            "naiveAdjustmentFactor": 0.9693832789464883
+        },
+        "quarter3": {
+            "total": 53,
+            "actualMakes": 23,
+            "expectedMakes": 28.884343899999998,
+            "actualScoreFirstPercent": 0.4339622641509434,
+            "expectedScoreFirstPercent": 0.544987620754717,
+            "naiveAdjustmentFactor": 0.7962791219917583
+        },
+        "quarter4": {
+            "total": 53,
+            "actualMakes": 27,
+            "expectedMakes": 24.115656100000002,
+            "actualScoreFirstPercent": 0.5094339622641509,
+            "expectedScoreFirstPercent": 0.45501237924528304,
+            "naiveAdjustmentFactor": 1.1196046206679817
+        }
+    },
+    "CHA": {
+        "quarter1": {
             "total": 51,
-            "actualMakes": 18,
-            "expectedMakes": 23.175656099999998,
-            "actualScoreFirstPercent": 0.35294117647058826,
-            "expectedScoreFirstPercent": 0.45442462941176465,
-            "naiveAdjustmentFactor": 0.7766770408713479
+            "actualMakes": 21,
+            "expectedMakes": 23.27461236,
+            "actualScoreFirstPercent": 0.4117647058823529,
+            "expectedScoreFirstPercent": 0.4563649482352941,
+            "naiveAdjustmentFactor": 0.9022706662170162
         },
         "quarter2": {
             "total": 51,
-            "actualMakes": 27,
-            "expectedMakes": 27.8243439,
-            "actualScoreFirstPercent": 0.5294117647058824,
-            "expectedScoreFirstPercent": 0.5455753705882352,
-            "naiveAdjustmentFactor": 0.9703732852439335
+            "actualMakes": 30,
+            "expectedMakes": 27.725387639999997,
+            "actualScoreFirstPercent": 0.5882352941176471,
+            "expectedScoreFirstPercent": 0.5436350517647058,
+            "naiveAdjustmentFactor": 1.0820407775550223
         },
         "quarter3": {
             "total": 51,
-            "actualMakes": 22,
-            "expectedMakes": 27.8243439,
-            "actualScoreFirstPercent": 0.43137254901960786,
-            "expectedScoreFirstPercent": 0.5455753705882352,
-            "naiveAdjustmentFactor": 0.7906745287172793
+            "actualMakes": 27,
+            "expectedMakes": 27.725387639999997,
+            "actualScoreFirstPercent": 0.5294117647058824,
+            "expectedScoreFirstPercent": 0.5436350517647058,
+            "naiveAdjustmentFactor": 0.97383669979952
         },
         "quarter4": {
             "total": 51,
-            "actualMakes": 26,
-            "expectedMakes": 23.175656099999998,
-            "actualScoreFirstPercent": 0.5098039215686274,
-            "expectedScoreFirstPercent": 0.45442462941176465,
-            "naiveAdjustmentFactor": 1.121866836814169
+            "actualMakes": 23,
+            "expectedMakes": 23.27461236,
+            "actualScoreFirstPercent": 0.45098039215686275,
+            "expectedScoreFirstPercent": 0.4563649482352941,
+            "naiveAdjustmentFactor": 0.9882012058567321
         }
     },
     "POR": {
         "quarter1": {
-            "total": 51,
-            "actualMakes": 18,
-            "expectedMakes": 23.485568620000002,
-            "actualScoreFirstPercent": 0.35294117647058826,
-            "expectedScoreFirstPercent": 0.4605013454901961,
-            "naiveAdjustmentFactor": 0.7664281112900727
+            "total": 53,
+            "actualMakes": 19,
+            "expectedMakes": 24.433568620000003,
+            "actualScoreFirstPercent": 0.3584905660377358,
+            "expectedScoreFirstPercent": 0.4610107286792453,
+            "naiveAdjustmentFactor": 0.777618705457852
         },
         "quarter2": {
-            "total": 51,
+            "total": 53,
             "actualMakes": 27,
-            "expectedMakes": 27.514431379999998,
-            "actualScoreFirstPercent": 0.5294117647058824,
-            "expectedScoreFirstPercent": 0.5394986545098038,
-            "naiveAdjustmentFactor": 0.9813032160143447
+            "expectedMakes": 28.566431379999997,
+            "actualScoreFirstPercent": 0.5094339622641509,
+            "expectedScoreFirstPercent": 0.5389892713207547,
+            "naiveAdjustmentFactor": 0.9451653110196784
         },
         "quarter3": {
-            "total": 51,
-            "actualMakes": 28,
-            "expectedMakes": 27.514431379999998,
-            "actualScoreFirstPercent": 0.5490196078431373,
-            "expectedScoreFirstPercent": 0.5394986545098038,
-            "naiveAdjustmentFactor": 1.0176477795704317
+            "total": 53,
+            "actualMakes": 29,
+            "expectedMakes": 28.566431379999997,
+            "actualScoreFirstPercent": 0.5471698113207547,
+            "expectedScoreFirstPercent": 0.5389892713207547,
+            "naiveAdjustmentFactor": 1.0151775562803953
         },
         "quarter4": {
-            "total": 51,
-            "actualMakes": 21,
-            "expectedMakes": 23.485568620000002,
-            "actualScoreFirstPercent": 0.4117647058823529,
-            "expectedScoreFirstPercent": 0.4605013454901961,
-            "naiveAdjustmentFactor": 0.894166129838418
+            "total": 53,
+            "actualMakes": 22,
+            "expectedMakes": 24.433568620000003,
+            "actualScoreFirstPercent": 0.41509433962264153,
+            "expectedScoreFirstPercent": 0.4610107286792453,
+            "naiveAdjustmentFactor": 0.9004006063196183
         }
     }
 }

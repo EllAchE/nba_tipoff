@@ -1,92 +1,93 @@
 {
     "games": [
-        "IND MEM",
-        "DET LAC",
-        "DAL SAS",
-        "NYK TOR",
-        "MIL ORL",
-        "MIA POR",
-        "CLE NOP",
-        "CHI MIN"
+        "IND UTA",
+        "LAC PHI",
+        "DET OKC",
+        "NOP WAS",
+        "BKN CHA",
+        "ORL TOR",
+        "CHI MEM",
+        "MIA MIN",
+        "DEN HOU",
+        "POR SAS",
+        "DAL NYK"
     ],
-    "MEM": {
-        "fanduel": "-130.0",
-        "draftkings": "-122",
-        "mgm": "-120"
+    "UTA": {
+        "mgm": "-140",
+        "bovada": "+141.00000858306885"
     },
     "IND": {
-        "fanduel": "+100.0",
-        "draftkings": "-104",
-        "mgm": "-115"
+        "mgm": "+100",
+        "bovada": "-192.30769936149667"
+    },
+    "PHI": {
+        "mgm": "-120",
+        "bovada": "+117.00000762939453"
     },
     "LAC": {
-        "fanduel": "-142.0",
-        "draftkings": "-129",
-        "mgm": "-145"
+        "mgm": "-115",
+        "bovada": "-156.25000349245974"
     },
     "DET": {
-        "fanduel": "+112.00000000000001",
-        "draftkings": "+101",
-        "mgm": "+105"
+        "mgm": "-120",
+        "bovada": "-111.11111405455044"
     },
-    "DAL": {
-        "fanduel": "-146.0",
-        "draftkings": "-118",
-        "mgm": "-135"
+    "OKC": {
+        "mgm": "-115",
+        "bovada": "-120.48192148129743"
     },
-    "SAS": {
-        "fanduel": "+113.99999999999999",
-        "draftkings": "-106.16740088105729",
-        "mgm": "-105"
-    },
-    "NYK": {
-        "fanduel": "-120.0",
-        "draftkings": "-120",
-        "mgm": "-120"
-    },
-    "TOR": {
-        "fanduel": "-106.0",
-        "draftkings": "-107",
-        "mgm": "-115"
-    },
-    "ORL": {
-        "fanduel": "+124.0",
-        "draftkings": "+108",
-        "mgm": "-105"
-    },
-    "MIL": {
-        "fanduel": "-160.0",
-        "draftkings": "-137",
-        "mgm": "-135"
-    },
-    "POR": {
-        "fanduel": "+102.0",
-        "draftkings": "-106",
-        "mgm": "-115"
-    },
-    "MIA": {
-        "fanduel": "-130.0",
-        "draftkings": "-121",
-        "mgm": "-115"
-    },
-    "CLE": {
-        "fanduel": "+115.99999999999999",
-        "draftkings": "+108.52803738317759",
-        "mgm": "+100"
+    "WAS": {
+        "mgm": "-115",
+        "bovada": "-188.6792554682204"
     },
     "NOP": {
-        "fanduel": "-148.0",
-        "draftkings": "-125",
-        "mgm": "-140"
+        "mgm": "-120",
+        "bovada": "+139.00001049041748"
     },
-    "MIN": {
-        "fanduel": "-132.0",
-        "draftkings": "-127",
-        "mgm": "-110"
+    "BKN": {
+        "mgm": "-145",
+        "bovada": "+125.0"
+    },
+    "CHA": {
+        "mgm": "+105",
+        "bovada": "-166.66666004392863"
+    },
+    "TOR": {
+        "mgm": "-120"
+    },
+    "ORL": {
+        "mgm": "-115"
     },
     "CHI": {
-        "fanduel": "+104.0",
-        "draftkings": "+100",
+        "mgm": "-110"
+    },
+    "MEM": {
         "mgm": "-125"
+    },
+    "MIN": {
+        "mgm": "-105"
+    },
+    "MIA": {
+        "mgm": "-135"
+    },
+    "HOU": {
+        "mgm": "+100"
+    },
+    "DEN": {
+        "mgm": "-140"
+    },
+    "SAS": {
+        "mgm": "-115"
+    },
+    "POR": {
+        "mgm": "-120"
+    },
+    "DAL": {
+        "mgm": "-125",
+        "bovada": "+109.99999046325684"
+    },
+    "NYK": {
+        "mgm": "-110",
+        "bovada": "-147.05883487285715"
     }
 }

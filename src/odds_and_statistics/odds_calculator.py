@@ -41,7 +41,7 @@ def scoreFirstProb(p1Code: str, p2Code: str, quarter, jsonPath: Optional[str] = 
     # todo backtest for all quarters/seasons and adjust this. This math doesn't actually make any sense
     quarterLowercased = removeAllNonLettersAndLowercase(quarter)
     reducedNaiveScoreFirstAdjustment = math.sqrt(metaFile[t1][quarterLowercased]['naiveAdjustmentFactor']) / math.sqrt(metaFile[t2][quarterLowercased]['naiveAdjustmentFactor'])
-    reducedNaiveScoreFirstAdjustment = math.sqrt(reducedNaiveScoreFirstAdjustment)
+    # reducedNaiveScoreFirstAdjustment = math.sqrt(reducedNaiveScoreFirstAdjustment)
     # reducedNaiveScoreFirstAdjustment = math.sqrt(reducedNaiveScoreFirstAdjustment)
 
     oddsRatio = oddsWithObservedTipScore / (1-oddsWithObservedTipScore) * reducedNaiveScoreFirstAdjustment
@@ -261,6 +261,8 @@ def independentVarOdds(*args: float):
 def getBestOddsFromSetOfExchangeKeys(team, singleTeamOdds):
     firstLoop = True
     for key in singleTeamOdds[team].keys():
+        if key == 'bovada':
+            continue
         if firstLoop:
             odds = singleTeamOdds[team][key]
             firstLoop = False
@@ -283,12 +285,15 @@ def checkForArbitrageInRetrievedOdds(jsonPath='tempGameOdds.json'):
 
         bestTeam1Odds, exchange1 = getBestOddsFromSetOfExchangeKeys(team1, oddsDict)
         bestTeam2Odds, exchange2 = getBestOddsFromSetOfExchangeKeys(team2, oddsDict)
-        ratios = getArbitrageRatiosTwoLines(bestTeam1Odds, bestTeam2Odds)
+        try:
+            ratios = getArbitrageRatiosTwoLines(bestTeam1Odds, bestTeam2Odds)
 
-        if ratios[0] + ratios[1] > 200:
-            print('arbitrage for game', game)
-            print(team1, 'odds are', bestTeam1Odds, 'on exchange', exchange1, 'ratio is', ratios[1])
-            print(team2, 'odds are', bestTeam2Odds, 'on exchange', exchange2, 'ratio is', ratios[0])
+            if ratios[0] + ratios[1] > 200:
+                print('arbitrage for game', game)
+                print(team1, 'odds are', bestTeam1Odds, 'on exchange', exchange1, 'ratio is', ratios[1])
+                print(team2, 'odds are', bestTeam2Odds, 'on exchange', exchange2, 'ratio is', ratios[0])
+        except:
+            print('possibly not enough odds in game', game)
 
 # def assessAllBets(betDict):
 #     oddsObjList = list()

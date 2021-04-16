@@ -6,10 +6,10 @@ MAX_APPEARANCES = 9900
 # Observed Values
 HOME_SCORE_ODDS = 0.52111318 # backlogtodo slightly deflated due to 0.5 approximation of empty rows. May not apply w covid
 HOME_TIP_WIN_ODDS = 0.51615348 # backlogtodo these are slightly deflated due to 0.5 approximation of empty rows
-TIP_WINNER_SCORE_ODDS = 0.65495626 # backlogtodo these are slightly deflated due to 0.5 approximation of empty rows
+TIP_WINNER_SCORE_ODDS = 0.65895626 # backlogtodo these are slightly deflated due to 0.5 approximation of empty rows
 # backlogtodo recalculate all of the uncertain data points above. This was originally done with a simple excel function on a fully concatenated csv of all seasons
 # backlogtodo consider weighting for season recency
-BANKROLL = 2050
+BANKROLL = 1950
 REDUCTION_FACTOR = 0.7
 
 # Testing Values

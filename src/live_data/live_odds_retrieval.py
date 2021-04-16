@@ -123,8 +123,8 @@ def bovadaTeamOdds(allTeamBets):
         scoreFirstBetsBothTeamsFormatted.append({
             'exchange': 'bovada',
             "shortTitle": item['shortTitle'],
-            "away": getUniversalTeamShortCode(item['team2id']),
-            "home": getUniversalTeamShortCode(item['team1id']),
+            "away": getUniversalTeamShortCode(item['team1id']),
+            "home": getUniversalTeamShortCode(item['team2id']),
             "awayTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds']),
             "homeTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds']),
             "awayPlayerFirstQuarterOdds": [],
@@ -132,8 +132,8 @@ def bovadaTeamOdds(allTeamBets):
         })
         scoreFirstBetsBothTeamsFormatted.append({
             'exchange': 'bovada',
-            "away": getUniversalTeamShortCode(item['team1id']),
-            "home": getUniversalTeamShortCode(item['team2id']),
+            "away": getUniversalTeamShortCode(item['team2id']),
+            "home": getUniversalTeamShortCode(item['team1id']),
             "shortTitle": item['shortTitle'],
             "awayTeamFirstQuarterOdds": decimalToAmerican(item['team2Odds']),
             "homeTeamFirstQuarterOdds": decimalToAmerican(item['team1Odds']),
