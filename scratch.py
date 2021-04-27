@@ -39,9 +39,9 @@ from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalOrF
 
 # concatCsv('all_ml_cols.csv', ENVIRONMENT.ML_COLS_FOLDER_PATH)
 
-checkForArbitrageInRetrievedOdds()
+# checkForArbitrageInRetrievedOdds()
 
-getDailyOdds('SAS', 'TOR', '-106')
+getDailyOdds('MEM', 'POR', '-113')
 # getAllOddsAndDisplayByEv(bovada=True)
 # smallDataUpdate()
 # getAllOddsAndDisplayByEv(fanduelToday=True)

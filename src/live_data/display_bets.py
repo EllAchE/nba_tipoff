@@ -7,28 +7,27 @@ from src.classes.QuarterOdds import QuarterOdds
 from src.live_data.live_odds_data_handling import createAllOddsDict
 # backlogtodo update player spread calculation to round
 
-
-def displayUniqueBetsByEV(oddsList, showAll: bool = True):
+def displayUniqueBetsByEV(oddsList, showAll= True):
     filteredOddsList = filterBestByGameCode(oddsList)
     filteredOddsList.sort(key=lambda x: x.bestEVFactor)
     printOddsObjDetails(filteredOddsList, showAll)
 
-def displayUniqueBetsByDatetime(oddsList, showAll: bool = True):
+def displayUniqueBetsByDatetime(oddsList, showAll= True):
     filteredOddsList = filterBestByGameCode(oddsList)
     filteredOddsList.sort(key=lambda x: x.bestEVFactor)
     filteredOddsList.sort(key=lambda x: x.gameDatetime)
     printOddsObjDetails(filteredOddsList, showAll)
 
-def displayAllBetsByEV(oddsList: Any, showAll: bool = True): # backlogtodo fix typing errors with betDict to support dict[str, Any]
+def displayAllBetsByEV(oddsList: Any, showAll= True): # backlogtodo fix typing errors with betDict to support dict[str, Any]
     oddsList.sort(key=lambda x: x.bestEVFactor, reverse=True)
     printOddsObjDetails(oddsList, showAll)
 
-def displayAllBetsByDatetime(oddsList, showAll: bool = True):
+def displayAllBetsByDatetime(oddsList, showAll= True):
     oddsList.sort(key=lambda x: x.bestEVFactor, reverse=True)
     oddsList.sort(key=lambda x: x.gameDatetime)
     printOddsObjDetails(oddsList, showAll)
 
-def displayAllBetsByExchange(oddsList, showAll: bool = True):
+def displayAllBetsByExchange(oddsList, showAll= True):
     oddsList.sort(key=lambda x: x.bestEVFactor, reverse=True)
     oddsList.sort(key=lambda x: x.gameDatetime)
     oddsList.sort(key=lambda x: x.exchange)

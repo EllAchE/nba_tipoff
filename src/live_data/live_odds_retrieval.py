@@ -162,21 +162,24 @@ def bovadaPlayerOdds(playerBetGamesList):
             awayPlayerOdds = list()
 
             for player in selections:
-                actualOdds = player['odds'] if player['oddsOverride'] is None else player['oddsOverride']
-                if player['player']['team']['abbreviation'] == homeShort:
-                    homePlayerOdds.append({
-                        "player": player['player']['name'],
-                        "odds": actualOdds,
-                        "team": getUniversalTeamShortCode(homeShort)
-                    })
-                elif player['player']['team']['abbreviation'] == awayShort:
-                    awayPlayerOdds.append({
-                        "player": player['player']['name'],
-                        "odds": actualOdds,
-                        "team": getUniversalTeamShortCode(awayShort)
-                    })
-                else:
-                    raise ValueError("Bovada misformattted something in player and team codes")
+                try:
+                    actualOdds = player['odds'] if player['oddsOverride'] is None else player['oddsOverride']
+                    if player['player']['team']['abbreviation'] == homeShort:
+                        homePlayerOdds.append({
+                            "player": player['player']['name'],
+                            "odds": actualOdds,
+                            "team": getUniversalTeamShortCode(homeShort)
+                        })
+                    elif player['player']['team']['abbreviation'] == awayShort:
+                        awayPlayerOdds.append({
+                            "player": player['player']['name'],
+                            "odds": actualOdds,
+                            "team": getUniversalTeamShortCode(awayShort)
+                        })
+                    else:
+                        raise ValueError("Bovada misformattted something in player and team codes")
+                except:
+                    print('breaking error encountered in bovada odds for player', player)
 
             playerTeamDict[homePlayerOdds[0]['team']] = homePlayerOdds
             playerTeamDict[awayPlayerOdds[0]['team']] = awayPlayerOdds
@@ -219,6 +222,7 @@ def bovadaOdds():
         except:
             print("no player lines found for bovada game", gameLine)
 
+    # todo fix this to not break with just team odds
     return scoreFirstBetsBothTeamsFormatted
 
 def draftKingsOdds():
@@ -295,11 +299,11 @@ def draftKingsOdds():
     for team in teamSet:
         playerTeamDict[team] = []
     for rawLine in rawPlayerLines:
-        playerLine = addTeamToUnknownPlayerLine(rawLine)
         try:
+            playerLine = addTeamToUnknownPlayerLine(rawLine)
             playerTeamDict[playerLine['team']] += [playerLine]
         except:
-            print('player', playerLine, 'had a team error. Perhaps they were traded?')
+            print('player', playerLine, 'had a team error, team not found in possible gamges. Perhaps they were traded?')
 
     for gameLine in allGameLines:
         gameLine["homePlayerFirstQuarterOdds"] = playerTeamDict[gameLine["home"]]
@@ -431,7 +435,7 @@ def _fanduelOddsAll(today=True):
                 team = getUniversalTeamShortCode(playerLine['team']) # todo test the expanded exception handling here, and implement in other methods too
                 playerTeamDict[team] += [playerLine]
             except:
-                print('player', playerLine, 'had a team error. Perhaps they were traded?')
+                print('player', playerLine, 'or player', rawLine, 'had a team error, team not found in possible teams. Perhaps they were traded?')
 
         for gameLine in quarterOddsList:
             gameLine["homePlayerFirstQuarterOdds"] = playerTeamDict[gameLine["home"]]

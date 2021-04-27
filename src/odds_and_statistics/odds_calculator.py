@@ -45,7 +45,7 @@ def scoreFirstProb(p1Code: str, p2Code: str, quarter, jsonPath: Optional[str] = 
     # reducedNaiveScoreFirstAdjustment = math.sqrt(reducedNaiveScoreFirstAdjustment)
 
     oddsRatio = oddsWithObservedTipScore / (1-oddsWithObservedTipScore) * reducedNaiveScoreFirstAdjustment
-    oddsAfterAdjustment = oddsRatio /(1+oddsRatio)
+    oddsAfterAdjustment = oddsRatio / (1+oddsRatio)
 
     totalOdds = oddsAfterAdjustment
 
