@@ -1,7 +1,7 @@
-from src.odds_and_statistics.odds_calculator import convertPlayerLinesToSingleLine, returnGreaterOdds, \
-    positiveEvThresholdFromAmerican, kellyBetFromAOddsAndScoreProb, getEvMultiplier, getPlayerSpread, \
-    scoreFirstProb
 from src.live_data.live_odds_retrieval import getExpectedTipper
+from src.odds.odds_calculator import getEvMultiplier, getPlayerSpread, convertPlayerLinesToSingleLine, \
+    positiveEvThresholdFromAmerican, returnGreaterOdds, scoreFirstProb, kellyBetFromAOddsAndScoreProb
+
 
 class QuarterOdds:
     def __init__(self, gameDict, teamOnly=False, playersOnly=False, quarter="QUARTER_1"):

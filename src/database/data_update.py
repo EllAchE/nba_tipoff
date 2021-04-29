@@ -3,7 +3,7 @@ from src.historical_data.bball_reference_historical_data import updateCurrentSea
 from src.database.database_creation import saveActivePlayersTeams, getAllGameData, createPlayerNameRelationship
 from src.historical_data.nba_play_by_play_methods import getAllFirstPossessionStatisticsIncrementally, \
     teamSummaryDataFromFirstPointData, saveAllHistoricalStarters
-from src.odds_and_statistics.prediction_enhancements import getCurrentSeasonUsageRate, \
+from src.odds.prediction_enhancements import getCurrentSeasonUsageRate, \
     getFirstFieldGoalOrFirstPointStats
 from src.skill_algorithms.trueskill_data_processing import updateTrueSkillDictionaryFromLastGame, \
     calculateTrueSkillDictionaryFromZero

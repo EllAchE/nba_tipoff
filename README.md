@@ -19,16 +19,16 @@ Outperformance is just done using historical data.
 
 1. Fetch NBA historical data since 1997 ([see docs](src/historical_data/historical_data_README.md))
 2. Loop through data and calculate player "skill" at tipoff based on trueskill algorithm ([see docs](src/skill_algorithms/skill_algorithms_README.md))
-3. Use skill ranking and a known proportion of tipoff winning teams scoring first basket to predict odds of each team scoring first ([see docs](src/odds_and_statistics/odds_README.md))
-4. Save player skill and prediction results for each game. ([see docs](src/skill_algorithms/trueskill_data_processing.py))
+3. Use skill ranking and a known proportion of tipoff winning teams scoring first basket to predict odds of each team scoring first ([see docs](src/odds/odds_README.md))
+4. Save player skill and prediction results for each game. ([see docs](src/skill_algorithms/skill_algorithms_README.md))
 
 ###Live Bet:
 
 1. Retrieve best odds line across betting sites ([see docs](src/live_data/live_data_README.md))
-2. Create an "Odds" Object that conducts a series of calculations and represents a single game/exchange pair([see docs](src/classes/classes_README.md))
-3. Calculate odds of team scoring first using prep data above ([see docs](src/odds_and_statistics/odds_README.md))
-4. Determine if a bet is EV positive ([see docs](src/odds_and_statistics/odds_README.md))
-5. If a bet is EV positive return the kelly bet size adjusted by a factor of 0.7 ([see docs](src/odds_and_statistics/odds_README.md))
+2. Create an "Odds" Object that conducts a series of calculations and represents a single game/exchange pair([see docs](src/classes/GameOdds_Object_README.md))
+3. Calculate odds of team scoring first using prep data above ([see docs](src/odds/odds_README.md))
+4. Determine if a bet is EV positive ([see docs](src/odds/odds_README.md))
+5. If a bet is EV positive return the kelly bet size adjusted by a factor of 0.7 ([see docs](src/odds/odds_README.md))
 6. Rank all possible bets, kelly bet sizes and times to determine optimal strategy ([see docs](src/live_data/live_data_README.md))
 
 ###Running any scripts:
@@ -82,10 +82,11 @@ The repo currently has methods and data for:
   - Calculating bet size for a player spread (currently naive floor math)
  
 The "Epics" that are missing
+  - BACKTESTING odds calculations
   - Database for player, team etc. conversions
   - Additional stats comparison (i.e. team efficiency, proportion of 3s vs. 2s)
   - Day-of betting confirmation (i.e. alerts if there is an injury or change to starters just before game starts, which affect projected odds)
-  - Machine learning predictions refined enough to improve on the naive predictions
+  - Machine learning predictions to improve on the naive predictions
 
 # Picking up from Backlog
 Just search for a todo, they will be in the appropriate file and ideally verbose enough to follow, but ask Logan if not. Most immediate prioirities are live odds fetching and day-of confirmation

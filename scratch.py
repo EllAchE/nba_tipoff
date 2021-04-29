@@ -8,10 +8,10 @@ from src.historical_data.nba_play_by_play_methods import fillGaps, teamSummaryDa
     getAllFirstPossessionStatisticsIncrementally
 from src.live_data.display_bets import getAllOddsAndDisplayByEv
 from src.live_data.live_odds_retrieval import betfairOdds, getDailyOdds
-from src.odds_and_statistics.odds_calculator import kellyBetReduced, getArbitrageRatiosTwoLines, \
+from src.odds.odds_calculator import kellyBetReduced, getArbitrageRatiosTwoLines, \
     sysEMainDiagonalVarsNeg1Fill, \
     americanToDecimal, costFor1, americanToRatio, checkForArbitrageAnyNumberOfLines, checkForArbitrageInRetrievedOdds
-from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalOrFirstPointStats
+from src.odds.prediction_enhancements import getFirstFieldGoalOrFirstPointStats
 
 # teamSummaryDataFromFirstPointData(2014)
 # teamSummaryDataFromFirstPointData(2015)

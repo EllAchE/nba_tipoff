@@ -6,9 +6,8 @@ from src.classes.QuarterOdds import QuarterOdds
 from src.database.database_access import getUniversalPlayerName
 from src.live_data.live_odds_retrieval import draftKingsOdds, mgmOdds, bovadaOdds, pointsBetOdds, unibetOdds, \
     barstoolOdds, fanduelOddsToday, fanduelOddsTomorrow, betfairOdds
-from src.odds_and_statistics.odds_calculator import americanToDecimal
+from src.odds.odds_calculator import americanToDecimal
 import logging
-
 
 def addTeamOnlyToOddsDict(oddsDict, rawOddsDict):
     oddsDict['teamOdds']['homeTeamFirstQuarterOdds'] = rawOddsDict['homeTeamFirstQuarterOdds']

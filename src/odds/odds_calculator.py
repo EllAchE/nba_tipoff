@@ -293,19 +293,3 @@ def checkForArbitrageInRetrievedOdds(jsonPath='tempGameOdds.json'):
                 print(team2, 'odds are', bestTeam2Odds, 'on exchange', exchange2, 'ratio is', ratios[0])
         except:
             print('possibly not enough odds in game', game)
-
-# def assessAllBets(betDict):
-#     oddsObjList = list()
-#     for game in betDict['games']:
-#         oddsObj = GameOdds(game)
-#         oddsObjList.append(oddsObj)
-#     oddsObjList.sort()
-
-# p_lines = [['Gobert', 5.5], ['O\'Neale', 8], ['Bogdonavic', 9], ['Mitchell', 12], ['Conley', 14]]
-# t_line = '-107'
-# buy_all_players_or_one_side(p_lines, t_line)
-
-# print(win_rate_for_positive_ev('-110'))
-# print(win_rate_for_positive_ev('+115'))
-
-# print(kelly_bet(1, 1.18, 0.62))

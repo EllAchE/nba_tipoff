@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 
 import ENVIRONMENT
 from src.database.database_access import getUniversalTeamShortCode, getPlayerCurrentTeam, getUniversalPlayerName
-from src.odds_and_statistics.odds_calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb, decimalToAmerican
+from src.odds.odds_calculator import checkEvPlayerCodesOddsLine, kellyBetFromAOddsAndScoreProb, decimalToAmerican
 from src.utils import getTeamFullFromShort, getSoupFromUrl, sleepChecker, lowercaseNoSpace, removeNewLineChars
 
 
