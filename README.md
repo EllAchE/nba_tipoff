@@ -24,8 +24,8 @@ Outperformance is just done using historical data.
 
 ###Live Bet:
 
-1. Retrieve best odds line across betting sites ([see docs]())
-2. Calculate odds of team scoring first using prep data above ([see docs]())
+1. Retrieve best odds line across betting sites ([see docs](src/live_data/live_data_README.md))
+2. Calculate odds of team scoring first using prep data above ([see docs](src/odds_and_statistics/odds_README.md))
 3. Determine if a bet is EV positive ([see docs]())
 4. If a bet is EV positive return the kelly bet size adjusted by a factor of 0.7 ([see docs]())
 5. Rank all possible bets, kelly bet sizes and times to determine optimal strategy ([see docs]())

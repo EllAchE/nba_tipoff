@@ -51,6 +51,8 @@ Hadn't looked at these since election ended but seems like there is hardly any l
 
 ###Other links
 https://arbers.org/popular-sports-arbing/
+https://www.oddsportal.com/sure-bets/
+https://mollybet.com/
 
 # Repos
 - Live PI tracker https://github.com/Talophex/PITA
@@ -60,3 +62,11 @@ https://arbers.org/popular-sports-arbing/
 - Twitter sentiment analysis https://github.com/anthonyebiner/Twitter-Sentiment-Analysis
 - Polymarket api wrapper https://github.com/anthonyebiner/PolyPython
 - PI Discord (I forked this) https://github.com/EllAchE/PredictitDiscordNew
+
+
+
+
+
+------------
+NEW data source:
+https://us.888sport.com/

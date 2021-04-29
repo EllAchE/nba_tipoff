@@ -10183,7 +10183,9 @@
         "fullName": "Maurice Harkless",
         "nameWithComma": "Harkless,Maurice",
         "universalName": "mauriceharkless",
-        "alternateNames": ["Moe Harkless"]
+        "alternateNames": [
+            "Moe Harkless"
+        ]
     },
     {
         "bballRefCode": "hensojo01.html",
@@ -10806,7 +10808,7 @@
         "fullName": "Tim Hardaway Jr.",
         "nameWithComma": "Hardaway,Tim",
         "universalName": "timhardawayjr",
-        "alternateNames": ["timhardaway"]
+        "alternateNames": []
     },
     {
         "bballRefCode": "harriel01.html",
@@ -13170,7 +13172,9 @@
         "fullName": "Wesley Iwundu",
         "nameWithComma": "Iwundu,Wesley",
         "universalName": "wesleyiwundu",
-        "alternateNames": ["Wes Iwundu"]
+        "alternateNames": [
+            "Wes Iwundu"
+        ]
     },
     {
         "bballRefCode": "jacksaa01.html",
@@ -14186,7 +14190,7 @@
         "fullName": "Sviatoslav Mykhailiuk",
         "nameWithComma": "Mykhailiuk,Sviatoslav",
         "universalName": "sviatoslavmykhailiuk",
-        "alternateNames": ["Svi Mykhailiuk"]
+        "alternateNames": []
     },
     {
         "bballRefCode": "okoboel01.html",
@@ -15314,10 +15318,31 @@
         "alternateNames": []
     },
     {
+        "bballRefCode": "brimaam01.html",
+        "fullName": "Amida Brimah",
+        "nameWithComma": "Brimah,Amida",
+        "universalName": "amidabrimah",
+        "alternateNames": []
+    },
+    {
+        "bballRefCode": "brookar01.html",
+        "fullName": "Armoni Brooks",
+        "nameWithComma": "Brooks,Armoni",
+        "universalName": "armonibrooks",
+        "alternateNames": []
+    },
+    {
         "bballRefCode": "campafa01.html",
         "fullName": "Facundo Campazzo",
         "nameWithComma": "Campazzo,Facundo",
         "universalName": "facundocampazzo",
+        "alternateNames": []
+    },
+    {
+        "bballRefCode": "cannade01.html",
+        "fullName": "Devin Cannady",
+        "nameWithComma": "Cannady,Devin",
+        "universalName": "devincannady",
         "alternateNames": []
     },
     {
@@ -15363,6 +15388,13 @@
         "alternateNames": []
     },
     {
+        "bballRefCode": "fittsma01.html",
+        "fullName": "Malik Fitts",
+        "nameWithComma": "Fitts,Malik",
+        "universalName": "malikfitts",
+        "alternateNames": []
+    },
+    {
         "bballRefCode": "flynnma01.html",
         "fullName": "Malachi Flynn",
         "nameWithComma": "Flynn,Malachi",
@@ -15377,10 +15409,24 @@
         "alternateNames": []
     },
     {
+        "bballRefCode": "frankro01.html",
+        "fullName": "Robert Franks",
+        "nameWithComma": "Franks,Robert",
+        "universalName": "robertfranks",
+        "alternateNames": []
+    },
+    {
         "bballRefCode": "gillan01.html",
         "fullName": "Anthony Gill",
         "nameWithComma": "Gill,Anthony",
         "universalName": "anthonygill",
+        "alternateNames": []
+    },
+    {
+        "bballRefCode": "gillefr01.html",
+        "fullName": "Freddie Gillespie",
+        "nameWithComma": "Gillespie,Freddie",
+        "universalName": "freddiegillespie",
         "alternateNames": []
     },
     {
@@ -15647,7 +15693,7 @@
         "fullName": "Aleksej Pokusevski",
         "nameWithComma": "Pokusevski,Aleksej",
         "universalName": "aleksejpokusevski",
-        "alternateNames": ["Aleksej Pokuševski"]
+        "alternateNames": []
     },
     {
         "bballRefCode": "portejo01.html",
@@ -15689,6 +15735,13 @@
         "fullName": "Nick Richards",
         "nameWithComma": "Richards,Nick",
         "universalName": "nickrichards",
+        "alternateNames": []
+    },
+    {
+        "bballRefCode": "rillegr01.html",
+        "fullName": "Grant Riller",
+        "nameWithComma": "Riller,Grant",
+        "universalName": "grantriller",
         "alternateNames": []
     },
     {

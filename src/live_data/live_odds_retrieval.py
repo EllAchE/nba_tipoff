@@ -346,7 +346,12 @@ def _fanduelOddsAll(today=True):
     allEventMatch = None
     for gameId in gameIdSet:
         gameResponse = requests.get('https://sportsbook.fanduel.com/cache/psevent/UK/1/false/{}.json'.format(gameId)).json()
-        print('running for fanduel game', gameResponse['externaldescription'])
+        try:
+            print('running for fanduel game', gameResponse['externaldescription'])
+        except:
+            print('a game had no matches for eventmarketgroups. Game has likely had an error and will be skipped')
+            continue
+
         sleepChecker(iterations=1, baseTime=2, randomMultiplier=8)
         # backlogtodo test the start time to ignore ongoing games, not just by date
         try:
