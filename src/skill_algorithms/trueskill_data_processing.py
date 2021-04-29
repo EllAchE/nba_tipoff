@@ -1,8 +1,8 @@
 import ENVIRONMENT
 
 from src.database.database_creation import createPlayerTrueSkillDictionary
-from src.rating_algorithms.algorithms import trueSkillMatchWithRawNums, trueSkillTipWinProb
-from src.rating_algorithms.common_data_processing import beforeMatchPredictions, runAlgoForSeason, runAlgoForAllSeasons
+from src.skill_algorithms.algorithms import trueSkillMatchWithRawNums, trueSkillTipWinProb
+from src.skill_algorithms.common_data_processing import beforeMatchPredictions, runAlgoForSeason, runAlgoForAllSeasons
 
 
 # backlogtodo optimize trueskill, glicko etc. for rapid iteration

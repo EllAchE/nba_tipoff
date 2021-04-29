@@ -10,7 +10,7 @@ from nba_api.stats.static import teams
 
 import ENVIRONMENT
 from src.database.database_access import getUniversalPlayerName, getUniversalTeamShortCode
-from src.rating_algorithms.algorithms import glickoTipWinProb, eloTipWinProb, trueSkillTipWinProb, \
+from src.skill_algorithms.algorithms import glickoTipWinProb, eloTipWinProb, trueSkillTipWinProb, \
     trueSkillTipWinFromMuAndSigma, eloWinProbFromRawElo, glickoWinProbFromMuPhiSigma
 from src.utils import getSoupFromUrl, removeAllNonLettersAndLowercase, sleepChecker, customNbaSeasonFormatting
 

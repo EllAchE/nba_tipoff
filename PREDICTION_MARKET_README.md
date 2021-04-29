@@ -3,6 +3,8 @@
 - Find api calls made on different sites to retrieve odds [(as done here)](src/live_data/live_odds_retrieval.py), but much more optimally
 - fuzzy string matching to find candidate pairs https://pypi.org/project/fuzzywuzzy/
 - retrieve across books and compare prices to see which spreads are narrowest
+- Value betting/modeling esoteric things (i.e. tipoffs). If the odds are expected to move cross market arbitrage may 
+allow a proxy on something not even modeled by the exchanges (i.e. tip win probability)
 
 
 ### List of books
@@ -26,12 +28,16 @@ Other exchanges you can find on lists like these that talk about different sport
 ### Sportsbook Regulations
 
 - Sportsbooks have regional restrictions, they vary from country to country and region/state
+- Many sportsbooks will share a common data provider, common parent company or common set of odds.
+  So it's important to understand if 2 books could be paired.
 - Sportsbooks can/will kick you off for violating their terms of service
-- Arbitrage betting is a reason to kick you off
+- Arbitrage betting is a reason to kick you off (I believe, policies aren't explicit so I read a bunch of stuff British people said)
 - Violating the "one account, one user" policy is another reason to kick you off
-  **- Coordinating with a cabal/syndicate to get around bet sizing limits is against the terms of service, even if the bets are made independently**
+- **Coordinating with a cabal/syndicate to get around bet sizing limits is against the terms of service, even if the bets are made independently**
 - There are payout limits on props bets. For drafkings that is set at $20,000, but it likely varies based on exchange.
   With experience having placed bets, I have yet to hit limits on betmgm or draftkings (betting as much as $1000) while on fanduel and bovada I have yet to hit any limits.
+  
+- I've also placed a decent number of arbitrage bets among various value-based bets and have yet to be limited or kicked off platform.
 
 
 # Prediction Markets
@@ -62,9 +68,6 @@ https://mollybet.com/
 - Twitter sentiment analysis https://github.com/anthonyebiner/Twitter-Sentiment-Analysis
 - Polymarket api wrapper https://github.com/anthonyebiner/PolyPython
 - PI Discord (I forked this) https://github.com/EllAchE/PredictitDiscordNew
-
-
-
 
 
 ------------

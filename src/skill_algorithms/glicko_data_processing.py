@@ -1,8 +1,8 @@
 import ENVIRONMENT
 from src.database.database_creation import createPlayerGlickoDictionary
-from src.rating_algorithms.algorithms import glickoTipWinProb, glickoMatchWithRawNums
+from src.skill_algorithms.algorithms import glickoTipWinProb, glickoMatchWithRawNums
 # https://github.com/ryankirkman/pyglicko2/blob/master/glicko2.py
-from src.rating_algorithms.common_data_processing import beforeMatchPredictions,runAlgoForSeason, runAlgoForAllSeasons
+from src.skill_algorithms.common_data_processing import beforeMatchPredictions,runAlgoForSeason, runAlgoForAllSeasons
 
 
 def runGlickoForSeason(season: str, seasonCsv: str, winningBetThreshold: float= ENVIRONMENT.GLICKO_TIPOFF_ODDS_THRESHOLD, startFromBeginning=False):

@@ -17,18 +17,28 @@ Outperformance is just done using historical data.
 
 ###Prep:
 
-1. Fetch NBA historical data since 1997 ([see docs]())
-2. Loop through data and calculate player "skill" at tipoff based on trueskill algorithm ([see docs]())
-3. Use skill ranking and a known proportion of tipoff winning teams scoring first basket to predict odds of each team scoring first ([see docs]())
-4. Save player skill and prediction results for each game. ([see docs]())
+1. Fetch NBA historical data since 1997 ([see docs](src/historical_data/historical_data_README.md))
+2. Loop through data and calculate player "skill" at tipoff based on trueskill algorithm ([see docs](src/skill_algorithms/skill_algorithms_README.md))
+3. Use skill ranking and a known proportion of tipoff winning teams scoring first basket to predict odds of each team scoring first ([see docs](src/odds_and_statistics/odds_README.md))
+4. Save player skill and prediction results for each game. ([see docs](src/skill_algorithms/trueskill_data_processing.py))
 
 ###Live Bet:
 
 1. Retrieve best odds line across betting sites ([see docs](src/live_data/live_data_README.md))
-2. Calculate odds of team scoring first using prep data above ([see docs](src/odds_and_statistics/odds_README.md))
-3. Determine if a bet is EV positive ([see docs]())
-4. If a bet is EV positive return the kelly bet size adjusted by a factor of 0.7 ([see docs]())
-5. Rank all possible bets, kelly bet sizes and times to determine optimal strategy ([see docs]())
+2. Create an "Odds" Object that conducts a series of calculations and represents a single game/exchange pair([see docs](src/classes/classes_README.md))
+3. Calculate odds of team scoring first using prep data above ([see docs](src/odds_and_statistics/odds_README.md))
+4. Determine if a bet is EV positive ([see docs](src/odds_and_statistics/odds_README.md))
+5. If a bet is EV positive return the kelly bet size adjusted by a factor of 0.7 ([see docs](src/odds_and_statistics/odds_README.md))
+6. Rank all possible bets, kelly bet sizes and times to determine optimal strategy ([see docs](src/live_data/live_data_README.md))
+
+###Running any scripts:
+All scripts should be run from the top-level directory(nba-tipoff-scraper) as all paths assume that you are in that
+directory. Pathing is one of the most annoying things about python; I chose to handle it with the [ENVIRONMENT.py](ENVIRONMENT.py) file.
+
+Windows will likely have issues with any paths that use formatting rather than wrapping a path with an os.path call
+
+I've made it a habit of running all scripts from the [scratch.py](scratch.py) files, or if you want to call it frequently from the command line 
+adopting a pattern of run_[script_name].py; which you can call with a python run_script.py command in terminal.
 
 # How to setup your environment
 

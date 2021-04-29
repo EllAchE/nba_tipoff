@@ -5,7 +5,7 @@ from src.historical_data.nba_play_by_play_methods import getAllFirstPossessionSt
     teamSummaryDataFromFirstPointData, saveAllHistoricalStarters
 from src.odds_and_statistics.prediction_enhancements import getCurrentSeasonUsageRate, \
     getFirstFieldGoalOrFirstPointStats
-from src.rating_algorithms.trueskill_data_processing import updateTrueSkillDictionaryFromLastGame, \
+from src.skill_algorithms.trueskill_data_processing import updateTrueSkillDictionaryFromLastGame, \
     calculateTrueSkillDictionaryFromZero
 
 

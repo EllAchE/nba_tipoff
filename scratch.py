@@ -22,7 +22,6 @@ from src.odds_and_statistics.prediction_enhancements import getFirstFieldGoalOrF
 # teamSummaryDataFromFirstPointData(2020)
 # teamSummaryDataFromFirstPointData(2021)
 
-
 # calculateTrueSkillDictionaryFromZero()
 # calculateGlickoDictionaryFromZero()
 # calculateEloDictionaryFromZero()
@@ -49,9 +48,3 @@ getDailyOdds('MEM', 'POR', '-113')
 
 # XGBoost(2020)
 # getPlusMinusForTeams(2020)
-# addAdditionalMlColumnsSingleSeason(2013)
-# addAdditionalMlColumnsSingleSeason(2016)
-# addAdditionalMlColumnsSingleSeason(2017)
-# addAdditionalMlColumnsSingleSeason(2018)
-# addAdditionalMlColumnsSingleSeason(2019)
-# addAdditionalMlColumnsSingleSeason(2020)

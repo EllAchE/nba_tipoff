@@ -1,6 +1,5 @@
 from src.database.database_access import getUniversalPlayerName, getPlayerCurrentTeam, getTeamIDFromShortCode
 
-
 def testGetUniversalPlayerName():
     assert getUniversalPlayerName("John Collins") == "johncollins"
     assert getUniversalPlayerName("jOhn'Co-llins") == "johncollins"

@@ -9,7 +9,7 @@ import ENVIRONMENT
 from typing import Any, Optional
 
 from src.database.database_access import getUniversalPlayerName, getPlayerCurrentTeam, getUniversalTeamShortCode
-from src.rating_algorithms.algorithms import trueSkillTipWinProb
+from src.skill_algorithms.algorithms import trueSkillTipWinProb
 
 # def getScoreProb(teamTipperCode: str, opponentTipperCode: str):
 #     tipWinOdds = trueSkillTipWinProb(teamTipperCode, opponentTipperCode)

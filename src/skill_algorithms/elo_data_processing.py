@@ -1,7 +1,7 @@
 import ENVIRONMENT
 from src.database.database_creation import createPlayerEloDictionary
-from src.rating_algorithms.algorithms import eloMatchWithRawNums, eloTipWinProb
-from src.rating_algorithms.common_data_processing import beforeMatchPredictions, \
+from src.skill_algorithms.algorithms import eloMatchWithRawNums, eloTipWinProb
+from src.skill_algorithms.common_data_processing import beforeMatchPredictions, \
     runAlgoForSeason, runAlgoForAllSeasons
 
 
