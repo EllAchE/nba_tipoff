@@ -148,3 +148,9 @@ def determineBetterOdds(odds1Str, odds2Str):
     else:
         raise ValueError('shouldn\'t reach here, check odds formatting')
     return oddsStr
+
+def floatInexactZeroCheck(result):
+    return 0.0001 > result > -0.0001
+
+def floatInexactZeroTwoNumberDiff(a, b):
+    return floatInexactZeroCheck(a - b)

@@ -39,8 +39,11 @@ from src.odds.prediction_enhancements import getFirstFieldGoalOrFirstPointStats
 # concatCsv('all_ml_cols.csv', ENVIRONMENT.ML_COLS_FOLDER_PATH)
 
 # checkForArbitrageInRetrievedOdds()
+argList = [americanToDecimal('-120'), americanToDecimal('+138')]
+test = getArbitrageRatiosTwoLines('-120', '+138')
+print(test)
 
-getDailyOdds('MEM', 'POR', '-113')
+# getDailyOdds('MEM', 'POR', '-113')
 # getAllOddsAndDisplayByEv(bovada=True)
 # smallDataUpdate()
 # getAllOddsAndDisplayByEv(fanduelToday=True)

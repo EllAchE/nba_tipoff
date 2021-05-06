@@ -103,8 +103,8 @@ def sysEMainDiagonalVarsNeg1Fill(argsList, amtToWin: float = 1, amtToLose: Optio
         return playerSpread * multiplier
 
 def getArbitrageRatiosTwoLines(bet1, bet2, printResult=False):
-    ratios = np.array(sysEMainDiagonalVarsNeg1Fill([costFor1(bet1), costFor1(bet2)]))
-    ratios = ratios / max(ratios) * 100
+    ratios = np.array(sysEMainDiagonalVarsNeg1Fill([americanToRatio(bet1), americanToRatio(bet2)]))
+    ratios = ratios / min(ratios) * 100
     if printResult:
         print('On Bet 1 ratio is', str(ratios[0]) + '.', 'For Bet 2', str(ratios[1]))
     return ratios

@@ -1,3 +1,9 @@
 from tests.database_test.database_access_test import testGetUniversalPlayerName, testGetPlayerCurrentTeam
-# testGetUniversalPlayerName()
+from tests.odds_test.arbitrage_tests import sysEMainDiagonalVarsNeg1Fill_test, getArbitrageRatiosTwoLines_test, \
+    checkForArbitrageAnyNumberOfLines_test
+
 testGetPlayerCurrentTeam()
+sysEMainDiagonalVarsNeg1Fill_test()
+getArbitrageRatiosTwoLines_test()
+checkForArbitrageAnyNumberOfLines_test()
+# testGetUniversalPlayerName()

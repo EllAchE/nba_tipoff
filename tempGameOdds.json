@@ -1,114 +1,32 @@
 {
     "games": [
-        "IND OKC",
-        "MIN NOP",
-        "GSW HOU",
-        "CLE MIA",
-        "MEM ORL",
-        "DEN LAC",
-        "DAL WAS",
-        "ATL CHI",
-        "CHA DET",
-        "TOR UTA"
+        "HOU PHI",
+        "CLE POR",
+        "ATL PHX",
+        "MEM MIN"
     ],
-    "OKC": {
-        "fanduel": "-115.0",
-        "draftkings": "-114",
-        "mgm": "-110"
-    },
-    "IND": {
-        "fanduel": "-111.0",
-        "draftkings": "-112",
-        "mgm": "-125"
-    },
-    "MIN": {
-        "fanduel": "-128.0",
-        "draftkings": "-107",
-        "mgm": "-110"
-    },
-    "NOP": {
-        "fanduel": "+100.0",
-        "draftkings": "-120",
-        "mgm": "-125"
-    },
     "HOU": {
-        "fanduel": "+100.0",
-        "draftkings": "+104",
-        "mgm": "-105"
+        "fanduel": "+126.0"
     },
-    "GSW": {
-        "fanduel": "-128.0",
-        "draftkings": "-132",
-        "mgm": "-135"
+    "PHI": {
+        "fanduel": "-162.0"
     },
     "CLE": {
-        "fanduel": "-106.0",
-        "draftkings": "-103",
-        "mgm": "+105"
+        "fanduel": "+108.0"
     },
-    "MIA": {
-        "fanduel": "-120.0",
-        "draftkings": "-124",
-        "mgm": "-145"
-    },
-    "ORL": {
-        "fanduel": "+112.00000000000001",
-        "draftkings": "+112",
-        "mgm": "+100"
-    },
-    "MEM": {
-        "fanduel": "-142.0",
-        "draftkings": "-143",
-        "mgm": "-140"
-    },
-    "LAC": {
-        "fanduel": "-120.0",
-        "draftkings": "-117",
-        "mgm": "-125"
-    },
-    "DEN": {
-        "fanduel": "-106.0",
-        "draftkings": "-109",
-        "mgm": "-110"
-    },
-    "DAL": {
-        "fanduel": "-132.0",
-        "draftkings": "-129",
-        "mgm": "-125"
-    },
-    "WAS": {
-        "fanduel": "+104.0",
-        "draftkings": "+102",
-        "mgm": "-110"
+    "POR": {
+        "fanduel": "-138.0"
     },
     "ATL": {
-        "fanduel": "-142.0",
-        "draftkings": "-139",
-        "mgm": "-125"
+        "fanduel": "-115.0"
     },
-    "CHI": {
-        "fanduel": "+112.00000000000001",
-        "draftkings": "+110",
-        "mgm": "-110"
+    "PHX": {
+        "fanduel": "-111.0"
     },
-    "CHA": {
-        "fanduel": "-128.0",
-        "draftkings": "-125",
-        "mgm": "-135"
+    "MIN": {
+        "fanduel": "-113.0"
     },
-    "DET": {
-        "fanduel": "+100.0",
-        "draftkings": "+100",
-        "mgm": "-105"
-    },
-    "UTA": {
-        "fanduel": "-170.0",
-        "draftkings": "-143",
-        "mgm": "-135"
-    },
-    "TOR": {
-        "fanduel": "+132.0",
-        "draftkings": "+112",
-        "mgm": "-105"
+    "MEM": {
+        "fanduel": "-113.0"
     }
 }

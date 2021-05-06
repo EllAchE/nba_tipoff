@@ -12,6 +12,3 @@ def testGetPlayerCurrentTeam():
 def testGetTeamIDFromShortCode():
     teamDict = getTeamIDFromShortCode("ATL")
     assert teamDict == 1610612737
-
-def testSys
-
