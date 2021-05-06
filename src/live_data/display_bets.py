@@ -97,6 +97,7 @@ def getUniqueOddsAndDisplayByEv(draftkings=False, mgm=False, bovada=False, point
     allGameOddsObjList = createAllOddsDict(draftkings=draftkings, mgm=mgm, bovada=bovada, pointsBet=pointsbet, unibet=unibet, barstool=barstool, fanduelToday=fanduelToday, fanduelTomorrow=fanduelTomorrow, betfair=betfair, includeOptimalPlayerSpread=includeOptimalPlayerSpread)
     savePickledOddsObjs(allGameOddsObjList)
     displayUniqueBetsByEV(allGameOddsObjList)
+    savePositiveEVBetsToTxt(allGameOddsObjList)
 
 def printQuarterDetails(g, showTeamAndPlayers, i):
     betOn = g.betOn()
@@ -188,3 +189,26 @@ def printOddsObjDetails(oddsList: Any, showAll: bool = False, showTeamAndPlayers
         else:
             printQuarterDetails(g, showTeamAndPlayers, i)
         i += 1
+
+def savePositiveEVBetsToTxt(oddsList):
+    clearTempFile()
+    for g in oddsList:
+        if g.kellyBet > 1:
+            saveSingleQuarterLine(g)
+        if g.isFullGame:
+            if g.secondQuarterGameObj.kellyBet > 1:
+                saveSingleQuarterLine(g.secondQuarterGameObj)
+            if g.thirdQuarterGameObj.kellyBet > 1:
+                saveSingleQuarterLine(g.thirdQuarterGameObj)
+            if g.fourthQuarterGameObj.kellyBet > 1:
+                saveSingleQuarterLine(g.fourthQuarterGameObj)
+
+def clearTempFile():
+    with open('tempBets.txt', 'w') as f:
+        f.write()
+
+def saveSingleQuarterLine(g, saveFile='tempBets.txt'):
+    with open(saveFile, 'a') as f:
+        f.write('On exchange', g.exchange, 'QUARTER', g.quarter, '| Bet On:', g.betOn, '| Via:', g.betOnVia)
+        f.write('| Kelly Bet:', g.kellyBet, '| Home Line:', "{:.1f}".format(float(g.bestHomeOdds)), '| Away Line:',
+          "{:.1f}".format(float(g.bestAwayOdds)))

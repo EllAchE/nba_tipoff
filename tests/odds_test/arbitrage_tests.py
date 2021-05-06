@@ -32,18 +32,3 @@ def checkForArbitrageAnyNumberOfLines_test():
     assert testCalc
     spread = checkForArbitrageAnyNumberOfLines('-110', '-110')
     assert not spread
-
-# def checkForArbitrageAnyNumberOfLines(*args, printResult=False):
-#     decimalOddsArgList = list(map(americanToRatio, args))
-#     ratios = np.array(sysEMainDiagonalVarsNeg1Fill(decimalOddsArgList))
-#     if ratios[0] < 0:
-#         if printResult:
-#             print('No arbitrage')
-#     else:
-#         ratios = ratios / max(ratios) * 100
-#         if printResult:
-#             i = 0
-#             for line in ratios:
-#                 i += 1
-#                 print('For bet', i, 'ratio is', line)
-#         return ratios

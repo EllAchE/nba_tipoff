@@ -85,3 +85,7 @@ https://punter2pro.com/best-sports-arbing-software/
 # backlogtodo (OVERKILL) have scheduler for scraping with randomized twice-a-day fetching and telegram alerts
 
 # backlogtodo use this win prob/other win prob estimates over the course of a game to see if odds are mismatched https://github.com/swar/nba_api/blob/master/docs/nba_api/stats/endpoints/winprobabilitypbp.md
+
+# todo pretty print the bets for sharing
+# todo fix cron job for data updates
+# todo add auto starter updates
