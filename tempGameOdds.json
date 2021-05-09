@@ -1,32 +1,76 @@
 {
     "games": [
-        "HOU PHI",
-        "CLE POR",
-        "ATL PHX",
-        "MEM MIN"
+        "BOS MIA",
+        "LAC NYK",
+        "CLE DAL",
+        "CHA NOP",
+        "MIN ORL",
+        "CHI DET",
+        "LAL PHX",
+        "OKC SAC"
     ],
-    "HOU": {
-        "fanduel": "+126.0"
+    "BOS": {
+        "draftkings": "-108",
+        "mgm": "-115"
     },
-    "PHI": {
-        "fanduel": "-162.0"
+    "MIA": {
+        "draftkings": "-118",
+        "mgm": "-115"
+    },
+    "LAC": {
+        "draftkings": "-125",
+        "mgm": "-135"
+    },
+    "NYK": {
+        "draftkings": "-103",
+        "mgm": "-105"
     },
     "CLE": {
-        "fanduel": "+108.0"
+        "draftkings": "-106",
+        "mgm": "+100"
     },
-    "POR": {
-        "fanduel": "-138.0"
+    "DAL": {
+        "draftkings": "-121",
+        "mgm": "-140"
     },
-    "ATL": {
-        "fanduel": "-115.0"
+    "CHA": {
+        "draftkings": "-121",
+        "mgm": "-125"
     },
-    "PHX": {
-        "fanduel": "-111.0"
+    "NOP": {
+        "draftkings": "-106",
+        "mgm": "-110"
+    },
+    "ORL": {
+        "draftkings": "+101",
+        "mgm": "-105"
     },
     "MIN": {
-        "fanduel": "-113.0"
+        "draftkings": "-129",
+        "mgm": "-135"
     },
-    "MEM": {
-        "fanduel": "-113.0"
+    "DET": {
+        "draftkings": "-103",
+        "mgm": "-105"
+    },
+    "CHI": {
+        "draftkings": "-125",
+        "mgm": "-135"
+    },
+    "LAL": {
+        "draftkings": "-106",
+        "mgm": "-105"
+    },
+    "PHX": {
+        "draftkings": "-121",
+        "mgm": "-135"
+    },
+    "SAC": {
+        "draftkings": "-129",
+        "mgm": "-135"
+    },
+    "OKC": {
+        "draftkings": "+101",
+        "mgm": "-105"
     }
 }

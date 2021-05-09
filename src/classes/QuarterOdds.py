@@ -1,6 +1,6 @@
 from src.live_data.live_odds_retrieval import getExpectedTipper
 from src.odds.odds_calculator import getEvMultiplier, getPlayerSpread, convertPlayerLinesToSingleLine, \
-    positiveEvThresholdFromAmerican, returnGreaterOdds, scoreFirstProb, kellyBetFromAOddsAndScoreProb
+    ImpliedOddsFromAmerican, returnGreaterOdds, scoreFirstProb, kellyBetFromAOddsAndScoreProb
 
 
 class QuarterOdds:
@@ -56,8 +56,8 @@ class QuarterOdds:
         else:
             self.bestHomeOdds = returnGreaterOdds(self.homeTeamFirstQuarterOdds, self.homePlayerFloorOdds)
             self.bestAwayOdds = returnGreaterOdds(self.awayTeamFirstQuarterOdds, self.awayPlayerFloorOdds)
-        self.minHomeWinPercentage = positiveEvThresholdFromAmerican(self.bestHomeOdds)
-        self.minAwayWinPercentage = positiveEvThresholdFromAmerican(self.bestAwayOdds)
+        self.minHomeWinPercentage = ImpliedOddsFromAmerican(self.bestHomeOdds)
+        self.minAwayWinPercentage = ImpliedOddsFromAmerican(self.bestAwayOdds)
 
         self.expectedHomeTipper = getExpectedTipper(self.home)
         self.expectedAwayTipper = getExpectedTipper(self.away)

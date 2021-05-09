@@ -431,25 +431,24 @@ def _fanduelOddsAll(today=True):
             "awayTeamFourthQuarterOdds": away4Odds,
         })
 
-        playerTeamDict = {}
-        for team in teamSet:
-            playerTeamDict[team] = []
-        for rawLine in unassignedPlayerOddsList:
-            try:
-                playerLine = addTeamToUnknownPlayerLine(rawLine)
-                team = getUniversalTeamShortCode(playerLine['team']) # todo test the expanded exception handling here, and implement in other methods too
-                playerTeamDict[team] += [playerLine]
-            except:
-                print('player', playerLine, 'or player', rawLine, 'had a team error, team not found in possible teams. Perhaps they were traded?')
+    playerTeamDict = {}
+    for team in teamSet:
+        playerTeamDict[team] = []
+    for rawLine in unassignedPlayerOddsList:
+        try:
+            playerLine = addTeamToUnknownPlayerLine(rawLine)
+            team = getUniversalTeamShortCode(playerLine['team']) # todo test the expanded exception handling here, and implement in other methods too
+            playerTeamDict[team] += [playerLine]
+        except:
+            print('player', playerLine, 'or player', rawLine, 'had a team error, team not found in possible teams. Perhaps they were traded?')
+    for gameLine in quarterOddsList:
+        gameLine["homePlayerFirstQuarterOdds"] = playerTeamDict[gameLine["home"]]
+        gameLine["awayPlayerFirstQuarterOdds"] = playerTeamDict[gameLine["away"]]
+    quarterOddsListWithAtLeastOneSetOfOdds = list()
+    for gameLine in quarterOddsList:
+        if (len(gameLine['homePlayerFirstQuarterOdds']) > 4 and len(gameLine['homePlayerFirstQuarterOdds']) > 4) or gameLine['homeTeamFirstQuarterOdds'] is not None:
+            quarterOddsListWithAtLeastOneSetOfOdds.append(gameLine)
 
-        for gameLine in quarterOddsList:
-            gameLine["homePlayerFirstQuarterOdds"] = playerTeamDict[gameLine["home"]]
-            gameLine["awayPlayerFirstQuarterOdds"] = playerTeamDict[gameLine["away"]]
-
-        quarterOddsListWithAtLeastOneSetOfOdds = list()
-        for gameLine in quarterOddsList:
-            if (len(gameLine['homePlayerFirstQuarterOdds']) > 4 and len(gameLine['homePlayerFirstQuarterOdds']) > 4) or gameLine['homeTeamFirstQuarterOdds'] is not None:
-                quarterOddsListWithAtLeastOneSetOfOdds.append(gameLine)
     if len(gameIdSet) == 0:
         print('No game ids were found on fanduel, make sure you are looking for a valid day (today or tomorrow).')
     else:

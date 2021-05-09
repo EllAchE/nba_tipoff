@@ -133,7 +133,7 @@ def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float=ENVIR
     else:
         return kellyRatio * bankroll
 
-def positiveEvThresholdFromAmerican(oddsStr: str):
+def ImpliedOddsFromAmerican(oddsStr: str):
     oddsNum = float(oddsStr[1:])
     
     if oddsStr[0] == '+':
@@ -179,7 +179,7 @@ def americanToRatio(x):
     return americanToDecimal(x) - 1
 
 def americanToDecimal(americanOdds: Any):
-    odds = positiveEvThresholdFromAmerican(americanOdds)
+    odds = ImpliedOddsFromAmerican(americanOdds)
     return 1 / odds
 
 def kellyBetFromAOddsAndScoreProb(scoreProb: float, americanOdds: str, bankroll: int=ENVIRONMENT.BANKROLL):
@@ -187,7 +187,7 @@ def kellyBetFromAOddsAndScoreProb(scoreProb: float, americanOdds: str, bankroll:
     return kellyBetReduced(loss_amt, scoreProb, bankroll=bankroll)
 
 def checkEvPositiveBackLayAndGetScoreProb(teamOdds: float, teamTipperCode: str, opponentTipperCode: str):
-    minWinRate = positiveEvThresholdFromAmerican(teamOdds)
+    minWinRate = ImpliedOddsFromAmerican(teamOdds)
     minLossRate = 1 - minWinRate
     scoreProb = scoreFirstProb(teamTipperCode, opponentTipperCode)
 
@@ -202,7 +202,7 @@ def checkEvPositiveBackLayAndGetScoreProb(teamOdds: float, teamTipperCode: str, 
         return None
 
 def checkEvPositive(teamOdds: float, scoreProb: float):
-    min_win_rate = positiveEvThresholdFromAmerican(teamOdds)
+    min_win_rate = ImpliedOddsFromAmerican(teamOdds)
     if scoreProb > min_win_rate:
         return True
     else:
