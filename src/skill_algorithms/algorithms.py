@@ -137,6 +137,5 @@ def trueSkillTipWinFromMuAndSigma(player1Mu, player1Sigma, player2Mu, player2Sig
     # print('odds', player1_code, 'beats', player2_code, 'are', res)
     return res
 
-
 def machineLearning():
     pass
