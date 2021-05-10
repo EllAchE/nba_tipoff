@@ -1,76 +1,70 @@
 {
     "games": [
-        "BOS MIA",
-        "LAC NYK",
         "CLE DAL",
-        "CHA NOP",
         "MIN ORL",
-        "CHI DET",
+        "CHA NOP",
+        "OKC SAC",
         "LAL PHX",
-        "OKC SAC"
+        "CHI DET"
     ],
-    "BOS": {
-        "draftkings": "-108",
-        "mgm": "-115"
-    },
-    "MIA": {
-        "draftkings": "-118",
-        "mgm": "-115"
-    },
-    "LAC": {
-        "draftkings": "-125",
-        "mgm": "-135"
-    },
-    "NYK": {
-        "draftkings": "-103",
-        "mgm": "-105"
-    },
     "CLE": {
-        "draftkings": "-106",
+        "fanduel": "-122.0",
+        "draftkings": "-113",
         "mgm": "+100"
     },
     "DAL": {
-        "draftkings": "-121",
+        "fanduel": "-104.0",
+        "draftkings": "-113",
         "mgm": "-140"
     },
-    "CHA": {
-        "draftkings": "-121",
-        "mgm": "-125"
-    },
-    "NOP": {
-        "draftkings": "-106",
-        "mgm": "-110"
-    },
     "ORL": {
+        "fanduel": "+110.00000000000001",
         "draftkings": "+101",
         "mgm": "-105"
     },
     "MIN": {
+        "fanduel": "-140.0",
         "draftkings": "-129",
         "mgm": "-135"
     },
-    "DET": {
-        "draftkings": "-103",
-        "mgm": "-105"
+    "CHA": {
+        "fanduel": "-130.0",
+        "draftkings": "-121",
+        "mgm": "-125"
     },
-    "CHI": {
-        "draftkings": "-125",
+    "NOP": {
+        "fanduel": "+102.0",
+        "draftkings": "-106",
+        "mgm": "-110"
+    },
+    "SAC": {
+        "fanduel": "-122.0",
+        "draftkings": "-127",
         "mgm": "-135"
     },
+    "OKC": {
+        "fanduel": "-104.0",
+        "draftkings": "+100",
+        "mgm": "-105"
+    },
     "LAL": {
+        "fanduel": "-132.0",
         "draftkings": "-106",
         "mgm": "-105"
     },
     "PHX": {
+        "fanduel": "+106.0",
         "draftkings": "-121",
         "mgm": "-135"
     },
-    "SAC": {
-        "draftkings": "-129",
-        "mgm": "-135"
-    },
-    "OKC": {
-        "draftkings": "+101",
+    "DET": {
+        "fanduel": "-111.0",
+        "draftkings": "-103",
         "mgm": "-105"
+    },
+    "CHI": {
+        "fanduel": "-115.0",
+        "draftkings": "-125",
+        "mgm": "-135"
     }
 }

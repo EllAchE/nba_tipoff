@@ -50,6 +50,7 @@ MIN_GLICKO_APPEARANCES = MIN_APPEARANCES
 GLICKO_TIPOFF_ODDS_THRESHOLD = TIP_WIN
 PHI_DRIFT = 'NoPhiDrift'
 # Epsilon can be adjusted for convergence speed/accuracy tradeoffs
+
 # GLicko Files
 PLAYER_GLICKO_DICT_PATH = Path(os.path.abspath('Data/JSON/algorithms/glicko/player_glicko_dictionary.json'))
 SEASON_CSV_UNFORMATTED_PATH = os.path.abspath('Data/CSV/season_data/tipoff_and_first_score_details_{}_season.csv')
@@ -57,10 +58,6 @@ GLICKO_PREDICTION_SUMMARIES_PATH = Path(os.path.abspath('Data/JSON/algorithms/gl
 BASE_GLICKO_MU, str(BASE_GLICKO_SIGMA).replace('.', ''), BASE_GLICKO_PHI, str(BASE_GLICKO_TAU).replace('.', ''), MIN_GLICKO_APPEARANCES, GLICKO_TIPOFF_ODDS_THRESHOLD, PHI_DRIFT, ALL_SEASONS_LIST)))
 SEASON_CSV_ML_COLS_UNFORMATTED_PATH = os.path.abspath('Data/CSV/ml_columns/{}_ml_columns.csv')
 SEASON_CSV_CALCULATED_VALUES_UNFORMATTED_PATH = os.path.abspath('Data/CSV/season_data/tipoff_and_first_score_details_{}_season-calculated-values.csv')
-
-ADVANCED_TEAMS_METRICS_UNFORMATTED = os.path.abspath('Data/JSON/team_metrics/advanced/{}_advanced_metrics.json')
-SHOT_BREAKDOWN_TEAMS_UNFORMATTED = os.path.abspath('Data/JSON/team_metrics/shot_breakdown/{}_shot_breakdown.json')
-PLUS_MINUS_TEAMS_UNFORMATTED = os.path.abspath('Data/JSON/team_metrics/plus_minus/{}_plus_minus.json')
 
 # Elo Base values
 K_FACTOR = 10
@@ -84,6 +81,7 @@ FIRST_POINT_SUMMARY_UNFORMATTED_PATH = os.path.abspath(
     'Data/JSON/first_shots_data/first_point_summaries/first_point_summary_{}.json')
 FIRST_POINT_TEAM_META = os.path.abspath(
     'Data/JSON/first_shots_data/first_point_summaries/first_point_summary_meta_{}.json')
+FIRST_POINT_DATA_RAW_2021 = os.path.absepath('Data/JSON/first_shots_data/first_shots_raw/2021_data.json')
 
 # Raw Data Paths
 PLAYER_TEAM_PAIRS_PATH = Path(os.path.abspath('Data/JSON/player_team_pairs.json'))
@@ -99,3 +97,6 @@ ML_COLS_FOLDER_PATH = os.path.abspath('Data/CSV/ml_columns')
 
 # NCAA Raw Data
 NCAA_DATA_FOLDER = Path(os.path.abspath('Data/ncaahoopR_data-master'))
+
+# Odds Data
+ODDS_DATA_FOLDER = 'Data/JSON/historical_odds'

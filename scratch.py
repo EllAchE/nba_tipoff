@@ -1,5 +1,6 @@
 from nba_api.stats.endpoints import TeamDashboardByGameSplits
 import ENVIRONMENT
+from src.backtest.base_backtest import retrievePickledOdds, savePickledOdds
 from src.database.data_update import customDataUpdate, smallDataUpdate, updateLongTermData
 from src.database.database_creation import addExtraUrlToPlayerLinks, getAdvancedMetricsForTeams, \
     getShotBreakdownForTeams, addAdditionalMlColumnsSingleSeason, concatCsv, getPlusMinusForTeams
@@ -40,7 +41,7 @@ from src.odds.prediction_enhancements import getFirstFieldGoalOrFirstPointStats
 
 # checkForArbitrageInRetrievedOdds()
 
-getDailyOdds('MEM', 'DEN', '-142')
+# getDailyOdds('MEM', 'DEN', '-142')
 # getAllOddsAndDisplayByEv(bovada=True)
 # smallDataUpdate()
 # getAllOddsAndDisplayByEv(fanduelToday=True)
@@ -48,3 +49,6 @@ getDailyOdds('MEM', 'DEN', '-142')
 
 # XGBoost(2020)
 # getPlusMinusForTeams(2020)
+
+#test = retrievePickledOdds()
+savePickledOdds()

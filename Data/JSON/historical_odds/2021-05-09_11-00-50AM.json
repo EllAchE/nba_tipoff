@@ -1,1 +1,2654 @@
-[{"py/object": "src.classes.QuarterOdds.QuarterOdds", "awayPlayerFloorOdds": "-133.10788036761568", "homePlayerFloorOdds": "-142.62358517945245", "kellyBet": {"bet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/reduce": [{"py/type": "numpy.dtype"}, {"py/tuple": ["f8", false, true]}, {"py/tuple": [3, "<", null, null, null, -1, -1, 0]}]}, {"py/b64": "txuLl5nQSkA="}]}]}, "team": "MIA"}, "homeTeamFirstQuarterOdds": "-108", "awayTeamFirstQuarterOdds": "-118", "home": "BOS", "away": "MIA", "fetchedDatetime": "2021-05-09 11:00:11.769723", "gameDatetime": null, "exchange": "draftkings", "marketUrl": null, "isTeamOnly": false, "isPlayersOnly": false, "gameCode": "BOS @ MIA 2021-05-09", "quarter": "QUARTER_1", "isFullGame": false, "homePlayerOddsList": [{"player": "Jayson Tatum", "odds": "+500", "team": "BOS"}, {"player": "Kemba Walker", "odds": "+700", "team": "BOS"}, {"player": "Evan Fournier", "odds": "+850", "team": "BOS"}, {"player": "Marcus Smart", "odds": "+900", "team": "BOS"}, {"player": "Robert Williams", "odds": "+1000", "team": "BOS"}, {"player": "Moritz Wagner", "odds": "+1300", "team": "BOS"}], "awayPlayerOddsList": [{"player": "Jimmy Butler", "odds": "+550", "team": "MIA"}, {"player": "Bam Adebayo", "odds": "+650", "team": "MIA"}, {"player": "Duncan Robinson", "odds": "+850", "team": "MIA"}, {"player": "Kendrick Nunn", "odds": "+950", "team": "MIA"}, {"player": "Trevor Ariza", "odds": "+1100", "team": "MIA"}], "isFirstFieldGoal": false, "bestHomeOdds": "-108", "bestAwayOdds": "-118", "minHomeWinPercentage": 0.5192307692307693, "minAwayWinPercentage": 0.5412844036697247, "expectedHomeTipper": "thomptr01.html", "expectedAwayTipper": "adebaba01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "gGtHC7hC3D8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "QEpc+qPe4T8="}]}]}, "homeBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "7KSlFHP5bMA="}]}]}, "awayBestKellyBet": {"py/id": 3}, "betOnHome": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/reduce": [{"py/type": "numpy.dtype"}, {"py/tuple": ["b1", false, true]}, {"py/tuple": [3, "|", null, null, null, -1, -1, 0]}]}, {"py/b64": "AA=="}]}]}, "betOnAway": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 22}, {"py/b64": "AQ=="}]}]}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "9oPJMMQ26z8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "a8LbLrqB8D8="}]}]}, "bestEVFactor": {"py/id": 25}, "betOnVia": "TEAM"}, {"py/object": "src.classes.QuarterOdds.QuarterOdds", "awayPlayerFloorOdds": "-119.8711377946991", "homePlayerFloorOdds": "-156.62150953829138", "kellyBet": null, "homeTeamFirstQuarterOdds": "-125", "awayTeamFirstQuarterOdds": "-103", "home": "LAC", "away": "NYK", "fetchedDatetime": "2021-05-09 11:00:11.769753", "gameDatetime": null, "exchange": "draftkings", "marketUrl": null, "isTeamOnly": false, "isPlayersOnly": false, "gameCode": "LAC @ NYK 2021-05-09", "quarter": "QUARTER_1", "isFullGame": false, "homePlayerOddsList": [{"player": "Paul George", "odds": "+500", "team": "LAC"}, {"player": "Kawhi Leonard", "odds": "+550", "team": "LAC"}, {"player": "Marcus Morris", "odds": "+750", "team": "LAC"}, {"player": "Ivica Zubac", "odds": "+950", "team": "LAC"}, {"player": "Patrick Beverley", "odds": "+1200", "team": "LAC"}], "awayPlayerOddsList": [{"player": "Julius Randle", "odds": "+550", "team": "NYK"}, {"player": "RJ Barrett", "odds": "+600", "team": "NYK"}, {"player": "Reggie Bullock", "odds": "+1000", "team": "NYK"}, {"player": "Elfrid Payton", "odds": "+1000", "team": "NYK"}, {"player": "Nerlens Noel", "odds": "+1400", "team": "NYK"}], "isFirstFieldGoal": false, "bestHomeOdds": "-125", "bestAwayOdds": "-103", "minHomeWinPercentage": 0.5555555555555556, "minAwayWinPercentage": 0.5073891625615764, "expectedHomeTipper": "zubaciv01.html", "expectedAwayTipper": "noelne01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "Vk9+xAqk3z8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "VdjAnfot4D8="}]}]}, "homeBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "cfghmeavaMA="}]}]}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "232xZjizFMA="}]}]}, "betOnHome": {"py/id": 21}, "betOnAway": {"py/id": 21}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "MxTYsAl67D8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "AD21WVHj7z8="}]}]}, "bestEVFactor": {"py/id": 44}, "betOnVia": "TEAM"}, {"py/object": "src.classes.QuarterOdds.QuarterOdds", "awayPlayerFloorOdds": null, "homePlayerFloorOdds": null, "kellyBet": {"bet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "3GUsFLkuZ0A="}]}]}, "team": "CLE"}, "homeTeamFirstQuarterOdds": "-106", "awayTeamFirstQuarterOdds": "-121", "home": "CLE", "away": "DAL", "fetchedDatetime": "2021-05-09 11:00:11.769758", "gameDatetime": null, "exchange": "draftkings", "marketUrl": null, "isTeamOnly": false, "isPlayersOnly": false, "gameCode": "CLE @ DAL 2021-05-09", "quarter": "QUARTER_1", "isFullGame": false, "homePlayerOddsList": [{"player": "Collin Sexton", "odds": "+550", "team": "CLE"}, {"player": "Jarrett Allen", "odds": "+700", "team": "CLE"}, {"player": "Cedi Osman", "odds": "+1000", "team": "CLE"}, {"player": "Isaac Okoro", "odds": "+1100", "team": "CLE"}, {"player": "Dean Wade", "odds": "+1100", "team": "CLE"}], "awayPlayerOddsList": [{"player": "Luka Doncic", "odds": "+400", "team": "DAL"}, {"player": "Dorian Finney-Smith", "odds": "+850", "team": "DAL"}, {"player": "Josh Richardson", "odds": "+850", "team": "DAL"}, {"player": "Willie Cauley-Stein", "odds": "+1100", "team": "DAL"}], "isFirstFieldGoal": false, "bestHomeOdds": "-106", "bestAwayOdds": "-121", "minHomeWinPercentage": 0.5145631067961165, "minAwayWinPercentage": 0.5475113122171946, "expectedHomeTipper": "allenja01.html", "expectedAwayTipper": "caulewi01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "p9CFYEB54j8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "s170Pn8N2z8="}]}]}, "homeBestKellyBet": {"py/id": 47}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "Ww5E1C+9eMA="}]}]}, "betOnHome": {"py/id": 23}, "betOnAway": {"py/id": 21}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "PVmVnGfz8T8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "fo34L4a06D8="}]}]}, "bestEVFactor": {"py/id": 62}, "betOnVia": "TEAM"}, {"py/object": "src.classes.QuarterOdds.QuarterOdds", "awayPlayerFloorOdds": "-127.15582450832072", "homePlayerFloorOdds": "-154.33526011560693", "kellyBet": {"bet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "36rJQPldW0A="}]}]}, "team": "CHA"}, "homeTeamFirstQuarterOdds": "-121", "awayTeamFirstQuarterOdds": "-106", "home": "CHA", "away": "NOP", "fetchedDatetime": "2021-05-09 11:00:11.769763", "gameDatetime": null, "exchange": "draftkings", "marketUrl": null, "isTeamOnly": false, "isPlayersOnly": false, "gameCode": "CHA @ NOP 2021-05-09", "quarter": "QUARTER_1", "isFullGame": false, "homePlayerOddsList": [{"player": "Terry Rozier", "odds": "+500", "team": "CHA"}, {"player": "LaMelo Ball", "odds": "+650", "team": "CHA"}, {"player": "PJ Washington", "odds": "+700", "team": "CHA"}, {"player": "Bismack Biyombo", "odds": "+1000", "team": "CHA"}, {"player": "Jalen McDaniels", "odds": "+1000", "team": "CHA"}], "awayPlayerOddsList": [{"player": "Lonzo Ball", "odds": "+550", "team": "NOP"}, {"player": "Eric Bledsoe", "odds": "+600", "team": "NOP"}, {"player": "James Johnson", "odds": "+950", "team": "NOP"}, {"player": "Willy Hernangomez", "odds": "+1000", "team": "NOP"}, {"player": "Naji Marshall", "odds": "+1200", "team": "NOP"}], "isFirstFieldGoal": false, "bestHomeOdds": "-121", "bestAwayOdds": "-106", "minHomeWinPercentage": 0.5475113122171946, "minAwayWinPercentage": 0.5145631067961165, "expectedHomeTipper": "biyombi01.html", "expectedAwayTipper": "hernawi01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "v3NNufuf4j8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "hhhljQjA2j8="}]}]}, "homeBestKellyBet": {"py/id": 66}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "ftQEtpXYccA="}]}]}, "betOnHome": {"py/id": 23}, "betOnAway": {"py/id": 21}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "1VnkkDsC8T8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "TcO2nDj+6T8="}]}]}, "bestEVFactor": {"py/id": 82}, "betOnVia": "TEAM"}, {"py/object": "src.classes.QuarterOdds.QuarterOdds", "awayPlayerFloorOdds": null, "homePlayerFloorOdds": null, "kellyBet": {"bet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "1b2t2/eUXUA="}]}]}, "team": "MIN"}, "homeTeamFirstQuarterOdds": "+101", "awayTeamFirstQuarterOdds": "-129", "home": "ORL", "away": "MIN", "fetchedDatetime": "2021-05-09 11:00:11.769767", "gameDatetime": null, "exchange": "draftkings", "marketUrl": null, "isTeamOnly": false, "isPlayersOnly": false, "gameCode": "ORL @ MIN 2021-05-09", "quarter": "QUARTER_1", "isFullGame": false, "homePlayerOddsList": [{"player": "Cole Anthony", "odds": "+750", "team": "ORL"}, {"player": "Dwayne Bacon", "odds": "+1000", "team": "ORL"}, {"player": "Gary Harris", "odds": "+1100", "team": "ORL"}], "awayPlayerOddsList": [{"player": "Karl-Anthony Towns", "odds": "+500", "team": "MIN"}, {"player": "Anthony Edwards", "odds": "+600", "team": "MIN"}, {"player": "D'Angelo Russell", "odds": "+650", "team": "MIN"}, {"player": "Jarred Vanderbilt", "odds": "+1000", "team": "MIN"}, {"player": "Ricky Rubio", "odds": "+1200", "team": "MIN"}], "isFirstFieldGoal": false, "bestHomeOdds": "+101", "bestAwayOdds": "-129", "minHomeWinPercentage": 0.4975124378109453, "minAwayWinPercentage": 0.5633187772925764, "expectedHomeTipper": "bambamo01.html", "expectedAwayTipper": "townska01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "f5r0YKGk2T8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "wbKFT68t4z8="}]}]}, "homeBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "ggjqfddIccA="}]}]}, "awayBestKellyBet": {"py/id": 86}, "betOnHome": {"py/id": 21}, "betOnAway": {"py/id": 23}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "eE4KG3TF6T8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "0QrHLdIF8T8="}]}]}, "bestEVFactor": {"py/id": 101}, "betOnVia": "TEAM"}, {"py/object": "src.classes.QuarterOdds.QuarterOdds", "awayPlayerFloorOdds": null, "homePlayerFloorOdds": null, "kellyBet": {"bet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "53iMoZZAUUA="}]}]}, "team": "DET"}, "homeTeamFirstQuarterOdds": "-103", "awayTeamFirstQuarterOdds": "-125", "home": "DET", "away": "CHI", "fetchedDatetime": "2021-05-09 11:00:11.769771", "gameDatetime": null, "exchange": "draftkings", "marketUrl": null, "isTeamOnly": false, "isPlayersOnly": false, "gameCode": "DET @ CHI 2021-05-09", "quarter": "QUARTER_1", "isFullGame": false, "homePlayerOddsList": [], "awayPlayerOddsList": [], "isFirstFieldGoal": false, "bestHomeOdds": "-103", "bestAwayOdds": "-125", "minHomeWinPercentage": 0.5073891625615764, "minAwayWinPercentage": 0.5555555555555556, "expectedHomeTipper": "plumlma01.html", "expectedAwayTipper": "vucevni01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "eIVKCZn+4D8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "D/Vq7c0C3j8="}]}]}, "homeBestKellyBet": {"py/id": 104}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "blH3UYh7ccA="}]}]}, "betOnHome": {"py/id": 23}, "betOnAway": {"py/id": 21}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "iCz2VD2/8D8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "jdx5IoYC6z8="}]}]}, "bestEVFactor": {"py/id": 110}, "betOnVia": "TEAM"}, {"py/object": "src.classes.QuarterOdds.QuarterOdds", "awayPlayerFloorOdds": "-151.47939353618827", "homePlayerFloorOdds": "-120.9152629653219", "kellyBet": {"bet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "iUqiauwLbEA="}]}]}, "team": "LAL"}, "homeTeamFirstQuarterOdds": "-106", "awayTeamFirstQuarterOdds": "-121", "home": "LAL", "away": "PHX", "fetchedDatetime": "2021-05-09 11:00:11.769774", "gameDatetime": null, "exchange": "draftkings", "marketUrl": null, "isTeamOnly": false, "isPlayersOnly": false, "gameCode": "LAL @ PHX 2021-05-09", "quarter": "QUARTER_1", "isFullGame": false, "homePlayerOddsList": [{"player": "Anthony Davis", "odds": "+450", "team": "LAL"}, {"player": "Andre Drummond", "odds": "+850", "team": "LAL"}, {"player": "Kentavious Caldwell-Pope", "odds": "+900", "team": "LAL"}, {"player": "Wesley Matthews", "odds": "+1100", "team": "LAL"}, {"player": "Alex Caruso", "odds": "+1200", "team": "LAL"}], "awayPlayerOddsList": [{"player": "Devin Booker", "odds": "+440", "team": "PHX"}, {"player": "DeAndre Ayton", "odds": "+650", "team": "PHX"}, {"player": "Chris Paul", "odds": "+850", "team": "PHX"}, {"player": "Mikal Bridges", "odds": "+950", "team": "PHX"}, {"player": "Torrey Craig", "odds": "+1100", "team": "PHX"}], "isFirstFieldGoal": false, "bestHomeOdds": "-106", "bestAwayOdds": "-121", "minHomeWinPercentage": 0.5145631067961165, "minAwayWinPercentage": 0.5475113122171946, "expectedHomeTipper": "drumman01.html", "expectedAwayTipper": "aytonde01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "1BmbKRbl4j8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "WszJrNM12j8="}]}]}, "homeBestKellyBet": {"py/id": 114}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "lZMoQB9Ze8A="}]}]}, "betOnHome": {"py/id": 23}, "betOnAway": {"py/id": 21}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "2hHwGTBc8j8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "H1YCtJHv5z8="}]}]}, "bestEVFactor": {"py/id": 130}, "betOnVia": "TEAM"}, {"py/object": "src.classes.QuarterOdds.QuarterOdds", "awayPlayerFloorOdds": null, "homePlayerFloorOdds": null, "kellyBet": null, "homeTeamFirstQuarterOdds": "-129", "awayTeamFirstQuarterOdds": "+101", "home": "SAC", "away": "OKC", "fetchedDatetime": "2021-05-09 11:00:11.769778", "gameDatetime": null, "exchange": "draftkings", "marketUrl": null, "isTeamOnly": false, "isPlayersOnly": false, "gameCode": "SAC @ OKC 2021-05-09", "quarter": "QUARTER_1", "isFullGame": false, "homePlayerOddsList": [], "awayPlayerOddsList": [], "isFirstFieldGoal": false, "bestHomeOdds": "-129", "bestAwayOdds": "+101", "minHomeWinPercentage": 0.5633187772925764, "minAwayWinPercentage": 0.4975124378109453, "expectedHomeTipper": "holmeri01.html", "expectedAwayTipper": "brownmo01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "MJ9WOp1Y4D8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "osFSi8VO3z8="}]}]}, "homeBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "5cbJ8OaQZcA="}]}]}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "wMLVCqDJN8A="}]}]}, "betOnHome": {"py/id": 21}, "betOnAway": {"py/id": 21}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "CGLLSYAE7T8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "jiuzc9h27z8="}]}]}, "bestEVFactor": {"py/id": 140}, "betOnVia": "TEAM"}, {"py/object": "src.classes.QuarterOdds.QuarterOdds", "awayPlayerFloorOdds": null, "homePlayerFloorOdds": null, "kellyBet": {"bet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "r4MRcusoUkA="}]}]}, "team": "MIA"}, "homeTeamFirstQuarterOdds": "-115", "awayTeamFirstQuarterOdds": "-115", "home": "BOS", "away": "MIA", "fetchedDatetime": "2021-05-09 11:00:42.763545", "gameDatetime": null, "exchange": "mgm", "marketUrl": null, "isTeamOnly": true, "isPlayersOnly": false, "gameCode": "BOS @ MIA 2021-05-09", "quarter": "QUARTER_1", "isFullGame": false, "bestHomeOdds": "-115", "bestAwayOdds": "-115", "minHomeWinPercentage": 0.5348837209302325, "minAwayWinPercentage": 0.5348837209302325, "expectedHomeTipper": "thomptr01.html", "expectedAwayTipper": "adebaba01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "gGtHC7hC3D8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "QEpc+qPe4T8="}]}]}, "homeBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "6mCE3Dr+ccA="}]}]}, "awayBestKellyBet": {"py/id": 143}, "betOnHome": {"py/id": 21}, "betOnAway": {"py/id": 23}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "wPp/seNq6j8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "f/fmXku08D8="}]}]}, "bestEVFactor": {"py/id": 148}, "betOnVia": "TEAM"}, {"py/object": "src.classes.QuarterOdds.QuarterOdds", "awayPlayerFloorOdds": null, "homePlayerFloorOdds": null, "kellyBet": null, "homeTeamFirstQuarterOdds": "-135", "awayTeamFirstQuarterOdds": "-105", "home": "LAC", "away": "NYK", "fetchedDatetime": "2021-05-09 11:00:42.763651", "gameDatetime": null, "exchange": "mgm", "marketUrl": null, "isTeamOnly": true, "isPlayersOnly": false, "gameCode": "LAC @ NYK 2021-05-09", "quarter": "QUARTER_1", "isFullGame": false, "bestHomeOdds": "-135", "bestAwayOdds": "-105", "minHomeWinPercentage": 0.574468085106383, "minAwayWinPercentage": 0.5121951219512195, "expectedHomeTipper": "zubaciv01.html", "expectedAwayTipper": "noelne01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "Vk9+xAqk3z8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "VdjAnfot4D8="}]}]}, "homeBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "3MhHStbgcMA="}]}]}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "vtDJ7SpdM8A="}]}]}, "betOnHome": {"py/id": 21}, "betOnAway": {"py/id": 21}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "5pArXwmK6z8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "ge9TibiW7z8="}]}]}, "bestEVFactor": {"py/id": 155}, "betOnVia": "TEAM"}, {"py/object": "src.classes.QuarterOdds.QuarterOdds", "awayPlayerFloorOdds": null, "homePlayerFloorOdds": null, "kellyBet": {"bet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "MDEcule7a0A="}]}]}, "team": "CLE"}, "homeTeamFirstQuarterOdds": "+100", "awayTeamFirstQuarterOdds": "-140", "home": "CLE", "away": "DAL", "fetchedDatetime": "2021-05-09 11:00:42.763670", "gameDatetime": null, "exchange": "mgm", "marketUrl": null, "isTeamOnly": true, "isPlayersOnly": false, "gameCode": "CLE @ DAL 2021-05-09", "quarter": "QUARTER_1", "isFullGame": false, "bestHomeOdds": "+100", "bestAwayOdds": "-140", "minHomeWinPercentage": 0.5, "minAwayWinPercentage": 0.5833333333333334, "expectedHomeTipper": "allenja01.html", "expectedAwayTipper": "caulewi01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "p9CFYEB54j8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "s170Pn8N2z8="}]}]}, "homeBestKellyBet": {"py/id": 158}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "vg6ihM1JgcA="}]}]}, "betOnHome": {"py/id": 23}, "betOnAway": {"py/id": 21}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "p9CFYEB58j8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "vnXR7CMw5z8="}]}]}, "bestEVFactor": {"py/id": 162}, "betOnVia": "TEAM"}, {"py/object": "src.classes.QuarterOdds.QuarterOdds", "awayPlayerFloorOdds": null, "homePlayerFloorOdds": null, "kellyBet": {"bet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "KTOvIoReVUA="}]}]}, "team": "CHA"}, "homeTeamFirstQuarterOdds": "-125", "awayTeamFirstQuarterOdds": "-110", "home": "CHA", "away": "NOP", "fetchedDatetime": "2021-05-09 11:00:42.763688", "gameDatetime": null, "exchange": "mgm", "marketUrl": null, "isTeamOnly": true, "isPlayersOnly": false, "gameCode": "CHA @ NOP 2021-05-09", "quarter": "QUARTER_1", "isFullGame": false, "bestHomeOdds": "-125", "bestAwayOdds": "-110", "minHomeWinPercentage": 0.5555555555555556, "minAwayWinPercentage": 0.5238095238095238, "expectedHomeTipper": "biyombi01.html", "expectedAwayTipper": "hernawi01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "v3NNufuf4j8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "hhhljQjA2j8="}]}]}, "homeBestKellyBet": {"py/id": 166}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "9Jzk1B7vc8A="}]}]}, "betOnHome": {"py/id": 23}, "betOnAway": {"py/id": 21}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "LOj4WS/D8D8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "CyNsWMKI6T8="}]}]}, "bestEVFactor": {"py/id": 170}, "betOnVia": "TEAM"}, {"py/object": "src.classes.QuarterOdds.QuarterOdds", "awayPlayerFloorOdds": null, "homePlayerFloorOdds": null, "kellyBet": {"bet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "3d+RLhn1VEA="}]}]}, "team": "MIN"}, "homeTeamFirstQuarterOdds": "-105", "awayTeamFirstQuarterOdds": "-135", "home": "ORL", "away": "MIN", "fetchedDatetime": "2021-05-09 11:00:42.763706", "gameDatetime": null, "exchange": "mgm", "marketUrl": null, "isTeamOnly": true, "isPlayersOnly": false, "gameCode": "ORL @ MIN 2021-05-09", "quarter": "QUARTER_1", "isFullGame": false, "bestHomeOdds": "-105", "bestAwayOdds": "-135", "minHomeWinPercentage": 0.5121951219512195, "minAwayWinPercentage": 0.574468085106383, "expectedHomeTipper": "bambamo01.html", "expectedAwayTipper": "townska01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "f5r0YKGk2T8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "wbKFT68t4z8="}]}]}, "homeBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "aE0HpByBdMA="}]}]}, "awayBestKellyBet": {"py/id": 174}, "betOnHome": {"py/id": 21}, "betOnAway": {"py/id": 23}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "iAS+ZFQI6T8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "LOzXgj6x8D8="}]}]}, "bestEVFactor": {"py/id": 179}, "betOnVia": "TEAM"}, {"py/object": "src.classes.QuarterOdds.QuarterOdds", "awayPlayerFloorOdds": null, "homePlayerFloorOdds": null, "kellyBet": {"bet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "3FwQSozGS0A="}]}]}, "team": "DET"}, "homeTeamFirstQuarterOdds": "-105", "awayTeamFirstQuarterOdds": "-135", "home": "DET", "away": "CHI", "fetchedDatetime": "2021-05-09 11:00:42.763722", "gameDatetime": null, "exchange": "mgm", "marketUrl": null, "isTeamOnly": true, "isPlayersOnly": false, "gameCode": "DET @ CHI 2021-05-09", "quarter": "QUARTER_1", "isFullGame": false, "bestHomeOdds": "-105", "bestAwayOdds": "-135", "minHomeWinPercentage": 0.5121951219512195, "minAwayWinPercentage": 0.574468085106383, "expectedHomeTipper": "plumlma01.html", "expectedAwayTipper": "vucevni01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "eIVKCZn+4D8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "D/Vq7c0C3j8="}]}]}, "homeBestKellyBet": {"py/id": 182}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "V/RRtuM+dsA="}]}]}, "betOnHome": {"py/id": 23}, "betOnAway": {"py/id": 21}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "YghbGwOX8D8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "cIn5o+Ie6j8="}]}]}, "bestEVFactor": {"py/id": 186}, "betOnVia": "TEAM"}, {"py/object": "src.classes.QuarterOdds.QuarterOdds", "awayPlayerFloorOdds": null, "homePlayerFloorOdds": null, "kellyBet": {"bet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "CwyabPvHbEA="}]}]}, "team": "LAL"}, "homeTeamFirstQuarterOdds": "-105", "awayTeamFirstQuarterOdds": "-135", "home": "LAL", "away": "PHX", "fetchedDatetime": "2021-05-09 11:00:42.763738", "gameDatetime": null, "exchange": "mgm", "marketUrl": null, "isTeamOnly": true, "isPlayersOnly": false, "gameCode": "LAL @ PHX 2021-05-09", "quarter": "QUARTER_1", "isFullGame": false, "bestHomeOdds": "-105", "bestAwayOdds": "-135", "minHomeWinPercentage": 0.5121951219512195, "minAwayWinPercentage": 0.574468085106383, "expectedHomeTipper": "drumman01.html", "expectedAwayTipper": "aytonde01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "1BmbKRbl4j8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "WszJrNM12j8="}]}]}, "homeBestKellyBet": {"py/id": 190}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "vFdkTI5hgcA="}]}]}, "betOnHome": {"py/id": 23}, "betOnAway": {"py/id": 21}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "pHTa9+px8j8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "+PgE1AjQ5j8="}]}]}, "bestEVFactor": {"py/id": 194}, "betOnVia": "TEAM"}, {"py/object": "src.classes.QuarterOdds.QuarterOdds", "awayPlayerFloorOdds": null, "homePlayerFloorOdds": null, "kellyBet": null, "homeTeamFirstQuarterOdds": "-135", "awayTeamFirstQuarterOdds": "-105", "home": "SAC", "away": "OKC", "fetchedDatetime": "2021-05-09 11:00:42.763754", "gameDatetime": null, "exchange": "mgm", "marketUrl": null, "isTeamOnly": true, "isPlayersOnly": false, "gameCode": "SAC @ OKC 2021-05-09", "quarter": "QUARTER_1", "isFullGame": false, "bestHomeOdds": "-135", "bestAwayOdds": "-105", "minHomeWinPercentage": 0.574468085106383, "minAwayWinPercentage": 0.5121951219512195, "expectedHomeTipper": "holmeri01.html", "expectedAwayTipper": "brownmo01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "MJ9WOp1Y4D8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "osFSi8VO3z8="}]}]}, "homeBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "jHFE3LLUasA="}]}]}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "ccdBepHsUMA="}]}]}, "betOnHome": {"py/id": 21}, "betOnAway": {"py/id": 21}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "qPg3EFR07D8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 4}, {"py/b64": "1bBKmvGP7j8="}]}]}, "bestEVFactor": {"py/id": 202}, "betOnVia": "TEAM"}]
+[
+  {
+    "py/object": "src.classes.QuarterOdds.QuarterOdds",
+    "awayPlayerFloorOdds": "-133.10788036761568",
+    "homePlayerFloorOdds": "-142.62358517945245",
+    "kellyBet": {
+      "bet": {
+        "py/reduce": [
+          {
+            "py/function": "numpy.core.multiarray.scalar"
+          },
+          {
+            "py/tuple": [
+              {
+                "py/reduce": [
+                  {
+                    "py/type": "numpy.dtype"
+                  },
+                  {
+                    "py/tuple": [
+                      "f8",
+                      false,
+                      true
+                    ]
+                  },
+                  {
+                    "py/tuple": [
+                      3,
+                      "<",
+                      null,
+                      null,
+                      null,
+                      -1,
+                      -1,
+                      0
+                    ]
+                  }
+                ]
+              },
+              {
+                "py/b64": "txuLl5nQSkA="
+              }
+            ]
+          }
+        ]
+      },
+      "team": "MIA"
+    },
+    "homeTeamFirstQuarterOdds": "-108",
+    "awayTeamFirstQuarterOdds": "-118",
+    "home": "BOS",
+    "away": "MIA",
+    "fetchedDatetime": "2021-05-09 11:00:11.769723",
+    "gameDatetime": null,
+    "exchange": "draftkings",
+    "marketUrl": null,
+    "isTeamOnly": false,
+    "isPlayersOnly": false,
+    "gameCode": "BOS @ MIA 2021-05-09",
+    "quarter": "QUARTER_1",
+    "isFullGame": false,
+    "homePlayerOddsList": [
+      {
+        "player": "Jayson Tatum",
+        "odds": "+500",
+        "team": "BOS"
+      },
+      {
+        "player": "Kemba Walker",
+        "odds": "+700",
+        "team": "BOS"
+      },
+      {
+        "player": "Evan Fournier",
+        "odds": "+850",
+        "team": "BOS"
+      },
+      {
+        "player": "Marcus Smart",
+        "odds": "+900",
+        "team": "BOS"
+      },
+      {
+        "player": "Robert Williams",
+        "odds": "+1000",
+        "team": "BOS"
+      },
+      {
+        "player": "Moritz Wagner",
+        "odds": "+1300",
+        "team": "BOS"
+      }
+    ],
+    "awayPlayerOddsList": [
+      {
+        "player": "Jimmy Butler",
+        "odds": "+550",
+        "team": "MIA"
+      },
+      {
+        "player": "Bam Adebayo",
+        "odds": "+650",
+        "team": "MIA"
+      },
+      {
+        "player": "Duncan Robinson",
+        "odds": "+850",
+        "team": "MIA"
+      },
+      {
+        "player": "Kendrick Nunn",
+        "odds": "+950",
+        "team": "MIA"
+      },
+      {
+        "player": "Trevor Ariza",
+        "odds": "+1100",
+        "team": "MIA"
+      }
+    ],
+    "isFirstFieldGoal": false,
+    "bestHomeOdds": "-108",
+    "bestAwayOdds": "-118",
+    "minHomeWinPercentage": 0.5192307692307693,
+    "minAwayWinPercentage": 0.5412844036697247,
+    "expectedHomeTipper": "thomptr01.html",
+    "expectedAwayTipper": "adebaba01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "gGtHC7hC3D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "QEpc+qPe4T8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "7KSlFHP5bMA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/id": 3
+    },
+    "betOnHome": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/reduce": [
+                {
+                  "py/type": "numpy.dtype"
+                },
+                {
+                  "py/tuple": [
+                    "b1",
+                    false,
+                    true
+                  ]
+                },
+                {
+                  "py/tuple": [
+                    3,
+                    "|",
+                    null,
+                    null,
+                    null,
+                    -1,
+                    -1,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "py/b64": "AA=="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnAway": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 22
+            },
+            {
+              "py/b64": "AQ=="
+            }
+          ]
+        }
+      ]
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "9oPJMMQ26z8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "a8LbLrqB8D8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 25
+    },
+    "betOnVia": "TEAM"
+  },
+  {
+    "py/object": "src.classes.QuarterOdds.QuarterOdds",
+    "awayPlayerFloorOdds": "-119.8711377946991",
+    "homePlayerFloorOdds": "-156.62150953829138",
+    "kellyBet": null,
+    "homeTeamFirstQuarterOdds": "-125",
+    "awayTeamFirstQuarterOdds": "-103",
+    "home": "LAC",
+    "away": "NYK",
+    "fetchedDatetime": "2021-05-09 11:00:11.769753",
+    "gameDatetime": null,
+    "exchange": "draftkings",
+    "marketUrl": null,
+    "isTeamOnly": false,
+    "isPlayersOnly": false,
+    "gameCode": "LAC @ NYK 2021-05-09",
+    "quarter": "QUARTER_1",
+    "isFullGame": false,
+    "homePlayerOddsList": [
+      {
+        "player": "Paul George",
+        "odds": "+500",
+        "team": "LAC"
+      },
+      {
+        "player": "Kawhi Leonard",
+        "odds": "+550",
+        "team": "LAC"
+      },
+      {
+        "player": "Marcus Morris",
+        "odds": "+750",
+        "team": "LAC"
+      },
+      {
+        "player": "Ivica Zubac",
+        "odds": "+950",
+        "team": "LAC"
+      },
+      {
+        "player": "Patrick Beverley",
+        "odds": "+1200",
+        "team": "LAC"
+      }
+    ],
+    "awayPlayerOddsList": [
+      {
+        "player": "Julius Randle",
+        "odds": "+550",
+        "team": "NYK"
+      },
+      {
+        "player": "RJ Barrett",
+        "odds": "+600",
+        "team": "NYK"
+      },
+      {
+        "player": "Reggie Bullock",
+        "odds": "+1000",
+        "team": "NYK"
+      },
+      {
+        "player": "Elfrid Payton",
+        "odds": "+1000",
+        "team": "NYK"
+      },
+      {
+        "player": "Nerlens Noel",
+        "odds": "+1400",
+        "team": "NYK"
+      }
+    ],
+    "isFirstFieldGoal": false,
+    "bestHomeOdds": "-125",
+    "bestAwayOdds": "-103",
+    "minHomeWinPercentage": 0.5555555555555556,
+    "minAwayWinPercentage": 0.5073891625615764,
+    "expectedHomeTipper": "zubaciv01.html",
+    "expectedAwayTipper": "noelne01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "Vk9+xAqk3z8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "VdjAnfot4D8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "cfghmeavaMA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "232xZjizFMA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 21
+    },
+    "betOnAway": {
+      "py/id": 21
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "MxTYsAl67D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "AD21WVHj7z8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 44
+    },
+    "betOnVia": "TEAM"
+  },
+  {
+    "py/object": "src.classes.QuarterOdds.QuarterOdds",
+    "awayPlayerFloorOdds": null,
+    "homePlayerFloorOdds": null,
+    "kellyBet": {
+      "bet": {
+        "py/reduce": [
+          {
+            "py/function": "numpy.core.multiarray.scalar"
+          },
+          {
+            "py/tuple": [
+              {
+                "py/id": 4
+              },
+              {
+                "py/b64": "3GUsFLkuZ0A="
+              }
+            ]
+          }
+        ]
+      },
+      "team": "CLE"
+    },
+    "homeTeamFirstQuarterOdds": "-106",
+    "awayTeamFirstQuarterOdds": "-121",
+    "home": "CLE",
+    "away": "DAL",
+    "fetchedDatetime": "2021-05-09 11:00:11.769758",
+    "gameDatetime": null,
+    "exchange": "draftkings",
+    "marketUrl": null,
+    "isTeamOnly": false,
+    "isPlayersOnly": false,
+    "gameCode": "CLE @ DAL 2021-05-09",
+    "quarter": "QUARTER_1",
+    "isFullGame": false,
+    "homePlayerOddsList": [
+      {
+        "player": "Collin Sexton",
+        "odds": "+550",
+        "team": "CLE"
+      },
+      {
+        "player": "Jarrett Allen",
+        "odds": "+700",
+        "team": "CLE"
+      },
+      {
+        "player": "Cedi Osman",
+        "odds": "+1000",
+        "team": "CLE"
+      },
+      {
+        "player": "Isaac Okoro",
+        "odds": "+1100",
+        "team": "CLE"
+      },
+      {
+        "player": "Dean Wade",
+        "odds": "+1100",
+        "team": "CLE"
+      }
+    ],
+    "awayPlayerOddsList": [
+      {
+        "player": "Luka Doncic",
+        "odds": "+400",
+        "team": "DAL"
+      },
+      {
+        "player": "Dorian Finney-Smith",
+        "odds": "+850",
+        "team": "DAL"
+      },
+      {
+        "player": "Josh Richardson",
+        "odds": "+850",
+        "team": "DAL"
+      },
+      {
+        "player": "Willie Cauley-Stein",
+        "odds": "+1100",
+        "team": "DAL"
+      }
+    ],
+    "isFirstFieldGoal": false,
+    "bestHomeOdds": "-106",
+    "bestAwayOdds": "-121",
+    "minHomeWinPercentage": 0.5145631067961165,
+    "minAwayWinPercentage": 0.5475113122171946,
+    "expectedHomeTipper": "allenja01.html",
+    "expectedAwayTipper": "caulewi01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "p9CFYEB54j8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "s170Pn8N2z8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/id": 47
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "Ww5E1C+9eMA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 23
+    },
+    "betOnAway": {
+      "py/id": 21
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "PVmVnGfz8T8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "fo34L4a06D8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 62
+    },
+    "betOnVia": "TEAM"
+  },
+  {
+    "py/object": "src.classes.QuarterOdds.QuarterOdds",
+    "awayPlayerFloorOdds": "-127.15582450832072",
+    "homePlayerFloorOdds": "-154.33526011560693",
+    "kellyBet": {
+      "bet": {
+        "py/reduce": [
+          {
+            "py/function": "numpy.core.multiarray.scalar"
+          },
+          {
+            "py/tuple": [
+              {
+                "py/id": 4
+              },
+              {
+                "py/b64": "36rJQPldW0A="
+              }
+            ]
+          }
+        ]
+      },
+      "team": "CHA"
+    },
+    "homeTeamFirstQuarterOdds": "-121",
+    "awayTeamFirstQuarterOdds": "-106",
+    "home": "CHA",
+    "away": "NOP",
+    "fetchedDatetime": "2021-05-09 11:00:11.769763",
+    "gameDatetime": null,
+    "exchange": "draftkings",
+    "marketUrl": null,
+    "isTeamOnly": false,
+    "isPlayersOnly": false,
+    "gameCode": "CHA @ NOP 2021-05-09",
+    "quarter": "QUARTER_1",
+    "isFullGame": false,
+    "homePlayerOddsList": [
+      {
+        "player": "Terry Rozier",
+        "odds": "+500",
+        "team": "CHA"
+      },
+      {
+        "player": "LaMelo Ball",
+        "odds": "+650",
+        "team": "CHA"
+      },
+      {
+        "player": "PJ Washington",
+        "odds": "+700",
+        "team": "CHA"
+      },
+      {
+        "player": "Bismack Biyombo",
+        "odds": "+1000",
+        "team": "CHA"
+      },
+      {
+        "player": "Jalen McDaniels",
+        "odds": "+1000",
+        "team": "CHA"
+      }
+    ],
+    "awayPlayerOddsList": [
+      {
+        "player": "Lonzo Ball",
+        "odds": "+550",
+        "team": "NOP"
+      },
+      {
+        "player": "Eric Bledsoe",
+        "odds": "+600",
+        "team": "NOP"
+      },
+      {
+        "player": "James Johnson",
+        "odds": "+950",
+        "team": "NOP"
+      },
+      {
+        "player": "Willy Hernangomez",
+        "odds": "+1000",
+        "team": "NOP"
+      },
+      {
+        "player": "Naji Marshall",
+        "odds": "+1200",
+        "team": "NOP"
+      }
+    ],
+    "isFirstFieldGoal": false,
+    "bestHomeOdds": "-121",
+    "bestAwayOdds": "-106",
+    "minHomeWinPercentage": 0.5475113122171946,
+    "minAwayWinPercentage": 0.5145631067961165,
+    "expectedHomeTipper": "biyombi01.html",
+    "expectedAwayTipper": "hernawi01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "v3NNufuf4j8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "hhhljQjA2j8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/id": 66
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "ftQEtpXYccA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 23
+    },
+    "betOnAway": {
+      "py/id": 21
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "1VnkkDsC8T8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "TcO2nDj+6T8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 82
+    },
+    "betOnVia": "TEAM"
+  },
+  {
+    "py/object": "src.classes.QuarterOdds.QuarterOdds",
+    "awayPlayerFloorOdds": null,
+    "homePlayerFloorOdds": null,
+    "kellyBet": {
+      "bet": {
+        "py/reduce": [
+          {
+            "py/function": "numpy.core.multiarray.scalar"
+          },
+          {
+            "py/tuple": [
+              {
+                "py/id": 4
+              },
+              {
+                "py/b64": "1b2t2/eUXUA="
+              }
+            ]
+          }
+        ]
+      },
+      "team": "MIN"
+    },
+    "homeTeamFirstQuarterOdds": "+101",
+    "awayTeamFirstQuarterOdds": "-129",
+    "home": "ORL",
+    "away": "MIN",
+    "fetchedDatetime": "2021-05-09 11:00:11.769767",
+    "gameDatetime": null,
+    "exchange": "draftkings",
+    "marketUrl": null,
+    "isTeamOnly": false,
+    "isPlayersOnly": false,
+    "gameCode": "ORL @ MIN 2021-05-09",
+    "quarter": "QUARTER_1",
+    "isFullGame": false,
+    "homePlayerOddsList": [
+      {
+        "player": "Cole Anthony",
+        "odds": "+750",
+        "team": "ORL"
+      },
+      {
+        "player": "Dwayne Bacon",
+        "odds": "+1000",
+        "team": "ORL"
+      },
+      {
+        "player": "Gary Harris",
+        "odds": "+1100",
+        "team": "ORL"
+      }
+    ],
+    "awayPlayerOddsList": [
+      {
+        "player": "Karl-Anthony Towns",
+        "odds": "+500",
+        "team": "MIN"
+      },
+      {
+        "player": "Anthony Edwards",
+        "odds": "+600",
+        "team": "MIN"
+      },
+      {
+        "player": "D'Angelo Russell",
+        "odds": "+650",
+        "team": "MIN"
+      },
+      {
+        "player": "Jarred Vanderbilt",
+        "odds": "+1000",
+        "team": "MIN"
+      },
+      {
+        "player": "Ricky Rubio",
+        "odds": "+1200",
+        "team": "MIN"
+      }
+    ],
+    "isFirstFieldGoal": false,
+    "bestHomeOdds": "+101",
+    "bestAwayOdds": "-129",
+    "minHomeWinPercentage": 0.4975124378109453,
+    "minAwayWinPercentage": 0.5633187772925764,
+    "expectedHomeTipper": "bambamo01.html",
+    "expectedAwayTipper": "townska01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "f5r0YKGk2T8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "wbKFT68t4z8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "ggjqfddIccA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/id": 86
+    },
+    "betOnHome": {
+      "py/id": 21
+    },
+    "betOnAway": {
+      "py/id": 23
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "eE4KG3TF6T8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "0QrHLdIF8T8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 101
+    },
+    "betOnVia": "TEAM"
+  },
+  {
+    "py/object": "src.classes.QuarterOdds.QuarterOdds",
+    "awayPlayerFloorOdds": null,
+    "homePlayerFloorOdds": null,
+    "kellyBet": {
+      "bet": {
+        "py/reduce": [
+          {
+            "py/function": "numpy.core.multiarray.scalar"
+          },
+          {
+            "py/tuple": [
+              {
+                "py/id": 4
+              },
+              {
+                "py/b64": "53iMoZZAUUA="
+              }
+            ]
+          }
+        ]
+      },
+      "team": "DET"
+    },
+    "homeTeamFirstQuarterOdds": "-103",
+    "awayTeamFirstQuarterOdds": "-125",
+    "home": "DET",
+    "away": "CHI",
+    "fetchedDatetime": "2021-05-09 11:00:11.769771",
+    "gameDatetime": null,
+    "exchange": "draftkings",
+    "marketUrl": null,
+    "isTeamOnly": false,
+    "isPlayersOnly": false,
+    "gameCode": "DET @ CHI 2021-05-09",
+    "quarter": "QUARTER_1",
+    "isFullGame": false,
+    "homePlayerOddsList": [],
+    "awayPlayerOddsList": [],
+    "isFirstFieldGoal": false,
+    "bestHomeOdds": "-103",
+    "bestAwayOdds": "-125",
+    "minHomeWinPercentage": 0.5073891625615764,
+    "minAwayWinPercentage": 0.5555555555555556,
+    "expectedHomeTipper": "plumlma01.html",
+    "expectedAwayTipper": "vucevni01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "eIVKCZn+4D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "D/Vq7c0C3j8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/id": 104
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "blH3UYh7ccA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 23
+    },
+    "betOnAway": {
+      "py/id": 21
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "iCz2VD2/8D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "jdx5IoYC6z8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 110
+    },
+    "betOnVia": "TEAM"
+  },
+  {
+    "py/object": "src.classes.QuarterOdds.QuarterOdds",
+    "awayPlayerFloorOdds": "-151.47939353618827",
+    "homePlayerFloorOdds": "-120.9152629653219",
+    "kellyBet": {
+      "bet": {
+        "py/reduce": [
+          {
+            "py/function": "numpy.core.multiarray.scalar"
+          },
+          {
+            "py/tuple": [
+              {
+                "py/id": 4
+              },
+              {
+                "py/b64": "iUqiauwLbEA="
+              }
+            ]
+          }
+        ]
+      },
+      "team": "LAL"
+    },
+    "homeTeamFirstQuarterOdds": "-106",
+    "awayTeamFirstQuarterOdds": "-121",
+    "home": "LAL",
+    "away": "PHX",
+    "fetchedDatetime": "2021-05-09 11:00:11.769774",
+    "gameDatetime": null,
+    "exchange": "draftkings",
+    "marketUrl": null,
+    "isTeamOnly": false,
+    "isPlayersOnly": false,
+    "gameCode": "LAL @ PHX 2021-05-09",
+    "quarter": "QUARTER_1",
+    "isFullGame": false,
+    "homePlayerOddsList": [
+      {
+        "player": "Anthony Davis",
+        "odds": "+450",
+        "team": "LAL"
+      },
+      {
+        "player": "Andre Drummond",
+        "odds": "+850",
+        "team": "LAL"
+      },
+      {
+        "player": "Kentavious Caldwell-Pope",
+        "odds": "+900",
+        "team": "LAL"
+      },
+      {
+        "player": "Wesley Matthews",
+        "odds": "+1100",
+        "team": "LAL"
+      },
+      {
+        "player": "Alex Caruso",
+        "odds": "+1200",
+        "team": "LAL"
+      }
+    ],
+    "awayPlayerOddsList": [
+      {
+        "player": "Devin Booker",
+        "odds": "+440",
+        "team": "PHX"
+      },
+      {
+        "player": "DeAndre Ayton",
+        "odds": "+650",
+        "team": "PHX"
+      },
+      {
+        "player": "Chris Paul",
+        "odds": "+850",
+        "team": "PHX"
+      },
+      {
+        "player": "Mikal Bridges",
+        "odds": "+950",
+        "team": "PHX"
+      },
+      {
+        "player": "Torrey Craig",
+        "odds": "+1100",
+        "team": "PHX"
+      }
+    ],
+    "isFirstFieldGoal": false,
+    "bestHomeOdds": "-106",
+    "bestAwayOdds": "-121",
+    "minHomeWinPercentage": 0.5145631067961165,
+    "minAwayWinPercentage": 0.5475113122171946,
+    "expectedHomeTipper": "drumman01.html",
+    "expectedAwayTipper": "aytonde01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "1BmbKRbl4j8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "WszJrNM12j8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/id": 114
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "lZMoQB9Ze8A="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 23
+    },
+    "betOnAway": {
+      "py/id": 21
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "2hHwGTBc8j8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "H1YCtJHv5z8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 130
+    },
+    "betOnVia": "TEAM"
+  },
+  {
+    "py/object": "src.classes.QuarterOdds.QuarterOdds",
+    "awayPlayerFloorOdds": null,
+    "homePlayerFloorOdds": null,
+    "kellyBet": null,
+    "homeTeamFirstQuarterOdds": "-129",
+    "awayTeamFirstQuarterOdds": "+101",
+    "home": "SAC",
+    "away": "OKC",
+    "fetchedDatetime": "2021-05-09 11:00:11.769778",
+    "gameDatetime": null,
+    "exchange": "draftkings",
+    "marketUrl": null,
+    "isTeamOnly": false,
+    "isPlayersOnly": false,
+    "gameCode": "SAC @ OKC 2021-05-09",
+    "quarter": "QUARTER_1",
+    "isFullGame": false,
+    "homePlayerOddsList": [],
+    "awayPlayerOddsList": [],
+    "isFirstFieldGoal": false,
+    "bestHomeOdds": "-129",
+    "bestAwayOdds": "+101",
+    "minHomeWinPercentage": 0.5633187772925764,
+    "minAwayWinPercentage": 0.4975124378109453,
+    "expectedHomeTipper": "holmeri01.html",
+    "expectedAwayTipper": "brownmo01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "MJ9WOp1Y4D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "osFSi8VO3z8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "5cbJ8OaQZcA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "wMLVCqDJN8A="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 21
+    },
+    "betOnAway": {
+      "py/id": 21
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "CGLLSYAE7T8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "jiuzc9h27z8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 140
+    },
+    "betOnVia": "TEAM"
+  },
+  {
+    "py/object": "src.classes.QuarterOdds.QuarterOdds",
+    "awayPlayerFloorOdds": null,
+    "homePlayerFloorOdds": null,
+    "kellyBet": {
+      "bet": {
+        "py/reduce": [
+          {
+            "py/function": "numpy.core.multiarray.scalar"
+          },
+          {
+            "py/tuple": [
+              {
+                "py/id": 4
+              },
+              {
+                "py/b64": "r4MRcusoUkA="
+              }
+            ]
+          }
+        ]
+      },
+      "team": "MIA"
+    },
+    "homeTeamFirstQuarterOdds": "-115",
+    "awayTeamFirstQuarterOdds": "-115",
+    "home": "BOS",
+    "away": "MIA",
+    "fetchedDatetime": "2021-05-09 11:00:42.763545",
+    "gameDatetime": null,
+    "exchange": "mgm",
+    "marketUrl": null,
+    "isTeamOnly": true,
+    "isPlayersOnly": false,
+    "gameCode": "BOS @ MIA 2021-05-09",
+    "quarter": "QUARTER_1",
+    "isFullGame": false,
+    "bestHomeOdds": "-115",
+    "bestAwayOdds": "-115",
+    "minHomeWinPercentage": 0.5348837209302325,
+    "minAwayWinPercentage": 0.5348837209302325,
+    "expectedHomeTipper": "thomptr01.html",
+    "expectedAwayTipper": "adebaba01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "gGtHC7hC3D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "QEpc+qPe4T8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "6mCE3Dr+ccA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/id": 143
+    },
+    "betOnHome": {
+      "py/id": 21
+    },
+    "betOnAway": {
+      "py/id": 23
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "wPp/seNq6j8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "f/fmXku08D8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 148
+    },
+    "betOnVia": "TEAM"
+  },
+  {
+    "py/object": "src.classes.QuarterOdds.QuarterOdds",
+    "awayPlayerFloorOdds": null,
+    "homePlayerFloorOdds": null,
+    "kellyBet": null,
+    "homeTeamFirstQuarterOdds": "-135",
+    "awayTeamFirstQuarterOdds": "-105",
+    "home": "LAC",
+    "away": "NYK",
+    "fetchedDatetime": "2021-05-09 11:00:42.763651",
+    "gameDatetime": null,
+    "exchange": "mgm",
+    "marketUrl": null,
+    "isTeamOnly": true,
+    "isPlayersOnly": false,
+    "gameCode": "LAC @ NYK 2021-05-09",
+    "quarter": "QUARTER_1",
+    "isFullGame": false,
+    "bestHomeOdds": "-135",
+    "bestAwayOdds": "-105",
+    "minHomeWinPercentage": 0.574468085106383,
+    "minAwayWinPercentage": 0.5121951219512195,
+    "expectedHomeTipper": "zubaciv01.html",
+    "expectedAwayTipper": "noelne01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "Vk9+xAqk3z8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "VdjAnfot4D8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "3MhHStbgcMA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "vtDJ7SpdM8A="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 21
+    },
+    "betOnAway": {
+      "py/id": 21
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "5pArXwmK6z8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "ge9TibiW7z8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 155
+    },
+    "betOnVia": "TEAM"
+  },
+  {
+    "py/object": "src.classes.QuarterOdds.QuarterOdds",
+    "awayPlayerFloorOdds": null,
+    "homePlayerFloorOdds": null,
+    "kellyBet": {
+      "bet": {
+        "py/reduce": [
+          {
+            "py/function": "numpy.core.multiarray.scalar"
+          },
+          {
+            "py/tuple": [
+              {
+                "py/id": 4
+              },
+              {
+                "py/b64": "MDEcule7a0A="
+              }
+            ]
+          }
+        ]
+      },
+      "team": "CLE"
+    },
+    "homeTeamFirstQuarterOdds": "+100",
+    "awayTeamFirstQuarterOdds": "-140",
+    "home": "CLE",
+    "away": "DAL",
+    "fetchedDatetime": "2021-05-09 11:00:42.763670",
+    "gameDatetime": null,
+    "exchange": "mgm",
+    "marketUrl": null,
+    "isTeamOnly": true,
+    "isPlayersOnly": false,
+    "gameCode": "CLE @ DAL 2021-05-09",
+    "quarter": "QUARTER_1",
+    "isFullGame": false,
+    "bestHomeOdds": "+100",
+    "bestAwayOdds": "-140",
+    "minHomeWinPercentage": 0.5,
+    "minAwayWinPercentage": 0.5833333333333334,
+    "expectedHomeTipper": "allenja01.html",
+    "expectedAwayTipper": "caulewi01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "p9CFYEB54j8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "s170Pn8N2z8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/id": 158
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "vg6ihM1JgcA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 23
+    },
+    "betOnAway": {
+      "py/id": 21
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "p9CFYEB58j8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "vnXR7CMw5z8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 162
+    },
+    "betOnVia": "TEAM"
+  },
+  {
+    "py/object": "src.classes.QuarterOdds.QuarterOdds",
+    "awayPlayerFloorOdds": null,
+    "homePlayerFloorOdds": null,
+    "kellyBet": {
+      "bet": {
+        "py/reduce": [
+          {
+            "py/function": "numpy.core.multiarray.scalar"
+          },
+          {
+            "py/tuple": [
+              {
+                "py/id": 4
+              },
+              {
+                "py/b64": "KTOvIoReVUA="
+              }
+            ]
+          }
+        ]
+      },
+      "team": "CHA"
+    },
+    "homeTeamFirstQuarterOdds": "-125",
+    "awayTeamFirstQuarterOdds": "-110",
+    "home": "CHA",
+    "away": "NOP",
+    "fetchedDatetime": "2021-05-09 11:00:42.763688",
+    "gameDatetime": null,
+    "exchange": "mgm",
+    "marketUrl": null,
+    "isTeamOnly": true,
+    "isPlayersOnly": false,
+    "gameCode": "CHA @ NOP 2021-05-09",
+    "quarter": "QUARTER_1",
+    "isFullGame": false,
+    "bestHomeOdds": "-125",
+    "bestAwayOdds": "-110",
+    "minHomeWinPercentage": 0.5555555555555556,
+    "minAwayWinPercentage": 0.5238095238095238,
+    "expectedHomeTipper": "biyombi01.html",
+    "expectedAwayTipper": "hernawi01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "v3NNufuf4j8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "hhhljQjA2j8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/id": 166
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "9Jzk1B7vc8A="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 23
+    },
+    "betOnAway": {
+      "py/id": 21
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "LOj4WS/D8D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "CyNsWMKI6T8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 170
+    },
+    "betOnVia": "TEAM"
+  },
+  {
+    "py/object": "src.classes.QuarterOdds.QuarterOdds",
+    "awayPlayerFloorOdds": null,
+    "homePlayerFloorOdds": null,
+    "kellyBet": {
+      "bet": {
+        "py/reduce": [
+          {
+            "py/function": "numpy.core.multiarray.scalar"
+          },
+          {
+            "py/tuple": [
+              {
+                "py/id": 4
+              },
+              {
+                "py/b64": "3d+RLhn1VEA="
+              }
+            ]
+          }
+        ]
+      },
+      "team": "MIN"
+    },
+    "homeTeamFirstQuarterOdds": "-105",
+    "awayTeamFirstQuarterOdds": "-135",
+    "home": "ORL",
+    "away": "MIN",
+    "fetchedDatetime": "2021-05-09 11:00:42.763706",
+    "gameDatetime": null,
+    "exchange": "mgm",
+    "marketUrl": null,
+    "isTeamOnly": true,
+    "isPlayersOnly": false,
+    "gameCode": "ORL @ MIN 2021-05-09",
+    "quarter": "QUARTER_1",
+    "isFullGame": false,
+    "bestHomeOdds": "-105",
+    "bestAwayOdds": "-135",
+    "minHomeWinPercentage": 0.5121951219512195,
+    "minAwayWinPercentage": 0.574468085106383,
+    "expectedHomeTipper": "bambamo01.html",
+    "expectedAwayTipper": "townska01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "f5r0YKGk2T8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "wbKFT68t4z8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "aE0HpByBdMA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/id": 174
+    },
+    "betOnHome": {
+      "py/id": 21
+    },
+    "betOnAway": {
+      "py/id": 23
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "iAS+ZFQI6T8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "LOzXgj6x8D8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 179
+    },
+    "betOnVia": "TEAM"
+  },
+  {
+    "py/object": "src.classes.QuarterOdds.QuarterOdds",
+    "awayPlayerFloorOdds": null,
+    "homePlayerFloorOdds": null,
+    "kellyBet": {
+      "bet": {
+        "py/reduce": [
+          {
+            "py/function": "numpy.core.multiarray.scalar"
+          },
+          {
+            "py/tuple": [
+              {
+                "py/id": 4
+              },
+              {
+                "py/b64": "3FwQSozGS0A="
+              }
+            ]
+          }
+        ]
+      },
+      "team": "DET"
+    },
+    "homeTeamFirstQuarterOdds": "-105",
+    "awayTeamFirstQuarterOdds": "-135",
+    "home": "DET",
+    "away": "CHI",
+    "fetchedDatetime": "2021-05-09 11:00:42.763722",
+    "gameDatetime": null,
+    "exchange": "mgm",
+    "marketUrl": null,
+    "isTeamOnly": true,
+    "isPlayersOnly": false,
+    "gameCode": "DET @ CHI 2021-05-09",
+    "quarter": "QUARTER_1",
+    "isFullGame": false,
+    "bestHomeOdds": "-105",
+    "bestAwayOdds": "-135",
+    "minHomeWinPercentage": 0.5121951219512195,
+    "minAwayWinPercentage": 0.574468085106383,
+    "expectedHomeTipper": "plumlma01.html",
+    "expectedAwayTipper": "vucevni01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "eIVKCZn+4D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "D/Vq7c0C3j8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/id": 182
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "V/RRtuM+dsA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 23
+    },
+    "betOnAway": {
+      "py/id": 21
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "YghbGwOX8D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "cIn5o+Ie6j8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 186
+    },
+    "betOnVia": "TEAM"
+  },
+  {
+    "py/object": "src.classes.QuarterOdds.QuarterOdds",
+    "awayPlayerFloorOdds": null,
+    "homePlayerFloorOdds": null,
+    "kellyBet": {
+      "bet": {
+        "py/reduce": [
+          {
+            "py/function": "numpy.core.multiarray.scalar"
+          },
+          {
+            "py/tuple": [
+              {
+                "py/id": 4
+              },
+              {
+                "py/b64": "CwyabPvHbEA="
+              }
+            ]
+          }
+        ]
+      },
+      "team": "LAL"
+    },
+    "homeTeamFirstQuarterOdds": "-105",
+    "awayTeamFirstQuarterOdds": "-135",
+    "home": "LAL",
+    "away": "PHX",
+    "fetchedDatetime": "2021-05-09 11:00:42.763738",
+    "gameDatetime": null,
+    "exchange": "mgm",
+    "marketUrl": null,
+    "isTeamOnly": true,
+    "isPlayersOnly": false,
+    "gameCode": "LAL @ PHX 2021-05-09",
+    "quarter": "QUARTER_1",
+    "isFullGame": false,
+    "bestHomeOdds": "-105",
+    "bestAwayOdds": "-135",
+    "minHomeWinPercentage": 0.5121951219512195,
+    "minAwayWinPercentage": 0.574468085106383,
+    "expectedHomeTipper": "drumman01.html",
+    "expectedAwayTipper": "aytonde01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "1BmbKRbl4j8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "WszJrNM12j8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/id": 190
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "vFdkTI5hgcA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 23
+    },
+    "betOnAway": {
+      "py/id": 21
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "pHTa9+px8j8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "+PgE1AjQ5j8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 194
+    },
+    "betOnVia": "TEAM"
+  },
+  {
+    "py/object": "src.classes.QuarterOdds.QuarterOdds",
+    "awayPlayerFloorOdds": null,
+    "homePlayerFloorOdds": null,
+    "kellyBet": null,
+    "homeTeamFirstQuarterOdds": "-135",
+    "awayTeamFirstQuarterOdds": "-105",
+    "home": "SAC",
+    "away": "OKC",
+    "fetchedDatetime": "2021-05-09 11:00:42.763754",
+    "gameDatetime": null,
+    "exchange": "mgm",
+    "marketUrl": null,
+    "isTeamOnly": true,
+    "isPlayersOnly": false,
+    "gameCode": "SAC @ OKC 2021-05-09",
+    "quarter": "QUARTER_1",
+    "isFullGame": false,
+    "bestHomeOdds": "-135",
+    "bestAwayOdds": "-105",
+    "minHomeWinPercentage": 0.574468085106383,
+    "minAwayWinPercentage": 0.5121951219512195,
+    "expectedHomeTipper": "holmeri01.html",
+    "expectedAwayTipper": "brownmo01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "MJ9WOp1Y4D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "osFSi8VO3z8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "jHFE3LLUasA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "ccdBepHsUMA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 21
+    },
+    "betOnAway": {
+      "py/id": 21
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "qPg3EFR07D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 4
+            },
+            {
+              "py/b64": "1bBKmvGP7j8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 202
+    },
+    "betOnVia": "TEAM"
+  }
+]
