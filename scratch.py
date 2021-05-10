@@ -50,5 +50,5 @@ from src.odds.prediction_enhancements import getFirstFieldGoalOrFirstPointStats
 # XGBoost(2020)
 # getPlusMinusForTeams(2020)
 
-#test = retrievePickledOdds()
-savePickledOdds()
+test = retrievePickledOdds()
+# savePickledOdds()

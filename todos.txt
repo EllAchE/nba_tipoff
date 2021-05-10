@@ -89,3 +89,5 @@ https://punter2pro.com/best-sports-arbing-software/
 # todo pretty print the bets for sharing
 # todo fix cron job for data updates
 # todo add auto starter updates
+
+# todo add backtester support for quarters besides the first

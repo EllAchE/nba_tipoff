@@ -81,7 +81,7 @@ FIRST_POINT_SUMMARY_UNFORMATTED_PATH = os.path.abspath(
     'Data/JSON/first_shots_data/first_point_summaries/first_point_summary_{}.json')
 FIRST_POINT_TEAM_META = os.path.abspath(
     'Data/JSON/first_shots_data/first_point_summaries/first_point_summary_meta_{}.json')
-FIRST_POINT_DATA_RAW_2021 = os.path.absepath('Data/JSON/first_shots_data/first_shots_raw/2021_data.json')
+FIRST_POINT_DATA_RAW_2021 = os.path.abspath('Data/JSON/first_shots_data/first_shots_raw/2021_data.json')
 
 # Raw Data Paths
 PLAYER_TEAM_PAIRS_PATH = Path(os.path.abspath('Data/JSON/player_team_pairs.json'))

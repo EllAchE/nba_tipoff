@@ -1,1 +1,1594 @@
-[{"py/object": "src.classes.GameOdds.GameOdds", "home": "BOS", "away": "IND", "gameDatetime": null, "exchange": "mgm", "marketUrl": null, "fetchedDatetime": "2021-02-26 18:37:36.474565", "isTeamOnly": true, "isPlayersOnly": false, "gameCode": "BOS @ IND 2021-02-26", "homeTeamOdds": "-120", "awayTeamOdds": "-115", "bestHomeOdds": "-120", "bestAwayOdds": "-115", "betOnVia": "TEAM", "minHomeWinPercentage": 0.5454545454545454, "minAwayWinPercentage": 0.5348837209302325, "expectedHomeTipper": "theisda01.html", "expectedAwayTipper": "turnemy01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/reduce": [{"py/type": "numpy.dtype"}, {"py/tuple": ["f8", 0, 1]}, {"py/tuple": [3, "<", null, null, null, -1, -1, 0]}]}, {"py/b64": "qVKIzSoG4D8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "rlrvZKrz3z8="}]}]}, "homeBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "DNzRPGDtccA="}]}]}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "bf9U+fslbcA="}]}]}, "betOnHome": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/reduce": [{"py/type": "numpy.dtype"}, {"py/tuple": ["b1", 0, 1]}, {"py/tuple": [3, "|", null, null, null, -1, -1, 0]}]}, {"py/b64": "AA=="}]}]}, "betOnAway": {"py/id": 7}, "kellyBet": null, "homeTeamKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "DNzRPGDtccA="}]}]}, "awayTeamKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "bf9U+fslbcA="}]}]}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "jJckzqNg7T8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "gr7fijXe7T8="}]}]}, "bestEVFactor": {"py/id": 12}}, {"py/object": "src.classes.GameOdds.GameOdds", "home": "TOR", "away": "HOU", "gameDatetime": null, "exchange": "mgm", "marketUrl": null, "fetchedDatetime": "2021-02-26 18:37:36.474614", "isTeamOnly": true, "isPlayersOnly": false, "gameCode": "TOR @ HOU 2021-02-26", "homeTeamOdds": "-135", "awayTeamOdds": "-105", "bestHomeOdds": "-135", "bestAwayOdds": "-105", "betOnVia": "TEAM", "minHomeWinPercentage": 0.574468085106383, "minAwayWinPercentage": 0.5121951219512195, "expectedHomeTipper": "baynear01.html", "expectedAwayTipper": "tuckepj01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "zoqpO6NS3j8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "mTorYq7W4D8="}]}]}, "homeBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "Fw5rb/Aqg8A="}]}]}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "kHUe3oLvV0A="}]}]}, "betOnHome": {"py/id": 7}, "betOnAway": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 8}, {"py/b64": "AQ=="}]}]}, "kellyBet": {"bet": {"py/id": 17}, "team": "HOU"}, "homeTeamKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "Fw5rb/Aqg8A="}]}]}, "awayTeamKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "kHUe3oLvV0A="}]}]}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "GmFyql5k6j8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "KPZawQtw8D8="}]}]}, "bestEVFactor": {"py/id": 23}}, {"py/object": "src.classes.GameOdds.GameOdds", "home": "DET", "away": "SAC", "gameDatetime": null, "exchange": "mgm", "marketUrl": null, "fetchedDatetime": "2021-02-26 18:37:36.474626", "isTeamOnly": true, "isPlayersOnly": false, "gameCode": "DET @ SAC 2021-02-26", "homeTeamOdds": "-115", "awayTeamOdds": "-120", "bestHomeOdds": "-115", "bestAwayOdds": "-120", "betOnVia": "TEAM", "minHomeWinPercentage": 0.5348837209302325, "minAwayWinPercentage": 0.5454545454545454, "expectedHomeTipper": "robyis01.html", "expectedAwayTipper": "holmeri01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "vVK/dfoE3z8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "oVYgxYJ94D8="}]}]}, "homeBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "FGElLzuIdMA="}]}]}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "Tm9XPGQraMA="}]}]}, "betOnHome": {"py/id": 7}, "betOnAway": {"py/id": 7}, "kellyBet": null, "homeTeamKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "FGElLzuIdMA="}]}]}, "awayTeamKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "Tm9XPGQraMA="}]}]}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "K2m4pRb/7D8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "fUm7vm877j8="}]}]}, "bestEVFactor": {"py/id": 32}}, {"py/object": "src.classes.GameOdds.GameOdds", "home": "CHI", "away": "PHX", "gameDatetime": null, "exchange": "mgm", "marketUrl": null, "fetchedDatetime": "2021-02-26 18:37:36.474636", "isTeamOnly": true, "isPlayersOnly": false, "gameCode": "CHI @ PHX 2021-02-26", "homeTeamOdds": "-105", "awayTeamOdds": "-135", "bestHomeOdds": "-105", "bestAwayOdds": "-135", "betOnVia": "TEAM", "minHomeWinPercentage": 0.5121951219512195, "minAwayWinPercentage": 0.574468085106383, "expectedHomeTipper": "cartewe01.html", "expectedAwayTipper": "aytonde01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "XyPIWkBo4D8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "QrlvSn8v3z8="}]}]}, "homeBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "yAnkInMFDUA="}]}]}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "tYVRfeeZgMA="}]}]}, "betOnHome": {"py/id": 18}, "betOnAway": {"py/id": 7}, "kellyBet": {"bet": {"py/id": 36}, "team": "CHI"}, "homeTeamKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "yAnkInMFDUA="}]}]}, "awayTeamKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "tYVRfeeZgMA="}]}]}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "rGuG0j4E8D8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "knbvdJkk6z8="}]}]}, "bestEVFactor": {"py/id": 41}}, {"py/object": "src.classes.GameOdds.GameOdds", "home": "MEM", "away": "LAC", "gameDatetime": null, "exchange": "mgm", "marketUrl": null, "fetchedDatetime": "2021-02-26 18:37:36.474646", "isTeamOnly": true, "isPlayersOnly": false, "gameCode": "MEM @ LAC 2021-02-26", "homeTeamOdds": "-105", "awayTeamOdds": "-135", "bestHomeOdds": "-105", "bestAwayOdds": "-135", "betOnVia": "TEAM", "minHomeWinPercentage": 0.5121951219512195, "minAwayWinPercentage": 0.574468085106383, "expectedHomeTipper": "valanjo01.html", "expectedAwayTipper": "ibakase01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "qqp7H2wT4D8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "rKoIwSfZ3z8="}]}]}, "homeBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "CAHueXbIUMA="}]}]}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "sMSinmBCfcA="}]}]}, "betOnHome": {"py/id": 7}, "betOnAway": {"py/id": 7}, "kellyBet": null, "homeTeamKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "CAHueXbIUMA="}]}]}, "awayTeamKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "sMSinmBCfcA="}]}]}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "NE2oSd9i7z8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "ujUyyUO46z8="}]}]}, "bestEVFactor": {"py/id": 50}}, {"py/object": "src.classes.GameOdds.GameOdds", "home": "MIA", "away": "UTA", "gameDatetime": null, "exchange": "mgm", "marketUrl": null, "fetchedDatetime": "2021-02-26 18:37:36.474656", "isTeamOnly": true, "isPlayersOnly": false, "gameCode": "MIA @ UTA 2021-02-26", "homeTeamOdds": "-110", "awayTeamOdds": "-125", "bestHomeOdds": "-110", "bestAwayOdds": "-125", "betOnVia": "TEAM", "minHomeWinPercentage": 0.5238095238095238, "minAwayWinPercentage": 0.5555555555555556, "expectedHomeTipper": "adebaba01.html", "expectedAwayTipper": "goberru01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "No35aP7o3z8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "ZTmDy4AL4D8="}]}]}, "homeBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "s+HCYiYPZcA="}]}]}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "x1PXN3VSdcA="}]}]}, "betOnHome": {"py/id": 7}, "betOnAway": {"py/id": 7}, "kellyBet": null, "homeTeamKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "s+HCYiYPZcA="}]}]}, "awayTeamKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "x1PXN3VSdcA="}]}]}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "+MAcB6117j8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "gppSboHh7D8="}]}]}, "bestEVFactor": {"py/id": 59}}, {"py/object": "src.classes.GameOdds.GameOdds", "home": "OKC", "away": "ATL", "gameDatetime": null, "exchange": "mgm", "marketUrl": null, "fetchedDatetime": "2021-02-26 18:37:36.474666", "isTeamOnly": true, "isPlayersOnly": false, "gameCode": "OKC @ ATL 2021-02-26", "homeTeamOdds": "-110", "awayTeamOdds": "-125", "bestHomeOdds": "-110", "bestAwayOdds": "-125", "betOnVia": "TEAM", "minHomeWinPercentage": 0.5238095238095238, "minAwayWinPercentage": 0.5555555555555556, "expectedHomeTipper": "horfoal01.html", "expectedAwayTipper": "capelca01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "2RXxENcS4T8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "TtQd3lHa3T8="}]}]}, "homeBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "SuLuuk1FUEA="}]}]}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "aj07KemKgcA="}]}]}, "betOnHome": {"py/id": 18}, "betOnAway": {"py/id": 7}, "kellyBet": {"bet": {"py/id": 64}, "team": "OKC"}, "homeTeamKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "SuLuuk1FUEA="}]}]}, "awayTeamKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "aj07KemKgcA="}]}]}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "CU+gYSpM8D8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "rNgaexbe6j8="}]}]}, "bestEVFactor": {"py/id": 69}}, {"py/object": "src.classes.GameOdds.GameOdds", "home": "LAL", "away": "POR", "gameDatetime": null, "exchange": "mgm", "marketUrl": null, "fetchedDatetime": "2021-02-26 18:37:36.474675", "isTeamOnly": true, "isPlayersOnly": false, "gameCode": "LAL @ POR 2021-02-26", "homeTeamOdds": "-135", "awayTeamOdds": "-105", "bestHomeOdds": "-135", "bestAwayOdds": "-105", "betOnVia": "TEAM", "minHomeWinPercentage": 0.574468085106383, "minAwayWinPercentage": 0.5121951219512195, "expectedHomeTipper": "gasolma01.html", "expectedAwayTipper": "kanteen01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "cevqG3Nb4T8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "HSkqyBlJ3T8="}]}]}, "homeBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "HPTgm39paMA="}]}]}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "qafu84RSd8A="}]}]}, "betOnHome": {"py/id": 7}, "betOnAway": {"py/id": 7}, "kellyBet": null, "homeTeamKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "HPTgm39paMA="}]}]}, "awayTeamKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "qafu84RSd8A="}]}]}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "eFfI0eQ27j8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "2JUEK5mW7D8="}]}]}, "bestEVFactor": {"py/id": 78}}, {"py/object": "src.classes.GameOdds.GameOdds", "home": "GSW", "away": "CHA", "gameDatetime": null, "exchange": "mgm", "marketUrl": null, "fetchedDatetime": "2021-02-26 18:37:36.474695", "isTeamOnly": true, "isPlayersOnly": false, "gameCode": "GSW @ CHA 2021-02-26", "homeTeamOdds": "-135", "awayTeamOdds": "-105", "bestHomeOdds": "-135", "bestAwayOdds": "-105", "betOnVia": "TEAM", "minHomeWinPercentage": 0.574468085106383, "minAwayWinPercentage": 0.5121951219512195, "expectedHomeTipper": "looneke01.html", "expectedAwayTipper": "zelleco01.html", "homeScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "3okv3QXu4T8="}]}]}, "awayScoreProb": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "Q+ygRfQj3D8="}]}]}, "homeBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "kUf+4ViSVcA="}]}]}, "awayBestKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "tMwF7rz2fsA="}]}]}, "betOnHome": {"py/id": 7}, "betOnAway": {"py/id": 7}, "kellyBet": null, "homeTeamKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "kUf+4ViSVcA="}]}]}, "awayTeamKellyBet": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "tMwF7rz2fsA="}]}]}, "homeEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "itMsNQo27z8="}]}]}, "awayEVFactor": {"py/reduce": [{"py/function": "numpy.core.multiarray.scalar"}, {"py/tuple": [{"py/id": 3}, {"py/b64": "TpG7dG546z8="}]}]}, "bestEVFactor": {"py/id": 87}}]
+[
+  {
+    "py/object": "src.classes.GameOdds.GameOdds",
+    "home": "BOS",
+    "away": "IND",
+    "gameDatetime": null,
+    "exchange": "mgm",
+    "marketUrl": null,
+    "fetchedDatetime": "2021-02-26 18:37:36.474565",
+    "isTeamOnly": true,
+    "isPlayersOnly": false,
+    "gameCode": "BOS @ IND 2021-02-26",
+    "homeTeamOdds": "-120",
+    "awayTeamOdds": "-115",
+    "bestHomeOdds": "-120",
+    "bestAwayOdds": "-115",
+    "betOnVia": "TEAM",
+    "minHomeWinPercentage": 0.5454545454545454,
+    "minAwayWinPercentage": 0.5348837209302325,
+    "expectedHomeTipper": "theisda01.html",
+    "expectedAwayTipper": "turnemy01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/reduce": [
+                {
+                  "py/type": "numpy.dtype"
+                },
+                {
+                  "py/tuple": [
+                    "f8",
+                    0,
+                    1
+                  ]
+                },
+                {
+                  "py/tuple": [
+                    3,
+                    "<",
+                    null,
+                    null,
+                    null,
+                    -1,
+                    -1,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "py/b64": "qVKIzSoG4D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "rlrvZKrz3z8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "DNzRPGDtccA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "bf9U+fslbcA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/reduce": [
+                {
+                  "py/type": "numpy.dtype"
+                },
+                {
+                  "py/tuple": [
+                    "b1",
+                    0,
+                    1
+                  ]
+                },
+                {
+                  "py/tuple": [
+                    3,
+                    "|",
+                    null,
+                    null,
+                    null,
+                    -1,
+                    -1,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "py/b64": "AA=="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnAway": {
+      "py/id": 7
+    },
+    "kellyBet": null,
+    "homeTeamKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "DNzRPGDtccA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayTeamKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "bf9U+fslbcA="
+            }
+          ]
+        }
+      ]
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "jJckzqNg7T8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "gr7fijXe7T8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 12
+    }
+  },
+  {
+    "py/object": "src.classes.GameOdds.GameOdds",
+    "home": "TOR",
+    "away": "HOU",
+    "gameDatetime": null,
+    "exchange": "mgm",
+    "marketUrl": null,
+    "fetchedDatetime": "2021-02-26 18:37:36.474614",
+    "isTeamOnly": true,
+    "isPlayersOnly": false,
+    "gameCode": "TOR @ HOU 2021-02-26",
+    "homeTeamOdds": "-135",
+    "awayTeamOdds": "-105",
+    "bestHomeOdds": "-135",
+    "bestAwayOdds": "-105",
+    "betOnVia": "TEAM",
+    "minHomeWinPercentage": 0.574468085106383,
+    "minAwayWinPercentage": 0.5121951219512195,
+    "expectedHomeTipper": "baynear01.html",
+    "expectedAwayTipper": "tuckepj01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "zoqpO6NS3j8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "mTorYq7W4D8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "Fw5rb/Aqg8A="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "kHUe3oLvV0A="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 7
+    },
+    "betOnAway": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 8
+            },
+            {
+              "py/b64": "AQ=="
+            }
+          ]
+        }
+      ]
+    },
+    "kellyBet": {
+      "bet": {
+        "py/id": 17
+      },
+      "team": "HOU"
+    },
+    "homeTeamKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "Fw5rb/Aqg8A="
+            }
+          ]
+        }
+      ]
+    },
+    "awayTeamKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "kHUe3oLvV0A="
+            }
+          ]
+        }
+      ]
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "GmFyql5k6j8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "KPZawQtw8D8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 23
+    }
+  },
+  {
+    "py/object": "src.classes.GameOdds.GameOdds",
+    "home": "DET",
+    "away": "SAC",
+    "gameDatetime": null,
+    "exchange": "mgm",
+    "marketUrl": null,
+    "fetchedDatetime": "2021-02-26 18:37:36.474626",
+    "isTeamOnly": true,
+    "isPlayersOnly": false,
+    "gameCode": "DET @ SAC 2021-02-26",
+    "homeTeamOdds": "-115",
+    "awayTeamOdds": "-120",
+    "bestHomeOdds": "-115",
+    "bestAwayOdds": "-120",
+    "betOnVia": "TEAM",
+    "minHomeWinPercentage": 0.5348837209302325,
+    "minAwayWinPercentage": 0.5454545454545454,
+    "expectedHomeTipper": "robyis01.html",
+    "expectedAwayTipper": "holmeri01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "vVK/dfoE3z8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "oVYgxYJ94D8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "FGElLzuIdMA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "Tm9XPGQraMA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 7
+    },
+    "betOnAway": {
+      "py/id": 7
+    },
+    "kellyBet": null,
+    "homeTeamKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "FGElLzuIdMA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayTeamKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "Tm9XPGQraMA="
+            }
+          ]
+        }
+      ]
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "K2m4pRb/7D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "fUm7vm877j8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 32
+    }
+  },
+  {
+    "py/object": "src.classes.GameOdds.GameOdds",
+    "home": "CHI",
+    "away": "PHX",
+    "gameDatetime": null,
+    "exchange": "mgm",
+    "marketUrl": null,
+    "fetchedDatetime": "2021-02-26 18:37:36.474636",
+    "isTeamOnly": true,
+    "isPlayersOnly": false,
+    "gameCode": "CHI @ PHX 2021-02-26",
+    "homeTeamOdds": "-105",
+    "awayTeamOdds": "-135",
+    "bestHomeOdds": "-105",
+    "bestAwayOdds": "-135",
+    "betOnVia": "TEAM",
+    "minHomeWinPercentage": 0.5121951219512195,
+    "minAwayWinPercentage": 0.574468085106383,
+    "expectedHomeTipper": "cartewe01.html",
+    "expectedAwayTipper": "aytonde01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "XyPIWkBo4D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "QrlvSn8v3z8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "yAnkInMFDUA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "tYVRfeeZgMA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 18
+    },
+    "betOnAway": {
+      "py/id": 7
+    },
+    "kellyBet": {
+      "bet": {
+        "py/id": 36
+      },
+      "team": "CHI"
+    },
+    "homeTeamKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "yAnkInMFDUA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayTeamKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "tYVRfeeZgMA="
+            }
+          ]
+        }
+      ]
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "rGuG0j4E8D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "knbvdJkk6z8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 41
+    }
+  },
+  {
+    "py/object": "src.classes.GameOdds.GameOdds",
+    "home": "MEM",
+    "away": "LAC",
+    "gameDatetime": null,
+    "exchange": "mgm",
+    "marketUrl": null,
+    "fetchedDatetime": "2021-02-26 18:37:36.474646",
+    "isTeamOnly": true,
+    "isPlayersOnly": false,
+    "gameCode": "MEM @ LAC 2021-02-26",
+    "homeTeamOdds": "-105",
+    "awayTeamOdds": "-135",
+    "bestHomeOdds": "-105",
+    "bestAwayOdds": "-135",
+    "betOnVia": "TEAM",
+    "minHomeWinPercentage": 0.5121951219512195,
+    "minAwayWinPercentage": 0.574468085106383,
+    "expectedHomeTipper": "valanjo01.html",
+    "expectedAwayTipper": "ibakase01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "qqp7H2wT4D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "rKoIwSfZ3z8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "CAHueXbIUMA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "sMSinmBCfcA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 7
+    },
+    "betOnAway": {
+      "py/id": 7
+    },
+    "kellyBet": null,
+    "homeTeamKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "CAHueXbIUMA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayTeamKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "sMSinmBCfcA="
+            }
+          ]
+        }
+      ]
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "NE2oSd9i7z8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "ujUyyUO46z8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 50
+    }
+  },
+  {
+    "py/object": "src.classes.GameOdds.GameOdds",
+    "home": "MIA",
+    "away": "UTA",
+    "gameDatetime": null,
+    "exchange": "mgm",
+    "marketUrl": null,
+    "fetchedDatetime": "2021-02-26 18:37:36.474656",
+    "isTeamOnly": true,
+    "isPlayersOnly": false,
+    "gameCode": "MIA @ UTA 2021-02-26",
+    "homeTeamOdds": "-110",
+    "awayTeamOdds": "-125",
+    "bestHomeOdds": "-110",
+    "bestAwayOdds": "-125",
+    "betOnVia": "TEAM",
+    "minHomeWinPercentage": 0.5238095238095238,
+    "minAwayWinPercentage": 0.5555555555555556,
+    "expectedHomeTipper": "adebaba01.html",
+    "expectedAwayTipper": "goberru01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "No35aP7o3z8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "ZTmDy4AL4D8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "s+HCYiYPZcA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "x1PXN3VSdcA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 7
+    },
+    "betOnAway": {
+      "py/id": 7
+    },
+    "kellyBet": null,
+    "homeTeamKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "s+HCYiYPZcA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayTeamKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "x1PXN3VSdcA="
+            }
+          ]
+        }
+      ]
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "+MAcB6117j8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "gppSboHh7D8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 59
+    }
+  },
+  {
+    "py/object": "src.classes.GameOdds.GameOdds",
+    "home": "OKC",
+    "away": "ATL",
+    "gameDatetime": null,
+    "exchange": "mgm",
+    "marketUrl": null,
+    "fetchedDatetime": "2021-02-26 18:37:36.474666",
+    "isTeamOnly": true,
+    "isPlayersOnly": false,
+    "gameCode": "OKC @ ATL 2021-02-26",
+    "homeTeamOdds": "-110",
+    "awayTeamOdds": "-125",
+    "bestHomeOdds": "-110",
+    "bestAwayOdds": "-125",
+    "betOnVia": "TEAM",
+    "minHomeWinPercentage": 0.5238095238095238,
+    "minAwayWinPercentage": 0.5555555555555556,
+    "expectedHomeTipper": "horfoal01.html",
+    "expectedAwayTipper": "capelca01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "2RXxENcS4T8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "TtQd3lHa3T8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "SuLuuk1FUEA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "aj07KemKgcA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 18
+    },
+    "betOnAway": {
+      "py/id": 7
+    },
+    "kellyBet": {
+      "bet": {
+        "py/id": 64
+      },
+      "team": "OKC"
+    },
+    "homeTeamKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "SuLuuk1FUEA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayTeamKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "aj07KemKgcA="
+            }
+          ]
+        }
+      ]
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "CU+gYSpM8D8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "rNgaexbe6j8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 69
+    }
+  },
+  {
+    "py/object": "src.classes.GameOdds.GameOdds",
+    "home": "LAL",
+    "away": "POR",
+    "gameDatetime": null,
+    "exchange": "mgm",
+    "marketUrl": null,
+    "fetchedDatetime": "2021-02-26 18:37:36.474675",
+    "isTeamOnly": true,
+    "isPlayersOnly": false,
+    "gameCode": "LAL @ POR 2021-02-26",
+    "homeTeamOdds": "-135",
+    "awayTeamOdds": "-105",
+    "bestHomeOdds": "-135",
+    "bestAwayOdds": "-105",
+    "betOnVia": "TEAM",
+    "minHomeWinPercentage": 0.574468085106383,
+    "minAwayWinPercentage": 0.5121951219512195,
+    "expectedHomeTipper": "gasolma01.html",
+    "expectedAwayTipper": "kanteen01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "cevqG3Nb4T8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "HSkqyBlJ3T8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "HPTgm39paMA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "qafu84RSd8A="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 7
+    },
+    "betOnAway": {
+      "py/id": 7
+    },
+    "kellyBet": null,
+    "homeTeamKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "HPTgm39paMA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayTeamKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "qafu84RSd8A="
+            }
+          ]
+        }
+      ]
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "eFfI0eQ27j8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "2JUEK5mW7D8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 78
+    }
+  },
+  {
+    "py/object": "src.classes.GameOdds.GameOdds",
+    "home": "GSW",
+    "away": "CHA",
+    "gameDatetime": null,
+    "exchange": "mgm",
+    "marketUrl": null,
+    "fetchedDatetime": "2021-02-26 18:37:36.474695",
+    "isTeamOnly": true,
+    "isPlayersOnly": false,
+    "gameCode": "GSW @ CHA 2021-02-26",
+    "homeTeamOdds": "-135",
+    "awayTeamOdds": "-105",
+    "bestHomeOdds": "-135",
+    "bestAwayOdds": "-105",
+    "betOnVia": "TEAM",
+    "minHomeWinPercentage": 0.574468085106383,
+    "minAwayWinPercentage": 0.5121951219512195,
+    "expectedHomeTipper": "looneke01.html",
+    "expectedAwayTipper": "zelleco01.html",
+    "homeScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "3okv3QXu4T8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayScoreProb": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "Q+ygRfQj3D8="
+            }
+          ]
+        }
+      ]
+    },
+    "homeBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "kUf+4ViSVcA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayBestKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "tMwF7rz2fsA="
+            }
+          ]
+        }
+      ]
+    },
+    "betOnHome": {
+      "py/id": 7
+    },
+    "betOnAway": {
+      "py/id": 7
+    },
+    "kellyBet": null,
+    "homeTeamKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "kUf+4ViSVcA="
+            }
+          ]
+        }
+      ]
+    },
+    "awayTeamKellyBet": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "tMwF7rz2fsA="
+            }
+          ]
+        }
+      ]
+    },
+    "homeEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "itMsNQo27z8="
+            }
+          ]
+        }
+      ]
+    },
+    "awayEVFactor": {
+      "py/reduce": [
+        {
+          "py/function": "numpy.core.multiarray.scalar"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/id": 3
+            },
+            {
+              "py/b64": "TpG7dG546z8="
+            }
+          ]
+        }
+      ]
+    },
+    "bestEVFactor": {
+      "py/id": 87
+    }
+  }
+]

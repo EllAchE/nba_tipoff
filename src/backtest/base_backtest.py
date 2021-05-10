@@ -56,7 +56,6 @@ def retrievePickledOdds():
             allOddsDict[date] = {}
             dateSet.add(date)
 
-        allOddsDict[date][time] = {}
         unpickledObjDictList = decodePickle(fName)
         for objDict in unpickledObjDictList:
             try:
@@ -67,6 +66,7 @@ def retrievePickledOdds():
                 unpickledObjDictList.append(objDict['secondQuarterGameObj'])
                 unpickledObjDictList.append(objDict['thirdQuarterGameObj'])
                 unpickledObjDictList.append(objDict['fourthQuarterGameObj'])
+        allOddsDict[date][time] = {}
 
         exchangeSet = set()
         for objDict in unpickledObjDictList:
@@ -85,11 +85,20 @@ def retrievePickledOdds():
 
     return allOddsDict
 
-def addAdditionalQuarterScoreResultsToSeasonCsv()
+# def addAdditionalQuarterScoreResultsToSeasonCsv():
+#     # with open(ENVIRONMENT.FIRST_POINT_DATA_RAW_2021) as gamePbpF:
+#     #     gamePbpDict = json.load(gamePbpF)
+#     seasonCsvDf = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(2021))
+#
+#     seasonCsvDf['First Scorer Q2'] = seasonCsvDf['First Scorer Q3'] = seasonCsvDf['First Scorer Q4'] = None
+#
+#     for game in gamePbpDict:
+
+
 
 def generateBaseBacktestCsv():
-    with open(ENVIRONMENT.FIRST_POINT_DATA_RAW_2021) as gamePbpF:
-        gamePbpDict = json.load(gamePbpF)
-
+    # with open(ENVIRONMENT.FIRST_POINT_DATA_RAW_2021) as gamePbpF:
+    #     gamePbpDict = json.load(gamePbpF)
     odds = retrievePickledOdds()
     seasonCsvDf = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(2021))
+
