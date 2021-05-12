@@ -50,5 +50,4 @@ from src.odds.prediction_enhancements import getFirstFieldGoalOrFirstPointStats
 # XGBoost(2020)
 # getPlusMinusForTeams(2020)
 
-# savePickledOdds('test.json')
-# generateBaseBacktestCsv('test.csv')
+generateBaseBacktestCsv('Data/CSV/historical_odds/2021_historical_odds.csv')
