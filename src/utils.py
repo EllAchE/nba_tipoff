@@ -107,8 +107,8 @@ def getSoupFromUrl(url: str, headers=None, returnStatus: bool = False):
     
     return BeautifulSoup(page.content, 'html.parser')
 
-def getDashDateAndHomeCodeFromGameCode(game_code: str):
-    return getDashDateFromGameCode(game_code), getHomeTeamFromGameCode(game_code)
+def getDashDateAndHomeCodeFromGameCode(gameCode: str):
+    return getDashDateFromGameCode(gameCode), getHomeTeamFromGameCode(gameCode)
 
 def sleepChecker(iterations: int = 3, baseTime: int = 2, randomMultiplier: int = 3, printStop: bool = False):
     with open(ENVIRONMENT.SLEEP_CHECKER_PATH) as sc:

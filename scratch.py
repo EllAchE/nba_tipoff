@@ -1,6 +1,6 @@
 from nba_api.stats.endpoints import TeamDashboardByGameSplits
 import ENVIRONMENT
-from src.backtest.base_backtest import retrievePickledOdds, savePickledOdds
+from src.backtest.base_backtest import retrievePickledOdds, savePickledOdds, generateBaseBacktestCsv
 from src.database.data_update import customDataUpdate, smallDataUpdate, updateLongTermData
 from src.database.database_creation import addExtraUrlToPlayerLinks, getAdvancedMetricsForTeams, \
     getShotBreakdownForTeams, addAdditionalMlColumnsSingleSeason, concatCsv, getPlusMinusForTeams
@@ -50,5 +50,5 @@ from src.odds.prediction_enhancements import getFirstFieldGoalOrFirstPointStats
 # XGBoost(2020)
 # getPlusMinusForTeams(2020)
 
-test = retrievePickledOdds()
-# savePickledOdds()
+# savePickledOdds('test.json')
+# generateBaseBacktestCsv('test.csv')

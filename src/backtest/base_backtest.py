@@ -4,6 +4,9 @@ import json
 import pandas as pd
 
 import ENVIRONMENT
+from src.database.database_access import getUniversalTeamShortCode
+from src.utils import getDashDateAndHomeCodeFromGameCode
+
 
 def decodePickle(fileName):
     with open(fileName) as pickleFile:
@@ -22,14 +25,17 @@ def parseDetailsFromOddsObj(oddsDict):
         print('errored on', oddsDict['fetchedDatetime'],  oddsDict['home'], 'vs.', oddsDict['away'])
         return None, None
 
+    home = getUniversalTeamShortCode(oddsDict['home'])
+    away = getUniversalTeamShortCode(oddsDict['away'])
     details = {
-        "home": oddsDict['home'],
-        "away": oddsDict['away'],
+        "home": home,
+        "away": away,
         "bestHomeOdds": homeOdds,
-        "bestAwayOdds": awayOdds
+        "bestAwayOdds": awayOdds,
+        "exchange": oddsDict['exchange']
     }
-    print('ran for', oddsDict['fetchedDatetime'],  oddsDict['home'], 'vs.', oddsDict['away'])
-    return oddsDict['exchange'], details
+    print('ran for', oddsDict['fetchedDatetime'],  home, 'vs.', away)
+    return details
     # alternate names: homeTeamFirstQuarterOdds, awayTeamSecondQuarterOdds
 
 def splitFileName(fileName):
@@ -42,7 +48,7 @@ def splitFileName(fileName):
 def savePickledOdds(path):
     pickledOdds = retrievePickledOdds()
     with open(path, 'w') as fff:
-        json.dump(pickledOdds, fff)
+        json.dump(pickledOdds, fff, indent=4)
     print('saved pickled odds')
 
 def retrievePickledOdds():
@@ -68,20 +74,54 @@ def retrievePickledOdds():
                 unpickledObjDictList.append(objDict['fourthQuarterGameObj'])
         allOddsDict[date][time] = {}
 
-        exchangeSet = set()
+        teamSet = set()
         for objDict in unpickledObjDictList:
-            exchange, details = parseDetailsFromOddsObj(objDict)
-            exclusionList = ['betfair', 'unibet', 'bovada', 'barstool']
-            if exchange is None or exchange in exclusionList:
+            dtl = parseDetailsFromOddsObj(objDict)
+            exclusionList = ['betfair', 'unibet', 'bovada', 'barstool', 'pointsBet']
+
+            if dtl['exchange'] is None or dtl['exchange'] in exclusionList:
                 continue
-            if exchange not in exchangeSet:
-                exchangeSet.add(exchange)
-                allOddsDict[date][time][exchange] = {}
+
+            if dtl['home'] not in teamSet:
+                teamSet.add(dtl['home'])
+                allOddsDict[date][time][dtl['home']] = {}
+                allOddsDict[date][time][dtl['home']]['QUARTER_1'] = {}
+                allOddsDict[date][time][dtl['home']]['QUARTER_2'] = {}
+                allOddsDict[date][time][dtl['home']]['QUARTER_3'] = {}
+                allOddsDict[date][time][dtl['home']]['QUARTER_4'] = {}
+            if dtl['away'] not in teamSet:
+                teamSet.add(dtl['away'])
+                allOddsDict[date][time][dtl['away']] = {}
+                allOddsDict[date][time][dtl['away']]['QUARTER_1'] = {}
+                allOddsDict[date][time][dtl['away']]['QUARTER_2'] = {}
+                allOddsDict[date][time][dtl['away']]['QUARTER_3'] = {}
+                allOddsDict[date][time][dtl['away']]['QUARTER_4'] = {}
+
             try:
                 quarter = objDict['quarter']
             except:
                 quarter = 'QUARTER_1'
-            allOddsDict[date][time][exchange][quarter] = details
+
+            allOddsDict[date][time][dtl['home']][quarter][dtl['exchange']] = dtl['bestHomeOdds']
+            allOddsDict[date][time][dtl['away']][quarter][dtl['exchange']] = dtl['bestAwayOdds']
+
+    for dateKey in allOddsDict.keys(): # remove emptys
+        delList = []
+        for timeKey in allOddsDict[dateKey].keys():
+            if len(allOddsDict[dateKey][timeKey].keys()) == 0:
+                delList.append(timeKey)
+        for key in delList:
+            del allOddsDict[dateKey][key]
+
+    for dateKey in allOddsDict.keys(): # remove more emptys
+        for timeKey in allOddsDict[dateKey].keys():
+            for teamKey in allOddsDict[dateKey][timeKey].keys():
+                dellist = []
+                for quarterKey in allOddsDict[dateKey][timeKey][teamKey].keys():
+                    if len(allOddsDict[dateKey][timeKey][teamKey][quarterKey].keys()) == 0:
+                        dellist.append(quarterKey)
+                for delKey in dellist:
+                    del allOddsDict[dateKey][timeKey][teamKey][delKey]
 
     return allOddsDict
 
@@ -95,10 +135,60 @@ def retrievePickledOdds():
 #     for game in gamePbpDict:
 
 
-
-def generateBaseBacktestCsv():
+def generateBaseBacktestCsv(savePath):
     # with open(ENVIRONMENT.FIRST_POINT_DATA_RAW_2021) as gamePbpF:
     #     gamePbpDict = json.load(gamePbpF)
     odds = retrievePickledOdds()
     seasonCsvDf = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(2021))
+    seasonCsvDf['fanduelHomeOdds'] = None
+    seasonCsvDf['draftkingsHomeOdds'] = None
+    seasonCsvDf['mgmHomeOdds'] = None
+    seasonCsvDf['fanduelAwayOdds'] = None
+    seasonCsvDf['draftkingsAwayOdds'] = None
+    seasonCsvDf['mgmAwayOdds'] = None
+    for i in seasonCsvDf.index:
+        date, teamCode = getDashDateAndHomeCodeFromGameCode(seasonCsvDf.iloc[i]['Game Code'])
+        row = seasonCsvDf.iloc[i]
+        home = row['Home Short']
+        away = row['Away Short']
+        try:
+            dateDict = odds[date]
+            dayOdds = extractFirstInstanceOfOddsFromSingleDayDict(dateDict)
+            for teamKey in dayOdds.keys():
+                for exchangeBetKey in dayOdds[teamKey]['QUARTER_1'].keys(): # todo hack for quarter 1 for now
+                    if getUniversalTeamShortCode(teamKey) == getUniversalTeamShortCode(home):
+                        strAdd = exchangeBetKey + 'HomeOdds'
+                        seasonCsvDf.at[i, strAdd] = dayOdds[teamKey]['QUARTER_1'][exchangeBetKey]
+                    elif getUniversalTeamShortCode(teamKey) == getUniversalTeamShortCode(away):
+                        strAdd = exchangeBetKey + 'AwayOdds'
+                        seasonCsvDf.at[i, strAdd] = dayOdds[teamKey]['QUARTER_1'][exchangeBetKey]
+        except:
+            print('possibly no odds for game', teamCode, date)
+
+    print(seasonCsvDf.iloc[0])
+    seasonCsvDf.to_csv(savePath, index=False)
+
+def extractFirstInstanceOfOddsFromSingleDayDict(dateDict):
+    comboSet = set()
+    teamSet = set()
+    firstInstanceOddsDict = {}
+
+    for time in dateDict.keys():
+        for team in dateDict[time].keys():
+            if team not in teamSet:
+                teamSet.add(team)
+                firstInstanceOddsDict[team] = {}
+
+            for quarter in dateDict[time][team].keys():
+                if quarter not in firstInstanceOddsDict[team].keys():
+                    firstInstanceOddsDict[team][quarter] = {}
+
+                for exchange in dateDict[time][team][quarter].keys():
+                    if team + quarter + exchange in comboSet:
+                        continue
+                    else:
+                        comboSet.add(team + quarter + exchange)
+                        firstInstanceOddsDict[team][quarter][exchange] = dateDict[time][team][quarter][exchange]
+
+    return firstInstanceOddsDict
 

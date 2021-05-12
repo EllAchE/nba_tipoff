@@ -1,70 +1,18 @@
 {
     "games": [
-        "CLE DAL",
-        "MIN ORL",
-        "CHA NOP",
-        "OKC SAC",
-        "LAL PHX",
-        "CHI DET"
+        "DET MIN",
+        "CHA DEN"
     ],
-    "CLE": {
-        "fanduel": "-122.0",
-        "draftkings": "-113",
-        "mgm": "+100"
-    },
-    "DAL": {
-        "fanduel": "-104.0",
-        "draftkings": "-113",
-        "mgm": "-140"
-    },
-    "ORL": {
-        "fanduel": "+110.00000000000001",
-        "draftkings": "+101",
+    "DET": {
         "mgm": "-105"
     },
     "MIN": {
-        "fanduel": "-140.0",
-        "draftkings": "-129",
         "mgm": "-135"
     },
     "CHA": {
-        "fanduel": "-130.0",
-        "draftkings": "-121",
-        "mgm": "-125"
-    },
-    "NOP": {
-        "fanduel": "+102.0",
-        "draftkings": "-106",
         "mgm": "-110"
     },
-    "SAC": {
-        "fanduel": "-122.0",
-        "draftkings": "-127",
-        "mgm": "-135"
-    },
-    "OKC": {
-        "fanduel": "-104.0",
-        "draftkings": "+100",
-        "mgm": "-105"
-    },
-    "LAL": {
-        "fanduel": "-132.0",
-        "draftkings": "-106",
-        "mgm": "-105"
-    },
-    "PHX": {
-        "fanduel": "+106.0",
-        "draftkings": "-121",
-        "mgm": "-135"
-    },
-    "DET": {
-        "fanduel": "-111.0",
-        "draftkings": "-103",
-        "mgm": "-105"
-    },
-    "CHI": {
-        "fanduel": "-115.0",
-        "draftkings": "-125",
-        "mgm": "-135"
+    "DEN": {
+        "mgm": "-125"
     }
 }
