@@ -1,3 +1,8 @@
+# NOTE (Read this first)
+This was created quite a while ago and purely for experimental/learning purposes (it has not been maintained).
+I wrote these docs to discuss/talk through with individual collaborators I invited, **not for use as a standalone guide.**
+I removed a lot of those docs from this repo, along with other items, before making it public.
+
 # nba-tipoff-scraper
 
 Bets are based on 2 variables, odds of winning tipoff and over/under performance of expected tipoff win percentage
@@ -10,7 +15,7 @@ Elo and so is better for players with less data.
 
 I had expected glicko2 to outperform the other algorithms, and it's possible that it may with proper parameter tuning, but again a time issue.
 
-Outperformance is just done using historical data.
+Outperformance is calculated using historical data.
 
 
 ## Code/Process
@@ -44,7 +49,7 @@ adopting a pattern of run_[script_name].py; which you can call with a python run
 
 1. Download the repo to your local folder
 2. Set up a virtual environment at the project root (python 3.8 or later preferred)
-3. Ask Logan if scraped data is not loaded into the repo already, or if you have any other questions
+3. Ask if scraped data is not loaded into the repo already, or if you have any other questions
 
 # Development Process
 
@@ -64,12 +69,12 @@ adopting a pattern of run_[script_name].py; which you can call with a python run
 - **Existing API (with great docs) to fetch NBA data:**  https://github.com/swar/nba_api/
 - Source for live lineups: https://www.rotowire.com/basketball/nba-lineups.php
 - Source for injury updates (still choosing best): https://www.rotowire.com/basketball/nba-lineups.php
-- Bball ref scraper I found (don't think it does what we want): https://github.com/vishaalagartha/basketball_reference_scraper/blob/master/API.md
+- Bball ref scraper I found (don't think it does what I'd need): https://github.com/vishaalagartha/basketball_reference_scraper/blob/master/API.md
 - Tableau created with tipoff of some current players https://fansided.com/stats/jump-ball-statistics-1998-present/
 
 ## Early Results/Key Figures
 
-Preliminary results when setting tipoff win probability threshold at 0.7 (don't recall which) give me a 55.64% prediction rate for who scores first.
+Preliminary results when setting tipoff win probability threshold at 0.7 (don't recall which) give a 55.64% prediction rate for who scores first.
 
 # Repo Contents
 
@@ -88,8 +93,8 @@ The "Epics" that are missing
   - Day-of betting confirmation (i.e. alerts if there is an injury or change to starters just before game starts, which affect projected odds)
   - Machine learning predictions to improve on the naive predictions
 
-# Picking up from Backlog
+# Contributing
 Just search for a todo, they will be in the appropriate file and ideally verbose enough to follow, but ask Logan if not. Most immediate prioirities are live odds fetching and day-of confirmation
 
 # NCAA
-Given my recent discovery that NCAA data could be used for betmgm, I found a great repo with data here: https://github.com/lbenz730/ncaahoopR_data. The dataset is too large for it to be worth adding to githug so save it locally and move it to this path - Data/ncaahoopR_data-master/* if you are going to run analysis on the raw data.
+NCAA data could be used, I found a great repo with data here: https://github.com/lbenz730/ncaahoopR_data. The dataset is too large for it to be worth adding to githug so save it locally and move it to this path - Data/ncaahoopR_data-master/* if you are going to run analysis on the raw data.
