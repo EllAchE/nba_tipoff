@@ -91,3 +91,4 @@ https://punter2pro.com/best-sports-arbing-software/
 # todo add auto starter updates
 
 # todo add backtester support for quarters besides the first
+# todo fix backplotter (betting more than bankroll currently) and fix blank lines to run

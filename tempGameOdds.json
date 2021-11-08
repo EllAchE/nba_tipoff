@@ -1,18 +1,121 @@
 {
     "games": [
-        "DET MIN",
-        "CHA DEN"
+        "ATL HOU",
+        "ORL PHI",
+        "BKN CLE",
+        "LAC OKC",
+        "SAC UTA",
+        "DAL MIN",
+        "GSW MEM",
+        "LAL NOP",
+        "DET MIA",
+        "CHI MIL",
+        "DEN POR"
     ],
-    "DET": {
-        "mgm": "-105"
-    },
-    "MIN": {
+    "ATL": {
+        "fanduel": "-140.0",
+        "draftkings": "-129",
         "mgm": "-135"
     },
-    "CHA": {
+    "HOU": {
+        "fanduel": "+110.00000000000001",
+        "draftkings": "+101",
+        "mgm": "-105"
+    },
+    "PHI": {
+        "fanduel": "-154.0",
+        "draftkings": "-125",
+        "mgm": "-135"
+    },
+    "ORL": {
+        "fanduel": "+120.0",
+        "draftkings": "-103",
+        "mgm": "-105"
+    },
+    "BKN": {
+        "fanduel": "-118.0",
+        "draftkings": "-129",
+        "mgm": "-145"
+    },
+    "CLE": {
+        "fanduel": "-108.0",
+        "draftkings": "+101",
+        "mgm": "+105"
+    },
+    "OKC": {
+        "fanduel": "-111.0",
+        "draftkings": "-106",
+        "mgm": "-105"
+    },
+    "LAC": {
+        "fanduel": "-115.0",
+        "draftkings": "-121",
+        "mgm": "-135"
+    },
+    "SAC": {
+        "fanduel": "+120.0",
+        "draftkings": "+116",
+        "mgm": "-105"
+    },
+    "UTA": {
+        "fanduel": "-154.0",
+        "draftkings": "-148",
+        "mgm": "-135"
+    },
+    "MIN": {
+        "fanduel": "-138.0",
+        "draftkings": "-108",
         "mgm": "-110"
     },
-    "DEN": {
+    "DAL": {
+        "fanduel": "+108.0",
+        "draftkings": "-118",
         "mgm": "-125"
+    },
+    "GSW": {
+        "fanduel": "-128.0",
+        "draftkings": "-121",
+        "mgm": "-125"
+    },
+    "MEM": {
+        "fanduel": "+100.0",
+        "draftkings": "-106",
+        "mgm": "-110"
+    },
+    "NOP": {
+        "fanduel": "+150.0",
+        "draftkings": "+116"
+    },
+    "LAL": {
+        "fanduel": "-194.0",
+        "draftkings": "-148"
+    },
+    "DET": {
+        "fanduel": "+106.0",
+        "draftkings": "+101",
+        "mgm": "-110"
+    },
+    "MIA": {
+        "fanduel": "-136.0",
+        "draftkings": "-129",
+        "mgm": "-125"
+    },
+    "CHI": {
+        "fanduel": "+136.0",
+        "draftkings": "+105"
+    },
+    "MIL": {
+        "fanduel": "-174.0",
+        "draftkings": "-134"
+    },
+    "POR": {
+        "fanduel": "-162.0",
+        "draftkings": "-121",
+        "mgm": "-135"
+    },
+    "DEN": {
+        "fanduel": "+126.0",
+        "draftkings": "-106",
+        "mgm": "-105"
     }
 }

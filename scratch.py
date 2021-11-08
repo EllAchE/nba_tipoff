@@ -1,6 +1,7 @@
 from nba_api.stats.endpoints import TeamDashboardByGameSplits
 import ENVIRONMENT
-from src.backtest.base_backtest import retrievePickledOdds, savePickledOdds, generateBaseBacktestCsv
+from src.backtest.backtest_data_prep import retrievePickledOdds, savePickledOdds, generateBaseBacktestCsv
+from src.backtest.evaluation import seasonBetRecord
 from src.database.data_update import customDataUpdate, smallDataUpdate, updateLongTermData
 from src.database.database_creation import addExtraUrlToPlayerLinks, getAdvancedMetricsForTeams, \
     getShotBreakdownForTeams, addAdditionalMlColumnsSingleSeason, concatCsv, getPlusMinusForTeams
@@ -50,4 +51,9 @@ from src.odds.prediction_enhancements import getFirstFieldGoalOrFirstPointStats
 # XGBoost(2020)
 # getPlusMinusForTeams(2020)
 
-generateBaseBacktestCsv('Data/CSV/historical_odds/2021_historical_odds.csv')
+# generateBaseBacktestCsv('Data/CSV/historical_odds/2021_historical_odds.csv')
+test = seasonBetRecord('Data/CSV/historical_odds/2021_historical_odds_blanks_removed.csv')
+print(test.bankroll)
+print(test)
+
+# fillGaps(2021)

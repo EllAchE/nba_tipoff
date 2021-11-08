@@ -121,7 +121,6 @@ def trueSkillTipWinProb(player1Code: str, player2Code: str, psd=None): #win prob
 
     return trueSkillTipWinFromMuAndSigma(player1Mu, player1Sigma, player2Mu, player2Sigma)
 
-
 def trueSkillTipWinFromMuAndSigma(player1Mu, player1Sigma, player2Mu, player2Sigma):
     player1 = trueskill.Rating(player1Mu, player1Sigma)
     player2 = trueskill.Rating(player2Mu, player2Sigma)

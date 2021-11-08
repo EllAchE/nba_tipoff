@@ -28,7 +28,7 @@ def scoreFirstProb(p1Code: str, p2Code: str, quarter, jsonPath: Optional[str] = 
         p2Code = p1Code
         p1Code = temp
     tWinProb = trueSkillTipWinProb(p1Code, p2Code)
-    oddsWithObservedTipScore = tWinProb * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1 - tWinProb) * (1 - ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
+    oddsWithObservedTipScore = tipoffNaiveOdds(tWinProb)
 
     p1 = getUniversalPlayerName(p1Code)
     t1 = getUniversalTeamShortCode(getPlayerCurrentTeam(p1))
@@ -55,6 +55,13 @@ def scoreFirstProb(p1Code: str, p2Code: str, quarter, jsonPath: Optional[str] = 
 
     # print('odds team of', p1Code, 'scores before team of', p2Code, 'are', totalOdds)
     return totalOdds
+
+
+def tipoffNaiveOdds(tWinProb):
+    oddsWithObservedTipScore = tWinProb * ENVIRONMENT.TIP_WINNER_SCORE_ODDS + (1 - tWinProb) * (
+                1 - ENVIRONMENT.TIP_WINNER_SCORE_ODDS)
+    return oddsWithObservedTipScore
+
 
 def getPlayerSpread(oddsLine, winProb: float, playerSpreadAsSingleAOdds: str):
     oddsOnly = list()
@@ -133,16 +140,25 @@ def kellyBetReduced(lossAmt: float, winOdds: float, reductionFactor: float=ENVIR
     else:
         return kellyRatio * bankroll
 
-def ImpliedOddsFromAmerican(oddsStr: str):
+def impliedOddsFromAmerican(oddsStr: str):
+    oddsStr = str(oddsStr)
     oddsNum = float(oddsStr[1:])
     
-    if oddsStr[0] == '+':
-        reqWinPer = 100 / (100 + oddsNum)
-    else:
+    if oddsStr[0] == '-':
         reqWinPer = oddsNum / (100 + oddsNum)
+    else:
+        reqWinPer = 100 / (100 + oddsNum)
+
     # print('with odds', oddsStr, 'you must win', "{:.2f}".format(reqWinPer) + '%')
 
     return reqWinPer
+
+def floatOddsToString(odds): # can't pass negs
+    oddsStr = str(odds)
+    if oddsStr[0] == '-' or oddsStr[0] == '+':
+        return oddsStr
+    else:
+        return '+' + oddsStr
 
 def costFor100(oddsStr: str):
     oddsNum = float(oddsStr[1:])
@@ -159,7 +175,7 @@ def getEvMultiplier(scoreProb: float, minWinPercentage: float):
     return (scoreProb * winAmt - (1 - scoreProb)) + 1
 
 def costFor1(odds: Any):
-    oddsStr = str(odds)
+    oddsStr = floatOddsToString(odds)
     oddsNum = float(oddsStr[1:])
     
     if oddsStr[0] == '+':
@@ -171,23 +187,23 @@ def costFor1(odds: Any):
 
 def decimalToAmerican(decOdds: float): # http://www.betsmart.co/odds-conversion-formulas/#americantodecimal
     if (decOdds - 1) > 1:
-        return '+' + str(100 * (decOdds - 1))
+        return '+' + str(round(100 * (decOdds - 1)))
     else:
-        return '-' + str(100 / (decOdds - 1))
+        return '-' + str(round(100 / (decOdds - 1)))
 
 def americanToRatio(x):
     return americanToDecimal(x) - 1
 
 def americanToDecimal(americanOdds: Any):
-    odds = ImpliedOddsFromAmerican(americanOdds)
+    odds = impliedOddsFromAmerican(americanOdds)
     return 1 / odds
 
 def kellyBetFromAOddsAndScoreProb(scoreProb: float, americanOdds: str, bankroll: int=ENVIRONMENT.BANKROLL):
-    loss_amt = costFor1(americanOdds)
-    return kellyBetReduced(loss_amt, scoreProb, bankroll=bankroll)
+    lossAmt = costFor1(americanOdds)
+    return kellyBetReduced(lossAmt, scoreProb, bankroll=bankroll)
 
 def checkEvPositiveBackLayAndGetScoreProb(teamOdds: float, teamTipperCode: str, opponentTipperCode: str):
-    minWinRate = ImpliedOddsFromAmerican(teamOdds)
+    minWinRate = impliedOddsFromAmerican(teamOdds)
     minLossRate = 1 - minWinRate
     scoreProb = scoreFirstProb(teamTipperCode, opponentTipperCode)
 
@@ -202,11 +218,16 @@ def checkEvPositiveBackLayAndGetScoreProb(teamOdds: float, teamTipperCode: str, 
         return None
 
 def checkEvPositive(teamOdds: float, scoreProb: float):
-    min_win_rate = ImpliedOddsFromAmerican(teamOdds)
-    if scoreProb > min_win_rate:
+    minWinRate = impliedOddsFromAmerican(teamOdds)
+    if scoreProb > minWinRate:
         return True
     else:
         return False
+
+def checkMinEvThreshold(probability, bettingOdds, evThreshold=1.14):
+    if evThreshold < getEvMultiplier(probability, impliedOddsFromAmerican(bettingOdds)):
+        return True
+    return False
 
 def checkEvPlayerCodesOddsLine(odds: float, p1: str, p2: str):
     prob = scoreFirstProb(p1, p2, quarter="QUARTER_1")
@@ -293,3 +314,9 @@ def checkForArbitrageInRetrievedOdds(jsonPath='tempGameOdds.json'):
                 print(team2, 'odds are', bestTeam2Odds, 'on exchange', exchange2, 'ratio is', ratios[0])
         except:
             print('possibly not enough odds in game', game)
+
+def americanOddsPayoutForWin(americanOdds, betAmount):
+    multiplier = americanToRatio(americanOdds)
+    return betAmount * multiplier
+
+

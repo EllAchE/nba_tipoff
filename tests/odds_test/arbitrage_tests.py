@@ -1,5 +1,5 @@
 from src.odds.odds_calculator import sysEMainDiagonalVarsNeg1Fill, getArbitrageRatiosTwoLines, \
-    checkForArbitrageAnyNumberOfLines
+    checkForArbitrageAnyNumberOfLines, americanToDecimal, americanToRatio
 from src.utils import floatInexactZeroCheck, floatInexactZeroTwoNumberDiff
 
 
@@ -32,3 +32,16 @@ def checkForArbitrageAnyNumberOfLines_test():
     assert testCalc
     spread = checkForArbitrageAnyNumberOfLines('-110', '-110')
     assert not spread
+
+def americanToDecimal_test():
+    testPositiveOdds = '+500'
+    testNegativeOdds = '-200'
+    decimalPo = americanToDecimal(testPositiveOdds)
+    decimalNe = americanToDecimal(testNegativeOdds)
+    assert floatInexactZeroCheck(decimalPo - 6)
+    assert floatInexactZeroCheck(decimalNe - 1.5)
+
+    ratioPo = americanToRatio(testPositiveOdds)
+    ratioNe = americanToRatio(testNegativeOdds)
+    assert floatInexactZeroCheck(ratioPo - 5)
+    assert floatInexactZeroCheck(ratioNe - 0.5)

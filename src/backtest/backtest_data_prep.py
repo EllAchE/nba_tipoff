@@ -5,6 +5,7 @@ import pandas as pd
 
 import ENVIRONMENT
 from src.database.database_access import getUniversalTeamShortCode
+from src.odds.odds_calculator import returnGreaterOdds, decimalToAmerican, americanToDecimal
 from src.utils import getDashDateAndHomeCodeFromGameCode
 
 
@@ -54,13 +55,11 @@ def savePickledOdds(path):
 def retrievePickledOdds():
     fNames = [i for i in glob.glob('{}/**'.format(ENVIRONMENT.ODDS_DATA_FOLDER))]
     allOddsDict = {}
-    dateSet = set()
 
     for fName in fNames:
         date, time = splitFileName(fName)
-        if date not in dateSet:
+        if date not in allOddsDict.keys():
             allOddsDict[date] = {}
-            dateSet.add(date)
 
         unpickledObjDictList = decodePickle(fName)
         for objDict in unpickledObjDictList:
@@ -140,12 +139,9 @@ def generateBaseBacktestCsv(savePath):
     #     gamePbpDict = json.load(gamePbpF)
     odds = retrievePickledOdds()
     seasonCsvDf = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(2021))
-    seasonCsvDf['fanduelHomeOdds'] = None
-    seasonCsvDf['draftkingsHomeOdds'] = None
-    seasonCsvDf['mgmHomeOdds'] = None
-    seasonCsvDf['fanduelAwayOdds'] = None
-    seasonCsvDf['draftkingsAwayOdds'] = None
-    seasonCsvDf['mgmAwayOdds'] = None
+    seasonCsvDf['fanduelHomeOdds'] = seasonCsvDf['draftkingsHomeOdds'] = seasonCsvDf['mgmHomeOdds'] = None
+    seasonCsvDf['fanduelAwayOdds'] = seasonCsvDf['draftkingsAwayOdds'] = None
+    seasonCsvDf['mgmAwayOdds'] = seasonCsvDf['bestHomeOdds'] = seasonCsvDf['bestAwayOdds'] = None
     for i in seasonCsvDf.index:
         date, teamCode = getDashDateAndHomeCodeFromGameCode(seasonCsvDf.iloc[i]['Game Code'])
         row = seasonCsvDf.iloc[i]
@@ -162,11 +158,44 @@ def generateBaseBacktestCsv(savePath):
                     elif getUniversalTeamShortCode(teamKey) == getUniversalTeamShortCode(away):
                         strAdd = exchangeBetKey + 'AwayOdds'
                         seasonCsvDf.at[i, strAdd] = dayOdds[teamKey]['QUARTER_1'][exchangeBetKey]
+
+        except:
+            print('possibly no odds for game', teamCode, date)
+    for i in seasonCsvDf.index:
+        try:
+            homeOddsList = list()
+            awayOddsList = list()
+            row = seasonCsvDf.iloc[i]
+            a = row['fanduelHomeOdds']
+            b = row['draftkingsHomeOdds']
+            c = row['mgmHomeOdds']
+            d = row['fanduelAwayOdds']
+            e = row['draftkingsAwayOdds']
+            f = row['mgmAwayOdds']
+
+            for odds in [a,b,c]:
+                if odds is not None:
+                    homeOddsList.append(odds)
+            for odds in [d, e, f]:
+                if odds is not None:
+                    awayOddsList.append(odds)
+
+            bestHomeOdds = bestAwayOdds = None
+            if len(homeOddsList) > 0:
+                bestHomeOdds = decimalToAmerican(max(map(americanToDecimal, homeOddsList)))
+            if len(awayOddsList) > 0:
+                bestAwayOdds = decimalToAmerican(max(map(americanToDecimal, awayOddsList)))
+            seasonCsvDf.at[i, 'bestHomeOdds'] = bestHomeOdds
+            seasonCsvDf.at[i, 'bestAwayOdds'] = bestAwayOdds
         except:
             print('possibly no odds for game', teamCode, date)
 
-    print(seasonCsvDf.iloc[0])
-    seasonCsvDf.to_csv(savePath, index=False)
+    saveDf = seasonCsvDf[['Game Code', 'Home Short', 'Away Short', 'Home Tipper', 'Away Tipper', 'Tip Winning Team', 'Tip Losing Team',
+                          'First Scoring Team', 'Scored Upon Team', 'Tip Winner Scores', 'Home TS Mu', 'Away TS Mu', 'Home TS Sigma',
+                          'Away TS Sigma', 'fanduelHomeOdds', 'draftkingsHomeOdds', 'mgmHomeOdds', 'bestHomeOdds',
+                          'fanduelAwayOdds', 'draftkingsAwayOdds', 'mgmAwayOdds', 'bestAwayOdds']]
+
+    saveDf.to_csv(savePath, index=False)
 
 def extractFirstInstanceOfOddsFromSingleDayDict(dateDict):
     comboSet = set()

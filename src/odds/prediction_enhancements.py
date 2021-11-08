@@ -6,7 +6,8 @@ from collections import OrderedDict
 import requests
 import ENVIRONMENT
 from src.database.database_access import getUniversalTeamShortCode
-from src.utils import lowercaseNoSpace
+from src.utils import lowercaseNoSpace, getDashDateAndHomeCodeFromGameCode
+
 
 # backlogtodo include nonshooting possessions
 # backlogtodo  usage rate for players
@@ -45,10 +46,9 @@ def getFirstFieldGoalOrFirstPointStats(season, isFirstFieldGoal=False):
     seasonData = pd.read_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season))
 
     for game in firstShotsDict:
-        # summaryDict = _playerFirstShotStats(game, summaryDict, isFirstFieldGoal=isFirstFieldGoal)
         summaryDict = _teamFirstShotStats(game, summaryDict, seasonData, isFirstFieldGoal=isFirstFieldGoal)
-
-    summaryDict = _summaryStats(summaryDict)
+        # Includes team, opponent, tip results, attempts and makes
+        summaryDict['gameCode'] = game['gameCode']
 
     def sortFunction(item):
         quarterData = list(item)[1]['quarter1']

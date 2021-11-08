@@ -403,7 +403,7 @@ def fillGaps(season):
     df2.to_csv(ENVIRONMENT.SEASON_CSV_UNFORMATTED_PATH.format(season), index=False)
 
 def teamSummaryDataFromFirstPointData(season):
-    with open(ENVIRONMENT.FIRST_POINT_SUMMARY_UNFORMATTED_PATH.format(season)) as file:
+    with open(ENVIRONMENT.FIRST_FG_SUMMARY_UNFORMATTED_PATH.format(season)) as file:
         fileDict = json.load(file)
 
     summaryDict = {}
